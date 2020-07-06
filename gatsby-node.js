@@ -29,7 +29,6 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
   }
 
   result.data.allAsciidoc.edges.forEach(({ node }) => {
-    console.log('n', JSON.stringify(node));
     createPage({
       path: node.pageAttributes.slug,
       component: articleTemplate,
