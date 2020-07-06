@@ -350,7 +350,7 @@ When you publish the template, it is submitted into a queue for profiling. The K
 +
 [source, JSON]
 ----
-include::../codeSamples/entitlements.json[]
+include::entitlements.json[]
 ----
 This code indicates that the template supports remixes and is ready to be listed in the feed.
 
