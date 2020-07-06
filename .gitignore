@@ -1,0 +1,5 @@
+# Gatsby
+.cache
+
+# Node
+node_modules

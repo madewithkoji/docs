@@ -1,6 +1,6 @@
 = Magazine Cover Template
 :description: Add customizable images and text to put your own picture and headline on a magazine.
-:imagesdir: ../images/
+:page-slug: /blueprints-magazine-cover
 
 == Summary
 [#img-overview]

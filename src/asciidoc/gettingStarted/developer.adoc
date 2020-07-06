@@ -1,4 +1,5 @@
 = Koji Developer Portal
+:page-slug: /getting-started
 
 == About Koji
 
@@ -23,7 +24,7 @@ programs. With the ability to create and share remixable, interactive
 content, the opportunities for creative new applications and experiences
 are countless. We can’t wait to see what YOU make!
 
-image:../images/Koji-developer.svg[Overview of the Koji development
+image:Koji-developer.svg[Overview of the Koji development
 process,title="Koji development process"]
 
 == Getting Started

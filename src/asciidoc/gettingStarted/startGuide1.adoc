@@ -1,4 +1,5 @@
 = Developing your first Koji template
+:page-slug: /getting-started/guide-1
 
 == Summary
 
