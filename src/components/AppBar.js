@@ -4,6 +4,7 @@ import Button from '@material-ui/core/Button';
 import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
+import Search from './Search';
 import { Link, useStaticQuery, graphql } from "gatsby"
 
 const AppBarComponent = () => {
@@ -35,7 +36,7 @@ const AppBarComponent = () => {
           <MenuIcon />
         </IconButton>
         {
-          navItems.map(({ defaultPath, id, name}) => (
+          navItems.map(({ defaultPath, id, name }) => (
             <Link
               key={id}
               to={defaultPath}
@@ -44,6 +45,7 @@ const AppBarComponent = () => {
             </Link>
           ))
         }
+        <Search />
       </Toolbar>
     </AppBar>
   );

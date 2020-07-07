@@ -4,11 +4,13 @@ import AppBar from '../components/AppBar';
 import Layout from "../layouts"
 
 const Page = (props) => {
-  console.log('p', props);
   return (
     <Layout>
       <AppBar />
-      <DocsDrawer visible={props.drawer === 'docs'} />
+      {
+        props.drawer === 'docs' &&
+        <DocsDrawer visible={props.drawer === 'docs'} />
+      }
       {props.children}
     </Layout>
   );
