@@ -9,7 +9,9 @@ const Page = (props) => {
       <AppBar />
       {
         props.drawer === 'docs' &&
-        <DocsDrawer visible={props.drawer === 'docs'} />
+        <DocsDrawer
+          visible={props.drawer === 'docs'}
+        />
       }
       {props.children}
     </Layout>

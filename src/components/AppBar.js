@@ -32,9 +32,11 @@ const AppBarComponent = () => {
   return (
     <AppBar position="static">
       <Toolbar variant="dense">
-        <IconButton edge="start" color="inherit" aria-label="menu">
-          <MenuIcon />
-        </IconButton>
+        <Link
+          to={'/'}
+        >
+          <Button style={{ color: '#ffffff' }}>{'Home'}</Button>
+        </Link>
         {
           navItems.map(({ defaultPath, id, name }) => (
             <Link

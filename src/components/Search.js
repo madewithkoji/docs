@@ -64,6 +64,7 @@ const Search = () => {
         alignItems: 'center',
         justifyContent: 'center',
         flexDirection: 'column',
+        zIndex: 10000,
       }}>
         {
           matches.map((match) => (

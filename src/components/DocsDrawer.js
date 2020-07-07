@@ -2,6 +2,13 @@ import React from 'react';
 import Drawer from '@material-ui/core/Drawer';
 import { useStaticQuery, graphql } from "gatsby"
 import NestedList from './NestedList';
+import { makeStyles } from '@material-ui/core/styles';
+
+const useStyles = makeStyles({
+  paper: {
+    marginTop: '48px',
+  },
+});
 
 const DocsDrawer = () => {
   const data = useStaticQuery(graphql`
@@ -27,8 +34,11 @@ const DocsDrawer = () => {
 
   const navItem = navItems.find((i) => i.name === 'Docs');
 
+  const classes = useStyles();
+
   return (
     <Drawer
+      classes={{ paper: classes.paper }}
       open
       variant={'persistent'}
     >
