@@ -1,5 +1,5 @@
 = Koji Developer Portal
-:page-slug: /getting-started
+:page-slug: /docs/getting-started
 
 == About Koji
 

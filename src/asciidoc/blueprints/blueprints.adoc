@@ -1,5 +1,5 @@
 = Blueprints
-:page-slug: /blueprints
+:page-slug: /docs/blueprints
 
 == What are blueprints?
 

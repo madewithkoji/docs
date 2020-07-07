@@ -1,3 +1,54 @@
+exports.sourceNodes = ({ actions, createNodeId, createContentDigest }) => {
+  const navItems = [
+    {
+      name: 'Docs',
+      root: '/docs',
+      defaultPath: '/docs/blueprints',
+      sections: [
+        {
+          name: 'Blueprints',
+          items: [
+            {
+              name: 'Overview',
+              path: '/docs/blueprints',
+            },
+            {
+              name: 'Magazine Cover',
+              path: '/docs/blueprints/magazine-cover',
+            },
+          ]
+        },
+        {
+          name: 'Getting Started',
+          items: [
+            {
+              name: 'Developer',
+              path: '/docs/getting-started',
+            },
+            {
+              name: 'Start Guide 1',
+              path: '/docs/getting-started/start-guide-1',
+            },
+          ],
+        },
+      ],
+    },
+  ];
+
+  navItems.forEach((navItem) => {
+    const node = {
+      ...navItem,
+      id: createNodeId(`Nav-Item-${navItem.name}`),
+      internal: {
+        type: 'NavItem',
+        contentDigest: createContentDigest(navItem),
+      },
+    };
+
+    actions.createNode(node)
+  });
+};
+
 exports.createPages = async ({ actions, graphql, reporter }) => {
   const { createPage } = actions
 
