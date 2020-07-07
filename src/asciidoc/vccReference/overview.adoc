@@ -1,0 +1,17 @@
+= Overview
+:page-slug: /vcc
+
+Visual Customization Controls (VCCs) enable users to quickly edit elements of your application on Koji.
+The Koji platform includes VCCs for the following standard types of elements:
+
+* xref here – page description here (can we do this automatically?)
+
+VCC types can be composed using higher-order controls. Note that arrays and objects can be combined to create more elaborate compositions.
+
+* <<array.adoc#>>
+
+The Koji platform also supports custom VCCs to provide new types of customizations that match closely with the application you are developing.
+
+* Browse custom VCCs – Use a custom VCC.
+* For more information, see the tutorial.
+* link to docs (need to decide if we want "related resources" or something like that, or if this is a note)

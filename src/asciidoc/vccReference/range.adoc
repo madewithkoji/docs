@@ -1,0 +1,22 @@
+= Range
+:page-slug: /vcc/range
+
+* Allows the user to drag a slider to specify a numeric value.
+* Can be configured with a minimum value, maximum value, and a default increment/step size.
+
+== Sample Range VCC
+
+[source,json]
+----
+{
+  "key": "myRange",
+  "name": "My Range",
+  "description": "This is my range description",
+  "type": "range",
+  "typeOptions": {
+    "min": 5,
+    "max": 60,
+    "step": 1
+  }
+}
+----

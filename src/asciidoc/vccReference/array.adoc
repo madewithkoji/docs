@@ -1,0 +1,24 @@
+= Array (Composition)
+:page-slug: /vcc/array
+
+The array control lets you create a list of multiple values from a single VCC definition.
+To create an array, define the VCC type as `"type": "array<T>"` or `T[]` where `T` is a valid VCC type.
+For example, to specify an array of images, use a type of `array<image>` or `image[]`.
+You can optionally specify a maximum and/or minimum number of elements using the `arrayOptions` key.
+
+== Sample Array VCC
+
+[source,json]
+----
+{
+  "key": "myControl",
+  "name": "My control",
+  "type": "string[]",
+  "arrayOptions": {
+    "min": 2,
+    "max": 10,
+    "addItemLabel": "Add character" <1>
+  }
+}
+----
+<1> If `addItemLabel` is not set, the button shows "Add item"
