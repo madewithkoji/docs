@@ -10,7 +10,7 @@ module.exports = {
     {
       resolve: `gatsby-transformer-asciidoc`,
       options: {
-        safe: 'server',
+        safe: 'unsafe',
         attributes: {
           showtitle: true,
           imagesdir: `/images`,
