@@ -1,7 +1,10 @@
 = Google Font
 :page-slug: /vcc/google-font
 
-* Adds a selector that supports all font families served by Google Fonts.
+* {blank}
+//tag::description[]
+Adds a selector that supports all font families served by Google Fonts.
+//end::description[]
 * Shows a formatted text sample below the selector.
 * Allows developers to limit the available choices for application usability.
 * Provides configuration options for developers to create custom, API-driven selectors by remixing this VCC.
@@ -31,7 +34,7 @@
 
 === Implementation
 
-For examples of how to implement the Google Font VCC and the Web Font Loader library in your application, see the https://withkoji.com/templates/JamesHole/google-font-vcc/code[package documentation, target=_blank].
+For examples of how to implement the Google Font VCC and the Web Font Loader library in your application, see the https://withkoji.com/templates/JamesHole/google-font-vcc/code[package documentation, window=_blank].
 
 == Custom selector VCC from API
 
