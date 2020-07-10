@@ -92,23 +92,23 @@ To compose higher-order controls, you can combine VCCs into arrays or objects.
 You can also combine arrays and objects to create more elaborate controls.
 
 .Standard VCCs
-* <<image.adoc>> – page description here (can we do this automatically?)
-* <<sound.adoc>>
-* <<color.adoc>>
-* <<text.adoc>>
-* <<boolean.adoc>>
-* <<range.adoc>>
-* <<select.adoc>>
-* <<secret.adoc>>
-* <<3DObject.adoc>>
-* <<coordinate.adoc>>
-* <<size.adoc>>
-* <<video.adoc>>
-* <<file.adoc>>
+* <<../vcc/image#>> – page description here (can we do this automatically?)
+* <</vcc/sound#>>
+* <<../vcc/color.adoc#>>
+* <<text.adoc#>>
+* <<boolean.adoc#>>
+* <<range.adoc#>>
+* <<select.adoc#>>
+* <<secret.adoc#>>
+* <<3DObject.adoc#>>
+* <<coordinate.adoc#>>
+* <<size.adoc#>>
+* <<video.adoc#>>
+* <<file.adoc#>>
 
 .Custom VCC showcase
 [horizontal]
-<<googleFont.adoc>>::
+<<googleFont.adoc#>>::
 +
 --
 include::googleFont.adoc[tag=description]
@@ -116,12 +116,12 @@ include::googleFont.adoc[tag=description]
 
 .VCC composition controls
 [horizontal]
-<<array.adoc>>::
+<<array.adoc#>>::
 +
 --
 include::array.adoc[tag=description]
 --
-<<object.adoc>>::
+<<object.adoc#>>::
 +
 --
 include::object.adoc[tag=description]
