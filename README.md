@@ -1,3 +1,7 @@
 # draft-docs
 
-This repo is a place to draft docs and test doc things.
+## Installation & Local Development
+
+Clone this repo, install nvm, make sure you are using v12.14.1
+
+`gatsby develop`

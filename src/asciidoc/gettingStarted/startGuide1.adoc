@@ -1,11 +1,14 @@
 = Developing your first Koji template
+:page-slug: /getting-started/guide-1
 
 == Summary
 
-On the Koji platform, you can develop JavaScript web applications that can be customized without coding. Instead, non-technical users can use Visual Customization Controls (VCCs) to quickly edit elements of the application, such as images, text, and sounds.
+On the Koji platform, you can develop JavaScript web applications that can be customized without coding.
+Instead, non-technical users can use Visual Customization Controls (VCCs) to quickly edit elements of the application, such as images, text, and sounds.
 
-In this starter guide, you will start with an existing web
-application on Koji, called a “template,” and add the ability to customize, or “remix,” it. You will use the Koji editor and an npm package from Koji to define the customizable elements. Then, you will publish your application as a new template so that Koji users can create their own customized versions of it.
+In this starter guide, you will start with an existing web application on Koji, called a “template,” and add the ability to customize, or “remix,” it.
+You will use the Koji editor and an npm package from Koji to define the customizable elements.
+Then, you will publish your application as a new template so that Koji users can create their own customized versions of it.
 
 == Remixing the starter template
 
@@ -16,23 +19,27 @@ application on Koji, called a “template,” and add the ability to customize, 
 This action creates a clone of the starter template, and opens it in the Koji editor.
 . Explore the template and the Koji editor.
 * In the right pane, you can see a live preview of the template.
-* In the left pane, you can click *Source Code* to expand the file browser. From here, you can open and edit your project files in the editor.
-* At the bottom, you can expand a set of terminal tabs. These tabs enable you to run the template locally from inside the editor and to execute other terminal functions, such as adding packages and committing changes.
+* In the left pane, you can click *Source Code* to expand the file browser.
+From here, you can open and edit your project files in the editor.
+* At the bottom, you can expand a set of terminal tabs.
+These tabs enable you to run the template locally from inside the editor and to execute other terminal functions, such as adding packages and committing changes.
 +
 NOTE: If you make changes to your project’s structure (by adding npm packages, for example), you might need to exit the running process and restart the development server in the `frontend` terminal.
 
 == Installing the @withkoji/vcc package
 
-The @withkoji/vcc package allows your template to access dynamic values that are stored in customization files. It also allows you to expose VCCs so that a user can change the customizable items in your template. Finally, it provides a watcher function that allows you to monitor changes to customization files and perform a real-time set of the dynamic values stored in the customization files.
+The @withkoji/vcc package allows your template to access dynamic values that are stored in customization files.
+It also allows you to expose VCCs so that a user can change the customizable items in your template.
+Finally, it provides a watcher function that allows you to monitor changes to customization files and perform a real-time set of the dynamic values stored in the customization files.
 
 . In the terminal, navigate to the `frontend` folder of your template.
 . Cancel the running process (for example, press *Ctrl+C*).
 . Install the latest version of the package:
 [source, bash]
 npm install --save @withkoji/vcc
-. In the `frontend` folder of your project, reconfigure the
-`package.json` file to run the watcher concurrently with your
-development server. You can use a package like npm-run-all. For example:
+. In the `frontend` folder of your project, reconfigure the `package.json` file to run the watcher concurrently with your development server.
+You can use a package like npm-run-all.
+For example:
 +
 [source,JavaScript]
 ----
@@ -60,7 +67,8 @@ A customization file is a JSON file that defines the names and types of the cust
 
 . In the `.koji/customization` folder of your project, create a new JSON file.
 .. In the file browser, click the plus (*+*) next to the `.koji/customization` folder, and click *New File*.
-.. Enter a name for the file. For example: `settings.json`.
+.. Enter a name for the file.
+For example: `settings.json`.
 . Paste the following code into your `settings.json` file.
 +
 This code defines a scope and the customizable values within that scope.
@@ -97,7 +105,8 @@ In this example, the file stores one customizable value (`settings.title`), and 
 
 == Accessing the values stored in a customization file
 
-To access a value from a JSON customization file within a template, you use a getter from the @withkoji/vcc package. Then, update the template to use dynamic values, instead of hard-coded values.
+To access a value from a JSON customization file within a template, you use a getter from the @withkoji/vcc package.
+Then, update the template to use dynamic values, instead of hard-coded values.
 
 . From the left pane of the editor, open the `frontend/common/App.js` file.
 +
@@ -194,17 +203,19 @@ this.instantRemixing.onValueChanged((path, newValue) => {
 
 ## Testing the current state of the template
 
-At this point, the template should be configured to use the default value from the customization file and to react to value changes that are made from VCCs. To test this configuration, you can use the built-in VCC and live preview in the Koji editor.
+At this point, the template should be configured to use the default value from the customization file and to react to value changes that are made from VCCs.
+To test this configuration, you can use the built-in VCC and live preview in the Koji editor.
 
-1. In the top right of the *Live Preview* pane, click *Refresh* to make sure you are seeing the latest version.
-2. From the left pane of the editor, click *Customization > App Settings* to open the VCC for the `settings.json` customization file.
-3. In the VCC, update the value in the *App title* field.
+. In the top right of the *Live Preview* pane, click *Refresh* to make sure you are seeing the latest version.
+. From the left pane of the editor, click *Customization > App Settings* to open the VCC for the `settings.json` customization file.
+. In the VCC, update the value in the *App title* field.
 +
 The preview window should reflect your update automatically.
 
 ## Determining the current view of the template
 
-The template must display differently and expose different click handlers depending on whether a user is viewing or customizing the template. In this example, you will add styles to show that the `h1` element is editable and a click handler to expose a VCC when a user is customizing the template.
+The template must display differently and expose different click handlers depending on whether a user is viewing or customizing the template.
+In this example, you will add styles to show that the `h1` element is editable and a click handler to expose a VCC when a user is customizing the template.
 
 . Create a property (`isRemixing`) to track the current view state, and set the initial state with a placeholder value.
 +
@@ -275,16 +286,19 @@ render() {
 
 ## Testing the expose function
 
-To test whether the expose function is working, you can use the *Editing* tab of the *Live Preview* pane. This feature enables you to test the template as if it were published on Koji.
+To test whether the expose function is working, you can use the *Editing* tab of the *Live Preview* pane.
+This feature enables you to test the template as if it were published on Koji.
 
-1. In the *Live Preview* pane, click *Editing* to switch to the template editing mode.
-2. Click the title in the preview.
+. In the *Live Preview* pane, click *Editing* to switch to the template editing mode.
+. Click the title in the preview.
 +
-The VCC should open automatically and allow for text input. If this test works correctly, the VCC should be exposed correctly to the remixer in your published template.
+The VCC should open automatically and allow for text input.
+If this test works correctly, the VCC should be exposed correctly to the remixer in your published template.
 
 ## Styling the customizable item
 
-To indicate that an item is “editable,” you can add a conditional visual effect that is displayed when the template is being customized. In this example, you’ll add a CSS style class for editable items and then apply the class to the `h1` when a user is customizing the template.
+To indicate that an item is “editable,” you can add a conditional visual effect that is displayed when the template is being customized.
+In this example, you’ll add a CSS style class for editable items and then apply the class to the `h1` when a user is customizing the template.
 
 . From the left pane of the editor, open the `frontend/common/index.html` file.
 . Add the following CSS style in the `head` element.
@@ -322,7 +336,9 @@ To indicate that an item is “editable,” you can add a conditional visual eff
 
 == Making the template “feed-aware”
 
-Koji uses a feed to enable users to browse available templates. As with traditional social feeds, items move from off screen or out of focus, into the main window inside the feed. To ensure the template is displayed correctly in the Koji feed, you use the FeedSdk from the @withkoji/vcc package to set the template state and handle transitions between on and off screen and in and out of focus.
+Koji uses a feed to enable users to browse available templates.
+As with traditional social feeds, items move from off screen or out of focus, into the main window inside the feed.
+To ensure the template is displayed correctly in the Koji feed, you use the FeedSdk from the @withkoji/vcc package to set the template state and handle transitions between on and off screen and in and out of focus.
 
 . Import the `FeedSdk` from the @withkoji/vcc package.
 +
@@ -343,13 +359,16 @@ NOTE: If you plan to develop apps that autoplay when focused in the feed, you ca
 
 ## Adding entitlements for the Koji profiler
 
-When you publish the template, it is submitted into a queue for profiling. The Koji profiler checks for errors and generates metadata about the application. If the template is error-free, the profiler enables additional platform features for your template, including the instant remix option and inclusion in the feed. To prepare your template to be profiled correctly, you must add entitlements for some of these features.
+When you publish the template, it is submitted into a queue for profiling.
+The Koji profiler checks for errors and generates metadata about the application.
+If the template is error-free, the profiler enables additional platform features for your template, including the instant remix option and inclusion in the feed.
+To prepare your template to be profiled correctly, you must add entitlements for some of these features.
 
 *   In the `.koji/project` folder, create an `entitlements.json` file with the following code:
 +
 [source, JSON]
 ----
-include::../codeSamples/entitlements.json[]
+include::entitlements.json[]
 ----
 This code indicates that the template supports remixes and is ready to be listed in the feed.
 
@@ -361,7 +380,8 @@ At this point, the template is ready to be published.
 . In the upper left of the editor, click *Publish Now* to open the publish settings.
 . Give your template a unique name and add a description.
 +
-NOTE: The permalink URL to your template is based on the name when you first publish it, so be sure to enter the name you want to use going forward. You can republish it to update any template functionality and settings, but the link remains the same.
+NOTE: The permalink URL to your template is based on the name when you first publish it, so be sure to enter the name you want to use going forward.
+You can republish it to update any template functionality and settings, but the link remains the same.
 
 . Click *Publish*.
 +
@@ -370,6 +390,9 @@ When publishing is completed, a link appears in the message.
 . Click the link to view and test your live template.
 +
 The template might be published before profiling is completed.
-Therefore, you might need to wait longer before testing features that require profiling, such as inclusion in the feed or the ability to instantly remix the template. To see the results of the most recent profiling, from your live template, click *Make your own > Fork template* to open the template welcome screen. Then, under *More options*, click *See profiled attributes*.
+Therefore, you might need to wait longer before testing features that require profiling, such as inclusion in the feed or the ability to instantly remix the template.
+To see the results of the most recent profiling, from your live template, click *Make your own > Fork template* to open the template welcome screen.
+Then, under *More options*, click *See profiled attributes*.
 +
-If an error message appears when you open the link after profiling is completed, you can review the steps in this guide to fix it. To open your project again, go to *Koji home > My projects*, and click the template name.
+If an error message appears when you open the link after profiling is completed, you can review the steps in this guide to fix it.
+To open your project again, go to *Koji home > My projects*, and click the template name.

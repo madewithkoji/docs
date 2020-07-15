@@ -1,0 +1,18 @@
+# Logs
+logs
+*.log
+
+# Cache
+.cache
+
+# Node
+node_modules
+
+# Build
+public
+
+# IDE specific
+.idea/
+.vscode/
+*.sw*
+
