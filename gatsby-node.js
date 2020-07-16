@@ -21,10 +21,6 @@ exports.sourceNodes = ({ actions, createNodeId, createContentDigest }) => {
               name: 'Starter guide, part 2',
               path: '/docs/getting-started/start-guide-2',
             },
-            {
-              name: 'Programs',
-              path: '/docs/getting-started/programs',
-            },
           ],
         },
         {
@@ -57,6 +53,10 @@ exports.sourceNodes = ({ actions, createNodeId, createContentDigest }) => {
           name: 'Customizations',
           root: '/docs/customizations',
           items: [
+            {
+              name: 'Custom VCCs',
+              path: '/docs/customizations/build-custom-VCC',
+            },
           ]
         },
         {
@@ -87,6 +87,18 @@ exports.sourceNodes = ({ actions, createNodeId, createContentDigest }) => {
           name: 'Videos',
           root: '/docs/videos',
           items: [
+            {
+              name: 'Starter course',
+              path: '/docs/videos/starter-course',
+            },
+            {
+              name: 'KaiOS apps',
+              path: '/docs/videos/kai-OS',
+            },
+            {
+              name: 'Image Best Practices',
+              path: '/docs/videos/image-best-practices',
+            },
           ]
         },
       ],
@@ -180,14 +192,14 @@ exports.sourceNodes = ({ actions, createNodeId, createContentDigest }) => {
       },
     };
 
-    actions.createNode(node)
+    actions.createNode(node);
   });
 };
 
 exports.createPages = async ({ actions, graphql, reporter }) => {
-  const { createPage } = actions
+  const { createPage } = actions;
 
-  const articleTemplate = require.resolve(`./src/templates/article.js`)
+  const articleTemplate = require.resolve('./src/templates/article.js');
 
   const result = await graphql(`
     query {
@@ -206,12 +218,12 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
         }
       }
     }
-  `)
+  `);
 
   // Handle errors
   if (result.errors) {
-    reporter.panicOnBuild(`Error while running GraphQL query.`)
-    return
+    reporter.panicOnBuild('Error while running GraphQL query.');
+    return;
   }
 
   result.data.allAsciidoc.edges.forEach(({ node }) => {
@@ -223,6 +235,6 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
         // additional data can be passed via context
         slug: node.pageAttributes.slug,
       },
-    })
-  })
-}
+    });
+  });
+};
