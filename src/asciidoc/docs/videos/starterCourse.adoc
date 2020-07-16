@@ -1,5 +1,5 @@
 = Developer starter course
-:page-slug: /videos/starter-course
+:page-slug: /docs/videos/starter-course
 
 If you are ready to start creating your own remixable templates, we recommend the video below.
 In under an hour, you will learn:
