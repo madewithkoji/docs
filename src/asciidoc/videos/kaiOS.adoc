@@ -1,0 +1,8 @@
+= Develop KaiOS apps with Koji
+:page-slug: /videos/kai-OS
+
+Watch the following video to learn how to develop KaiOS apps with Koji.
+
+== Video tutorial
+
+video::BppAed1R1XM[youtube,560,361]
