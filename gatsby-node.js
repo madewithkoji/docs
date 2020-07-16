@@ -3,8 +3,30 @@ exports.sourceNodes = ({ actions, createNodeId, createContentDigest }) => {
     {
       name: 'Docs',
       root: '/docs',
-      defaultPath: '/docs/blueprints',
+      defaultPath: '/docs/getting-started',
       sections: [
+        {
+          name: 'Getting Started',
+          root: '/docs/getting-started',
+          items: [
+            {
+              name: 'Intro to Koji',
+              path: '/docs/getting-started',
+            },
+            {
+              name: 'Starter guide',
+              path: '/docs/getting-started/start-guide-1',
+            },
+            {
+              name: 'Starter guide, part 2',
+              path: '/docs/getting-started/start-guide-2',
+            },
+            {
+              name: 'Programs',
+              path: '/docs/getting-started/programs',
+            },
+          ],
+        },
         {
           name: 'Blueprints',
           root: '/docs/blueprints',
@@ -20,26 +42,52 @@ exports.sourceNodes = ({ actions, createNodeId, createContentDigest }) => {
           ]
         },
         {
-          name: 'Getting Started',
-          root: '/docs/getting-started',
+          name: 'Concepts',
+          root: '/docs/concepts',
           items: [
-            {
-              name: 'Developer',
-              path: '/docs/getting-started',
-            },
-            {
-              name: 'Programs',
-              path: '/docs/getting-started/programs',
-            },
-            {
-              name: 'Start Guide 1',
-              path: '/docs/getting-started/start-guide-1',
-            },
-            {
-              name: 'Start Guide 2',
-              path: '/docs/getting-started/start-guide-2',
-            },
-          ],
+          ]
+        },
+        {
+          name: 'Develop',
+          root: '/docs/develop',
+          items: [
+          ]
+        },
+        {
+          name: 'Customizations',
+          root: '/docs/customizations',
+          items: [
+          ]
+        },
+        {
+          name: 'Test',
+          root: '/docs/test',
+          items: [
+          ]
+        },
+        {
+          name: 'Publish and iterate',
+          root: '/docs/publish',
+          items: [
+          ]
+        },
+        {
+          name: 'Guidelines',
+          root: '/docs/guidelines',
+          items: [
+          ]
+        },
+        {
+          name: 'Release notes',
+          root: '/docs/releases',
+          items: [
+          ]
+        },
+        {
+          name: 'Videos',
+          root: '/docs/videos',
+          items: [
+          ]
         },
       ],
     },
