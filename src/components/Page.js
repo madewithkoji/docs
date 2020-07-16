@@ -1,21 +1,9 @@
 import React from 'react';
-import DocsDrawer from '../components/DocsDrawer';
-import AppBar from '../components/AppBar';
-import Layout from "../layouts"
+import Layout from "../layouts";
 
 const Page = (props) => {
-  return (
-    <Layout>
-      <AppBar />
-      {
-        props.drawer === 'docs' &&
-        <DocsDrawer
-          visible={props.drawer === 'docs'}
-        />
-      }
-      {props.children}
-    </Layout>
-  );
+  console.log('page render');
+  return (<div>{props.children}</div>);
 };
 
 export default Page;

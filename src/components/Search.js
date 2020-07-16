@@ -74,7 +74,7 @@ const Search = () => {
                 margin: '1rem 0 0 0',
               }}
             >
-              <Link to={match.pageAttributes.slug}>
+              <Link to={match.pageAttributes.slug} onClick={() => setMatches([])}>
                 <h2>{match.document.title}</h2>
                 <p>
                   {

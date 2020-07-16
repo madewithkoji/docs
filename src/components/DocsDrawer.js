@@ -6,7 +6,8 @@ import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles({
   paper: {
-    marginTop: '48px',
+    marginTop: '64px',
+    zIndex: 0,
   },
 });
 
@@ -35,6 +36,8 @@ const DocsDrawer = () => {
   const navItem = navItems.find((i) => i.name === 'Docs');
 
   const classes = useStyles();
+
+  console.log('drawer render');
 
   return (
     <Drawer

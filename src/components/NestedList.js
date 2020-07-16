@@ -20,7 +20,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const NestedList = ({ section }) => {
+const NestedList = ({ section, ...rest }) => {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
 
