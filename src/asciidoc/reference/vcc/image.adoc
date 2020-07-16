@@ -1,5 +1,5 @@
 = Image
-:page-slug: /vcc/image
+:page-slug: /reference/vcc/image
 
 * Images can either be uploaded or obtained from a URL.
 * If the image is loaded through the *Upload* section, the image can be resized or the background can be removed and the image will be stored with the application.

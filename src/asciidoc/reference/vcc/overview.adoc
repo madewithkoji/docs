@@ -1,5 +1,5 @@
 = Overview
-:page-slug: /vcc
+:page-slug: /reference/vcc
 
 Visual Customization Controls (VCCs) enable users to quickly edit elements of your template on Koji.
 The control types and default values are defined in JSON files in your project.

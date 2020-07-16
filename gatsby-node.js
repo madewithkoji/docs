@@ -33,6 +33,82 @@ exports.sourceNodes = ({ actions, createNodeId, createContentDigest }) => {
         },
       ],
     },
+    {
+      name: 'Reference',
+      root: '/reference',
+      defaultPath: '/reference/vcc',
+      sections: [
+        {
+          name: 'VCC',
+          items: [
+            {
+              name: 'Overview',
+              path: '/reference/vcc',
+            },
+            {
+              name: '3D Object',
+              path: '/reference/vcc/3d-object',
+            },
+            {
+              name: 'Array',
+              path: '/reference/vcc/array',
+            },
+            {
+              name: 'Boolean',
+              path: '/reference/vcc/boolean',
+            },
+            {
+              name: 'Color',
+              path: '/reference/vcc/color',
+            },
+            {
+              name: 'Coordinate',
+              path: '/reference/vcc/coordinate',
+            },
+            {
+              name: 'File',
+              path: '/reference/vcc/file',
+            },
+            {
+              name: 'Google Font',
+              path: '/reference/vcc/google-font',
+            },
+            {
+              name: 'Image',
+              path: '/reference/vcc/image',
+            },
+            {
+              name: 'Object',
+              path: '/reference/vcc/object',
+            },
+            {
+              name: 'Range',
+              path: '/reference/vcc/range',
+            },
+            {
+              name: 'Secret',
+              path: '/reference/vcc/secret',
+            },
+            {
+              name: 'Size',
+              path: '/reference/vcc/size',
+            },
+            {
+              name: 'Sound',
+              path: '/reference/vcc/sound',
+            },
+            {
+              name: 'Text',
+              path: '/reference/vcc/text',
+            },
+            {
+              name: 'Video',
+              path: '/reference/vcc/video',
+            },
+          ],
+        },
+      ],
+    },
   ];
 
   navItems.forEach((navItem) => {

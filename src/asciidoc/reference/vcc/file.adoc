@@ -1,5 +1,5 @@
 = File
-:page-slug: /vcc/file
+:page-slug: /reference/vcc/file
 
 * User can upload any file.
 

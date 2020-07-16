@@ -1,5 +1,5 @@
 = Coordinate
-:page-slug: /vcc/coordinate
+:page-slug: /reference/vcc/coordinate
 
 * Specify an (x,y) coordinate pair.
 
