@@ -10,11 +10,11 @@ const Wrapper = styled.div`
 const MatchesWrapper = styled.div`
   position: absolute;
   top: 16px;
+  right: 0px;
   display: flex;
-  align-items: center;
-  justify-content: center;
   flex-direction: column;
   z-index: 10000;
+  max-width: 480px;
 `;
 
 const MatchWrapper = styled.div`
@@ -23,6 +23,23 @@ const MatchWrapper = styled.div`
   line-height: 1.2;
   border: 1px solid black;
   margin: 1rem 0 0 0 ;
+
+  p {
+    margin: 0;
+    text-align: left;
+  }
+
+  h2 {
+    margin: 0.5rem 0;
+  }
+
+  > a {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    color: #000000;
+    text-decoration: none;
+  }
 `;
 
 const Search = () => {
@@ -31,7 +48,7 @@ const Search = () => {
   const [search, setSearch] = useState(null);
 
   const data = useStaticQuery(graphql`
-    query AsciiDocs {
+    query {
       allAsciidoc {
         edges {
           node {
@@ -44,6 +61,22 @@ const Search = () => {
               slug
             }
           }
+        }
+      }
+      allNavItem {
+        nodes {
+          id
+          defaultPath
+          name
+          sections {
+            items {
+              name
+              path
+            }
+            name
+            root
+          }
+          root
         }
       }
     }
@@ -62,8 +95,21 @@ const Search = () => {
   }, [data]);
 
   useEffect(() => {
-    if (search && value && value !== '') {
-      setMatches(search.search(value));
+    if (search && value && value !== '' && value.length > 2) {
+      const { allNavItem: { nodes: navItems = [] } } = data;
+      const searchMatches = search.search(value);
+
+      const mappedMatches = searchMatches.map((searchMatch) => {
+        const { pageAttributes: { slug } } = searchMatch;
+        const navItem = navItems.find(({ root }) => slug.includes(root));
+        const section = navItem.sections.find(({ root }) => slug.includes(root));
+
+        return ({
+          ...searchMatch,
+          breadcrumb: `${navItem.name} > ${section.name} > ${searchMatch.document.title}`,
+        });
+      });
+      setMatches(mappedMatches);
     } else {
       setMatches([]);
     }
@@ -77,10 +123,11 @@ const Search = () => {
           matches.map((match) => (
             <MatchWrapper>
               <Link to={match.pageAttributes.slug} onClick={() => setMatches([])}>
+                <p>{match.breadcrumb}</p>
                 <h2>{match.document.title}</h2>
                 <p>
                   {
-                    match.html.replace(/(<([^>]+)>)/ig, '').slice(0, 100)
+                    match.html.replace(/(<([^>]+)>)/ig, '').slice(0, 140)
                   }
                 </p>
               </Link>
