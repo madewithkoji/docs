@@ -28,8 +28,16 @@ exports.sourceNodes = ({ actions, createNodeId, createContentDigest }) => {
               path: '/docs/getting-started',
             },
             {
+              name: 'Programs',
+              path: '/docs/getting-started/programs',
+            },
+            {
               name: 'Start Guide 1',
               path: '/docs/getting-started/start-guide-1',
+            },
+            {
+              name: 'Start Guide 2',
+              path: '/docs/getting-started/start-guide-2',
             },
           ],
         },

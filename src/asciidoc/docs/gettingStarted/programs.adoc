@@ -1,5 +1,5 @@
 = Programs
-:page-slug: /getting-started/programs
+:page-slug: /docs/getting-started/programs
 
 At Koji, we want to enable everyone to create amazing, interactive content, and we need help from developers like you to make it happen.
 That's why we are always looking for ways to better support and compensate developers for their hard work and ingenuity.
