@@ -30,8 +30,8 @@ const NestedList = ({ section, ...rest }) => {
 
   return (
     <List
-      component="nav"
-      aria-labelledby="nested-list-subheader"
+      component={'nav'}
+      aria-labelledby={'nested-list-subheader'}
       className={classes.root}
     >
       <ListItem button onClick={handleClick}>
@@ -39,7 +39,7 @@ const NestedList = ({ section, ...rest }) => {
         {open ? <ExpandLess /> : <ExpandMore />}
       </ListItem>
       <Collapse in={open} timeout="auto">
-        <List component="div" disablePadding>
+        <List component={'div'} disablePadding>
           {
             section.items.map((item) => (
               <Link

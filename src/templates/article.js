@@ -3,7 +3,6 @@ import hljs from "highlight.js"
 import styled from 'styled-components';
 import "highlight.js/styles/github.css"
 import Container from '@material-ui/core/Container';
-import Page from '../components/Page';
 
 const Content = styled.div`
   img {
@@ -19,13 +18,11 @@ const Article = (props) => {
   });
 
   return (
-    <Page drawer={'docs'}>
-      <Container maxWidth="sm">
-        <Content
-          dangerouslySetInnerHTML={{ __html: props.data.asciidoc.html }}
-        />
-      </Container>
-    </Page>
+    <Container maxWidth="sm">
+      <Content
+        dangerouslySetInnerHTML={{ __html: props.data.asciidoc.html }}
+      />
+    </Container>
   );
 };
 

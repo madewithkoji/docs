@@ -11,34 +11,8 @@ const useStyles = makeStyles({
   },
 });
 
-const DocsDrawer = () => {
-  const data = useStaticQuery(graphql`
-    query DocsItems {
-      allNavItem {
-        nodes {
-          id
-          defaultPath
-          name
-          sections {
-            items {
-              name
-              path
-            }
-            name
-          }
-        }
-      }
-    }
-  `);
-
-  const { allNavItem: { nodes: navItems = [] } } = data;
-
-  const navItem = navItems.find((i) => i.name === 'Docs');
-
+const DrawerComponent = ({ navItem }) => {
   const classes = useStyles();
-
-  console.log('drawer render');
-
   return (
     <Drawer
       classes={{ paper: classes.paper }}
@@ -59,4 +33,4 @@ const DocsDrawer = () => {
   );
 };
 
-export default DocsDrawer;
+export default DrawerComponent;
