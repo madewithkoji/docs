@@ -20,9 +20,9 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const NestedList = ({ section, ...rest }) => {
+const NestedList = ({ pathname, section, openByDefault = false }) => {
   const classes = useStyles();
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = React.useState(openByDefault);
 
   const handleClick = () => {
     setOpen(!open);
@@ -46,7 +46,11 @@ const NestedList = ({ section, ...rest }) => {
                 key={item.path}
                 to={item.path}
               >
-                <ListItem button className={classes.nested}>
+                <ListItem
+                  button
+                  className={classes.nested}
+                  selected={pathname === item.path}
+                >
                   <ListItemText primary={item.name} />
                 </ListItem>
               </Link>

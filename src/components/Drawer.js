@@ -11,8 +11,9 @@ const useStyles = makeStyles({
   },
 });
 
-const DrawerComponent = ({ navItem }) => {
+const DrawerComponent = ({ location, navItem }) => {
   const classes = useStyles();
+
   return (
     <Drawer
       classes={{ paper: classes.paper }}
@@ -24,6 +25,8 @@ const DrawerComponent = ({ navItem }) => {
           navItem.sections.map((section) => (
             <NestedList
               key={section.name}
+              openByDefault={location.pathname.includes(section.root)}
+              pathname={location.pathname}
               section={section}
             />
           ))

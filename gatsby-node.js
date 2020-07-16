@@ -7,6 +7,7 @@ exports.sourceNodes = ({ actions, createNodeId, createContentDigest }) => {
       sections: [
         {
           name: 'Blueprints',
+          root: '/docs/blueprints',
           items: [
             {
               name: 'Overview',
@@ -20,6 +21,7 @@ exports.sourceNodes = ({ actions, createNodeId, createContentDigest }) => {
         },
         {
           name: 'Getting Started',
+          root: '/docs/getting-started',
           items: [
             {
               name: 'Developer',
@@ -40,6 +42,7 @@ exports.sourceNodes = ({ actions, createNodeId, createContentDigest }) => {
       sections: [
         {
           name: 'VCC',
+          root: '/reference/vcc',
           items: [
             {
               name: 'Overview',

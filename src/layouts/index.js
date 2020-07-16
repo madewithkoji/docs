@@ -14,8 +14,8 @@ const Wrapper = styled.div`
 
 const Content = styled.div`
   margin-top: 64px;
-  margin-left: ${({ style: { hasDrawer }}) => hasDrawer ? '240px' : '0'};
-  width: ${({ style: { hasDrawer }}) => hasDrawer ? 'calc(100vw - 240px)' : '100vw'};
+  margin-left: ${({ style: { hasDrawer } }) => hasDrawer ? '240px' : '0'};
+  width: ${({ style: { hasDrawer } }) => hasDrawer ? 'calc(100vw - 240px)' : '100vw'};
   height: calc(100vh - 64px);
   overflow: auto;
 `;
@@ -34,6 +34,7 @@ const TopLayout = (props) => {
               path
             }
             name
+            root
           }
           root
         }
@@ -64,7 +65,13 @@ const TopLayout = (props) => {
           {
             navItems.map((navItem) => {
               if (props.location.pathname.includes(navItem.root)) {
-                return <Drawer key={navItem.root} navItem={navItem} />
+                return (
+                  <Drawer
+                    key={navItem.root}
+                    location={props.location}
+                    navItem={navItem}
+                  />
+                );
               }
               return null;
             })
