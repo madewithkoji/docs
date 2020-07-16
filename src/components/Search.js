@@ -1,12 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import * as JsSearch from 'js-search';
 import styled from 'styled-components';
-import AppBar from '@material-ui/core/AppBar';
-import Button from '@material-ui/core/Button';
-import Toolbar from '@material-ui/core/Toolbar';
-import IconButton from '@material-ui/core/IconButton';
-import MenuIcon from '@material-ui/icons/Menu';
-import { Link, useStaticQuery, graphql } from "gatsby"
+import { Link, useStaticQuery, graphql } from 'gatsby';
 
 const Wrapper = styled.div`
   position: relative;
@@ -63,7 +58,7 @@ const Search = () => {
 
     s.addDocuments(docs);
 
-    setSearch(s)
+    setSearch(s);
   }, [data]);
 
   useEffect(() => {
@@ -85,7 +80,7 @@ const Search = () => {
                 <h2>{match.document.title}</h2>
                 <p>
                   {
-                    match.html.replace(/(<([^>]+)>)/ig,"").slice(0, 100)
+                    match.html.replace(/(<([^>]+)>)/ig, '').slice(0, 100)
                   }
                 </p>
               </Link>
@@ -98,4 +93,3 @@ const Search = () => {
 };
 
 export default Search;
-

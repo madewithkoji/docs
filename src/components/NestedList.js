@@ -1,6 +1,6 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
-import ListSubheader from '@material-ui/core/ListSubheader';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
@@ -20,7 +20,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const NestedList = ({ pathname, section, openByDefault = false }) => {
+const NestedList = ({ pathname, section, openByDefault }) => {
   const classes = useStyles();
   const [open, setOpen] = React.useState(openByDefault);
 
@@ -61,6 +61,18 @@ const NestedList = ({ pathname, section, openByDefault = false }) => {
       </Collapse>
     </List>
   );
+};
+
+NestedList.propTypes = {
+  openByDefault: PropTypes.bool,
+  pathname: PropTypes.string,
+  section: PropTypes.object,
+};
+
+NestedList.defaultProps = {
+  openByDefault: false,
+  pathname: '',
+  section: {},
 };
 
 export default NestedList;

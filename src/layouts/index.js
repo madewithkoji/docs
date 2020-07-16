@@ -1,10 +1,11 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Helmet from 'react-helmet';
 import styled from 'styled-components';
 import { ThemeProvider } from '@material-ui/core/styles';
 import { useStaticQuery, graphql } from 'gatsby';
-import theme from '../../src/theme';
+import theme from '../theme';
 import AppBar from '../components/AppBar';
 import Drawer from '../components/Drawer';
 
@@ -20,7 +21,7 @@ const Content = styled.div`
   overflow: auto;
 `;
 
-const TopLayout = (props) => {
+const Layout = (props) => {
   const data = useStaticQuery(graphql`
     query {
       allNavItem {
@@ -46,7 +47,7 @@ const TopLayout = (props) => {
   const hasDrawer = navItems.map(({ root }) => props.location.pathname.includes(root)).reduce((a, b) => a || b);
 
   return (
-    <React.Fragment>
+    <>
       <Helmet>
         <meta name={'viewport'} content={'minimum-scale=1, initial-scale=1, width=device-width'} />
         <link
@@ -81,8 +82,20 @@ const TopLayout = (props) => {
           </Content>
         </Wrapper>
       </ThemeProvider>
-    </React.Fragment>
+    </>
   );
 };
 
-export default TopLayout;
+Layout.propTypes = {
+  children: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.node),
+    PropTypes.node,
+  ]).isRequired,
+  location: PropTypes.object,
+};
+
+Layout.defaultProps = {
+  location: {},
+};
+
+export default Layout;

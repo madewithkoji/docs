@@ -3,10 +3,8 @@ import styled from 'styled-components';
 import AppBar from '@material-ui/core/AppBar';
 import Button from '@material-ui/core/Button';
 import Toolbar from '@material-ui/core/Toolbar';
-import IconButton from '@material-ui/core/IconButton';
-import MenuIcon from '@material-ui/icons/Menu';
+import { Link, useStaticQuery, graphql } from 'gatsby';
 import Search from './Search';
-import { Link, useStaticQuery, graphql } from "gatsby"
 
 const SearchWrapper = styled.div`
   flex: 1 1 auto;
@@ -55,7 +53,7 @@ const AppBarComponent = () => {
         }
         <SearchWrapper>
           <Search />
-          </SearchWrapper>
+        </SearchWrapper>
       </Toolbar>
     </AppBar>
   );

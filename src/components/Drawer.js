@@ -1,8 +1,8 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Drawer from '@material-ui/core/Drawer';
-import { useStaticQuery, graphql } from "gatsby"
-import NestedList from './NestedList';
 import { makeStyles } from '@material-ui/core/styles';
+import NestedList from './NestedList';
 
 const useStyles = makeStyles({
   paper: {
@@ -34,6 +34,16 @@ const DrawerComponent = ({ location, navItem }) => {
       </div>
     </Drawer>
   );
+};
+
+DrawerComponent.propTypes = {
+  location: PropTypes.object,
+  navItem: PropTypes.object,
+};
+
+DrawerComponent.defaultProps = {
+  location: {},
+  navItem: {},
 };
 
 export default DrawerComponent;
