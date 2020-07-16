@@ -1,0 +1,12 @@
+= Overview
+:page-slug: /docs/blueprints
+
+== What are blueprints?
+
+Blueprints are a quick way to build something cool on Koji. Each blueprint includes a simple, block-by-block guide and an “as-built” code sample for a fun Koji application.
+
+Blueprints are intended for developers who prefer to jump straight to code. For a step-by-step intro to Koji, head to the link:/developer/getting-started[starter guide].
+
+== Build your application
+
+* link:/developer/magazine-cover[Magazine cover] - Add customizable images and text to put your own picture and headline on a magazine.

@@ -1,0 +1,16 @@
+= Color
+:page-slug: /reference/vcc/color
+
+* Colors can be changed by clicking the color or by pressing the 'Change' button and a color swatch will appear to choose a color.
+
+== Sample Color VCC
+
+[source,json]
+----
+{
+  "key": "myColor",
+  "name": "My Color",
+  "description": "This is my color description",
+  "type": "color"
+}
+----

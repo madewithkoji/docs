@@ -1,0 +1,197 @@
+= Magazine Cover Template
+:description: Add customizable images and text to put your own picture and headline on a magazine.
+:page-slug: /docs/blueprints/magazine-cover
+
+== Summary
+[#img-overview]
+image::magazine-cover.png[Make a magazine cover template on Koji]
+
+Follow this blueprint to build a template for your own picture and headline on a magazine cover. You will add customizable images and text, and then publish the template on Koji.
+
+== Google Font Test
+
+include::https://git-mirror.koji-cdn.com/8d7a3301-adb6-41fd-a6ca-f54d5dbda460/README.md
+
+
+=== Prerequisites
+
+* Familiarity with web development. React and ES6 basics are a plus.
+* Familiarity with the Koji remix process. For an overview, see the link:/developer/getting-started[starter guide].
+
+=== Level
+
+* *Koji*: Beginner – Intermediate
+* *Developer*: Intermediate – Advanced
+* *Time*: 45 minutes
+
+== Building blocks
+
+=== Remix the scaffold
+
+Remix an existing web application on Koji that implements basic elements of your favorite framework.
+
+link:++https://withkoji.com/~seane/simple-react-scaffold++[https://withkoji.com/~seane/simple-react-scaffold]
+
+=== Install the packages
+
+Install @withkoji/vcc to expose Visual Customization Controls (VCCs), dynamically update custom values, and display your template correctly in the Koji feed.
+
+[source,bash]
+----
+npm install --save @withkoji/vcc
+----
+
+=== Create the customization files
+
+Create `.koji/customization/settings.json` to define customizable values for the magazine name, cover image, background color, and text options (text, size, color, and position).
+
+[source,json]
+----
+include::magazineCoverSettings.json[]
+----
+
+Remove the unused customization files.
+
+`colors.json`, `images.json`, and `strings.json`
+
+=== Add the template logic
+
+Import the packages.
+
+[source,javascript]
+----
+include::magazineCoverReact.js[tags=importPackages]
+----
+
+Use `InstantRemixing` to get and set custom values.
+
+[source,javascript]
+----
+include::magazineCoverReact.js[tags=instantRemixing]
+----
+
+Use `FeedSdk` to display the template in the Koji feed.
+
+[source,javascript]
+----
+include::magazineCoverReact.js[tags=feedSdk]
+----
+
+Monitor the remix state.
+
+[source,javascript]
+----
+include::magazineCoverReact.js[tags=monitorRemix]
+----
+
+Dynamically get and set custom values.
+
+[source,javascript]
+----
+include::magazineCoverReact.js[tags=updateValues]
+----
+
+Optimize the user's cover image.
+
+[source,javascript]
+----
+include::magazineCoverReact.js[tags=optimizeImage]
+----
+
+Add click handlers for editable elements.
+
+[source,javascript]
+----
+include::magazineCoverReact.js[tags=clickHandlers]
+----
+
+Use dynamic sizing to support different browsers and devices.
+
+[source,javascript]
+----
+include::magazineCoverReact.js[tags=dynamicSizing]
+----
+
+Indicate the template is ready for instant remixes and to display in the feed.
+
+[source,javascript]
+----
+include::magazineCoverReact.js[tags=templateReady]
+----
+
+Render the template with custom values. Apply conditional styling to editable elements during remix.
+
+[source,javascript]
+----
+include::magazineCoverReact.js[tags=renderTemplate]
+----
+
+Render a view to use as the rich preview image when the template is shared on social media.
+
+[source,javascript]
+----
+include::magazineCoverReact.js[tags=renderSocial]
+----
+
+=== Add the styles
+
+Define styles for the template, including the headline, cover image. Define styles for the rich preview image. Remove unused styles.
+
+[source,javascript]
+----
+include::magazineCoverReact.js[tags=styles]
+----
+
+Add styles for editable elements during remix.
+
+[source,css]
+----
+.editable {
+  border: 2px dashed grey;
+}
+----
+
+Add the font stylesheet.
+
+[source,html]
+----
+<link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+----
+
+=== Add entitlements
+
+Create `.koji/project/entitlements.json` and enable instant remix support and listing in the Koji feed.
+
+[source,json]
+----
+include::entitlements.json[]
+----
+
+=== Test
+
+Use the tools in the Koji editor to test template functionality. For example:
+
+* Template default view: *Refresh* the *Live preview* tab.
+* Conditional styling of editable elements: In the live preview, switch between *Preview* and *Editing* mode.
+* VCC targeting: In *Editing* mode, click each editable element. The corresponding VCC should open.
+* Remix functionality: In the JSON file, switch to *Visual* view, and use VCC editor to customize values. The template should update immediately.
+* Template styles on another browser or device: On the *Remote* tab, copy the URL or use the QR code to open a link to the staging server.
+
+=== Publish
+
+Click *Publish Now* and enter a *Name* (defines the permalink URL to your template), *Description* (displays along with your template on Koji), and other publish settings, as desired. Then, click *Publish*.
+
+When publishing is completed, click the link in the message to view your live template on Koji. Your template is now available to remix and share anywhere on the web. You can create a fun version for yourself and share it on your favorite site to see what your friends make.
+
+== "As Built" sample code
+
+To see this blueprint as a completed template on Koji, visit the following link. From there, you can view the source code or remix the template into your own project.
+
+https://withkoji.com/~RachelSienko06/blueprint-magazine-cover[Blueprint: Magazine Cover]
+
+The following code is a completed sample of the template logic described in this blueprint.
+
+[source,javascript]
+----
+include::magazineCoverReact.js[tags=**]
+----

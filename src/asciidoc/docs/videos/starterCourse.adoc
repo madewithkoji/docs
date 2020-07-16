@@ -1,0 +1,14 @@
+= Developer starter course
+:page-slug: /docs/videos/starter-course
+
+If you are ready to start creating your own remixable templates, we recommend the video below.
+In under an hour, you will learn:
+
+* How to find and remix a scaffold as a starting point for your template.
+* How to import code from a GitHub repository.
+* How to use Koji's packages and tools to make your template remixable.
+* How to publish your template.
+
+== Video tutorial
+
+video::XRWM4w8rwT0[youtube,560,361]

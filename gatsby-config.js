@@ -6,11 +6,22 @@
 
 module.exports = {
   /* Your site config here */
+  siteMetadata: {},
   plugins: [
+    'gatsby-plugin-layout',
+    {
+      resolve: 'gatsby-plugin-material-ui',
+      // If you want to use styled components you should change the injection order.
+      options: {
+        // stylesProvider: {
+        //   injectFirst: true,
+        // },
+      },
+    },
     {
       resolve: `gatsby-transformer-asciidoc`,
       options: {
-        safe: 'server',
+        safe: 'unsafe',
         attributes: {
           showtitle: true,
           imagesdir: `/images`,

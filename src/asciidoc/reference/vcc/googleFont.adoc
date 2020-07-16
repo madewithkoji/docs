@@ -1,0 +1,46 @@
+= Google Font
+:page-slug: /reference/vcc/google-font
+
+* {blank}
+//tag::description[]
+Adds a selector that supports all font families served by Google Fonts.
+//end::description[]
+* Shows a formatted text sample below the selector.
+* Allows developers to limit the available choices for application usability.
+* Provides configuration options for developers to create custom, API-driven selectors by remixing this VCC.
+
+== Sample Google Font VCC
+
+[source,json]
+----
+{
+  "key": "myFont",
+  "name": "My Font",
+  "description": "Select a font",
+  "type": "custom<jims-google-font-vcc>",
+  "typeOptions": {
+      "limitChoices": [
+          "Roboto",
+          "Lobster",
+          "Lato"
+      ]
+    }
+}
+----
+
+=== typeOptions
+
+`limitChoices`: Limits the available selections to the items specified in this array.
+
+=== Implementation
+
+For examples of how to implement the Google Font VCC and the Web Font Loader library in your application, see the https://withkoji.com/templates/JamesHole/google-font-vcc/code[package documentation, window=_blank].
+
+== Custom selector VCC from API
+
+You can remix this VCC to create a custom selector that displays the items returned in an API response.
+To integrate simple APIs without touching the code, this VCC provides configuration options, including the API key and URL.
+
+NOTE: To use this VCC without modifying the code, the API must support passing the key via URL and must return a valid JSON object.
+
+For a complete list of configuration options, see the https://withkoji.com/templates/JamesHole/google-font-vcc/code[package documentation, window=_blank].

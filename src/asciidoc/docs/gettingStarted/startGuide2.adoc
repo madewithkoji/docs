@@ -1,0 +1,697 @@
+= Extending your first Koji template
+:page-slug: /docs/getting-started/start-guide-2
+
+In the first starter guide, you learned how to add basic customizable elements to a web application on Koji and then publish it as a Koji template.
+In this starter guide, part 2, you will continue working on the project that you created in the previous guide, and learn how to add the features required for a complete and compelling Koji template.
+
+You will add support for rich previews when sharing to social media, use states to expose multiple parts of the template at different times during the remix experience, and react to state changes in the Koji feed.
+You will also implement good practices for the remix experience, including image optimization, improvements to remix usability, and loading experience enhancements.
+Then, you will publish the updated version of your template.
+
+== Prerequisites
+
+* Complete the link:/getting-started/guide-1[starter guide, part 1].
+* Open your project from the starter guide in the Koji editor.
+
+== Supporting rich previews
+
+When users share a remix of your template on social media, Koji renders a rich preview (Open Graph) image based on a screenshot of the template.
+To improve the sharing experience, you can control how this image is displayed.
+For example, you can generate a dynamic image based on the remix content, and you can render a unique view that is designed specifically to make an impression when sharing a remix.
+
+In this example, you will configure a rich preview image that matches the dimensions required for Koji, and render it when the URL contains the `koji-screenshot=1` query parameter.
+Koji uses a screenshot of this page as the preview image when sharing the template.
+
+image:Koji-screenshot=1.png[Dimensions and position of the rich preview image,title="Rich preview image for social sharing"]
+
+. In the `App.js` file, add a conditional statement to the `render` function that displays a different image for social shares.
++
+[source,JavaScript]
+----
+render() {
+  if (window.location.search.includes('koji-screenshot=1')) {
+    return (
+      <SocialSharePreview>
+        <h1>{this.state.title}</h1>
+        <Image src={'https://images.koji-cdn.com/d9c6b38e-08c4-4faf-ae8e-01082c41a0fb/3f83q-9634d620e97345a6b250ca2feb7e5a2e.png'} />
+      </SocialSharePreview>
+    );
+  }
+  ...
+}
+----
+. Create a `SocialSharePreview` styled component that matches the
+dimensions Koji requires for the rich preview image.
++
+To display correctly, the image dimensions must be 1200x630 and the
+`div` should use an absolute position in the top left of the window.
++
+[source,JavaScript]
+----
+const SocialSharePreview = styled.div`
+  background-color: #395b88;
+  height: 630px;
+  width: 1200px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  text-align: center;
+  color: #fcfcfc;
+`;
+----
+NOTE: You can test the preview image by opening your staging link and
+appending `?koji-screenshot=1` to the URL.
+
+== Using states in the instant remix experience
+
+When a template includes many customizable elements, you can use states to break up the remixing experience into manageable chunks.
+States are also helpful for specifically targeting different sections of the template experience.
+For example, some of the customizable elements might be visible at different times, and you can use states to control when and how those elements are visible.
+
+In this example, you will first add the ability to customize the logo image in the template.
+Then, you will add two states, one to expose the text as editable, and one to expose the image as editable.
+
+=== Adding remix functionality to the image
+
+. Update the `.koji/customization/settings.json` file to add an entry for the image.
++
+[source,JavaScript]
+----
+{
+  "settings": {
+    "title": "Hello World",
+    "logo": ""
+  },
+  "@@editor": [
+    {
+      "key": "settings",
+      "name": "App settings",
+      "icon": "⚙️",
+      "source": "settings.json",
+      "fields": [
+        {
+          "key": "title",
+          "name": "App title",
+          "type": "text"
+        },
+        {
+          "key": "logo",
+          "name": "App logo",
+          "type": "image"
+        }
+      ]
+    }
+  ]
+}
+----
+
+. In the `App.js` file, add a `logo` state property, and update the default state, `onValueChanged` handler, click handler, and `Image` element to use the same pattern as for handling changes to the title.
++
+[source,JavaScript]
+----
+class App extends React.Component {
+  state = {
+    isRemixing: false,
+    logo: '',
+    title: '',
+  };
+
+  componentDidMount() {
+    this.instantRemixing = new InstantRemixing();
+
+    // Set the default value for our title, logo, and isRemixing state
+    this.setState({
+      logo: this.instantRemixing.get(['settings', 'logo']),
+      isRemixing: this.instantRemixing.isRemixing,
+      title: this.instantRemixing.get(['settings', 'title'])
+    });
+
+    // Set up a listener to update our values
+    this.instantRemixing.onValueChanged((path, newValue) => {
+      if (path[0] && path[1] && path[0] === 'settings' && path[1] === 'title') {
+        this.setState({ title: newValue });
+      }
+
+      if (path[0] && path[1] && path[0] === 'settings' && path[1] === 'logo') {
+        this.setState({ logo: newValue });
+      }
+    });
+
+    // Toggle the isRemixing state based on our listener
+    this.instantRemixing.onSetRemixing((isRemixing) => {
+      this.setState({ isRemixing });
+    });
+
+    // Alert Koji we are ready to use instantRemixing
+    this.instantRemixing.ready();
+
+    this.feed = new FeedSdk();
+    this.feed.load();
+
+  }
+
+  handleTitleClick = () => {
+    if (this.state.isRemixing) {
+      this.instantRemixing.onPresentControl(['settings', 'title']);
+    }
+  };
+
+  handleLogoClick = () => {
+    if (this.state.isRemixing) {
+      this.instantRemixing.onPresentControl(['settings', 'logo']);
+    }
+  };
+
+  render() {
+    if (window.location.search.includes('koji-screenshot=1')) {
+      return (
+        <SocialSharePreview>
+          <h1>
+            {this.state.title}
+          </h1>
+          <Image src={this.state.logo} />
+        </SocialSharePreview>
+      );
+    }
+
+    return (
+      <Container>
+        <h1
+          className={this.state.isRemixing ? 'active' : ''}
+          onClick={this.handleTitleClick}
+        >
+          {this.state.title}
+        </h1>
+        <Image
+          className={this.state.isRemixing ? 'active' : ''}
+          onClick={this.handleLogoClick}
+          src={this.state.logo}
+        />
+      </Container>
+    );
+  }
+}
+----
+
+=== Adding states
+
+. In the `.koji/customization` folder, add a new file: `quickstart.json`.
+. Paste the following JSON code.
++
+This code defines two states that you can leverage when users are remixing the template.
++
+[source,json]
+----
+{
+   "quickstart": {
+        "states": [
+            { "key": "text", "label": "Edit text" },
+            { "key": "logo", "label": "Edit logo" }
+        ]
+    }
+}
+----
+
+=== Tracking template state changes
+
+. In the `App.js` file, add a `templateState` property to the state and set the default state to `text`.
++
+[source,JavaScript]
+----
+state = {
+   isRemixing: false,
+   logo: '',
+   templateState: 'text',
+   title: '',
+};
+----
+. In the `componentDidMount` method, use the `onSetCurrentState` function to update the local state.
++
+[source,JavaScript]
+----
+...
+this.instantRemixing.onSetCurrentState((templateState) => {
+      this.setState({ templateState });
+    });
+
+// Alert Koji we are ready to use instantRemixing
+    this.instantRemixing.ready();
+...
+----
+
+=== Adding conditional rendering based on template state
+
+. Update the `render` method and the click handlers to incorporate the template state as a way to expose elements as being editable and to handle clicks on a conditional basis.
++
+[source,JavaScript]
+----
+...
+
+handleTitleClick = () => {
+    if (this.state.isRemixing && this.state.templateState === 'text') {
+      this.instantRemixing.onPresentControl(['settings', 'title']);
+    }
+  };
+
+handleLogoClick = () => {
+  if (this.state.isRemixing && this.state.templateState === 'logo') {
+    this.instantRemixing.onPresentControl(['settings', 'logo']);
+  }
+};
+
+render() {
+  if (window.location.search.includes('koji-screenshot=1')) {
+    return (
+      <SocialSharePreview>
+        <h1>
+          {this.state.title}
+        </h1>
+        <Image src={this.state.logo} />
+      </SocialSharePreview>
+    );
+  }
+
+  return (
+    <Container>
+      <h1
+        className={this.state.isRemixing && this.state.templateState === 'text' ? 'active' : ''}
+        onClick={this.handleTitleClick}
+      >
+        {this.state.title}
+      </h1>
+      <Image
+        className={this.state.isRemixing && this.state.templateState === 'logo' ? 'active' : ''}
+        onClick={this.handleLogoClick}
+        src={this.state.logo}
+      />
+    </Container>
+  );
+}
+----
+. To test the states, use the buttons at the bottom of the live preview to toggle between the *Edit Text* and *Edit Logo* states.
+
+== Reacting to feed state changes
+
+When users are browsing the Koji feed, they can swipe up and down through the content.
+To optimize the user’s experience, Koji preloads content so that, ideally, any resources required to display a template in the feed have already loaded by the time the user swipes the template into view.
+
+To ensure your template is displayed correctly, you use the FeedSdk from the @withkoji/vcc package.
+For all templates, you must enable the FeedEvents entitlement and call the `load` method in the template to ensure it is preloaded correctly in the feed.
+For templates that include autoplay features, such as slideshows or interactions, you might also monitor visibility in the feed so that you can play the feature when the user swipes the template into view and stop it when the template isn’t in view.
+
+. Add a property (`isPlaying`) to track the state of visibility in the feed, and add a listener (`onPlaybackStateChanged`) to monitor for real-time updates as the template enters and leaves focus.
++
+[source,JavaScript]
+----
+  state = {
+    isPlaying: false,
+    isRemixing: false,
+    logo: '',
+    templateState: 'text',
+    title: '',
+  };
+
+  componentDidMount() {
+  ...
+  this.feed = new FeedSdk();
+  this.feed.load();
+  // Toggle the isPlaying state based on the listener
+  this.feed.onPlaybackStateChanged((isPlaying) => {
+    this.setState({ isPlaying });
+  });
+}
+----
+. In the `frontend/common/index.html` file, add a CSS animation in the `head` element.
++
+[source,CSS]
+----
+.animate-example {
+    animation-name: example;
+    animation-duration: 4s;
+    animation-iteration-count: infinite;
+}
+
+@keyframes example {
+    from {background-color: tomato;}
+    to {background-color: white;}
+}
+----
+. In the `App.js` file, update the `div` element with a dynamic `className` that starts the animation when the template is in view.
++
+[source,JavaScript]
+----
+<Container className={this.state.isPlaying ? 'animate-example' : ''}>
+  <h1
+    className={this.state.isRemixing && this.state.templateState == 'text' ? 'active' : ''}
+    onClick={this.handleTitleClick}
+  >
+    {this.state.title}
+  </h1>
+  <Image
+    className={this.state.isRemixing && this.state.templateState == 'logo' ? 'active' : ''}
+    onClick={this.handleLogoClick}
+    src={this.state.logo}
+  />
+</Container>
+----
++
+NOTE: To test autoplay features, you can open a published template and append `?feedDebug=true` to the URL.
+The template is loaded in the feed 10 times, and you can swipe or scroll through to ensure the animation starts and stops as expected.
+
+== Providing a good remix experience
+
+As a developer, you can take additional steps to create a better remix experience for users.
+In this example, you will use the https://docs.fastly.com/api/imageopto/[Fastly API] to optimize the size of the image while maintaining the correct aspect ratio.
+Then, you will add features that improve the VCC usability and the loading experience for users.
+
+=== Optimizing images
+
+. Add a method that appends Fastly query parameters to the image source.
++
+This example uses the `width` and `height` parameters to define the size of the region where the image is displayed, the `fit` parameter to resize the image so it fits entirely within the `bounds` of the specified region, and the `optimize` parameter to compress the image size while preserving the visual quality.
++
+[source,JavaScript]
+optimizeURL = url => `${url}?fit=bounds&width=${window.innerWidth/2}&height=${window.innerHeight/2}&optimize=medium`;
+. Update the `Image` element to use the optimized image.
++
+[source,JavaScript]
+----
+render() {
+   if (window.location.search.includes('koji-screenshot=1')) {
+   return (
+     <SocialSharePreview>
+       <h1>
+       {this.state.title}
+       </h1>
+       <Image
+       src={this.optimizeURL(this.state.logo)} />
+     </SocialSharePreview>
+   );
+ }
+   return (
+     <Container className={this.state.isPlaying ? 'animate-example' : ''} >
+       <h1
+       className={this.state.isRemixing && this.state.templateState === 'text' ? 'active' : ''}
+       onClick={this.handleTitleClick}>{this.state.title}</h1>
+       <Image
+       className={this.state.isRemixing && this.state.templateState === 'logo' ? 'active' : ''}
+       onClick={this.handleLogoClick}
+       src={this.optimizeURL(this.state.logo)} />
+     </Container>
+   );
+ }
+}
+----
+
+=== Improving remix usability
+
+. Update the `.koji/customization/settings.json` file to enable the `dismissOnCommit` type option for the image VCC.
++
+This option automatically collapses the VCC and returns to the template preview after a remixer chooses a new image, which provides good feedback and saves a step for the user.
++
+[source,json]
+----
+{
+  "settings": {
+    "title": "Hello World",
+    "logo": ""
+  },
+  "@@editor": [
+    {
+      "key": "settings",
+      "name": "App settings",
+      "icon": "⚙️",
+      "source": "settings.json",
+      "fields": [
+        {
+          "key": "title",
+          "name": "App title",
+          "type": "text"
+        },
+        {
+          "key": "logo",
+          "name": "App logo",
+          "type": "image",
+          "typeOptions": {
+              "dismissOnCommit": true
+          }
+        }
+      ]
+    }
+  ]
+}
+----
+. Add a `titleOptions` object that includes the existing text VCC (`title`) as well as a new range VCC (`fontSize`).
++
+The range VCC will enable users to specify the font size quickly, while enforcing sensible minimum and maximum values.
++
+[source,json]
+----
+{
+  "settings": {
+    "titleOptions": {
+      "title": "Hello World!",
+      "fontSize": 48
+    },
+    "logo": ""
+  },
+  "@@editor": [
+    {
+      "key": "settings",
+      "name": "App settings",
+      "icon": "⚙️",
+      "source": "settings.json",
+      "fields": [
+        {
+          "key": "titleOptions",
+          "name": "Title options",
+          "type": "object<TitleOption>",
+          "typeOptions": {
+            "TitleOption": {
+              "title": {
+                "name": "App title",
+                "type": "text"
+              },
+              "fontSize": {
+                "name": "Font size",
+                "description": "Select a size for the title font",
+                "type": "range",
+                "typeOptions": {
+                  "min": 16,
+                  "max": 48,
+                  "step": 1
+                }
+              }
+            }
+          }
+        },
+        {
+          "key": "logo",
+          "name": "App logo",
+          "type": "image",
+          "typeOptions": {
+            "dismissOnCommit": true
+          }
+        }
+      ]
+    }
+  ]
+}
+----
+. In the `App.js` file, add a new `H1` styled component that uses the `fontSize` as a variable.
++
+[source,JavaScript]
+----
+const H1 = styled.h1`
+ font-size: ${({ fontSize }) => `${fontSize}px`};
+`;
+----
+. Update the default state, `onValueChanged` handler, click handler, and `render` method to use the new object and style.
++
+[source,JavaScript]
+----
+state = {
+       isPlaying: false,
+       isRemixing: false,
+       logo: '',
+       templateState: 'text', // Our default template state
+       titleOptions: {
+           title: '',
+           fontSize: 10,
+       },
+   };
+
+...
+
+this.setState({
+  titleOptions: this.instantRemixing.get(['settings', 'titleOptions']),
+  ...
+});
+...
+
+this.instantRemixing.onValueChanged((path, newValue) => {
+    if (path[0] && path[1] && path[0] === 'settings' && path[1] === 'titleOptions') {
+      this.setState({ titleOptions: newValue });
+    }
+    ...
+  });
+...
+
+handleTitleClick = () => {
+       if (this.state.isRemixing && this.state.templateState === 'text') {
+           this.instantRemixing.onPresentControl(['settings', 'titleOptions']);
+       }
+   };
+
+render() {
+...
+   <H1
+    className={this.state.isRemixing && this.state.templateState === 'text' ? 'active' : ''}
+    fontSize={this.state.titleOptions.fontSize}
+    onClick={this.handleTitleClick}>
+    {this.state.titleOptions.title}</H1>
+...}
+----
+
+=== Improving the template loading experience
+
+. To display the template after all images have been preloaded, add an `imagesLoaded` state, and then add a function in the `componentDidMount` method that preloads any images and updates the `imagesLoaded` state after loading is completed.
++
+Waiting for content to load before displaying the template will ensure a
+coordinated start to the experience.
++
+[source,JavaScript]
+----
+state = {
+  isPlaying: false,
+  isRemixing: false,
+  logo: '',
+  templateState: 'text', // Our default template state
+  titleOptions: {
+    title: '',
+    fontSize: 10,
+  },
+  imagesLoaded: false,
+};
+
+componentDidMount() {
+...
+  // Alert Koji we are ready to use instantRemixing
+  this.instantRemixing.ready();
+
+  // Preload images
+  const preloadImages = async () => {
+    const promises = [];
+
+    const images = [this.instantRemixing.get(['settings', 'logo'])].map((src) => this.optimizeURL(src));
+
+    images.forEach((src) => {
+      promises.push(async () => new Promise((res, rej) => {
+        const img = new window.Image();
+        img.onload = () => res();
+        img.src = src;
+      }));
+    });
+
+    await Promise.all(promises.map(async p => p()));
+
+    this.setState({ imagesLoaded: true });
+  };
+
+  preloadImages();
+}
+----
+. To use the standard loading indicator, open the terminal, cancel the running process, and install the skytree-koji-react package in the `frontend` folder of your template.
++
+[source,bash]
+npm install --save skytree-koji-react
++
+This package provides functionality for React applications on Koji, including displaying the standard loading indicator and styling editable elements.
+For more information, see the https://github.com/anderjason/skytree-koji-react[package documentation].
++
+NOTE: For projects that don’t use React, you can install the vanilla JavaScript version of the package: `npm install --save skytree-koji`.
+For more information, see the https://github.com/anderjason/skytree-koji[package documentation].
+. To improve the visual transition from the loading indicator to loaded content, install a library with the desired animation effect.
++
+This example uses the https://www.react-reveal.com/[React Reveal] library.
++
+[source,bash]
+npm install react-reveal --save
+. Restart the process to reflect the new changes:
++
+[source,bash]
+----
+npm start
+----
+. In the `App.js` file, import the `LoadingIndicator` from the skytree-koji-react package and the `Fade` effect from the react-reveal/Fade package.
++
+[source,JavaScript]
+----
+import { LoadingIndicator } from 'skytree-koji-react';
+import Fade from 'react-reveal/Fade';
+----
+. Update the `render` method to show the loading indicator while the images load and to use the animation effect when the template comes into view.
++
+[source,JavaScript]
+----
+render() {
+    if (window.location.search.includes('koji-screenshot=1')) {
+      return (
+        <SocialSharePreview>
+          <H1
+          fontSize={this.state.titleOptions.fontSize}
+          >{this.state.titleOptions.title}</H1>
+          <Image src={this.optimizeURL(this.state.logo)} />
+        </SocialSharePreview>
+      );
+    }
+    if (this.state.imagesLoaded){
+    return (
+      <Container className={this.state.isPlaying ? 'animate-example' : ''}>
+        <Fade top cascade>
+        <H1
+        className={this.state.isRemixing && this.state.templateState === 'text' ? 'active' : ''}
+        fontSize={this.state.titleOptions.fontSize}
+        onClick={this.handleTitleClick} >{this.state.titleOptions.title}</H1>
+        <Image
+        className={this.state.isRemixing  && this.state.templateState === 'logo' ? 'active' : ''}
+        onClick={this.handleLogoClick}
+        src={this.optimizeURL(this.state.logo)} />
+        </Fade>
+      </Container>
+    );
+  }
+  return (
+      <Container>
+        <LoadingIndicator />
+      </Container>
+  )
+}
+----
+. To test the loading experience, add the following code to delay preloading.
+Then, from the *Remote* tab in the right pane, open the template in a new tab.
++
+If this test works correctly, the loading indicator will display for a few seconds, and then the template elements will fade in from the top of the screen.
++
+[source,JavaScript]
+----
+window.setTimeout(() => {
+        preloadImages();
+    }, 3000)
+----
+NOTE: Remember to remove the test delay before publishing the template.
+
+== Republishing the template
+
+At this point, you’re ready to publish the next version of your template.
+The new version replaces the previous version on the Koji platform and is available at the same URL, which is based on the name when you first published it.
+
+. In the upper left of the editor, click *Publish Now* to open the publish settings.
+. Review the name and description, and update them if desired.
+. Click *Publish*.
+. When publishing is completed, click the link to view and test your updated template.

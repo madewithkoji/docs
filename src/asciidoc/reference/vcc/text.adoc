@@ -1,0 +1,18 @@
+= Text, TextArea
+:page-slug: /reference/vcc/text
+
+* Text can be changed by clicking the input field and typing the new text.
+* A TextArea VCC can be used by defining a `type` of `textarea`.
+* The difference between the 'Text Area' and just 'Text' is that a text area allows line breaks within it. Text can be changed by clicking in the input field and typing the new text.
+
+== Sample Text VCC
+
+[source,json]
+----
+{
+  "key": "myText",
+  "name": "My Text",
+  "description": "This is my text description",
+  "type": "text"
+}
+----

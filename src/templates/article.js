@@ -1,23 +1,18 @@
-import React from "react"
-import { graphql } from "gatsby"
+import React, { useEffect } from 'react';
+import PropTypes from 'prop-types';
+import hljs from 'highlight.js';
+import styled from 'styled-components';
+import 'highlight.js/styles/github.css';
+import { graphql } from 'gatsby';
+import Container from '@material-ui/core/Container';
 
-import Layout from "../layouts"
-
-class Article extends React.Component {
-  render() {
-    return (
-      <Layout>
-        <div
-          dangerouslySetInnerHTML={{ __html: this.props.data.asciidoc.html }}
-        />
-      </Layout>
-    )
+const Content = styled.div`
+  img {
+    max-width: 100%;
   }
-}
+`;
 
-export default Article
-
-export const pageQuery = graphql`
+export const query = graphql`
   query($id: String!) {
     asciidoc(id: { eq: $id }) {
       html
@@ -28,4 +23,30 @@ export const pageQuery = graphql`
       }
     }
   }
-`
+`;
+
+const Article = (props) => {
+  useEffect(() => {
+    document.querySelectorAll('pre code').forEach((block) => {
+      hljs.highlightBlock(block);
+    });
+  });
+
+  return (
+    <Container maxWidth="sm">
+      <Content
+        dangerouslySetInnerHTML={{ __html: props.data.asciidoc.html }}
+      />
+    </Container>
+  );
+};
+
+Article.propTypes = {
+  data: PropTypes.object,
+};
+
+Article.defaultProps = {
+  data: {},
+};
+
+export default Article;

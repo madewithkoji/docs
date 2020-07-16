@@ -1,0 +1,33 @@
+= 3D Object
+:page-slug: /reference/vcc/3d-object
+
+* User can browse and import 3d OBJs from Google Poly.
+
+== Sample 3D Object VCC
+
+[source,json]
+----
+{
+  "key": "my3DObject",
+  "name": "My 3D Object",
+  "description": "This is the description of my 3D object",
+  "type": "obj"
+}
+----
+
+The resulting value will have the following shape:
+
+[source,json]
+----
+{
+  "obj": "https://objects.koji-cdn.com/c2755e73-1d5f-4b1e-9ede-51bba8e4b7ff/6dM1J6f6pm9/Mesh_Cat.obj",
+  "mtl": "https://objects.koji-cdn.com/c2755e73-1d5f-4b1e-9ede-51bba8e4b7ff/6dM1J6f6pm9/Mesh_Cat.mtl",
+  "texturePath": "https://objects.koji-cdn.com/c2755e73-1d5f-4b1e-9ede-51bba8e4b7ff/6dM1J6f6pm9/",
+  "rawResources": [
+    "https://objects.koji-cdn.com/c2755e73-1d5f-4b1e-9ede-51bba8e4b7ff/6dM1J6f6pm9/Mesh_Cat.mtl",
+    "https://images.koji-cdn.com/c2755e73-1d5f-4b1e-9ede-51bba8e4b7ff/6dM1J6f6pm9/Tex_Cat.png",
+    "https://objects.koji-cdn.com/c2755e73-1d5f-4b1e-9ede-51bba8e4b7ff/6dM1J6f6pm9/Mesh_Cat.obj"
+  ],
+  "thumbnailUrl": "https://images.koji-cdn.com/c2755e73-1d5f-4b1e-9ede-51bba8e4b7ff/6dM1J6f6pm9/thumbnail.jpg"
+}
+----
