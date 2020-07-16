@@ -3,8 +3,26 @@ exports.sourceNodes = ({ actions, createNodeId, createContentDigest }) => {
     {
       name: 'Docs',
       root: '/docs',
-      defaultPath: '/docs/blueprints',
+      defaultPath: '/docs/getting-started',
       sections: [
+        {
+          name: 'Getting Started',
+          root: '/docs/getting-started',
+          items: [
+            {
+              name: 'Intro to Koji',
+              path: '/docs/getting-started',
+            },
+            {
+              name: 'Starter guide',
+              path: '/docs/getting-started/start-guide-1',
+            },
+            {
+              name: 'Starter guide, part 2',
+              path: '/docs/getting-started/start-guide-2',
+            },
+          ],
+        },
         {
           name: 'Blueprints',
           root: '/docs/blueprints',
@@ -17,7 +35,19 @@ exports.sourceNodes = ({ actions, createNodeId, createContentDigest }) => {
               name: 'Magazine Cover',
               path: '/docs/blueprints/magazine-cover',
             },
-          ],
+          ]
+        },
+        {
+          name: 'Concepts',
+          root: '/docs/concepts',
+          items: [
+          ]
+        },
+        {
+          name: 'Develop',
+          root: '/docs/develop',
+          items: [
+          ]
         },
         {
           name: 'Getting Started',
@@ -46,28 +76,52 @@ exports.sourceNodes = ({ actions, createNodeId, createContentDigest }) => {
           root: '/docs/customizations',
           items: [
             {
-              name: 'Custom VCC Tutorial',
+              name: 'Custom VCCs',
               path: '/docs/customizations/build-custom-VCC',
             },
-          ],
+          ]
+        },
+        {
+          name: 'Test',
+          root: '/docs/test',
+          items: [
+          ]
+        },
+        {
+          name: 'Publish and iterate',
+          root: '/docs/publish',
+          items: [
+          ]
+        },
+        {
+          name: 'Guidelines',
+          root: '/docs/guidelines',
+          items: [
+          ]
+        },
+        {
+          name: 'Release notes',
+          root: '/docs/releases',
+          items: [
+          ]
         },
         {
           name: 'Videos',
           root: '/docs/videos',
           items: [
             {
-              name: 'Image Resizing',
-              path: '/docs/videos/image-best-practices',
+              name: 'Starter course',
+              path: '/docs/videos/starter-course',
             },
             {
-              name: 'Kai OS',
+              name: 'KaiOS apps',
               path: '/docs/videos/kai-OS',
             },
             {
-              name: 'Starter Course',
-              path: '/docs/videos/starter-course',
+              name: 'Image Best Practices',
+              path: '/docs/videos/image-best-practices',
             },
-          ],
+          ]
         },
       ],
     },
