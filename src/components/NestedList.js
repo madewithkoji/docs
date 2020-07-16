@@ -38,7 +38,7 @@ const NestedList = ({ section }) => {
         <ListItemText primary={section.name} />
         {open ? <ExpandLess /> : <ExpandMore />}
       </ListItem>
-      <Collapse in={open} timeout="auto" unmountOnExit>
+      <Collapse in={open} timeout="auto">
         <List component="div" disablePadding>
           {
             section.items.map((item) => (

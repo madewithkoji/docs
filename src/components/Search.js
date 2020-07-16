@@ -37,7 +37,6 @@ const Search = () => {
     s.addIndex(['document', 'title']);
 
     const docs = data.allAsciidoc.edges.map(({ node }) => node);
-    console.log('d', docs);
 
     s.addDocuments(docs);
 
@@ -45,9 +44,7 @@ const Search = () => {
   }, [data]);
 
   useEffect(() => {
-    console.log('effect', search, value);
     if (search && value && value !== '') {
-      console.log('m', search.search(value));
       setMatches(search.search(value));
     } else {
       setMatches([]);
