@@ -35,40 +35,18 @@ exports.sourceNodes = ({ actions, createNodeId, createContentDigest }) => {
               name: 'Magazine Cover',
               path: '/docs/blueprints/magazine-cover',
             },
-          ]
+          ],
         },
         {
           name: 'Concepts',
           root: '/docs/concepts',
           items: [
-          ]
+          ],
         },
         {
           name: 'Develop',
           root: '/docs/develop',
           items: [
-          ]
-        },
-        {
-          name: 'Getting Started',
-          root: '/docs/getting-started',
-          items: [
-            {
-              name: 'Developer',
-              path: '/docs/getting-started',
-            },
-            {
-              name: 'Programs',
-              path: '/docs/getting-started/programs',
-            },
-            {
-              name: 'Guide 1',
-              path: '/docs/getting-started/start-guide-1',
-            },
-            {
-              name: 'Guide 2',
-              path: '/docs/getting-started/start-guide-2',
-            },
           ],
         },
         {
@@ -79,31 +57,31 @@ exports.sourceNodes = ({ actions, createNodeId, createContentDigest }) => {
               name: 'Custom VCCs',
               path: '/docs/customizations/build-custom-VCC',
             },
-          ]
+          ],
         },
         {
           name: 'Test',
           root: '/docs/test',
           items: [
-          ]
+          ],
         },
         {
           name: 'Publish and iterate',
           root: '/docs/publish',
           items: [
-          ]
+          ],
         },
         {
           name: 'Guidelines',
           root: '/docs/guidelines',
           items: [
-          ]
+          ],
         },
         {
           name: 'Release notes',
           root: '/docs/releases',
           items: [
-          ]
+          ],
         },
         {
           name: 'Videos',
@@ -121,7 +99,7 @@ exports.sourceNodes = ({ actions, createNodeId, createContentDigest }) => {
               name: 'Image Best Practices',
               path: '/docs/videos/image-best-practices',
             },
-          ]
+          ],
         },
       ],
     },
