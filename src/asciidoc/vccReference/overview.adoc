@@ -1,0 +1,133 @@
+= Overview
+:page-slug: /vcc
+
+Visual Customization Controls (VCCs) enable users to quickly edit elements of your template on Koji.
+The control types and default values are defined in JSON files in your project.
+During remixes, the associated visual controls allow a user to enter or select a custom value.
+
+[.float-group]
+--
+[.left]
+.JSON file for a text VCC
+[source,json]
+----
+{
+"settings": {
+"title": "Hello World!"
+},
+"@@editor": [
+{
+  "key": "settings",
+  "name": "App settings",
+  "icon": "⚙️",
+  "source": "settings.json",
+  "fields": [
+      {
+        "key": "title",
+        "name": "App title",
+        "type": "text"
+        }
+      ]
+    }
+  ]
+}
+----
+
+[.right]
+.Visual control for a text VCC
+image::textVCCRemix.png[Text VCC,45%]
+--
+
+== Using VCCs
+
+To use VCCs in your template, add a customization file to the `.koji/customization` folder of your project.
+The customization file defines the names, types, configuration options, and default values for VCCs used in the template.
+
+.JSON format of a Koji customization file
+[source,JSON]
+----
+{
+  "example":  { <1>
+    "param":  "this is the value of the param"
+  },
+  "@@editor":  [ <2>
+    {
+      "key":  "example", <3>
+      "name":  "Example", <4>
+      "icon":  "😄", <5>
+      "source":  "example.json", <6>
+      "fields":  [ <7>
+        {
+          "key":  "param", <8>
+          "name":  "An Example Parameter", <9>
+          "type":  "image", <10>
+          "typeOptions": { <11>
+
+          }
+        }
+      ]
+    }
+  ]
+}
+----
+<1> Section that defines the scope and default values for customizable elements.
+<2> Section that defines how VCCs are displayed to remixers.
+<3> Scope used to access values in your template logic. Should match the filename.
+<4> Name displayed in the Koji editor for developers.
+<5> (Optional) Icon displayed in the Koji editor for developers.
+<6> Filename from which to obtain values. Should be the same file, in most cases.
+<7> Array of VCC definitions.
+<8> Key used to access the value in your template logic.
+<9> Display name of the element for remixers.
+<10> VCC type.
+<11> (Optional) Configuration options for the VCC. The available options vary by type.
+
+
+== VCC Types
+
+The Koji platform provides VCCs for standard elements, such as images, text, and sounds.
+To provide more specialized customization types, you can use custom VCCs published on the Koji platform and you can build your own custom VCCs.
+
+To compose higher-order controls, you can combine VCCs into arrays or objects.
+You can also combine arrays and objects to create more elaborate controls.
+
+.Standard VCCs
+* <<../vcc/image#>> – page description here (can we do this automatically?)
+* <</vcc/sound#>>
+* <<../vcc/color.adoc#>>
+* <<text.adoc#>>
+* <<boolean.adoc#>>
+* <<range.adoc#>>
+* <<select.adoc#>>
+* <<secret.adoc#>>
+* <<3DObject.adoc#>>
+* <<coordinate.adoc#>>
+* <<size.adoc#>>
+* <<video.adoc#>>
+* <<file.adoc#>>
+
+.Custom VCC showcase
+[horizontal]
+<<googleFont.adoc#>>::
++
+--
+include::googleFont.adoc[tag=description]
+--
+
+.VCC composition controls
+[horizontal]
+<<array.adoc#>>::
++
+--
+include::array.adoc[tag=description]
+--
+<<object.adoc#>>::
++
+--
+include::object.adoc[tag=description]
+--
+
+== Related Resources
+
+* WithKoji > https://withkoji.com/extensions[Browse custom VCCs]
+* Docs > Customization > link:../customization/customVCC.adoc[Building your first custom VCC]

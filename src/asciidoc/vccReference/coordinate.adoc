@@ -1,0 +1,25 @@
+= Coordinate
+:page-slug: /vcc/coordinate
+
+* Specify an (x,y) coordinate pair.
+
+== Sample Coordinate VCC
+
+[source,json]
+----
+{
+  "myCoordinate": {
+    "x": 100,
+    "y": 200
+  }
+}
+...
+{
+  "key": "myCoordinate",
+  "name": "My Coordinate",
+  "type": "coordinate",
+  "typeOptions": {
+    "step": 1
+  }
+}
+----
