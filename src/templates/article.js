@@ -5,6 +5,7 @@ import styled from 'styled-components';
 import 'highlight.js/styles/github.css';
 import { graphql } from 'gatsby';
 import Container from '@material-ui/core/Container';
+import '../styles/adoc-rocket-panda.css';
 
 const Content = styled.div`
   img {
