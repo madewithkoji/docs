@@ -34,7 +34,7 @@ const Article = (props) => {
   });
 
   return (
-    <Container maxWidth="sm">
+    <Container maxWidth="lg">
       <Content
         dangerouslySetInnerHTML={{ __html: props.data.asciidoc.html }}
       />

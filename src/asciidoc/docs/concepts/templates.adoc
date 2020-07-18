@@ -1,0 +1,36 @@
+= What is a Koji Template?
+:page-slug: /docs/concepts/templates
+
+Koji templates are full-stack JavaScript web applications.
+When you develop a template, Koji uses Git repositories for source control.
+When you publish a template, Koji uses Node.js and modern CI/CD build tools to deploy it as a static web application.
+
+The Koji Editor, with its innovative Visual Customization Controls (VCCs), allows anyone to remix these web applications, customize them, and deploy their creations to world-class production systems without needing to know anything about coding or DevOps.
+
+== Why templates?
+For years, software has been a process of slowly and laboriously building one piece on top of another.
+In many of those instances, the foundation is the same across many pieces of software, and only details at the final level of implementation are changed.
+Instead of always starting at the bottom, we want users to start at the top, and change only the details that are important to them.
+
+== Process
+Developers like yourself build and publish templates to the Koji platform.
+Other users can browse and search for templates that closely match their goals, and customize the details of the template so that the final product is exactly what they want using VCCs.
+They can publish their customized version of your original template and also choose to compensate you via a "Pay what you want" tipping process.
+
+== What is remixing?
+
+Remixing enables non-technical users to customize templates and create their own interactive content, without writing code.
+When you develop a remixable template, you create JSON files that define the customizable elements and their default values.
+For each element, a value can point to a resource location or be consumed directly.
+You then use the @withkoji/vcc npm package to expose the elements in VCCs.
+
+VCCs enable remixers to update customizable values in an easy-to-use editor, without editing the JSON files directly.
+Many common VCC types are built into the Koji platform, including images, sounds, and text.
+Additionally, you can define custom VCCs or use extensions for custom types.
+
+== Instant remixing vs. remixing
+
+As the name implies, instant remixing is a faster and easier way for a remixer to customize and publish interactive content without coding.
+In both cases, remixers can edit customizable values.
+However, instant remixing simply loads the base template and enables users to change the values directly from the template preview.
+Instant remixers do not need to clone a Git repository and use the Koji editor to customize values.

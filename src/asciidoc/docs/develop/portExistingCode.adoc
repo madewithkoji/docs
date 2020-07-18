@@ -1,0 +1,133 @@
+= Porting existing code to Koji
+:page-slug: /docs/develop/port-existing-code
+
+In this tutorial, you will port an existing game to Koji.
+You will make some updates to the game to make it customizable, and then you will build and deploy the game to the Koji platform.
+
+Time: You should be able to complete this tutorial in 30 minutes or less.
+
+== Prerequisites
+
+Familiarity with the Koji editor, remix process, @withkoji/vcc package, and basic git commands.
+
+== Starting with a scaffold
+
+Because every application on Koji is a remix, you will want to find a "good" place to start from.
+There are scaffolds for many existing game and application frameworks, including Phaser, P5, and React.
+
+In this case, you will be working with a vanilla JS game, so you will use an even simpler starting point.
+
+All games and applications on Koji need to be "built" for production, meaning that they need to be compiled into assets that can be bundled and served statically.
+One solution that is very good at doing that is Webpack.
+
+Webpack enables you to create a hot-reloading development environment, and build your game for production, as well.
+It also allows for transpiling of advanced JS features using babel.
+The trickiest part about webpack is configuring it properly.
+Fortunately, there is a scaffold that has already done that for you.
+
+. Remix this "Simple Webpack Scaffold":
++
+https://withkoji.com/~seane/simple-webpack-scaffold
+. Verify that the project is working.
+.. Open *Customization > App settings* on the left side of the editor.
+.. Change the "Hello, world!" value to something else.
++
+If everything is working correctly, you should see the preview on the right update automatically with your new value.
+
+== Bringing in existing code
+
+There are many ways to bring existing code into your project.
+If you have private files to import, you could share them using a service and bring them in with something like wget.
+
+For this example, you will import files from a public git repository: https://github.com/arist0tl3/HTML5-Asteroids.
+
+This repository is a fork of a basic Asteroids clone made in vanilla JS: http://www.dougmcinnes.com/2010/05/12/html-5-asteroids.
+
+. Cancel the running npm command by clicking the "frontend" terminal at the bottom of the editor, and pressing *Ctrl+C*.
+. Clone the Asteroids repo into a temp folder.
+[source,bash]
+git clone https://github.com/arist0tl3/HTML5-Asteroids temp
+. Go to the temp folder, and move the important files into the parent folder.
++
+[source,bash]
+----
+cd temp
+mv game.js index.html ipad.js jquery-1.4.1.min.js vector_battle_regular.typeface.js ../
+----
+. Go back to the parent folder, and remove the temporary folder.
++
+[source,bash]
+----
+cd ..
+rm -rf temp
+----
+. Replace the existing `index.js` file with the new `game.js` file.
+[source,bash]
+rm index.js && mv game.js index.js
+. Run the start command, to refresh the preview and see the Asteroids game.
+[source,bash]
+npm start
+
+== Making it remixable
+
+By design, every application and game on Koji is remixable.
+You can click the "Remix" button to create a forked version of the original.
+
+In this example, you will take things one step further, by leveraging one of the most powerful tools on the platform: Visual Customization Controls (VCCs).
+
+VCCs enable other people who remix your game or application to change things, without looking at one line of code.
+Another way to think about this is "theming" or "reskinning" an application -- the underlying code isn't changing, just the assets.
+
+Let's say you want to make the background color of the game customizable.
+You need to do two things: set up a VCC to handle the user input, and consume the value inside the application.
+
+. To set up the VCC, open *Customization > App settings* on the left side of the editor, and then click *Code* view at the top of the file.
+. Paste the following code into the file, and then press *Ctrl+S* to save the file.
++
+[source,json]
+----
+{
+  "settings": {
+    "backgroundColor": "#ffffff"
+  },
+  "@@editor": [
+    {
+      "key": "settings",
+      "name": "App settings",
+      "icon": "⚙️",
+      "source": "settings.json",
+      "fields": [
+        {
+          "key": "backgroundColor",
+          "name": "Background Color",
+          "type": "color"
+        }
+      ]
+    }
+  ]
+}
+----
++
+This code replaces the existing values because that value won't be used in the application.
++
+If you switch to the *Visual* view at the top of the file, you'll now see that the editor has rendered a color picker so that the user can choose a new background color.
++
+If you change the background color, however, you will notice that nothing happens in the application. You need to set up the application to consume that value, which you can do with the @withkoji/vcc package.
++
+NOTE: This package has already been installed in this application. If you need to use it in another project, run `npm install @withkoji/vcc`.
+
+Because this project is written in vanilla JS, we will use some simple dom manipulation to make our background color changes.
+
+Open up the frontend/index.html file -- you will notice that there is a canvas element, with an id of canvas -- this is the element we will target for our background color
+
+Open up the frontend/index.js file, and add this to the top of the file (below the initial comment):
+
+const Koji = require('@withkoji/vcc').default;
+
+const canvas = document.getElementById('canvas');
+if (canvas) {
+    canvas.style.background = Koji.config.settings.backgroundColor;
+}
+What we are doing here is importing the default export from the @withkoji/vcc package, finding our canvas element, and assigning a value that is pulled from our configuration files.
+
+If you refresh your application, you should now see the correct background color. If you return to the "App settings" customization, changing the background color should also update your preview automatically!

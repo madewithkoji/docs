@@ -1,0 +1,153 @@
+= Anatomy of a Koji Project
+:page-slug: /docs/concepts/projects
+
+Koji provides you with an environment for developing and publishing an application in your browser.
+The project environment includes a terminal connected to a running container with all the familiar tools, the same code editor that powers VSCode, and tools to help you deploy and publish your application to https://withkoji.com[withkoji.com].
+
+== Project Directory
+
+The project directory at `/usr/src/app` includes a git repository for your project with two remotes.
+
+. `origin`: The git remote from which projects are built and deployed.
+. `upstream`: The git remote from which projects are forked (a repository on GitHub for example).
+
+Run `git remote -v` to see the remotes in your project.
+
+[source,bash]
+----
+root@c8ce449b5538:/usr/src/app# git remote -v
+origin  https://projects.koji-cdn.com/8a129043-4c22-4be7-875f-38b422008695.git (fetch)
+origin  https://projects.koji-cdn.com/8a129043-4c22-4be7-875f-38b422008695.git (push)
+upstream        https://projects.koji-cdn.com/e4d6b4bf-781a-4a49-9f0f-1d9cf3bbb7ff.git (fetch)
+upstream        https://projects.koji-cdn.com/e4d6b4bf-781a-4a49-9f0f-1d9cf3bbb7ff.git (push)
+read instructions for syncing with an upstream repo here
+----
+
+== README
+
+The `README.md` file is required at the top level your project directory.
+This markdown file documents the tech stack and any relevant information to aid someone working with the code.
+
+== Koji Directory
+
+The `.koji` directory is where your configuration and script files live, including project configuration for development and deploy and customizations for Visual Customization Controls (VCCs).
+
+----
+.
+├── customization
+│   ├── about_customization.md
+│   ├── buttons.json
+│   ├── colors.json
+│   ├── images.json
+│   ├── metadata.json
+│   ├── settings.json
+│   └── sounds.json
+├── project
+│   ├── about_project.md
+│   ├── deploy.json
+│   └── develop.json
+----
+
+[IMPORTANT]
+====
+The only required files for Koji to work are:
+
+* `README.md`: Displays project information in the project overview.
+* `develop.json`: Lets the Koji editor know how your project development works (project path, port, start command, and events).
+* `deploy.json`: Lets deploy know where your project build works (build path, port, build commands).
+====
+
+=== develop.json
+
+`.koji/project/develop.json` contains development configuration for your project.
+
+[source,JSON]
+----
+{
+  "develop": {
+    "frontend": {
+      "path": "frontend",
+      "port": 8080,
+      "startCommand": "npm start"
+    }
+  }
+}
+----
+
+In this file the important things to look at are:
+
+* `path`: Indicates the directory for your frontend and backend.
+* `port`:  Matches the port on which your development server is running.
+* `startCommand` for your application is placed in the start script of your package.json (for npm start to work).
+
+=== deploy.json
+
+`.koji/project/deploy.json` contains deploy configuration for your project.
+
+[source,JSON]
+----
+{
+  "deploy":  {
+    "frontend":  {
+      "output":  "frontend/build",
+      "commands":  [
+        "cd frontend",
+        "npm install",
+        "export NODE_ENV=production && npm run compile"
+      ],
+    },
+    "backend":  {
+      "output":  "backend/dist",
+      "type": "dynamic",
+      "commands":  [
+        "cd backend",
+        "npm install",
+        "export NODE_ENV=production && npm run compile"
+      ]
+    }
+  }
+}
+----
+
+In `deploy.json` make sure to check that:
+
+* `output`: Indicates the directory where your files will be compiled after the `"commands"` list is done.
+
+* `type`: Is either `static` if the service deploys a static bundle (HTML, CSS, JS), or `dynamic` if the service deploys a server.
+* `commands`: Lists the steps to build your project.
+
+The .json files in this directory each have a very specific schema that controls how the Koji editor deals with files.
+develop.json deals with setting up your editor so you will have the best editing experience and deploy.json tells Koji how to turn your code into a live app.
+These files have the following schema:
+
+=== koji/customization
+
+Every `.json` file in this directory is created by the template creator and creates a tab in the Customization section in the navigation bar on the left side of the screen.
+
+The following would create a section called Example and would be in a file called `example.json`:
+
+[source,JSON]
+----
+{
+  "example":  {
+    "param":  "this is the value of the param"
+  },
+  "@@editor":  [
+    {
+      "key":  "example",
+      "name":  "Example",
+      "icon":  "😄",
+      "source":  "example.json",
+      "fields":  [
+        {
+          "key":  "param",
+          "name":  "An Example Parameter",
+          "type":  "text"
+        }
+      ]
+    }
+  ]
+}
+----
+
+If you are using the @withkoji/vcc npm package, you can access this property with `instantRemixing.get(['example', 'param'])` or `Koji.config.example.param`.
