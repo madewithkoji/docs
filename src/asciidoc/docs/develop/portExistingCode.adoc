@@ -10,7 +10,7 @@ Time: You should be able to complete this tutorial in 30 minutes or less.
 
 Familiarity with the Koji editor, remix process, @withkoji/vcc package, and basic git commands.
 
-== Starting with a scaffold
+== Starting from a scaffold
 
 Because every application on Koji is a remix, you will want to find a "good" place to start from.
 There are scaffolds for many existing game and application frameworks, including Phaser, P5, and React.
@@ -68,7 +68,7 @@ rm index.js && mv game.js index.js
 [source,bash]
 npm start
 
-== Making it remixable
+== Making a remixable template
 
 By design, every application and game on Koji is remixable.
 You can click the "Remix" button to create a forked version of the original.
@@ -112,22 +112,129 @@ This code replaces the existing values because that value won't be used in the a
 +
 If you switch to the *Visual* view at the top of the file, you'll now see that the editor has rendered a color picker so that the user can choose a new background color.
 +
-If you change the background color, however, you will notice that nothing happens in the application. You need to set up the application to consume that value, which you can do with the @withkoji/vcc package.
+If you change the background color, however, you will notice that nothing happens in the application.
+You need to set up the application to consume that value, which you can do with the @withkoji/vcc package.
 +
-NOTE: This package has already been installed in this application. If you need to use it in another project, run `npm install @withkoji/vcc`.
+[NOTE]
+====
+This package has already been installed in this application. If you need to use it in another project, run:
 
-Because this project is written in vanilla JS, we will use some simple dom manipulation to make our background color changes.
-
-Open up the frontend/index.html file -- you will notice that there is a canvas element, with an id of canvas -- this is the element we will target for our background color
-
-Open up the frontend/index.js file, and add this to the top of the file (below the initial comment):
-
+`npm install @withkoji/vcc`
+====
++
+Because this project is written in vanilla JS, you can use simple dom manipulation to change the background color.
+. Open the `frontend/index.html` file.
++
+Notice the canvas element, with an `id` of `canvas`. You will target this element for the background color.
+. Open the `frontend/index.js` file, and add the following code to the top of the file, below the initial comment:
++
+[source,javascript]
+----
 const Koji = require('@withkoji/vcc').default;
 
 const canvas = document.getElementById('canvas');
 if (canvas) {
     canvas.style.background = Koji.config.settings.backgroundColor;
 }
-What we are doing here is importing the default export from the @withkoji/vcc package, finding our canvas element, and assigning a value that is pulled from our configuration files.
+----
++
+This code imports the default export from the @withkoji/vcc package, finds the canvas element, and assigns a value that is pulled from the configuration files.
+. Refresh your application.
++
+You should now see the correct background color. If you return to the App settings customization, changing the background color should also update your preview automatically.
 
-If you refresh your application, you should now see the correct background color. If you return to the "App settings" customization, changing the background color should also update your preview automatically!
+== Publishing your template
+
+Because this project is compiled with Webpack, you must `require` the local JS files, instead of referencing them in the `index.html` file.
+
+. Open the `frontend/index.html` file, and remove the `<script>` tags from the top of the file.
++
+There should be four of them.
+. Press *Ctrl+S* to save the file.
+. Open the `frontend/index.js` file, and add the following code above the block of code you pasted in the previous section:
++
+[source,javascript]
+----
+require('jquery-1.4.1.min.js');
+require('vector_battle_regular.typeface.js');
+require('ipad.js');
+----
+. Press *Ctrl+S* to save the file, and make sure the preview is still working.
+. When you are ready to see a live build of your project, click *Publish now* on the left side of the editor.
++
+You will be prompted to enter additional information about your application, such as the name and description.
+. Click *Publish*.
++
+Publishing runs the build commands specified for the project, and then displays a live link to your production template.
+
+== Adding sound effects
+
+After your template has been published, you can enhance it by adding sound effects.
+When you moved files from the original Asteroids repo into your project, the `.wav` files were not included.
+That's because you will allow users to customize those sounds.
+
+. Open the *App settings* customization, and open  the *Code* view.
+. Replace the contents with the following code.
++
+[source,json]
+----
+{
+  "settings": {
+    "backgroundColor": "#d3c1c1",
+    "laserSound": "",
+    "explosionSound": ""
+  },
+  "@@editor": [
+    {
+      "key": "settings",
+      "name": "App settings",
+      "icon": "⚙️",
+      "source": "settings.json",
+      "fields": [
+        {
+          "key": "backgroundColor",
+          "name": "Background Color",
+          "type": "color"
+        },
+        {
+          "key": "laserSound",
+          "name": "Laser Sound",
+          "type": "sound"
+        },
+        {
+          "key": "explosionSound",
+          "name": "Explosion Sound",
+          "type": "sound"
+        }
+      ]
+    }
+  ]
+}
+----
+. Press *Ctrl+S* to save the file, and then return to the *Visual* view.
++
+You should now see two additional pickers that allow a user to choose sounds for your game.
+. Open the `frontend/index.js` file, and press *Ctrl+F* to open the finder tool.
+. Enter `.wav` to search for the wav files that the game is using.
+. Replace the block of code you found with the following code.
++
+[source,javascript]
+----
+SFX = {
+  laser:     new Audio(Koji.config.settings.laserSound),
+  explosion: new Audio(Koji.config.settings.explosionSound),
+};
+----
+. Press *Ctrl+S* to save the file.
++
+The application now references the user-selected values for those sounds.
+You can return to the *App settings* configuration, and use the sound pickers to replace these sounds with whatever you want.
+You can even try just recording some sounds yourself.
+For example, you can try "pew" for the laser and "pow!" for the explosion.
++
+Changes to the sound choices should trigger a refresh of your application, and you should be able to hear the new sounds.
+. Publish your changes to release an updated version of your template.
+
+== Wrapping up
+
+Hopefully, this tutorial has given you a better understanding of how to bring existing code onto the Koji platform, and integrate it with the tools that make Koji awesome.

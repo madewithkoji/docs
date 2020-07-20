@@ -377,7 +377,7 @@ This code indicates that the template supports remixes and is ready to be listed
 At this point, the template is ready to be published.
 
 . To view the template on the staging server before you publish it, click the *Remote* tab in the right pane, and then use one of the options to open a preview in another tab or on another device.
-. In the upper left of the editor, click *Publish Now* to open the publish settings.
+. In the upper left of the editor, click *Publish now* to open the publish settings.
 . Give your template a unique name and add a description.
 +
 NOTE: The permalink URL to your template is based on the name when you first publish it, so be sure to enter the name you want to use going forward.

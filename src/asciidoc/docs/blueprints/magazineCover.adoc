@@ -174,7 +174,7 @@ Use the tools in the Koji editor to test template functionality. For example:
 
 === Publish
 
-Click *Publish Now* and enter a *Name* (defines the permalink URL to your template), *Description* (displays along with your template on Koji), and other publish settings, as desired. Then, click *Publish*.
+Click *Publish now* and enter a *Name* (defines the permalink URL to your template), *Description* (displays along with your template on Koji), and other publish settings, as desired. Then, click *Publish*.
 
 When publishing is completed, click the link in the message to view your live template on Koji. Your template is now available to remix and share anywhere on the web. You can create a fun version for yourself and share it on your favorite site to see what your friends make.
 
