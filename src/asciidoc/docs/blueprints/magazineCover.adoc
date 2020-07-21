@@ -2,16 +2,11 @@
 :description: Add customizable images and text to put your own picture and headline on a magazine.
 :page-slug: /docs/blueprints/magazine-cover
 
-== Summary
-[#img-overview]
-image::magazine-cover.png[Make a magazine cover template on Koji]
 
 Follow this blueprint to build a template for your own picture and headline on a magazine cover. You will add customizable images and text, and then publish the template on Koji.
 
-== Google Font Test
-
-include::https://git-mirror.koji-cdn.com/8d7a3301-adb6-41fd-a6ca-f54d5dbda460/README.md
-
+[#img-overview]
+image::magazine-cover.png[Make a magazine cover template on Koji]
 
 === Prerequisites
 
@@ -179,7 +174,7 @@ Use the tools in the Koji editor to test template functionality. For example:
 
 === Publish
 
-Click *Publish Now* and enter a *Name* (defines the permalink URL to your template), *Description* (displays along with your template on Koji), and other publish settings, as desired. Then, click *Publish*.
+Click *Publish now* and enter a *Name* (defines the permalink URL to your template), *Description* (displays along with your template on Koji), and other publish settings, as desired. Then, click *Publish*.
 
 When publishing is completed, click the link in the message to view your live template on Koji. Your template is now available to remix and share anywhere on the web. You can create a fun version for yourself and share it on your favorite site to see what your friends make.
 

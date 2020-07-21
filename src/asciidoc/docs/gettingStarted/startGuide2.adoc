@@ -691,7 +691,7 @@ NOTE: Remember to remove the test delay before publishing the template.
 At this point, you’re ready to publish the next version of your template.
 The new version replaces the previous version on the Koji platform and is available at the same URL, which is based on the name when you first published it.
 
-. In the upper left of the editor, click *Publish Now* to open the publish settings.
+. In the upper left of the editor, click *Publish now* to open the publish settings.
 . Review the name and description, and update them if desired.
 . Click *Publish*.
 . When publishing is completed, click the link to view and test your updated template.

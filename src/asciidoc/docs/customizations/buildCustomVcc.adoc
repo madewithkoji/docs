@@ -45,7 +45,7 @@ For example: `My Custom Text VCC`.
 The koji-custom-vcc-sdk package enables you to extend Koji applications with custom VCCs.
 
 . At the bottom of the editor, click *New Tab* to open a new terminal tab.
-. Navigate to the frontend folder: `cd frontend`.
+. Navigate to the `frontend` folder: `cd frontend`.
 . Install the package.
 +
 [source,bash]
@@ -58,7 +58,7 @@ exit
 +
 [source,bash]
 npm start
-. Click the down arrow in the upper right to collapse the terminal pane.
+. To collapse the terminal pane, click the down arrow in the upper right.
 
 == Adding a text input and state management
 
@@ -90,7 +90,7 @@ class App extends React.Component {
 +
 You should see a text input in the preview window.
 
-== Import the VCC package and initialize the custom VCC
+== Importing the VCC package and initializing the custom VCC
 
 Next, use the koji-custom-vcc-sdk package you installed earlier to initialize the custom VCC and register it, so that the consumer knows it's ready to use.
 
@@ -203,12 +203,12 @@ For example, `myname-custom-text-vcc`.
 +
 You will use this name to implement your custom VCC in consumer applications.
 . Click *Add*.
-. In the left pane, click *Publish Now*.
+. In the left pane, click *Publish now*.
 Give your VCC a descriptive name, and add a thumbnail if you would like.
 +
 The name and thumbnail make it easier for other developers to find your custom VCC and understand what it does.
 For a VCC, a custom thumbnail might be a better representation of the functionality than the automatically generated screenshot.
-. Click *Publish App*.
+. Click *Publish*.
 
 == Using a published custom VCC
 

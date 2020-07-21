@@ -1,0 +1,53 @@
+= The Koji editor
+:page-slug: /docs/concepts/editor
+
+The Koji editor is browser-based integrated development environment (IDE).
+You can use the Koji editor to create application and game templates.
+The editor contains all of your project's code, Visual Customization Controls (VCCs) generated from the project's code, interfaces for publishing and deployment management, and interfaces to other production tools like Koji database, custom domains, and plugins.
+
+image:Koji-editor.png[Screenshot of the Koji editor process,title="Koji editor"]
+
+== Koji Editor Code Hosting and Source Control
+
+Each Koji project is backed by a Git repository.
+When you remix a project, Koji clones that project's Git repository to your account and loads it in the editor.
+When you publish your application from the editor, Koji commits your changes and pushes to master.
+This push triggers a deploy.
+You can think of the state of your Koji editor in the same way as the state of a Git repository on your computer -- that is, it is a working HEAD of your repository.
+This means that if you make changes to your project from outside the Koji editor, you will need to `git pull` those changes from within the Koji editor to see them.
+
+If you would like to use a remote editor, you will need to generate a Git Access Token from your Account Settings.
+You can use this access token in place of a password when cloning your repositories.
+To find the remote URL of your project's Git repository, navigate to *Settings > Repository* from within the Koji editor.
+
+For more in-depth walkthroughs of using Git to manage your project and working locally, please visit the Tutorials section of the Developer Portal.
+
+== Inline and Remote Previews
+
+=== Inline preview
+
+The Live Preview in the editor is a running preview of your template.
+
+The live preview provides these additional options:
+
+* *Editing* and *Preview* modes: Toggles between application *Preview* mode and *Editing* mode, which represents what remixers see when customizing values.
+* *Refresh*: Updates the preview with the latest version of your project code.
+* *Show Logs*: Opens a panel showing the console logs of your project.
+This is useful for debugging runtime errors or incorrect behaviors.
+
+=== Remote preview
+
+The "Remote" tab enables you to test your template in a new tab or on another device by scanning the QR code.
+You can even share the remote preview link with someone else, and they can see the preview as you develop.
+
+[NOTE]
+The remote preview link will only work for as long as your editor session is still active, so it is not suitable for long-term sharing.
+
+When your template preview is open in another tab, you still have access to the console logs of the remote device.
+This allows you test your template on different devices and computers while working in the editor, including things like debugging different browsers, operating systems, and form factors.
+
+== Route Testing
+
+The *Routes* tab is used for testing backend routes.
+You can build your request and then click *Send Request* to execute it.
+The *Fetch* tab generates a code snippet for the current request that you can easily add to your application's frontend.
