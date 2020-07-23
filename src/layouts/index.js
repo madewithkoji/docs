@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Helmet from 'react-helmet';
@@ -43,12 +43,19 @@ const Layout = (props) => {
     }
   `);
 
+  // If there isn't a hash on the page, scroll the content container to the top
+  const contentRef = useRef(null);
+  useEffect(() => {
+    if (!props.location.hash && contentRef.current) contentRef.current.scrollTo(0, 0);
+  }, [props.location.hash]);
+
   const { allNavItem: { nodes: navItems = [] } } = data;
   const hasDrawer = navItems.map(({ root }) => props.location.pathname.includes(root)).reduce((a, b) => a || b);
 
   return (
     <>
       <Helmet>
+        <title>{'Koji for Developers'}</title>
         <meta name={'viewport'} content={'minimum-scale=1, initial-scale=1, width=device-width'} />
         <link
           href={'https://fonts.googleapis.com/css?family=Roboto:400,500,700&display=swap'}
@@ -77,7 +84,10 @@ const Layout = (props) => {
               return null;
             })
           }
-          <Content style={{ hasDrawer }}>
+          <Content
+            ref={contentRef}
+            style={{ hasDrawer }}
+          >
             {props.children}
           </Content>
         </Wrapper>
