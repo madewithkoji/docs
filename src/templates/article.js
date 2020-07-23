@@ -78,9 +78,8 @@ const Article = (props) => {
     document.querySelectorAll('pre code').forEach((block) => {
       hljs.highlightBlock(block);
     });
-  });
 
-  document.querySelectorAll('a[data-slug]').forEach((elem) => {
+    document.querySelectorAll('a[data-slug]').forEach((elem) => {
       const { slug } = elem.dataset;
       // eslint-disable-next-line no-param-reassign
       if (slug) elem.innerText = resolveTitleFromSlug(slug) || elem.innerText;
