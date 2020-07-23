@@ -26,5 +26,6 @@ module.exports = {
     'react/destructuring-assignment': 0,
     'react/forbid-prop-types': 0,
     'react/jsx-curly-brace-presence': 0,
+    'react/jsx-wrap-multilines': 0,
   },
 };
