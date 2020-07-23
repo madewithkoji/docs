@@ -1,5 +1,5 @@
 = Range
-:page-slug: /reference/vcc/range
+:page-slug: range
 
 * Allows the user to drag a slider to specify a numeric value.
 * Can be configured with a minimum value, maximum value, and a default increment/step size.

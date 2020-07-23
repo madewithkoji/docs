@@ -1,5 +1,5 @@
 = Overview
-:page-slug: /docs/blueprints
+:page-slug: blueprints-overview
 
 == What are blueprints?
 

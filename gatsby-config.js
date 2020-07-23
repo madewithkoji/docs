@@ -4,6 +4,23 @@
  * See: https://www.gatsbyjs.org/docs/gatsby-config/
  */
 
+const asciidoc = require(`asciidoctor`)();
+const { navItems } = require('./src/nav.json');
+
+class TemplateConverter {
+  constructor() {
+    this.baseConverter = asciidoc.Html5Converter.$new()
+  }
+
+  convert(node, transform) {
+    if (node.getNodeName() === "inline_anchor") {
+      console.log('n', node);
+    }
+
+    return this.baseConverter.convert(node, transform)
+  }
+}
+
 module.exports = {
   /* Your site config here */
   siteMetadata: {},
@@ -26,6 +43,9 @@ module.exports = {
           showtitle: true,
           imagesdir: `/images`,
         },
+        options: {
+          converterFactory: TemplateConverter,
+        },
       },
     },
     {
@@ -36,4 +56,4 @@ module.exports = {
       },
     },
   ],
-}
+};

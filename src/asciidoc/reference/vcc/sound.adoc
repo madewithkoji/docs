@@ -1,5 +1,5 @@
 = Sound
-:page-slug: /reference/vcc/sound
+:page-slug: sound
 
 * Sounds can either be uploaded or obtained from a URL.
 * If the sound is loaded through the 'Upload' section, the sound can be cropped to only play a portion of it and the sound will be stored with the game.

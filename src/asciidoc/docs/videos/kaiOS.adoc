@@ -1,5 +1,5 @@
 = Develop KaiOS apps with Koji
-:page-slug: /docs/videos/kai-OS
+:page-slug: kai-OS
 
 Watch the following video to learn how to develop KaiOS apps with Koji.
 

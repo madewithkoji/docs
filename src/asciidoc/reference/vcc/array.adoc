@@ -1,5 +1,5 @@
 = Array (Composition)
-:page-slug: /reference/vcc/array
+:page-slug: array
 
 //tag::description[]
 The array control lets you create a list of multiple values from a single VCC definition.
