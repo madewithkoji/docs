@@ -18,11 +18,12 @@ module.exports = {
     'react',
   ],
   rules: {
-    "max-len": [2, 140],
-    "no-confusing-arrow": 0,
-    "react/jsx-filename-extension": 0,
-    "react/destructuring-assignment": 0,
-    "react/forbid-prop-types": 0,
-    "react/jsx-curly-brace-presence": 0,
+    'max-len': [2, 140],
+    'no-confusing-arrow': 0,
+    'operator-linebreak': 0,
+    'react/jsx-filename-extension': 0,
+    'react/destructuring-assignment': 0,
+    'react/forbid-prop-types': 0,
+    'react/jsx-curly-brace-presence': 0,
   },
 };
