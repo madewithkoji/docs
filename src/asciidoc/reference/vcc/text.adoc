@@ -1,5 +1,5 @@
 = Text, TextArea
-:page-slug: /reference/vcc/text
+:page-slug: text
 
 * Text can be changed by clicking the input field and typing the new text.
 * A TextArea VCC can be used by defining a `type` of `textarea`.

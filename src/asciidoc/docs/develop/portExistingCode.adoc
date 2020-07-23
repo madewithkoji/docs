@@ -1,5 +1,5 @@
 = Porting existing code to Koji
-:page-slug: /docs/develop/port-existing-code
+:page-slug: porting-existing-code
 
 In this tutorial, you will port an existing game to Koji.
 You will make some updates to the game to make it customizable, and then you will build and deploy the game to the Koji platform.

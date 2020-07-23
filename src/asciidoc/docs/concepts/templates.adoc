@@ -1,5 +1,5 @@
 = What is a Koji Template?
-:page-slug: /docs/concepts/templates
+:page-slug: templates
 
 Koji templates are full-stack JavaScript web applications.
 When you develop a template, Koji uses Git repositories for source control.

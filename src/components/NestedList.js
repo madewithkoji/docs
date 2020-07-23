@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
@@ -23,6 +23,10 @@ const useStyles = makeStyles((theme) => ({
 const NestedList = ({ pathname, section, openByDefault }) => {
   const classes = useStyles();
   const [open, setOpen] = React.useState(openByDefault);
+
+  useEffect(() => {
+    if (section.items.find((item) => item.path === pathname) && !open) setOpen(true);
+  }, [pathname]);
 
   const handleClick = () => {
     setOpen(!open);
