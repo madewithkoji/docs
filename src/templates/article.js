@@ -8,13 +8,29 @@ import { graphql } from 'gatsby';
 import Container from '@material-ui/core/Container';
 import '../styles/adoc-rocket-panda.css';
 
+const SectionLink = styled.a`
+  &::before {
+    content: '';
+    width: 8px;
+    height: 8px;
+    background: blue;
+    position: relative;
+    z-index: 10000;
+    position: fixed;
+    transform: translate(-16px, 6px);
+    border-radius: 50%;
+    opacity: ${({ style: { isActive } }) => isActive ? 1 : 0};
+    transition: all 0.2s ease-in-out;
+  }
+`;
+
 const StyledContainer = styled(Container)`
   display: flex;
 `;
 
 const Nav = styled.div`
   position: fixed;
-  top: 72px;
+  top: 96px;
   right: 16px;
   width: 240px;
   padding: 16px;
@@ -64,7 +80,6 @@ export const query = graphql`
 `;
 
 const Article = (props) => {
-  const [isReady, setIsReady] = useState(false);
   const [sections, setSections] = useState([]);
 
   const resolveTitleFromSlug = (slug) => {
@@ -96,11 +111,12 @@ const Article = (props) => {
       text: header.innerText,
     }));
 
+    elem.remove();
+
     setSections(mappedSections);
-    setIsReady(true);
   }, []);
 
-  if (!isReady) return null;
+  console.log('p', props.currentH2);
 
   return (
     <StyledContainer maxWidth="lg">
@@ -113,7 +129,13 @@ const Article = (props) => {
       <Nav>
         {
           sections.map(({ href, text }) => (
-            <a href={`#${href}`}>{text}</a>
+            <SectionLink
+              style={{ isActive: href === props.currentH2 }}
+              href={`#${href}`}
+              key={href}
+            >
+              {text}
+            </SectionLink>
           ))
         }
       </Nav>
@@ -122,10 +144,12 @@ const Article = (props) => {
 };
 
 Article.propTypes = {
+  currentH2: PropTypes.string,
   data: PropTypes.object,
 };
 
 Article.defaultProps = {
+  currentH2: null,
   data: {},
 };
 

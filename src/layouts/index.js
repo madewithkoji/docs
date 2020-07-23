@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { cloneElement, useEffect, useRef, useState } from 'react';
 import PropTypes from 'prop-types';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Helmet from 'react-helmet';
@@ -43,11 +43,55 @@ const Layout = (props) => {
     }
   `);
 
-  // If there isn't a hash on the page, scroll the content container to the top
   const contentRef = useRef(null);
+
+  // Detect h2s on scroll
+
+  let ticking = false;
+  let elements;
+  const [currentH2, setCurrentH2] = useState(null);
+
+  useEffect(() => {
+    const onScroll = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          if (!elements) {
+            elements = Array.from(document.querySelectorAll('h2')).map(({ id, offsetTop }) => ({
+              id,
+              offsetTop,
+            }));
+          }
+
+          const height = contentRef.current.children[0].offsetHeight;
+          const scrollPos = contentRef.current.scrollTop;
+
+          elements.forEach(({ id, offsetTop }) => {
+            if (Math.abs(scrollPos - offsetTop) < 200) setCurrentH2(id);
+          });
+
+          if (scrollPos + contentRef.current.offsetHeight + 32 > height) setCurrentH2(elements[elements.length - 1].id);
+
+          ticking = false;
+        });
+
+        ticking = true;
+      }
+    };
+
+    if (contentRef && contentRef.current) contentRef.current.addEventListener('scroll', onScroll);
+
+    return () => {
+      if (contentRef.current) {
+        contentRef.current.removeEventListener('scroll', onScroll);
+        ticking = false;
+      }
+    };
+  }, [props.location]);
+
+  // If there isn't a hash on the page, scroll the content container to the top
   useEffect(() => {
     if (!props.location.hash && contentRef.current) contentRef.current.scrollTo(0, 0);
-  }, [props.location.hash]);
+  }, [props.location]);
 
   const { allNavItem: { nodes: navItems = [] } } = data;
   const hasDrawer = navItems.map(({ root }) => props.location.pathname.includes(root)).reduce((a, b) => a || b);
@@ -88,7 +132,7 @@ const Layout = (props) => {
             ref={contentRef}
             style={{ hasDrawer }}
           >
-            {props.children}
+            {cloneElement(props.children, { currentH2 })}
           </Content>
         </Wrapper>
       </ThemeProvider>
