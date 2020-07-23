@@ -4,20 +4,31 @@
  * See: https://www.gatsbyjs.org/docs/gatsby-config/
  */
 
-const asciidoc = require(`asciidoctor`)();
-const { navItems } = require('./src/nav.json');
+const asciidoc = require('asciidoctor')();
+const resolvePath = require('./resolvePath').default;
 
 class TemplateConverter {
   constructor() {
-    this.baseConverter = asciidoc.Html5Converter.$new()
+    this.baseConverter = asciidoc.Html5Converter.$new();
   }
 
   convert(node, transform) {
-    if (node.getNodeName() === "inline_anchor") {
-      console.log('n', node);
+    if (node.getNodeName() === 'inline_anchor') {
+      const target = node.getTarget();
+
+      console.log('t', target);
+
+      if (target[0] === '#') {
+        const slug = target.replace('#', '');
+        const text = node.getText();
+
+        const resolvedPath = resolvePath(slug);
+
+        return `<a href="${resolvedPath}">${text}</a>`;
+      }
     }
 
-    return this.baseConverter.convert(node, transform)
+    return this.baseConverter.convert(node, transform);
   }
 }
 
@@ -36,24 +47,23 @@ module.exports = {
       },
     },
     {
-      resolve: `gatsby-transformer-asciidoc`,
+      resolve: 'gatsby-transformer-asciidoc',
       options: {
         safe: 'unsafe',
         attributes: {
           showtitle: true,
-          imagesdir: `/images`,
+          imagesdir: '/images',
         },
-        options: {
-          converterFactory: TemplateConverter,
-        },
+        converterFactory: TemplateConverter,
       },
     },
     {
-      resolve: `gatsby-source-filesystem`,
+      resolve: 'gatsby-source-filesystem',
       options: {
-        name: `pages`,
+        name: 'pages',
         path: `${__dirname}/src`,
       },
     },
+    'gatsby-plugin-catch-links',
   ],
 };

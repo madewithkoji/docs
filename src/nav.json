@@ -11,7 +11,7 @@
           "items": [
             {
               "name": "Intro to Koji",
-              "slug": "overview"
+              "slug": "getting-started"
             },
             {
               "name": "Starter guide",
@@ -25,73 +25,15 @@
         },
         {
           "name": "Blueprints",
-          "root": "/docs/blueprints",
+          "root": "/blueprints",
           "items": [
             {
               "name": "Overview",
-              "path": "/docs/blueprints"
+              "slug": "blueprints-overview"
             },
             {
               "name": "Magazine Cover",
-              "path": "/docs/blueprints/magazine-cover"
-            }
-          ]
-        },
-        {
-          "name": "Concepts",
-          "root": "/docs/concepts",
-          "items": []
-        },
-        {
-          "name": "Develop",
-          "root": "/docs/develop",
-          "items": []
-        },
-        {
-          "name": "Customizations",
-          "root": "/docs/customizations",
-          "items": [
-            {
-              "name": "Custom VCCs",
-              "path": "/docs/customizations/build-custom-VCC"
-            }
-          ]
-        },
-        {
-          "name": "Test",
-          "root": "/docs/test",
-          "items": []
-        },
-        {
-          "name": "Publish and iterate",
-          "root": "/docs/publish",
-          "items": []
-        },
-        {
-          "name": "Guidelines",
-          "root": "/docs/guidelines",
-          "items": []
-        },
-        {
-          "name": "Release notes",
-          "root": "/docs/releases",
-          "items": []
-        },
-        {
-          "name": "Videos",
-          "root": "/docs/videos",
-          "items": [
-            {
-              "name": "Starter course",
-              "path": "/docs/videos/starter-course"
-            },
-            {
-              "name": "KaiOS apps",
-              "path": "/docs/videos/kai-OS"
-            },
-            {
-              "name": "Image Best Practices",
-              "path": "/docs/videos/image-best-practices"
+              "slug": "magazine-cover-blueprint"
             }
           ]
         }
@@ -100,75 +42,75 @@
     {
       "name": "Reference",
       "root": "/reference",
-      "defaultPath": "/reference/vcc",
+      "defaultPath": "/reference/vcc/vcc-overview",
       "sections": [
         {
           "name": "VCC",
-          "root": "/reference/vcc",
+          "root": "/vcc",
           "items": [
             {
               "name": "Overview",
-              "path": "/reference/vcc"
+              "slug": "vcc-overview"
             },
             {
               "name": "3D Object",
-              "path": "/reference/vcc/3d-object"
+              "slug": "3d-object"
             },
             {
               "name": "Array",
-              "path": "/reference/vcc/array"
+              "slug": "array"
             },
             {
               "name": "Boolean",
-              "path": "/reference/vcc/boolean"
+              "slug": "boolean"
             },
             {
               "name": "Color",
-              "path": "/reference/vcc/color"
+              "slug": "color"
             },
             {
               "name": "Coordinate",
-              "path": "/reference/vcc/coordinate"
+              "slug": "coordinate"
             },
             {
               "name": "File",
-              "path": "/reference/vcc/file"
+              "slug": "file"
             },
             {
               "name": "Google Font",
-              "path": "/reference/vcc/google-font"
+              "slug": "google-font"
             },
             {
               "name": "Image",
-              "path": "/reference/vcc/image"
+              "slug": "image"
             },
             {
               "name": "Object",
-              "path": "/reference/vcc/object"
+              "slug": "object"
             },
             {
               "name": "Range",
-              "path": "/reference/vcc/range"
+              "slug": "range"
             },
             {
               "name": "Secret",
-              "path": "/reference/vcc/secret"
+              "slug": "secret"
             },
             {
               "name": "Size",
-              "path": "/reference/vcc/size"
+              "slug": "size"
             },
             {
               "name": "Sound",
-              "path": "/reference/vcc/sound"
+              "slug": "sound"
             },
             {
               "name": "Text",
-              "path": "/reference/vcc/text"
+              "slug": "text"
             },
             {
               "name": "Video",
-              "path": "/reference/vcc/video"
+              "slug": "video"
             }
           ]
         }

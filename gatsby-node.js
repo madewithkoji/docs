@@ -1,13 +1,29 @@
 const { navItems } = require('./src/nav.json');
+const resolvePath = require('./resolvePath').default;
 
 exports.sourceNodes = ({ actions, createNodeId, createContentDigest }) => {
   navItems.forEach((navItem) => {
+    const mappedNavItem = { ...navItem };
+
+    mappedNavItem.sections = mappedNavItem.sections.map((section) => {
+      const mappedSection = { ...section };
+
+      mappedSection.items = mappedSection.items.map((item) => {
+        const mappedItem = { ...item };
+        mappedItem.path = `${navItem.root}${section.root}/${item.slug}`;
+
+        return mappedItem;
+      });
+
+      return mappedSection;
+    });
+
     const node = {
-      ...navItem,
-      id: createNodeId(`Nav-Item-${navItem.name}`),
+      ...mappedNavItem,
+      id: createNodeId(`Nav-Item-${mappedNavItem.name}`),
       internal: {
         type: 'NavItem',
-        contentDigest: createContentDigest(navItem),
+        contentDigest: createContentDigest(mappedNavItem),
       },
     };
 
@@ -48,8 +64,12 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
   result.data.allAsciidoc.edges.forEach(({ node }) => {
     if (!node.pageAttributes.slug) return;
 
+    const path = resolvePath(node.pageAttributes.slug);
+
+    if (!path) return;
+
     createPage({
-      path: node.pageAttributes.slug,
+      path,
       component: articleTemplate,
       context: {
         id: node.id,
