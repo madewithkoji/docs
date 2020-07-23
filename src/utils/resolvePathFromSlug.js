@@ -1,6 +1,6 @@
-const { navItems } = require('./src/nav.json');
+const { navItems } = require('../nav.json');
 
-const resolvePath = (slug) => {
+const resolvePathFromSlug = (slug) => {
   const resolvedPath = navItems.map((navItem) => {
     let path;
     navItem.sections.forEach((section) => {
@@ -15,4 +15,6 @@ const resolvePath = (slug) => {
   return resolvedPath;
 };
 
-exports.default = resolvePath;
+module.exports = {
+  resolvePathFromSlug,
+};

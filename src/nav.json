@@ -3,7 +3,7 @@
     {
       "name": "Docs",
       "root": "/docs",
-      "defaultPath": "/docs/getting-started/overview",
+      "defaultPath": "/docs/getting-started/getting-started",
       "sections": [
         {
           "name": "Getting Started",
@@ -95,6 +95,10 @@
             {
               "name": "Secret",
               "slug": "secret"
+            },
+            {
+              "name": "Select",
+              "slug": "select"
             },
             {
               "name": "Size",

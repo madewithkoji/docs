@@ -1,5 +1,5 @@
 const { navItems } = require('./src/nav.json');
-const resolvePath = require('./resolvePath').default;
+const { resolvePathFromSlug } = require('./src/utils/resolvePathFromSlug');
 
 exports.sourceNodes = ({ actions, createNodeId, createContentDigest }) => {
   navItems.forEach((navItem) => {
@@ -64,7 +64,7 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
   result.data.allAsciidoc.edges.forEach(({ node }) => {
     if (!node.pageAttributes.slug) return;
 
-    const path = resolvePath(node.pageAttributes.slug);
+    const path = resolvePathFromSlug(node.pageAttributes.slug);
 
     if (!path) return;
 
