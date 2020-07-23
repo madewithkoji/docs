@@ -1,4 +1,4 @@
-import React, { cloneElement, useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import PropTypes from 'prop-types';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Helmet from 'react-helmet';
@@ -7,18 +7,11 @@ import { ThemeProvider } from '@material-ui/core/styles';
 import { useStaticQuery, graphql } from 'gatsby';
 import theme from '../theme';
 import AppBar from '../components/AppBar';
-import Drawer from '../components/Drawer';
+import Content from '../components/Content';
+import Drawers from '../components/Drawers';
 
 const Wrapper = styled.div`
   display: flex;
-`;
-
-const Content = styled.div`
-  margin-top: 64px;
-  margin-left: ${({ style: { hasDrawer } }) => hasDrawer ? '240px' : '0'};
-  width: ${({ style: { hasDrawer } }) => hasDrawer ? 'calc(100vw - 240px)' : '100vw'};
-  height: calc(100vh - 64px);
-  overflow: auto;
 `;
 
 const Layout = (props) => {
@@ -43,10 +36,11 @@ const Layout = (props) => {
     }
   `);
 
+  const [mobileDrawerIsOpen, setMobileDrawerIsOpen] = useState(false);
+
   const contentRef = useRef(null);
 
   // Detect h2s on scroll
-
   let ticking = false;
   let elements;
   const [currentH2, setCurrentH2] = useState(null);
@@ -70,7 +64,7 @@ const Layout = (props) => {
           });
 
           if (scrollPos + contentRef.current.offsetHeight + 32 > height) setCurrentH2(elements[elements.length - 1].id);
-
+          if (scrollPos < 64) setCurrentH2(elements[0].id);
           ticking = false;
         });
 
@@ -88,10 +82,23 @@ const Layout = (props) => {
     };
   }, [props.location]);
 
-  // If there isn't a hash on the page, scroll the content container to the top
   useEffect(() => {
+    // If there isn't a hash on the page, scroll the content container to the top
     if (!props.location.hash && contentRef.current) contentRef.current.scrollTo(0, 0);
+
+    // If the mobile drawer is open, close it
+    if (mobileDrawerIsOpen) setMobileDrawerIsOpen(false);
   }, [props.location]);
+
+  // Handle all clicks and allow closing of menu
+  useEffect(() => {
+    const onDocClick = (e) => {
+      if (e.target.classList.contains('MuiBackdrop-root') && mobileDrawerIsOpen) setMobileDrawerIsOpen(false);
+    };
+
+    document.addEventListener('click', onDocClick);
+    return () => document.removeEventListener('click', onDocClick);
+  }, [mobileDrawerIsOpen]);
 
   const { allNavItem: { nodes: navItems = [] } } = data;
   const hasDrawer = navItems.map(({ root }) => props.location.pathname.includes(root)).reduce((a, b) => a || b);
@@ -113,26 +120,21 @@ const Layout = (props) => {
       <ThemeProvider theme={theme}>
         <CssBaseline />
         <Wrapper>
-          <AppBar />
-          {
-            navItems.map((navItem) => {
-              if (props.location.pathname.includes(navItem.root)) {
-                return (
-                  <Drawer
-                    key={navItem.root}
-                    location={props.location}
-                    navItem={navItem}
-                  />
-                );
-              }
-              return null;
-            })
-          }
+          <AppBar
+            mobileDrawerIsOpen={mobileDrawerIsOpen}
+            toggleMobileDrawer={() => setMobileDrawerIsOpen(!mobileDrawerIsOpen)}
+          />
+          <Drawers
+            location={props.location}
+            mobileDrawerIsOpen={mobileDrawerIsOpen}
+            navItems={navItems}
+          />
           <Content
-            ref={contentRef}
-            style={{ hasDrawer }}
+            currentH2={currentH2}
+            contentRef={contentRef}
+            hasDrawer={hasDrawer}
           >
-            {cloneElement(props.children, { currentH2 })}
+            {props.children}
           </Content>
         </Wrapper>
       </ThemeProvider>

@@ -1,9 +1,14 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import AppBar from '@material-ui/core/AppBar';
 import Button from '@material-ui/core/Button';
 import Toolbar from '@material-ui/core/Toolbar';
 import { Link, useStaticQuery, graphql } from 'gatsby';
+import { useTheme } from '@material-ui/core/styles';
+import useMediaQuery from '@material-ui/core/useMediaQuery';
+import IconButton from '@material-ui/core/IconButton';
+import MenuIcon from '@material-ui/icons/Menu';
 import Search from './Search';
 
 const SearchWrapper = styled.div`
@@ -11,7 +16,7 @@ const SearchWrapper = styled.div`
   text-align: right;
 `;
 
-const AppBarComponent = () => {
+const AppBarComponent = (props) => {
   const data = useStaticQuery(graphql`
     query NavItems {
       allNavItem {
@@ -32,6 +37,26 @@ const AppBarComponent = () => {
   `);
 
   const { allNavItem: { nodes: navItems = [] } } = data;
+
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down('sm'), { noSsr: true });
+
+  if (isMobile) {
+    return (
+      <AppBar position={'fixed'}>
+        <Toolbar>
+          <IconButton onClick={() => props.toggleMobileDrawer()}>
+            <MenuIcon />
+          </IconButton>
+          <Link
+            to={'/'}
+          >
+            <Button style={{ color: '#ffffff' }}>{'Koji for Developers'}</Button>
+          </Link>
+        </Toolbar>
+      </AppBar>
+    );
+  }
 
   return (
     <AppBar position={'fixed'}>
@@ -57,6 +82,14 @@ const AppBarComponent = () => {
       </Toolbar>
     </AppBar>
   );
+};
+
+AppBarComponent.propTypes = {
+  toggleMobileDrawer: PropTypes.func,
+};
+
+AppBarComponent.defaultProps = {
+  toggleMobileDrawer() { },
 };
 
 export default AppBarComponent;

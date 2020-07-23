@@ -6,6 +6,8 @@ import styled from 'styled-components';
 import 'highlight.js/styles/github.css';
 import { graphql } from 'gatsby';
 import Container from '@material-ui/core/Container';
+import { useTheme } from '@material-ui/core/styles';
+import useMediaQuery from '@material-ui/core/useMediaQuery';
 import '../styles/adoc-rocket-panda.css';
 
 const SectionLink = styled.a`
@@ -43,7 +45,7 @@ const Nav = styled.div`
 `;
 
 const Content = styled.div`
-  width: calc(100% - 240px);
+  width: ${({ style: { isMobile } }) => isMobile ? '100%' : 'calc(100% - 240px)'};
 
   margin-bottom: 64px;
   
@@ -80,6 +82,9 @@ export const query = graphql`
 `;
 
 const Article = (props) => {
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down('sm'), { noSsr: true });
+
   const [sections, setSections] = useState([]);
 
   const resolveTitleFromSlug = (slug) => {
@@ -123,20 +128,24 @@ const Article = (props) => {
       </Helmet>
       <Content
         dangerouslySetInnerHTML={{ __html: props.data.asciidoc.html }}
+        style={{ isMobile }}
       />
-      <Nav>
-        {
-          sections.map(({ href, text }) => (
-            <SectionLink
-              style={{ isActive: href === props.currentH2 }}
-              href={`#${href}`}
-              key={href}
-            >
-              {text}
-            </SectionLink>
-          ))
-        }
-      </Nav>
+      {
+        !isMobile &&
+        <Nav>
+          {
+            sections.map(({ href, text }) => (
+              <SectionLink
+                style={{ isActive: href === props.currentH2 }}
+                href={`#${href}`}
+                key={href}
+              >
+                {text}
+              </SectionLink>
+            ))
+          }
+        </Nav>
+      }
     </StyledContainer>
   );
 };
