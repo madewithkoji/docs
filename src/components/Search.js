@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, Fragment } from 'react';
 import * as JsSearch from 'js-search';
 import styled from 'styled-components';
 import { Link, useStaticQuery, graphql } from 'gatsby';
+import { resolveBreadcrumbFromSlug } from '../utils/resolveBreadcrumbFromSlug';
 
 const Wrapper = styled.div`
   position: relative;
@@ -96,17 +97,17 @@ const Search = () => {
 
   useEffect(() => {
     if (search && value && value !== '' && value.length > 2) {
-      const { allNavItem: { nodes: navItems = [] } } = data;
       const searchMatches = search.search(value);
 
       const mappedMatches = searchMatches.map((searchMatch) => {
         const { pageAttributes: { slug } } = searchMatch;
-        const navItem = navItems.find(({ root }) => slug.includes(root));
-        const section = navItem.sections.find(({ root }) => slug.includes(root));
+
+        const breadcrumb = resolveBreadcrumbFromSlug(slug);
 
         return ({
           ...searchMatch,
-          breadcrumb: `${navItem.name} > ${section.name} > ${searchMatch.document.title}`,
+          breadcrumb,
+          link: breadcrumb[breadcrumb.length - 1].path,
         });
       });
       setMatches(mappedMatches);
@@ -122,8 +123,20 @@ const Search = () => {
         {
           matches.map((match) => (
             <MatchWrapper>
-              <Link to={match.pageAttributes.slug} onClick={() => setMatches([])}>
-                <p>{match.breadcrumb}</p>
+              <Link to={match.link} onClick={() => setMatches([])}>
+                <p>
+                  {
+                    match.breadcrumb.map(({ name, path }, idx) => (
+                      <Fragment key={path}>
+                        <Link to={path}>{name}</Link>
+                        {
+                          idx + 1 !== match.breadcrumb.length &&
+                          <span>{' > '}</span>
+                        }
+                      </Fragment>
+                    ))
+                  }
+                </p>
                 <h2>{match.document.title}</h2>
                 <p>
                   {
