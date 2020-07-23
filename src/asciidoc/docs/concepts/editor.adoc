@@ -5,6 +5,15 @@ The Koji editor is browser-based integrated development environment (IDE).
 You can use the Koji editor to create application and game templates.
 The editor contains all of your project's code, Visual Customization Controls (VCCs) generated from the project's code, interfaces for publishing and deployment management, and interfaces to other production tools like Koji database, custom domains, and plugins.
 
+== Overview
+
+The Koji editor is divided into these sections:
+
+* *Project pane*: Lists project menu items and source code.
+* *Editing pane*: Displays open files. Supports multiple tabs.
+* *Preview pane*: Displays a live preview of the template and provides other testing and debugging tools.
+* *Terminal pane*: Provides command line access to the project's services. Supports multiple tabs and can be collapsed.
+
 image:Koji-editor.png[Screenshot of the Koji editor process,title="Koji editor"]
 
 == Koji Editor Code Hosting and Source Control
@@ -32,7 +41,7 @@ The live preview provides these additional options:
 
 * *Editing* and *Preview* modes: Toggles between application *Preview* mode and *Editing* mode, which represents what remixers see when customizing values.
 * *Refresh*: Updates the preview with the latest version of your project code.
-* *Show Logs*: Opens a panel showing the console logs of your project.
+* *Show Logs*: Opens a pane showing the console logs of your project.
 This is useful for debugging runtime errors or incorrect behaviors.
 
 === Remote preview

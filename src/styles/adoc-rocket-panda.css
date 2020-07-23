@@ -158,7 +158,7 @@ textarea { height: auto; min-height: 50px; }
 
 select { width: 100%; }
 
-p.lead, .paragraph.lead > p, #preamble > .sectionbody > .paragraph:first-of-type p { font-size: 1.15625em; line-height: 1.6; }
+p.lead, .paragraph.lead > p, #preamble > .sectionbody > .paragraph:first-of-type p { font-size: 1.1em; line-height: 1.6; }
 
 .subheader, #content #toctitle, .admonitionblock td.content > .title, .exampleblock > .title, .imageblock > .title, .videoblock > .title, .listingblock > .title, .literalblock > .title, .openblock > .title, .paragraph > .title, .quoteblock > .title, .sidebarblock > .title, .tableblock > .title, .verseblock > .title, .dlist > .title, .olist > .title, .ulist > .title, .qlist > .title, .hdlist > .title, .tableblock > caption { line-height: 1.4; color: #4d4d4d; font-weight: 300; margin-top: 0.2em; margin-bottom: 0.5em; }
 
@@ -171,8 +171,8 @@ a:hover, a:focus { color: #ea0011; }
 a img { border: none; }
 
 /* Default paragraph styles */
-p { font-family: "Helvetica Neue", Helvetica, "Liberation Sans", Arial, sans-serif; font-weight: normal; font-size: 0.9375em; line-height: 1.4; margin-bottom: 1.375em; text-rendering: optimizeLegibility; }
-p aside { font-size: 0.875em; line-height: 1.35; font-style: italic; }
+p { font-family: "Helvetica Neue", Helvetica, "Liberation Sans", Arial, sans-serif; font-weight: normal; font-size: 1em; line-height: 1.4; margin-bottom: 1.375em; text-rendering: optimizeLegibility; }
+p aside { font-size: 1em; line-height: 1.35; font-style: italic; }
 
 /* Default header styles */
 h1, h2, h3, #toctitle, .sidebarblock > .content > .title, h4, h5, h6 { font-family: Overpass, "Helvetica Neue", Helvetica, Arial, sans-serif; font-weight: normal; font-style: normal; color: black; text-rendering: optimizeLegibility; margin-top: 1em; margin-bottom: 0.5em; line-height: 1.2125em; }
@@ -202,12 +202,12 @@ small { font-size: 60%; line-height: inherit; }
 code { font-family: Menlo, Monaco, "Liberation Mono", Consolas, monospace; font-weight: normal; color: #3b3b3b; }
 
 /* Lists */
-ul, ol, dl { font-size: 0.9375em; line-height: 1.4; margin-bottom: 1.375em; list-style-position: outside; font-family: "Helvetica Neue", Helvetica, "Liberation Sans", Arial, sans-serif; }
+ul, ol, dl { font-size: 1em; line-height: 1.4; margin-bottom: 1.375em; list-style-position: outside; font-family: "Helvetica Neue", Helvetica, "Liberation Sans", Arial, sans-serif; }
 
 ul, ol { margin-left: 1.625em; }
 
 /* Unordered Lists */
-ul li ul, ul li ol { margin-left: 1.25em; margin-bottom: 0; font-size: 1em; /* Override nested font-size change */ }
+ul li ul, ul li ol { margin-left: 1.25em; margin-bottom: 0.625em; font-size: 1em; /* Override nested font-size change */ }
 ul.square li ul, ul.circle li ul, ul.disc li ul { list-style: inherit; }
 ul.square { list-style-type: square; }
 ul.circle { list-style-type: circle; }
@@ -215,7 +215,7 @@ ul.disc { list-style-type: disc; }
 ul.no-bullet { list-style: none; }
 
 /* Ordered Lists */
-ol li ul, ol li ol { margin-left: 1.25em; margin-bottom: 0; }
+ol li ul, ol li ol { margin-left: 1.25em; margin-bottom: 0.625em; }
 
 /* Definition Lists */
 dl dt { margin-bottom: 0.3em; font-weight: bold; }
