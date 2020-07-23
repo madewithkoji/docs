@@ -20,6 +20,7 @@ module.exports = {
   rules: {
     'max-len': [2, 140],
     'no-confusing-arrow': 0,
+    'object-curly-newline': 0,
     'operator-linebreak': 0,
     'react/jsx-filename-extension': 0,
     'react/destructuring-assignment': 0,
