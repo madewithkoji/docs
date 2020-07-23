@@ -116,8 +116,6 @@ const Article = (props) => {
     setSections(mappedSections);
   }, []);
 
-  console.log('p', props.currentH2);
-
   return (
     <StyledContainer maxWidth="lg">
       <Helmet>
