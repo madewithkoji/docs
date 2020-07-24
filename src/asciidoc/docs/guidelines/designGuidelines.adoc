@@ -1,5 +1,5 @@
 = Koji Design Guidelines
-:page-slug: /docs/guidelines/design-guidelines
+:page-slug: design-guidelines
 
 == Principles
 

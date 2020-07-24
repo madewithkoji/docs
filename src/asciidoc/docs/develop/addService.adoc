@@ -1,5 +1,5 @@
 = Adding a service to your project
-:page-slug: adding-a-service-to-your-project
+:page-slug: add-service
 
 As you work through and extend templates on Koji, you will likely run into issues where your `Koji.config.serviceMap` doesn't look the way you think it should.
 Or, you have remixed a project with a frontend, but you need to add a backend.

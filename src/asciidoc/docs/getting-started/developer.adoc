@@ -1,5 +1,5 @@
 = Introduction to Koji
-:page-slug: getting-started
+:page-slug: introduction
 
 Koji is a platform that enables everyone, including everyday users, to quickly create interactive content, such as selfies, memes, games, and utilities.
 Kojis can be shared via a link on social media and messengers as well as in an embedded iframe on a website.
