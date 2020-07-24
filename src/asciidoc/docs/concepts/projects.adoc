@@ -1,5 +1,5 @@
 = Anatomy of a Koji Project
-:page-slug: /docs/concepts/projects
+:page-slug: projects
 
 Koji provides you with an environment for developing and publishing an application in your browser.
 The project environment includes a terminal connected to a running container with all the familiar tools, the same code editor that powers VSCode, and tools to help you deploy and publish your application to https://withkoji.com[withkoji.com].

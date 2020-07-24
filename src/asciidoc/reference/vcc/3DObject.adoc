@@ -1,5 +1,5 @@
 = 3D Object
-:page-slug: /reference/vcc/3d-object
+:page-slug: 3d-object
 
 * User can browse and import 3d OBJs from Google Poly.
 

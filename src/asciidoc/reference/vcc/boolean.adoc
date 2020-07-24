@@ -1,5 +1,5 @@
 = Boolean
-:page-slug: /reference/vcc/boolean
+:page-slug: boolean
 
 * Booleans are shown as a toggle that is either off (gray) or on (blue).
 

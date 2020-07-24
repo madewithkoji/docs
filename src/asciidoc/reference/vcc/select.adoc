@@ -1,5 +1,5 @@
 = Select
-:page-slug: /reference/vcc/select
+:page-slug: select
 
 * Lets the user choose from a predefined set of options.
 * The `typeOptions` must be defined for this VCC to work correctly.

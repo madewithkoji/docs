@@ -1,5 +1,5 @@
 = Google Font
-:page-slug: /reference/vcc/google-font
+:page-slug: google-font
 
 * {blank}
 //tag::description[]

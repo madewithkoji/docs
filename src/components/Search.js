@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, Fragment } from 'react';
 import * as JsSearch from 'js-search';
 import styled from 'styled-components';
 import { Link, useStaticQuery, graphql } from 'gatsby';
+import { resolveBreadcrumbFromSlug } from '../utils/resolveBreadcrumbFromSlug';
 
 const Wrapper = styled.div`
   position: relative;
@@ -23,6 +24,10 @@ const MatchWrapper = styled.div`
   line-height: 1.2;
   border: 1px solid black;
   margin: 1rem 0 0 0 ;
+
+  span {
+    color: blue;
+  }
 
   p {
     margin: 0;
@@ -96,19 +101,24 @@ const Search = () => {
 
   useEffect(() => {
     if (search && value && value !== '' && value.length > 2) {
-      const { allNavItem: { nodes: navItems = [] } } = data;
       const searchMatches = search.search(value);
 
       const mappedMatches = searchMatches.map((searchMatch) => {
         const { pageAttributes: { slug } } = searchMatch;
-        const navItem = navItems.find(({ root }) => slug.includes(root));
-        const section = navItem.sections.find(({ root }) => slug.includes(root));
+
+        const breadcrumb = resolveBreadcrumbFromSlug(slug);
+
+        // If pages aren't correctly added to the navigation,
+        // we could have bad matches
+        if (!breadcrumb) return null;
 
         return ({
           ...searchMatch,
-          breadcrumb: `${navItem.name} > ${section.name} > ${searchMatch.document.title}`,
+          breadcrumb,
+          link: breadcrumb[breadcrumb.length - 1].path,
         });
-      });
+      }).filter((match) => match);
+
       setMatches(mappedMatches);
     } else {
       setMatches([]);
@@ -121,9 +131,21 @@ const Search = () => {
       <MatchesWrapper>
         {
           matches.map((match) => (
-            <MatchWrapper>
-              <Link to={match.pageAttributes.slug} onClick={() => setMatches([])}>
-                <p>{match.breadcrumb}</p>
+            <MatchWrapper key={JSON.stringify(match)}>
+              <p>
+                {
+                  match.breadcrumb.map(({ name, path }, idx) => (
+                    <Fragment key={path}>
+                      <Link to={path}>{name}</Link>
+                      {
+                        idx + 1 !== match.breadcrumb.length &&
+                        <span>{' > '}</span>
+                      }
+                    </Fragment>
+                  ))
+                }
+              </p>
+              <Link to={match.link} onClick={() => setMatches([])}>
                 <h2>{match.document.title}</h2>
                 <p>
                   {
