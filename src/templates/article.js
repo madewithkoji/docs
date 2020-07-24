@@ -11,11 +11,17 @@ import useMediaQuery from '@material-ui/core/useMediaQuery';
 import '../styles/adoc-rocket-panda.css';
 
 const SectionLink = styled.a`
+  color: #333333;
+
+  &:hover {
+    color: #000000;
+    text-decoration: none;
+  }
   &::before {
     content: '';
     width: 8px;
     height: 8px;
-    background: blue;
+    background: #666666;
     position: relative;
     z-index: 10000;
     position: fixed;
@@ -28,6 +34,13 @@ const SectionLink = styled.a`
 
 const StyledContainer = styled(Container)`
   display: flex;
+`;
+
+const TOC = styled.div`
+  text-transform: uppercase;
+  font-size: 12px;
+  font-weight: bold;
+  color: #999999;
 `;
 
 const Nav = styled.div`
@@ -131,8 +144,9 @@ const Article = (props) => {
         style={{ isMobile }}
       />
       {
-        !isMobile &&
+        !isMobile && sections.length > 0 &&
         <Nav>
+          <TOC>{'Table of Contents'}</TOC>
           {
             sections.map(({ href, text }) => (
               <SectionLink

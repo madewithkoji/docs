@@ -63,6 +63,8 @@ const Layout = (props) => {
             if (Math.abs(scrollPos - offsetTop) < 200) setCurrentH2(id);
           });
 
+          if (!elements || elements.length === 0) return;
+
           if (scrollPos + contentRef.current.offsetHeight + 32 > height) setCurrentH2(elements[elements.length - 1].id);
           if (scrollPos < 64) setCurrentH2(elements[0].id);
           ticking = false;
@@ -121,6 +123,7 @@ const Layout = (props) => {
         <CssBaseline />
         <Wrapper>
           <AppBar
+            location={props.location}
             mobileDrawerIsOpen={mobileDrawerIsOpen}
             toggleMobileDrawer={() => setMobileDrawerIsOpen(!mobileDrawerIsOpen)}
           />
