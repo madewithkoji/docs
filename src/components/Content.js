@@ -28,7 +28,10 @@ Content.propTypes = {
     PropTypes.arrayOf(PropTypes.node),
     PropTypes.node,
   ]).isRequired,
-  contentRef: PropTypes.node,
+  contentRef: PropTypes.oneOfType([
+    PropTypes.func,
+    PropTypes.shape({ current: PropTypes.instanceOf(Element) }),
+  ]),
   currentH2: PropTypes.string,
   hasDrawer: PropTypes.bool,
 };

@@ -5,7 +5,7 @@ import AppBar from '@material-ui/core/AppBar';
 import Button from '@material-ui/core/Button';
 import Toolbar from '@material-ui/core/Toolbar';
 import { Link, useStaticQuery, graphql } from 'gatsby';
-import { useTheme } from '@material-ui/core/styles';
+import { useTheme, withStyles } from '@material-ui/core/styles';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
@@ -15,6 +15,11 @@ const SearchWrapper = styled.div`
   flex: 1 1 auto;
   text-align: right;
 `;
+
+const StyledAppBar = withStyles({
+  root: {
+  },
+})(AppBar);
 
 const AppBarComponent = (props) => {
   const data = useStaticQuery(graphql`
@@ -43,7 +48,7 @@ const AppBarComponent = (props) => {
 
   if (isMobile) {
     return (
-      <AppBar position={'fixed'}>
+      <StyledAppBar position={'fixed'}>
         <Toolbar>
           <IconButton onClick={() => props.toggleMobileDrawer()}>
             <MenuIcon />
@@ -54,12 +59,12 @@ const AppBarComponent = (props) => {
             <Button style={{ color: '#ffffff' }}>{'Koji for Developers'}</Button>
           </Link>
         </Toolbar>
-      </AppBar>
+      </StyledAppBar>
     );
   }
 
   return (
-    <AppBar position={'fixed'}>
+    <StyledAppBar position={'fixed'}>
       <Toolbar>
         <Link
           to={'/'}
@@ -80,7 +85,7 @@ const AppBarComponent = (props) => {
           <Search />
         </SearchWrapper>
       </Toolbar>
-    </AppBar>
+    </StyledAppBar>
   );
 };
 

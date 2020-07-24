@@ -25,6 +25,10 @@ const MatchWrapper = styled.div`
   border: 1px solid black;
   margin: 1rem 0 0 0 ;
 
+  span {
+    color: blue;
+  }
+
   p {
     margin: 0;
     text-align: left;
@@ -104,12 +108,17 @@ const Search = () => {
 
         const breadcrumb = resolveBreadcrumbFromSlug(slug);
 
+        // If pages aren't correctly added to the navigation,
+        // we could have bad matches
+        if (!breadcrumb) return null;
+
         return ({
           ...searchMatch,
           breadcrumb,
           link: breadcrumb[breadcrumb.length - 1].path,
         });
-      });
+      }).filter((match) => match);
+
       setMatches(mappedMatches);
     } else {
       setMatches([]);
@@ -122,21 +131,21 @@ const Search = () => {
       <MatchesWrapper>
         {
           matches.map((match) => (
-            <MatchWrapper>
+            <MatchWrapper key={JSON.stringify(match)}>
+              <p>
+                {
+                  match.breadcrumb.map(({ name, path }, idx) => (
+                    <Fragment key={path}>
+                      <Link to={path}>{name}</Link>
+                      {
+                        idx + 1 !== match.breadcrumb.length &&
+                        <span>{' > '}</span>
+                      }
+                    </Fragment>
+                  ))
+                }
+              </p>
               <Link to={match.link} onClick={() => setMatches([])}>
-                <p>
-                  {
-                    match.breadcrumb.map(({ name, path }, idx) => (
-                      <Fragment key={path}>
-                        <Link to={path}>{name}</Link>
-                        {
-                          idx + 1 !== match.breadcrumb.length &&
-                          <span>{' > '}</span>
-                        }
-                      </Fragment>
-                    ))
-                  }
-                </p>
                 <h2>{match.document.title}</h2>
                 <p>
                   {
