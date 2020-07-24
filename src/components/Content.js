@@ -30,7 +30,7 @@ Content.propTypes = {
   ]).isRequired,
   contentRef: PropTypes.oneOfType([
     PropTypes.func,
-    PropTypes.shape({ current: PropTypes.instanceOf(Element) }),
+    PropTypes.shape({ current: PropTypes.any }),
   ]),
   currentH2: PropTypes.string,
   hasDrawer: PropTypes.bool,
