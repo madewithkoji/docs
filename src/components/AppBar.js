@@ -12,7 +12,7 @@ import Link from './Link';
 import Search from './Search';
 
 const Logo = styled.img`
-  height: 48px;
+  height: 64px;
   margin-top: 8px;
 `;
 
@@ -21,7 +21,7 @@ const NavLinkWrapper = styled.div`
   display: flex;
   align-items: center;
   position: relative;
-  margin-right: 16px;
+  margin-right: ${({ style: { logo } }) => logo ? '32px' : '16px'};
 `;
 
 const Active = styled.div`
@@ -39,7 +39,7 @@ const SearchWrapper = styled.div`
 `;
 
 const StyledAppBar = styled(AppBar)`
-  background: #ffffff;
+  background-color: #ffffff !important;
 `;
 
 const NavLink = styled(Link)`
@@ -108,7 +108,7 @@ const AppBarComponent = (props) => {
   return (
     <StyledAppBar position={'fixed'}>
       <Toolbar>
-        <NavLinkWrapper>
+        <NavLinkWrapper style={{ logo: true }}>
           <NavLink
             to={'/'}
           >
@@ -121,7 +121,7 @@ const AppBarComponent = (props) => {
         </NavLinkWrapper>
         {
           navItems.sort((a, b) => a.idx - b.idx).map(({ defaultPath, id, name, root }) => (
-            <NavLinkWrapper key={id}>
+            <NavLinkWrapper key={id} style={{}}>
               <NavLink to={defaultPath}>
                 {name}
               </NavLink>
