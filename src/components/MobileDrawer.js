@@ -28,6 +28,7 @@ const MobileDrawer = (props) => {
               component={'nav'}
               aria-labelledby={'nested-list-subheader'}
               className={classes.root}
+              key={navItem.name}
             >
               <ListItemText primary={navItem.name} />
               <>
