@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import AppBar from '@material-ui/core/AppBar';
-import Button from '@material-ui/core/Button';
 import Toolbar from '@material-ui/core/Toolbar';
 import { useStaticQuery, graphql } from 'gatsby';
 import { useTheme } from '@material-ui/core/styles';
@@ -13,7 +12,7 @@ import Link from './Link';
 import Search from './Search';
 
 const Logo = styled.img`
-  height: 36px;
+  height: 48px;
   margin-top: 8px;
 `;
 
@@ -64,10 +63,13 @@ const AppBarComponent = (props) => {
         nodes {
           id
           defaultPath
+          idx
           name
           root
           sections {
+            idx
             items {
+              idx
               name
               path
             }
@@ -118,7 +120,7 @@ const AppBarComponent = (props) => {
           {props.location.pathname === '/' && <Active />}
         </NavLinkWrapper>
         {
-          navItems.map(({ defaultPath, id, name, root }) => (
+          navItems.sort((a, b) => a.idx - b.idx).map(({ defaultPath, id, name, root }) => (
             <NavLinkWrapper key={id}>
               <NavLink to={defaultPath}>
                 {name}

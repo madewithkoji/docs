@@ -2,14 +2,14 @@ const { navItems } = require('./src/nav.json');
 const { resolvePathFromSlug } = require('./src/utils/resolvePathFromSlug');
 
 exports.sourceNodes = ({ actions, createNodeId, createContentDigest }) => {
-  navItems.forEach((navItem) => {
-    const mappedNavItem = { ...navItem };
+  navItems.forEach((navItem, idx) => {
+    const mappedNavItem = { ...navItem, idx };
 
-    mappedNavItem.sections = mappedNavItem.sections.map((section) => {
-      const mappedSection = { ...section };
+    mappedNavItem.sections = mappedNavItem.sections.map((section, sectionIdx) => {
+      const mappedSection = { ...section, idx: sectionIdx };
 
-      mappedSection.items = mappedSection.items.map((item) => {
-        const mappedItem = { ...item };
+      mappedSection.items = mappedSection.items.map((item, itemIdx) => {
+        const mappedItem = { ...item, idx: itemIdx };
         mappedItem.path = `${navItem.root}${section.root}/${item.slug}`;
 
         return mappedItem;

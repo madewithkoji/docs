@@ -41,7 +41,7 @@ const NestedList = ({ pathname, section, openByDefault }) => {
           disablePadding
         >
           {
-            section.items.map((item) => (
+            section.items.sort((a, b) => a.idx - b.idx).map((item) => (
               <Link
                 key={item.path}
                 to={item.path}

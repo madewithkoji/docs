@@ -22,7 +22,7 @@ const DrawerComponent = ({ location, navItem }) => {
     >
       <div style={{ width: '240px' }}>
         {
-          navItem.sections.map((section) => (
+          navItem.sections.sort((a, b) => a.idx - b.idx).map((section) => (
             <NestedList
               key={section.name}
               openByDefault={location.pathname.includes(section.root)}

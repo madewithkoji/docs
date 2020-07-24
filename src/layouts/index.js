@@ -21,9 +21,12 @@ const Layout = (props) => {
         nodes {
           id
           defaultPath
+          idx
           name
           sections {
+            idx
             items {
+              idx
               name
               path
             }

@@ -23,7 +23,7 @@ const Drawers = (props) => {
   return (
     <>
       {
-        props.navItems.map((navItem) => {
+        props.navItems.sort((a, b) => a.idx - b.idx).map((navItem) => {
           if (props.location.pathname.includes(navItem.root)) {
             return (
               <Drawer
