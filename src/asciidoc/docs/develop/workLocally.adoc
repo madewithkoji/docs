@@ -8,7 +8,7 @@ In this tutorial, you learn these key skills:
 * How to install a Node.js web server environment on your development machine.
 * How to launch both a frontend and a backend server so that you can work with all aspects of your template within your local area network.
 
-This is the second section in a three-part tutorial.
+This is the second part in a three-part tutorial.
 
 . Using Git to manage your project
 . *Working locally* (this tutorial)
@@ -16,7 +16,8 @@ This is the second section in a three-part tutorial.
 
 == Prerequisites
 
-* Use Git to clone your project locally. See the first part of the tutorial.
+* Use Git to clone your project locally.
+See the first part of the tutorial.
 * https://nodejs.org/en/download/[Install Node.js] and its associated Node Package Manager (NPM).
 In this tutorial, you will set up a Node.js server on your development computer.
 Koji uses Node.js and add-on packages to deliver your web application to your users' browsers.
@@ -122,7 +123,7 @@ Your terminal will look something like this:
 [source,bash]
 ----
 $ cd frontend/
-$ nmp install
+$ npm install
 $ npm start
 
 ... (some output not shown) ...
@@ -250,7 +251,7 @@ The Leaderboard should now show your name and your score.
 
 == Next steps
 
-In this section of the tutorial, you learned how to:
+In this part of the tutorial, you learned how to:
 
 . Install the Node modules that are needed to run a server on your local machine.
 . Get the environment variables used by the server from the Koji editor.
