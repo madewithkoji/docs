@@ -4,7 +4,7 @@
 Although Koji provides a feature-rich online project editor, you might prefer to use your own suite of development tools in some cases.
 This tutorial describes how to use Git to clone a Koji project template to your development machine, so that you can work on it locally.
 
-This is the first section in a three-part tutorial.
+This is the first part in a three-part tutorial.
 
 . *Using Git to manage your project* (this tutorial)
 . Working locally
@@ -178,7 +178,7 @@ drwxrwxr-x  6 kojicoder dev 4096 nov  5 16:38 .koji
 
 == Next steps
 
-In this section of the tutorial, you learned how to:
+In this part of the tutorial, you learned how to:
 
 * Get the required tools: Git, Node.js, a Terminal application and a text editor.
 * Get the URL of Koji's origin repository for your project.
