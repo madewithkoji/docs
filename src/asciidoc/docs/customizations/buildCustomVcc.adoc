@@ -1,5 +1,5 @@
 = Building your first custom VCC
-:page-slug: build-your-first-custom-vcc
+:page-slug: build-custom-vcc
 
 Visual Customization Controls (VCCs) enable users to quickly edit elements of your application on Koji.
 The Koji platform includes VCCs for standard elements, such as images, text, and sounds.

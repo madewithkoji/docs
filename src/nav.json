@@ -3,7 +3,7 @@
     {
       "name": "Docs",
       "root": "/docs",
-      "defaultPath": "/docs/getting-started/getting-started",
+      "defaultPath": "/docs/getting-started/introduction",
       "sections": [
         {
           "name": "Getting Started",
@@ -11,7 +11,7 @@
           "items": [
             {
               "name": "Intro to Koji",
-              "slug": "getting-started"
+              "slug": "introduction"
             },
             {
               "name": "Starter guide",
@@ -34,6 +34,98 @@
             {
               "name": "Magazine Cover",
               "slug": "magazine-cover-blueprint"
+            }
+          ]
+        },
+        {
+          "name": "Concepts",
+          "root": "/concepts",
+          "items": [
+            {
+              "name": "Koji templates",
+              "slug": "templates"
+            },
+            {
+              "name": "Anatomy of a project",
+              "slug": "projects"
+            },
+            {
+              "name": "Koji editor",
+              "slug": "editor"
+            }
+          ]
+        },
+        {
+          "name": "Develop",
+          "root": "/develop",
+          "items": [
+            {
+              "name": "Port existing code",
+              "slug": "port-existing-code"
+            },
+            {
+              "name": "Add a service",
+              "slug": "add-service"
+            },
+            {
+              "name": "Use Git",
+              "slug": "use-git"
+            },
+            {
+              "name": "Work locally",
+              "slug": "work-locally"
+            }
+          ]
+        },
+        {
+          "name": "Customizations",
+          "root": "/customizations",
+          "items": [
+            {
+              "name": "Build custom VCCs",
+              "slug": "build-custom-vcc"
+            }
+          ]
+        },
+        {
+          "name": "Publish and iterate",
+          "root": "/publish",
+          "items": [
+            {
+              "name": "Publish local projects",
+              "slug": "publish-locally-developed"
+            }
+          ]
+        },
+        {
+          "name": "Guidelines",
+          "root": "/guidelines",
+          "items": [
+            {
+              "name": "Template quality",
+              "slug": "template-checklist"
+            },
+            {
+              "name": "Design guidelines",
+              "slug": "design-guidelines"
+            }
+          ]
+        },
+        {
+          "name": "Videos",
+          "root": "/videos",
+          "items": [
+            {
+              "name": "Starter course",
+              "slug": "starter-course"
+            },
+            {
+              "name": "Image best practices",
+              "slug": "image-best-practices"
+            },
+            {
+              "name": "KaiOS apps",
+              "slug": "kai-OS"
             }
           ]
         }
