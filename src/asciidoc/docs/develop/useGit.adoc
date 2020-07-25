@@ -7,8 +7,8 @@ This tutorial describes how to use Git to clone a Koji project template to your 
 This is the first part in a three-part tutorial.
 
 . *Using Git to manage your project* (this tutorial)
-. Working locally
-. Publishing the project you developed locally
+. <<work-locally#>>
+. <<publish-locally-developed#>>
 
 == Prerequisites
 
@@ -186,4 +186,4 @@ In this part of the tutorial, you learned how to:
 * Clone the Git repository for your project onto your local machine.
 
 Before you can launch your project locally, you must install a set of Node module dependencies.
-For more information, see Working Locally.
+For more information, see <<work-locally#>>.

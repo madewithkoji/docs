@@ -10,9 +10,9 @@ In this tutorial, you learn these key skills:
 
 This is the second part in a three-part tutorial.
 
-. Using Git to manage your project
+. <<use-git#>>
 . *Working locally* (this tutorial)
-. Publishing the project you developed locally
+. <<publish-locally-developed#>>
 
 == Prerequisites
 
@@ -265,4 +265,4 @@ With what you have learned so far, you will be able to test all aspects of your 
 
 When you're ready to deploy your template for end users, you must publish it so they can access it from the Koji server.
 To publish your template, you must update the repository that the Koji server uses to deliver your template.
-For more information, see Publishing the Project You Developed Locally.
+For more information, see <<publish-locally-developed#>>.

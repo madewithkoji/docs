@@ -10,7 +10,7 @@ Then, you will publish the updated version of your template.
 
 == Prerequisites
 
-* Complete the link:/getting-started/guide-1[starter guide, part 1].
+* Complete the <<start-guide-1#, starter guide>>.
 * Open your project from the starter guide in the Koji editor.
 
 == Supporting rich previews
@@ -64,8 +64,7 @@ const SocialSharePreview = styled.div`
   color: #fcfcfc;
 `;
 ----
-NOTE: You can test the preview image by opening your staging link and
-appending `?koji-screenshot=1` to the URL.
+NOTE: You can test the preview image by opening your staging link and appending `?koji-screenshot=1` to the URL.
 
 == Using states in the instant remix experience
 
