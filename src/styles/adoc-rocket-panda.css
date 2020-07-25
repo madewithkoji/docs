@@ -158,11 +158,7 @@ textarea { height: auto; min-height: 50px; }
 
 select { width: 100%; }
 
-<<<<<<< HEAD
 p.lead, .paragraph.lead > p, #preamble > .sectionbody > .paragraph:first-of-type p { font-size: 16px; line-height: 1.6; }
-=======
-/* p.lead, .paragraph.lead > p, #preamble > .sectionbody > .paragraph:first-of-type p { font-size: 1.1em; line-height: 1.6; } */
->>>>>>> 7cfee330f02b787da77bd45fdde6ca7164ce9fab
 
 .subheader, #content #toctitle, .admonitionblock td.content > .title, .exampleblock > .title, .imageblock > .title, .videoblock > .title, .listingblock > .title, .literalblock > .title, .openblock > .title, .paragraph > .title, .quoteblock > .title, .sidebarblock > .title, .tableblock > .title, .verseblock > .title, .dlist > .title, .olist > .title, .ulist > .title, .qlist > .title, .hdlist > .title, .tableblock > caption { line-height: 1.4; color: #4d4d4d; font-weight: 300; margin-top: 0.2em; margin-bottom: 0.5em; }
 
@@ -175,13 +171,8 @@ a:hover, a:focus { color: #ea0011; }
 a img { border: none; }
 
 /* Default paragraph styles */
-<<<<<<< HEAD
 p { font-family: "Helvetica Neue", Helvetica, "Liberation Sans", Arial, sans-serif; font-weight: normal; font-size: 16px; line-height: 1.4; margin-bottom: 1.375em; text-rendering: optimizeLegibility; }
 p aside { font-size: 16px; line-height: 1.35; font-style: italic; }
-=======
-p { font-family: "Helvetica Neue", Helvetica, "Liberation Sans", Arial, sans-serif; font-weight: normal; font-size: 1.2em; line-height: 1.6; margin-bottom: 1.375em; text-rendering: optimizeLegibility; }
-p aside { font-size: 1em; line-height: 1.35; font-style: italic; }
->>>>>>> 7cfee330f02b787da77bd45fdde6ca7164ce9fab
 
 /* Default header styles */
 h1, h2, h3, #toctitle, .sidebarblock > .content > .title, h4, h5, h6 { font-family: Overpass, "Helvetica Neue", Helvetica, Arial, sans-serif; font-weight: normal; font-style: normal; color: black; text-rendering: optimizeLegibility; margin-top: 1em; margin-bottom: 0.5em; line-height: 1.2125em; }
