@@ -61,6 +61,8 @@ const Content = styled.div`
   width: ${({ style: { isMobile } }) => isMobile ? '100%' : 'calc(100% - 240px)'};
 
   margin-bottom: 64px;
+
+  padding: 0 16px;
   
   img {
     max-width: 100%;
