@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
+import PropTypes from 'prop-types';
 import * as JsSearch from 'js-search';
 import styled from 'styled-components';
 import { useStaticQuery, graphql } from 'gatsby';
@@ -11,11 +12,11 @@ import { resolveBreadcrumbFromSlug } from '../utils/resolveBreadcrumbFromSlug';
 const GroupsWrapper = styled.div`
   position: absolute;
   top: 40px;
-  right: 22px;
+  right:  ${({ style: { isMobile } }) => isMobile ? '0px' : '22px'};
   display: flex;
   flex-direction: column;
   z-index: 10000;
-  width: 100%;
+  width: 80vw;
   max-width: 480px;
   max-height: 80vh;
   background: #ffffff;
@@ -37,9 +38,11 @@ const GroupHeader = styled.div`
 const Item = styled.div`
   display: flex;
   padding: 8px 0;
+  flex-direction: ${({ style: { isMobile } }) => isMobile ? 'column' : 'row'};
 
   p {
     margin-bottom: 0;
+    font-size: 14px;
   }
 `;
 
@@ -69,7 +72,7 @@ const Wrapper = styled.div`
 const ItemSection = styled.div`
   min-width: 120px;
   width: 120px;
-  text-align: right;
+  text-align: ${({ style: { isMobile } }) => isMobile ? 'left' : 'right'};
   padding-right: 8px;
 `;
 
@@ -83,7 +86,11 @@ const ItemContent = styled.div`
   }
 `;
 
-const Search = () => {
+const ItemTitle = styled.div`
+  font-weight: bold;
+`;
+
+const Search = ({ isMobile }) => {
   const [value, setValue] = useState('');
   const [groups, setGroups] = useState([]);
   const [search, setSearch] = useState(null);
@@ -200,15 +207,17 @@ const Search = () => {
   return (
     <Wrapper>
       <SearchInput
+        autoFocus={isMobile}
         onChange={(e) => setValue(e.currentTarget.value)}
         ref={inputRef}
+        style={{ isMobile }}
         value={value}
       />
-      {(!value || value === '') && <StyledSearchIcon />}
-      {(value && value !== '') && <StyledCloseIcon onClick={handleClearClick} />}
+      {(!value || value === '' || isMobile) && <StyledSearchIcon />}
+      {(value && value !== '' && !isMobile) && <StyledCloseIcon onClick={handleClearClick} />}
       {
         groups && groups.length > 0 &&
-        <GroupsWrapper>
+        <GroupsWrapper style={{ isMobile }}>
           {
             groups.map((group) => (
               <Group>
@@ -216,15 +225,15 @@ const Search = () => {
                 <Divider />
                 {
                   group.items.map((item) => (
-                    <Item>
-                      <ItemSection>{item.breadcrumb[1].name}</ItemSection>
-                      <Divider orientation={'vertical'} flexItem />
+                    <Item style={{ isMobile }}>
+                      <ItemSection style={{ isMobile }}>{item.breadcrumb[1].name}</ItemSection>
+                      <Divider orientation={isMobile ? 'horizontal' : 'vertical'} flexItem />
                       <Link to={item.link} onClick={() => setGroups([])}>
                         <ItemContent>
-                          <div>{item.document.title}</div>
+                          <ItemTitle>{item.document.title}</ItemTitle>
                           <p>
                             {
-                              item.html.replace(/(<([^>]+)>)/ig, '').slice(0, 140)
+                              `${item.html.replace(/(<([^>]+)>)/ig, '').slice(0, 140)}...`
                             }
                           </p>
                         </ItemContent>
@@ -239,6 +248,14 @@ const Search = () => {
       }
     </Wrapper>
   );
+};
+
+Search.propTypes = {
+  isMobile: PropTypes.bool,
+};
+
+Search.deaultProps = {
+  isMobile: false,
 };
 
 export default Search;

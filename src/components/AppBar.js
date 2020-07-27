@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import AppBar from '@material-ui/core/AppBar';
@@ -6,14 +6,16 @@ import Toolbar from '@material-ui/core/Toolbar';
 import { useStaticQuery, graphql } from 'gatsby';
 import { useTheme } from '@material-ui/core/styles';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
+import CloseIcon from '@material-ui/icons/Close';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
+import SearchIcon from '@material-ui/icons/Search';
 import Link from './Link';
 import Search from './Search';
 
 const Logo = styled.img`
-  height: 64px;
-  margin-top: 8px;
+  height: ${({ style: { isMobile } }) => isMobile ? '50px' : '64px'};
+  margin-top: ${({ style: { isMobile } }) => isMobile ? '4px' : '8px'};
 `;
 
 const NavLinkWrapper = styled.div`
@@ -36,6 +38,31 @@ const Active = styled.div`
 const SearchWrapper = styled.div`
   flex: 1 1 auto;
   text-align: right;
+`;
+
+const StyledCloseIcon = styled(CloseIcon)`
+  fill: #333333;
+`;
+
+const StyledSearchIcon = styled(SearchIcon)`
+  fill: #333333;
+`;
+
+const SearchIconWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  flex: 1 0 auto;
+`;
+
+const MobileSearchWrapper = styled.div`
+  width: 100%;
+  display: flex;
+  align-items: center;
+
+  input {
+    width: calc(100vw - 80px) !important;
+  }
 `;
 
 const StyledAppBar = styled(AppBar)`
@@ -85,21 +112,39 @@ const AppBarComponent = (props) => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'), { noSsr: true });
 
+  const [mobileSearchIsVisible, setMobileSearchIsVisible] = useState(false);
+
   if (isMobile) {
     return (
       <StyledAppBar position={'fixed'}>
         <Toolbar>
-          <IconButton onClick={() => props.toggleMobileDrawer()}>
-            <MenuIcon />
-          </IconButton>
-          <Link
-            to={'/'}
-          >
-            <Logo
-              alt={'Koji for Developers'}
-              src={'/images/dev-logo.png'}
-            />
-          </Link>
+          {
+            mobileSearchIsVisible &&
+            <MobileSearchWrapper>
+              <Search isMobile />
+              <StyledCloseIcon onClick={() => setMobileSearchIsVisible(false)} />
+            </MobileSearchWrapper>
+          }
+          {
+            !mobileSearchIsVisible &&
+            <>
+              <IconButton onClick={() => props.toggleMobileDrawer()}>
+                <MenuIcon />
+              </IconButton>
+              <Link
+                to={'/'}
+              >
+                <Logo
+                  alt={'Koji for Developers'}
+                  src={'/images/dev-logo.png'}
+                  style={{ isMobile }}
+                />
+              </Link>
+              <SearchIconWrapper>
+                <StyledSearchIcon onClick={() => setMobileSearchIsVisible(true)} />
+              </SearchIconWrapper>
+            </>
+          }
         </Toolbar>
       </StyledAppBar>
     );
@@ -115,6 +160,7 @@ const AppBarComponent = (props) => {
             <Logo
               alt={'Koji for Developers'}
               src={'/images/dev-logo.png'}
+              style={{ isMobile }}
             />
           </NavLink>
           {props.location.pathname === '/' && <Active />}
