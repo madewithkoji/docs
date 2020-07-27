@@ -12,7 +12,7 @@ After completing the tutorial, you will be able to use your custom VCC interchan
 == Prerequisites
 
 * Familiarity with the Koji editor and remix process.
-For an overview, see the <</getting-started/startGuide1.adoc,starter guide>>.
+For an overview, see the <<start-guide-1#, starter guide>>.
 * Familiarity with React and ES6 basics are a plus.
 
 == Setting up the consumer application

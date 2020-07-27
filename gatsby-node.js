@@ -2,14 +2,14 @@ const { navItems } = require('./src/nav.json');
 const { resolvePathFromSlug } = require('./src/utils/resolvePathFromSlug');
 
 exports.sourceNodes = ({ actions, createNodeId, createContentDigest }) => {
-  navItems.forEach((navItem) => {
-    const mappedNavItem = { ...navItem };
+  navItems.forEach((navItem, idx) => {
+    const mappedNavItem = { ...navItem, idx };
 
-    mappedNavItem.sections = mappedNavItem.sections.map((section) => {
-      const mappedSection = { ...section };
+    mappedNavItem.sections = mappedNavItem.sections.map((section, sectionIdx) => {
+      const mappedSection = { ...section, idx: sectionIdx };
 
-      mappedSection.items = mappedSection.items.map((item) => {
-        const mappedItem = { ...item };
+      mappedSection.items = mappedSection.items.map((item, itemIdx) => {
+        const mappedItem = { ...item, idx: itemIdx };
         mappedItem.path = `${navItem.root}${section.root}/${item.slug}`;
 
         return mappedItem;
@@ -61,8 +61,30 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
     return;
   }
 
+  const knownSlugs = [];
+
+  navItems.forEach((navItem) => {
+    navItem.sections.forEach((section) => {
+      section.items.forEach((item) => {
+        knownSlugs.push(item.slug);
+      });
+    });
+  });
+
+  const slugsInUse = [];
+
   result.data.allAsciidoc.edges.forEach(({ node }) => {
-    if (!node.pageAttributes.slug) return;
+    // If the doc is missing a slug it won't be accessible
+    if (!node.pageAttributes.slug) {
+      throw new Error(`Asciidoc missing slug. [Document Title]: ${node.document.title}`);
+    }
+
+    // If the doc's slug isn't in the navigation, it won't be accessible
+    if (!knownSlugs.includes(node.pageAttributes.slug)) {
+      throw new Error(`An asciidoc has been indexed but is missing from navigation. [Slug]: ${node.pageAttributes.slug}`);
+    }
+
+    slugsInUse.push(node.pageAttributes.slug);
 
     const path = resolvePathFromSlug(node.pageAttributes.slug);
 
@@ -77,5 +99,11 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
         slug: node.pageAttributes.slug,
       },
     });
+  });
+
+  knownSlugs.forEach((knownSlug) => {
+    if (!slugsInUse.includes(knownSlug)) {
+      throw new Error(`A nav item has been created, but there is no corresponding asciidoc. [Slug]: ${knownSlug}`);
+    }
   });
 };

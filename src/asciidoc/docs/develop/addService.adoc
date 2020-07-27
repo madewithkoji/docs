@@ -10,8 +10,8 @@ Time: You should be able to complete this tutorial in 30 minutes or less.
 
 == Prerequisites
 
-Familiarity with the Koji editor, remix process, and the @withkoji/vcc package is required.
-Familiarity with React and ES6 basics are a plus.
+* Familiarity with the Koji editor, remix process, and the @withkoji/vcc package is required.
+* Familiarity with React and ES6 basics are a plus.
 
 == Setting up the template
 

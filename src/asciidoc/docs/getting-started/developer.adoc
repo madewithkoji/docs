@@ -20,8 +20,8 @@ image:Koji-developer.svg[Overview of the Koji development process,title="Koji de
 
 For some great resources to help you start developing templates on Koji, see:
 
-* link:../gettingStarted/startGuide1.adoc[Starter guide] – Step-by-step instructions on how to create a remixable web application and publish it as a template on Koji.
-* link:../videos/starterCourse.adoc[Starter course] – Video tutorial of how to start developing applications on Koji.
+* <<start-guide-1#>> – Step-by-step instructions on how to create a remixable web application and publish it as a template on Koji.
+* <<starter-course#>> – Video tutorial of how to start developing applications on Koji.
 
 == Staying in Touch
 

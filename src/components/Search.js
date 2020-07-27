@@ -1,55 +1,98 @@
-import React, { useEffect, useState, Fragment } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
+import PropTypes from 'prop-types';
 import * as JsSearch from 'js-search';
 import styled from 'styled-components';
-import { Link, useStaticQuery, graphql } from 'gatsby';
+import { useStaticQuery, graphql } from 'gatsby';
+import CloseIcon from '@material-ui/icons/Close';
+import SearchIcon from '@material-ui/icons/Search';
+import Divider from '@material-ui/core/Divider';
+import Link from './Link';
 import { resolveBreadcrumbFromSlug } from '../utils/resolveBreadcrumbFromSlug';
+
+const GroupsWrapper = styled.div`
+  position: absolute;
+  top: 40px;
+  right:  ${({ style: { isMobile } }) => isMobile ? '0px' : '22px'};
+  display: flex;
+  flex-direction: column;
+  z-index: 10000;
+  width: 80vw;
+  max-width: 480px;
+  max-height: 80vh;
+  background: #ffffff;
+  overflow: auto;
+  color: #333333;
+  padding: 16px;
+  border-radius: 4px;
+  text-align: left;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+`;
+
+const Group = styled.div`
+`;
+
+const GroupHeader = styled.div`
+  font-size: 18px;
+`;
+
+const Item = styled.div`
+  display: flex;
+  padding: 8px 0;
+  flex-direction: ${({ style: { isMobile } }) => isMobile ? 'column' : 'row'};
+
+  p {
+    margin-bottom: 0;
+    font-size: 14px;
+  }
+`;
+
+const StyledSearchIcon = styled(SearchIcon)`
+  fill: #333333;
+  position: relative;
+  right: 32px;
+  top: 6px;
+`;
+
+const StyledCloseIcon = styled(CloseIcon)`
+  fill: #333333;
+  position: relative;
+  right: 32px;
+  top: 6px;
+`;
+
+const SearchInput = styled.input`
+  height: 32px;
+  padding-right: 40px;
+`;
 
 const Wrapper = styled.div`
   position: relative;
 `;
 
-const MatchesWrapper = styled.div`
-  position: absolute;
-  top: 16px;
-  right: 0px;
-  display: flex;
-  flex-direction: column;
-  z-index: 10000;
-  max-width: 480px;
+const ItemSection = styled.div`
+  min-width: 120px;
+  width: 120px;
+  text-align: ${({ style: { isMobile } }) => isMobile ? 'left' : 'right'};
+  padding-right: 8px;
 `;
 
-const MatchWrapper = styled.div`
+const ItemContent = styled.div`
+  width: 100%;
+  padding-left: 8px;
   background: #ffffff;
-  padding: 8px;
-  line-height: 1.2;
-  border: 1px solid black;
-  margin: 1rem 0 0 0 ;
 
-  span {
-    color: blue;
-  }
-
-  p {
-    margin: 0;
-    text-align: left;
-  }
-
-  h2 {
-    margin: 0.5rem 0;
-  }
-
-  > a {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    color: #000000;
-    text-decoration: none;
+  &:hover {
+    background: #f1f1f1;
   }
 `;
 
-const Search = () => {
+const ItemTitle = styled.div`
+  font-weight: bold;
+`;
+
+const Search = ({ isMobile }) => {
   const [value, setValue] = useState('');
-  const [matches, setMatches] = useState([]);
+  const [groups, setGroups] = useState([]);
   const [search, setSearch] = useState(null);
 
   const data = useStaticQuery(graphql`
@@ -112,53 +155,107 @@ const Search = () => {
         // we could have bad matches
         if (!breadcrumb) return null;
 
+        const el = document.createElement('html');
+        el.innerHTML = searchMatch.html;
+
+        const h1s = el.querySelectorAll('h1');
+        h1s.forEach((h1) => h1.remove());
+
+        const newHTML = el.innerHTML;
+
+        el.remove();
+
         return ({
           ...searchMatch,
           breadcrumb,
           link: breadcrumb[breadcrumb.length - 1].path,
+          html: newHTML,
         });
       }).filter((match) => match);
 
-      setMatches(mappedMatches);
+      const newGroups = [];
+
+      mappedMatches.forEach((match) => {
+        const groupIndex = newGroups.findIndex(({ path }) => path === match.breadcrumb[0].path);
+        if (groupIndex === -1) {
+          newGroups.push({ ...match.breadcrumb[0], items: [match] });
+        } else {
+          newGroups[groupIndex] = {
+            ...newGroups[groupIndex],
+            items: [
+              ...newGroups[groupIndex].items,
+              match,
+            ],
+          };
+        }
+      });
+
+      setGroups(newGroups);
     } else {
-      setMatches([]);
+      setGroups([]);
     }
   }, [search, value]);
 
+  const inputRef = useRef(null);
+  const handleClearClick = () => {
+    setValue('');
+    setGroups([]);
+
+    if (inputRef && inputRef.current) inputRef.current.focus();
+  };
+
   return (
     <Wrapper>
-      <input onChange={(e) => setValue(e.currentTarget.value)} value={value} />
-      <MatchesWrapper>
-        {
-          matches.map((match) => (
-            <MatchWrapper key={JSON.stringify(match)}>
-              <p>
+      <SearchInput
+        autoFocus={isMobile}
+        onChange={(e) => setValue(e.currentTarget.value)}
+        ref={inputRef}
+        style={{ isMobile }}
+        value={value}
+      />
+      {(!value || value === '' || isMobile) && <StyledSearchIcon />}
+      {(value && value !== '' && !isMobile) && <StyledCloseIcon onClick={handleClearClick} />}
+      {
+        groups && groups.length > 0 &&
+        <GroupsWrapper style={{ isMobile }}>
+          {
+            groups.map((group) => (
+              <Group>
+                <GroupHeader>{group.name}</GroupHeader>
+                <Divider />
                 {
-                  match.breadcrumb.map(({ name, path }, idx) => (
-                    <Fragment key={path}>
-                      <Link to={path}>{name}</Link>
-                      {
-                        idx + 1 !== match.breadcrumb.length &&
-                        <span>{' > '}</span>
-                      }
-                    </Fragment>
+                  group.items.map((item) => (
+                    <Item style={{ isMobile }}>
+                      <ItemSection style={{ isMobile }}>{item.breadcrumb[1].name}</ItemSection>
+                      <Divider orientation={isMobile ? 'horizontal' : 'vertical'} flexItem />
+                      <Link to={item.link} onClick={() => setGroups([])}>
+                        <ItemContent>
+                          <ItemTitle>{item.document.title}</ItemTitle>
+                          <p>
+                            {
+                              `${item.html.replace(/(<([^>]+)>)/ig, '').slice(0, 140)}...`
+                            }
+                          </p>
+                        </ItemContent>
+                      </Link>
+                    </Item>
                   ))
                 }
-              </p>
-              <Link to={match.link} onClick={() => setMatches([])}>
-                <h2>{match.document.title}</h2>
-                <p>
-                  {
-                    match.html.replace(/(<([^>]+)>)/ig, '').slice(0, 140)
-                  }
-                </p>
-              </Link>
-            </MatchWrapper>
-          ))
-        }
-      </MatchesWrapper>
+              </Group>
+            ))
+          }
+        </GroupsWrapper>
+      }
     </Wrapper>
   );
+};
+
+Search.propTypes = {
+  isMobile: PropTypes.bool,
+};
+
+Search.deaultProps = {
+  isMobile: false,
 };
 
 export default Search;

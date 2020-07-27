@@ -11,7 +11,7 @@ image::magazine-cover.png[Make a magazine cover template on Koji]
 === Prerequisites
 
 * Familiarity with web development. React and ES6 basics are a plus.
-* Familiarity with the Koji remix process. For an overview, see the link:/developer/getting-started[starter guide].
+* Familiarity with the Koji remix process. For an overview, see the <<start-guide-1#, starter guide>>.
 
 === Level
 

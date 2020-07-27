@@ -23,16 +23,17 @@ const MobileDrawer = (props) => {
     >
       <div style={{ width: '240px', paddingLeft: '16px' }}>
         {
-          props.navItems.map((navItem) => (
+          props.navItems.sort((a, b) => a.idx - b.idx).map((navItem) => (
             <List
               component={'nav'}
               aria-labelledby={'nested-list-subheader'}
               className={classes.root}
+              key={navItem.name}
             >
               <ListItemText primary={navItem.name} />
               <>
                 {
-                  navItem.sections.map((section) => (
+                  navItem.sections.sort((a, b) => a.idx - b.idx).map((section) => (
                     <NestedList
                       key={section.name}
                       openByDefault={props.location.pathname.includes(section.root)}

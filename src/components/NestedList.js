@@ -1,27 +1,20 @@
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { makeStyles } from '@material-ui/core/styles';
+import styled from 'styled-components';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import Collapse from '@material-ui/core/Collapse';
 import ExpandLess from '@material-ui/icons/ExpandLess';
 import ExpandMore from '@material-ui/icons/ExpandMore';
-import { Link } from 'gatsby';
+import Link from './Link';
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    width: '100%',
-    maxWidth: 360,
-    backgroundColor: theme.palette.background.paper,
-  },
-  nested: {
-    paddingLeft: theme.spacing(4),
-  },
-}));
+const StyledListItem = styled(ListItem)`
+  padding-bottom: 4px;
+  padding-top: 4px;
+`;
 
 const NestedList = ({ pathname, section, openByDefault }) => {
-  const classes = useStyles();
   const [open, setOpen] = React.useState(openByDefault);
 
   useEffect(() => {
@@ -36,27 +29,29 @@ const NestedList = ({ pathname, section, openByDefault }) => {
     <List
       component={'nav'}
       aria-labelledby={'nested-list-subheader'}
-      className={classes.root}
     >
-      <ListItem button onClick={handleClick}>
+      <StyledListItem button onClick={handleClick}>
         <ListItemText primary={section.name} />
         {open ? <ExpandLess /> : <ExpandMore />}
-      </ListItem>
+      </StyledListItem>
       <Collapse in={open} timeout="auto">
-        <List component={'div'} disablePadding>
+        <List
+          className={'test'}
+          component={'div'}
+          disablePadding
+        >
           {
-            section.items.map((item) => (
+            section.items.sort((a, b) => a.idx - b.idx).map((item) => (
               <Link
                 key={item.path}
                 to={item.path}
               >
-                <ListItem
+                <StyledListItem
                   button
-                  className={classes.nested}
                   selected={pathname === item.path}
                 >
-                  <ListItemText primary={item.name} />
-                </ListItem>
+                  <ListItemText secondary={item.name} />
+                </StyledListItem>
               </Link>
             ))
           }

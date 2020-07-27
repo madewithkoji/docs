@@ -3,7 +3,7 @@
 
 * User can upload any file.
 
-NOTE: For specific file types, use the associated VCC where possible. For example, see link:/vcc/image[Image], link:/vcc/sound[Sound], link:/vcc/video[Video].
+NOTE: For specific file types, use the associated VCC where possible. For example, see <<image#>>, <<sound#>>, <<video#>>.
 
 == Sample File VCC
 
