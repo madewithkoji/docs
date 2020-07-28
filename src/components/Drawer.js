@@ -1,40 +1,35 @@
 import React from 'react';
+import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import Drawer from '@material-ui/core/Drawer';
-import { makeStyles } from '@material-ui/core/styles';
 import NestedList from './NestedList';
 
-const useStyles = makeStyles({
-  paper: {
-    marginTop: '64px',
-    zIndex: 0,
-  },
-});
+const StyledDrawer = styled(Drawer)`
+  > div {
+    margin-top: 64px;
+    z-index: 0;
+  }
+`;
 
-const DrawerComponent = ({ location, navItem }) => {
-  const classes = useStyles();
-
-  return (
-    <Drawer
-      classes={{ paper: classes.paper }}
-      open
-      variant={'persistent'}
-    >
-      <div style={{ width: '240px' }}>
-        {
-          navItem.sections.sort((a, b) => a.idx - b.idx).map((section) => (
-            <NestedList
-              key={section.name}
-              openByDefault={location.pathname.includes(section.root)}
-              pathname={location.pathname}
-              section={section}
-            />
-          ))
-        }
-      </div>
-    </Drawer>
-  );
-};
+const DrawerComponent = ({ location, navItem }) => (
+  <StyledDrawer
+    open
+    variant={'persistent'}
+  >
+    <div style={{ width: '240px' }}>
+      {
+        navItem.sections.sort((a, b) => a.idx - b.idx).map((section) => (
+          <NestedList
+            key={section.name}
+            openByDefault={location.pathname.includes(section.root)}
+            pathname={location.pathname}
+            section={section}
+          />
+        ))
+      }
+    </div>
+  </StyledDrawer>
+);
 
 DrawerComponent.propTypes = {
   location: PropTypes.object,
