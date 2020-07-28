@@ -8,6 +8,7 @@ const StyledDrawer = styled(Drawer)`
   > div {
     margin-top: 64px;
     z-index: 0;
+    width: 240px;
   }
 `;
 
@@ -16,7 +17,7 @@ const DrawerComponent = ({ location, navItem }) => (
     open
     variant={'persistent'}
   >
-    <div style={{ width: '240px' }}>
+    <div>
       {
         navItem.sections.sort((a, b) => a.idx - b.idx).map((section) => (
           <NestedList

@@ -1,16 +1,19 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import styled from 'styled-components';
 import Drawer from '@material-ui/core/Drawer';
 import List from '@material-ui/core/List';
 import ListItemText from '@material-ui/core/ListItemText';
 import NestedList from './NestedList';
 
+const Wrapper = styled.div`
+  width: 240px;
+  padding-left: 16px;
+`;
 
 const MobileDrawer = (props) => (
-  <Drawer
-    open={props.open}
-  >
-    <div style={{ width: '240px', paddingLeft: '16px' }}>
+  <Drawer open={props.open}>
+    <Wrapper>
       {
         props.navItems.sort((a, b) => a.idx - b.idx).map((navItem) => (
           <List
@@ -34,7 +37,7 @@ const MobileDrawer = (props) => (
           </List>
         ))
       }
-    </div>
+    </Wrapper>
   </Drawer>
 );
 
