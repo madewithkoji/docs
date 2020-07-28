@@ -51,17 +51,15 @@ class TemplateConverter {
 module.exports = {
   /* Your site config here */
   siteMetadata: {},
+
   plugins: [
+    // Support a default layout component that won't unmount between route changes
     'gatsby-plugin-layout',
-    {
-      resolve: 'gatsby-plugin-material-ui',
-      // If you want to use styled components you should change the injection order.
-      options: {
-        // stylesProvider: {
-        //   injectFirst: true,
-        // },
-      },
-    },
+
+    // Material styles
+    'gatsby-plugin-material-ui',
+
+    // Asciidoc transformer
     {
       resolve: 'gatsby-transformer-asciidoc',
       options: {
@@ -73,6 +71,8 @@ module.exports = {
         converterFactory: TemplateConverter,
       },
     },
+
+    // Support filesystem
     {
       resolve: 'gatsby-source-filesystem',
       options: {
@@ -80,7 +80,11 @@ module.exports = {
         path: `${__dirname}/src`,
       },
     },
+
     // Automatically catch links and make them work with SPA
     'gatsby-plugin-catch-links',
+
+    // Styled components (prevent fouc)
+    'gatsby-plugin-styled-components',
   ],
 };
