@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 const { navItems } = require('./src/nav.json');
 const { resolvePathFromSlug } = require('./src/utils/resolvePathFromSlug');
 
@@ -76,12 +77,12 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
   result.data.allAsciidoc.edges.forEach(({ node }) => {
     // If the doc is missing a slug it won't be accessible
     if (!node.pageAttributes.slug) {
-      throw new Error(`Asciidoc missing slug. [Document Title]: ${node.document.title}`);
+      console.warn(`Asciidoc missing slug. [Document Title]: ${node.document.title}`);
     }
 
     // If the doc's slug isn't in the navigation, it won't be accessible
-    if (!knownSlugs.includes(node.pageAttributes.slug)) {
-      throw new Error(`An asciidoc has been indexed but is missing from navigation. [Slug]: ${node.pageAttributes.slug}`);
+    if (node.pageAttributes.slug && !knownSlugs.includes(node.pageAttributes.slug)) {
+      console.warn(`An asciidoc has been indexed but is missing from navigation. [Slug]: ${node.pageAttributes.slug}`);
     }
 
     slugsInUse.push(node.pageAttributes.slug);
