@@ -32,6 +32,29 @@ const SectionLink = styled.a`
   }
 `;
 
+const SubSectionLink = styled.a`
+  color: #333333;
+  margin-left: 16px;
+
+  &:hover {
+    color: #000000;
+    text-decoration: none;
+  }
+  &::before {
+    content: '';
+    width: 8px;
+    height: 8px;
+    background: #666666;
+    position: relative;
+    z-index: 10000;
+    position: fixed;
+    transform: translate(-16px, 6px);
+    border-radius: 50%;
+    opacity: ${({ style: { isActive } }) => isActive ? 1 : 0};
+    transition: all 0.2s ease-in-out;
+  }
+`;
+
 const StyledContainer = styled(Container)`
   display: flex;
 `;
@@ -45,9 +68,9 @@ const TOC = styled.div`
 
 const Nav = styled.div`
   position: fixed;
-  top: 96px;
+  top: 72px;
   right: 16px;
-  width: 240px;
+  width: 296px;
   padding: 16px;
   display: flex;
   flex-direction: column;
@@ -113,10 +136,11 @@ const Asciidoc = (props) => {
     const elem = document.createElement('html');
     elem.innerHTML = props.data.asciidoc.html;
 
-    const headers = elem.getElementsByTagName('h2');
+    const headers = elem.querySelectorAll('h2,h3');
     const mappedSections = Array.from(headers).map((header) => ({
       href: header.id,
       text: header.innerText,
+      type: header.localName,
     }));
 
     elem.remove();
@@ -138,15 +162,28 @@ const Asciidoc = (props) => {
         <Nav>
           <TOC>{'Table of Contents'}</TOC>
           {
-            sections.map(({ href, text }) => (
-              <SectionLink
-                style={{ isActive: href === props.currentH2 }}
-                href={`#${href}`}
-                key={href}
-              >
-                {text}
-              </SectionLink>
-            ))
+            sections.map(({ href, text, type }) => {
+              if (type === 'h2') {
+                return (
+                  <SectionLink
+                    style={{ isActive: href === props.currentHeader }}
+                    href={`#${href}`}
+                    key={href}
+                  >
+                    {text}
+                  </SectionLink>
+                );
+              }
+              return (
+                <SubSectionLink
+                  style={{ isActive: href === props.currentHeader }}
+                  href={`#${href}`}
+                  key={href}
+                >
+                  {text}
+                </SubSectionLink>
+              );
+            })
           }
         </Nav>
       }
@@ -155,12 +192,12 @@ const Asciidoc = (props) => {
 };
 
 Asciidoc.propTypes = {
-  currentH2: PropTypes.string,
+  currentHeader: PropTypes.string,
   data: PropTypes.object,
 };
 
 Asciidoc.defaultProps = {
-  currentH2: null,
+  currentHeader: null,
   data: {},
 };
 

@@ -59,14 +59,14 @@ const Layout = (props) => {
   // Detect h2s on scroll
   let ticking = false;
   let elements;
-  const [currentH2, setCurrentH2] = useState(null);
+  const [currentHeader, setCurrentHeader] = useState(null);
 
   useEffect(() => {
     const onScroll = () => {
       if (!ticking) {
         window.requestAnimationFrame(() => {
           if (!elements) {
-            elements = Array.from(document.querySelectorAll('h2')).map(({ id, offsetTop }) => ({
+            elements = Array.from(document.querySelectorAll('h2,h3')).map(({ id, offsetTop }) => ({
               id,
               offsetTop,
             }));
@@ -76,13 +76,13 @@ const Layout = (props) => {
           const scrollPos = contentRef.current.scrollTop;
 
           elements.forEach(({ id, offsetTop }) => {
-            if (Math.abs(scrollPos - offsetTop) < 200) setCurrentH2(id);
+            if (Math.abs(scrollPos - offsetTop) < 200) setCurrentHeader(id);
           });
 
           if (!elements || elements.length === 0) return;
 
-          if (scrollPos + contentRef.current.offsetHeight + 32 > height) setCurrentH2(elements[elements.length - 1].id);
-          if (scrollPos < 64) setCurrentH2(elements[0].id);
+          if (scrollPos + contentRef.current.offsetHeight + 32 > height) setCurrentHeader(elements[elements.length - 1].id);
+          if (scrollPos < 64) setCurrentHeader(elements[0].id);
           ticking = false;
         });
 
@@ -149,7 +149,7 @@ const Layout = (props) => {
             navItems={navItems}
           />
           <Content
-            currentH2={currentH2}
+            currentHeader={currentHeader}
             contentRef={contentRef}
             hasDrawer={hasDrawer}
           >

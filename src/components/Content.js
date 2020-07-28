@@ -18,7 +18,7 @@ const Content = (props) => {
 
   return (
     <Container ref={props.contentRef} style={{ hasDrawer: props.hasDrawer && !isMobile }}>
-      {cloneElement(props.children, { currentH2: props.currentH2 })}
+      {cloneElement(props.children, { currentHeader: props.currentHeader })}
     </Container>
   );
 };
@@ -32,13 +32,13 @@ Content.propTypes = {
     PropTypes.func,
     PropTypes.shape({ current: PropTypes.any }),
   ]),
-  currentH2: PropTypes.string,
+  currentHeader: PropTypes.string,
   hasDrawer: PropTypes.bool,
 };
 
 Content.defaultProps = {
   contentRef: null,
-  currentH2: null,
+  currentHeader: null,
   hasDrawer: false,
 };
 

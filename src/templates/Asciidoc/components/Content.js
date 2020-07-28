@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 const Content = styled.div`
-  width: ${({ style: { isMobile } }) => isMobile ? '100%' : 'calc(100% - 240px)'};
+  width: ${({ style: { isMobile } }) => isMobile ? '100%' : 'calc(100% - 296px)'};
 
   margin-bottom: 64px;
 
