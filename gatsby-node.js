@@ -34,7 +34,7 @@ exports.sourceNodes = ({ actions, createNodeId, createContentDigest }) => {
 exports.createPages = async ({ actions, graphql, reporter }) => {
   const { createPage } = actions;
 
-  const articleTemplate = require.resolve('./src/templates/article.js');
+  const asciidocTemplate = require.resolve('./src/templates/Asciidoc/index.js');
 
   const result = await graphql(`
     query {
@@ -92,7 +92,7 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
 
     createPage({
       path,
-      component: articleTemplate,
+      component: asciidocTemplate,
       context: {
         id: node.id,
         // additional data can be passed via context
