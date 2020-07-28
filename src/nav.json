@@ -138,8 +138,22 @@
     {
       "name": "Reference",
       "root": "/reference",
-      "defaultPath": "/reference/vcc/vcc-overview",
+      "defaultPath": "/reference/packages/packages-overview",
       "sections": [
+        {
+          "name": "Packages",
+          "root": "/packages",
+          "items": [
+            {
+              "name": "Overview",
+              "slug": "packages-overview"
+            },
+            {
+              "name": "@withkoji/vcc",
+              "slug": "withkoji-vcc-package"
+            }
+          ]
+        },
         {
           "name": "VCC",
           "root": "/vcc",
