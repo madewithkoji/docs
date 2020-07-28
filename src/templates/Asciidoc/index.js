@@ -12,19 +12,22 @@ import Content from './components/Content';
 
 const SectionLink = styled.a`
   color: #333333;
+  position: relative;
 
   &:hover {
     color: #000000;
     text-decoration: none;
   }
+
   &::before {
     content: '';
     width: 8px;
     height: 8px;
     background: #666666;
-    position: relative;
+    position: absolute;
+    top: 0;
+    left: 0;
     z-index: 10000;
-    position: fixed;
     transform: translate(-16px, 6px);
     border-radius: 50%;
     opacity: ${({ style: { isActive } }) => isActive ? 1 : 0};
@@ -35,19 +38,22 @@ const SectionLink = styled.a`
 const SubSectionLink = styled.a`
   color: #333333;
   margin-left: 16px;
+  position: relative;
 
   &:hover {
     color: #000000;
     text-decoration: none;
   }
+
   &::before {
     content: '';
     width: 8px;
     height: 8px;
     background: #666666;
-    position: relative;
+    position: absolute;
+    top: 0;
+    left: 0;
     z-index: 10000;
-    position: fixed;
     transform: translate(-16px, 6px);
     border-radius: 50%;
     opacity: ${({ style: { isActive } }) => isActive ? 1 : 0};
@@ -74,6 +80,8 @@ const Nav = styled.div`
   padding: 16px;
   display: flex;
   flex-direction: column;
+  height: calc(100vh - 108px);
+  overflow: auto;
 
   > * {
     margin-bottom: 8px;
@@ -151,7 +159,7 @@ const Asciidoc = (props) => {
   return (
     <StyledContainer maxWidth="lg">
       <Helmet>
-        <title>{props.data.asciidoc.document.title}</title>
+        <title>{`${props.data.asciidoc.document.title} | Koji for Developers`}</title>
       </Helmet>
       <Content
         dangerouslySetInnerHTML={{ __html: props.data.asciidoc.html }}
