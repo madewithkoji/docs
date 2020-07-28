@@ -7,6 +7,10 @@ const Content = styled.div`
 
   padding: 0 16px;
 
+  a {
+    text-decoration: underline;
+  }
+
   p {
     font-size: 1rem;
   }
