@@ -13,57 +13,57 @@ Before submitting your template to Koji, review this checklist to ensure it meet
 
 | Template uses the @withkoji/vcc package to expose the necessary VCC controls.
 |
-include::checklist.adoc[]
+include::checklist.txt[]
 
 | Users can create a remix in one minute or less.
 |
-include::checklist.adoc[]
+include::checklist.txt[]
 
 | Template shows live updates when values in VCCs are changed.
 |
-include::checklist.adoc[]
+include::checklist.txt[]
 
 | VCCs specify human-readable names and clear descriptions for the expected input, including any constraints (for example, character limits on text inputs).
 |
-include::checklist.adoc[]
+include::checklist.txt[]
 
 | Template displays VCCs only for values that are used in the template experience.
 |
-include::checklist.adoc[]
+include::checklist.txt[]
 
 | Template provides VCCs for values that users are most likely to customize.
 It does not allow customization of elements that a developer should define (for example, border width for pictures, speed of game actions).
 |
-include::checklist.adoc[]
+include::checklist.txt[]
 
 | Template uses common VCCs and provides choices that improve remix efficiency, where possible.
 For example, it uses a range VCC to specify font size, because it’s easier to use and can enforce sensible minimum and maximum values.
 It uses a select VCC instead of a text VCC, where appropriate, because it’s easier to choose from a list of predefined options than to type a response.
 |
-include::checklist.adoc[]
+include::checklist.txt[]
 
 | Template uses nested VCCs (arrays and composed objects) only if necessary to enable effective customization.
 VCCs are not nested excessively and do not create a difficult or confusing remix experience.
 |
-include::checklist.adoc[]
+include::checklist.txt[]
 
 | During remix, template exposes editable items with standard styles (see <<#_ui_elements, UI Elements>>).
 It uses buttons to trigger VCCs only when an editable element cannot be indicated effectively with the standard styles (for example, to change the entire layout).
 |
-include::checklist.adoc[]
+include::checklist.txt[]
 
 | Template uses dismissOnCommit to automatically collapse VCCs and return to the preview, where appropriate, to provide good user feedback and save a remix step.
 For example, after changing an image in a single-value VCC.
 |
-include::checklist.adoc[]
+include::checklist.txt[]
 
 | For text input, values are not case sensitive and whitespace is trimmed from the beginning and end of the input.
 |
-include::checklist.adoc[]
+include::checklist.txt[]
 
 | Template uses states to break up the remixing experience into manageable and logical steps, where appropriate.
 |
-include::checklist.adoc[]
+include::checklist.txt[]
 |===
 
 === Performance
@@ -76,16 +76,16 @@ include::checklist.adoc[]
 | Template preloads resources to ensure a smooth experience.
 For example, templates with multiple states load images in the background.
 |
-include::checklist.adoc[]
+include::checklist.txt[]
 
 | Frontend URL of published template was tested with https://tools.pingdom.com[Pingdom] and has a performance grade of B or better.
 To access the frontend URL, go to the published template, inspect the element, and use the iframe source URL.
 |
-include::checklist.adoc[]
+include::checklist.txt[]
 
 | Template size (bundle and assets) is less than 2 MB.
 |
-include::checklist.adoc[]
+include::checklist.txt[]
 |===
 
 === Image Optimization
@@ -98,19 +98,19 @@ include::checklist.adoc[]
 | Image assets and backgrounds are sized at the correct aspect ratio to avoid distortion.
 The standard portrait aspect ratio is 9:16 (for example, 1080x1920).
 |
-include::checklist.adoc[]
+include::checklist.txt[]
 
 | Template uses the https://docs.fastly.com/api/imageopto[Fastly API] to automatically size image assets.
 |
-include::checklist.adoc[]
+include::checklist.txt[]
 
 | Template uses Fastly image optimization to reduce the image size wherever possible.
 |
-include::checklist.adoc[]
+include::checklist.txt[]
 
 | Template sets a default background color to handle images with transparent backgrounds.
 |
-include::checklist.adoc[]
+include::checklist.txt[]
 |===
 
 === Device and Browser Support
@@ -123,35 +123,35 @@ include::checklist.adoc[]
 | Template was tested on iPhone 6S / 6S Plus (iOS 9.0.1) or newer.
 Works in mobile Safari and Chrome browsers.
 |
-include::checklist.adoc[]
+include::checklist.txt[]
 
 | Template was tested on Android Oreo 8.0 or newer.
 Works in Chrome and Firefox browsers.
 |
-include::checklist.adoc[]
+include::checklist.txt[]
 
 | Template was tested on desktop.
 Works in Chrome, Firefox, and Safari browsers.
 |
-include::checklist.adoc[]
+include::checklist.txt[]
 
 | Template is responsive; presents same experience on desktop and mobile devices.
 |
-include::checklist.adoc[]
+include::checklist.txt[]
 
 | Background and image sizes, aspect ratios, and crops are consistent across device sizes.
 |
-include::checklist.adoc[]
+include::checklist.txt[]
 
 | Template displays content correctly, regardless of device orientation.
 It does not rely on the `deviceorientation` event to enforce a specific orientation, which can fail for embedded content in iframes.
 |
-include::checklist.adoc[]
+include::checklist.txt[]
 
 | Template uses a library that provides cross-browser support for audio features, if applicable.
 For example, howler.js.
 |
-include::checklist.adoc[]
+include::checklist.txt[]
 |===
 
 === Sharing and Platform Information
@@ -163,30 +163,30 @@ include::checklist.adoc[]
 
 | The FeedEvents and InstantRemixing entitlements are enabled.
 |
-include::checklist.adoc[]
+include::checklist.txt[]
 
 | Template uses FeedSdk from the @withkoji/vcc package and calls the `load` event to ensure it is preloaded correctly in the Koji feed.
 |
-include::checklist.adoc[]
+include::checklist.txt[]
 
 | If the template has auto-playing content or audio, it plays and pauses in response to feed events.
 To test feed events, append `?feedDebug=true` to the URL, which loads the template in the feed 10 times.
 |
-include::checklist.adoc[]
+include::checklist.txt[]
 
 | Template renders a preview page of size 1200x630, positioned relative to the top left of the window, when visited with a query parameter of `koji-screenshot=1`.
 Koji uses a screenshot of this page as the preview image when users share their posts on social media.
 |
-include::checklist.adoc[]
+include::checklist.txt[]
 
 | If the template uses gestures, the gestures are implemented to work correctly when the template is in focus in the feed.
 That is, the template actions take precedence over the feed actions.
 |
-include::checklist.adoc[]
+include::checklist.txt[]
 
 | Template is published with an appropriate name and description for better sharing and discoverability on the platform.
 |
-include::checklist.adoc[]
+include::checklist.txt[]
 |===
 
 == Presentation and Usability
@@ -200,48 +200,48 @@ include::checklist.adoc[]
 | During remix, editable elements are indicated with a semi-transparent, white rectangle and a rotating dashed line.
 See example in https://withkoji.com/~jason/billboard[this project].
 |
-include::checklist.adoc[]
+include::checklist.txt[]
 
 | On-screen instructions use the mobile-first variant (for example, “Tap” instead of “Click”).
 |
-include::checklist.adoc[]
+include::checklist.txt[]
 
 | UI elements support touch gestures.
 |
-include::checklist.adoc[]
+include::checklist.txt[]
 
 | Primary content fits on the screen without zooming or horizontal scrolling.
 |
-include::checklist.adoc[]
+include::checklist.txt[]
 
 | Tappable elements measure at least 44x44 points.
 |
-include::checklist.adoc[]
+include::checklist.txt[]
 
 | Text is large enough to be legible at default size (at least 11 points).
 |
-include::checklist.adoc[]
+include::checklist.txt[]
 
 | Font size for user input elements is at least 16 px to prevent unintended page zooming on iOS.
 |
-include::checklist.adoc[]
+include::checklist.txt[]
 
 | Text and background colors or images have sufficient contrast to make text legible (contrast ratio of 4.5:1 or higher, for default values).
 |
-include::checklist.adoc[]
+include::checklist.txt[]
 
 | Template meets the <<design-guidelines#>>.
 |
-include::checklist.adoc[]
+include::checklist.txt[]
 
 | Template was tested with different images (portrait, landscape, small, large).
 |
-include::checklist.adoc[]
+include::checklist.txt[]
 
 | Template uses standard web fonts (fonts.google.com) with a default font that matches the use case.
 For examples, see the <<design-guidelines#_fonts_are_appropriate_and_convey_information>>.
 |
-include::checklist.adoc[]
+include::checklist.txt[]
 |===
 
 === Loading Indicator and Experience
@@ -254,19 +254,19 @@ include::checklist.adoc[]
 | Template uses the Koji standard loading indicator.
 See example in this https://github.com/anderjason/skytree-koji-react[package for React] and this https://github.com/anderjason/skytree-koji[package for vanilla JavaScript].
 |
-include::checklist.adoc[]
+include::checklist.txt[]
 
 | When loading takes more than 2 seconds, loading indicator is displayed until all of the assets have loaded.
 |
-include::checklist.adoc[]
+include::checklist.txt[]
 
 | All content loads at the same time, providing a coordinated start for all images, sounds, and other content.
 |
-include::checklist.adoc[]
+include::checklist.txt[]
 
 | Template transitions gracefully from loading indicator to loaded content (for example, fade in from indicator to fully loaded image, rather than showing a black area and having the image flash in after it loads).
 |
-include::checklist.adoc[]
+include::checklist.txt[]
 |===
 
 == Code
@@ -278,42 +278,42 @@ include::checklist.adoc[]
 
 | Code includes adequate error handling.
 |
-include::checklist.adoc[]
+include::checklist.txt[]
 
 | Code includes comments where appropriate.
 |
-include::checklist.adoc[]
+include::checklist.txt[]
 
 | Code is easily readable and accessible for other developers.
 |
-include::checklist.adoc[]
+include::checklist.txt[]
 
 | Project includes a readme file that documents the tech stack and any relevant information to aid someone working with the code.
 |
-include::checklist.adoc[]
+include::checklist.txt[]
 
 | Project does not contain unnecessary code.
 |
-include::checklist.adoc[]
+include::checklist.txt[]
 
 | Code is formatted correctly.
 |
-include::checklist.adoc[]
+include::checklist.txt[]
 
 | Large files are broken down into smaller chunks where appropriate.
 |
-include::checklist.adoc[]
+include::checklist.txt[]
 
 | If the template uses assets, any required attributions are included in the template.
 |
-include::checklist.adoc[]
+include::checklist.txt[]
 
 | Template implements appropriate security measures to prevent inappropriate use.
 For example, input validation and output encoding to prevent malicious script execution from text entry fields or links.
 |
-include::checklist.adoc[]
+include::checklist.txt[]
 
 | Template does not contain any malicious code.
 |
-include::checklist.adoc[]
+include::checklist.txt[]
 |===
