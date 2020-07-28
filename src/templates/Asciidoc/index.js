@@ -8,7 +8,7 @@ import { graphql } from 'gatsby';
 import Container from '@material-ui/core/Container';
 import { useTheme } from '@material-ui/core/styles';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
-import '../styles/adoc-rocket-panda.css';
+import Content from './components/Content';
 
 const SectionLink = styled.a`
   color: #333333;
@@ -57,18 +57,6 @@ const Nav = styled.div`
   }
 `;
 
-const Content = styled.div`
-  width: ${({ style: { isMobile } }) => isMobile ? '100%' : 'calc(100% - 240px)'};
-
-  margin-bottom: 64px;
-
-  padding: 0 16px;
-  
-  img {
-    max-width: 100%;
-  }
-`;
-
 export const query = graphql`
   query($id: String!) {
     asciidoc(id: { eq: $id }) {
@@ -96,7 +84,7 @@ export const query = graphql`
   }
 `;
 
-const Article = (props) => {
+const Asciidoc = (props) => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'), { noSsr: true });
 
@@ -166,14 +154,14 @@ const Article = (props) => {
   );
 };
 
-Article.propTypes = {
+Asciidoc.propTypes = {
   currentH2: PropTypes.string,
   data: PropTypes.object,
 };
 
-Article.defaultProps = {
+Asciidoc.defaultProps = {
   currentH2: null,
   data: {},
 };
 
-export default Article;
+export default Asciidoc;
