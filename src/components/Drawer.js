@@ -9,6 +9,7 @@ const StyledDrawer = styled(Drawer)`
     margin-top: 64px;
     z-index: 0;
     width: 240px;
+    max-height: calc(100vh - 64px);
   }
 `;
 
