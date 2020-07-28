@@ -1,0 +1,11 @@
+= Overview
+:page-slug: packages-overview
+
+The following packages provide features and functionality for use in Koji templates.
+
+.Standard Koji packages
+[horizontal]
+<<withkoji-vcc-package#>> ::
++
+[.init-cap]
+include::withkojiVCC.adoc[tag=description]

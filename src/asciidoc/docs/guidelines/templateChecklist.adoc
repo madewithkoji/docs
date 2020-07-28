@@ -230,7 +230,7 @@ include::checklist.adoc[]
 |
 include::checklist.adoc[]
 
-| Template meets the <<Koji Design Guidelines>>.
+| Template meets the <<design-guidelines#>>.
 |
 include::checklist.adoc[]
 
@@ -239,7 +239,7 @@ include::checklist.adoc[]
 include::checklist.adoc[]
 
 | Template uses standard web fonts (fonts.google.com) with a default font that matches the use case.
-For examples, see the <<design-guidelines#>>.
+For examples, see the <<design-guidelines#_fonts_are_appropriate_and_convey_information>>.
 |
 include::checklist.adoc[]
 |===

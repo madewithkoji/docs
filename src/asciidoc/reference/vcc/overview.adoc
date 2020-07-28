@@ -92,7 +92,7 @@ To compose higher-order controls, you can combine VCCs into arrays or objects.
 You can also combine arrays and objects to create more elaborate controls.
 
 .Standard VCCs
-* <<image#_sample_image_vcc,Do Not Replace>> – page description here (can we do this automatically?)
+* <<image#>> – page description here (can we do this automatically?)
 * <<sound#>>
 * <<color#>>
 * <<text#>>

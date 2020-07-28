@@ -1,0 +1,90 @@
+= @withkoji/vcc
+:page-slug: withkoji-vcc-package
+:toclevels: 2
+:toc:
+
+The @withkoji/vcc package enables you to
+//tag::description[]
+implement core platform features in your Koji template, including instant remixing, Visual Customization Controls (VCCs), and the Koji feed.
+//end::description[]
+
+* Dynamically get and set custom values in Koji customization files.
+* Expose VCCs so that a user can change the customizable elements in your template.
+* Monitor changes to custom values with a watcher function.
+* Ensure the template is displayed correctly in the Koji feed.
+* Monitor and handle state transitions between in and out of focus in the Koji feed.
+
+== Install
+
+[source,bash]
+npm install --save @withkoji/vcc
+
+== Start the watcher
+
+Reconfigure the `package.json` file to run the watcher (`koji-vcc watch`) concurrently with your development server.
+You can use a package like npm-run-all.
+For example:
+
+Install npm-run-all.
+[source,bash]
+npm install --save-dev npm-run-all
+
+Modify the `package.json` file.
+[source,json]
+----
+{
+  "scripts": {
+    ...
+    "start": "npm-run-all -p watch start:server",
+    "watch": "koji-vcc watch",
+    "start:server": "node index.js" <1>
+  }
+}
+----
+<1> Replace with the "start" command for your project
+
+== `InstantRemixing`
+
+Instant remixing enables users to customize values directly from the template preview, rather than from the Koji editor, for a quick and easy way to remix without coding.
+
+IMPORTANT: To empower casual users, implementing instant remixes for your templates is strongly recommended.
+
+=== Usage
+
+Import and instantiate `InstantRemixing`.
+
+[source,javascript]
+----
+import { InstantRemixing } from '@withkoji/vcc';
+const instantRemixing = new InstantRemixing();
+----
+
+Gets initial values from Koji customization files.
+
+[source,javascript]
+const myVariable = instantRemixing.get(['scope', 'key']);
+
+=== `.onSetRemixing(handler[isRemixing, editorAttributes])`
+
+Listens to changes in remix state to enable different template experiences during remix than during preview or use.
+
+==== Parameters
+
+* `handler` – Function
+* `isRemixing` – Boolean of whether or not the app is in remixing mode.
+* `editorAttributes` – (Optional) Object containing a key type describing the type of remix experience, either `full` for the full web editor, or `instant` for instant remix experience (default).
+
+
+==== Example
+
+[source,javascript]
+----
+instantRemixing.onSetRemixing((isRemixing, editorAttributes) => {
+  //
+});
+----
+
+
+== `VccMiddleware`
+
+== `FeedSdk`
