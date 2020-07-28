@@ -134,7 +134,6 @@ const Layout = (props) => {
           href={'https://fonts.googleapis.com/icon?family=Material+Icons'}
           rel={'stylesheet'}
         />
-        <base target="_blank" />
       </Helmet>
       <ThemeProvider theme={theme}>
         <CssBaseline />
