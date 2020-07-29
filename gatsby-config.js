@@ -17,6 +17,7 @@ class TemplateConverter {
     // Convert inline_anchors to support linking to slugs
     if (node.getNodeName() === 'inline_anchor') {
       const target = node.getTarget();
+      const text = node.getText();
 
       if (!target.includes('/') && target.includes('.html')) {
         // Remove the automatically appended .html
@@ -33,7 +34,6 @@ class TemplateConverter {
         const href = newTarget.includes('#') ? `${resolvedPath}#${newTarget.split('#')[1]}` : resolvedPath;
 
         // If there is provided text, we'll use that by default
-        const text = node.getText();
         if (text) return `<a href="${href}">${text}</a>`;
 
         // If there is no default text, we'll return the target by default
@@ -41,6 +41,11 @@ class TemplateConverter {
         //
         // We'll use getTitleFromSlug to replace the innerText of the a element
         return `<a data-slug="${slug}" href="${href}">${target}</a>`;
+      }
+
+      // If the target includes the http protocol, automatically open in a new tab/window
+      if (target.includes('http')) {
+        return `<a href="${target}" target="_blank" rel="noopener noreferrer">${text}</a>`;
       }
     }
 
