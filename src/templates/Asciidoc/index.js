@@ -88,6 +88,10 @@ const Nav = styled.div`
   }
 `;
 
+const Capitalize = styled.span`
+  text-transform: capitalize;
+`;
+
 export const query = graphql`
   query($id: String!) {
     asciidoc(id: { eq: $id }) {
@@ -156,6 +160,16 @@ const Asciidoc = (props) => {
     setSections(mappedSections);
   }, []);
 
+  const renderTextFromHref = (href) => {
+    if (href[0] === '_') {
+      return (
+        <Capitalize>{href.slice(1).replace(/_/g, ' ')}</Capitalize>
+      );
+    }
+
+    return href;
+  };
+
   return (
     <StyledContainer maxWidth="lg">
       <Helmet>
@@ -178,7 +192,7 @@ const Asciidoc = (props) => {
                     href={`#${href}`}
                     key={href}
                   >
-                    {text}
+                    {renderTextFromHref(href)}
                   </SectionLink>
                 );
               }
@@ -188,7 +202,7 @@ const Asciidoc = (props) => {
                   href={`#${href}`}
                   key={href}
                 >
-                  {text}
+                  {renderTextFromHref(href)}
                 </SubSectionLink>
               );
             })
