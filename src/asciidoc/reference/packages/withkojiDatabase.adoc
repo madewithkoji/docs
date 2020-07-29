@@ -1,0 +1,55 @@
+= @withkoji/database
+:page-slug: withkoji-database-package
+
+The @withkoji/database package enables you to
+//tag::description[]
+implement a backend database for your template.
+//end::description[]
+
+=== .method(param)
+
+Description.
+
+==== Parameters
+
+* `param` – Type description.
+
+==== Returns
+
+Type description.
+
+==== Example
+
+[source,javascript]
+
+=== .method(param)
+
+Description.
+
+==== Parameters
+
+* `param` – Type description.
+
+==== Returns
+
+Type description.
+
+==== Example
+
+[source,javascript]
+
+=== .method(param)
+
+Description.
+
+==== Parameters
+
+* `param` – Type description.
+
+==== Returns
+
+Type description.
+
+==== Example
+
+[source,javascript]

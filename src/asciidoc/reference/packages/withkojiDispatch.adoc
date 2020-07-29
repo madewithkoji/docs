@@ -1,0 +1,55 @@
+= @withkoji/dispatch
+:page-slug: withkoji-dispatch-package
+
+The @withkoji/dispatch package enables you to
+//tag::description[]
+implement real-time experiences for your template.
+//end::description[]
+
+=== .method(param)
+
+Description.
+
+==== Parameters
+
+* `param` – Type description.
+
+==== Returns
+
+Type description.
+
+==== Example
+
+[source,javascript]
+
+=== .method(param)
+
+Description.
+
+==== Parameters
+
+* `param` – Type description.
+
+==== Returns
+
+Type description.
+
+==== Example
+
+[source,javascript]
+
+=== .method(param)
+
+Description.
+
+==== Parameters
+
+* `param` – Type description.
+
+==== Returns
+
+Type description.
+
+==== Example
+
+[source,javascript]

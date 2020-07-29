@@ -41,15 +41,28 @@ Modify the `package.json` file.
 ----
 <1> Replace with the "start" command for your project
 
-== `InstantRemixing`
+== InstantRemixing
 
 Instant remixing enables users to customize values directly from the template preview, rather than from the Koji editor, for a quick and easy way to remix without coding.
 
 IMPORTANT: To empower casual users, implementing instant remixes for your templates is strongly recommended.
 
-=== Usage
+To enable instant remixing for your Koji template, you must implement the `InstantRemixing` class and enable the `InstantRemixing` entitlement in the `.koji/project/entitlements.json` file.
 
-Import and instantiate `InstantRemixing`.
+[source,json]
+----
+{
+  "entitlements": {
+    "InstantRemixing": true
+  }
+}
+----
+
+=== new InstantRemixing()
+
+Instantiates `InstantRemixing`.
+
+==== Example
 
 [source,javascript]
 ----
@@ -57,21 +70,33 @@ import { InstantRemixing } from '@withkoji/vcc';
 const instantRemixing = new InstantRemixing();
 ----
 
+[role="hcode", reftext=".get"]
+=== .get(path)
+
 Gets initial values from Koji customization files.
+
+==== Parameters
+
+* `path` – Array of keys pointing to the desired VCC value.
+
+==== Returns
+
+Value of the <<vcc-overview#_vcc_types,VCC type>> at the specified path.
+
+==== Example
 
 [source,javascript]
 const myVariable = instantRemixing.get(['scope', 'key']);
 
-[#onSetRemixing()]
-=== `.onSetRemixing(handler[isRemixing, editorAttributes])`
+=== .onSetRemixing(handler[isRemixing, editorAttributes])
 
 Listens to changes in remix state to enable different template experiences during remix than during preview or use.
 
 ==== Parameters
 
-* `handler` – Function
-* `isRemixing` – Boolean of whether or not the app is in remixing mode.
-* `editorAttributes` – (Optional) Object containing a key type describing the type of remix experience, either `full` for the full web editor, or `instant` for instant remix experience (default).
+* `handler` – Function to handle changes in remix state.
+* `isRemixing` – Boolean that indicates whether the template is being remixed.
+* `editorAttributes` – (Optional) Object containing a key to describe the type of remix experience, either `full` for the Koji editor or `instant` for an instant remix (default).
 
 
 ==== Example
@@ -79,11 +104,231 @@ Listens to changes in remix state to enable different template experiences durin
 [source,javascript]
 ----
 instantRemixing.onSetRemixing((isRemixing, editorAttributes) => {
-  //
+  // Change template experience
 });
 ----
 
+=== .onValueChanged(handler[path, newValue])
 
-== `VccMiddleware`
+Listens to changes in custom values.
 
-== `FeedSdk`
+==== Parameters
+
+* `handler` – Function to handle changes to custom values.
+* `path` – Array of keys pointing to the changed VCC value.
+* `newValue` – New value of the <<vcc-overview#_vcc_types,VCC type>> at the specified path.
+
+==== Example
+
+[source,javascript]
+----
+instantRemixing.onValueChanged((path, newValue) => {
+  // Use new custom value in template
+});
+----
+
+=== .onSetActivePath(handler[path])
+
+Listens to the path of the currently active VCC control to enable a different experience when editing values (for example, highlight the active control or pause the interface).
+
+==== Parameters
+
+* `handler` – Function to handle changes to the current control.
+* `path` – Array of keys pointing to the changed VCC value.
+
+==== Example
+
+[source,javascript]
+----
+instantRemixing.onSetActivePath((path) => {
+  // Change control experience
+});
+----
+
+=== .onSetCurrentState(handler[state])
+
+Listens to the changes to the current state. If a template has more than one state, the available states are listed when remixing so the user can switch between them.
+
+States are optional and, if used, must be defined in the `.koji/customization/quickstart.json` file.
+
+[source,json]
+----
+{
+   "quickstart": {
+        "states": [
+            { "key": "choice", "label": "Choice scene" },
+            { "key": "result", "label": "Result scene" }
+        ]
+    }
+}
+----
+
+==== Parameters
+
+* `handler` – Function to handle changes to the current state.
+* `state` – String value of the current state key.
+
+==== Example
+
+[source,javascript]
+----
+instantRemixing.onSetCurrentState((state) => {
+  // Change experience per state
+});
+----
+
+=== .onPresentControl(path, position)
+
+Opens a VCC to enable editing of a custom value. For example, show the title VCC when a user taps an editable title.
+
+==== Parameters
+
+* `path` – Array of keys pointing to the VCC value.
+* `position` – (Optional) Object containing the size and position of the affected element, to keep it in the frame during editing.
+
+==== Example
+
+[source,javascript]
+----
+instantRemixing.onPresentControl(['scope', 'key']);
+
+// With optional position object
+const {
+  x,
+  y,
+  width,
+  height,
+} = e.target.getBoundingClientRect();
+this.instantRemixing.onPresentControl(['result', 'position'], {
+  position: { x, y, width, height },
+});
+----
+
+=== .onSetValue(path, newValue)
+
+Explicitly sets the value for the VCC at the specified path.
+
+==== Parameters
+
+* `path` – Array of keys pointing to the desired VCC value.
+* `newValue` – New value for the <<vcc-overview#_vcc_types,VCC type>> at the specified path.
+
+==== Example
+
+[source,javascript]
+----
+instantRemixing.onSetValue(['scope', 'key'], newValue);
+----
+
+=== .ready()
+
+Indicates that the application is ready to start receiving events.
+
+==== Example
+
+[source,javascript]
+instantRemixing.ready();
+
+== VccMiddleware
+
+This package includes an Express middleware for resolving Instant Remix VCC data for dynamic backends, as a companion to the frontend `InstantRemixing` class.
+
+To implement this middleware, add it to your server.
+
+[source,javascript]
+----
+import { VccMiddleware } from '@withkoji/vcc';
+
+const app = express();
+app.use(VccMiddleware.express);
+----
+
+To access application-specific VCC values, use `res.locals.koji`.
+
+[source,javascript]
+----
+app.get('/test', (req, res) => {
+  // res.locals.koji.scope.key
+});
+----
+
+== FeedSdk
+
+The Koji feed enables users to browse available templates, moving them from off screen or out of focus, into the main window of the feed.
+
+To ensure a template is displayed correctly in the Koji feed, you must implement the `FeedSdk` and enable the `FeedEvents` entitlement in the `.koji/project/entitlements.json` file.
+
+[source,json]
+----
+{
+  "entitlements": {
+    "FeedEvents": true
+  }
+}
+----
+
+=== new FeedSdk()
+
+Instantiates `FeedSdk`.
+
+==== Example
+
+[source,javascript]
+----
+import { FeedSdk } from '@withkoji/vcc';
+const feed = new FeedSdk();
+----
+
+=== .load()
+
+Indicates the template is ready to display and registers touch event handlers to bubble up touch events to the feed controller (if your template needs to own a gesture, see <<_requestcanceltouch>>).
+
+IMPORTANT: You must call this method when the template has loaded.
+Otherwise, the feed will display a loading state, and will eventually time out and move to the next template in the feed.
+
+==== Example
+
+[source,javascript]
+feed.load();
+
+[reftext=".onPlaybackStateChanged"]
+=== .onPlaybackStateChanged(handler[isPlaying])
+
+Monitors visibility in the Koji feed, enabling the template to play certain features when it is in focus and pause them when it isn't in focus.
+For example, play or pause audio, video, a timer, or a countdown.
+
+TIP: To test autoplaying features, you can open a published template and append `?feedDebug=true` to the URL.
+The template is loaded in the feed 10 times, and you can swipe or scroll through to ensure the features start and stop as expected.
+
+==== Parameters
+
+* `handler` – Function to handle changes to template visibility in the feed.
+* `isPlaying` – Boolean that indicates whether the template is in focus in the feed.
+
+==== Example
+
+[source,javascript]
+----
+feed.onSetRemixing((isPlaying) => {
+  // Handle autoplay features
+});
+----
+
+[reftext=".requestCancelTouch"]
+=== .requestCancelTouch()
+
+Cancels touch event handlers for the feed so that the template can use the gesture.
+If your template uses gestures, you can use this method at any time during the touch lifecycle to take control of the action.
+
+TIP: Because a feed is composed of iframes, the parent feed control can't capture touch events due to security policies.
+Therefore, the `load` method bubbles up touch events to the Koji feed controller so that users can browse templates in the feed.
+If your template also uses touch controls, you can use the `requestCancelTouch` method to ensure the template actions take precedence over the feed actions for those controls.
+
+==== Example
+
+[source,javascript]
+----
+<div
+  ontouchmove={(e) => feed.requestCancelTouch()}>
+  no touch control</div>
+----
