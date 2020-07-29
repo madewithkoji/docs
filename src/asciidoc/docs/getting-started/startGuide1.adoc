@@ -355,7 +355,7 @@ This code creates an instance of the feed and calls a load function to indicate 
 this.feed = new FeedSdk();
 this.feed.load();
 ----
-NOTE: If you plan to develop apps that autoplay when focused in the feed, you can use the `onPlaybackStateChanged` listener to monitor for real-time updates as the template enters and leaves focus in the feed, similar to how this example uses `onSetRemixing`.
+NOTE: If you plan to develop templates that autoplay when focused in the feed, you can use the `onPlaybackStateChanged` listener to monitor for real-time updates as the template enters and leaves focus in the feed, similar to how this example uses `onSetRemixing`.
 
 ## Adding entitlements for the Koji profiler
 

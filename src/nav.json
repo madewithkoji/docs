@@ -151,6 +151,18 @@
             {
               "name": "@withkoji/vcc",
               "slug": "withkoji-vcc-package"
+            },
+            {
+              "name": "@withkoji/database",
+              "slug": "withkoji-database-package"
+            },
+            {
+              "name": "@withkoji/dispatch",
+              "slug": "withkoji-dispatch-package"
+            },
+            {
+              "name": "@withkoji/custom-vcc-sdk",
+              "slug": "withkoji-custom-vcc-sdk"
             }
           ]
         },

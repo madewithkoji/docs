@@ -1,0 +1,55 @@
+= @withkoji/custom-vcc-sdk
+:page-slug: withkoji-custom-vcc-sdk
+
+The @withkoji/custom-vcc-sdk package enables you to
+//tag::description[]
+implement custom Visual Customization Controls (VCCs) for your template.
+//end::description[]
+
+=== .method(param)
+
+Description.
+
+==== Parameters
+
+* `param` – Type description.
+
+==== Returns
+
+Type description.
+
+==== Example
+
+[source,javascript]
+
+=== .method(param)
+
+Description.
+
+==== Parameters
+
+* `param` – Type description.
+
+==== Returns
+
+Type description.
+
+==== Example
+
+[source,javascript]
+
+=== .method(param)
+
+Description.
+
+==== Parameters
+
+* `param` – Type description.
+
+==== Returns
+
+Type description.
+
+==== Example
+
+[source,javascript]
