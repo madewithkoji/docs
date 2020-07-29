@@ -62,9 +62,8 @@ Gets initial values from Koji customization files.
 [source,javascript]
 const myVariable = instantRemixing.get(['scope', 'key']);
 
-=== `.onSetRemixing`
-
-==== `.onSetRemixing(handler[isRemixing, editorAttributes])`
+[#onSetRemixing()]
+=== `.onSetRemixing(handler[isRemixing, editorAttributes])`
 
 Listens to changes in remix state to enable different template experiences during remix than during preview or use.
 
