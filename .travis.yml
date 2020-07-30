@@ -20,6 +20,7 @@ deploy:
   region: "us-west-2"
   skip_cleanup: true
   local-dir: "public"
+  upload-dir: "developer"
 
 notifications:
   slack: gometa:iQkwpjzAdA8H07TsqqzoFmRM
