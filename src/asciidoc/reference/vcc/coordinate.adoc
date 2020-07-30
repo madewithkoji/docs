@@ -1,7 +1,10 @@
 = Coordinate
 :page-slug: coordinate
 
-* Specify an (x,y) coordinate pair.
+* {blank}
+//tag::description[]
+Specify an (x,y) coordinate pair.
+//end::description[]
 
 == Sample Coordinate VCC
 

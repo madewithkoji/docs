@@ -6,50 +6,99 @@ The @withkoji/custom-vcc-sdk package enables you to
 implement custom Visual Customization Controls (VCCs) for your template.
 //end::description[]
 
-=== .method(param)
+This reference provides examples for common methods.
+For more information, see the https://github.com/madewithkoji/custom-vcc-sdk[package documentation on GitHub].
 
-Description.
+== Install
 
-==== Parameters
+Install the package in your Koji project.
 
-* `param` – Type description.
+[source,bash]
+npm install --save @withkoji/custom-vcc-sdk
 
-==== Returns
+== CustomVcc
 
-Type description.
+[.hcode, id="new CustomVcc", reftext="new CustomVcc"]
+=== new CustomVcc()
 
-==== Example
-
-[source,javascript]
-
-=== .method(param)
-
-Description.
-
-==== Parameters
-
-* `param` – Type description.
-
-==== Returns
-
-Type description.
+Instantiates `CustomVcc`.
 
 ==== Example
 
 [source,javascript]
+----
+import { CustomVcc } from '@withkoji/custom-vcc-sdk';
+const customVcc = new CustomVcc();
+----
 
-=== .method(param)
+[.hcode, id=".register", reftext="register"]
+=== .register(width, height)
 
-Description.
+Indicates that the custom VCC has loaded and registers it to trigger the `on` events from the parent editor.
 
 ==== Parameters
 
-* `param` – Type description.
-
-==== Returns
-
-Type description.
+* `width` – Any, width of the custom VCC.
+* `height` – Any, height of the custom VCC.
 
 ==== Example
 
 [source,javascript]
+----
+customVcc.register('300', '300');
+----
+
+[.hcode, id=".change", reftext="change"]
+=== .change(newValue)
+
+Updates the VCC value with the user-entered value.
+
+==== Parameters
+
+* `newValue` – Any, current value of the VCC.
+
+==== Example
+
+[source,javascript]
+----
+customVcc.change(newValue);
+----
+
+[.hcode, id=".onUpdate", reftext="onUpdate"]
+=== .onUpdate(handler[newValue])
+
+Listens to changes in the custom value from the consumer application to enable updates to rendered values.
+
+TIP: It is prefereable to update the rendered value only in response to `onUpdate` events.
+Calling `change` immediately fires an `onUpdate`.
+
+==== Parameters
+
+* `handler` – Function to handle changes to the custom value.
+* `newValue` – Object containing the current state of the VCC value.
+
+==== Example
+
+[source,javascript]
+----
+customVcc.onUpdate((newValue) => {
+  // Update rendered values
+});
+----
+
+[.hcode, id=".save", reftext="save"]
+=== .save()
+
+Saves the JSON customization file in the consumer application.
+
+==== Example
+
+[source,javascript]
+----
+customVcc.save();
+----
+
+== Related Resources
+
+* https://github.com/madewithkoji/koji-custom-vcc-sdk[@withkoji/custom-vcc-sdk on Github]
+* <<build-custom-vcc#>>

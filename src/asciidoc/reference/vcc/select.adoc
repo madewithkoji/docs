@@ -1,7 +1,10 @@
 = Select
 :page-slug: select
 
-* Lets the user choose from a predefined set of options.
+* Lets the user
+//tag::description[]
+choose from a predefined set of options.
+//end::description[]
 * The `typeOptions` must be defined for this VCC to work correctly.
 
 == Sample Select VCC

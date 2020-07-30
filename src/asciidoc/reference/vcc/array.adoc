@@ -1,8 +1,9 @@
 = Array (Composition)
 :page-slug: array
 
+The array control lets you
 //tag::description[]
-The array control lets you create a list of multiple values from a single VCC definition.
+create a list of multiple values from a single VCC definition.
 //end::description[]
 
 To create an array, define the VCC type as `"type": "array<T>"` or `T[]` where `T` is a valid VCC type.

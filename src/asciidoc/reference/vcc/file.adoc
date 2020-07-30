@@ -1,7 +1,10 @@
 = File
 :page-slug: file
 
-* User can upload any file.
+* User can
+//tag::description[]
+upload any file.
+//end::description[]
 
 NOTE: For specific file types, use the associated VCC where possible. For example, see <<image#>>, <<sound#>>, <<video#>>.
 

@@ -7,6 +7,9 @@ implement real-time functionality in your Koji template.
 //end::description[]
 For example, chats, multi-player games, and polls.
 
+This reference provides examples for common methods.
+For more information, see the https://github.com/madewithkoji/koji-dispatch[package documentation on GitHub].
+
 == Install
 
 Install the package in your Koji project.
@@ -18,6 +21,7 @@ npm i --save @withkoji/dispatch
 
 == Dispatch
 
+[.hcode, id="new Dispatch", reftext="new Dispatch"]
 === new Dispatch(project)
 
 Instantiates `Dispatch`.
@@ -47,6 +51,20 @@ const dispatch = new Dispatch({
 });
 ----
 
+[.hcode, id=".latency", reftext="latency"]
+=== .latency()
+
+Checks the latency of dispatch messages.
+
+==== Returns
+
+Number, the latency of the last message in milliseconds.
+
+==== Example
+
+[source,javascript]
+const myLatency = dispatch.latency();
+
 == Utils
 
 Koji dispatch includes utility functions to help you build realtime multiplayer games and applications.
@@ -54,6 +72,7 @@ Koji dispatch includes utility functions to help you build realtime multiplayer 
 [source,javascript]
 import { Utils } from '@withkoji/dispatch';
 
+[.hcode, id=".profanity", reftext="profanity"]
 === Utils.profanity(string)
 
 Checks whether a string contains profanity.
@@ -61,47 +80,34 @@ This method can be useful for checking usernames or chat content.
 
 ==== Parameters
 
-* `string` – String description.
+* `string` – String to check.
 
 ==== Returns
 
-Boolean that indicates whether the string contains profanity.
+Boolean that indicates whether the specified string contains profanity.
 
 ==== Example
 
 [source,javascript]
+Utils.profanity('check this string');
 
-=== .method(param)
+[.hcode, id=".filterProfanity", reftext="filterProfanity"]
+=== Utils.filterProfanity(string)
 
-Description.
+Replaces profanity in a string with asterisks.
 
 ==== Parameters
 
-* `param` – Type description.
+* `string` – String to sanitize.
 
 ==== Returns
 
-Type description.
+String, replaces profanity in the specified string with asterisks.
 
 ==== Example
 
 [source,javascript]
-
-=== .method(param)
-
-Description.
-
-==== Parameters
-
-* `param` – Type description.
-
-==== Returns
-
-Type description.
-
-==== Example
-
-[source,javascript]
+Utils.filterProfanity('sanitize this string');
 
 == Related Resources
 

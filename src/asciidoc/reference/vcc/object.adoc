@@ -1,7 +1,10 @@
 = Object (Composition)
 :page-slug: object
 
-The object control lets you define an object or struct that is made up of more VCCs.
+The object control lets you
+//tag::description[]
+define an object or struct that is composed of multiple types of VCCs.
+//end::description[]
 For example, imagine if you were making a game that let users define multiple enemies.
 Each enemy might need a few pieces of metadata, like a name, image, strength level, and hitpoints.
 You can use the object type to compose a custom VCC that defines an enemy, and then optionally extend it as an array to create a list of enemies!

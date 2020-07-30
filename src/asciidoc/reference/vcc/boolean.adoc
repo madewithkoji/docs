@@ -1,7 +1,10 @@
 = Boolean
 :page-slug: boolean
 
-* Booleans are shown as a toggle that is either off (gray) or on (blue).
+* Booleans are shown as a
+//tag::description[]
+toggle that is either off (gray) or on (blue).
+//end::description[]
 
 == Sample Boolean VCC
 

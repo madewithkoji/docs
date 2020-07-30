@@ -175,24 +175,52 @@
               "slug": "vcc-overview"
             },
             {
-              "name": "3D Object",
-              "slug": "3d-object"
+              "name": "Image",
+              "slug": "image"
             },
             {
-              "name": "Array",
-              "slug": "array"
-            },
-            {
-              "name": "Boolean",
-              "slug": "boolean"
+              "name": "Sound",
+              "slug": "sound"
             },
             {
               "name": "Color",
               "slug": "color"
             },
             {
+              "name": "Text, Text Area",
+              "slug": "text"
+            },
+            {
+              "name": "Boolean",
+              "slug": "boolean"
+            },
+            {
+              "name": "Range",
+              "slug": "range"
+            },
+            {
+              "name": "Select",
+              "slug": "select"
+            },
+            {
+              "name": "Secret",
+              "slug": "secret"
+            },
+            {
+              "name": "3D Object",
+              "slug": "3d-object"
+            },
+            {
               "name": "Coordinate",
               "slug": "coordinate"
+            },
+            {
+              "name": "Size",
+              "slug": "size"
+            },
+            {
+              "name": "Video",
+              "slug": "video"
             },
             {
               "name": "File",
@@ -203,40 +231,12 @@
               "slug": "google-font"
             },
             {
-              "name": "Image",
-              "slug": "image"
+              "name": "Array",
+              "slug": "array"
             },
             {
               "name": "Object",
               "slug": "object"
-            },
-            {
-              "name": "Range",
-              "slug": "range"
-            },
-            {
-              "name": "Secret",
-              "slug": "secret"
-            },
-            {
-              "name": "Select",
-              "slug": "select"
-            },
-            {
-              "name": "Size",
-              "slug": "size"
-            },
-            {
-              "name": "Sound",
-              "slug": "sound"
-            },
-            {
-              "name": "Text",
-              "slug": "text"
-            },
-            {
-              "name": "Video",
-              "slug": "video"
             }
           ]
         }

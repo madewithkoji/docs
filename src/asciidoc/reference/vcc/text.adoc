@@ -1,7 +1,10 @@
 = Text, TextArea
 :page-slug: text
 
-* Text can be changed by clicking the input field and typing the new text.
+* {blank}
+//tag::description[]
+Text can be changed by clicking the input field and typing the new text.
+//end::description[]
 * A TextArea VCC can be used by defining a `type` of `textarea`.
 * The difference between the 'Text Area' and just 'Text' is that a text area allows line breaks within it. Text can be changed by clicking in the input field and typing the new text.
 
