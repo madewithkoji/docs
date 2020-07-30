@@ -23,3 +23,6 @@ deploy:
 
 notifications:
   slack: gometa:iQkwpjzAdA8H07TsqqzoFmRM
+  webhooks:
+    urls:
+      - https://rest.api.gokoji.com/v1/hooks/internal/purgeDocs
