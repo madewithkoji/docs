@@ -1,0 +1,25 @@
+language: node_js
+
+node_js:
+  - "12"
+
+sudo: required
+
+branches:
+  only:
+    - master
+
+script:
+  - npm run build
+
+deploy:
+  provider: s3
+  access_key_id: $ACCESSKEYID
+  secret_access_key: $SECRETACCESSKEY
+  bucket: "koji-docs"
+  region: "us-west-2"
+  skip_cleanup: true
+  local-dir: "public"
+
+notifications:
+  slack: gometa:iQkwpjzAdA8H07TsqqzoFmRM
