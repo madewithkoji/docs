@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import React, { useEffect, useRef, useState } from 'react';
 import PropTypes from 'prop-types';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -12,6 +13,18 @@ import Drawers from '../components/Drawers';
 
 const Wrapper = styled.div`
   display: flex;
+
+  a {
+    text-decoration: none;
+  }
+
+  a[target="_blank"] {
+    &:after {
+      content: url('data:image/svg+xml; utf8, <svg xmlns="http://www.w3.org/2000/svg" height="16" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0z" fill="none"/><path d="M19 19H5V5h7V3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"/></svg>');
+      position: relative;
+      top: 2px;
+    }
+  }
 `;
 
 const Layout = (props) => {
@@ -46,14 +59,14 @@ const Layout = (props) => {
   // Detect h2s on scroll
   let ticking = false;
   let elements;
-  const [currentH2, setCurrentH2] = useState(null);
+  const [currentHeader, setCurrentHeader] = useState(null);
 
   useEffect(() => {
     const onScroll = () => {
       if (!ticking) {
         window.requestAnimationFrame(() => {
           if (!elements) {
-            elements = Array.from(document.querySelectorAll('h2')).map(({ id, offsetTop }) => ({
+            elements = Array.from(document.querySelectorAll('h2,h3')).map(({ id, offsetTop }) => ({
               id,
               offsetTop,
             }));
@@ -63,13 +76,13 @@ const Layout = (props) => {
           const scrollPos = contentRef.current.scrollTop;
 
           elements.forEach(({ id, offsetTop }) => {
-            if (Math.abs(scrollPos - offsetTop) < 200) setCurrentH2(id);
+            if (Math.abs(scrollPos - offsetTop) < 200) setCurrentHeader(id);
           });
 
           if (!elements || elements.length === 0) return;
 
-          if (scrollPos + contentRef.current.offsetHeight + 32 > height) setCurrentH2(elements[elements.length - 1].id);
-          if (scrollPos < 64) setCurrentH2(elements[0].id);
+          if (scrollPos + contentRef.current.offsetHeight + 32 > height) setCurrentHeader(elements[elements.length - 1].id);
+          if (scrollPos < 64) setCurrentHeader(elements[0].id);
           ticking = false;
         });
 
@@ -136,7 +149,7 @@ const Layout = (props) => {
             navItems={navItems}
           />
           <Content
-            currentH2={currentH2}
+            currentHeader={currentHeader}
             contentRef={contentRef}
             hasDrawer={hasDrawer}
           >

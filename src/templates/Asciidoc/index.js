@@ -8,23 +8,52 @@ import { graphql } from 'gatsby';
 import Container from '@material-ui/core/Container';
 import { useTheme } from '@material-ui/core/styles';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
-import '../styles/adoc-rocket-panda.css';
+import Content from './components/Content';
 
 const SectionLink = styled.a`
   color: #333333;
+  position: relative;
 
   &:hover {
     color: #000000;
     text-decoration: none;
   }
+
   &::before {
     content: '';
     width: 8px;
     height: 8px;
     background: #666666;
-    position: relative;
+    position: absolute;
+    top: 0;
+    left: 0;
     z-index: 10000;
-    position: fixed;
+    transform: translate(-16px, 6px);
+    border-radius: 50%;
+    opacity: ${({ style: { isActive } }) => isActive ? 1 : 0};
+    transition: all 0.2s ease-in-out;
+  }
+`;
+
+const SubSectionLink = styled.a`
+  color: #333333;
+  margin-left: 16px;
+  position: relative;
+
+  &:hover {
+    color: #000000;
+    text-decoration: none;
+  }
+
+  &::before {
+    content: '';
+    width: 8px;
+    height: 8px;
+    background: #666666;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 10000;
     transform: translate(-16px, 6px);
     border-radius: 50%;
     opacity: ${({ style: { isActive } }) => isActive ? 1 : 0};
@@ -45,28 +74,22 @@ const TOC = styled.div`
 
 const Nav = styled.div`
   position: fixed;
-  top: 96px;
+  top: 72px;
   right: 16px;
-  width: 240px;
+  width: 296px;
   padding: 16px;
   display: flex;
   flex-direction: column;
+  height: calc(100vh - 108px);
+  overflow: auto;
 
   > * {
     margin-bottom: 8px;
   }
 `;
 
-const Content = styled.div`
-  width: ${({ style: { isMobile } }) => isMobile ? '100%' : 'calc(100% - 240px)'};
-
-  margin-bottom: 64px;
-
-  padding: 0 16px;
-  
-  img {
-    max-width: 100%;
-  }
+const Capitalize = styled.span`
+  text-transform: capitalize;
 `;
 
 export const query = graphql`
@@ -96,7 +119,7 @@ export const query = graphql`
   }
 `;
 
-const Article = (props) => {
+const Asciidoc = (props) => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'), { noSsr: true });
 
@@ -125,10 +148,11 @@ const Article = (props) => {
     const elem = document.createElement('html');
     elem.innerHTML = props.data.asciidoc.html;
 
-    const headers = elem.getElementsByTagName('h2');
+    const headers = elem.querySelectorAll('h2,h3');
     const mappedSections = Array.from(headers).map((header) => ({
       href: header.id,
       text: header.innerText,
+      type: header.localName,
     }));
 
     elem.remove();
@@ -136,10 +160,20 @@ const Article = (props) => {
     setSections(mappedSections);
   }, []);
 
+  const renderTextFromHref = (href) => {
+    if (href[0] === '_') {
+      return (
+        <Capitalize>{href.slice(1).replace(/_/g, ' ')}</Capitalize>
+      );
+    }
+
+    return href;
+  };
+
   return (
     <StyledContainer maxWidth="lg">
       <Helmet>
-        <title>{props.data.asciidoc.document.title}</title>
+        <title>{`${props.data.asciidoc.document.title} | Koji for Developers`}</title>
       </Helmet>
       <Content
         dangerouslySetInnerHTML={{ __html: props.data.asciidoc.html }}
@@ -150,15 +184,28 @@ const Article = (props) => {
         <Nav>
           <TOC>{'Table of Contents'}</TOC>
           {
-            sections.map(({ href, text }) => (
-              <SectionLink
-                style={{ isActive: href === props.currentH2 }}
-                href={`#${href}`}
-                key={href}
-              >
-                {text}
-              </SectionLink>
-            ))
+            sections.map(({ href, text, type }) => {
+              if (type === 'h2') {
+                return (
+                  <SectionLink
+                    style={{ isActive: href === props.currentHeader }}
+                    href={`#${href}`}
+                    key={href}
+                  >
+                    {renderTextFromHref(href)}
+                  </SectionLink>
+                );
+              }
+              return (
+                <SubSectionLink
+                  style={{ isActive: href === props.currentHeader }}
+                  href={`#${href}`}
+                  key={href}
+                >
+                  {renderTextFromHref(href)}
+                </SubSectionLink>
+              );
+            })
           }
         </Nav>
       }
@@ -166,14 +213,14 @@ const Article = (props) => {
   );
 };
 
-Article.propTypes = {
-  currentH2: PropTypes.string,
+Asciidoc.propTypes = {
+  currentHeader: PropTypes.string,
   data: PropTypes.object,
 };
 
-Article.defaultProps = {
-  currentH2: null,
+Asciidoc.defaultProps = {
+  currentHeader: null,
   data: {},
 };
 
-export default Article;
+export default Asciidoc;

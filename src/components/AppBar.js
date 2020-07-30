@@ -163,7 +163,6 @@ const AppBarComponent = (props) => {
               style={{ isMobile }}
             />
           </NavLink>
-          {props.location.pathname === '/' && <Active />}
         </NavLinkWrapper>
         {
           navItems.sort((a, b) => a.idx - b.idx).map(({ defaultPath, id, name, root }) => (
