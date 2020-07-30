@@ -1,7 +1,5 @@
 = @withkoji/vcc
 :page-slug: withkoji-vcc-package
-:toclevels: 2
-:toc:
 
 The @withkoji/vcc package enables you to
 //tag::description[]
@@ -15,6 +13,8 @@ implement core platform features in your Koji template, including instant remixi
 * Monitor and handle state transitions between in and out of focus in the Koji feed.
 
 == Install
+
+Install the package in your Koji project.
 
 [source,bash]
 npm install --save @withkoji/vcc
@@ -334,3 +334,7 @@ If your template also uses touch controls, you can use the `requestCancelTouch` 
   ontouchmove={(e) => feed.requestCancelTouch()}>
   no touch control</div>
 ----
+
+== Related Resources
+
+* https://github.com/madewithkoji/koji-vcc[@withkoji/vcc on Github]

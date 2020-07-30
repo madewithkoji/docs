@@ -61,8 +61,7 @@ const SocialSharePreview = styled.div`
 
 //tag::optimizeImage[]
 const optimizeURL = url =>
-  `${url}?fit=bounds&width=${window.innerWidth -
-    15}&height=${window.innerHeight - 15}&optimize=medium`;
+  `${url}?fit=bounds&width=${window.innerWidth - 15}&height=${window.innerHeight - 15}&optimize=medium`;
 //end::optimizeImage[]
 
 //tag::instantRemixing[]
@@ -85,25 +84,12 @@ const App = () => {
 
   //Handle value updates
   //tag::updateValues[]
-  const [magazineName, setMagazineName] = useState(
-    instantRemixing.get(["settings", "magazineName"])
-  );
-  const [coverImage, setCoverImage] = useState(
-    instantRemixing.get(["settings", "coverImage"])
-  );
-  const [bgColor, setBgColor] = useState(
-    instantRemixing.get(["settings", "bgColor"])
-  );
-  const [textOptions, setTextOptions] = useState(
-    instantRemixing.get(["settings", "textOptions"])
-  );
+  const [magazineOptions, setMagazineOptions] = useState(instantRemixing.get(['settings', 'magazineOptions']));
+  const [textOptions, setTextOptions] = useState(instantRemixing.get(['settings', 'textOptions']));
 
   useEffect(() => {
     instantRemixing.onValueChanged(([scope = "", key = ""], value) => {
-      if (scope === "settings" && key === "magazineName")
-        setMagazineName(value);
-      if (scope === "settings" && key === "coverImage") setCoverImage(value);
-      if (scope === "settings" && key === "bgColor") setBgColor(value);
+      if (scope === 'settings' && key === 'magazineOptions') setMagazineOptions(value);
       if (scope === "settings" && key === "textOptions") setTextOptions(value);
     });
   }, []);
@@ -115,7 +101,7 @@ const App = () => {
     if (e.target.closest(".text")) {
       instantRemixing.onPresentControl(["settings", "textOptions"]);
     } else {
-      instantRemixing.onPresentControl(["settings"]);
+      instantRemixing.onPresentControl(['settings', 'magazineOptions']);
     }
   };
   //end::clickHandlers[]
@@ -155,27 +141,30 @@ const App = () => {
   //tag::renderSocial[]
   if (window.location.search.includes("koji-screenshot=1")) {
     return (
-      <SocialSharePreview style={{ bgColor }}>
-        <Magazine onLoad={runSetSize} ref={magazineRef} src={magazineName} />
-        {size.height && (
-          <MagazineCover
-            style={{
-              ...size,
-              backgroundImage: optimizeURL(coverImage)
-            }}
-          >
-            <H1
-              fontSize={
-                size.height ? (textOptions.fontSize / 200) * size.height : 20
-              }
-              color={textOptions.color}
-              x={textOptions.position.x}
-              y={textOptions.position.y}
-            >
-              {textOptions.title}
-            </H1>
-          </MagazineCover>
-        )}
+      <SocialSharePreview style={{ bgColor : magazineOptions.bgColor }}>
+          <Magazine
+              onLoad={runSetSize}
+              ref={magazineRef}
+              src={magazineOptions.magazineName}
+          />
+          {
+              size.height &&
+              <MagazineCover
+                  style={{
+                      ...size,
+                      backgroundImage: optimizeURL(magazineOptions.coverImage)
+                  }}
+              >
+                  <H1
+                      fontSize={size.height ? (textOptions.fontSize / 200) * size.height : 20}
+                      color={textOptions.color}
+                      x={textOptions.position.x}
+                      y={textOptions.position.y}
+                  >
+                      {textOptions.title}
+                  </H1>
+              </MagazineCover>
+          }
       </SocialSharePreview>
     );
   }
@@ -183,28 +172,36 @@ const App = () => {
 
   return (
     //tag::renderTemplate[]
-    <Wrapper onClick={handleClick} style={{ bgColor }}>
-      <Magazine onLoad={runSetSize} ref={magazineRef} src={magazineName} />
-      {size.height && (
-        <MagazineCover
-          style={{
-            ...size,
-            backgroundImage: optimizeURL(coverImage)
-          }}
-        >
-          <H1
-            className={isRemixing ? "editable text" : "text"}
-            fontSize={
-              size.height ? (textOptions.fontSize / 200) * size.height : 20
-            }
-            color={textOptions.color}
-            x={textOptions.position.x}
-            y={textOptions.position.y}
-          >
-            {textOptions.title}
-          </H1>
-        </MagazineCover>
-      )}
+    <Wrapper
+        onClick={handleClick}
+        style={{
+            bgColor : magazineOptions.bgColor,
+        }}
+    >
+        <Magazine
+            onLoad={runSetSize}
+            ref={magazineRef}
+            src={magazineOptions.magazineName}
+        />
+        {
+            size.height &&
+            <MagazineCover
+                style={{
+                    ...size,
+                    backgroundImage: optimizeURL(magazineOptions.coverImage)
+                }}
+            >
+                <H1
+                    className={isRemixing ? 'editable text' : 'text'}
+                    fontSize={size.height ? (textOptions.fontSize / 200) * size.height : 20}
+                    color={textOptions.color}
+                    x={textOptions.position.x}
+                    y={textOptions.position.y}
+                >
+                    {textOptions.title}
+                </H1>
+            </MagazineCover>
+        }
     </Wrapper>
     //end::renderTemplate[]
   );

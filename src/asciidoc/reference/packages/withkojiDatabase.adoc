@@ -1,55 +1,110 @@
 = @withkoji/database
 :page-slug: withkoji-database-package
 
+Each Koji project includes a key-value store that you can use as a backend database for simple use cases, such as collecting information from users, aggregating survey or poll results, and creating leaderboards for games.
+
 The @withkoji/database package enables you to
 //tag::description[]
-implement a backend database for your template.
+implement a Koji database for the backend of your template.
 //end::description[]
 
-=== .method(param)
+This reference provides examples for common methods.
+For a complete list of available methods, see the https://github.com/madewithkoji/koji-database-sdk/blob/master/src/adapter/DatabaseAdapter.ts[client-side SDK source code].
 
-Description.
+== Install
 
-==== Parameters
+Install the package in the backend service of your Koji project.
 
-* `param` – Type description.
+WARNING: To maintain adequate read/write security, your template must connect to the database only from a backend route.
 
-==== Returns
+[source,bash]
+----
+cd backend
+npm install --save @withkoji/database
+----
 
-Type description.
+Your access credentials are automatically configured from environment variables.
 
-==== Example
+== Database
 
-[source,javascript]
+=== new Database()
 
-=== .method(param)
-
-Description.
-
-==== Parameters
-
-* `param` – Type description.
-
-==== Returns
-
-Type description.
+Instantiates `Database`.
 
 ==== Example
 
 [source,javascript]
+----
+import Database from '@withkoji/Database'
+const database = new Database();
+----
 
-=== .method(param)
+=== .get(collection, key)
 
-Description.
+Gets the specified value or collection of values.
 
 ==== Parameters
 
-* `param` – Type description.
+* `collection` – String, name of the collection.
+* `key` – (Optional) String, key of the specific value.
 
 ==== Returns
 
-Type description.
+(Async) Object with the requested values.
 
 ==== Example
 
 [source,javascript]
+----
+const myData = await database.get('myCollection');
+const myValue = await database.get('myCollection','myKey');
+----
+
+=== .set(collection, key, value)
+
+Adds a value to the database.
+
+==== Parameters
+
+* `collection` – String, name of the collection.
+* `key` – String, key for the value.
+* `value` – Any, value to add to the database.
+
+==== Returns
+
+(Async) Boolean that indicates whether the value was successfully added.
+
+==== Example
+
+[source,javascript]
+----
+const isAdded = await database.set('myCollection', 'myKey', 'myValue');
+----
+
+[.hcode, id="uploadFile", reftext="uploadFile"]
+=== .uploadFile(path, filename, mimetype)
+
+Uploads files to your project's CDN. For example, images, profile pictures, and audio.
+
+NOTE: The size limit for this method is 10MB per uploaded file.
+
+==== Parameters
+
+* `path` – String, path to the file.
+* `filename` – String, name for the uploaded file.
+* `mimetype` – String, content type of the file.
+
+==== Returns
+
+(Async) Unique URL on `images.koji-cdn.com` or `objects.koji-cdn.com`, depending on the type of file.
+To prevent collisions, the specified filename is automatically modified to include a random string.
+
+==== Example
+
+[source,javascript]
+const uploadedUrl = database.uploadFile(path, filename, mimetype);
+
+== Related Resources
+
+* https://github.com/madewithkoji/koji-database-sdk[@withkoji/database on Github]
+* https://www.npmjs.com/package/@withkoji/database[@withkoji/database on npm]

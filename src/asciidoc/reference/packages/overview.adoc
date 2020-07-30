@@ -9,3 +9,15 @@ The following packages provide features and functionality for use in Koji templa
 +
 [.init-cap]
 include::withkojiVCC.adoc[tag=description]
+<<withkoji-database-package#>> ::
++
+[.init-cap]
+include::withkojiDatabase.adoc[tag=description]
+<<withkoji-dispatch-package#>> ::
++
+[.init-cap]
+include::withkojiDispatch.adoc[tag=description]
+<<withkoji-custom-vcc-sdk#>> ::
++
+[.init-cap]
+include::withkojiCustomVccSdk.adoc[tag=description]
