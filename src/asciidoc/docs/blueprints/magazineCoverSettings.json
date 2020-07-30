@@ -1,8 +1,10 @@
 {
   "settings": {
-    "magazineName": "https://images.koji-cdn.com/38587b11-db1e-4e64-b099-a63e22f3666c/nfakd-2.png",
-    "coverImage": "https://images.koji-cdn.com/14c02947-0b36-4b2b-ace3-6d205bb84e3b/tl7ta-download20200602T105158.824.png",
-    "bgColor": "#f7e8a2",
+    "magazineOptions": {
+      "magazineName": "https://images.koji-cdn.com/38587b11-db1e-4e64-b099-a63e22f3666c/nfakd-2.png",
+      "coverImage": "https://images.koji-cdn.com/14c02947-0b36-4b2b-ace3-6d205bb84e3b/tl7ta-download20200602T105158.824.png",
+      "bgColor": "#f7e8a2"
+    },
     "textOptions": {
       "title": "The greatest ever...",
       "fontSize": 15,
@@ -22,40 +24,46 @@
       "source": "settings.json",
       "fields": [
         {
-          "key": "magazineName",
-          "name": "Magazine name",
-          "type": "select",
+          "key": "magazineOptions",
+          "name": "Magazine options",
+          "type": "object<MagazineOption>",
           "typeOptions": {
-            "placeholder": "Choose a magazine...",
-            "options": [
-              {
-                "value": "https://images.koji-cdn.com/5eaaf00f-c8bb-46ba-8de2-96c41a44d93a/w44bz-Cosmofix.png",
-                "label": "Cosmopolitan"
+            "MagazineOption": {
+              "magazineName": {
+                "name": "Magazine name",
+                "type": "select",
+                "typeOptions": {
+                  "placeholder": "Choose a magazine...",
+                  "options": [
+                    {
+                      "value": "https://images.koji-cdn.com/5eaaf00f-c8bb-46ba-8de2-96c41a44d93a/w44bz-Cosmofix.png",
+                      "label": "Cosmopolitan"
+                    },
+                    {
+                      "value": "https://images.koji-cdn.com/48a8b044-5695-4bf0-8726-6f6d1a09b69e/usir2-BrowserPreview_tmp.png",
+                      "label": "Forbes"
+                    },
+                    {
+                      "value": "https://images.koji-cdn.com/23ac8d20-2619-43ce-80f9-0e085e72dc8d/yznns-01.png",
+                      "label": "AARP"
+                    },
+                    {
+                      "value": "https://images.koji-cdn.com/38587b11-db1e-4e64-b099-a63e22f3666c/nfakd-2.png",
+                      "label": "GQ"
+                    }
+                  ]
+                }
               },
-              {
-                "value": "https://images.koji-cdn.com/48a8b044-5695-4bf0-8726-6f6d1a09b69e/usir2-BrowserPreview_tmp.png",
-                "label": "Forbes"
+              "coverImage": {
+                "name": "Cover image",
+                "type": "image"
               },
-              {
-                "value": "https://images.koji-cdn.com/23ac8d20-2619-43ce-80f9-0e085e72dc8d/yznns-01.png",
-                "label": "AARP"
-              },
-              {
-                "value": "https://images.koji-cdn.com/38587b11-db1e-4e64-b099-a63e22f3666c/nfakd-2.png",
-                "label": "GQ"
+              "bgColor": {
+                "name": "Background Color",
+                "type": "color"
               }
-            ]
+            }
           }
-        },
-        {
-          "key": "coverImage",
-          "name": "Cover image",
-          "type": "image"
-        },
-        {
-          "key": "bgColor",
-          "name": "Background Color",
-          "type": "color"
         },
         {
           "key": "textOptions",

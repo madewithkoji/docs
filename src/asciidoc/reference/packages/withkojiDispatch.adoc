@@ -3,20 +3,69 @@
 
 The @withkoji/dispatch package enables you to
 //tag::description[]
-implement real-time experiences for your template.
+implement real-time functionality in your Koji template.
 //end::description[]
+For example, chats, multi-player games, and polls.
 
-=== .method(param)
+== Install
 
-Description.
+Install the package in your Koji project.
+
+NOTE: You must also install the <<withkoji-vcc-package#>> package.
+
+[source,bash]
+npm i --save @withkoji/dispatch
+
+== Dispatch
+
+=== new Dispatch(project)
+
+Instantiates `Dispatch`.
 
 ==== Parameters
 
-* `param` – Type description.
+* `project` – Object containing the details of your Koji project.
+** `projectId` – String, unique identifier for your Koji project.
+You can use the <<withkoji-vcc-package#>> package to obtain this value programmatically.
+** `options` – (Optional) Object containing the configuration options for dispatch shards.
+*** `shardName` – (Optional) String, name of the specific shard to use.
+If this key is not present, the user will be placed into a shard automatically.
+*** `maxConnectionsPerShard`– (Optional) Number of users to allow on a shard before it is "full."
+When a shard is full, new users are added to a new shard unless a different shard is explicity set.
+
+==== Example
+
+[source,javascript]
+----
+import { Dispatch } from '@withkoji/dispatch';
+const dispatch = new Dispatch({
+  projectId: instantRemixing.get(['metadata', 'projectId']),
+  options: {
+    shardName: 'explicitShardName',
+    maxConnectionsPerShard: 20,
+  }
+});
+----
+
+== Utils
+
+Koji dispatch includes utility functions to help you build realtime multiplayer games and applications.
+
+[source,javascript]
+import { Utils } from '@withkoji/dispatch';
+
+=== Utils.profanity(string)
+
+Checks whether a string contains profanity.
+This method can be useful for checking usernames or chat content.
+
+==== Parameters
+
+* `string` – String description.
 
 ==== Returns
 
-Type description.
+Boolean that indicates whether the string contains profanity.
 
 ==== Example
 
@@ -53,3 +102,7 @@ Type description.
 ==== Example
 
 [source,javascript]
+
+== Related Resources
+
+* https://github.com/madewithkoji/koji-dispatch[@withkoji/dispatch on Github]
