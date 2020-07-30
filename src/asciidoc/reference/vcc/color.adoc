@@ -1,7 +1,11 @@
 = Color
 :page-slug: color
 
-* Colors can be changed by clicking the color or by pressing the 'Change' button and a color swatch will appear to choose a color.
+* Users can
+//tag::description[]
+pick a color
+//end::description[]
+by clicking the color or by clicking *Change* and a color swatch will appear to choose a color.
 
 == Sample Color VCC
 

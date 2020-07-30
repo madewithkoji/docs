@@ -60,6 +60,7 @@ To enable instant remixing for your Koji template, you must implement the `Insta
 }
 ----
 
+[.hcode, id="new InstantRemixing", reftext="new InstantRemixing"]
 === new InstantRemixing()
 
 Instantiates `InstantRemixing`.
@@ -72,7 +73,7 @@ import { InstantRemixing } from '@withkoji/vcc';
 const instantRemixing = new InstantRemixing();
 ----
 
-[role="hcode", reftext=".get"]
+[.hcode, id=".get", reftext="get"]
 === .get(path)
 
 Gets initial values from Koji customization files.
@@ -90,6 +91,7 @@ Value of the <<vcc-overview#_vcc_types,VCC type>> at the specified path.
 [source,javascript]
 const myVariable = instantRemixing.get(['scope', 'key']);
 
+[.hcode, id=".onSetRemixing", reftext="onSetRemixing"]
 === .onSetRemixing(handler[isRemixing, editorAttributes])
 
 Listens to changes in remix state to enable different template experiences during remix than during preview or use.
@@ -110,6 +112,7 @@ instantRemixing.onSetRemixing((isRemixing, editorAttributes) => {
 });
 ----
 
+[.hcode, id=".onValueChanged", reftext="onValueChanged"]
 === .onValueChanged(handler[path, newValue])
 
 Listens to changes in custom values.
@@ -129,6 +132,7 @@ instantRemixing.onValueChanged((path, newValue) => {
 });
 ----
 
+[.hcode, id=".onSetActivePath", reftext="onSetActivePath"]
 === .onSetActivePath(handler[path])
 
 Listens to the path of the currently active VCC control to enable a different experience when editing values (for example, highlight the active control or pause the interface).
@@ -147,9 +151,11 @@ instantRemixing.onSetActivePath((path) => {
 });
 ----
 
+[.hcode, id=".onSetCurrentState", reftext="onSetCurrentState"]
 === .onSetCurrentState(handler[state])
 
-Listens to the changes to the current state. If a template has more than one state, the available states are listed when remixing so the user can switch between them.
+Listens to the changes to the current state.
+If a template has more than one state, the available states are listed when remixing so the user can switch between them.
 
 States are optional and, if used, must be defined in the `.koji/customization/quickstart.json` file.
 
@@ -179,6 +185,7 @@ instantRemixing.onSetCurrentState((state) => {
 });
 ----
 
+[.hcode, id=".onPresentControl", reftext="onPresentControl"]
 === .onPresentControl(path, position)
 
 Opens a VCC to enable editing of a custom value. For example, show the title VCC when a user taps an editable title.
@@ -206,6 +213,7 @@ this.instantRemixing.onPresentControl(['result', 'position'], {
 });
 ----
 
+[.hcode, id=".onSetValue", reftext="onSetValue"]
 === .onSetValue(path, newValue)
 
 Explicitly sets the value for the VCC at the specified path.
@@ -222,6 +230,7 @@ Explicitly sets the value for the VCC at the specified path.
 instantRemixing.onSetValue(['scope', 'key'], newValue);
 ----
 
+[.hcode, id=".ready", reftext="ready"]
 === .ready()
 
 Indicates that the application is ready to start receiving events.
@@ -269,6 +278,7 @@ To ensure a template is displayed correctly in the Koji feed, you must implement
 }
 ----
 
+[.hcode, id="new FeedSdk", reftext="new FeedSdk"]
 === new FeedSdk()
 
 Instantiates `FeedSdk`.
@@ -281,6 +291,7 @@ import { FeedSdk } from '@withkoji/vcc';
 const feed = new FeedSdk();
 ----
 
+[.hcode, id=".load", reftext="load"]
 === .load()
 
 Indicates the template is ready to display and registers touch event handlers to bubble up touch events to the feed controller (if your template needs to own a gesture, see <<_requestcanceltouch>>).
@@ -293,7 +304,7 @@ Otherwise, the feed will display a loading state, and will eventually time out a
 [source,javascript]
 feed.load();
 
-[reftext=".onPlaybackStateChanged"]
+[.hcode, id=".onPlaybackStateChanged", reftext="onPlaybackStateChanged"]
 === .onPlaybackStateChanged(handler[isPlaying])
 
 Monitors visibility in the Koji feed, enabling the template to play certain features when it is in focus and pause them when it isn't in focus.
@@ -316,7 +327,7 @@ feed.onSetRemixing((isPlaying) => {
 });
 ----
 
-[reftext=".requestCancelTouch"]
+[.hcode, id=".requestCancelTouch", reftext="requestCancelTouch"]
 === .requestCancelTouch()
 
 Cancels touch event handlers for the feed so that the template can use the gesture.

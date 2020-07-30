@@ -1,7 +1,10 @@
 = Size
 :page-slug: size
 
-* Specify a (width,height) pair.
+* {blank}
+//tag::description[]
+Specify a (width,height) pair.
+//end::description[]
 
 == Sample Size VCC
 

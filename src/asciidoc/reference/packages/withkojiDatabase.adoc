@@ -27,6 +27,7 @@ Your access credentials are automatically configured from environment variables.
 
 == Database
 
+[.hcode, id="new Database", reftext="new Database"]
 === new Database()
 
 Instantiates `Database`.
@@ -39,6 +40,7 @@ import Database from '@withkoji/Database'
 const database = new Database();
 ----
 
+[.hcode, id=".get", reftext="get"]
 === .get(collection, key)
 
 Gets the specified value or collection of values.
@@ -60,6 +62,7 @@ const myData = await database.get('myCollection');
 const myValue = await database.get('myCollection','myKey');
 ----
 
+[.hcode, id=".set", reftext="set"]
 === .set(collection, key, value)
 
 Adds a value to the database.

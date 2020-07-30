@@ -1,7 +1,10 @@
 = Range
 :page-slug: range
 
-* Allows the user to drag a slider to specify a numeric value.
+* Allows the user to
+//tag::description[]
+drag a slider to specify a numeric value.
+//end::description[]
 * Can be configured with a minimum value, maximum value, and a default increment/step size.
 
 == Sample Range VCC

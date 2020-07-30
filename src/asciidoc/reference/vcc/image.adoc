@@ -1,7 +1,10 @@
 = Image
 :page-slug: image
 
-* Images can either be uploaded or obtained from a URL.
+* {blank}
+//tag::description[]
+Pick an image by selecting from the available options, uploading, or entering a URL.
+//end::description[]
 * If the image is loaded through the *Upload* section, the image can be resized or the background can be removed and the image will be stored with the application.
 * If the image is loaded through the *Advanced* section, the application will use the image at the specified URL. Keep in mind that if the link dies, the image will not appear.
 * Remember to keep images small as larger images will take much longer to load.

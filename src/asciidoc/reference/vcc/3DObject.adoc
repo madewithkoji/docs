@@ -1,7 +1,10 @@
 = 3D Object
 :page-slug: 3d-object
 
-* User can browse and import 3d OBJs from Google Poly.
+* User can
+//tag::description[]
+browse and import 3d OBJs from Google Poly.
+//end::description[]
 
 == Sample 3D Object VCC
 
