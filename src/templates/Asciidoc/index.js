@@ -157,7 +157,6 @@ const Asciidoc = (props) => {
   }, []);
 
   const renderTextFromHref = (href, text) => {
-    console.log('h', href);
     if (href[0] === '_') {
       return text;
     }
