@@ -8,8 +8,6 @@ const Container = styled.div`
   margin-top: 64px;
   margin-left: ${({ style: { hasDrawer } }) => hasDrawer ? '240px' : '0'};
   width: ${({ style: { hasDrawer } }) => hasDrawer ? 'calc(100vw - 240px)' : '100vw'};
-  height: calc(100vh - 64px);
-  overflow: auto;
 `;
 
 const Content = (props) => {
