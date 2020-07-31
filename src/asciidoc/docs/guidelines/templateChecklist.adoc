@@ -6,7 +6,7 @@ Before submitting your template to Koji, review this checklist to ensure it meet
 == Functionality
 === Remix experience and Visual Customization Controls (VCCs)
 
-[cols="8,2a",options=header]
+[cols="<.<8,2a",options=header]
 |===
 | Requirement
 | Status
