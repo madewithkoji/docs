@@ -84,7 +84,7 @@ Adds a value to the database.
 const isAdded = await database.set('myCollection', 'myKey', 'myValue');
 ----
 
-[.hcode, id="uploadFile", reftext="uploadFile"]
+[.hcode, id=".uploadFile", reftext="uploadFile"]
 === .uploadFile(path, filename, mimetype)
 
 Uploads files to your project's CDN. For example, images, profile pictures, and audio.
