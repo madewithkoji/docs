@@ -109,6 +109,6 @@ String, replaces profanity in the specified string with asterisks.
 [source,javascript]
 Utils.filterProfanity('sanitize this string');
 
-== Related Resources
+== Related resources
 
 * https://github.com/madewithkoji/koji-dispatch[@withkoji/dispatch on Github]

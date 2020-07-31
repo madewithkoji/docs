@@ -107,7 +107,7 @@ To prevent collisions, the specified filename is automatically modified to inclu
 [source,javascript]
 const uploadedUrl = database.uploadFile(path, filename, mimetype);
 
-== Related Resources
+== Related resources
 
 * https://github.com/madewithkoji/koji-database-sdk[@withkoji/database on Github]
 * https://www.npmjs.com/package/@withkoji/database[@withkoji/database on npm]

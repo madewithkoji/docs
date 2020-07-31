@@ -135,7 +135,7 @@ include::array.adoc[tag=description]
 [.init-cap]
 include::object.adoc[tag=description]
 
-== Related Resources
+== Related resources
 
 * https://withkoji.com/extensions[Custom VCCs on withkoji.com]
 * <<build-custom-vcc#>>

@@ -346,6 +346,6 @@ If your template also uses touch controls, you can use the `requestCancelTouch` 
   no touch control</div>
 ----
 
-== Related Resources
+== Related resources
 
 * https://github.com/madewithkoji/koji-vcc[@withkoji/vcc on Github]
