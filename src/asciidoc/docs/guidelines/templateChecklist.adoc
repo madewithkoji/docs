@@ -4,7 +4,7 @@
 Before submitting your template to Koji, review this checklist to ensure it meets the requirements for a complete and compelling template.
 
 == Functionality
-=== Remix Experience and Visual Customization Controls (VCCs)
+=== Remix experience and Visual Customization Controls (VCCs)
 
 [cols="8,2a",options=header]
 |===
@@ -88,7 +88,7 @@ include::../_includes/checklist.adoc[tags=*]
 include::../_includes/checklist.adoc[tags=*]
 |===
 
-=== Image Optimization
+=== Image optimization
 
 [cols="8,2a",options=header]
 |===
@@ -113,7 +113,7 @@ include::../_includes/checklist.adoc[tags=*]
 include::../_includes/checklist.adoc[tags=*]
 |===
 
-=== Device and Browser Support
+=== Device and browser support
 
 [cols="8,2a",options=header]
 |===
@@ -154,7 +154,7 @@ For example, howler.js.
 include::../_includes/checklist.adoc[tags=*]
 |===
 
-=== Sharing and Platform Information
+=== Sharing and platform information
 
 [cols="8,2a",options=header]
 |===
@@ -189,8 +189,8 @@ include::../_includes/checklist.adoc[tags=*]
 include::../_includes/checklist.adoc[tags=*]
 |===
 
-== Presentation and Usability
-=== UI Elements
+== Presentation and usability
+=== UI elements
 
 [cols="8,2a",options=header]
 |===
@@ -244,7 +244,7 @@ For examples, see the <<design-guidelines#_fonts_are_appropriate_and_convey_info
 include::../_includes/checklist.adoc[tags=*]
 |===
 
-=== Loading Indicator and Experience
+=== Loading indicator and experience
 
 [cols="8,2a",options=header]
 |===
