@@ -28,7 +28,7 @@ const IndexPage = () => (
         templates will be remixed into custom web applications and shared by millions
         of people across the world.`}
     </p>
-      <Link to={'/docs/blueprints/magazine-cover'}>
+      <Link to={'/docs/blueprints/magazine-cover-blueprint'}>
         {'Build your first template'}
       </Link>
       <br />

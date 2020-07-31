@@ -73,7 +73,7 @@ Koji dispatch includes utility functions to help you build realtime multiplayer 
 import { Utils } from '@withkoji/dispatch';
 
 [.hcode, id=".profanity", reftext="profanity"]
-=== Utils.profanity(string)
+=== .profanity(string)
 
 Checks whether a string contains profanity.
 This method can be useful for checking usernames or chat content.
@@ -92,7 +92,7 @@ Boolean that indicates whether the specified string contains profanity.
 Utils.profanity('check this string');
 
 [.hcode, id=".filterProfanity", reftext="filterProfanity"]
-=== Utils.filterProfanity(string)
+=== .filterProfanity(string)
 
 Replaces profanity in a string with asterisks.
 
