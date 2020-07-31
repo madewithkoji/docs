@@ -98,7 +98,7 @@ Saves the JSON customization file in the consumer application.
 customVcc.save();
 ----
 
-== Related Resources
+== Related resources
 
 * https://github.com/madewithkoji/koji-custom-vcc-sdk[@withkoji/custom-vcc-sdk on Github]
 * <<build-custom-vcc#>>
