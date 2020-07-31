@@ -13,6 +13,9 @@ const Content = styled.div`
 
   p, body {
     font-size: 16px !important;
+    line-height: 1.55;
+    word-spacing: 0.04em;
+    letter-spacing: 0.01em;
   }
 
   code {
@@ -33,7 +36,7 @@ const Content = styled.div`
   .admonitionblock > table td.icon { text-align: center; width: 80px; }
   .admonitionblock > table td.icon img { max-width: none; }
   .admonitionblock > table td.icon .title { font-weight: bold; text-transform: uppercase; }
-  .admonitionblock > table td.content { padding-left: 1.125em; padding-right: 1.25em; border-left: 1px solid #dddddd; color: #404040; }
+  .admonitionblock > table td.content { padding-left: 1.125em; padding-right: 1.25em; border-left: 1px solid #dddddd; color: #404040; line-height: 1.5; font-size: 15px; }
   .admonitionblock > table td.content > :last-child > :last-child { margin-bottom: 0; }
 
   .img-overview {
@@ -54,6 +57,10 @@ const Content = styled.div`
   }
 
   td.hdlist1 { padding-right: .8em; font-weight: bold; font-size: 16px;}
+
+  h1, h2, h3 {
+    margin-top: 1.9em;
+  }
 
   h1 {
     font-size: 2.125em;

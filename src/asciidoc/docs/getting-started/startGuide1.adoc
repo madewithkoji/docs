@@ -1,8 +1,6 @@
 = Developing your first Koji template
 :page-slug: start-guide-1
 
-== Summary
-
 On the Koji platform, you can develop JavaScript web applications that can be customized without coding.
 Instead, non-technical users can use Visual Customization Controls (VCCs) to quickly edit elements of the application, such as images, text, and sounds.
 
@@ -368,7 +366,7 @@ To prepare your template to be profiled correctly, you must add entitlements for
 +
 [source, JSON]
 ----
-include::entitlements.json[]
+include::../_includes/entitlements.json[]
 ----
 This code indicates that the template supports remixes and is ready to be listed in the feed.
 

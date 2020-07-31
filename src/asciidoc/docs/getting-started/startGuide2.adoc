@@ -375,7 +375,8 @@ Then, you will add features that improve the VCC usability and the loading exper
 This example uses the `width` and `height` parameters to define the size of the region where the image is displayed, the `fit` parameter to resize the image so it fits entirely within the `bounds` of the specified region, and the `optimize` parameter to compress the image size while preserving the visual quality.
 +
 [source,JavaScript]
-optimizeURL = url => `${url}?fit=bounds&width=${window.innerWidth/2}&height=${window.innerHeight/2}&optimize=medium`;
+optimizeURL = url => `${url}?fit=bounds&width=${window.innerWidth/2}&
+  height=${window.innerHeight/2}&optimize=medium`;
 . Update the `Image` element to use the optimized image.
 +
 [source,JavaScript]

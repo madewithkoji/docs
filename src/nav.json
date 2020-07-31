@@ -36,7 +36,7 @@
               "slug": "blueprints-overview"
             },
             {
-              "name": "Magazine Cover",
+              "name": "Magazine cover",
               "slug": "magazine-cover-blueprint"
             }
           ]
@@ -106,7 +106,7 @@
           "root": "/guidelines",
           "items": [
             {
-              "name": "Template quality",
+              "name": "Template quality checklist",
               "slug": "template-checklist"
             },
             {
