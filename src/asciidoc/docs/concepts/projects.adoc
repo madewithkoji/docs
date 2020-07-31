@@ -32,6 +32,7 @@ This markdown file documents the tech stack and any relevant information to aid 
 
 The `.koji` directory is where your configuration and script files live, including project configuration for development and deploy and customizations for Visual Customization Controls (VCCs).
 
+[source,console]
 ----
 .
 ├── customization
