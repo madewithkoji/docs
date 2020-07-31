@@ -1,0 +1,6 @@
+= Checklist
+
+//tag::all[]
+* [ ] Verified
+* [ ] Needs revision
+//end::all[]
