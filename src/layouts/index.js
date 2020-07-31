@@ -73,15 +73,17 @@ const Layout = (props) => {
           }
 
           const height = contentRef.current.children[0].offsetHeight;
-          const scrollPos = contentRef.current.scrollTop;
+          const scrollPos = window.scrollY;
 
           elements.forEach(({ id, offsetTop }) => {
-            if (Math.abs(scrollPos - offsetTop) < 200) setCurrentHeader(id);
+            if (Math.abs(scrollPos - offsetTop) < 200) {
+              setCurrentHeader(id);
+            }
           });
 
           if (!elements || elements.length === 0) return;
 
-          if (scrollPos + contentRef.current.offsetHeight + 32 > height) setCurrentHeader(elements[elements.length - 1].id);
+          if (scrollPos + window.innerHeight > height) setCurrentHeader(elements[elements.length - 1].id);
           if (scrollPos < 64) setCurrentHeader(elements[0].id);
           ticking = false;
         });
@@ -90,13 +92,10 @@ const Layout = (props) => {
       }
     };
 
-    if (contentRef && contentRef.current) contentRef.current.addEventListener('scroll', onScroll);
-
+    window.addEventListener('scroll', onScroll);
     return () => {
-      if (contentRef.current) {
-        contentRef.current.removeEventListener('scroll', onScroll);
-        ticking = false;
-      }
+      window.removeEventListener('scroll', onScroll);
+      ticking = false;
     };
   }, [props.location]);
 

@@ -7,9 +7,7 @@ import useMediaQuery from '@material-ui/core/useMediaQuery';
 const Container = styled.div`
   margin-top: 64px;
   margin-left: ${({ style: { hasDrawer } }) => hasDrawer ? '240px' : '0'};
-  width: ${({ style: { hasDrawer } }) => hasDrawer ? 'calc(100vw - 240px)' : '100vw'};
-  height: calc(100vh - 64px);
-  overflow: auto;
+  width: ${({ style: { hasDrawer } }) => hasDrawer ? 'calc(100vw - 256px)' : '100vw'};
 `;
 
 const Content = (props) => {
