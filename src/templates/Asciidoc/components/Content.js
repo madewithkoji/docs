@@ -43,6 +43,7 @@ const Content = styled.div`
     min-width: 350px;
     width: 35%;
     float: right;
+    padding-left: 10px;
   }
 
   .init-cap::first-letter {
