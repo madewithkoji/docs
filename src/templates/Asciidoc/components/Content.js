@@ -43,6 +43,7 @@ const Content = styled.div`
     min-width: 350px;
     width: 35%;
     float: right;
+    padding-left: 10px;
   }
 
   .init-cap::first-letter {
@@ -55,6 +56,26 @@ const Content = styled.div`
     margin-bottom: 0.2em;
     font-size: 16px;
   }
+
+  th.tableblock.halign-left, td.tableblock.halign-left { text-align: left; }
+  th.tableblock.halign-right, td.tableblock.halign-right { text-align: right; }
+  th.tableblock.halign-center, td.tableblock.halign-center { text-align: center; }
+
+  th.tableblock.valign-top, td.tableblock.valign-top { vertical-align: top; }
+  th.tableblock.valign-bottom, td.tableblock.valign-bottom { vertical-align: bottom; }
+  th.tableblock.valign-middle, td.tableblock.valign-middle { vertical-align: middle; }
+
+  ul.unstyled, ol.unnumbered, ul.checklist, ul.none { list-style-type: none; padding-left: 0;}
+  ul.unstyled, ol.unnumbered, ul.checklist { margin-left: 0.625em; }
+
+
+  ul.checklist li > p:first-child > input[type="checkbox"]:first-child { position: relative; top: 1px; }
+
+  table, td, th {
+    padding: 3px;
+  }
+
+
 
   td.hdlist1 { padding-right: .8em; font-weight: bold; font-size: 16px;}
 

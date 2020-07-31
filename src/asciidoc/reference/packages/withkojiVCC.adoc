@@ -294,7 +294,7 @@ const feed = new FeedSdk();
 [.hcode, id=".load", reftext="load"]
 === .load()
 
-Indicates the template is ready to display and registers touch event handlers to bubble up touch events to the feed controller (if your template needs to own a gesture, see <<_requestcanceltouch>>).
+Indicates the template is ready to display and registers touch event handlers to bubble up touch events to the feed controller (if your template needs to own a gesture, see <<.requestCancelTouch>>).
 
 IMPORTANT: You must call this method when the template has loaded.
 Otherwise, the feed will display a loading state, and will eventually time out and move to the next template in the feed.
