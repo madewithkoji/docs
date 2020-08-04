@@ -297,6 +297,12 @@ include::../_includes/clickCounterReact.js[tags=**;!stylesOnly]
 ----
 
 [source,javascript]
+.Vanilla JS
+----
+include::../_includes/clickCounterVanilla.js[tags=**]
+----
+
+[source,javascript]
 .DataHandler.js
 ----
 include::../_includes/db-blueprint-DataHandler.js[tags=**]
