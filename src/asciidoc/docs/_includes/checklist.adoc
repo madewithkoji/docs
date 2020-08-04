@@ -1,6 +1,7 @@
 = Checklist
 
 //tag::all[]
+[opts=interactive]
 * [ ] Verified
 * [ ] Needs revision
 //end::all[]

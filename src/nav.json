@@ -38,6 +38,10 @@
             {
               "name": "Magazine cover",
               "slug": "magazine-cover-blueprint"
+            },
+            {
+              "name": "Click counter",
+              "slug": "click-counter-blueprint"
             }
           ]
         },
