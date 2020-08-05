@@ -38,6 +38,10 @@
             {
               "name": "Magazine cover",
               "slug": "magazine-cover-blueprint"
+            },
+            {
+              "name": "Vote counter",
+              "slug": "vote-counter-blueprint"
             }
           ]
         },

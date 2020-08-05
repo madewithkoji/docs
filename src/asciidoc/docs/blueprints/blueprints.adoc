@@ -1,12 +1,11 @@
 = Overview
 :page-slug: blueprints-overview
 
-== What are blueprints?
+Blueprints are a quick way to build something cool on Koji. Each blueprint includes a simple, block-by-block guide and “as-built” code samples for a fun Koji application.
 
-Blueprints are a quick way to build something cool on Koji. Each blueprint includes a simple, block-by-block guide and an “as-built” code sample for a fun Koji application.
+Blueprints are intended for developers who prefer to jump straight to code. For a step-by-step introduction to Koji, head to the <<start-guide-1#, starter guide>>.
 
-Blueprints are intended for developers who prefer to jump straight to code. For a step-by-step intro to Koji, head to the <<start-guide-1#, starter guide>>.
+== Build your template
 
-== Build your application
-
-* <<magazine-cover-blueprint#>> - Add customizable images and text to put your own picture and headline on a magazine.
+* <<magazine-cover-blueprint#, Magazine cover>> - Put your own picture and headline on a magazine by implementing customizable images and text.
+* <<vote-counter-blueprint#, Vote counter>> – Create a multi-user, interactive vote counter by implementing a Koji database and real-time dispatch.

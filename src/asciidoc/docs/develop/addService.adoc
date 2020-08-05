@@ -122,13 +122,10 @@ This path creates a `.babelrc` file in the `backend` folder.
 +
 [source,json]
 ----
-{
-  "presets": ["@babel/preset-env"],
-  "plugins": ["@babel/plugin-proposal-object-rest-spread"]
-}
+include::../_includes/babelrc.json[]
 ----
 +
-These babel configurations add syntax that will help your project build and compile correctly.
+These Babel configurations add syntax that will help your project build and compile correctly.
 . On the left side of the editor, click the plus (*+*) next to the `backend` folder in the source code, and then enter the following path:
 +
 [source,shell]
@@ -202,30 +199,7 @@ Both files are located in the `.koji` folder of the project folder.
 +
 [source,json]
 ----
-{
-  "develop": {
-    "frontend": {
-      "path": "frontend",
-      "port": 8080,
-      "events": {
-        "started": "[webpack] Frontend server started",
-        "building": "[webpack] Frontend building",
-        "built": "Compiled successfully.",
-        "build-error": "[webpack] Frontend build error"
-      },
-      "startCommand": "npm start"
-    },
-    "backend": {
-      "path": "backend",
-      "port": 3333,
-      "startCommand": "npm run start-dev",
-      "events": {
-        "started": "[koji] backend started",
-        "log": "[koji-log]"
-      }
-    }
-  }
-}
+include::../_includes/develop.json[tags=**,indent=0]
 ----
 +
 This file lets the Koji editor know which services to run, so you must add an entry for the `backend` service.
@@ -246,28 +220,7 @@ serviceMap: {
 +
 [source,json]
 ----
-{
-  "deploy": {
-    "subdomain": ".withkoji.com",
-    "frontend": {
-      "output": "frontend/build",
-      "commands": [
-        "cd frontend",
-        "npm install",
-        "export NODE_ENV=production && npm run build"
-      ]
-    },
-    "backend": {
-      "output": "backend",
-      "type": "dynamic",
-      "commands": [
-        "cd backend",
-        "npm install",
-        "export NODE_ENV=production && npm run compile"
-      ]
-    }
-  }
-}
+include::../_includes/deploy.json[tags=**,indent=0]
 ----
 +
 This code adds the backend service to the build process.

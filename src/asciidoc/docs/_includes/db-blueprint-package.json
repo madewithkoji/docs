@@ -1,0 +1,25 @@
+
+{
+  "name": "koji-project-backend",
+  "version": "1.0.0",
+  "scripts": {
+    "compile": "babel src -d dist --copy-files --ignore \"node_modules/**/*.js\"",
+    "prestart": "koji-vcc watch &",
+    "start-dev": "koji-vcc watch & NODE_ENV=development babel-watch -L --watch ../.koji/ src/server.js",
+    "start": "NODE_ENV=production node dist/server.js"
+  },
+  "dependencies": {
+    "@withkoji/database": "^1.0.19",
+    "@withkoji/vcc": "^1.1.27",
+    "babel-polyfill": "^6.26.0",
+    "body-parser": "^1.18.3",
+    "cors": "^2.8.5",
+    "express": "4.16.3"
+  },
+  "devDependencies": {
+    "@babel/cli": "7.2.3",
+    "@babel/core": "7.2.2",
+    "@babel/preset-env": "7.3.1",
+    "babel-watch": "git+https://github.com/kmagiera/babel-watch.git"
+  }
+}

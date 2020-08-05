@@ -71,6 +71,17 @@ const Content = styled.div`
 
   ul.checklist li > p:first-child > input[type="checkbox"]:first-child { position: relative; top: 1px; }
 
+  /* Unordered Lists */
+  ul li ul, ul li ol { margin-left: 1.25em; margin-bottom: 0.625em; font-size: 16px; /* Override nested font-size change */ }
+  ul.square li ul, ul.circle li ul, ul.disc li ul { list-style: inherit; }
+  ul.square { list-style-type: square; }
+  ul.circle { list-style-type: circle; }
+  ul.disc { list-style-type: disc; }
+  ul.no-bullet { list-style: none; }
+
+  /* Ordered Lists */
+  ol li ul, ol li ol { margin-left: 1.25em; margin-bottom: 0.625em; }
+
   table, td, th {
     padding: 3px;
   }
