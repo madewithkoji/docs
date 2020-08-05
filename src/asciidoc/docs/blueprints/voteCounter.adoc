@@ -1,11 +1,11 @@
-= Click Counter Template
-:page-slug: click-counter-blueprint
+= Vote Counter Template
+:page-slug: vote-counter-blueprint
 
-Follow this blueprint to build a template that counts clicks from multiple users in real-time.
-You will implement a database to record the users and clicks and real-time dispatch to provide users with an immediate, multi-user experience.
+Follow this blueprint to build a template that counts votes from multiple users in real-time.
+You will implement a database to record the users and votes and real-time dispatch to provide users with an immediate, multi-user experience.
 Then, you will publish the template on Koji.
 
-image::click-counter.png[Make a click counter template on Koji,role="img-overview"]
+image::vote-counter.png[Make a vote counter template on Koji,role="img-overview"]
 
 === Prerequisites
 
@@ -16,7 +16,7 @@ For an overview, see the <<start-guide-1#, starter guide>>.
 * Basic understanding of backend communication and the Koji service map.
 For an overview, see <<add-service#>>.
 * Basic understanding of the Koji database.
-See the <<withkoji-database-package# package reference.
+See the <<withkoji-database-package#>> package reference.
 
 === Level
 
@@ -38,7 +38,7 @@ https://withkoji.com/~JamesHole/vanilla-js-instant-remix-scaffold[Vanilla JS sca
 
 === Add the backend service
 
-This template relies on a backend service to store the total number of clicks from different users and sessions.
+This template relies on a backend service to store the total number of votes from different users and sessions.
 
 Create a `backend` directory in the root of the project, and then create `backend/package.json` to define the dependencies for your backend service.
 
@@ -51,6 +51,7 @@ Install the dependencies.
 
 [source,bash]
 ----
+cd backend
 npm install
 ----
 
@@ -95,6 +96,7 @@ Restart your project environment to allow Koji to add the new service to the ser
 +
 NOTE: Your editor might disconnect during the reboot.
 You can reconnect when it has completed.
+You should see that a `backend` terminal has been added at the bottom.
 
 === Install the packages
 
@@ -122,7 +124,7 @@ include::../_includes/db-blueprint-DataHandler.js[tags=**;!*]
 ----
 
 Initialize `Dispatch` with the `projectId` metadata to identify your Koji application.
-Add a listener to monitor the `new_tap` event, which fires whenever a user clicks the icon.
+Add a listener to monitor the `new_tap` event, which fires whenever a user taps or clicks the icon.
 
 [source,javascript]
 ----
@@ -136,14 +138,14 @@ Periodically get the data from the backend to ensure you have the most up-to-dat
 include::../_includes/db-blueprint-DataHandler.js[tags=fetchVotes,indent=0]
 ----
 
-Submit click counts to the backend for long-term storage in the database.
+Submit vote counts to the backend for long-term storage in the database.
 
 [source,javascript]
 ----
 include::../_includes/db-blueprint-DataHandler.js[tags=submitVotes,indent=0]
 ----
 
-When a user clicks the icon, increment the counter and emit the `new_tap` event with dispatch to allow other clients to respond to the click.
+When a user taps the icon, increment the counter and emit the `new_tap` event with dispatch to allow other clients to respond to the event.
 
 [source,javascript]
 ----
@@ -163,71 +165,71 @@ Import the required libraries.
 [source,javascript]
 .React
 ----
-include::../_includes/clickCounterReact.js[tags=importPackages]
+include::../_includes/voteCounterReact.js[tags=importPackages]
 ----
 
 [source,javascript]
 .Vanilla JS
 ----
-include::../_includes/clickCounterVanilla.js[tags=importPackages]
+include::../_includes/voteCounterVanilla.js[tags=importPackages]
 ----
 
 Use `FeedSdk` to display the template in the Koji feed.
 
 [source,javascript]
 ----
-include::../_includes/clickCounterReact.js[tags=feedSdk]
+include::../_includes/voteCounterReact.js[tags=feedSdk]
 ----
 
 Initialize `DataHandler`.
 
 [source,javascript]
 ----
-include::../_includes/clickCounterReact.js[tags=initDataHandler]
+include::../_includes/voteCounterReact.js[tags=initDataHandler]
 ----
 
-Track the remix state and the number of clicks.
+Track the remix state and the number of votes.
 
 [source,javascript]
 .React
 ----
-include::../_includes/clickCounterReact.js[tags=trackState,indent=0]
+include::../_includes/voteCounterReact.js[tags=trackState,indent=0]
 ----
 
 [source,javascript]
 .Vanilla JS
 ----
-include::../_includes/clickCounterVanilla.js[tags=trackState,indent=0]
+include::../_includes/voteCounterVanilla.js[tags=trackState,indent=0]
 ----
 
-Set the callback for `DataHandler` to update the total clicks.
+Set the callback for `DataHandler` to update the total votes.
 Set instant remixing to ready to allow remixes and use FeedSdk so your application can be displayed in the Koji feed.
 
 [source,javascript]
 .React
 ----
-include::../_includes/clickCounterReact.js[tags=callDataHandler,indent=0]
+include::../_includes/voteCounterReact.js[tags=callDataHandler,indent=0]
 ----
 
 [source,javascript]
 .Vanilla JS
 ----
-include::../_includes/clickCounterVanilla.js[tags=callDataHandler,indent=0]
+include::../_includes/voteCounterVanilla.js[tags=callDataHandler,indent=0]
 ----
 
-Update the rendered output to display the current click count, and implement click events for instant remixing and for counting clicks.
+Update the rendered output to display the current vote count, and implement tap events for instant remixing and for counting votes.
 Use the `instantRemix.onPresentControl` callback to display the VCC controls when users are remixing your application.
 
 [source,javascript]
 .React
 ----
-include::../_includes/clickCounterReact.js[tags=renderTemplate,indent=0]
+include::../_includes/voteCounterReact.js[tags=renderTemplate,indent=0]
 ----
 
 [source,javascript]
 .Vanilla JS
 ----
-include::../_includes/clickCounterVanilla.js[tags=renderTemplate,indent=0]
+include::../_includes/voteCounterVanilla.js[tags=renderTemplate,indent=0]
 ----
 
 Apply conditional styling so remixers can easily tell what can be customized.
@@ -235,9 +237,9 @@ Apply conditional styling so remixers can easily tell what can be customized.
 [source,javascript]
 .React
 ----
-include::../_includes/clickCounterReact.js[tags=styles;stylesOnly,indent=0]
+include::../_includes/voteCounterReact.js[tags=styles;stylesOnly,indent=0]
 ----
-<1> Remove the `pointer-events: none;` property definition.
+NOTE: Remove the `pointer-events: none;` property definition from the `Icon` component. 
 
 [source,css]
 .Vanilla JS
@@ -263,7 +265,7 @@ include::../_includes/entitlements.json[]
 
 Use the tools in the Koji editor to test template functionality. For example:
 
-* Multi-user experience – On the *Remote* tab, use *Open in new tab* to open the application in multiple tabs and ensure the click counter remains synchronized.
+* Multi-user experience – On the *Remote* tab, use *Open in new tab* to open the application in multiple tabs and ensure the vote counter remains synchronized.
 * Template default view – *Refresh* the *Live preview* tab.
 * Conditional styling of editable elements – In the live preview, switch between *Preview* and *Editing* mode.
 * VCC targeting – In *Editing* mode, click each editable element.
@@ -283,23 +285,23 @@ When publishing is completed, click the link in the message to view your live te
 To see this blueprint as a completed template on Koji, visit the following link. From there, you can view the source code or remix the template into your own project.
 
 .React
-https://withkoji.com/~JamesHole/database-and-dispatch-template[Blueprint: Click Counter (React)]
+https://withkoji.com/~JamesHole/database-and-dispatch-template[Blueprint: Vote Counter (React)]
 
 .Vanilla JS
-https://withkoji.com/~JamesHole/database-and-dispatch-template-vanilla-js[Blueprint: Click Counter (Vanilla JS)]
+https://withkoji.com/~JamesHole/database-and-dispatch-template-vanilla-js[Blueprint: Vote Counter (Vanilla JS)]
 
 The following code is a completed sample of the template logic described in this blueprint.
 
 [source,javascript]
 .React
 ----
-include::../_includes/clickCounterReact.js[tags=**;!stylesOnly]
+include::../_includes/voteCounterReact.js[tags=**;!stylesOnly]
 ----
 
 [source,javascript]
 .Vanilla JS
 ----
-include::../_includes/clickCounterVanilla.js[tags=**]
+include::../_includes/voteCounterVanilla.js[tags=**]
 ----
 
 [source,javascript]

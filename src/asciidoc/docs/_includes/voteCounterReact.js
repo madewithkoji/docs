@@ -25,6 +25,10 @@ const Title = styled.h1`
     ${props=>props.remixing ? edit : normal};
 `;
 // end::styles[]
+// tag::stylesOnly[]
+
+...
+// end::stylesOnly[]
 
 const AppLogoSpin = keyframes`
   from {
@@ -37,10 +41,6 @@ const AppLogoSpin = keyframes`
 // tag::styles[]
 
 const Icon = styled.div`
-//end::styles[]
-// tag::stylesOnly[]
-    ... <1>
-// end::stylesOnly[]
     animation: ${AppLogoSpin} infinite 20s linear;
     height: 50vmin;
     width: 50vmin;
@@ -48,7 +48,6 @@ const Icon = styled.div`
     background-size: contain;
     background-repeat: no-repeat;
     margin-bottom: 16px;
-// tag::styles[]
     ${props=>props.remixing ? edit : normal};
     cursor: pointer;
 `;
@@ -78,6 +77,10 @@ const App = () => {
         dataHandler.setVotesCallback(setVotes);
         instantRemixing.ready();
         feed.load();
+
+        instantRemixing.onSetRemixing((isRemixing) => {
+            setRemix(isRemixing)
+        });
 // end::callDataHandler[]
 
         instantRemixing.onValueChanged(([scope = '', key = ''], value) => {
@@ -85,9 +88,6 @@ const App = () => {
             if (scope === 'images' && key === 'icon') setIcon(value);
             if (scope === 'colors' && key === 'background') setBackgroundColor(value);
             if (scope === 'colors' && key === 'text') setTextColor(value);
-        });
-        instantRemixing.onSetRemixing((isRemixing) => {
-            setRemix(isRemixing)
         });
     });
 

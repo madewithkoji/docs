@@ -40,8 +40,8 @@
               "slug": "magazine-cover-blueprint"
             },
             {
-              "name": "Click counter",
-              "slug": "click-counter-blueprint"
+              "name": "Vote counter",
+              "slug": "vote-counter-blueprint"
             }
           ]
         },

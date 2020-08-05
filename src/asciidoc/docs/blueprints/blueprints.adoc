@@ -8,4 +8,4 @@ Blueprints are intended for developers who prefer to jump straight to code. For 
 == Build your template
 
 * <<magazine-cover-blueprint#, Magazine cover>> - Put your own picture and headline on a magazine by implementing customizable images and text.
-* <<click-counter-blueprint#, Click counter>> – Create a multi-user, interactive click counter by implementing a Koji database and real-time dispatch.
+* <<vote-counter-blueprint#, Vote counter>> – Create a multi-user, interactive vote counter by implementing a Koji database and real-time dispatch.
