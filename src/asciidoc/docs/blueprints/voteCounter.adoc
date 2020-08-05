@@ -239,7 +239,7 @@ Apply conditional styling so remixers can easily tell what can be customized.
 ----
 include::../_includes/voteCounterReact.js[tags=styles;stylesOnly,indent=0]
 ----
-NOTE: Remove the `pointer-events: none;` property definition from the `Icon` component. 
+NOTE: Remove the `pointer-events: none;` property definition from the `Icon` component.
 
 [source,css]
 .Vanilla JS
@@ -273,6 +273,8 @@ The corresponding VCC should open.
 * Remix functionality – In the JSON file, switch to *Visual* view, and use VCC editor to customize values.
 The template should update immediately.
 * Template styles on another browser or device – On the *Remote* tab, copy the URL or use the QR code to open a link to the staging server.
+
+TIP: If you want to reset the counter before you publish the template, go to *Advanced > Database*, open the *votes* database view, and delete the test entries.
 
 === Publish
 
