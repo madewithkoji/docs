@@ -3,7 +3,7 @@ import Container from '@material-ui/core/Container';
 
 const FourOhFour = () => (
   <Container>
-    {'404'}
+    {'404s are not good'}
   </Container>
 );
 
