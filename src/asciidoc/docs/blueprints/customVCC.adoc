@@ -1,0 +1,208 @@
+= Custom VCC Template
+:page-slug: custom-vcc-blueprint
+
+Follow this blueprint to build a template for a custom Koji VCC to give remixes the option to select from a drop down of choices which are retrieved from a third party API.
+
+image::vote-counter.png[Make a custom VCC on Koji,role="img-overview"]
+
+=== Prerequisites
+
+* Familiarity with web development.
+React and ES6 basics are a plus.
+* Understanding of third party API usage beneficial.
+* Familiarity with the Koji remix process.
+For an overview, see the <<start-guide-1#, starter guide>>.
+* Familiarity with Koji custom VCCs is a bonus.
+For an overview, see <<build-custom-vcc#>>.
+
+=== Level
+
+* *Koji*: Intermediate – Advanced
+* *Developer*: Intermediate – Advanced
+* *Time*: 30 minutes
+
+== Building blocks
+
+=== Remix the scaffold
+
+Remix an existing web application on Koji that implements basic elements of your favorite framework.
+
+.React
+https://withkoji.com/templates/seane/simple-react-scaffold-remix-[Simple React scaffold]
+
+.Vanilla JS
+https://withkoji.com/templates/JamesHole/vanilla-js-scaffold-with-vccs[Vanilla JS scaffold]
+
+=== Install the packages
+
+Install `@withkoji/custom-vcc-sdk` to enable custom VCC functionality such as loading and saving the VCC value from Koji and install the development dependency @babel/plugin-proposal-class-properties to add support for some extra syntax to be compiled by babel.
+
+[source,bash]
+----
+npm install --save @withkoji/custom-vcc-sdk
+npm install --save-dev @babel/plugin-proposal-class-properties
+----
+
+=== Update the runtime configuration
+Add the babel plugin to the babel runtime configuration file to ensure it can use it when compiling
+
+[source,json]
+----
+include::../_includes/vcc-blueprint-babelrc.json[]
+----
+
+=== Create the customization files
+Create `.koji/customization/settings.json` to define customizable values for the API URL, and the items key and item name key from the API response.
+
+[source,json]
+----
+include::../_includes/vcc-blueprint-settings.json[tags=!configuration]
+----
+<1> Customizations will be added here in the next step
+
+Remove the unused customization files.
+
+`colors.json`, `images.json`, and `strings.json`
+
+=== Configure the API
+For this blueprint we implement https://thecatapi.com/[The Cat API] which can return a list of cat breeds but you can use any API that returns a list of items.
+
+Set the values for the API in the settings customisation file so your app can access the API.
+
+[source,json]
+----
+include::../_includes/vcc-blueprint-settings.json[tags=configuration]
+----
+
+=== Add the template logic
+Import the packages
+
+[source,javascript]
+----
+import CustomVCC from '@withkoji/custom-vcc-sdk';
+----
+
+Initialize the CustomVCC and set a listener to load the Koji theme, this allows you to style your VCC to match the current user’s theme on Koji (dark/light).
+
+.React
+[source,javascript]
+----
+include::../_includes/customVCCReact.js[tags=constructor,indent=0]
+----
+
+.Vanilla JS
+[source,javascript]
+----
+include::../_includes/customVCCVanilla.js[tags=initTheme,indent=0]
+----
+
+Register your custom VCC to connect to Koji and set a listener to update your application state when the custom VCC updates.
+
+.React
+[source,javascript]
+----
+include::../_includes/customVCCReact.js[tags=mount,indent=0]
+----
+.Vanilla JS
+[source,javascript]
+----
+include::../_includes/customVCCVanilla.js[tags=registerVCC,indent=0]
+----
+
+Make a call to the API endpoint retrieving the values needed.
+
+.React
+[source,javascript]
+----
+include::../_includes/customVCCReact.js[tags=loadAPI,indent=0]
+----
+
+.Vanilla JS
+[source,javascript]
+----
+include::../_includes/customVCCVanilla.js[tags=loadAPI,indent=0]
+----
+
+Create a setter to return the selected value from your application back to the VCC on Koji
+
+.React
+[source,javascript]
+----
+include::../_includes/customVCCReact.js[tags=selectValue,indent=0]
+----
+.Vanilla JS
+[source,javascript]
+----
+include::../_includes/customVCCVanilla.js[tags=selectValue,indent=0]
+----
+
+Using the values from the loaded Koji theme and the API results render a drop down to allow users to make the selection of the VCC value
+
+.React
+[source,javascript]
+----
+include::../_includes/customVCCReact.js[tags=render,indent=0]
+----
+
+.Vanilla JS
+[source,javascript]
+----
+include::../_includes/customVCCVanilla.js[tags=render,indent=0]
+----
+
+=== Add the styles
+Add the styles to the application loading values from the theme to make it look like a native Koji input.
+
+.React
+[source,javascript]
+----
+include::../_includes/customVCCReact.js[tags=styles,indent=0]
+----
+
+.Vanilla JS
+[source,css]
+----
+include::../_includes/vcc-blueprint-styles.css[]
+----
+
+=== Test
+
+To save development time, Koji provides an easy way to test a custom VCC before it is published. First you will need to create a test consumer project, do so by remixing https://withkoji.com/templates/seane/simple-react-scaffold-remix-[Simple React Scaffold].
+
+. In your custom VCC project, click the Remote tab in the right pane.
+. Click Copy URL to get the staging URL for your project.
+. Open your consumer project.
+. In your consumer project, open the Strings customization file, and click Code to view the raw JSON.
+. For the title field, change the type to match this format, using the URL you just copied as YOUR-URL: +
+`"type": "custom<YOUR-URL>"`
+. Save the file, and return to the Visual view of the customization file. You should see your custom VCC.
+
+=== Publish
+Custom VCCs require a custom domain to be accessible to other Koji Apps. Go to  *Advanced > Custom domains*, and add a domain under the koji-vccs.com root domain.
+
+Click Publish now and enter a Name, Description and other publish settings, as desired. Then, click Publish.
+
+After you publish your custom VCC, you can use it in a Koji template with the VCC type: +
+`"type": "custom<YOUR-DOMAIN-NAME>"`
+
+== "As Built" sample code
+To see this blueprint as a completed template on Koji, visit the following link. From there, you can view the source code or remix the template into your own project.
+
+.React
+https://withkoji.com/~JamesHole/lord-of-the-rings-films-vcc[Blueprint: Custom VCC (React)]
+
+.Vanilla JS
+https://withkoji.com/~JamesHole/cat-breed-vcc-vanilla-js[Blueprint: Custom VCC (Vanilla JS)]
+
+The following code is a completed sample of the template logic described in this blueprint.
+
+.React
+[source,javascript]
+----
+include::../_includes/customVCCReact.js[]
+----
+.Vanilla JS
+[source,javascript]
+----
+include::../_includes/customVCCVanilla.js[]
+----
