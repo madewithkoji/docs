@@ -1,5 +1,5 @@
-= Custom VCC Template
-:page-slug: custom-vcc-blueprint
+= Cat Selector VCC
+:page-slug: cat-selector-blueprint
 
 Follow this blueprint to build a template for a custom Koji VCC to give remixes the option to select from a drop down of choices which are retrieved from a third party API.
 
@@ -9,7 +9,7 @@ image::vote-counter.png[Make a custom VCC on Koji,role="img-overview"]
 
 * Familiarity with web development.
 React and ES6 basics are a plus.
-* Understanding of third party API usage beneficial.
+* Understanding of third-party API use is a plus.
 * Familiarity with the Koji remix process.
 For an overview, see the <<start-guide-1#, starter guide>>.
 * Familiarity with Koji custom VCCs is a bonus.
@@ -35,20 +35,11 @@ https://withkoji.com/templates/JamesHole/vanilla-js-scaffold-with-vccs[Vanilla J
 
 === Install the packages
 
-Install `@withkoji/custom-vcc-sdk` to enable custom VCC functionality such as loading and saving the VCC value from Koji and install the development dependency @babel/plugin-proposal-class-properties to add support for some extra syntax to be compiled by babel.
+Install @withkoji/custom-vcc-sdk to enable custom VCC functionality, such as loading and saving the VCC value from Koji.
 
 [source,bash]
 ----
 npm install --save @withkoji/custom-vcc-sdk
-npm install --save-dev @babel/plugin-proposal-class-properties
-----
-
-=== Update the runtime configuration
-Add the babel plugin to the babel runtime configuration file to ensure it can use it when compiling
-
-[source,json]
-----
-include::../_includes/vcc-blueprint-babelrc.json[]
 ----
 
 === Create the customization files

@@ -44,8 +44,8 @@
               "slug": "vote-counter-blueprint"
             },
             {
-              "name": "Custom VCC",
-              "slug": "custom-vcc-blueprint"
+              "name": "Cat Selector VCC",
+              "slug": "cat-selector-blueprint"
             }
           ]
         },

@@ -85,7 +85,7 @@ class App extends React.Component {
   // end::loadAPI[]
 
   // tag::selectValue[]
-  selectValue = (e) => {
+  selectValue(e) {
     let val = JSON.parse(e.currentTarget.value);
     this.customVCC.change(val);
     this.customVCC.save();
@@ -108,7 +108,7 @@ class App extends React.Component {
                 border={colors['border.default'] ? colors['border.default'] : ""}
                 borderFocus={colors['foreground.primary'] ? colors['foreground.primary'] : ""}
                 value={JSON.stringify(this.state.value)}
-                onChange={this.selectValue}>
+                onChange={this.selectValue.bind(this)}>
                 <option>{this.state.isLoaded ? 'Select an option...' : 'Loading options...'}</option>
                 {items.map(
                 (item, item_index) => {
