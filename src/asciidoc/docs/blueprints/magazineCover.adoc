@@ -74,16 +74,28 @@ include::../_includes/magazineCoverReact.js[tags=feedSdk]
 
 Monitor the remix state.
 
+.React
 [source,javascript]
 ----
 include::../_includes/magazineCoverReact.js[tags=monitorRemix]
 ----
+.Vanilla JS
+[source,javascript]
+----
+include::../_includes/magazineCoverVanilla.js[tags=monitorRemix]
+----
 
 Dynamically get and set custom values.
 
+.React
 [source,javascript]
 ----
 include::../_includes/magazineCoverReact.js[tags=updateValues]
+----
+.Vanilla JS
+[source,javascript]
+----
+include::../_includes/magazineCoverVanilla.js[tags=updateValues]
 ----
 
 Optimize the user's cover image.
@@ -102,31 +114,55 @@ include::../_includes/magazineCoverReact.js[tags=clickHandlers]
 
 Use dynamic sizing to support different browsers and devices.
 
+.React
 [source,javascript]
 ----
 include::../_includes/magazineCoverReact.js[tags=dynamicSizing]
 ----
+.Vanilla JS
+[source,javascript]
+----
+include::../_includes/magazineCoverVanilla.js[tags=dynamicSizing]
+----
 
 Indicate the template is ready for instant remixes and to display in the feed.
 
+.React
 [source,javascript]
 ----
 include::../_includes/magazineCoverReact.js[tags=templateReady]
+----
+.Vanilla JS
+[source,javascript]
+----
+include::../_includes/magazineCoverVanilla.js[tags=templateReady]
 ----
 
 Render the template with custom values.
 Apply conditional styling to editable elements during remix.
 
+.React
 [source,javascript]
 ----
 include::../_includes/magazineCoverReact.js[tags=renderTemplate]
 ----
+.Vanilla JS
+[source,javascript]
+----
+include::../_includes/magazineCoverVanilla.js[tags=renderTemplate]
+----
 
 Render a view to use as the rich preview image when the template is shared on social media.
 
+.React
 [source,javascript]
 ----
 include::../_includes/magazineCoverReact.js[tags=renderSocial]
+----
+.Vanilla JS
+[source,javascript]
+----
+include::../_includes/magazineCoverVanilla.js[tags=renderSocial]
 ----
 
 === Add the styles
@@ -135,9 +171,15 @@ Define styles for the template, including the headline, cover image.
 Define styles for the rich preview image.
 Remove unused styles.
 
+.React
 [source,javascript]
 ----
 include::../_includes/magazineCoverReact.js[tags=styles]
+----
+.Vanilla JS
+[source,css]
+----
+include::../_includes/magazineCoverVanilla.css[tags=styles]
 ----
 
 Add styles for editable elements during remix.
@@ -192,11 +234,25 @@ You can create a fun version for yourself and share it on your favorite site to 
 To see this blueprint as a completed template on Koji, visit the following link.
 From there, you can view the source code or remix the template into your own project.
 
+.React
 https://withkoji.com/~RachelSienko06/blueprint-magazine-cover[Blueprint: Magazine Cover]
+
+.Vanilla JS
+https://withkoji.com/~JamesHole/magazine-cover-blueprint-vanilla-js[Blueprint: Magazine Cover]
 
 The following code is a completed sample of the template logic described in this blueprint.
 
+.React
 [source,javascript]
 ----
 include::../_includes/magazineCoverReact.js[tags=**]
+----
+.Vanilla JS
+[source,javascript]
+----
+include::../_includes/magazineCoverVanilla.js[tags=**]
+----
+[source,css]
+----
+include::../_includes/magazineCoverVanilla.css[tags=**]
 ----
