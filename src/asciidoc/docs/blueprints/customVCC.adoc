@@ -120,6 +120,8 @@ include::../_includes/customVCCVanilla.js[tags=loadAPI,indent=0]
 
 Create a setter to return the selected value from your application back to the VCC on Koji.
 
+Use `customVCC.change()` to notify Koji that the VCC value has been updated and `customVCC.save()` to tell Koji to commit the change to the remixer's VCC.
+
 .React
 [source,javascript]
 ----
@@ -177,7 +179,6 @@ Custom VCCs require a custom domain to be accessible to other Koji applications.
 Go to  *Advanced > Custom domains*, and add a domain under the `koji-vccs.com` root domain.
 
 Click *Publish now* and enter a *Name*, *Description* and other publish settings, as desired.
-
 Then, click *Publish*.
 
 After you publish your custom VCC, you can use it in a Koji template with the VCC type: +
@@ -185,7 +186,6 @@ After you publish your custom VCC, you can use it in a Koji template with the VC
 
 == "As Built" sample code
 To see this blueprint as a completed template on Koji, visit the following link.
-
 From there, you can view the source code or remix the template into your own project.
 
 .React
