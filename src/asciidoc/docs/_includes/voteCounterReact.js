@@ -81,6 +81,7 @@ const App = () => {
         instantRemixing.onSetRemixing((isRemixing) => {
             setRemix(isRemixing)
         });
+    });
 // end::callDataHandler[]
 
         instantRemixing.onValueChanged(([scope = '', key = ''], value) => {
