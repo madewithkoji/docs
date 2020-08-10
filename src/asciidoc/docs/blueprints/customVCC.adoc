@@ -177,8 +177,6 @@ https://withkoji.com/templates/seane/simple-react-scaffold-remix-[Simple React S
 The type must match this format, using the URL you just copied as YOUR-URL:
 +
 `"type": "custom<YOUR-URL>"`
-. For the title field, change the type to match this format, using the URL you just copied as YOUR-URL: +
-`"type": "custom<YOUR-URL>"`
 . Save the file, and return to the Visual view of the customization file.
 You should see your custom VCC.
 
