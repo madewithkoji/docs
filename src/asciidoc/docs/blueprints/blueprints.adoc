@@ -12,4 +12,4 @@ Blueprints are intended for developers who prefer to jump straight to code. For 
 
 == Build your custom VCC
 
-* <<cat-selector-blueprint#, Cat Selector VCC>> – Create a custom Koji VCC which lets remixers choose from a list of options retrieved from a third-party API.
+* <<cat-selector-blueprint#, Cat Selector VCC>> – Create a custom Koji VCC that lets remixers choose from a list of cat breeds retrieved from a third-party API.

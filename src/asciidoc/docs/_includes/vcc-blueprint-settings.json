@@ -2,8 +2,8 @@
   "settings": {
     <1>
     // tag::configuration[]
-    "api_url": "https://the-one-api.herokuapp.com/v1/movie",
-    "items_key": "docs",
+    "api_url": "https://api.thecatapi.com/v1/breeds",
+    "items_key": "",
     "item_name_key": "name"
     // end::configuration[]
   },

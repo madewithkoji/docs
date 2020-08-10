@@ -1,11 +1,11 @@
-= Cat Selector VCC
+= Cat selector VCC
 :page-slug: cat-selector-blueprint
 
 Follow this blueprint to build a custom VCC that allows remixers to select from a drop-down list of cat breeds.
 
 You will retrieve the list from a third-party API and style the drop-down to look like a native Koji control.
 
-image::vote-counter.png[Make a custom VCC on Koji,role="img-overview"]
+image::cat-selector.png[Make a custom VCC on Koji,role="img-overview"]
 
 === Prerequisites
 
@@ -61,7 +61,7 @@ Remove the unused customization files.
 This blueprint implements https://thecatapi.com/[The Cat API] to return a list of cat breeds.
 However, you can use any API that returns a list of items to implement a custom selector.
 
-Set the values for the API in the settings customisation file so your app can access the API.
+Set the values for the API in the `settings.json` customization file so that your application can access the API.
 
 [source,json]
 ----
@@ -164,15 +164,23 @@ include::../_includes/vcc-blueprint-styles.css[]
 
 === Test
 
-To save development time, Koji provides an easy way to test a custom VCC before it is published. First you will need to create a test consumer project, do so by remixing https://withkoji.com/templates/seane/simple-react-scaffold-remix-[Simple React Scaffold].
+To save development time, Koji provides an easy way to test a custom VCC before it is published.
 
-. In your custom VCC project, click the Remote tab in the right pane.
-. Click Copy URL to get the staging URL for your project.
-. Open your consumer project.
-. In your consumer project, open the Strings customization file, and click Code to view the raw JSON.
+. In your custom VCC project, click the *Remote* tab in the right pane.
+. Click *Copy URL* to get the staging URL for your project.
+. Open another project to act as the "consumer" for testing the VCC.
++
+TIP: If you don't have another project, you can create a test project by remixing the
+https://withkoji.com/templates/seane/simple-react-scaffold-remix-[Simple React Scaffold].
+. In your consumer project, open a JSON customization file, and add or edit a field to the custom VCC.
++
+The type must match this format, using the URL you just copied as YOUR-URL:
++
+`"type": "custom<YOUR-URL>"`
 . For the title field, change the type to match this format, using the URL you just copied as YOUR-URL: +
 `"type": "custom<YOUR-URL>"`
-. Save the file, and return to the Visual view of the customization file. You should see your custom VCC.
+. Save the file, and return to the Visual view of the customization file.
+You should see your custom VCC.
 
 === Publish
 Custom VCCs require a custom domain to be accessible to other Koji applications.
