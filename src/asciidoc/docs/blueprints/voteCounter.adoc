@@ -40,7 +40,10 @@ https://withkoji.com/~JamesHole/vanilla-js-instant-remix-scaffold[Vanilla JS sca
 
 This template relies on a backend service to store the total number of votes from different users and sessions.
 
-Create a `backend` directory in the root of the project, and then create `backend/package.json` to define the dependencies for your backend service.
+Create `backend/package.json` to define the dependencies for your backend service.
+
+TIP: Click the plus (*+*) next to any folder in the source code, and enter the full path: `backend/package.json`.
+This path creates a `backend` directory and a `package.json` file in it.
 
 [source,json]
 ----
