@@ -1,4 +1,4 @@
-= Magazine Cover Template
+= Magazine cover template
 :page-slug: magazine-cover-blueprint
 
 Follow this blueprint to build a template for your own picture and headline on a magazine cover.

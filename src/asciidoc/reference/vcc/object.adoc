@@ -1,4 +1,4 @@
-= Object (Composition)
+= Object (composition)
 :page-slug: object
 
 The object control lets you

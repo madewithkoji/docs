@@ -1,4 +1,4 @@
-= Publishing the Project You Developed Locally
+= Publishing a project you developed locally
 :page-slug: publish-locally-developed
 
 Although Koji provides a feature-rich online project editor, you might prefer to use your own suite of development tools in some cases.
