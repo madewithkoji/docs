@@ -1,4 +1,4 @@
-= Vote Counter Template
+= Vote counter template
 :page-slug: vote-counter-blueprint
 
 Follow this blueprint to build a template that counts votes from multiple users in real-time.

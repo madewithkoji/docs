@@ -1,4 +1,4 @@
-= Template Submission Requirements Checklist
+= Template requirements checklist
 :page-slug: template-checklist
 
 Before submitting your template to Koji, review this checklist to ensure it meets the requirements for a complete and compelling template.

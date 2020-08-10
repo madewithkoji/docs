@@ -1,4 +1,4 @@
-= Working Locally
+= Working locally
 :page-slug: work-locally
 
 Although Koji provides a feature-rich online project editor, you might prefer to use your own suite of development tools in some cases.
