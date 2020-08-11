@@ -1,0 +1,56 @@
+= Supporting rich previews
+:page-slug: rich-preview-image
+
+When users share a remix of your template on social media, Koji renders a rich preview (Open Graph) image based on a screenshot of the template.
+By default, Koji takes a screenshot of the initial view when the template is loaded.
+However, the initial view might not be the best preview image for your template.
+For example, if a game template starts with an instruction screen, a screenshot of the first level might provide a better preview image.
+
+== Customizing the sharing image
+
+To improve the sharing experience, you can render a custom view of your template that is designed specifically to make an impression when sharing a remix.
+You must render this view when the URL contains the `koji-screenshot=1` query parameter.
+For optimal rich preview support, design your view to be responsive and to look good with a square aspect ratio.
+
+image:Koji-screenshot=1.svg[Render a view for the rich preview image,title="Rich preview image for social sharing"]
+
+To control the view for rich previews when sharing to social media:
+
+. In your main application code, add a conditional statement to the `render` function that displays a different image for social shares.
++
+[source,JavaScript]
+.React
+----
+render() {
+  if (window.location.search.includes('koji-screenshot=1')) {
+    return (
+      <SocialSharePreview>
+          <H1
+          fontSize={this.state.titleOptions.fontSize}
+          >{this.state.titleOptions.title}</H1>
+          <Image src={this.optimizeURL(this.state.logo)} />
+        </SocialSharePreview>
+    );
+  }
+  ...
+}
+----
+. Define appropriate styles for the rich preview image.
++
+To display correctly, design a responsive square for the rich preview image.
++
+[source,JavaScript]
+.React
+----
+const SocialSharePreview = styled.div`
+  background-color: #395b88;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  text-align: center;
+  color: #fcfcfc;
+`;
+----
+. Test the preview image by opening your staging link and appending `?koji-screenshot=1` to the URL.
