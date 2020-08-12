@@ -106,6 +106,10 @@
             {
               "name": "Publish local projects",
               "slug": "publish-locally-developed"
+            },
+            {
+              "name": "Support rich previews",
+              "slug": "rich-preview-image"
             }
           ]
         },

@@ -3,18 +3,31 @@
 
 When users share a remix of your template on social media, Koji renders a rich preview (Open Graph) image based on a screenshot of the template.
 By default, Koji takes a screenshot of the initial view when the template is loaded.
-However, the initial view might not be the best preview image for your template.
+
+In some cases, the initial view might not be the best preview image for your template.
 For example, if a game template starts with an instruction screen, a screenshot of the first level might provide a better preview image.
+To improve the sharing experience in these cases, you can render a custom view of your template that is designed specifically to make an impression when sharing a remix.
 
 == Customizing the sharing image
 
-To improve the sharing experience, you can render a custom view of your template that is designed specifically to make an impression when sharing a remix.
-You must render this view when the URL contains the `koji-screenshot=1` query parameter.
-For optimal rich preview support, design your view to be responsive and to look good with a square aspect ratio.
+To customize the sharing image for your template, render a custom view when the URL contains the `koji-screenshot=1` query parameter.
+For optimal rich preview support, design this view with the following considerations in mind.
+
+* Responsiveness.
+* Looks good with a square aspect ratio.
+* Includes customizable elements to generate unique previews of each remix.
 
 image:Koji-screenshot=1.svg[Render a view for the rich preview image,title="Rich preview image for social sharing"]
 
-To control the view for rich previews when sharing to social media:
+For the following example, assume the application supports remixes of the title, font size, and logo.
+
+[TIP]
+====
+To build a simple application with these features, you can follow these starter guides:
+
+* <<start-guide-1#>>
+* <<start-guide-2#>>
+====
 
 . In your main application code, add a conditional statement to the `render` function that displays a different image for social shares.
 +
@@ -44,6 +57,7 @@ To display correctly, design a responsive square for the rich preview image.
 ----
 const SocialSharePreview = styled.div`
   background-color: #395b88;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -53,4 +67,4 @@ const SocialSharePreview = styled.div`
   color: #fcfcfc;
 `;
 ----
-. Test the preview image by opening your staging link and appending `?koji-screenshot=1` to the URL.
+. To test the preview image, open your staging link and append `?koji-screenshot=1` to the URL.
