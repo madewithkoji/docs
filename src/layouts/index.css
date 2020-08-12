@@ -1,0 +1,4 @@
+html {
+  scroll-padding-top: 72px;
+  scroll-behavior: smooth;
+}
