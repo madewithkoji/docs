@@ -10,6 +10,7 @@ import theme from '../theme';
 import AppBar from '../components/AppBar';
 import Content from '../components/Content';
 import Drawers from '../components/Drawers';
+import './index.css';
 
 const Wrapper = styled.div`
   display: flex;
