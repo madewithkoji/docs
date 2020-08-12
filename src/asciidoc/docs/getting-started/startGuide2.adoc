@@ -4,7 +4,7 @@
 In the first starter guide, you learned how to add basic customizable elements to a web application on Koji and then publish it as a Koji template.
 In this starter guide, part 2, you will continue working on the project that you created in the previous guide, and learn how to add the features required for a complete and compelling Koji template.
 
-You will add support for rich previews when sharing to social media, use states to expose multiple parts of the template at different times during the remix experience, and react to state changes in the Koji feed.
+You will use states to expose multiple parts of the template at different times during the remix experience and react to state changes in the Koji feed.
 You will also implement good practices for the remix experience, including image optimization, improvements to remix usability, and loading experience enhancements.
 Then, you will publish the updated version of your template.
 
@@ -12,59 +12,6 @@ Then, you will publish the updated version of your template.
 
 * Complete the <<start-guide-1#, starter guide>>.
 * Open your project from the starter guide in the Koji editor.
-
-== Supporting rich previews
-
-When users share a remix of your template on social media, Koji renders a rich preview (Open Graph) image based on a screenshot of the template.
-To improve the sharing experience, you can control how this image is displayed.
-For example, you can generate a dynamic image based on the remix content, and you can render a unique view that is designed specifically to make an impression when sharing a remix.
-
-In this example, you will configure a rich preview image that matches the dimensions required for Koji, and render it when the URL contains the `koji-screenshot=1` query parameter.
-Koji uses a screenshot of this page as the preview image when sharing the template.
-
-image:Koji-screenshot=1.png[Dimensions and position of the rich preview image,title="Rich preview image for social sharing"]
-
-. In the `App.js` file, add a conditional statement to the `render` function that displays a different image for social shares.
-+
-[source,JavaScript]
-----
-render() {
-  if (window.location.search.includes('koji-screenshot=1')) {
-    return (
-      <SocialSharePreview>
-        <h1>{this.state.title}</h1>
-        <Image src={'https://images.koji-cdn.com/d9c6b38e-08c4-4faf-ae8e-01082c41a0fb/3f83q-9634d620e97345a6b250ca2feb7e5a2e.png'} />
-      </SocialSharePreview>
-    );
-  }
-  ...
-}
-----
-. Create a `SocialSharePreview` styled component that matches the
-dimensions Koji requires for the rich preview image.
-+
-To display correctly, the image dimensions must be 1200x630 and the
-`div` should use an absolute position in the top left of the window.
-+
-[source,JavaScript]
-----
-const SocialSharePreview = styled.div`
-  background-color: #395b88;
-  height: 630px;
-  width: 1200px;
-  position: absolute;
-  top: 0;
-  left: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  text-align: center;
-  color: #fcfcfc;
-`;
-----
-NOTE: You can test the preview image by opening your staging link and appending `?koji-screenshot=1` to the URL.
 
 == Using states in the instant remix experience
 
@@ -167,17 +114,6 @@ class App extends React.Component {
   };
 
   render() {
-    if (window.location.search.includes('koji-screenshot=1')) {
-      return (
-        <SocialSharePreview>
-          <h1>
-            {this.state.title}
-          </h1>
-          <Image src={this.state.logo} />
-        </SocialSharePreview>
-      );
-    }
-
     return (
       <Container>
         <h1
@@ -264,17 +200,6 @@ handleLogoClick = () => {
 };
 
 render() {
-  if (window.location.search.includes('koji-screenshot=1')) {
-    return (
-      <SocialSharePreview>
-        <h1>
-          {this.state.title}
-        </h1>
-        <Image src={this.state.logo} />
-      </SocialSharePreview>
-    );
-  }
-
   return (
     <Container>
       <h1
@@ -382,17 +307,6 @@ optimizeURL = url => `${url}?fit=bounds&width=${window.innerWidth/2}&
 [source,JavaScript]
 ----
 render() {
-   if (window.location.search.includes('koji-screenshot=1')) {
-   return (
-     <SocialSharePreview>
-       <h1>
-       {this.state.title}
-       </h1>
-       <Image
-       src={this.optimizeURL(this.state.logo)} />
-     </SocialSharePreview>
-   );
- }
    return (
      <Container className={this.state.isPlaying ? 'animate-example' : ''} >
        <h1
@@ -640,16 +554,6 @@ import Fade from 'react-reveal/Fade';
 [source,JavaScript]
 ----
 render() {
-    if (window.location.search.includes('koji-screenshot=1')) {
-      return (
-        <SocialSharePreview>
-          <H1
-          fontSize={this.state.titleOptions.fontSize}
-          >{this.state.titleOptions.title}</H1>
-          <Image src={this.optimizeURL(this.state.logo)} />
-        </SocialSharePreview>
-      );
-    }
     if (this.state.imagesLoaded){
     return (
       <Container className={this.state.isPlaying ? 'animate-example' : ''}>

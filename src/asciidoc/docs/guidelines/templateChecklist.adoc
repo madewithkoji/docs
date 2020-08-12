@@ -174,7 +174,7 @@ To test feed events, append `?feedDebug=true` to the URL, which loads the templa
 |
 include::../_includes/checklist.adoc[tags=*]
 
-| Template renders a preview page of size 1200x630, positioned relative to the top left of the window, when visited with a query parameter of `koji-screenshot=1`.
+| If the default view does not represent the functionality well, template renders a custom preview page with a responsive, square aspect ratio when visited with a query parameter of `koji-screenshot=1`.
 Koji uses a screenshot of this page as the preview image when users share their posts on social media.
 |
 include::../_includes/checklist.adoc[tags=*]

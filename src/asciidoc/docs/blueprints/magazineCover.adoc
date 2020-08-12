@@ -122,17 +122,9 @@ Apply conditional styling to editable elements during remix.
 include::../_includes/magazineCoverReact.js[tags=renderTemplate]
 ----
 
-Render a view to use as the rich preview image when the template is shared on social media.
-
-[source,javascript]
-----
-include::../_includes/magazineCoverReact.js[tags=renderSocial]
-----
-
 === Add the styles
 
 Define styles for the template, including the headline, cover image.
-Define styles for the rich preview image.
 Remove unused styles.
 
 [source,javascript]

@@ -59,22 +59,6 @@ const render = () => {
 };
 // end::renderTemplate[]
 
-// Render the social share preview
-const socialShareRender = () => {
-    document.body.innerHTML = `
-        <div id="socialSharePreview">
-            <h1 style="font-size:${titleSize}px" id="title">${title}</h1>
-            <img id="logo" src="${optimizeURL(logo)}"/>
-        </div>`;
-}
-
-// Preload the app or render social share
-if (window.location.search.includes('koji-screenshot=1')) {
-    socialShareRender();
-} else {
-    preload();
-}
-
 // Inform Koji Feed that the app is ready to be displayed
 const feed = new FeedSdk();
 // tag::callDataHandler[]
