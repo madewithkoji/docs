@@ -13,13 +13,14 @@ instantRemixing.onSetRemixing(isNowRemixing => {
 //end::monitorRemix[]
 
 //tag::updateValues[]
-const magazineOptions = instantRemixing.get(['settings', 'magazineOptions']);
-const textOptions = instantRemixing.get(['settings', 'textOptions']);
+var magazineOptions = instantRemixing.get(['settings', 'magazineOptions']);
+var textOptions = instantRemixing.get(['settings', 'textOptions']);
 
 // Set values on remix
 instantRemixing.onValueChanged(([scope = "", key = ""], value) => {
     if (scope === 'settings' && key === 'magazineOptions') magazineOptions = value;
     if (scope === "settings" && key === "textOptions") textOptions = value;
+    render();
 });
 //end::updateValues[]
 
@@ -77,11 +78,8 @@ const render = () => {
         top: ${textOptions.position.y}%;
         left: ${textOptions.position.x}%;
     `;
-    //tag::renderSocial[]
-    let richPreview = window.location.search.includes("koji-screenshot=1");
     document.body.innerHTML = `
-        <div id="wrapper" class="${richPreview ? 'socialSharePreview' : ''}">
-        //end::renderSocial[]
+        <div id="wrapper">
             <img id="magazine" src="${magazineOptions.magazineName}"/>
             <div id="magazineCover" style="${coverStyles}">
                 <div id="title" class="${isRemixing ? 'editable ': ''}text" style="${titleStyles}">

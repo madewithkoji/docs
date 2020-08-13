@@ -70,14 +70,6 @@ div#title {
   cursor: default;
 }
 
-div#wrapper.socialSharePreview {
-  height: 630px;
-  width: 1200px;
-  position: absolute;
-  top: 0;
-  left: 0;
-}
-
 .editable {
   border: 2px dashed grey;
 }

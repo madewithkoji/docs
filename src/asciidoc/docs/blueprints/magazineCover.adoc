@@ -25,7 +25,11 @@ For an overview, see the <<start-guide-1#, starter guide>>.
 
 Remix an existing web application on Koji that implements basic elements of your favorite framework.
 
-link:++https://withkoji.com/~seane/simple-react-scaffold++[https://withkoji.com/~seane/simple-react-scaffold]
+.React
+https://withkoji.com/templates/seane/simple-react-scaffold-remix-[Simple React scaffold]
+
+.Vanilla JS
+https://withkoji.com/templates/JamesHole/vanilla-js-scaffold[Vanilla JS scaffold]
 
 === Install the packages
 
