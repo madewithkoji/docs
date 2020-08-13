@@ -102,3 +102,4 @@ customVcc.save();
 
 * https://github.com/madewithkoji/koji-custom-vcc-sdk[@withkoji/custom-vcc-sdk on Github]
 * <<build-custom-vcc#>>
+* <<cat-selector-blueprint#, Blueprint: Custom VCC>>

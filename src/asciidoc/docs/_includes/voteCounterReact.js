@@ -81,8 +81,9 @@ const App = () => {
         instantRemixing.onSetRemixing((isRemixing) => {
             setRemix(isRemixing)
         });
+    });
 // end::callDataHandler[]
-
+    useEffect(() => {
         instantRemixing.onValueChanged(([scope = '', key = ''], value) => {
             if (scope === 'strings' && key === 'title') setTitle(value);
             if (scope === 'images' && key === 'icon') setIcon(value);

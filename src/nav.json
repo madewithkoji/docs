@@ -42,6 +42,10 @@
             {
               "name": "Vote counter",
               "slug": "vote-counter-blueprint"
+            },
+            {
+              "name": "Cat selector VCC",
+              "slug": "cat-selector-blueprint"
             }
           ]
         },
@@ -102,6 +106,10 @@
             {
               "name": "Publish local projects",
               "slug": "publish-locally-developed"
+            },
+            {
+              "name": "Support rich previews",
+              "slug": "rich-preview-image"
             }
           ]
         },

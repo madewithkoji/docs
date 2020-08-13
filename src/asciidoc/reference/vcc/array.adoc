@@ -1,4 +1,4 @@
-= Array (Composition)
+= Array (composition)
 :page-slug: array
 
 The array control lets you

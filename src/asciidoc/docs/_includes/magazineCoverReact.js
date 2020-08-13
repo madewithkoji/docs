@@ -43,20 +43,6 @@ const H1 = styled.div`
   max-width: 35%;
   cursor: default;
 `;
-
-const SocialSharePreview = styled.div`
-  background-color: ${({ style: { bgColor } }) => bgColor};
-  height: 630px;
-  width: 1200px;
-  position: absolute;
-  top: 0;
-  left: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-`;
 //end::styles[]
 
 //tag::optimizeImage[]
@@ -137,38 +123,6 @@ const App = () => {
     feed.load();
   }, []);
   //end::templateReady[]
-
-  //tag::renderSocial[]
-  if (window.location.search.includes("koji-screenshot=1")) {
-    return (
-      <SocialSharePreview style={{ bgColor : magazineOptions.bgColor }}>
-          <Magazine
-              onLoad={runSetSize}
-              ref={magazineRef}
-              src={magazineOptions.magazineName}
-          />
-          {
-              size.height &&
-              <MagazineCover
-                  style={{
-                      ...size,
-                      backgroundImage: optimizeURL(magazineOptions.coverImage)
-                  }}
-              >
-                  <H1
-                      fontSize={size.height ? (textOptions.fontSize / 200) * size.height : 20}
-                      color={textOptions.color}
-                      x={textOptions.position.x}
-                      y={textOptions.position.y}
-                  >
-                      {textOptions.title}
-                  </H1>
-              </MagazineCover>
-          }
-      </SocialSharePreview>
-    );
-  }
-  //end::renderSocial[]
 
   return (
     //tag::renderTemplate[]

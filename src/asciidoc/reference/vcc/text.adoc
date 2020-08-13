@@ -1,4 +1,4 @@
-= Text, TextArea
+= Text, textarea
 :page-slug: text
 
 * {blank}

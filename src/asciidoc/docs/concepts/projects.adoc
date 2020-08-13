@@ -1,4 +1,4 @@
-= Anatomy of a Koji Project
+= Anatomy of a Koji project
 :page-slug: projects
 
 Koji provides you with an environment for developing and publishing an application in your browser.
