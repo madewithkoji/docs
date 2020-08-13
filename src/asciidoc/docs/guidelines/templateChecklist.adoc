@@ -52,11 +52,6 @@ It uses buttons to trigger VCCs only when an editable element cannot be indicate
 |
 include::../_includes/checklist.adoc[tags=*]
 
-| Template uses dismissOnCommit to automatically collapse VCCs and return to the preview, where appropriate, to provide good user feedback and save a remix step.
-For example, after changing an image in a single-value VCC.
-|
-include::../_includes/checklist.adoc[tags=*]
-
 | For text input, values are not case sensitive and whitespace is trimmed from the beginning and end of the input.
 |
 include::../_includes/checklist.adoc[tags=*]

@@ -324,42 +324,6 @@ render() {
 
 === Improving remix usability
 
-. Update the `.koji/customization/settings.json` file to enable the `dismissOnCommit` type option for the image VCC.
-+
-This option automatically collapses the VCC and returns to the template preview after a remixer chooses a new image, which provides good feedback and saves a step for the user.
-+
-[source,json]
-----
-{
-  "settings": {
-    "title": "Hello World",
-    "logo": ""
-  },
-  "@@editor": [
-    {
-      "key": "settings",
-      "name": "App settings",
-      "icon": "⚙️",
-      "source": "settings.json",
-      "fields": [
-        {
-          "key": "title",
-          "name": "App title",
-          "type": "text"
-        },
-        {
-          "key": "logo",
-          "name": "App logo",
-          "type": "image",
-          "typeOptions": {
-              "dismissOnCommit": true
-          }
-        }
-      ]
-    }
-  ]
-}
-----
 . Add a `titleOptions` object that includes the existing text VCC (`title`) as well as a new range VCC (`fontSize`).
 +
 The range VCC will enable users to specify the font size quickly, while enforcing sensible minimum and maximum values.
@@ -407,10 +371,7 @@ The range VCC will enable users to specify the font size quickly, while enforcin
         {
           "key": "logo",
           "name": "App logo",
-          "type": "image",
-          "typeOptions": {
-            "dismissOnCommit": true
-          }
+          "type": "image"
         }
       ]
     }
