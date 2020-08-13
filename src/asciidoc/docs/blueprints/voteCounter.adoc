@@ -117,6 +117,8 @@ Install @withkoji/vcc to expose Visual Customization Controls (VCCs), dynamicall
 npm install --save @withkoji/vcc
 ----
 
+include::../_includes/note-start-watcher.adoc[tags=*]
+
 === Add the template logic
 
 Create `frontend/utils/DataHandler.js` as a utility file to manage the data handling for the application.

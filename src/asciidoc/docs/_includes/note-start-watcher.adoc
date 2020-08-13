@@ -1,0 +1,7 @@
+= Start the watcher
+
+//tag::all[]
+NOTE: To use this package, you must configure the `package.json` file to run the watcher (`koji-vcc watch`) concurrently with your development server.
+For more information, see <<start-guide-1#_installing_the_withkojivcc_package, Installing @withkoji/vcc>>.
+
+//end::all[]
