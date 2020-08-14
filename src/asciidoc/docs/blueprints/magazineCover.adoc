@@ -40,6 +40,8 @@ Install @withkoji/vcc to expose Visual Customization Controls (VCCs), dynamicall
 npm install --save @withkoji/vcc
 ----
 
+include::../_includes/note-start-watcher.adoc[tags=*]
+
 === Create the customization files
 
 Create `.koji/customization/settings.json` to define customizable values for the magazine name, cover image, background color, and text options (text, size, color, and position).
