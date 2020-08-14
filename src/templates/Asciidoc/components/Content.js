@@ -124,6 +124,10 @@ const Content = styled.div`
   img {
     max-width: 100%;
   }
+
+  .conum {
+    user-select: none;
+  }
 `;
 
 export default Content;
