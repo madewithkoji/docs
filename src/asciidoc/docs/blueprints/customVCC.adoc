@@ -30,12 +30,21 @@ For an overview, see <<build-custom-vcc#>>.
 Remix an existing web application on Koji that implements basic elements of your favorite framework.
 
 .React
-https://withkoji.com/templates/seane/simple-react-scaffold-remix-[Simple React scaffold]
+https://withkoji.com/templates/seane/simple-react-scaffold[Simple React scaffold]
 
 .Vanilla JS
-https://withkoji.com/templates/JamesHole/vanilla-js-scaffold-with-vccs[Vanilla JS scaffold]
+https://withkoji.com/templates/JamesHole/vanilla-js-scaffold[Vanilla JS scaffold]
 
 === Install the packages
+
+Install @withkoji/vcc to expose Visual Customization Controls (VCCs), dynamically update custom values, and display your template correctly in the Koji feed.
+
+[source,bash]
+----
+npm install --save @withkoji/vcc
+----
+
+include::../_includes/note-start-watcher.adoc[tags=*]
 
 Install @withkoji/custom-vcc-sdk to enable custom VCC functionality, such as loading and saving the VCC value from Koji.
 
