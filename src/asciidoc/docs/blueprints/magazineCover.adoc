@@ -51,6 +51,7 @@ Create `.koji/customization/settings.json` to define customizable values for the
 include::../_includes/magazineCoverSettings.json[]
 ----
 
+.React
 Remove the unused customization files.
 
 `colors.json`, `images.json`, and `strings.json`
