@@ -10,6 +10,8 @@ import { useTheme } from '@material-ui/core/styles';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import Content from './components/Content';
 
+var tabs = require('tabs');
+
 const SectionLink = styled.a`
   color: #333333;
   position: relative;
@@ -154,6 +156,13 @@ const Asciidoc = (props) => {
     elem.remove();
 
     setSections(mappedSections);
+  }, []);
+
+  useEffect(() => {
+    const tabContainers = document.querySelectorAll('.tab-container');
+    for (var i = tabContainers.length - 1; i >= 0; i--) {
+      tabs(tabContainers[i]);
+    }
   }, []);
 
   const renderTextFromHref = (href, text) => {

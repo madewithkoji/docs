@@ -48,6 +48,20 @@ class TemplateConverter {
         return `<a href="${target}" target="_blank" rel="noopener noreferrer">${text}</a>`;
       }
     }
+    if (node.hasRole('tabs')) {
+      const blocks = node.getBlocks();
+      var tabOutput = "";
+      for (var i = 0; i < blocks.length; i++) {
+        tabOutput += `<div class="tab${ i===0 ? ' active' : ''}">
+            ${blocks[i].getTitle()}
+          </div>`;
+        blocks[i].addRole('tab-pane');
+        if (i===0) {
+          blocks[i].addRole('active');
+        }
+      }
+      return `<div class="tab-container">${tabOutput+this.baseConverter.convert(node, transform)}</div>`;
+    }
 
     return this.baseConverter.convert(node, transform);
   }

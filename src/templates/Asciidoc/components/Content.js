@@ -30,6 +30,7 @@ const Content = styled.div`
 
   pre, pre > code {
     line-height: 1.6;
+    margin: 0;
   }
 
   .admonitionblock > table { border: 0; background: none; width: 100%; }
@@ -128,6 +129,55 @@ const Content = styled.div`
   .conum {
     user-select: none;
   }
+
+  // Tab related styling
+  .tab {
+    border: 1px solid #AAA;
+    border-bottom: none;
+    padding: 5px;
+    display: inline-block;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    cursor: pointer;
+    background-color: #DDD;
+    position: relative;
+    user-select: none;
+    &.active, &:hover {
+      background-color: rgb(248,248,248);
+    }
+    &.active:after {
+      content: '';
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: -2px;
+      height: 2px;
+      background-color: rgb(248,248,248);
+    }
+  }
+
+  .openblock.tabs {
+    border: 1px solid #AAA;
+    &:after {
+      content: '';
+      display: block;
+      clear: both;
+    }
+  }
+
+  .tab-pane {
+    float: left;
+    width: 100%;
+    display: none;
+    background-color: rgb(248,248,248);
+    &.active {
+      display: block;
+    }
+    > .title {
+      display: none;
+    }
+  }
+
 `;
 
 export default Content;

@@ -29,11 +29,15 @@ For an overview, see <<build-custom-vcc#>>.
 
 Remix an existing web application on Koji that implements basic elements of your favorite framework.
 
+[.tabs]
+--
 .React
 https://withkoji.com/templates/seane/simple-react-scaffold-remix-[Simple React scaffold]
 
 .Vanilla JS
 https://withkoji.com/templates/JamesHole/vanilla-js-scaffold-with-vccs[Vanilla JS scaffold]
+--
+
 
 === Install the packages
 
@@ -79,6 +83,8 @@ import CustomVCC from '@withkoji/custom-vcc-sdk';
 Initialize `CustomVCC` and set a listener to load the Koji theme.
 This listener allows you to style the VCC to match the user’s current theme on Koji (dark or light).
 
+[.tabs]
+--
 .React
 [source,javascript]
 ----
@@ -90,6 +96,7 @@ include::../_includes/customVCCReact.js[tags=constructor,indent=0]
 ----
 include::../_includes/customVCCVanilla.js[tags=initTheme,indent=0]
 ----
+--
 
 Register your custom VCC to connect to Koji and set a listener to update your application state when the custom VCC updates.
 
