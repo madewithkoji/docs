@@ -15,7 +15,7 @@ const Slide = styled.div`
   align-items: center;
   max-width: 100%;
   text-align: center;
-  background-color: black;
+  background-color: #111111;
 `;
 
 const SlideImage = styled.img`
@@ -166,7 +166,7 @@ const News = () => {
     const CarouselRef = useRef();
 
   return(
-    <PageSection backColor="black">
+    <PageSection backColor="#111111">
       <ArrowLeft style={{fontSize: "400%", color: "white"}} onClick={() => CarouselRef.current.slidePrev()}>Prev button</ArrowLeft>
       <SectionComponent column>
       <h1 style={{color: "white"}}>News</h1>

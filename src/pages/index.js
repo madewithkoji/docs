@@ -13,6 +13,14 @@ const MyContainer = styled(Container)`
   max-width: 100%;
   padding: 0;
   margin: 0;
+
+  a[target="_blank"] {
+    &:after {
+      content: none;
+      position: relative;
+      top: 2px;
+    }
+  }
 `;
 
 const IndexPage = () => (

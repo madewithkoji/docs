@@ -4,7 +4,7 @@ import React from "react"
 const SingleContent = () => {
 
     return(
-        <PageSection backColor="black">
+        <PageSection backColor="#111111">
         <SectionComponent orientation="column" column alignItems="left" textColor="white">
               <h2>{'Kojis are JavaScript applications'}</h2>
                 <p>

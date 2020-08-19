@@ -28,14 +28,14 @@ const PageSection = styled.div`
   display: flex;
   opacity: ${props => props.opacity || 1};
   flex-direction: ${props => props.orientation || "row"};
-  background-color: ${props => props.backColor || "#e8eae6"};
+  background-color: ${props => props.backColor || "#F9F9F9"};
   justify-content: center;
   align-items: ${props => props.align || "center"};
   padding-bottom: ${props => props.padding || "0"};
   padding: 2.5%;
   margin: 0;
   ${props => props.footer && css`
-    @media only screen and (max-width: 520px){
+    @media only screen and (max-width: 620px){
       flex-direction: column;
     };
   `};
@@ -68,23 +68,23 @@ const SectionComponent = styled.div`
   };
   @media ${device.tablet}{
     flex-direction: column;
-    font-size: 24px;
+    font-size: 20px;
   };
   @media ${device.laptop}{
     flex-direction: column;
-    font-size: 24px;
+    font-size: 20px;
   };
   @media ${device.laptopL}{
     flex-direction: row;
-    font-size: 24px;
+    font-size: 20px;
   };
   @media ${device.desktop}{
     flex-direction: row;
-    font-size: 24px;
+    font-size: 20px;
   };
   @media ${device.desktopL}{
     flex-direction: row;
-    font-size: 24px;
+    font-size: 20px;
   };
  `};
  ${props => props.column && css`
@@ -102,70 +102,27 @@ const SectionComponent = styled.div`
   };
   @media ${device.tablet}{
     flex-direction: column;
-    font-size: 28px;
+    font-size: 20px;
   };
   @media ${device.laptop}{
     flex-direction: column;
-    font-size: 28px;
+    font-size: 20px;
   };
   @media ${device.laptopL}{
     flex-direction: column;
-    font-size: 28px;
+    font-size: 20px;
   };
   @media ${device.desktop}{
     flex-direction: column;
-    font-size: 28px;
+    font-size: 20px;
   };
   @media ${device.desktopL}{
     flex-direction: column;
-    font-size: 28px;
+    font-size: 20px;
   };
  `}
 `;
 
-//Graphic component used inside the banner iframe (made to be responsive)
-const Graphic = styled.div`
-  position: relative;
-  width: 100%;
-  overflow: hidden;
-  @media ${device.mobileS}{
-    margin-left: 0px;
-    padding-top: 200%;
-  }
-  @media ${device.mobileM}{
-    margin-left: 0px;
-    padding-top: 200%;
-  }
-  @media ${device.mobileL}{
-    margin-left: 0px;
-    padding-top: 150%;
-  }
-  @media ${device.tablet}{
-    margin-left: 0px;
-    padding-top: 100%;
-  }
-  @media ${device.laptop}{
-    padding-top: 100%;
-    margin-left: 64px;
-    width: 70%;
-  }
-  @media ${device.laptopL}{
-    padding-top: 48%;
-    margin-left: 64px;
-    width: 100%;
-  }
-  @media ${device.desktop}{
-    margin-left: 0px;
-    padding-top: 40%;
-    margin-left: 64px;
-    width: 100%;
-  }
-  @media ${device.desktopL}{
-    padding-top: 40%;
-    margin-left: 64px;
-    width: 100%;
-  }
-`;
 
 //StyledFrame component for the banner (made to be responsive)
 const StyledFrame = styled.iframe`
@@ -177,6 +134,7 @@ const StyledFrame = styled.iframe`
   width: 100%;
   height: 100%;
   border: none;
+  volume: silent;
 `;
 
 const Button = styled.button`
@@ -185,7 +143,7 @@ display: flex;
     flex-wrap: wrap;
     white-space:nowrap;
     padding: ${props => props.padding || "20px"};
-    background-color: ${props => props.backColor || "#e8eae6"};
+    background-color: ${props => props.backColor || "#F9F9F9"};
     border: 2px solid black;
     color: ${props => props.color || "black"};
     text-decoration: none;
@@ -195,6 +153,7 @@ display: flex;
     overflow: hidden;
     transition: 0.6s;
     border-radius: 5px;
+    margin: 0;
     :hover{
         color: white;
         background-color: black;
@@ -214,4 +173,4 @@ const Image = styled.img`
   margin-top: ${props => props.marginTop || "0px"};
 `;
 
-export {PageSection, SectionComponent, Graphic, StyledFrame, Button, Image, device}
+export {PageSection, SectionComponent, StyledFrame, Button, Image, device}

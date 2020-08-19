@@ -11,7 +11,7 @@ const ButtonSection = styled.div`
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  background-color: #e8eae6;
+  background-color: #F9F9F9;
   color: black;
   padding: 5px;
   padding-bottom: 15px;
@@ -48,7 +48,7 @@ const StyledButton = styled.button`
     flex-wrap: wrap;
     white-space:nowrap;
     padding: 5px;
-    background-color: #e8eae6;
+    background-color: #F9F9F9;
     border: 2px solid black;
     margin: 10px;
     color: black;
@@ -163,7 +163,8 @@ const ArrowRigth = styled(NavigateNextIcon)`
 const ScaffoldSectionItems = [
   "/images/React.png",
   "/images/Vue.png",
-  "/images/Svelte.png"
+  "/images/Svelte.png",
+  "/images/VanillaJS.png"
 ]
 
 const ScaffoldsSection = () => {

@@ -8,7 +8,7 @@ const ResourcesSection = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: #e8eae6;
+  background-color: #F9F9F9;
   color: black;
   cursor: pointer;
   padding: 8px;
@@ -32,6 +32,23 @@ const StyledLink = styled(Link)`
   text-decoration: none;
 `;
 
+const ThrirdImageStyle = styled.img`
+@media only screen and (min-width: 300px){
+  width: 22%;
+  margin-bottom: 34px;
+}
+@media only screen and (min-width: 1440px){
+  width: 22%;
+  margin-bottom: 24px;
+  margin-top: 46px;
+}
+@media only screen and (min-width: 1578px){
+  width: 22%;
+  margin-bottom: 20px;
+  margin-top: 20px;
+}
+`;
+
 const Resources = () => {
 
     return(
@@ -45,7 +62,7 @@ const Resources = () => {
                       <StyledP>
                         Build your first template
                       </StyledP>
-                  <p style={{textAlign: "center"}}>Follow this block by block blueprint to get started quickly and publish your first web application on Koji</p>
+                  <p style={{textAlign: "center"}}>Follow this block by block blueprint to get started quickly and publish your first web application on Koji.</p>
               </ResourcesSection>
             </StyledLink>
 
@@ -55,17 +72,17 @@ const Resources = () => {
                     <StyledP>
                       Explore a Koji project
                     </StyledP>
-                <p style={{textAlign: "center"}}>See the unique elements of a Koji web application and learn what powers the magic of customization</p>
+                <p style={{textAlign: "center"}}>See the unique elements of a Koji web application and learn what powers the magic of customization.</p>
               </ResourcesSection>
             </StyledLink>
             
             <StyledLink activeStyle={{color: "black"}} to="https://discord.com/invite/eQuMJF6">
               <ResourcesSection>
-                <Image src="/images/CommunityKoji.png" alt="Money" width="22%" marginTop="12px"/>
+                <ThrirdImageStyle src="/images/CommunityKoji.png" alt="Money"/>
                   <StyledP>
                     Connect with the community
                   </StyledP>
-                <p style={{textAlign: "center"}}>Share tips and partner with other JavaScript developers, graphic designers, multimedia experts, and content creators</p>
+                <p style={{textAlign: "center"}}>Share tips and partner with other JavaScript developers, graphic designers, multimedia experts, and content creators.</p>
               </ResourcesSection>
             </StyledLink>
             

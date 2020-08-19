@@ -6,6 +6,8 @@ import {ResourcesFooterItems, DevelopersFooterItems, CampaignsFooterItems, Conta
   const IconDiv = styled.div`
     display: flex;
     flex-direction: column;
+    align-items: center;
+    margin-left: 8px;
     font-size: 50px;
   `;
 
@@ -13,20 +15,27 @@ import {ResourcesFooterItems, DevelopersFooterItems, CampaignsFooterItems, Conta
     font-size: 14px;
     margin-left: 8px;
     font-weight: bold;
-    margin-bottom: 12px;
+    margin: 12px;
+    text-align: left;
   `;
 
   const SectionItemDiv = styled.div`
     display: flex;
     flex-direction: row;
     align-items: center;
-    background-color: black;
+    justify-content: left;
+    margin: 0;
+    background-color: #111111;
+    border-radius: 8px;
     color: white;
+    :hover{
+      background-color: #666666;
+    }
   `;
 
   const FooterSection = styled.div`
     display: flex;
-    background-color: black;
+    background-color: #111111;
     color: white;
     flex-direction: ${props => props.orientation || "column"};
     justify-content: left;
@@ -34,76 +43,72 @@ import {ResourcesFooterItems, DevelopersFooterItems, CampaignsFooterItems, Conta
     margin: 3%;
 `;
 
-const StyledLink = styled.a`
-  margin-bottom: -20px;
-`;
 
 const Footer = () => {
 
     const resources = ResourcesFooterItems.map((footerItem) => {
       return(
-        <StyledLink href={footerItem.link} target="_blank">
+        <a href={footerItem.link} target="_blank">
           <SectionItemDiv>
               <IconDiv>{footerItem.icon}</IconDiv>
               <ItemName>{footerItem.name}</ItemName>
           </SectionItemDiv>
-        </StyledLink>
+        </a>
       )
     })
 
     const developers = DevelopersFooterItems.map((footerItem) => {
       return(
-        <StyledLink href={footerItem.link} target="_blank">
+        <a href={footerItem.link} target="_blank">
           <SectionItemDiv>
               <IconDiv>{footerItem.icon}</IconDiv>
               <ItemName>{footerItem.name}</ItemName>
           </SectionItemDiv>
-        </StyledLink>
+        </a>
       )
     })
 
     const campaigns = CampaignsFooterItems.map((footerItem) => {
       return(
-        <StyledLink href={footerItem.link} target="_blank">
+        <a href={footerItem.link} target="_blank">
           <SectionItemDiv>
               <IconDiv>{footerItem.icon}</IconDiv>
               <ItemName>{footerItem.name}</ItemName>
           </SectionItemDiv>
-        </StyledLink>
+        </a>
       )
     })
 
     const contact = ContactFooterItems.map((footerItem) => {
       return(
-        <StyledLink href={footerItem.link} target="_blank">
+        <a href={footerItem.link} target="_blank">
           <SectionItemDiv>
-              <IconDiv>{footerItem.icon}</IconDiv>
-              <ItemName>{footerItem.name}</ItemName>
+              <IconDiv style={{margin: "4px"}}>{footerItem.icon}</IconDiv>
           </SectionItemDiv>
-        </StyledLink>
+        </a>
       )
     })
 
     return(
-      <PageSection backColor="black" orientation="row" align="flex-start" footer>
+      <PageSection backColor="#111111" orientation="row" align="flex-start" footer>
 
           <FooterSection>
-            <ItemName>Resources</ItemName>
+            <ItemName style={{marginLeft: "8px", textTransform: "uppercase"}}>Resources</ItemName>
             {resources}
           </FooterSection>
 
           <FooterSection>
-          <ItemName>Developers</ItemName>
+          <ItemName style={{marginLeft: "8px", textTransform: "uppercase"}}>Developers</ItemName>
             {developers}
           </FooterSection>
 
           <FooterSection>
-          <ItemName>Campaigns</ItemName>
+          <ItemName style={{marginLeft: "8px", textTransform: "uppercase"}}>Campaigns</ItemName>
             {campaigns}
           </FooterSection>
 
           <FooterSection>
-            <ItemName>Contact</ItemName>
+          <ItemName style={{marginLeft: "9px", textTransform: "uppercase"}}>Contact</ItemName>
             <FooterSection orientation="row">
               {contact}
             </FooterSection>

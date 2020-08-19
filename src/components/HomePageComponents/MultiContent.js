@@ -7,7 +7,7 @@ const MultiContentSection = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: black;
+  background-color: #111111;
   color: white;
   padding: 15px;
   max-width: 600px;
@@ -22,22 +22,22 @@ const StyledP = styled.p`
 const MultiContent = () => {
 
     return(
-        <PageSection backColor="black" orientation="column">
-            <h1 style={{color: "white", marginTop: 20, fontSize: 48}}>Koji for developers</h1>
+        <PageSection backColor="#111111" orientation="column">
+            <h1 style={{color: "white", marginTop: 20, fontSize: 48, textAlign: "center"}}>Koji for developers</h1>
             <SectionComponent orientation="row" row >
 
                 <MultiContentSection>
-                    <StyledP><b>Make an impact</b><br/>Designers, content creators, brands, and influencers need custom templates. You empower these communities</StyledP>
+                    <StyledP><b>Make an impact</b><br/>Designers, content creators, brands, and influencers need custom templates. You empower these communities.</StyledP>
                 </MultiContentSection>
 
                 <Image src="/images/Bulb.png" alt="Bulb" width="80px"/>
                 <MultiContentSection>
-                    <StyledP><b>Get noticed</b><br/>Milions of people remix your template and share their creations on social platforms like Facebook, Twitter and Reddit</StyledP>
+                    <StyledP><b>Get noticed</b><br/>Milions of people remix your template and share their creations on social platforms like Facebook, Twitter, and Reddit.</StyledP>
                 </MultiContentSection>
 
                 <Image src="/images/Money.png" alt="Money" width="100px"/>
                 <MultiContentSection>
-                    <StyledP><b>Make Money</b><br/>Koji developers get paid through licensing, asset packs, and other compensation programs</StyledP>
+                    <StyledP><b>Make money</b><br/>Koji developers get paid through licensing, asset packs, and other compensation programs.</StyledP>
                 </MultiContentSection>
 
             </SectionComponent>
