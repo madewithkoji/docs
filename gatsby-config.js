@@ -100,6 +100,8 @@ module.exports = {
         trackingId: 'UA-136955953-1',
         // Defines where to place the tracking script - `true` in the head and `false` in the body
         head: true,
+        // Set samesite attribute so that chrome doesn't block/warn
+        cookieflags: 'max-age=7200;secure;samesite=none',
       },
     },
   ],
