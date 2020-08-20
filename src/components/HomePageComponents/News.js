@@ -1,4 +1,4 @@
-import {PageSection, SectionComponent, device} from './HomePageStyles'
+import {PageSection, SectionComponent} from './HomePageStyles'
 import React, {useState, useEffect, useRef} from "react"
 import styled from 'styled-components';
 import NavigateBeforeIcon from '@material-ui/icons/NavigateBefore';
@@ -7,106 +7,72 @@ import AliceCarousel from 'react-alice-carousel'
 import 'react-alice-carousel/lib/alice-carousel.css'
 import {articles} from "./NewsArticles"
 
-
 const Slide = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: start;
   align-items: center;
-  max-width: 100%;
+  min-height: 350px;
+  width: auto;
   text-align: center;
   background-color: #111111;
+  position: relative;
+  @media only screen and (min-width: 320px){
+    min-height: 220px;
+  };
+  @media only screen and (min-width: 400px){
+    min-height: 250px;
+  };
+  @media only screen and (min-width: 560px){
+    min-height: 300px;
+  };
+  @media only screen and (min-width: 769px){
+    min-height: 230px;
+  };
+  @media only screen and (min-width: 960px){
+    min-height: 250px;
+  };
+  @media only screen and (min-width: 1200px){
+    min-height: 260px;
+  };
+  @media only screen and (min-width: 1600px){
+    min-height: 300px;
+  };
 `;
 
 const SlideImage = styled.img`
-    width: 398px;
-    height: 250px;
-  @media ${device.mobileS}{
-    width: 200px;
-    height: 125px;
-  };
-  @media ${device.mobileM}{
-    width: 250px;
-    height: 160px;
-  };
-  @media ${device.mobileL}{
-    width: 350px;
-    height: 200px;
-  };
-  @media ${device.tablet}{
-    width: 268px;
-    height: 160px;
-  };
-  @media ${device.laptop}{
-    width: 358px;
-    height: 200px;
-  };
-  @media ${device.laptopL}{
-    width: 358px;
-    height: 220px;
-  };
-  @media ${device.desktop}{
-    width: 398px;
-    height: 250px;
-  };
-  @media ${device.desktopL}{
-    width: 398px;
-    height: 250px;
-  };
+    width: 79%;
+    height: auto;
+    position: absolute;
 `;
 
 const SlideText = styled.div`
-  width: 400px;
+  width: 80%;
   padding: 8px;
   padding-bottom: 20px;
-  height: 100px;
-  font-size: 20px;
+  position: absolute;
+  height: 120px;
+  font-size: 1rem;
   text-align: left;
   font-weight: bold;
   background-color: white;
   border-style: solid;
   border-width: 1px;
   color: black;
-  @media ${device.mobileS}{
-    width: 202px;
-    height: 110px;
-    font-size: 12px;
+  bottom: 0;
+  @media only screen and (min-width: 320px) and (max-width: 620px){
+    font-size: 0.85rem;
   };
-  @media ${device.mobileM}{
-    width: 252px;
-    height: 110px;
-    font-size: 12px;
+  @media only screen and (min-width: 620px) and (max-width: 769px){
+    font-size: 1rem;
   };
-  @media ${device.mobileL}{
-    width: 352px;
-    height: 100px;
-    font-size: 14px;
+  @media only screen and (min-width: 769px) and (max-width: 1000px){
+    font-size: 0.85rem;
   };
-  @media ${device.tablet}{
-    width: 270px;
-    height: 100px;
-    font-size: 14px;
-  };
-  @media ${device.laptop}{
-    width: 360px;
-    height: 100px;
-    font-size: 16px;
-  };
-  @media ${device.laptopL}{
-    width: 360px;
-    height: 135px;
-    font-size: 18px;
-  };
-  @media ${device.desktop}{
-    width: 400px;
-    height: 150px;
-    font-size: 18px;
-  };
-  @media ${device.desktopL}{
-    width: 400px;
-    height: 150px;
-    font-size: 18px;
-  };
+`;
+const SlideLink = styled.a`
+  width: 80%;
+  text-align: center;
 `;
 
 const ArrowLeft = styled(NavigateBeforeIcon)`
@@ -132,16 +98,9 @@ const News = () => {
   const [interval, setInterval] = useState(3000);
 
   const responsive = {
-    320: { items: 1 },
-    375: { items: 1 },
-    425: { items: 1 },
+    480: { items: 1 },
     768: { items: 2 },
-    1024: { items: 2 },
-    1100: { items: 2 },
-    1300: { items: 2 },
-    1500: { items: 2 },
-    1800: { items: 3 },
-    2160: { items: 3 }
+    1400: { items: 3 }
   }
 
     const slides = articles.map((article) => {
@@ -151,15 +110,14 @@ const News = () => {
       }, [])
 
       return(
-        <Slide key={article.id}>
-          <SlideImage src={article.image}/>
-          <a href={article.link} target="_blank">
-            <SlideText>
-              <p style={{marginTop: "0", fontWeight: "normal"}}>{article.date}, {article.source}</p>
-                {article.title}
-            </SlideText>
-          </a>
-        </Slide>
+          <Slide>
+            <SlideImage src={article.image}/>
+            
+              <SlideText>
+                <p style={{marginTop: "0", fontWeight: "normal"}}>{article.date}, {article.source}</p>
+                  {article.title}
+              </SlideText>
+          </Slide>
       )
     })
 
