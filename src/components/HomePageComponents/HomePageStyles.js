@@ -1,28 +1,5 @@
 import styled, {css} from 'styled-components';
 
-
-const size = {
-  mobileS: `320px`,
-  mobileM: '375px',
-  mobileL: '425px',
-  tablet: '768px',
-  laptop: '1024px',
-  laptopL: '1440px',
-  desktop: '2160px'
-};
-
-const device = {
-  mobileS: `(min-width: ${size.mobileS})`,
-  mobileM: `(min-width: ${size.mobileM})`,
-  mobileL: `(min-width: ${size.mobileL})`,
-  tablet: `(min-width: ${size.tablet})`,
-  laptop: `(min-width: ${size.laptop})`, 
-  laptopL: `(min-width: ${size.laptopL})`,
-  desktop: `(min-width: ${size.desktop})`,
-  desktopL: `(min-width: ${size.desktop})`
-};
-
-
 //Component used most page sections as a main wrapper
 const PageSection = styled.div`
   display: flex;
@@ -46,79 +23,46 @@ const SectionComponent = styled.div`
   color: ${props => props.textColor || "black"};
   display: flex;
   flex-direction: ${props => props.orientation || "row"};
-  justify-content: space-between;
+  justify-content: center;
   align-items: ${props => props.alignItems || "center"};
   align-content: ${props => props.alignContent || "center"};
   max-width: ${props => props.maxWidth || "80%"};
   display: ${props => props.display || ""};
-  font-size: 24px;
 
   ${props => props.row && css`
-  @media ${device.mobileS}{
+  @media only screen and (max-width: 480px){
     flex-direction: column;
-    font-size: 16px;
+    font-size: 1rem;
   };
-  @media ${device.mobileM}{
+  @media only screen and (min-width: 480px) and (max-width: 768px){
     flex-direction: column;
-    font-size: 18px;
+    font-size: 1.25rem;
   };
-  @media ${device.mobileL}{
+  @media only screen and (min-width: 768px){
     flex-direction: column;
-    font-size: 20px;
+    font-size: 1.25rem;
   };
-  @media ${device.tablet}{
-    flex-direction: column;
-    font-size: 20px;
-  };
-  @media ${device.laptop}{
-    flex-direction: column;
-    font-size: 20px;
-  };
-  @media ${device.laptopL}{
+  @media only screen and (min-width: 1380px){
     flex-direction: row;
-    font-size: 20px;
-  };
-  @media ${device.desktop}{
-    flex-direction: row;
-    font-size: 20px;
-  };
-  @media ${device.desktopL}{
-    flex-direction: row;
-    font-size: 20px;
+    font-size: 1.5rem;
   };
  `};
  ${props => props.column && css`
-  @media ${device.mobileS}{
+  @media only screen and (max-width: 480px){
     flex-direction: column;
-    font-size: 18px;
+    font-size: 1rem;
   };
-  @media ${device.mobileM}{
+  @media only screen and (min-width: 480px) and (max-width: 768px){
     flex-direction: column;
-    font-size: 20px;
+    font-size: 1.25rem;
   };
-  @media ${device.mobileL}{
+  @media only screen and (min-width: 768px){
     flex-direction: column;
-    font-size: 20px;
+    font-size: 1.25rem;
   };
-  @media ${device.tablet}{
+  @media only screen and (min-width: 1380px){
     flex-direction: column;
-    font-size: 20px;
-  };
-  @media ${device.laptop}{
-    flex-direction: column;
-    font-size: 20px;
-  };
-  @media ${device.laptopL}{
-    flex-direction: column;
-    font-size: 20px;
-  };
-  @media ${device.desktop}{
-    flex-direction: column;
-    font-size: 20px;
-  };
-  @media ${device.desktopL}{
-    flex-direction: column;
-    font-size: 20px;
+    font-size: 1.5rem;
   };
  `}
 `;
@@ -147,13 +91,13 @@ display: flex;
     border: 2px solid black;
     color: ${props => props.color || "black"};
     text-decoration: none;
-    font-size: ${props => props.fontSize || "24px"};
     align-items: center;
     justify-content: center;
     overflow: hidden;
     transition: 0.6s;
     border-radius: 5px;
     margin: 0;
+    font-size: 1.5rem;
     :hover{
         color: white;
         background-color: black;
@@ -164,6 +108,10 @@ display: flex;
       background-color: black;
       border-color: black;
       `};
+      @media only screen and (max-width: 480px){
+        font-size: 1rem;
+        width: 200px;
+      };
 `;
 //Custom component used in two different page sections (MultiContent and Resources)
 const Image = styled.img`
@@ -173,4 +121,4 @@ const Image = styled.img`
   margin-top: ${props => props.marginTop || "0px"};
 `;
 
-export {PageSection, SectionComponent, StyledFrame, Button, Image, device}
+export {PageSection, SectionComponent, StyledFrame, Button, Image}
