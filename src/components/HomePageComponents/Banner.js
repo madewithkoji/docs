@@ -1,117 +1,48 @@
-import {PageSection, SectionComponent, StyledFrame, Button, device} from './HomePageStyles'
-import React from "react"
+import {PageSection, SectionComponent, Button} from './HomePageStyles'
+import React, {useState, useEffect} from "react"
 import styled from "styled-components"
 import { Link } from 'gatsby';
 
 const BannerSection = styled(SectionComponent)`
-  color: ${props => props.textColor || "black"};
-  display: flex;
-  justify-content: space-between;
-  align-items: ${props => props.alignItems || "center"};
-  align-content: ${props => props.alignContent || "center"};
-  max-width: ${props => props.maxWidth || "80%"};
-
+  
   @media only screen and (min-width: 320px){
     flex-direction: column;
-    font-size: 16px;
   }
-  @media only screen and (min-width: 360px){
-    flex-direction: column;
-    font-size: 17px;
-  }
-  @media only screen and (min-width: 400px){
-    flex-direction: column;
-    font-size: 18px;
-  }
-  @media only screen and (min-width: 600px){
-    flex-direction: column;
-    font-size: 20px;
-  }
-  @media only screen and (min-width: 800px){
-    flex-direction: column;
-  }
-  @media only screen and (min-width: 1000px){
-    flex-direction: column;
-  }
-  @media only screen and (min-width: 1600px){
+  @media only screen and (min-width: 1800px){
     flex-direction: row;
   }
 `;
 
-//Graphic component used inside the banner iframe (made to be responsive)
-const Graphic = styled.div`
-  position: relative;
-  width: 100%;
-  overflow: hidden;
-  @media only screen and (min-width: 500px){
-    padding-top: 180%;
-    margin-left: 0px;
-    width: 110%;
-  }
-  @media only screen and (min-width: 550px){
-    padding-top: 170%;
-    margin-left: 0px;
-    width: 100%;
-  }
-  @media only screen and (min-width: 600px){
-    padding-top: 160%;
-    margin-left: 0px;
-    width: 90%;
-  }
-  @media only screen and (min-width: 650px){
-    padding-top: 145%;
-    margin-left: 0px;
-    width: 90%;
-  }
-  @media only screen and (min-width: 700px){
-    padding-top: 140%;
-    margin-left: 0px;
-    width: 80%;
-  }
-  @media only screen and (min-width: 800px){
-    padding-top: 120%;
-    margin-left: 0px;
-    width: 70%;
-  }
-  @media only screen and (min-width: 950px){
-    padding-top: 100%;
-    margin-left: 0px;
-    width: 60%;
-  }
-  @media only screen and (min-width: 1100px){
-    padding-top: 90%;
-    margin-left: 0px;
-    width: 55%;
-  }
-  @media only screen and (min-width: 1300px){
-    padding-top: 75%;
-    margin-left: 0px;
-    width: 50%;
-  }
-  @media only screen and (min-width: 1500px){
-    padding-top: 65%;
-    margin-left: 0px;
-    width: 40%;
-  }
-  @media only screen and (min-width: 1600px){
-    margin-left: 0px;
-    padding-top: 60%;
-    margin-left: 64px;
-    width: 100%;
-  }
-  @media only screen and (min-width: 1800px){
-    margin-left: 0px;
-    padding-top: 55%;
-    margin-left: 64px;
-    width: 90%;
-  }
+const StyledFrame = styled.iframe`
+    volume: silent;
+    visibility: ${props => props.visibility || "visible"};
+    @media only screen and (min-width: 320px) and (max-width: 480px){
+      transform: scale(0.8);
+      height: 800px;
+      width: ${props => props.width || "auto"};
+    }
+    @media only screen and (min-width: 480px){
+      width: 100%;
+      height: 800px
+    }
+    @media only screen and (min-width: 950px) and (max-width: 1800px){
+      margin-left: 0px;
+      width: 55%;
+      height: 800px;
+    }
+    @media only screen and (min-width: 1800px){
+      margin-left: 64px;
+      width: 100%;
+      height: 800px;
+    }
 `;
 
 const Banner = () => {
+  const width = window.innerWidth;
 
     return(
-        <PageSection padding="5%;">
-          <BannerSection>
+        <PageSection padding="5%">
+          <BannerSection row>
             <div>
               <h1>{"Develop the future of social with remixable applications"}</h1>
                   <p>
@@ -132,9 +63,7 @@ const Banner = () => {
                     </div>
                 <br />
             </div>
-              <Graphic>
-                  <StyledFrame src="https://withkoji.com/~JamesHole/kojidev" />
-              </Graphic>
+              <StyledFrame width={width*1.2} src="https://withkoji.com/~JamesHole/kojidev"/> 
           </BannerSection>
       </PageSection>
     )
