@@ -13,7 +13,7 @@ const CtaBanner = () => {
 
     return(
         <PageSection>
-            <SectionComponent column alignItems="center">
+            <SectionComponent column orientation="column" alignItems="center">
                 <CtaBannerTitle>
                     Ready to build the future?
                 </CtaBannerTitle>
