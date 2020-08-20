@@ -22,7 +22,7 @@ const PageSection = styled.div`
 const SectionComponent = styled.div`
   color: ${props => props.textColor || "black"};
   display: flex;
-  flex-direction: ${props => props.orientation || "row"};
+  flex-direction: ${props => props.orientation || "column"};
   justify-content: center;
   align-items: ${props => props.alignItems || "center"};
   align-content: ${props => props.alignContent || "center"};
@@ -32,39 +32,29 @@ const SectionComponent = styled.div`
   ${props => props.row && css`
   @media only screen and (max-width: 480px){
     flex-direction: column;
-    font-size: 1rem;
   };
   @media only screen and (min-width: 480px) and (max-width: 768px){
     flex-direction: column;
-    font-size: 1.25rem;
   };
   @media only screen and (min-width: 768px){
     flex-direction: column;
-    font-size: 1.25rem;
   };
   @media only screen and (min-width: 1380px){
     flex-direction: row;
-    font-size: 1.5rem;
   };
  `};
- ${props => props.column && css`
   @media only screen and (max-width: 480px){
-    flex-direction: column;
     font-size: 1rem;
   };
   @media only screen and (min-width: 480px) and (max-width: 768px){
-    flex-direction: column;
     font-size: 1.25rem;
   };
   @media only screen and (min-width: 768px){
-    flex-direction: column;
     font-size: 1.25rem;
   };
   @media only screen and (min-width: 1380px){
-    flex-direction: column;
     font-size: 1.5rem;
   };
- `}
 `;
 
 
