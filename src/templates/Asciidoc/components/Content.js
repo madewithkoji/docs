@@ -30,6 +30,7 @@ const Content = styled.div`
       user-select: none;
       content: ' ' attr(data-line-number) ' | ';
       opacity: 0.5;
+      color: #000;
     }
   }
 

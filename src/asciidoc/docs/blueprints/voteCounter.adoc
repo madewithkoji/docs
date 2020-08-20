@@ -30,11 +30,14 @@ See the <<withkoji-database-package#>> package reference.
 
 Remix an existing web application on Koji that implements basic elements of your favorite framework.
 
+[.tabs]
+--
 .React
 https://withkoji.com/~seane/simple-react-scaffold[Simple React scaffold]
 
 .Vanilla JS
 https://withkoji.com/~JamesHole/vanilla-js-instant-remix-scaffold[Vanilla JS scaffold]
+--
 
 === Add the backend service
 
@@ -159,25 +162,31 @@ include::../_includes/db-blueprint-DataHandler.js[tags=addVotes,indent=0]
 
 Update the file that contains the main application code.
 
+[.tabs]
+--
 .React
 `frontend/common/App.js`
 
 .Vanilla JS
 `frontend/index.js`
+--
 
 Import the required libraries.
 
-[source,javascript]
+[.tabs]
+--
 .React
+[source,javascript]
 ----
 include::../_includes/voteCounterReact.js[tags=importPackages]
 ----
 
-[source,javascript]
 .Vanilla JS
+[source,javascript]
 ----
 include::../_includes/voteCounterVanilla.js[tags=importPackages]
 ----
+--
 
 Use `FeedSdk` to display the template in the Koji feed.
 
@@ -195,56 +204,69 @@ include::../_includes/voteCounterReact.js[tags=initDataHandler]
 
 Track the remix state and the number of votes.
 
-[source,javascript]
+[.tabs]
+--
 .React
+[source,javascript]
 ----
 include::../_includes/voteCounterReact.js[tags=trackState,indent=0]
 ----
 
-[source,javascript]
 .Vanilla JS
+[source,javascript]
 ----
 include::../_includes/voteCounterVanilla.js[tags=trackState,indent=0]
 ----
+--
 
 Set the callback for `DataHandler` to update the total votes.
 Set instant remixing to ready to allow remixes and use FeedSdk so your application can be displayed in the Koji feed.
 
-[source,javascript]
+[.tabs]
+--
 .React
+[source,javascript]
 ----
 include::../_includes/voteCounterReact.js[tags=callDataHandler,indent=0]
 ----
 
-[source,javascript]
 .Vanilla JS
+[source,javascript]
 ----
 include::../_includes/voteCounterVanilla.js[tags=callDataHandler,indent=0]
 ----
+--
 
 Update the rendered output to display the current vote count, and implement tap events for instant remixing and for counting votes.
 Use the `instantRemix.onPresentControl` callback to display the VCC controls when users are remixing your application.
 
-[source,javascript]
+[.tabs]
+--
 .React
+[source,javascript]
 ----
 include::../_includes/voteCounterReact.js[tags=renderTemplate,indent=0]
 ----
 
-[source,javascript]
 .Vanilla JS
+[source,javascript]
 ----
 include::../_includes/voteCounterVanilla.js[tags=renderTemplate,indent=0]
 ----
+--
 
 Apply conditional styling so remixers can easily tell what can be customized.
 
-[source,javascript]
+[.tabs]
+--
 .React
+====
+[source,javascript]
 ----
 include::../_includes/voteCounterReact.js[tags=styles;stylesOnly,indent=0]
 ----
 NOTE: Remove the `pointer-events: none;` property definition from the `Icon` component.
+====
 
 [source,css]
 .Vanilla JS
@@ -256,6 +278,7 @@ p {
     color: white;
 }
 ----
+--
 
 === Add entitlements
 
@@ -291,28 +314,34 @@ When publishing is completed, click the link in the message to view your live te
 
 To see this blueprint as a completed template on Koji, visit the following link. From there, you can view the source code or remix the template into your own project.
 
+[.tabs]
+--
 .React
 https://withkoji.com/~JamesHole/database-and-dispatch-template[Blueprint: Vote Counter (React)]
 
 .Vanilla JS
 https://withkoji.com/~JamesHole/database-and-dispatch-template-vanilla-js[Blueprint: Vote Counter (Vanilla JS)]
+--
 
 The following code is a completed sample of the template logic described in this blueprint.
 
-[source,javascript]
+[.tabs]
+--
 .React
+[source,javascript]
 ----
 include::../_includes/voteCounterReact.js[tags=**;!stylesOnly]
 ----
 
-[source,javascript]
 .Vanilla JS
+[source,javascript]
 ----
 include::../_includes/voteCounterVanilla.js[tags=**]
 ----
 
-[source,javascript]
 .DataHandler.js
+[source,javascript]
 ----
 include::../_includes/db-blueprint-DataHandler.js[tags=**]
 ----
+--
