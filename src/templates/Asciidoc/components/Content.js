@@ -33,6 +33,41 @@ const Content = styled.div`
       color: #000;
     }
   }
+  pre {
+    position: relative;
+    button.copy {
+      position: absolute;
+      right: 5px;
+      top: 5px;
+      border: none;
+      background-color: #DDD;
+      color: #000;
+      text-transform: uppercase;
+      padding: 2px 10px;
+      width: 75px;
+      font-weight: bold;
+      cursor: pointer;
+      &:after {
+        content: 'Copied';
+        position: absolute;
+        top: 0;
+        padding: 2px 10px;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: #000;
+        color: #FFF;
+        opacity: 0;
+        transition: 0.2s ease-in-out;
+      }
+      &.copied:after {
+        opacity: 1;
+      }
+      &:focus {
+        outline: none;
+      }
+    }
+  }
 
   pre, pre > code {
     line-height: 1.6;
