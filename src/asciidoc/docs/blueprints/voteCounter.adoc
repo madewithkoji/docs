@@ -32,11 +32,13 @@ Remix an existing web application on Koji that implements basic elements of your
 
 [.tabs]
 --
+
 .React
-https://withkoji.com/~seane/simple-react-scaffold[Simple React scaffold]
+https://withkoji.com/templates/seane/simple-react-scaffold[Simple React scaffold]
 
 .Vanilla JS
-https://withkoji.com/~JamesHole/vanilla-js-instant-remix-scaffold[Vanilla JS scaffold]
+https://withkoji.com/templates/JamesHole/vanilla-js-scaffold[Vanilla JS scaffold]
+
 --
 
 === Add the backend service

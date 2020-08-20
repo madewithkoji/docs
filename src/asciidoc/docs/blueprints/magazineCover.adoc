@@ -25,7 +25,11 @@ For an overview, see the <<start-guide-1#, starter guide>>.
 
 Remix an existing web application on Koji that implements basic elements of your favorite framework.
 
-link:++https://withkoji.com/~seane/simple-react-scaffold++[https://withkoji.com/~seane/simple-react-scaffold]
+.React
+https://withkoji.com/templates/seane/simple-react-scaffold[Simple React scaffold]
+
+.Vanilla JS
+https://withkoji.com/templates/JamesHole/vanilla-js-scaffold[Vanilla JS scaffold]
 
 === Install the packages
 
@@ -36,6 +40,8 @@ Install @withkoji/vcc to expose Visual Customization Controls (VCCs), dynamicall
 npm install --save @withkoji/vcc
 ----
 
+include::../_includes/note-start-watcher.adoc[tags=*]
+
 === Create the customization files
 
 Create `.koji/customization/settings.json` to define customizable values for the magazine name, cover image, background color, and text options (text, size, color, and position).
@@ -45,6 +51,7 @@ Create `.koji/customization/settings.json` to define customizable values for the
 include::../_includes/magazineCoverSettings.json[]
 ----
 
+.React
 Remove the unused customization files.
 
 `colors.json`, `images.json`, and `strings.json`
@@ -74,16 +81,28 @@ include::../_includes/magazineCoverReact.js[tags=feedSdk]
 
 Monitor the remix state.
 
+.React
 [source,javascript]
 ----
 include::../_includes/magazineCoverReact.js[tags=monitorRemix]
 ----
+.Vanilla JS
+[source,javascript]
+----
+include::../_includes/magazineCoverVanilla.js[tags=monitorRemix]
+----
 
 Dynamically get and set custom values.
 
+.React
 [source,javascript]
 ----
 include::../_includes/magazineCoverReact.js[tags=updateValues]
+----
+.Vanilla JS
+[source,javascript]
+----
+include::../_includes/magazineCoverVanilla.js[tags=updateValues]
 ----
 
 Optimize the user's cover image.
@@ -102,24 +121,42 @@ include::../_includes/magazineCoverReact.js[tags=clickHandlers]
 
 Use dynamic sizing to support different browsers and devices.
 
+.React
 [source,javascript]
 ----
 include::../_includes/magazineCoverReact.js[tags=dynamicSizing]
 ----
+.Vanilla JS
+[source,javascript]
+----
+include::../_includes/magazineCoverVanilla.js[tags=dynamicSizing]
+----
 
 Indicate the template is ready for instant remixes and to display in the feed.
 
+.React
 [source,javascript]
 ----
 include::../_includes/magazineCoverReact.js[tags=templateReady]
+----
+.Vanilla JS
+[source,javascript]
+----
+include::../_includes/magazineCoverVanilla.js[tags=templateReady]
 ----
 
 Render the template with custom values.
 Apply conditional styling to editable elements during remix.
 
+.React
 [source,javascript]
 ----
 include::../_includes/magazineCoverReact.js[tags=renderTemplate]
+----
+.Vanilla JS
+[source,javascript]
+----
+include::../_includes/magazineCoverVanilla.js[tags=renderTemplate]
 ----
 
 === Add the styles
@@ -127,9 +164,15 @@ include::../_includes/magazineCoverReact.js[tags=renderTemplate]
 Define styles for the template, including the headline, cover image.
 Remove unused styles.
 
+.React
 [source,javascript]
 ----
 include::../_includes/magazineCoverReact.js[tags=styles]
+----
+.Vanilla JS
+[source,css]
+----
+include::../_includes/magazineCoverVanilla.css[tags=styles]
 ----
 
 Add styles for editable elements during remix.
@@ -184,11 +227,25 @@ You can create a fun version for yourself and share it on your favorite site to 
 To see this blueprint as a completed template on Koji, visit the following link.
 From there, you can view the source code or remix the template into your own project.
 
+.React
 https://withkoji.com/~RachelSienko06/blueprint-magazine-cover[Blueprint: Magazine Cover]
+
+.Vanilla JS
+https://withkoji.com/~JamesHole/magazine-cover-blueprint-vanilla-js[Blueprint: Magazine Cover]
 
 The following code is a completed sample of the template logic described in this blueprint.
 
+.React
 [source,javascript]
 ----
 include::../_includes/magazineCoverReact.js[tags=**]
+----
+.Vanilla JS
+[source,javascript]
+----
+include::../_includes/magazineCoverVanilla.js[tags=**]
+----
+[source,css]
+----
+include::../_includes/magazineCoverVanilla.css[tags=**]
 ----
