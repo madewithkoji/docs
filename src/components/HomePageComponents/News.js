@@ -126,7 +126,7 @@ const News = () => {
   return(
     <PageSection backColor="#111111">
       <ArrowLeft style={{fontSize: "400%", color: "white"}} onClick={() => CarouselRef.current.slidePrev()}>Prev button</ArrowLeft>
-      <SectionComponent column>
+      <SectionComponent>
       <h1 style={{color: "white"}}>News</h1>
 
         <AliceCarousel

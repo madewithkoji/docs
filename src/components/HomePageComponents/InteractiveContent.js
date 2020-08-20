@@ -203,7 +203,7 @@ const InteractiveContent = () => {
 
     return(
     <PageSection padding="5%" orientation="column">
-      <SectionComponent column>
+      <SectionComponent>
         <h1 style={{textAlign: "center"}}>How to build remixable templates</h1>
       </SectionComponent>
       <ButtonSection>

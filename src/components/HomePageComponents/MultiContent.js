@@ -26,7 +26,7 @@ const MultiContent = () => {
             <SectionComponent orientation="row" row>
             <h1 style={{color: "white", marginTop: 20, textAlign: "center"}}>Koji for developers</h1>
             </SectionComponent>
-            <SectionComponent orientation="column" row>
+            <SectionComponent row>
 
                 <MultiContentSection>
                     <StyledP><b>Make an impact</b><br/>Designers, content creators, brands, and influencers need custom templates. You empower these communities.</StyledP>

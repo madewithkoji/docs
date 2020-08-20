@@ -5,7 +5,7 @@ const SingleContent = () => {
 
     return(
         <PageSection backColor="#111111">
-        <SectionComponent orientation="column" column alignItems="left" textColor="white">
+        <SectionComponent alignItems="left" textColor="white">
               <h1>{'Kojis are JavaScript applications'}</h1>
                 <p>
                   {`Kojis are full-stack, modern JavaScript applications 
