@@ -1,4 +1,4 @@
-import {PageSection, device, SectionComponent} from './HomePageStyles'
+import {PageSection, SectionComponent} from './HomePageStyles'
 import React, {useState, useRef} from "react"
 import { Link } from 'gatsby';
 import styled, {css} from "styled-components"
@@ -8,7 +8,6 @@ import NavigateNextIcon from '@material-ui/icons/NavigateNext';
 
 const ButtonSection = styled.div`
   display: flex;
-  flex-direction: row;
   justify-content: center;
   align-items: center;
   background-color: #F9F9F9;
@@ -16,28 +15,16 @@ const ButtonSection = styled.div`
   padding: 5px;
   padding-bottom: 15px;
   margin: 1%;
-  @media ${device.mobileS}{
+  @media only screen and (max-width: 480px){
     flex-direction: column;
   };
-  @media ${device.mobileM}{
+  @media only screen and (min-width: 480px) and (max-width: 768px){
     flex-direction: column;
   };
-  @media ${device.mobileL}{
+  @media only screen and (min-width: 768px){
     flex-direction: column;
   };
-  @media ${device.tablet}{
-    flex-direction: column;
-  };
-  @media ${device.laptop}{
-    flex-direction: column;
-  };
-  @media ${device.laptopL}{
-    flex-direction: row;
-  };
-  @media ${device.desktop}{
-    flex-direction: row;
-  };
-  @media ${device.desktopL}{
+  @media only screen and (min-width: 1380px){
     flex-direction: row;
   };
 `;
@@ -52,8 +39,8 @@ const StyledButton = styled.button`
     border: 2px solid black;
     margin: 10px;
     color: black;
+    font-size: 1.25rem;
     text-decoration: none;
-    font-size: 18px;
     align-items: center;
     justify-content: center;
     overflow: hidden;
@@ -69,7 +56,9 @@ const StyledButton = styled.button`
       background-color: black;
       border-color: black;
       `};
-    
+      @media only screen and (max-width: 480px){
+        font-size: 1rem;
+      };
 
 `;
 
@@ -86,28 +75,16 @@ const StyledImg = styled.img`
     height: auto;
     width: 25%;
     border-radius: 12px;
-    @media ${device.mobileS}{
+    @media only screen and (max-width: 480px){
       width: 80%;
     };
-    @media ${device.mobileM}{
-      width: 80%;
-    };
-    @media ${device.mobileL}{
-      width: 80%;
-    };
-    @media ${device.tablet}{
+    @media only screen and (min-width: 480px) and (max-width: 768px){
       width: 60%;
     };
-    @media ${device.laptop}{
+    @media only screen and (min-width: 768px){
       width: 35%;
     };
-    @media ${device.laptopL}{
-      width: 25%;
-    };
-    @media ${device.desktop}{
-      width: 25%;
-    };
-    @media ${device.desktopL}{
+    @media only screen and (min-width: 1380px){
       width: 25%;
     };
 `;
@@ -116,28 +93,16 @@ const StyledVideo = styled.video`
       width: 25%;
       height: auto;
       border-radius: 4px;
-      @media ${device.mobileS}{
+      @media only screen and (max-width: 480px){
         width: 80%;
       };
-      @media ${device.mobileM}{
-        width: 80%;
-      };
-      @media ${device.mobileL}{
-        width: 80%;
-      };
-      @media ${device.tablet}{
+      @media only screen and (min-width: 480px) and (max-width: 768px){
         width: 60%;
       };
-      @media ${device.laptop}{
+      @media only screen and (min-width: 768px){
         width: 35%;
       };
-      @media ${device.laptopL}{
-        width: 25%;
-      };
-      @media ${device.desktop}{
-        width: 25%;
-      };
-      @media ${device.desktopL}{
+      @media only screen and (min-width: 1380px){
         width: 25%;
       };
 `;
@@ -149,7 +114,7 @@ const ArrowLeft = styled(NavigateBeforeIcon)`
         transform: translate(-10px, 0);
       }
     };
-`;
+`;  
 
 const ArrowRigth = styled(NavigateNextIcon)`
     @media only screen and (min-width: 520px){
@@ -192,13 +157,13 @@ const ScaffoldsSection = () => {
 //Created these as seperate elements so that they can be more easly converted if they need to be
 const CustomElementsSection = () => {
   return(
-    <StyledVideo controls loop muted autoPlay src="/videos/DefineCustomEl.webm"/>
+    <StyledVideo controls loop muted autoPlay src="/videos/DefineCustomEl.mp4"/>
   )
 }
 
 const SetCustomValSection = () => {
   return(
-    <StyledVideo controls loop muted autoPlay src="/videos/SetCustomVal.webm"/>
+    <StyledVideo controls loop muted autoPlay src="/videos/SetCustomVal.mp4"/>
   )
 }
 
@@ -239,7 +204,7 @@ const InteractiveContent = () => {
     return(
     <PageSection padding="5%" orientation="column">
       <SectionComponent column>
-        <h2 style={{textAlign: "center"}}>How to build remixable templates</h2>
+        <h1 style={{textAlign: "center"}}>How to build remixable templates</h1>
       </SectionComponent>
       <ButtonSection>
           <StyledButton onClick={() => handleClick(0) } active={`${isActive[0]}`}>Start from a scaffold</StyledButton>
