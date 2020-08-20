@@ -25,7 +25,12 @@ const Content = styled.div`
     padding: 3px 4px;
     color: #3b3b3b;
     background-color: rgb(248, 248, 248);
-    border: 1px solid #d4d9d9
+    border: 1px solid #d4d9d9;
+    .lineNum:after {
+      user-select: none;
+      content: ' ' attr(data-line-number) ' | ';
+      opacity: 0.5;
+    }
   }
 
   pre, pre > code {
@@ -170,11 +175,15 @@ const Content = styled.div`
     width: 100%;
     display: none;
     background-color: rgb(248,248,248);
+    padding: 5px;
     &.active {
       display: block;
     }
     > .title {
       display: none;
+    }
+    code {
+      border: none;
     }
   }
 
