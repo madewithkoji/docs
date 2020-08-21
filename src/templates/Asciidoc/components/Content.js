@@ -34,7 +34,7 @@ const Content = styled.div`
       text-transform: uppercase;
       display: block;
       position: absolute;
-      top: 2px;
+      top: 3px;
       right: 90px;
       opacity: 0.6;
     }
