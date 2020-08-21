@@ -26,6 +26,45 @@ const Content = styled.div`
     color: #3b3b3b;
     background-color: rgb(248, 248, 248);
     border: 1px solid #d4d9d9;
+    transition: max-height 0.4s ease;
+    &.collapsible {
+      overflow: auto hidden;
+      position: relative;
+      cursor: pointer;
+      &:after {
+        content: '';
+        display: block;
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        height: 50px;
+        background: linear-gradient(0deg, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0) 100%);
+        transition: opacity 0.4s ease;
+      }
+      &:before {
+        content: 'expand';
+        text-transform: uppercase;
+        text-align: center;
+        display: block;
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        bottom: 15px;
+        background-color: #FFF;
+        border-radius: 16px;
+        z-index: 11;
+        padding: 3px 15px;
+        box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+        transition: bottom 0.4s ease;
+      }
+      &:hover:before {
+        bottom: 20px;
+      }
+      &:hover:after {
+        opacity: 0.6;
+      }
+    }
     .lineNum:after {
       user-select: none;
       content: ' ' attr(data-line-number) ' | ';
@@ -33,10 +72,12 @@ const Content = styled.div`
       color: #000;
     }
   }
+
   pre {
     position: relative;
     button.copy {
       position: absolute;
+      z-index: 10;
       right: 5px;
       top: 5px;
       border: none;
@@ -209,17 +250,20 @@ const Content = styled.div`
   .tab-pane {
     float: left;
     width: 100%;
-    display: none;
+    visibility: hidden;
+    position: absolute;
     background-color: rgb(248,248,248);
     padding: 5px;
     &.active {
-      display: block;
+      visibility: visible;
+      position: relative;
     }
     > .title {
       display: none;
     }
     code {
       border: none;
+      margin: -5px;
     }
   }
 

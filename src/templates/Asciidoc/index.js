@@ -6,6 +6,7 @@ import styled from 'styled-components';
 import 'highlight.js/styles/github.css';
 import { lineNumbers } from './utils/line-numbers';
 import { addCopyCodeButton } from './utils/copy-code';
+import { makeCollapsible } from './utils/collapsible';
 import { graphql } from 'gatsby';
 import Container from '@material-ui/core/Container';
 import { useTheme } from '@material-ui/core/styles';
@@ -135,8 +136,9 @@ const Asciidoc = (props) => {
   useEffect(() => {
     document.querySelectorAll('pre code').forEach((block) => {
       hljs.highlightBlock(block);
-      block.innerHTML = lineNumbers(block.innerHTML);
+      lineNumbers(block);
       addCopyCodeButton(block);
+      makeCollapsible(block);
     });
 
     document.querySelectorAll('a[data-slug]').forEach((elem) => {
