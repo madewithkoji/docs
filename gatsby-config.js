@@ -49,11 +49,15 @@ class TemplateConverter {
       }
     }
     if (node.hasRole('tabs')) {
+      const scope = node.getAttribute("scope");
       const blocks = node.getBlocks();
-      var tabOutput = "";
+      let tabOutput = '';
       for (var i = 0; i < blocks.length; i++) {
-        tabOutput += `<div class="tab${ i===0 ? ' active' : ''}">
-            ${blocks[i].getTitle()}
+        let scopeAttrs = '';
+        const blockTitle = blocks[i].getTitle();
+        if (scope) scopeAttrs = `data-scope="${scope}" data-scopevalue="${blockTitle}"`
+        tabOutput += `<div ${scopeAttrs} class="tab${ i===0 ? ' active' : ''}">
+            ${blockTitle}
           </div>`;
         blocks[i].addRole('tab-pane');
         if (i===0) {

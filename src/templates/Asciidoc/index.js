@@ -144,6 +144,19 @@ const Asciidoc = (props) => {
       // eslint-disable-next-line no-param-reassign
       if (slug) elem.innerText = resolveTitleFromSlug(slug) || elem.innerText;
     });
+
+    document.querySelectorAll('.tab[data-scope]').forEach((tab) => {
+      const { scope, scopevalue } = tab.dataset;
+      tab.addEventListener('click', (e) => {
+        let self = e.target;
+        if(e.isTrusted) {
+          document.querySelectorAll(`.tab[data-scope="${scope}"][data-scopevalue="${scopevalue}"]`).forEach((target)=> {
+            if (target != self) target.click();
+          });
+        }
+      });
+    });
+
   }, []);
 
   useEffect(() => {

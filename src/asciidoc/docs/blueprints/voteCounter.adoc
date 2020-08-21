@@ -30,7 +30,7 @@ See the <<withkoji-database-package#>> package reference.
 
 Remix an existing web application on Koji that implements basic elements of your favorite framework.
 
-[.tabs]
+[.tabs,scope="lang"]
 --
 
 .React
@@ -164,7 +164,7 @@ include::../_includes/db-blueprint-DataHandler.js[tags=addVotes,indent=0]
 
 Update the file that contains the main application code.
 
-[.tabs]
+[.tabs,scope="lang"]
 --
 .React
 `frontend/common/App.js`
@@ -175,7 +175,7 @@ Update the file that contains the main application code.
 
 Import the required libraries.
 
-[.tabs]
+[.tabs,scope="lang"]
 --
 .React
 [source,javascript]
@@ -206,7 +206,7 @@ include::../_includes/voteCounterReact.js[tags=initDataHandler]
 
 Track the remix state and the number of votes.
 
-[.tabs]
+[.tabs,scope="lang"]
 --
 .React
 [source,javascript]
@@ -224,7 +224,7 @@ include::../_includes/voteCounterVanilla.js[tags=trackState,indent=0]
 Set the callback for `DataHandler` to update the total votes.
 Set instant remixing to ready to allow remixes and use FeedSdk so your application can be displayed in the Koji feed.
 
-[.tabs]
+[.tabs,scope="lang"]
 --
 .React
 [source,javascript]
@@ -242,7 +242,7 @@ include::../_includes/voteCounterVanilla.js[tags=callDataHandler,indent=0]
 Update the rendered output to display the current vote count, and implement tap events for instant remixing and for counting votes.
 Use the `instantRemix.onPresentControl` callback to display the VCC controls when users are remixing your application.
 
-[.tabs]
+[.tabs,scope="lang"]
 --
 .React
 [source,javascript]
@@ -259,7 +259,7 @@ include::../_includes/voteCounterVanilla.js[tags=renderTemplate,indent=0]
 
 Apply conditional styling so remixers can easily tell what can be customized.
 
-[.tabs]
+[.tabs,scope="lang"]
 --
 .React
 ====
@@ -316,7 +316,7 @@ When publishing is completed, click the link in the message to view your live te
 
 To see this blueprint as a completed template on Koji, visit the following link. From there, you can view the source code or remix the template into your own project.
 
-[.tabs]
+[.tabs,scope="lang"]
 --
 .React
 https://withkoji.com/~JamesHole/database-and-dispatch-template[Blueprint: Vote Counter (React)]
@@ -327,7 +327,7 @@ https://withkoji.com/~JamesHole/database-and-dispatch-template-vanilla-js[Bluepr
 
 The following code is a completed sample of the template logic described in this blueprint.
 
-[.tabs]
+[.tabs,scope="lang"]
 --
 .React
 [source,javascript]
