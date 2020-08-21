@@ -1,0 +1,23 @@
+= Start watcher in React
+
+// tag::all[]
+
+Install npm-run-all.
+[source,bash]
+npm install --save-dev npm-run-all
+
+Modify the `package.json` file.
+[source,json]
+----
+{
+  "scripts": {
+    ...
+    "start": "npm-run-all -p watch start:server",
+    "watch": "koji-vcc watch",
+    "start:server": "webpack-dev-server --config ./.internals/webpack.development.js --inline --hot"
+  }
+}
+----
+NOTE: Make sure to replace the value of `"start:server"` with the `"start"` command for your project.
+
+// end::all[]
