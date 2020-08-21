@@ -25,23 +25,7 @@ Reconfigure the `package.json` file to run the watcher (`koji-vcc watch`) concur
 You can use a package like npm-run-all.
 For example:
 
-Install npm-run-all.
-[source,bash]
-npm install --save-dev npm-run-all
-
-Modify the `package.json` file.
-[source,json]
-----
-{
-  "scripts": {
-    ...
-    "start": "npm-run-all -p watch start:server",
-    "watch": "koji-vcc watch",
-    "start:server": "node index.js" <1>
-  }
-}
-----
-<1> Replace with the "start" command for your project
+include::../../docs/_includes/startWatcherPackageJSONReact.adoc[tags=*]
 
 == InstantRemixing
 
