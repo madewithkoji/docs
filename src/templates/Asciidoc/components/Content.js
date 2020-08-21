@@ -27,9 +27,23 @@ const Content = styled.div`
     background-color: rgb(248, 248, 248);
     border: 1px solid #d4d9d9;
     transition: max-height 0.4s ease;
-    &.collapsible {
-      overflow: auto hidden;
-      position: relative;
+    overflow: auto hidden;
+    position: relative;
+    &:after {
+      content: attr(data-lang);
+      text-transform: uppercase;
+      display: block;
+      position: absolute;
+      top: 2px;
+      right: 90px;
+      opacity: 0.6;
+    }
+    .collapsible {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
       cursor: pointer;
       &:after {
         content: '';
