@@ -23,21 +23,9 @@ const Content = styled.div`
     font-weight: normal;
     font-size: 14px;
     padding: 3px 4px;
-    color: #3b3b3b;
-    background-color: rgb(248, 248, 248);
     border: 1px solid #d4d9d9;
     transition: max-height 0.4s ease;
-    overflow: auto hidden;
     position: relative;
-    &:after {
-      content: attr(data-lang);
-      text-transform: uppercase;
-      display: block;
-      position: absolute;
-      top: 3px;
-      right: 90px;
-      opacity: 0.6;
-    }
     .collapsible {
       position: absolute;
       top: 0;
@@ -89,44 +77,73 @@ const Content = styled.div`
 
   pre {
     position: relative;
-    button.copy {
+    overflow: hidden;
+    button.copy, button.theme {
       position: absolute;
       z-index: 10;
-      right: 5px;
       top: 5px;
       border: none;
-      background-color: #DDD;
-      color: #000;
-      text-transform: uppercase;
-      padding: 2px 10px;
-      width: 75px;
-      font-weight: bold;
+      background-color: transparent;
+      color: #333;
+      font-size: 20px;
       cursor: pointer;
+      transition: 0.2s ease-in-out;
+      &:hover {
+        color: #999;
+      }
+      i { pointer-events: none;}
+      &:focus {
+        outline: none;
+      }
+    }
+    button.copy {
+      right: 5px;
       &:after {
-        content: 'Copied';
+        color: #333;
+        content: '\f00c';
+        font-family: "FontAwesome";
         position: absolute;
         top: 0;
         padding: 2px 10px;
         left: 0;
         right: 0;
         bottom: 0;
-        background-color: #000;
-        color: #FFF;
         opacity: 0;
         transition: 0.2s ease-in-out;
+        transform: translateY(-100%);
       }
-      &.copied:after {
-        opacity: 1;
+      &.copied {
+        color: transparent;
+        transform: translateY(100%);
+        &:after {
+          opacity: 1;
+        }
       }
-      &:focus {
-        outline: none;
-      }
+    }
+    button.theme {
+      right: 45px;
     }
   }
 
   pre, pre > code {
     line-height: 1.6;
     margin: 0;
+    position: relative;
+  }
+
+  pre > code {
+    padding-top: 30px;
+  }
+
+  .lang-indicator {
+    font-family: Menlo, Monaco, "Liberation Mono", Consolas, monospace;
+    text-transform: uppercase;
+    display: block;
+    position: absolute;
+    top: 6px;
+    right: 90px;
+    opacity: 0.6;
+    z-index: 12;
   }
 
   .admonitionblock > table { border: 0; background: none; width: 100%; }
@@ -238,6 +255,7 @@ const Content = styled.div`
     background-color: #DDD;
     position: relative;
     user-select: none;
+    z-index: 10;
     &.active, &:hover {
       background-color: rgb(248,248,248);
     }
@@ -254,6 +272,7 @@ const Content = styled.div`
 
   .openblock.tabs {
     border: 1px solid #AAA;
+    position: relative;
     &:after {
       content: '';
       display: block;
@@ -267,7 +286,6 @@ const Content = styled.div`
     visibility: hidden;
     position: absolute;
     background-color: rgb(248,248,248);
-    padding: 5px;
     &.active {
       visibility: visible;
       position: relative;
@@ -275,9 +293,11 @@ const Content = styled.div`
     > .title {
       display: none;
     }
+    &.paragraph {
+      padding: 5px;
+    }
     code {
       border: none;
-      margin: -5px;
     }
   }
 

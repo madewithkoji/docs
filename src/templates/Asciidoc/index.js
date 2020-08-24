@@ -6,6 +6,8 @@ import styled from 'styled-components';
 import 'highlight.js/styles/github.css';
 import { lineNumbers } from './utils/line-numbers';
 import { addCopyCodeButton } from './utils/copy-code';
+import { addChangeThemeButton } from './utils/code-theme';
+import { addLanguageIndicator } from './utils/lang-indicator';
 import { makeCollapsible } from './utils/collapsible';
 import { graphql } from 'gatsby';
 import Container from '@material-ui/core/Container';
@@ -138,6 +140,8 @@ const Asciidoc = (props) => {
       hljs.highlightBlock(block);
       lineNumbers(block);
       addCopyCodeButton(block);
+      addChangeThemeButton(block);
+      addLanguageIndicator(block);
       makeCollapsible(block);
     });
 
