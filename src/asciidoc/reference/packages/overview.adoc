@@ -21,3 +21,7 @@ include::withkojiDispatch.adoc[tag=description]
 +
 [.init-cap]
 include::withkojiCustomVccSdk.adoc[tag=description]
+<<withkoji-user-defaults-package#>> ::
++
+[.init-cap]
+include::withkojiUserDefaults.adoc[tag=description]
