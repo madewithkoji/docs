@@ -144,6 +144,9 @@ const Content = styled.div`
     right: 90px;
     opacity: 0.6;
     z-index: 12;
+    &:before {
+      content: attr(data-language);
+    }
   }
 
   .admonitionblock > table { border: 0; background: none; width: 100%; }
