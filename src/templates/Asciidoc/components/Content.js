@@ -26,6 +26,9 @@ const Content = styled.div`
     border: 1px solid #d4d9d9;
     transition: max-height 0.4s ease;
     position: relative;
+    &.expanded {
+      padding-bottom: 50px;
+    }
     .collapsible {
       position: absolute;
       top: 0;
@@ -65,6 +68,16 @@ const Content = styled.div`
       }
       &:hover:after {
         opacity: 0.6;
+      }
+      &.expanded {
+        top: auto;
+        height: 50px;
+        &:after {
+          background: none;
+        }
+        &:before {
+          content: 'collapse';
+        }
       }
     }
     .lineNum:after {
