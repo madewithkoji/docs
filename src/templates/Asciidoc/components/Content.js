@@ -254,7 +254,7 @@ const Content = styled.div`
   .tab {
     border: 1px solid #AAA;
     border-bottom: none;
-    padding: 5px;
+    padding: 5px 12px;
     display: inline-block;
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
@@ -265,6 +265,7 @@ const Content = styled.div`
     z-index: 10;
     font-weight: bold;
     margin-right: 5px;
+    font-size: 16px;
     &.active, &:hover {
       background-color: rgb(248,248,248);
     }
