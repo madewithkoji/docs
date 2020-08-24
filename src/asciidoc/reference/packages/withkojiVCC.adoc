@@ -306,7 +306,7 @@ The template is loaded in the feed 10 times, and you can swipe or scroll through
 
 [source,javascript]
 ----
-feed.onSetRemixing((isPlaying) => {
+feed.onPlaybackStateChanged((isPlaying) => {
   // Handle autoplay features
 });
 ----
