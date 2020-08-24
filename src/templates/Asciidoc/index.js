@@ -4,6 +4,7 @@ import Helmet from 'react-helmet';
 import hljs from 'highlight.js';
 import styled from 'styled-components';
 import 'highlight.js/styles/github.css';
+import '../../styles/dark-code.css';
 import { lineNumbers } from './utils/line-numbers';
 import { addCopyCodeButton } from './utils/copy-code';
 import { addChangeThemeButton } from './utils/code-theme';

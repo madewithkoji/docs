@@ -71,7 +71,7 @@ const Content = styled.div`
       user-select: none;
       content: ' ' attr(data-line-number) ' | ';
       opacity: 0.5;
-      color: #000;
+      color: #333;
     }
   }
 
@@ -87,7 +87,6 @@ const Content = styled.div`
       color: #333;
       font-size: 20px;
       cursor: pointer;
-      transition: 0.2s ease-in-out;
       &:hover {
         color: #999;
       }
@@ -98,6 +97,7 @@ const Content = styled.div`
     }
     button.copy {
       right: 5px;
+      transition: 0.2s ease-in-out;
       &:after {
         color: #333;
         content: '\f00c';
@@ -109,7 +109,7 @@ const Content = styled.div`
         right: 0;
         bottom: 0;
         opacity: 0;
-        transition: 0.2s ease-in-out;
+        transition: opacity 0.2s ease-in-out;
         transform: translateY(-100%);
       }
       &.copied {
@@ -256,6 +256,7 @@ const Content = styled.div`
     position: relative;
     user-select: none;
     z-index: 10;
+    font-weight: bold;
     &.active, &:hover {
       background-color: rgb(248,248,248);
     }
