@@ -141,8 +141,17 @@ body.darkCode .tab-container .tab.active, body.darkCode .tab-container .tab.acti
 body.darkCode .tab-container .tabs {
   border-color: #000;
 }
+
 body.darkCode .tab-container .tabs .tab-pane {
   background-color: #1E1E1E;
+  color: #DCDCDC;
+}
+
+body.darkCode .tab-container .tabs .tab-pane a {
+  color: #DCDCDC;
+}
+
+body.darkCode .tab-container .tabs .tab-pane .note .content {
   color: #DCDCDC;
 }
 
