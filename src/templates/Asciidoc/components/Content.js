@@ -247,6 +247,10 @@ const Content = styled.div`
   }
 
   // Tab related styling
+  .tab-container {
+    margin-top: 1.2em;
+  }
+
   .tab {
     border: 1px solid #AAA;
     border-bottom: none;
@@ -260,6 +264,7 @@ const Content = styled.div`
     user-select: none;
     z-index: 10;
     font-weight: bold;
+    margin-right: 5px;
     &.active, &:hover {
       background-color: rgb(248,248,248);
     }
