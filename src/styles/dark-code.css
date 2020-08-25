@@ -164,6 +164,10 @@ body.darkCode .tabbed .tabs .tabbed__tab .note .content {
   color: #DCDCDC;
 }
 
+body.darkCode .tabbed .tabs .tabbed__tab .listingblock ~ div:not(.listingblock) {
+  border-top-color: #333;
+}
+
 body.darkCode code .collapsible:after {
   background: linear-gradient(0deg, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0) 100%);
 }

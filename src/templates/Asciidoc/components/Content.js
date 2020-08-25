@@ -353,6 +353,9 @@ const Content = styled.div`
     code {
       border: none;
     }
+    .listingblock ~ div:not(.listingblock) {
+      border-top: 3px solid #777;
+    }
   }
 
 `;
