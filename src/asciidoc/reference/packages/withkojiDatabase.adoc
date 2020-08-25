@@ -36,7 +36,7 @@ Instantiates `Database`.
 
 [source,javascript]
 ----
-import Database from '@withkoji/Database'
+import Database from '@withkoji/Database';
 const database = new Database();
 ----
 

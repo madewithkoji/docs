@@ -39,22 +39,9 @@ npm install --save @withkoji/vcc
 You can use a package like npm-run-all.
 For example:
 +
-[source,json]
-----
-"build": "NODE_ENV=production webpack --config ./.internals/webpack.production.js --color -p --progress --hide-modules --display-optimization-bailout",
-"start": "npm-run-all -p watch start:server",
-"watch": "koji-vcc watch",
-"start:server": "node index.js" <1>
-----
-<1> Replace with the "start" command for your project
-+
-[NOTE]
 ====
-If you follow the example pattern, you must also install the npm-run-all package:
-[source,bash]
-npm install --save-dev npm-run-all
+include::../_includes/startWatcherPackageJSONReact.adoc[tags=*]
 ====
-
 . Restart the process to reflect the new changes:
 [source, bash]
 npm start

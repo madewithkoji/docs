@@ -175,6 +175,10 @@
             {
               "name": "@withkoji/custom-vcc-sdk",
               "slug": "withkoji-custom-vcc-sdk"
+            },
+            {
+              "name": "@withkoji/user-defaults",
+              "slug": "withkoji-user-defaults-package"
             }
           ]
         },
