@@ -48,6 +48,24 @@ class TemplateConverter {
         return `<a href="${target}" target="_blank" rel="noopener noreferrer">${text}</a>`;
       }
     }
+    if (node.hasRole('tabs')) {
+      const scope = node.getAttribute("scope");
+      const blocks = node.getBlocks();
+      let tabOutput = '';
+      for (var i = 0; i < blocks.length; i++) {
+        let scopeAttrs = '';
+        const blockTitle = blocks[i].getTitle();
+        if (scope) scopeAttrs = `data-scope="${scope}" data-scopevalue="${blockTitle}"`
+        tabOutput += `<div ${scopeAttrs} class="tabbed__toggle${ i===0 ? ' tabbed__toggle_active' : ''}">
+            ${blockTitle}
+          </div>`;
+        blocks[i].addRole('tabbed__tab');
+        if (i===0) {
+          blocks[i].addRole('active');
+        }
+      }
+      return `<div class="tabbed">${tabOutput+this.baseConverter.convert(node, transform)}</div>`;
+    }
 
     return this.baseConverter.convert(node, transform);
   }

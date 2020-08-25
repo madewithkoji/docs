@@ -17,6 +17,7 @@
     "@material-ui/icons": "^4.9.1",
     "asciidoctor": "^2.2.0",
     "babel-plugin-styled-components": "^1.10.7",
+    "future-tabs": "^1.3.2",
     "gatsby": "^2.24.47",
     "gatsby-plugin-catch-links": "^2.3.11",
     "gatsby-plugin-google-analytics": "^2.3.13",
