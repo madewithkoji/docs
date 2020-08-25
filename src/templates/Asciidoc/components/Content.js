@@ -323,8 +323,11 @@ const Content = styled.div`
     > .title {
       display: none;
     }
-    &.paragraph {
+    &.paragraph, .paragraph {
       padding: 5px;
+      p {
+        margin: 0;
+      }
     }
     code {
       border: none;
