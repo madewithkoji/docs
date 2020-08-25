@@ -15,7 +15,12 @@ import Container from '@material-ui/core/Container';
 import { useTheme } from '@material-ui/core/styles';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import Content from './components/Content';
-import { Tabs } from 'future-tabs';
+
+// Load future-tabs conditionally for gatsby static rendering
+var Tabs = null;
+if (typeof Element !== `undefined`) {
+  Tabs = require('future-tabs');
+}
 
 
 const SectionLink = styled.a`
@@ -185,7 +190,7 @@ const Asciidoc = (props) => {
   useEffect(() => {
     const tabContainers = document.querySelectorAll('.tabbed');
     for (var i = tabContainers.length - 1; i >= 0; i--) {
-      new Tabs(tabContainers[i], 'tabbed');
+      if (Tabs) new Tabs.Tabs(tabContainers[i], 'tabbed');
     }
   }, []);
 
