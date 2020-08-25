@@ -22,6 +22,7 @@ const copyBlock = (e) => {
 export const addCopyCodeButton = (block) => {
 	let button = document.createElement('button');
 	button.classList.add('copy');
+	button.dataset.tooltip = "Copy";
 	button.innerHTML = '<i class="fa fa-copy"></i>';
 	block.parentNode.prepend(button);
 	button.addEventListener('click', copyBlock);

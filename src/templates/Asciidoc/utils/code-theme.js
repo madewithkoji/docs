@@ -22,6 +22,7 @@ const checkLocalStorage = () => {
 export const addChangeThemeButton = (block) => {
 	let button = document.createElement('button');
 	button.classList.add('theme');
+	button.dataset.tooltip = "Toggle theme";
 	button.innerHTML = '<i class="fa fa-adjust"></i>';
 	block.parentNode.prepend(button);
 	button.addEventListener('click', changeTheme);

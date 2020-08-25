@@ -107,6 +107,23 @@ const Content = styled.div`
       &:focus {
         outline: none;
       }
+      &:before {
+        position: absolute;
+        top: 100%;
+        left: 50%;
+        transform: translateX(-50%);
+        background-color: #333;
+        font-size: 12px;
+        color: #DCDCDC;
+        padding: 3px 5px;
+        opacity: 0;
+        transition: 0.2s ease-in-out;
+        content: attr(data-tooltip);
+      }
+      &:hover:before {
+        opacity: 1;
+        top: calc(100% + 5px);
+      }
     }
     button.copy {
       right: 5px;
@@ -130,6 +147,9 @@ const Content = styled.div`
         transform: translateY(100%);
         &:after {
           opacity: 1;
+        }
+        &:before {
+          content: none;
         }
       }
     }
