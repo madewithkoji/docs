@@ -26,6 +26,7 @@ const Content = styled.div`
     border: 1px solid #d4d9d9;
     transition: max-height 0.4s ease;
     position: relative;
+    background-color: #F8F8F8;
     &.expanded {
       padding-bottom: 50px;
     }
