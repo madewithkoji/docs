@@ -273,6 +273,8 @@ include::../_includes/magazineCoverReact.js[tags=**]
 ----
 .Vanilla JS
 ====
+[.tabs]
+=====
 .index.js
 [source,javascript]
 ----
@@ -283,5 +285,6 @@ include::../_includes/magazineCoverVanilla.js[tags=**]
 ----
 include::../_includes/magazineCoverVanilla.css[tags=**]
 ----
+=====
 ====
 --

@@ -127,31 +127,35 @@ body.darkCode .listingblock pre button:after {
   color: #AAA;
 }
 
-body.darkCode .tab-container .tab {
+body.darkCode .tabbed .tabbed__toggle {
   color: #DCDCDC;
   background-color: #666;
   border-color: #000;
 }
 
-body.darkCode .tab-container .tab.active, body.darkCode .tab-container .tab.active:after {
+body.darkCode .tabbed .tabbed__toggle.tabbed__toggle_active, body.darkCode .tabbed .tabbed__toggle.tabbed__toggle_active:after {
   background-color: #1E1E1E;
   color: #DCDCDC;
 }
 
-body.darkCode .tab-container .tabs {
+body.darkCode .tabbed .tabbed .tabbed__toggle.tabbed__toggle_active, body.darkCode .tabbed .tabbed .tabbed__toggle:hover {
+  border-bottom-color: #DCDCDC;
+}
+
+body.darkCode .tabbed .tabs {
   border-color: #000;
 }
 
-body.darkCode .tab-container .tabs .tab-pane {
+body.darkCode .tabbed .tabs .tabbed__tab {
   background-color: #1E1E1E;
   color: #DCDCDC;
 }
 
-body.darkCode .tab-container .tabs .tab-pane a {
+body.darkCode .tabbed .tabs .tabbed__tab a {
   color: #DCDCDC;
 }
 
-body.darkCode .tab-container .tabs .tab-pane .note .content {
+body.darkCode .tabbed .tabs .tabbed__tab .note .content {
   color: #DCDCDC;
 }
 

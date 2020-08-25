@@ -260,11 +260,14 @@ const Content = styled.div`
   }
 
   // Tab related styling
-  .tab-container {
+  .tabbed {
     margin-top: 1.2em;
+    .tabbed {
+      margin-top: 0;
+    }
   }
 
-  .tab {
+  .tabbed__toggle {
     border: 1px solid #AAA;
     border-bottom: none;
     padding: 5px 12px;
@@ -279,10 +282,10 @@ const Content = styled.div`
     font-weight: bold;
     margin-right: 5px;
     font-size: 16px;
-    &.active, &:hover {
+    &.tabbed__toggle_active, &:hover {
       background-color: rgb(248,248,248);
     }
-    &.active:after {
+    &.tabbed__toggle_active:after {
       content: '';
       position: absolute;
       left: 0;
@@ -293,7 +296,20 @@ const Content = styled.div`
     }
   }
 
-  .openblock.tabs {
+  /* nested tabs */
+  .tabbed .tabbed .tabbed__toggle {
+    background-color: transparent;
+    border: none;
+    &.tabbed__toggle_active, &:hover {
+      background-color: transparent;
+      border-bottom: 2px solid #000;
+    }
+    &.tabbed__toggle_active:after {
+      content: none;
+    }
+  }
+
+  .tabs {
     border: 1px solid #AAA;
     position: relative;
     &:after {
@@ -303,16 +319,7 @@ const Content = styled.div`
     }
   }
 
-  .tab-pane {
-    float: left;
-    width: 100%;
-    visibility: hidden;
-    position: absolute;
-    background-color: rgb(248,248,248);
-    &.active {
-      visibility: visible;
-      position: relative;
-    }
+  .tabbed__tab {
     > .title {
       display: none;
     }
