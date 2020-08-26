@@ -134,6 +134,11 @@ const Layout = (props) => {
           href={'https://fonts.googleapis.com/icon?family=Material+Icons'}
           rel={'stylesheet'}
         />
+        <link
+          href={"https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"}
+          rel={"stylesheet"}
+        />
+        
         <title>Koji for Developers - Remix with Koji</title>
         <meta name="title" content="Koji for Developers - Remix with Koji"/>
         <meta name="description" content="Develop the future of social with remixable applications. Kojis are mini web applications that can be shared anywhere across the web."/>
@@ -149,6 +154,7 @@ const Layout = (props) => {
         <meta property="twitter:title" content="Koji for Developers - Remix with Koji"/>
         <meta property="twitter:description" content="Develop the future of social with remixable applications. Kojis are mini web applications that can be shared anywhere across the web."/>
         <meta property="twitter:image" content="/images/og-banner.png"/>
+
       </Helmet>
       <ThemeProvider theme={theme}>
         <CssBaseline />

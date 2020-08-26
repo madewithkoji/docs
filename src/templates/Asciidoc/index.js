@@ -4,11 +4,24 @@ import Helmet from 'react-helmet';
 import hljs from 'highlight.js';
 import styled from 'styled-components';
 import 'highlight.js/styles/github.css';
+import '../../styles/dark-code.css';
+import { lineNumbers } from './utils/line-numbers';
+import { addCopyCodeButton } from './utils/copy-code';
+import { addChangeThemeButton } from './utils/code-theme';
+import { addLanguageIndicator } from './utils/lang-indicator';
+import { makeCollapsible } from './utils/collapsible';
 import { graphql } from 'gatsby';
 import Container from '@material-ui/core/Container';
 import { useTheme } from '@material-ui/core/styles';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import Content from './components/Content';
+
+// Load future-tabs conditionally for gatsby static rendering
+var Tabs = null;
+if (typeof Element !== `undefined`) {
+  Tabs = require('future-tabs');
+}
+
 
 const SectionLink = styled.a`
   color: #333333;
@@ -134,6 +147,11 @@ const Asciidoc = (props) => {
   useEffect(() => {
     document.querySelectorAll('pre code').forEach((block) => {
       hljs.highlightBlock(block);
+      lineNumbers(block);
+      addCopyCodeButton(block);
+      addChangeThemeButton(block);
+      addLanguageIndicator(block);
+      makeCollapsible(block);
     });
 
     document.querySelectorAll('a[data-slug]').forEach((elem) => {
@@ -141,6 +159,19 @@ const Asciidoc = (props) => {
       // eslint-disable-next-line no-param-reassign
       if (slug) elem.innerText = resolveTitleFromSlug(slug) || elem.innerText;
     });
+
+    document.querySelectorAll('.tabbed__toggle[data-scope]').forEach((tab) => {
+      const { scope, scopevalue } = tab.dataset;
+      tab.addEventListener('click', (e) => {
+        let self = e.target;
+        if(e.isTrusted) {
+          document.querySelectorAll(`.tabbed__toggle[data-scope="${scope}"][data-scopevalue="${scopevalue}"]`).forEach((target)=> {
+            if (target != self) target.click();
+          });
+        }
+      });
+    });
+
   }, []);
 
   useEffect(() => {
@@ -157,6 +188,13 @@ const Asciidoc = (props) => {
     elem.remove();
 
     setSections(mappedSections);
+  }, []);
+
+  useEffect(() => {
+    const tabContainers = document.querySelectorAll('.tabbed');
+    for (var i = tabContainers.length - 1; i >= 0; i--) {
+      if (Tabs) new Tabs.Tabs(tabContainers[i], 'tabbed');
+    }
   }, []);
 
   const renderTextFromHref = (href, text) => {
