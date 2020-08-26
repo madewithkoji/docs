@@ -97,6 +97,9 @@ export const query = graphql`
         subtitle
         main
       }
+      pageAttributes {
+        description
+      }
     }
     allAsciidoc {
       edges {
@@ -163,11 +166,28 @@ const Asciidoc = (props) => {
 
     return href;
   };
-
+  let pageTitle = `${props.data.asciidoc.document.title} | Koji for Developers`;
+  let pageDesc = props.data.asciidoc.pageAttributes.description ? props.data.asciidoc.pageAttributes.description : '';
+  let pageUrl = props.location.href;
   return (
     <StyledContainer maxWidth="lg">
       <Helmet>
-        <title>{`${props.data.asciidoc.document.title} | Koji for Developers`}</title>
+        <title>{pageTitle}</title>
+        <meta name="title" content={pageTitle}/>
+        {pageDesc && <meta name="description" content={pageDesc}/>}
+
+        <meta property="og:type" content="website"/>
+        <meta property="og:url" content={pageUrl}/>
+        <meta property="og:title" content={pageTitle}/>
+        {pageDesc && <meta property="og:description" content={pageDesc}/>}
+        <meta property="og:image" content="/images/og-banner.jpg"/>
+
+        <meta property="twitter:card" content="summary_large_image"/>
+        <meta property="twitter:url" content={pageUrl}/>
+        <meta property="twitter:title" content={pageTitle}/>
+        {pageDesc && <meta property="twitter:description" content={pageDesc}/>}
+        <meta property="twitter:image" content="/images/og-banner.jpg"/>
+
       </Helmet>
       <Content
         dangerouslySetInnerHTML={{ __html: props.data.asciidoc.html }}

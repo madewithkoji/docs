@@ -136,18 +136,18 @@ const Layout = (props) => {
         />
         <title>Koji for Developers - Remix with Koji</title>
         <meta name="title" content="Koji for Developers - Remix with Koji"/>
-        <meta name="description" content="Develop the future of social with remixable applications. Kojis are mini web applications that can be shared on all social platforms, embedded in any website, and sent via messengers and email. Everyday users can create Kojis in minutes by remixing templates and customizing them."/>
+        <meta name="description" content="Develop the future of social with remixable applications. Kojis are mini web applications that can be shared anywhere across the web."/>
 
         <meta property="og:type" content="website"/>
         <meta property="og:url" content="https://developer.withkoji.com/"/>
         <meta property="og:title" content="Koji for Developers - Remix with Koji"/>
-        <meta property="og:description" content="Develop the future of social with remixable applications. Kojis are mini web applications that can be shared on all social platforms, embedded in any website, and sent via messengers and email. Everyday users can create Kojis in minutes by remixing templates and customizing them."/>
+        <meta property="og:description" content="Develop the future of social with remixable applications. Kojis are mini web applications that can be shared anywhere across the web."/>
         <meta property="og:image" content="/images/og-banner.jpg"/>
 
         <meta property="twitter:card" content="summary_large_image"/>
         <meta property="twitter:url" content="https://developer.withkoji.com/"/>
         <meta property="twitter:title" content="Koji for Developers - Remix with Koji"/>
-        <meta property="twitter:description" content="Develop the future of social with remixable applications. Kojis are mini web applications that can be shared on all social platforms, embedded in any website, and sent via messengers and email. Everyday users can create Kojis in minutes by remixing templates and customizing them."/>
+        <meta property="twitter:description" content="Develop the future of social with remixable applications. Kojis are mini web applications that can be shared anywhere across the web."/>
         <meta property="twitter:image" content="/images/og-banner.jpg"/>
       </Helmet>
       <ThemeProvider theme={theme}>
