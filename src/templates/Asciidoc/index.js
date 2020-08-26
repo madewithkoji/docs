@@ -180,13 +180,13 @@ const Asciidoc = (props) => {
         <meta property="og:url" content={pageUrl}/>
         <meta property="og:title" content={pageTitle}/>
         {pageDesc && <meta property="og:description" content={pageDesc}/>}
-        <meta property="og:image" content="/images/og-banner.jpg"/>
+        <meta property="og:image" content="/images/og-banner.png"/>
 
         <meta property="twitter:card" content="summary_large_image"/>
         <meta property="twitter:url" content={pageUrl}/>
         <meta property="twitter:title" content={pageTitle}/>
         {pageDesc && <meta property="twitter:description" content={pageDesc}/>}
-        <meta property="twitter:image" content="/images/og-banner.jpg"/>
+        <meta property="twitter:image" content="/images/og-banner.png"/>
 
       </Helmet>
       <Content

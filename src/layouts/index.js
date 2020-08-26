@@ -142,13 +142,13 @@ const Layout = (props) => {
         <meta property="og:url" content="https://developer.withkoji.com/"/>
         <meta property="og:title" content="Koji for Developers - Remix with Koji"/>
         <meta property="og:description" content="Develop the future of social with remixable applications. Kojis are mini web applications that can be shared anywhere across the web."/>
-        <meta property="og:image" content="/images/og-banner.jpg"/>
+        <meta property="og:image" content="/images/og-banner.png"/>
 
         <meta property="twitter:card" content="summary_large_image"/>
         <meta property="twitter:url" content="https://developer.withkoji.com/"/>
         <meta property="twitter:title" content="Koji for Developers - Remix with Koji"/>
         <meta property="twitter:description" content="Develop the future of social with remixable applications. Kojis are mini web applications that can be shared anywhere across the web."/>
-        <meta property="twitter:image" content="/images/og-banner.jpg"/>
+        <meta property="twitter:image" content="/images/og-banner.png"/>
       </Helmet>
       <ThemeProvider theme={theme}>
         <CssBaseline />
