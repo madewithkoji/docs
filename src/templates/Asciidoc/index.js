@@ -207,7 +207,6 @@ const Asciidoc = (props) => {
   };
   let pageTitle = `${props.data.asciidoc.document.title} | Koji for Developers`;
   let pageDesc = props.data.asciidoc.pageAttributes.description ? props.data.asciidoc.pageAttributes.description : '';
-  let pageUrl = props.location.href;
   let pageBanner = props.data.asciidoc.pageAttributes.banner ? props.data.asciidoc.pageAttributes.banner : '';
   if (pageBanner.charAt(0) === '/') {
     pageBanner = props.location.origin+pageBanner
@@ -220,13 +219,11 @@ const Asciidoc = (props) => {
         {pageDesc && <meta name="description" content={pageDesc}/>}
 
         <meta property="og:type" content="website"/>
-        <meta property="og:url" content={pageUrl}/>
         <meta property="og:title" content={pageTitle}/>
         {pageDesc && <meta property="og:description" content={pageDesc}/>}
         {pageBanner && <meta property="og:image" content={pageBanner}/>}
 
         <meta property="twitter:card" content="summary_large_image"/>
-        <meta property="twitter:url" content={pageUrl}/>
         <meta property="twitter:title" content={pageTitle}/>
         {pageDesc && <meta property="twitter:description" content={pageDesc}/>}
         {pageBanner && <meta property="twitter:image" content={pageBanner}/>}

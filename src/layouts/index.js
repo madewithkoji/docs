@@ -50,6 +50,11 @@ const Layout = (props) => {
           root
         }
       }
+      site {
+        siteMetadata {
+          siteUrl
+        }
+      }
     }
   `);
 
@@ -127,6 +132,10 @@ const Layout = (props) => {
         <title>{'Koji for Developers'}</title>
         <meta name={'viewport'} content={'minimum-scale=1, initial-scale=1, width=device-width'} />
         <link
+          href={data.site.siteMetadata.siteUrl+props.path}
+          rel={'canonical'}
+        />
+        <link
           href={'https://fonts.googleapis.com/css?family=Roboto:400,500,700&display=swap'}
           rel={'stylesheet'}
         />
@@ -144,13 +153,13 @@ const Layout = (props) => {
         <meta name="description" content="Develop the future of social with remixable applications. Kojis are mini web applications that can be shared anywhere across the web."/>
 
         <meta property="og:type" content="website"/>
-        <meta property="og:url" content="https://developer.withkoji.com/"/>
+        <meta property="og:url" content={data.site.siteMetadata.siteUrl+props.path}/>
         <meta property="og:title" content="Koji for Developers - Remix with Koji"/>
         <meta property="og:description" content="Develop the future of social with remixable applications. Kojis are mini web applications that can be shared anywhere across the web."/>
         <meta property="og:image" content="/images/og-banner.png"/>
 
         <meta property="twitter:card" content="summary_large_image"/>
-        <meta property="twitter:url" content="https://developer.withkoji.com/"/>
+        <meta property="twitter:url" content={data.site.siteMetadata.siteUrl+props.path}/>
         <meta property="twitter:title" content="Koji for Developers - Remix with Koji"/>
         <meta property="twitter:description" content="Develop the future of social with remixable applications. Kojis are mini web applications that can be shared anywhere across the web."/>
         <meta property="twitter:image" content="/images/og-banner.png"/>

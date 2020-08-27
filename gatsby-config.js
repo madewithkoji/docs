@@ -86,7 +86,9 @@ class TemplateConverter {
 
 module.exports = {
   /* Your site config here */
-  siteMetadata: {},
+  siteMetadata: {
+    siteUrl: `https://developer.withkoji.com`,
+  },
 
   plugins: [
     // Support a default layout component that won't unmount between route changes
