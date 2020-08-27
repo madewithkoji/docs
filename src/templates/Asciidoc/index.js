@@ -129,6 +129,11 @@ export const query = graphql`
         }
       }
     }
+    site {
+      siteMetadata {
+        title
+      }
+    }
   }
 `;
 
@@ -205,7 +210,7 @@ const Asciidoc = (props) => {
 
     return href;
   };
-  let pageTitle = `${props.data.asciidoc.document.title} | Koji for Developers`;
+  let pageTitle = `${props.data.asciidoc.document.title} | ${props.data.site.siteMetadata.title}`;
   let pageDesc = props.data.asciidoc.pageAttributes.description ? props.data.asciidoc.pageAttributes.description : '';
   let pageBanner = props.data.asciidoc.pageAttributes.banner ? props.data.asciidoc.pageAttributes.banner : '';
   if (pageBanner.charAt(0) === '/') {

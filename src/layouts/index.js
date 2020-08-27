@@ -52,8 +52,10 @@ const Layout = (props) => {
       }
       site {
         siteMetadata {
+          title
           siteUrl
           shareImage
+          description
         }
       }
     }
@@ -130,7 +132,7 @@ const Layout = (props) => {
   return (
     <>
       <Helmet>
-        <title>{'Koji for Developers'}</title>
+        <title>{data.site.siteMetadata.title}</title>
         <meta name={'viewport'} content={'minimum-scale=1, initial-scale=1, width=device-width'} />
         <link
           href={data.site.siteMetadata.siteUrl+props.path}
@@ -149,20 +151,19 @@ const Layout = (props) => {
           rel={"stylesheet"}
         />
         
-        <title>Koji for Developers - Remix with Koji</title>
-        <meta name="title" content="Koji for Developers - Remix with Koji"/>
-        <meta name="description" content="Develop the future of social with remixable applications. Kojis are mini web applications that can be shared anywhere across the web."/>
+        <meta name="title" content={data.site.siteMetadata.title}/>
+        <meta name="description" content={data.site.siteMetadata.description}/>
 
         <meta property="og:type" content="website"/>
         <meta property="og:url" content={data.site.siteMetadata.siteUrl+props.path}/>
-        <meta property="og:title" content="Koji for Developers - Remix with Koji"/>
-        <meta property="og:description" content="Develop the future of social with remixable applications. Kojis are mini web applications that can be shared anywhere across the web."/>
+        <meta property="og:title" content={data.site.siteMetadata.title}/>
+        <meta property="og:description" content={data.site.siteMetadata.description}/>
         <meta property="og:image" content={data.site.siteMetadata.siteUrl+data.site.siteMetadata.shareImage}/>
 
         <meta property="twitter:card" content="summary_large_image"/>
         <meta property="twitter:url" content={data.site.siteMetadata.siteUrl+props.path}/>
-        <meta property="twitter:title" content="Koji for Developers - Remix with Koji"/>
-        <meta property="twitter:description" content="Develop the future of social with remixable applications. Kojis are mini web applications that can be shared anywhere across the web."/>
+        <meta property="twitter:title" content={data.site.siteMetadata.title}/>
+        <meta property="twitter:description" content={data.site.siteMetadata.description}/>
         <meta property="twitter:image" content={data.site.siteMetadata.siteUrl+data.site.siteMetadata.shareImage}/>
 
       </Helmet>
