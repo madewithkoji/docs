@@ -67,6 +67,19 @@ class TemplateConverter {
       return `<div class="tabbed">${tabOutput+this.baseConverter.convert(node, transform)}</div>`;
     }
 
+    if (node.getNodeName() === 'document') {
+      if (!node.hasAttribute('page-banner')) {
+        let images = node.getImages();
+        for (var i = 0; i < images.length; i++) {
+          let target = images[i].getTarget();
+          if (target.slice(-4) !== '.svg') {
+            node.setAttribute('page-banner', `${images[i].getImagesDirectory()}/${images[i].getTarget()}`);
+            break;
+          }
+        }
+      }
+    }
+
     return this.baseConverter.convert(node, transform);
   }
 }
@@ -91,6 +104,7 @@ module.exports = {
           showtitle: true,
           imagesdir: '/images',
         },
+        catalog_assets: true,
         converterFactory: TemplateConverter,
       },
     },
