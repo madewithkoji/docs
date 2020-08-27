@@ -53,6 +53,7 @@ const Layout = (props) => {
       site {
         siteMetadata {
           siteUrl
+          shareImage
         }
       }
     }
@@ -156,13 +157,13 @@ const Layout = (props) => {
         <meta property="og:url" content={data.site.siteMetadata.siteUrl+props.path}/>
         <meta property="og:title" content="Koji for Developers - Remix with Koji"/>
         <meta property="og:description" content="Develop the future of social with remixable applications. Kojis are mini web applications that can be shared anywhere across the web."/>
-        <meta property="og:image" content="/images/og-banner.png"/>
+        <meta property="og:image" content={data.site.siteMetadata.siteUrl+data.site.siteMetadata.shareImage}/>
 
         <meta property="twitter:card" content="summary_large_image"/>
         <meta property="twitter:url" content={data.site.siteMetadata.siteUrl+props.path}/>
         <meta property="twitter:title" content="Koji for Developers - Remix with Koji"/>
         <meta property="twitter:description" content="Develop the future of social with remixable applications. Kojis are mini web applications that can be shared anywhere across the web."/>
-        <meta property="twitter:image" content="/images/og-banner.png"/>
+        <meta property="twitter:image" content={data.site.siteMetadata.siteUrl+data.site.siteMetadata.shareImage}/>
 
       </Helmet>
       <ThemeProvider theme={theme}>

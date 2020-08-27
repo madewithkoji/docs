@@ -87,7 +87,8 @@ class TemplateConverter {
 module.exports = {
   /* Your site config here */
   siteMetadata: {
-    siteUrl: `https://developer.withkoji.com`,
+    siteUrl: 'https://developer.withkoji.com',
+    shareImage: '/images/og-banner.png',
   },
 
   plugins: [
