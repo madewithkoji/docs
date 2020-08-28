@@ -110,6 +110,10 @@ export const query = graphql`
         subtitle
         main
       }
+      pageAttributes {
+        description
+        banner
+      }
     }
     allAsciidoc {
       edges {
@@ -123,6 +127,11 @@ export const query = graphql`
             slug
           }
         }
+      }
+    }
+    site {
+      siteMetadata {
+        title
       }
     }
   }
@@ -201,11 +210,29 @@ const Asciidoc = (props) => {
 
     return href;
   };
-
+  let pageTitle = `${props.data.asciidoc.document.title} | ${props.data.site.siteMetadata.title}`;
+  let pageDesc = props.data.asciidoc.pageAttributes.description ? props.data.asciidoc.pageAttributes.description : '';
+  let pageBanner = props.data.asciidoc.pageAttributes.banner ? props.data.asciidoc.pageAttributes.banner : '';
+  if (pageBanner.charAt(0) === '/') {
+    pageBanner = props.location.origin+pageBanner
+  }
   return (
     <StyledContainer maxWidth="lg">
       <Helmet>
-        <title>{`${props.data.asciidoc.document.title} | Koji for Developers`}</title>
+        <title>{pageTitle}</title>
+        <meta name="title" content={pageTitle}/>
+        {pageDesc && <meta name="description" content={pageDesc}/>}
+
+        <meta property="og:type" content="website"/>
+        <meta property="og:title" content={pageTitle}/>
+        {pageDesc && <meta property="og:description" content={pageDesc}/>}
+        {pageBanner && <meta property="og:image" content={pageBanner}/>}
+
+        <meta property="twitter:card" content="summary_large_image"/>
+        <meta property="twitter:title" content={pageTitle}/>
+        {pageDesc && <meta property="twitter:description" content={pageDesc}/>}
+        {pageBanner && <meta property="twitter:image" content={pageBanner}/>}
+
       </Helmet>
       <Content
         dangerouslySetInnerHTML={{ __html: props.data.asciidoc.html }}

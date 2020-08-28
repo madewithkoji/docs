@@ -49,6 +49,8 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
             }
             pageAttributes {
               slug
+              description
+              banner
             }
           }
         }

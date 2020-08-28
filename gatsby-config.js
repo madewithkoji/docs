@@ -67,13 +67,31 @@ class TemplateConverter {
       return `<div class="tabbed">${tabOutput+this.baseConverter.convert(node, transform)}</div>`;
     }
 
+    if (node.getNodeName() === 'document') {
+      if (!node.hasAttribute('page-banner')) {
+        let images = node.getImages();
+        for (var i = 0; i < images.length; i++) {
+          let target = images[i].getTarget();
+          if (target.slice(-4) !== '.svg') {
+            node.setAttribute('page-banner', `${images[i].getImagesDirectory()}/${images[i].getTarget()}`);
+            break;
+          }
+        }
+      }
+    }
+
     return this.baseConverter.convert(node, transform);
   }
 }
 
 module.exports = {
   /* Your site config here */
-  siteMetadata: {},
+  siteMetadata: {
+    title: 'Koji for Developers',
+    siteUrl: 'https://developer.withkoji.com',
+    shareImage: '/images/og-banner.png',
+    description: "Develop the future of social with remixable applications. Kojis are mini web applications that can be shared anywhere across the web.",
+  },
 
   plugins: [
     // Support a default layout component that won't unmount between route changes
@@ -91,6 +109,7 @@ module.exports = {
           showtitle: true,
           imagesdir: '/images',
         },
+        catalog_assets: true,
         converterFactory: TemplateConverter,
       },
     },
