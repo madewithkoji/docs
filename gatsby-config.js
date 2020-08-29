@@ -48,6 +48,37 @@ class TemplateConverter {
         return `<a href="${target}" target="_blank" rel="noopener noreferrer">${text}</a>`;
       }
     }
+    if (node.hasRole('tabs')) {
+      const scope = node.getAttribute("scope");
+      const blocks = node.getBlocks();
+      let tabOutput = '';
+      for (var i = 0; i < blocks.length; i++) {
+        let scopeAttrs = '';
+        const blockTitle = blocks[i].getTitle();
+        if (scope) scopeAttrs = `data-scope="${scope}" data-scopevalue="${blockTitle}"`
+        tabOutput += `<div ${scopeAttrs} class="tabbed__toggle${i === 0 ? ' tabbed__toggle_active' : ''}">
+            ${blockTitle}
+          </div>`;
+        blocks[i].addRole('tabbed__tab');
+        if (i === 0) {
+          blocks[i].addRole('active');
+        }
+      }
+      return `<div class="tabbed">${tabOutput + this.baseConverter.convert(node, transform)}</div>`;
+    }
+
+    if (node.getNodeName() === 'document') {
+      if (!node.hasAttribute('page-banner')) {
+        let images = node.getImages();
+        for (var i = 0; i < images.length; i++) {
+          let target = images[i].getTarget();
+          if (target.slice(-4) !== '.svg') {
+            node.setAttribute('page-banner', `${images[i].getImagesDirectory()}/${images[i].getTarget()}`);
+            break;
+          }
+        }
+      }
+    }
 
     return this.baseConverter.convert(node, transform);
   }
@@ -55,9 +86,17 @@ class TemplateConverter {
 
 module.exports = {
   /* Your site config here */
-  siteMetadata: {},
+  siteMetadata: {
+    title: 'Koji for Developers',
+    siteUrl: 'https://developer.withkoji.com',
+    shareImage: '/images/og-banner.png',
+    description: "Develop the future of social with remixable applications. Kojis are mini web applications that can be shared anywhere across the web.",
+  },
 
   plugins: [
+    // Support react-helmet
+    'gatsby-plugin-react-helmet',
+
     // Support a default layout component that won't unmount between route changes
     'gatsby-plugin-layout',
 
@@ -73,6 +112,7 @@ module.exports = {
           showtitle: true,
           imagesdir: '/images',
         },
+        catalog_assets: true,
         converterFactory: TemplateConverter,
       },
     },
@@ -101,7 +141,7 @@ module.exports = {
         // Defines where to place the tracking script - `true` in the head and `false` in the body
         head: true,
         // Set samesite attribute so that chrome doesn't block/warn
-        cookieflags: 'max-age=7200;secure;samesite=none',
+        cookieFlags: 'Max-Age=7200;Secure;SameSite=none',
       },
     },
   ],

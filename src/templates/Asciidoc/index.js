@@ -4,11 +4,24 @@ import Helmet from 'react-helmet';
 import hljs from 'highlight.js';
 import styled from 'styled-components';
 import 'highlight.js/styles/github.css';
+import '../../styles/dark-code.css';
+import { lineNumbers } from './utils/line-numbers';
+import { addCopyCodeButton } from './utils/copy-code';
+import { addChangeThemeButton } from './utils/code-theme';
+import { addLanguageIndicator } from './utils/lang-indicator';
+import { makeCollapsible } from './utils/collapsible';
 import { graphql } from 'gatsby';
 import Container from '@material-ui/core/Container';
 import { useTheme } from '@material-ui/core/styles';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import Content from './components/Content';
+
+// Load future-tabs conditionally for gatsby static rendering
+var Tabs = null;
+if (typeof Element !== `undefined`) {
+  Tabs = require('future-tabs');
+}
+
 
 const SectionLink = styled.a`
   color: #333333;
@@ -97,6 +110,10 @@ export const query = graphql`
         subtitle
         main
       }
+      pageAttributes {
+        description
+        banner
+      }
     }
     allAsciidoc {
       edges {
@@ -110,6 +127,11 @@ export const query = graphql`
             slug
           }
         }
+      }
+    }
+    site {
+      siteMetadata {
+        title
       }
     }
   }
@@ -131,6 +153,11 @@ const Asciidoc = (props) => {
   useEffect(() => {
     document.querySelectorAll('pre code').forEach((block) => {
       hljs.highlightBlock(block);
+      lineNumbers(block);
+      addCopyCodeButton(block);
+      addChangeThemeButton(block);
+      addLanguageIndicator(block);
+      makeCollapsible(block);
     });
 
     document.querySelectorAll('a[data-slug]').forEach((elem) => {
@@ -138,6 +165,19 @@ const Asciidoc = (props) => {
       // eslint-disable-next-line no-param-reassign
       if (slug) elem.innerText = resolveTitleFromSlug(slug) || elem.innerText;
     });
+
+    document.querySelectorAll('.tabbed__toggle[data-scope]').forEach((tab) => {
+      const { scope, scopevalue } = tab.dataset;
+      tab.addEventListener('click', (e) => {
+        let self = e.target;
+        if(e.isTrusted) {
+          document.querySelectorAll(`.tabbed__toggle[data-scope="${scope}"][data-scopevalue="${scopevalue}"]`).forEach((target)=> {
+            if (target != self) target.click();
+          });
+        }
+      });
+    });
+
   }, []);
 
   useEffect(() => {
@@ -156,6 +196,13 @@ const Asciidoc = (props) => {
     setSections(mappedSections);
   }, []);
 
+  useEffect(() => {
+    const tabContainers = document.querySelectorAll('.tabbed');
+    for (var i = tabContainers.length - 1; i >= 0; i--) {
+      if (Tabs) new Tabs.Tabs(tabContainers[i], 'tabbed');
+    }
+  }, []);
+
   const renderTextFromHref = (href, text) => {
     if (href[0] === '_') {
       return text;
@@ -163,11 +210,29 @@ const Asciidoc = (props) => {
 
     return href;
   };
-
+  let pageTitle = `${props.data.asciidoc.document.title} | ${props.data.site.siteMetadata.title}`;
+  let pageDesc = props.data.asciidoc.pageAttributes.description ? props.data.asciidoc.pageAttributes.description : '';
+  let pageBanner = props.data.asciidoc.pageAttributes.banner ? props.data.asciidoc.pageAttributes.banner : '';
+  if (pageBanner.charAt(0) === '/') {
+    pageBanner = props.location.origin+pageBanner
+  }
   return (
     <StyledContainer maxWidth="lg">
       <Helmet>
-        <title>{`${props.data.asciidoc.document.title} | Koji for Developers`}</title>
+        <title>{pageTitle}</title>
+        <meta name="title" content={pageTitle}/>
+        {pageDesc && <meta name="description" content={pageDesc}/>}
+
+        <meta property="og:type" content="website"/>
+        <meta property="og:title" content={pageTitle}/>
+        {pageDesc && <meta property="og:description" content={pageDesc}/>}
+        {pageBanner && <meta property="og:image" content={pageBanner}/>}
+
+        <meta property="twitter:card" content="summary_large_image"/>
+        <meta property="twitter:title" content={pageTitle}/>
+        {pageDesc && <meta property="twitter:description" content={pageDesc}/>}
+        {pageBanner && <meta property="twitter:image" content={pageBanner}/>}
+
       </Helmet>
       <Content
         dangerouslySetInnerHTML={{ __html: props.data.asciidoc.html }}

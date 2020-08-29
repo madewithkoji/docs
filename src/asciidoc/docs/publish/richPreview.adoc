@@ -31,8 +31,10 @@ To build a simple application with these features, you can follow these starter 
 
 . In your main application code, add a conditional statement to the `render` function that displays a different image for social shares.
 +
-[source,JavaScript]
+[.tabs,scope="lang"]
+--
 .React
+[source,JavaScript]
 ----
 render() {
   if (window.location.search.includes('koji-screenshot=1')) {
@@ -48,12 +50,15 @@ render() {
   ...
 }
 ----
+--
 . Define appropriate styles for the rich preview image.
 +
-To display correctly, design a responsive square for the rich preview image.
+To ensure that it is displayed correctly, design the rich preview image as a responsive square.
 +
-[source,JavaScript]
+[.tabs,scope="lang"]
+--
 .React
+[source,JavaScript]
 ----
 const SocialSharePreview = styled.div`
   background-color: #395b88;
@@ -67,4 +72,5 @@ const SocialSharePreview = styled.div`
   color: #fcfcfc;
 `;
 ----
+--
 . To test the preview image, open your staging link and append `?koji-screenshot=1` to the URL.

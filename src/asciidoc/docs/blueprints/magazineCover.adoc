@@ -1,5 +1,6 @@
 = Magazine cover template
 :page-slug: magazine-cover-blueprint
+:page-description: Follow this blueprint to build a template for your own picture and headline on a magazine cover.
 
 Follow this blueprint to build a template for your own picture and headline on a magazine cover.
 You will add customizable images and text, and then publish the template on Koji.
@@ -25,11 +26,14 @@ For an overview, see the <<start-guide-1#, starter guide>>.
 
 Remix an existing web application on Koji that implements basic elements of your favorite framework.
 
+[.tabs,scope="lang"]
+--
 .React
 https://withkoji.com/templates/seane/simple-react-scaffold[Simple React scaffold]
 
 .Vanilla JS
 https://withkoji.com/templates/JamesHole/vanilla-js-scaffold[Vanilla JS scaffold]
+--
 
 === Install the packages
 
@@ -51,10 +55,15 @@ Create `.koji/customization/settings.json` to define customizable values for the
 include::../_includes/magazineCoverSettings.json[]
 ----
 
-.React
-Remove the unused customization files.
+Remove the unused customization files, if applicable.
 
+[.tabs,scope="lang"]
+--
+.React
+====
 `colors.json`, `images.json`, and `strings.json`
+====
+--
 
 === Add the template logic
 
@@ -81,6 +90,8 @@ include::../_includes/magazineCoverReact.js[tags=feedSdk]
 
 Monitor the remix state.
 
+[.tabs,scope="lang"]
+--
 .React
 [source,javascript]
 ----
@@ -91,9 +102,12 @@ include::../_includes/magazineCoverReact.js[tags=monitorRemix]
 ----
 include::../_includes/magazineCoverVanilla.js[tags=monitorRemix]
 ----
+--
 
 Dynamically get and set custom values.
 
+[.tabs,scope="lang"]
+--
 .React
 [source,javascript]
 ----
@@ -104,6 +118,7 @@ include::../_includes/magazineCoverReact.js[tags=updateValues]
 ----
 include::../_includes/magazineCoverVanilla.js[tags=updateValues]
 ----
+--
 
 Optimize the user's cover image.
 
@@ -121,6 +136,8 @@ include::../_includes/magazineCoverReact.js[tags=clickHandlers]
 
 Use dynamic sizing to support different browsers and devices.
 
+[.tabs,scope="lang"]
+--
 .React
 [source,javascript]
 ----
@@ -131,9 +148,12 @@ include::../_includes/magazineCoverReact.js[tags=dynamicSizing]
 ----
 include::../_includes/magazineCoverVanilla.js[tags=dynamicSizing]
 ----
+--
 
 Indicate the template is ready for instant remixes and to display in the feed.
 
+[.tabs,scope="lang"]
+--
 .React
 [source,javascript]
 ----
@@ -144,10 +164,13 @@ include::../_includes/magazineCoverReact.js[tags=templateReady]
 ----
 include::../_includes/magazineCoverVanilla.js[tags=templateReady]
 ----
+--
 
 Render the template with custom values.
 Apply conditional styling to editable elements during remix.
 
+[.tabs,scope="lang"]
+--
 .React
 [source,javascript]
 ----
@@ -158,12 +181,15 @@ include::../_includes/magazineCoverReact.js[tags=renderTemplate]
 ----
 include::../_includes/magazineCoverVanilla.js[tags=renderTemplate]
 ----
+--
 
 === Add the styles
 
 Define styles for the template, including the headline, cover image.
 Remove unused styles.
 
+[.tabs,scope="lang"]
+--
 .React
 [source,javascript]
 ----
@@ -174,6 +200,7 @@ include::../_includes/magazineCoverReact.js[tags=styles]
 ----
 include::../_includes/magazineCoverVanilla.css[tags=styles]
 ----
+--
 
 Add styles for editable elements during remix.
 
@@ -227,25 +254,38 @@ You can create a fun version for yourself and share it on your favorite site to 
 To see this blueprint as a completed template on Koji, visit the following link.
 From there, you can view the source code or remix the template into your own project.
 
+[.tabs,scope="lang"]
+--
 .React
 https://withkoji.com/~RachelSienko06/blueprint-magazine-cover[Blueprint: Magazine Cover]
 
 .Vanilla JS
 https://withkoji.com/~JamesHole/magazine-cover-blueprint-vanilla-js[Blueprint: Magazine Cover]
+--
 
 The following code is a completed sample of the template logic described in this blueprint.
 
+[.tabs,scope="lang"]
+--
 .React
 [source,javascript]
 ----
 include::../_includes/magazineCoverReact.js[tags=**]
 ----
 .Vanilla JS
+====
+[.tabs]
+=====
+.index.js
 [source,javascript]
 ----
 include::../_includes/magazineCoverVanilla.js[tags=**]
 ----
+.styles.css
 [source,css]
 ----
 include::../_includes/magazineCoverVanilla.css[tags=**]
 ----
+=====
+====
+--

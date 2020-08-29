@@ -2,7 +2,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import PropTypes from 'prop-types';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import Helmet from 'react-helmet';
+import { Helmet } from 'react-helmet';
 import styled from 'styled-components';
 import { ThemeProvider } from '@material-ui/core/styles';
 import { useStaticQuery, graphql } from 'gatsby';
@@ -48,6 +48,14 @@ const Layout = (props) => {
             root
           }
           root
+        }
+      }
+      site {
+        siteMetadata {
+          title
+          siteUrl
+          shareImage
+          description
         }
       }
     }
@@ -124,8 +132,12 @@ const Layout = (props) => {
   return (
     <>
       <Helmet>
-        <title>{'Koji for Developers'}</title>
+        <title>{data.site.siteMetadata.title}</title>
         <meta name={'viewport'} content={'minimum-scale=1, initial-scale=1, width=device-width'} />
+        <link
+          href={data.site.siteMetadata.siteUrl+props.path}
+          rel={'canonical'}
+        />
         <link
           href={'https://fonts.googleapis.com/css?family=Roboto:400,500,700&display=swap'}
           rel={'stylesheet'}
@@ -134,6 +146,26 @@ const Layout = (props) => {
           href={'https://fonts.googleapis.com/icon?family=Material+Icons'}
           rel={'stylesheet'}
         />
+        <link
+          href={"https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"}
+          rel={"stylesheet"}
+        />
+        
+        <meta name="title" content={data.site.siteMetadata.title}/>
+        <meta name="description" content={data.site.siteMetadata.description}/>
+
+        <meta property="og:type" content="website"/>
+        <meta property="og:url" content={data.site.siteMetadata.siteUrl+props.path}/>
+        <meta property="og:title" content={data.site.siteMetadata.title}/>
+        <meta property="og:description" content={data.site.siteMetadata.description}/>
+        <meta property="og:image" content={data.site.siteMetadata.siteUrl+data.site.siteMetadata.shareImage}/>
+
+        <meta property="twitter:card" content="summary_large_image"/>
+        <meta property="twitter:url" content={data.site.siteMetadata.siteUrl+props.path}/>
+        <meta property="twitter:title" content={data.site.siteMetadata.title}/>
+        <meta property="twitter:description" content={data.site.siteMetadata.description}/>
+        <meta property="twitter:image" content={data.site.siteMetadata.siteUrl+data.site.siteMetadata.shareImage}/>
+
       </Helmet>
       <ThemeProvider theme={theme}>
         <CssBaseline />
