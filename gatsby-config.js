@@ -56,15 +56,15 @@ class TemplateConverter {
         let scopeAttrs = '';
         const blockTitle = blocks[i].getTitle();
         if (scope) scopeAttrs = `data-scope="${scope}" data-scopevalue="${blockTitle}"`
-        tabOutput += `<div ${scopeAttrs} class="tabbed__toggle${ i===0 ? ' tabbed__toggle_active' : ''}">
+        tabOutput += `<div ${scopeAttrs} class="tabbed__toggle${i === 0 ? ' tabbed__toggle_active' : ''}">
             ${blockTitle}
           </div>`;
         blocks[i].addRole('tabbed__tab');
-        if (i===0) {
+        if (i === 0) {
           blocks[i].addRole('active');
         }
       }
-      return `<div class="tabbed">${tabOutput+this.baseConverter.convert(node, transform)}</div>`;
+      return `<div class="tabbed">${tabOutput + this.baseConverter.convert(node, transform)}</div>`;
     }
 
     if (node.getNodeName() === 'document') {
@@ -94,6 +94,9 @@ module.exports = {
   },
 
   plugins: [
+    // Support react-helmet
+    'gatsby-plugin-react-helmet',
+
     // Support a default layout component that won't unmount between route changes
     'gatsby-plugin-layout',
 
