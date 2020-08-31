@@ -88,9 +88,11 @@ module.exports = {
   /* Your site config here */
   siteMetadata: {
     title: 'Koji for Developers',
-    siteUrl: 'https://developer.withkoji.com',
-    shareImage: '/images/og-banner.png',
+    titleTemplate: "%s | Koji for Devlopers",
     description: "Develop the future of social with remixable applications. Kojis are mini web applications that can be shared anywhere across the web.",
+    url: 'https://developer.withkoji.com',
+    image: '/images/og-banner.png',
+    twitterUsername: "@madewithkoji",
   },
 
   plugins: [
