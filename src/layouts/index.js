@@ -5,6 +5,7 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import styled from 'styled-components';
 import { ThemeProvider } from '@material-ui/core/styles';
 import { useStaticQuery, graphql } from 'gatsby';
+import { Helmet } from "react-helmet"
 import theme from '../theme';
 import AppBar from '../components/AppBar';
 import Content from '../components/Content';
@@ -132,6 +133,20 @@ const Layout = (props) => {
   return (
     <>
       <SEO/>
+      <Helmet>
+        <link
+          href={'https://fonts.googleapis.com/css?family=Roboto:400,500,700&display=swap'}
+          rel={'stylesheet'}
+        />
+        <link
+          href={'https://fonts.googleapis.com/icon?family=Material+Icons'}
+          rel={'stylesheet'}
+        />
+        <link
+          href={"https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"}
+          rel={"stylesheet"}
+        />
+      </Helmet>
       <ThemeProvider theme={theme}>
         <CssBaseline />
         <Wrapper>
