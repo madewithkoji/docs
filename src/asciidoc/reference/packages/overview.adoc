@@ -17,6 +17,10 @@ include::withkojiDatabase.adoc[tag=description]
 +
 [.init-cap]
 include::withkojiDispatch.adoc[tag=description]
+<<withkoji-koji-iap-package#>> ::
++
+[.init-cap]
+include::withkojiIAP.adoc[tag=description]
 <<withkoji-custom-vcc-sdk#>> ::
 +
 [.init-cap]

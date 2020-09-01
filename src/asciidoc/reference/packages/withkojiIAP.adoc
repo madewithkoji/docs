@@ -1,0 +1,111 @@
+= @withkoji/koji-iap
+:page-slug: withkoji-koji-iap-package
+:page-description: Enable in-app purchases from your Koji templates.
+
+The @withkoji/koji-iap package enables you to
+//tag::description[]
+implement in-app purchases from your Koji templates.
+//end::description[]
+For example, require a purchase to unlock a premium asset or game.
+
+This package provides frontend methods to manage transactions with users and backend methods to validate purchases against receipts.
+
+== Install
+
+Install the package in the frontend and backend services your Koji project.
+
+IMPORTANT: To support instant remixes of your template, you must also install the <<withkoji-vcc-package#>> package and implement the `VccMiddleware` on your backend server.
+This middleware maintains the process variables for instant remixes, ensuring that purchases apply to the correct remix version.
+
+[source,bash]
+----
+npm install --save @withkoji/iap
+----
+
+== Iap
+
+To enable in-app purchases for your Koji template, you must implement the `Iap` class and define the `InAppPurchases` object in the `.koji/project/entitlements.json` file.
+
+.Entitlements
+[source,json]
+----
+{
+  "entitlements": {
+    "InAppPurchases": {
+      "enabled": true,
+      "products": [
+        0 : {
+          "sku": "productID",
+          "name": "Purchase prompt",
+          "price": "{{scope.key}}"
+        }
+      ]
+    }
+  }
+}
+----
+
+[.hcode, id="new Iap", reftext="new Iap"]
+=== new Iap(projectID, projectToken)
+
+Instantiates `KojiIap`.
+
+==== Parameters
+
+* `projectID` – (Optional) String, unique identifier for your Koji project.
+* `projectToken` – (Optional) String, unique identifier of the products for purchase.
+
+==== Example
+
+[source,javascript]
+----
+import Iap from '@withkoji/iap';
+const iap = new Iap();
+----
+
+[.hcode, id=".getToken", reftext="getToken"]
+=== .getToken(handler[userToken], forceRefresh)
+
+Gets a token identifying the current user, which can be used to determine the current user's purchases.
+
+==== Parameters
+
+* `handler` – Function to handle backend requests for the user's purchases.
+* `userToken` – String, unique identifier for the current user.
+* `forceRefresh` – (Optional) Boolean that indicates whether to force a refresh before invoking the callback function (`false` by default).
+
+==== Example
+
+[source,javascript]
+----
+iap.getToken((token) => {
+  // Request the user's purchases and change the template experience based on what has or has not been purchased
+});
+----
+
+[.hcode, id=".promptPurchase", reftext="promptPurchase"]
+=== .promptPurchase(sku, handler[success, userToken])
+
+Prompts the user to make a purchase.
+
+==== Parameters
+
+* `sku` – String, identifier for the product to purchase.
+Products are defined in the <<#_iap,entitlements file>> and registered or updated when the template is published.
+* `success` – Boolean that indicates whether the purchase was successful.
+* `handler` – Function to handle results of purchases.
+* `userToken` – String, unique identifier for the current user.
+
+==== Example
+
+[source,javascript]
+----
+iap.promptPurchase(sku, (success, token) => {
+  // Change the template experience based on whether the purchase was successful
+});
+----
+
+== Related resources
+
+* https://github.com/madewithkoji/koji-iap[@withkoji/koji-iap on Github]
+* https://withkoji.com/templates/sean/gg2s/code[Reference project]

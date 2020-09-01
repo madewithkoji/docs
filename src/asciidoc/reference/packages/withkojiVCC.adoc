@@ -35,6 +35,7 @@ IMPORTANT: To empower casual users, implementing instant remixes for your templa
 
 To enable instant remixing for your Koji template, you must implement the `InstantRemixing` class and enable the `InstantRemixing` entitlement in the `.koji/project/entitlements.json` file.
 
+.Entitlements
 [source,json]
 ----
 {
@@ -258,6 +259,7 @@ The Koji feed enables users to browse available templates, moving them from off 
 
 To ensure a template is displayed correctly in the Koji feed, you must implement the `FeedSdk` and enable the `FeedEvents` entitlement in the `.koji/project/entitlements.json` file.
 
+.Entitlements
 [source,json]
 ----
 {
@@ -283,7 +285,7 @@ const feed = new FeedSdk();
 [.hcode, id=".load", reftext="load"]
 === .load()
 
-Indicates the template is ready to display and registers touch event handlers to bubble up touch events to the feed controller (if your template needs to own a gesture, see <<.requestCancelTouch>>).
+Indicates the template is ready to display and registers touch event handlers to bubble up touch events to the feed controller (if your template needs to own a gesture, see <<#.requestCancelTouch>>).
 
 IMPORTANT: You must call this method when the template has loaded.
 Otherwise, the feed will display a loading state, and will eventually time out and move to the next template in the feed.

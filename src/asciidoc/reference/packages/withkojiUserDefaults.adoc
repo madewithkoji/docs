@@ -71,7 +71,7 @@ Gets a specified piece of user data and invokes a callback function to handle th
 ==== Parameters
 
 * `key` – String, key of the user data to retrieve.
-See <<_keys>>.
+See <<#_keys>>.
 * `handler` – Function to handle the results of the data request.
 * `success` – Boolean that indicates whether the request was successful.
 * `value` – String, value of the user data, if the request was successful.
