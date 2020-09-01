@@ -118,6 +118,7 @@ body.darkCode .hljs-deletion {
 body.darkCode code {
   background-color: #1E1E1E;
   color: #DCDCDC;
+  border-color: #333;
 }
 
 body.darkCode .hljs .lineNum:after {

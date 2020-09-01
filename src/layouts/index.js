@@ -11,6 +11,7 @@ import AppBar from '../components/AppBar';
 import Content from '../components/Content';
 import Drawers from '../components/Drawers';
 import SEO from '../components/Seo';
+import '../styles/adoc-koji.css';
 import './index.css';
 
 const Wrapper = styled.div`
@@ -143,7 +144,7 @@ const Layout = (props) => {
           rel={'stylesheet'}
         />
         <link
-          href={"https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"}
+          href={"https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"}
           rel={"stylesheet"}
         />
       </Helmet>
