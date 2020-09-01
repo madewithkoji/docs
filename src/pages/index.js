@@ -1,14 +1,16 @@
 import React from 'react';
 import { Container } from '@material-ui/core';
 import styled from 'styled-components';
-import Banner from "../components/HomePageComponents/Banner"
-import SingleContent from "../components/HomePageComponents/SingleContent"
-import CtaBanner from "../components/HomePageComponents/CtaBanner"
-import MultiContent from "../components/HomePageComponents/MultiContent"
-import Resources from "../components/HomePageComponents/Resources"
-import InteractiveContent from "../components/HomePageComponents/InteractiveContent"
-import News from "../components/HomePageComponents/News"
-import Footer from "../components/HomePageComponents/Footer"
+import Banner from '../components/HomePage/Banner';
+import CallOut from '../components/HomePage/CallOut';
+import InteractiveContent from '../components/HomePage/InteractiveContent';
+import Features from '../components/HomePage/Features';
+import Press from '../components/HomePage/Press';
+import Actions from '../components/HomePage/Actions';
+import CTA from '../components/HomePage/CTA';
+
+import Footer from '../components/HomePage/Footer';
+
 const MyContainer = styled(Container)`
   max-width: 100%;
   padding: 0;
@@ -21,20 +23,34 @@ const MyContainer = styled(Container)`
       top: 2px;
     }
   }
+
+  h1 {
+    font-size: 3rem;
+    line-height: 3.6rem;
+  }
+
+  h2 {
+    font-size: 2.4rem;
+    line-height: 2.8rem;
+  }
+
+  p {
+    font-size: 1.2rem;
+    line-height: 1.6rem;
+  }
 `;
 
 const IndexPage = () => (
 
   <MyContainer>
-
-      <Banner />
-      <SingleContent />
-      <InteractiveContent />
-      <MultiContent />
-      <Resources />
-      <News />
-      <CtaBanner />
-      <Footer />
+    <Banner />
+    <CallOut />
+    <InteractiveContent />
+    <Features />
+    <Actions />
+    <Press />
+    <CTA />
+    <Footer />
 
   </MyContainer>
 );
