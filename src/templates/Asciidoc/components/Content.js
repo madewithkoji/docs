@@ -314,6 +314,14 @@ const Content = styled.div`
     }
     .listingblock ~ div:not(.listingblock) {
       border-top: 3px solid #777;
+      margin-top: 0;
+      > table {
+        border-width: 0;
+      }
+      code {
+        background-color: #FFF;
+        border: 1px solid #d4d9d9;
+      }
     }
   }
 

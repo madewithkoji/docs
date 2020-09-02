@@ -161,8 +161,10 @@ body.darkCode .tabbed .tabs .tabbed__tab a {
   color: #DCDCDC;
 }
 
-body.darkCode .tabbed .tabs .tabbed__tab .note .content {
+body.darkCode .tabbed .tabs .tabbed__tab .admonitionblock .content code {
+  background-color: #1E1E1E;
   color: #DCDCDC;
+  border-color: #333;
 }
 
 body.darkCode .tabbed .tabs .tabbed__tab .listingblock ~ div:not(.listingblock) {
