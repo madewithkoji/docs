@@ -13,6 +13,8 @@
 .admonitionblock td.icon .icon-caution:before { content: "\f06d"; color: #bf3400; }
 .admonitionblock td.icon .icon-important:before { content: "\f06a"; color: #bf0000; }
 
+.admonitionblock code { margin: 2px 0; display: inline-block; }
+
 .listingblock + .admonitionblock, .admonitionblock + .listingblock { margin-top: 20px; }
 
 /* Code Call outs */
