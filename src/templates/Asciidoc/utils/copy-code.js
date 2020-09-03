@@ -5,7 +5,7 @@ const copyBlock = (e) => {
 	e.stopPropagation();
 	let copyTextarea = document.createElement('textarea');
 	let parent = e.target.parentNode;
-	copyTextarea.textContent = parent.textContent;
+	copyTextarea.textContent = parent.innerText;
 	copyTextarea.style.opacity = 0;
 	copyTextarea.style.position = 'fixed';
 	copyTextarea.style.left = '0px';

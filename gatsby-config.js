@@ -113,6 +113,7 @@ module.exports = {
         attributes: {
           showtitle: true,
           imagesdir: '/images',
+          icons: 'font',
         },
         catalog_assets: true,
         converterFactory: TemplateConverter,
