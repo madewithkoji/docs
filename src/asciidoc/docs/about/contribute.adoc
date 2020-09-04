@@ -9,6 +9,8 @@ Anyone can open an issue about documentation, or contribute a change with a pull
 
 link to code of conduct?
 
+include::../_includes/tip-discord-server.adoc[]
+
 == Editing the documentation
 
 The documentation is written in https://asciidoc.org/[Asciidoc] which is a lightweight markup language for simplifying the creation of documentation.
@@ -34,28 +36,27 @@ console.log('Hello World');
 
 To see more and get a better understanding of the syntax visit the https://powerman.name/doc/asciidoc[AsciiDoc cheatsheet] and the https://asciidoctor.org/docs/asciidoc-syntax-quick-reference/[AsciiDoc Syntax Quick Reference].
 
-=== Special syntax
-There are a few extra bits of syntax added in to make the developer site ever better so make note of these as they aren't documented anywhere else.
+We also have are a few extensions on AsciiDoc syntax added in to make the developer site ever better.
 
-==== Page Attributes
+=== Page Attributes
 Page attributes are used to add extra data related to a document.
 Add these to the top of your document, just under the document title.
 
 Page slug::
-	This corresponds to the page url and is used for linking between different pages.
-	Syntax: `:page-slug: example-page`
+	This corresponds to the page url and is used for linking between different pages. +
+	`:page-slug: example-page`
 Page description::
-	This is a short description of the content of the page and is used when sharing the link on social media and chat platforms
-	Syntax: `:page-description: This page is an example`
+	This is a short description of the content of the page and is used when sharing the link on social media and chat platforms. +
+	`:page-description: This page is an example`
 Page banner::
-	This references an image which is used as the thumbnail when sharing the link on social media and chat platforms.
-	Syntax: `:page-banner: \{imagesDir\}/example-page.png`
+	This references an image which is used as the thumbnail when sharing the link on social media and chat platforms. +
+	`:page-banner: \{imagesDir\}/example-page.png`
 
 NOTE: `\{imagesDir\}` refers to the image directory, which can be found in the repository at `static/images`
 
 TIP: If you have block images on your page you don't need to set the page banner, the first image will be used instead
 
-==== Tabs
+=== Tabs
 Sometimes it can be useful to sort your content into tabs.
 You'll see them used particularly often to display code snippets for differing frameworks.
 To add tabs into your document use the following syntax:
@@ -74,7 +75,7 @@ Tab 2 content.
 --
 ----
 
-And that will render link so:
+The above code will output the following:
 
 [.tabs]
 --
@@ -87,20 +88,73 @@ Tab 2 content.
 
 --
 
-== Submitting your contribution
+You will also notice that on some pages changing tabs will switch the tabs in multiple places (e.g. choosing a coding framework in a blueprint article). You can use scope attribute to sync multiple sets of tabs with one another, by setting two sets of tabs with the same scope attributes, whenever a tab is selected all the tabs with the same name will also be selected across matching scope names.
 
-The source code for this site is available on https://github.com/madewithkoji/docs[GitHub].
-To make a contribution you will need to make a pull request to the repository. To do so you will need to complete the following steps:
+[source, asciidoc]
+----
+[.tabs,scope="framework"]
+--
+
+.React
+Some react code
+
+.Vanilla JS
+Some Vanilla JS code
+
+--
+
+[.tabs,scope="framework"]
+--
+
+.React
+Some more react code. These tabs will sync with the above ones.
+
+.Vanilla JS
+Some more Vanilla JS code. These tabs will sync with the above ones.
+
+--
+----
+
+
+[.tabs,scope="framework"]
+--
+
+.React
+Some react code
+
+.Vanilla JS
+Some Vanilla JS code
+
+--
+
+[.tabs,scope="framework"]
+--
+
+.React
+Some more react code. These tabs will sync with the above ones.
+
+.Vanilla JS
+Some more Vanilla JS code. These tabs will sync with the above ones.
+
+--
+
+== Upgrading the site
+
+You can also contribute by making improvements to how the developer site run. The developer site is built using https://www.gatsbyjs.com/[Gatsby], https://asciidoctor.org/docs/asciidoctor.js/[Asciidoctor.js] and the https://www.gatsbyjs.com/plugins/gatsby-transformer-asciidoc/[gatsby asciidoc transformer].
+
+Download https://github.com/madewithkoji/docs[the GitHub repository] and start your development server by running `npm start`.
+
+== Submitting your contributions
+
+As the source code for this site is available on https://github.com/madewithkoji/docs[GitHub] you can make a contribution by creating a pull request to the repository. To do so you will need to complete the following steps:
 
 . https://docs.github.com/en/github/getting-started-with-github/fork-a-repo[Create a fork of the repository.]
 . Make your changes.
 . https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests/creating-a-pull-request-from-a-fork[Create a pull request.]
 
-=== Pull request checks
-
 Once you have created your pull request it will need to go through some checks before it's added to the Koji for Developers site.
 
-==== Build test
+=== Build test
 
 First off a Travis CI will run a test build to ensure there are no errors.
 This step is automatic and will run shortly after you've created your pull request.
@@ -118,7 +172,5 @@ gatsby build
 
 Once you've resolved the issue, push your new commits to the same branch and the pull request will re-run the build test.
 
-==== Manual Review
+=== Manual Review
 After the build test has passed someone from the Koji team will need to review your pull request before it can be merged.
-
-include::../_includes/tip-discord-server.adoc[]
