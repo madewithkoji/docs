@@ -56,7 +56,7 @@ To enable in-app purchases for your Koji template, you must implement the `Iap` 
 [.hcode, id="new Iap", reftext="new Iap"]
 === new Iap(projectID, projectToken)
 
-Instantiates `KojiIap`.
+Instantiates `Iap`.
 
 ==== Parameters
 
