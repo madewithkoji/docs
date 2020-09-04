@@ -1,5 +1,5 @@
 /* Admonitions */
-.admonitionblock > table { background: none; width: 100%; border: 0 solid #bfbfbf; border-width: 1px 0; background-color: #f7f7f7; }
+.admonitionblock > table { background: none; width: 100%; border: 1px solid #bfbfbf;background-color: #f7f7f7; }
 .admonitionblock > table td.icon { text-align: center; width: 80px; }
 .admonitionblock > table td.icon img { max-width: none; }
 .admonitionblock > table td.icon .title { font-weight: bold; text-transform: uppercase; }
