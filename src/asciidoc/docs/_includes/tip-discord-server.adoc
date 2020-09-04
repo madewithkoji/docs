@@ -1,1 +1,7 @@
+= Join our Discord
+
+// tag::all[]
+
 TIP: If you're stuck with anything you can reach out to the developer community or the `@Koji Team` on our https://discord.gg/eQuMJF6[Discord server].
+
+// end::all[]

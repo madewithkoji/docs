@@ -9,7 +9,7 @@ Anyone can open an issue about documentation, or contribute a change with a pull
 
 link to code of conduct?
 
-include::../_includes/tip-discord-server.adoc[]
+include::../_includes/tip-discord-server.adoc[tags=*]
 
 == Editing the documentation
 
