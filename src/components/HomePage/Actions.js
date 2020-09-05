@@ -12,6 +12,10 @@ const Wrapper = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+
+  h2 {
+    text-align: center;
+  }
 `;
 
 const ActionsWrapper = styled.div`
@@ -62,14 +66,15 @@ const Image = styled.img`
 `;
 
 const Title = styled.div`
-  font-size: 16px;
+  font-size: 20px;
+  font-weight: bold;
   text-decoration: underline;
   text-align: center;
-  margin-bottom: 8px;
+  margin-bottom: 16px;
 `;
 
 const Description = styled.div`
-  font-size: 14px;
+  font-size: 16px;
   padding: 0 8px;
   text-align: center;
 `;

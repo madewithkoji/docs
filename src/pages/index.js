@@ -1,5 +1,4 @@
 import React from 'react';
-import { Container } from '@material-ui/core';
 import styled from 'styled-components';
 import Banner from '../components/HomePage/Banner';
 import CallOut from '../components/HomePage/CallOut';
@@ -11,7 +10,7 @@ import CTA from '../components/HomePage/CTA';
 
 import Footer from '../components/HomePage/Footer';
 
-const MyContainer = styled(Container)`
+const MyContainer = styled.div`
   max-width: 100%;
   padding: 0;
   margin: 0;

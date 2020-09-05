@@ -8,6 +8,10 @@ const Wrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+
+  h2 {
+    text-align: center;
+  }
 `;
 
 const ContentWrapper = styled.div`
@@ -24,21 +28,25 @@ const ContentWrapper = styled.div`
 const FeaturesWrapper = styled.div`
   width: 100%;
   display: flex;
-  align-items: center;
+  align-items: stretch;
   justify-content: space-around;
   flex-direction: row;
 
-  p {
+  > * {
+    flex: 1;
+  }
+
+  div.text-wrapper {
     text-align: center;
     padding: 0 16px;
     width: calc((100% - 160px) / 3);
   }
 
-  p:first-child {
+  div.text-wrapper:first-child {
     padding-left: 0;
   }
 
-  p:last-child {
+  div.text-wrapper:last-child {
     padding-right: 0;
   }
 
@@ -50,10 +58,23 @@ const FeaturesWrapper = styled.div`
   @media screen and (max-width: 767px) {
     flex-direction: column;
     
-    p {
+    div.text-wrapper {
       padding: none;
       width: 100%;
     }
+  }
+`;
+
+const ImageWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 80px;
+  max-width: 80px;
+
+  @media screen and (max-width: 767px) {
+    width: 100%;
+    max-width: unset;
   }
 `;
 
@@ -68,20 +89,30 @@ const Features = () => (
     <ContentWrapper>
       <h2>{'Koji for developers'}</h2>
       <FeaturesWrapper>
-        <p>
-          <b>{'Make an impact'}</b>
-          {'Designers, content creators, brands, and influencers need custom templates. You empower these communities.'}
-        </p>
-        <Image src={'/images/Bulb.png'} alt={'Bulb'} />
-        <p>
-          <b>{'Get noticed'}</b>
-          {'Millions of people remix your template and share their creations on social platforms like Facebook, Twitter, and Reddit.'}
-        </p>
-        <Image src={'/images/Money.png'} alt={'Money'} />
-        <p>
-          <b>{'Make money'}</b>
-          {'Koji developers get paid through licensing, asset packs, and other compensation programs.'}
-        </p>
+        <div className={'text-wrapper'}>
+          <p>
+            <b>{'Make an impact'}</b>
+            {'Designers, content creators, brands, and influencers need custom templates. You empower these communities.'}
+          </p>
+        </div>
+        <ImageWrapper>
+          <Image src={'/images/Bulb.png'} alt={'Bulb'} />
+        </ImageWrapper>
+        <div className={'text-wrapper'}>
+          <p>
+            <b>{'Get noticed'}</b>
+            {'Millions of people remix your template and share their creations on social platforms like Facebook, Twitter, and Reddit.'}
+          </p>
+        </div>
+        <ImageWrapper>
+          <Image src={'/images/Money.png'} alt={'Money'} />
+        </ImageWrapper>
+        <div className={'text-wrapper'}>
+          <p>
+            <b>{'Make money'}</b>
+            {'Koji developers get paid through licensing, asset packs, and other compensation programs.'}
+          </p>
+        </div>
       </FeaturesWrapper>
     </ContentWrapper>
   </Wrapper>

@@ -12,20 +12,24 @@ const Wrapper = styled.div`
   justify-content: center;
   align-items: center;
   padding: 16px;
+
+  h2 {
+    text-align: center;
+  }
 `;
 
 const Button = styled.button`
   font-size: 20px;
   padding: 16px;
   background: none;
-  color: #000000;
-  border: 2px solid #000000;
+  color: #111111;
+  border: 2px solid #111111;
   border-radius: 4px;
   cursor: pointer;
   transition: all 0.2s ease-in-out;
 
   &:hover {
-    background: #000000;
+    background: #111111;
     color: #ffffff;
   }
 `;

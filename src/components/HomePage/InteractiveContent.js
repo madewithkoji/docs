@@ -11,6 +11,10 @@ const Wrapper = styled.div`
   justify-content: center;
   align-items: center;
   padding: 16px;
+
+  h2 {
+    text-align: center;
+  }
 `;
 
 const ContentWrapper = styled.div`
@@ -62,16 +66,16 @@ const DetailWrapper = styled.div`
 const Button = styled.button`
   font-size: 16px;
   padding: 8px;
-  background: ${({ style: { isActive } }) => isActive ? '#000000' : 'none'};
-  color: ${({ style: { isActive } }) => isActive ? '#ffffff' : '#000000'};
-  border: 2px solid #000000;
+  background: ${({ style: { isActive } }) => isActive ? '#111111' : 'none'};
+  color: ${({ style: { isActive } }) => isActive ? '#ffffff' : '#111111'};
+  border: 2px solid #111111;
   border-radius: 4px;
   cursor: pointer;
   transition: all 0.2s ease-in-out;
   width: 100%;
 
   &:hover {
-    background: #000000;
+    background: #111111;
     color: #ffffff;
   }
 

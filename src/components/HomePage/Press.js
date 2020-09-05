@@ -10,6 +10,10 @@ const Wrapper = styled.div`
   align-items: center;
   justify-content: center;
   flex-direction: column;
+
+  h2 {
+    text-align: center;
+  }
 `;
 
 const PressWrapper = styled.div`
@@ -81,27 +85,9 @@ const press = [
     source: 'fastcompany.com',
   },
   {
-    href: 'https://www.sandiegouniontribune.com/business/story/2020-06-30/start-up-koji-raises-10-million-for-platform-to-help-non-techies-create-games-memes-on-social-media',
-    src: 'https://images.koji-cdn.com/685c3256-2a4c-406c-ae81-3a3b32364013/yz3l8-download.jpeg?fit=crop&width=720&height=405',
-    headline: 'Startup Koji raises $10M to help non-techies create games, memes and other content for social media',
-    source: 'sandiegouniontribune.com',
-  },
-  {
     href: 'https://venturebeat.com/2020/06/30/koji-raises-10-million-so-you-can-remix-games-and-interactive-content-for-social-media-posts/',
     src: 'https://images.koji-cdn.com/685c3256-2a4c-406c-ae81-3a3b32364013/ulg95-koji.jpg?fit=crop&width=720&height=405',
     headline: 'Koji raises $10 million so you can remix games and interactive content for social media',
-    source: 'venturebeat.com',
-  },
-  {
-    href: 'https://www.sandiegouniontribune.com/business/technology/story/2019-09-26/ex-myspace-executive-koji',
-    src: 'https://images.koji-cdn.com/685c3256-2a4c-406c-ae81-3a3b32364013/85p9c-unionTribunePhoto.png?fit=crop&width=720&height=405',
-    headline: 'Backed by tech billionaires, this ex-MySpace exec has big ideas for San Diego startup',
-    source: 'sandiegouniontribune.com',
-  },
-  {
-    href: 'https://venturebeat.com/2019/04/23/gometa-raises-6-million-and-launches-koji-web-app-development-platform/',
-    src: 'https://images.koji-cdn.com/685c3256-2a4c-406c-ae81-3a3b32364013/fky6b-ventureBeatPhoto.png?fit=crop&width=720&height=405',
-    headline: 'GoMeta raises $6 million to launch Koji web app development platform',
     source: 'venturebeat.com',
   },
 ];
