@@ -132,10 +132,11 @@ const Content = styled.div`
       &:after {
         color: #333;
         content: '\f00c';
-        font-family: "FontAwesome";
+        font-weight: 900;
+        font-family: "Font Awesome 5 Free";
         position: absolute;
         top: 0;
-        padding: 2px 10px;
+        padding: 2px 8px;
         left: 0;
         right: 0;
         bottom: 0;
@@ -183,13 +184,6 @@ const Content = styled.div`
     }
   }
 
-  .admonitionblock > table { border: 0; background: none; width: 100%; }
-  .admonitionblock > table td.icon { text-align: center; width: 80px; }
-  .admonitionblock > table td.icon img { max-width: none; }
-  .admonitionblock > table td.icon .title { font-weight: bold; text-transform: uppercase; }
-  .admonitionblock > table td.content { padding-left: 1.125em; padding-right: 1.25em; border-left: 1px solid #dddddd; color: #404040; line-height: 1.5; font-size: 15px; }
-  .admonitionblock > table td.content > :last-child > :last-child { margin-bottom: 0; }
-
   .img-overview {
     min-width: 350px;
     width: 35%;
@@ -207,37 +201,6 @@ const Content = styled.div`
     margin-bottom: 0.2em;
     font-size: 16px;
   }
-
-  th.tableblock.halign-left, td.tableblock.halign-left { text-align: left; }
-  th.tableblock.halign-right, td.tableblock.halign-right { text-align: right; }
-  th.tableblock.halign-center, td.tableblock.halign-center { text-align: center; }
-
-  th.tableblock.valign-top, td.tableblock.valign-top { vertical-align: top; }
-  th.tableblock.valign-bottom, td.tableblock.valign-bottom { vertical-align: bottom; }
-  th.tableblock.valign-middle, td.tableblock.valign-middle { vertical-align: middle; }
-
-  ul.unstyled, ol.unnumbered, ul.checklist, ul.none { list-style-type: none; padding-left: 0;}
-  ul.unstyled, ol.unnumbered, ul.checklist { margin-left: 0.625em; }
-
-
-  ul.checklist li > p:first-child > input[type="checkbox"]:first-child { position: relative; top: 1px; }
-
-  /* Unordered Lists */
-  ul li ul, ul li ol { margin-left: 1.25em; margin-bottom: 0.625em; font-size: 16px; /* Override nested font-size change */ }
-  ul.square li ul, ul.circle li ul, ul.disc li ul { list-style: inherit; }
-  ul.square { list-style-type: square; }
-  ul.circle { list-style-type: circle; }
-  ul.disc { list-style-type: disc; }
-  ul.no-bullet { list-style: none; }
-
-  /* Ordered Lists */
-  ol li ul, ol li ol { margin-left: 1.25em; margin-bottom: 0.625em; }
-
-  table, td, th {
-    padding: 3px;
-  }
-
-
 
   td.hdlist1 { padding-right: .8em; font-weight: bold; font-size: 16px;}
 
@@ -274,10 +237,6 @@ const Content = styled.div`
 
   img {
     max-width: 100%;
-  }
-
-  .conum {
-    user-select: none;
   }
 
   // Tab related styling
@@ -355,6 +314,14 @@ const Content = styled.div`
     }
     .listingblock ~ div:not(.listingblock) {
       border-top: 3px solid #777;
+      margin-top: 0;
+      > table {
+        border-width: 0;
+      }
+      code {
+        background-color: #FFF;
+        border: 1px solid #d4d9d9;
+      }
     }
   }
 
