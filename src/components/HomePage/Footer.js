@@ -6,7 +6,7 @@ import { ResourcesFooterItems, DevelopersFooterItems, CampaignsFooterItems, Cont
 
 const Wrapper = styled.div`
   background: #111111;
-  color: #ffffff;
+  color: rgb(249, 249, 249);
   width: 100%;
   display: flex;
   align-items: center;
@@ -59,7 +59,7 @@ const ExternalSectionItem = styled.a`
   display: flex;
   align-items: center;
   font-size: 16px;
-  color: #ffffff;
+  color: rgb(249, 249, 249);
   margin-bottom: 16px;
 
   svg {
@@ -80,7 +80,7 @@ const SectionItem = styled(Link)`
   display: flex;
   align-items: center;
   font-size: 16px;
-  color: #ffffff;
+  color: rgb(249, 249, 249);
   margin-bottom: 16px;
 
   svg {

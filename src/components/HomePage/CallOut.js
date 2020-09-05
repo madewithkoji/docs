@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 const Wrapper = styled.div`
   background: #111111;
-  color: #ffffff;
+  color:rgb(249, 249, 249);
   width: 100%;
   display: flex;
   align-items: center;
