@@ -13,8 +13,6 @@
 .admonitionblock td.icon .icon-caution:before { content: "\f06d"; color: #bf3400; }
 .admonitionblock td.icon .icon-important:before { content: "\f06a"; color: #bf0000; }
 
-.admonitionblock code { margin: 2px 0; display: inline-block; }
-
 .listingblock + .admonitionblock, .admonitionblock + .listingblock { margin-top: 20px; }
 
 /* Code Call outs */
@@ -23,8 +21,6 @@
 .conum + b { display: none; }
 .conum:after { content: attr(data-value); }
 .conum:not([data-value]):empty { display: none; }
-
-p > code { margin: 2px 0; display: inline-block; }
 
 /* Tables */
 th.tableblock.halign-left, td.tableblock.halign-left { text-align: left; }
@@ -187,8 +183,6 @@ ol.lowergreek { list-style-type: lower-greek; }
 td.hdlist1 { padding-right: .8em; font-weight: bold; }
 
 td.hdlist1, td.hdlist2 { vertical-align: top; }
-
-.literalblock + .colist, .listingblock + .colist { margin-top: -0.5em; }
 
 .colist > table tr > td:first-of-type { padding: 0 .8em; line-height: 1; }
 .colist > table tr > td:last-of-type { padding: 0.25em 0; }
