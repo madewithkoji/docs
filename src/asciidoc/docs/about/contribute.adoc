@@ -7,8 +7,6 @@ You too can help by contributing to the site *structure*, writing new *articles*
 
 Anyone can open an issue about documentation, or contribute a change with a pull request to the `madewithkoji/docs` https://github.com/madewithkoji/docs[GitHub repository].
 
-link to code of conduct?
-
 include::../_includes/tip-discord-server.adoc[tags=*]
 
 == Editing the documentation
