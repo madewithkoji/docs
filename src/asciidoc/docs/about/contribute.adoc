@@ -1,6 +1,6 @@
 = Contributing to the Koji developer site
 :page-slug: contribute-koji-developers
-:page-banner: {imagesDir}/example.png
+:page-description: A guide for contributing to the Koji for Developers site.
 
 The Koji for Developers documentation site is built and maintained by developers just like you.
 You too can help by contributing to the site *structure*, writing new *articles*, or *suggesting edits* to existing documentation.
@@ -33,6 +33,8 @@ console.log('Hello World');
 
 
 To see more examples and get a better understanding of the syntax, visit the https://powerman.name/doc/asciidoc[AsciiDoc cheatsheet] and the https://asciidoctor.org/docs/asciidoc-syntax-quick-reference/[AsciiDoc Syntax Quick Reference].
+
+TIP: To test how your documentation changes will look on the site, clone the https://github.com/madewithkoji/docs[GitHub repository] locally and run `gatsby develop` in the root directory.
 
 We have also extended the AsciiDoc syntax to make the developer site ever better.
 
@@ -92,7 +94,7 @@ _includes/::
 
 == Upgrading the site
 
-You can also contribute by making improvements to how the developer site run. The developer site is built using https://www.gatsbyjs.com/[Gatsby], https://asciidoctor.org/docs/asciidoctor.js/[Asciidoctor.js] and the https://www.gatsbyjs.com/plugins/gatsby-transformer-asciidoc/[gatsby asciidoc transformer].
+You can also contribute by making improvements to how the developer site runs. The developer site is built using https://www.gatsbyjs.com/[Gatsby], https://asciidoctor.org/docs/asciidoctor.js/[Asciidoctor.js] and the https://www.gatsbyjs.com/plugins/gatsby-transformer-asciidoc/[gatsby asciidoc transformer].
 
 Download https://github.com/madewithkoji/docs[the GitHub repository], run `npm install` to install all the dependencies, then start your development server by running either `npm start` or `gatsby develop`.
 You can also run a build and local serve to test how the site will be rendered in production using `gatsby build && gatsby serve`.
