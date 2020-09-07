@@ -21,8 +21,8 @@ Here's a quick example:
 [source, asciidoc]
 ----
 = Koji for Developers
-Create your own templates for https://withkoji.com[Koji].
 
+Create your own templates for https://withkoji.com[Koji].
 
 == Use any framework
 
@@ -63,87 +63,29 @@ To add tabs into your document use the following syntax:
 
 [source, asciidoc]
 ----
-[.tabs]
---
-
-.Tab 1 title
-Tab 1 content.
-
-.Tab 2 title
-Tab 2 content.
-
---
+include::../_includes/tabs-example.adoc[tags=*]
 ----
 
 The above code will output the following:
 
-[.tabs]
---
-
-.Tab 1 title
-Tab 1 content.
-
-.Tab 2 title
-Tab 2 content.
-
---
+include::../_includes/tabs-example.adoc[tags=*]
 
 You will also notice that on some pages changing tabs will switch the tabs in multiple places (for example, choosing a coding framework in a blueprint article). 
 To sync multiple sets of tabs, use the `scope` attribute and matching tab titles. Then, selecting one tab on the page also selects any tabs with the same scope and the same title.
 
 [source, asciidoc]
 ----
-[.tabs,scope="framework"]
---
-
-.React
-Some react code
-
-.Vanilla JS
-Some Vanilla JS code
-
---
-
-[.tabs,scope="framework"]
---
-
-.React
-Some more react code. These tabs will sync with the above ones.
-
-.Vanilla JS
-Some more Vanilla JS code. These tabs will sync with the above ones.
-
---
+include::../_includes/tabs-scope-example.adoc[tags=*]
 ----
 
-
-[.tabs,scope="framework"]
---
-
-.React
-Some react code
-
-.Vanilla JS
-Some Vanilla JS code
-
---
-
-[.tabs,scope="framework"]
---
-
-.React
-Some more react code. These tabs will sync with the above ones.
-
-.Vanilla JS
-Some more Vanilla JS code. These tabs will sync with the above ones.
-
---
+include::../_includes/tabs-scope-example.adoc[tags=*]
 
 == Upgrading the site
 
 You can also contribute by making improvements to how the developer site run. The developer site is built using https://www.gatsbyjs.com/[Gatsby], https://asciidoctor.org/docs/asciidoctor.js/[Asciidoctor.js] and the https://www.gatsbyjs.com/plugins/gatsby-transformer-asciidoc/[gatsby asciidoc transformer].
 
-Download https://github.com/madewithkoji/docs[the GitHub repository] and start your development server by running `npm start`.
+Download https://github.com/madewithkoji/docs[the GitHub repository], run `npm install` to install all the dependencies, then start your development server by running either `npm start` or `gatsby develop`.
+You can also run a build and local serve to test how the site will be rendered in production using `gatsby build && gatsby serve`.
 
 == Submitting your contributions
 
@@ -175,3 +117,5 @@ Once you've resolved the issue, push your new commits to the same branch and the
 
 === Manual Review
 After the build test has passed someone from the Koji team will need to review your pull request before it can be merged.
+The team may request you make some small changes or add other suggestions.
+Once you've addressed any feedback from the review push your code changes to the same branch and the team will re-review your the pull request.
