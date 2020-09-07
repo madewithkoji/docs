@@ -43,7 +43,7 @@ Page attributes are used to add extra data related to a document.
 Add these to the top of your document, just under the document title.
 
 Page slug::
-	Corresponds to the page URL and is used for linking between different pages. +
+	Corresponds to the page URL and is used for linking between different pages (see <<#_documentation_structure>>). +
 	`:page-slug: example-page`
 Page description::
 	Provides a short description of the content of the page and is used when sharing the link on social media and chat platforms. +
@@ -52,9 +52,11 @@ Page banner::
 	References an image, which is used as the thumbnail when sharing the link on social media and chat platforms. +
 	`:page-banner: \{imagesDir\}/example-page.png`
 
-NOTE: `\{imagesDir\}` refers to the image directory, which can be found in the repository at `static/images`
-
-TIP: If the page contains block images, you don't need to set the page banner attribute. The first block image on the page is used, instead.
+[NOTE]
+====
+- `\{imagesDir\}` refers to the image directory, which can be found in the repository at `static/images`
+- If the page contains block images, you don't need to set the page banner attribute. The first block image on the page is used, instead.
+====
 
 === Tabs
 Sometimes it can be useful to sort your content into tabs.
@@ -71,7 +73,7 @@ The above code will output the following:
 include::../_includes/tabs-example.adoc[tags=*]
 
 You will also notice that on some pages changing tabs will switch the tabs in multiple places (for example, choosing a coding framework in a blueprint article). 
-To sync multiple sets of tabs, use the `scope` attribute and matching tab titles. Then, selecting one tab on the page also selects any tabs with the same scope and the same title.
+To sync multiple sets of tabs, use the `scope` attribute. Then, selecting a tab on the page also selects any other tabs with the same scope and a matching tab title.
 
 [source, asciidoc]
 ----
@@ -79,6 +81,16 @@ include::../_includes/tabs-scope-example.adoc[tags=*]
 ----
 
 include::../_includes/tabs-scope-example.adoc[tags=*]
+
+=== Documentation structure
+Understanding the file structure for the documentation will also be helpful for making modifications.
+Whilst all the documentation is structured as per the site under `src/asciidoc/` there are two other file structures to understand that will help you build content:
+
+nav.json::
+	The navigation of the site is handled in a single json file `src/nav.json`. This structure uses the `name` and `slug` attributes to define where the pages sit in the navigation both for the sidebar and the overall url structure.
+_includes/::
+	It can be useful to write documentation snippets and code blocks in external files so that they can be reused across multiple pages.
+	These are stored in `src/asciidoc/docs/_includes/` and can be included in any other documentation using the asciidoc syntax `include::file_name`.
 
 == Upgrading the site
 
@@ -101,7 +113,7 @@ Once you have created your pull request it will need to go through some checks b
 
 First off a Travis CI will run a test build to ensure there are no errors.
 This step is automatic and will run shortly after you've created your pull request.
-After a few minutes, if nothing went wrong, you should see a green checkmark against the second item in the branch action section of you pull request.
+After a few minutes, if nothing went wrong, you should see a green check mark against the second item in the branch action section of you pull request.
 
 image::pull-request-passed-build.png[GitHub all checks have passed]
 
