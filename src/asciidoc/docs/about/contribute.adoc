@@ -83,11 +83,12 @@ include::../_includes/tabs-scope-example.adoc[tags=*]
 include::../_includes/tabs-scope-example.adoc[tags=*]
 
 === Documentation structure
-Understanding the file structure for the documentation will also be helpful for making modifications.
+Understanding the file structure of the documentation is helpful when making modifications.
 Whilst all the documentation is structured as per the site under `src/asciidoc/` there are two other file structures to understand that will help you build content:
 
 nav.json::
-	The navigation of the site is handled in a single json file `src/nav.json`. This structure uses the `name` and `slug` attributes to define where the pages sit in the navigation both for the sidebar and the overall url structure.
+	The site navigation is defined in the `src/nav.json` file. 
+	The `name` and `slug` attributes define where a page is listed in the sidebar as well as the URL structure.
 _includes/::
 	It can be useful to write documentation snippets and code blocks in external files so that they can be reused across multiple pages.
 	These are stored in `src/asciidoc/docs/_includes/` and can be included in any other documentation using the asciidoc syntax `include::file_name`.
