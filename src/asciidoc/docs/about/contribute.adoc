@@ -84,7 +84,7 @@ include::../_includes/tabs-scope-example.adoc[tags=*]
 
 === Documentation structure
 Understanding the file structure of the documentation is helpful when making modifications.
-Whilst all the documentation is structured as per the site under `src/asciidoc/` there are two other file structures to understand that will help you build content:
+While all the documentation is structured as per the site under `src/asciidoc/` there are two other file structures to understand that will help you build content:
 
 nav.json::
 	The site navigation is defined in the `src/nav.json` file. 
