@@ -1,0 +1,16 @@
+= Tabs example
+
+// tag::all[]
+
+[.tabs]
+--
+
+.Tab 1 title
+Tab 1 content.
+
+.Tab 2 title
+Tab 2 content.
+
+--
+
+// end::all[]

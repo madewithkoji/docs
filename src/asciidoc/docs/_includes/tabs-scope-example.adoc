@@ -1,0 +1,27 @@
+= Tabs scope example
+
+// tag::all[]
+
+[.tabs,scope="lang"]
+--
+
+.React
+Some react code
+
+.Vanilla JS
+Some Vanilla JS code
+
+--
+
+[.tabs,scope="lang"]
+--
+
+.React
+Some more react code. These tabs will sync with the above ones.
+
+.Vanilla JS
+Some more Vanilla JS code. These tabs will sync with the above ones.
+
+--
+
+// end::all[]

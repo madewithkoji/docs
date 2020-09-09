@@ -128,6 +128,20 @@
           ]
         },
         {
+          "name": "About Koji for developers",
+          "root": "/about",
+          "items": [
+            {
+              "name": "Changelog",
+              "slug": "developer-updates"
+            },
+            {
+              "name": "Contribute to the developer site",
+              "slug": "contribute-koji-developers"
+            }
+          ]
+        },
+        {
           "name": "Videos",
           "root": "/videos",
           "items": [
