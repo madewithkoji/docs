@@ -60,15 +60,23 @@ Instantiates `Iap`.
 
 ==== Parameters
 
-* `projectID` – (Optional) String, unique identifier for your Koji project.
-* `projectToken` – (Optional) String, unique identifier of the products for purchase.
+* `projectID` – (Backend only) String, unique identifier for your Koji project.
+* `projectToken` – (Backend only) String, unique identifier of the products for purchase.
 
 ==== Example
 
 [source,javascript]
 ----
 import Iap from '@withkoji/iap';
+
+// Frontend
 const iap = new Iap();
+
+// Backend
+const iap = new Iap(
+        process.env.KOJI_PROJECT_ID,
+        process.env.KOJI_PROJECT_TOKEN,
+      );
 ----
 
 [.hcode, id=".getToken", reftext="getToken"]

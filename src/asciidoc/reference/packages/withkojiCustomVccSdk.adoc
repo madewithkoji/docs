@@ -7,7 +7,7 @@ implement custom Visual Customization Controls (VCCs) for your template.
 //end::description[]
 
 This reference provides examples for common methods.
-For more information, see the https://github.com/madewithkoji/custom-vcc-sdk[package documentation on GitHub].
+For more information, see the https://github.com/madewithkoji/koji-custom-vcc-sdk[package documentation on GitHub].
 
 == Install
 
