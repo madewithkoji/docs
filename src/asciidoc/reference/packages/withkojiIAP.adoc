@@ -17,7 +17,7 @@ Or, if the user hasn't purchased the image, display a *Purchase* button and use 
 
 == Install
 
-Install the package in the frontend and backend services your Koji project.
+Install the package in the frontend and backend services of your Koji project.
 
 IMPORTANT: To support instant remixes of your template, you must also install the <<withkoji-vcc-package#>> package and implement the `VccMiddleware` on your backend server.
 This middleware maintains the process variables for instant remixes, ensuring that purchases are applied to the correct remix version.
@@ -61,7 +61,11 @@ Instantiates `Iap`.
 ==== Parameters
 
 * `projectID` – (Backend only) String, unique identifier for your Koji project.
-* `projectToken` – (Backend only) String, unique identifier of the products for purchase.
+* `projectToken` – (Backend only) String, unique token for your Koji project.
+
+TIP: When instantiating `Iap` on the backend, you must provide these parameters, which Koji maintains as environment variables.
+For instant remixes, you must implement `VccMiddleware` to manage these variables.
+See <<withkoji-vcc-package#>>.
 
 ==== Example
 
@@ -74,9 +78,9 @@ const iap = new Iap();
 
 // Backend
 const iap = new Iap(
-        process.env.KOJI_PROJECT_ID,
-        process.env.KOJI_PROJECT_TOKEN,
-      );
+  process.env.KOJI_PROJECT_ID,
+  process.env.KOJI_PROJECT_TOKEN,
+);
 ----
 
 [.hcode, id=".getToken", reftext="getToken"]
@@ -132,7 +136,7 @@ Retrieves the user's receipts, which can be used to validate purchases for speci
 
 ==== Returns
 
-(Async) Array of receipt objects for the user's purchases.
+(Async) Array of <<#_iapreceipt>> objects for the user's purchases.
 
 ==== Example
 
@@ -140,6 +144,7 @@ Retrieves the user's receipts, which can be used to validate purchases for speci
 ----
 const receipts = await iap.resolveReceipts(token);
 // Look for the SKU to determine whether the user has purchased the product
+hasPurchased = !!(receipts.find(({ product }) => product.sku === 'productID'));
 ----
 
 [.hcode, id=".updateReceipt", reftext="updateReceipt"]
@@ -163,6 +168,53 @@ Updates the custom attributes for a specified receipt.
 const today = new Date();
 const receipt = await iap.updateReceipt(receiptId, { lastAccessed: today });
 ----
+
+== IapReceipt
+
+An `IapReceipt` object represents a receipt for a user's purchase of a product.
+To determine whether a user has purchased a specific product, you can use use <<#.resolveReceipts>> to retrieve the `IapReceipt` objects associated with the user's token, and then look for a receipt with the product's SKU.
+
+The `IapReceipt` object includes the following properties.
+
+TIP: Be sure to implement appropriate error handling to account for differences in object structure or empty values.
+
+[source,javascript]
+----
+{
+    attributes: { [index: string]: any }; <1>
+    datePurchased: string; <2>
+    id: string; <3>
+    product: {
+      appId: string; <4>
+      dateCreated: string; <5>
+      id: string; <6>
+      isActive: boolean; <7>
+      name: string; <8>
+      ownerUserId: string; <9>
+      price: number; <10>
+      sku: string; <11>
+    };
+    productId: string; <12>
+    userId: string; <13>
+  }
+----
+<1> Array of custom attributes associated with the receipt.
+You can use <<#.updateReceipt>> to update these values.
+<2> Date of the purchase.
+<3> Unique identifier for the receipt.
+<4> Name of the Koji template from which the product was purchased.
+<5> Date the product was registered or updated, which happens when the template is published.
+<6> Unique identifier for this version of the product.
+<7> Indicator of whether the product is still available for purchase.
+<8> Description displayed when the user was prompted to purchase the product.
+Defined in the <<#_iap,entitlements file>> of the template.
+<9> Koji user name of the template owner.
+<10> Price the user paid for the product.
+Defined in the entitlements file of the template.
+<11> Identifier of the purchased product.
+Defined in the entitlements file of the template.
+<12> Unique identifier for the product.
+<13> Koji user name of the user who purchased the product.
 
 == Related resources
 
