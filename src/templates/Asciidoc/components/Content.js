@@ -13,7 +13,7 @@ const Content = styled.div`
 
   p, body {
     font-size: 16px !important;
-    line-height: 1.55;
+    line-height: 1.6;
     word-spacing: 0.04em;
     letter-spacing: 0.01em;
   }
@@ -22,7 +22,7 @@ const Content = styled.div`
     font-family: Menlo, Monaco, "Liberation Mono", Consolas, monospace;
     font-weight: normal;
     font-size: 14px;
-    padding: 3px 4px;
+    padding: 1px 4px;
     border: 1px solid #d4d9d9;
     transition: max-height 0.4s ease;
     position: relative;
