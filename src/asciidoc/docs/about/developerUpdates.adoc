@@ -7,6 +7,13 @@ TIP: To help improve the Koji developer experience, please share your thoughts, 
 
 == 2020
 
+=== September 9
+
+* Released a new https://developer.withkoji.com[developer homepage].
+* Published guidelines and instructions for <<contribute-koji-developers#,contributing to the Koji developer site>>.
+* Added this changelog.
+* Updated styling and added support for Font Awesome icons.
+
 === August 31
 
 * Released a major upgrade to code blocks on the developer site.
