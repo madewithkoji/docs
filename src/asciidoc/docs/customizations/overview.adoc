@@ -1,4 +1,4 @@
-= Overview
+= Visual Customization Controls
 :page-slug: vcc-overview
 :figure-caption!:
 
@@ -62,7 +62,6 @@ To compose higher-order controls, you can combine VCCs into arrays or objects.
 You can also combine arrays and objects to create more elaborate controls.
 
 .Standard VCCs
-[horizontal]
 <<image#>> ::
 +
 [.init-cap]
@@ -117,7 +116,6 @@ include::video.adoc[tag=description]
 include::file.adoc[tag=description]
 
 .Custom VCC showcase
-[horizontal]
 <<google-font#>> ::
 +
 --
@@ -125,7 +123,6 @@ include::googleFont.adoc[tag=description]
 --
 
 .VCC composition controls
-[horizontal]
 <<array#>> ::
 +
 [.init-cap]

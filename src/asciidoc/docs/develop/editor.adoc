@@ -14,7 +14,7 @@ The Koji editor is divided into these sections:
 * *Preview pane*: Displays a live preview of the template and provides other testing and debugging tools.
 * *Terminal pane*: Provides command line access to the project's services. Supports multiple tabs and can be collapsed.
 
-image:Koji-editor.png[Screenshot of the Koji editor process,title="Koji editor"]
+image::Koji-editor.png[Screenshot of the Koji editor process]
 
 == Koji Editor Code Hosting and Source Control
 

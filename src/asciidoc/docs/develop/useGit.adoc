@@ -76,7 +76,7 @@ To find the URL of the Koji repository:
 +
 The Repository information tab shows links to two repositories.
 +
-image:remote-repository.png[Remote repository URL in the Koji editor,title="Remote repository URL"]
+image::remote-repository.png[Remote repository URL in the Koji editor,title="Remote repository URL"]
 . Copy the URL for the remote repository.
 +
 The *remote repository* is the personal repository for your template.

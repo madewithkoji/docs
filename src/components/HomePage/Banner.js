@@ -79,7 +79,7 @@ const Banner = () => (
       </p>
       <br />
       <div>
-        <Link to={'/docs/blueprints/magazine-cover-blueprint'}>
+        <Link to={'/docs/getting-started/start-guide-1'}>
           <Button>{'Build your first template'}</Button>
         </Link>
       </div>

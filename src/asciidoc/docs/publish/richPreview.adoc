@@ -1,5 +1,6 @@
 = Supporting rich previews
 :page-slug: rich-preview-image
+:page-banner: {imagesDir}/Koji-screenshot=1.png
 
 When users share a remix of your template on social media, Koji renders a rich preview (Open Graph) image based on a screenshot of the template.
 By default, Koji takes a screenshot of the initial view when the template is loaded.
@@ -17,7 +18,7 @@ For optimal rich preview support, design this view with the following considerat
 * Looks good with a square aspect ratio.
 * Includes customizable elements to generate unique previews of each remix.
 
-image:Koji-screenshot=1.svg[Render a view for the rich preview image,title="Rich preview image for social sharing"]
+image::Koji-screenshot=1.svg[Render a view for the rich preview image]
 
 For the following example, assume the application supports remixes of the title, font size, and logo.
 
