@@ -39,9 +39,9 @@ npm install --save @withkoji/vcc
 You can use a package like npm-run-all.
 For example:
 +
-====
+--
 include::../_includes/startWatcherPackageJSONReact.adoc[tags=*]
-====
+--
 . Restart the process to reflect the new changes:
 [source, bash]
 npm start

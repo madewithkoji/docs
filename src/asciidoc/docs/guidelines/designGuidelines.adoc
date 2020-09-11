@@ -20,7 +20,7 @@ Negative space, color, fonts, graphics, and interface elements are designed to h
 
 * Templates are designed to produce content that looks good on mobile screen sizes.
 
-image:mobile-first.jpg[Content looks good on mobile,title="Mobile-first"]
+image::mobile-first.jpg[Content looks good on mobile]
 
 * On-screen instructions use the mobile-first variant (for example, *Tap* instead of *Click*).
 
@@ -32,7 +32,7 @@ Ensure that primary content is clear at its default size.
 Insufficient contrast makes text blend in with the background.
 Strive for a minimum contrast ratio of 4.5:1 for body text and image text.
 
-image:clear-text.jpg[Text is easy to read,title="Clear text"]
+image::clear-text.jpg[Text is easy to read]
 
 === Fonts are appropriate and convey information
 
@@ -69,7 +69,7 @@ https://fonts.google.com/specimen/Work+Sans[Work Sans]
 * Maintain adequate margins around buttons.
 A button that extends to the edges of the screen might not look like a button.
 
-image:ui-buttons.jpg[Buttons and clickable elements are clear,title="Clear buttons"]
+image::ui-buttons.jpg[Buttons and clickable elements are clear]
 
 === Colors are aesthetically pleasing and convey information
 
@@ -90,7 +90,7 @@ Excessive or gratuitous animation can make people feel disconnected or distracte
 Maintain a minimum tappable area of 44pt x 44pt for all controls.
 * Ensure that there is ample spacing between interactive UI elements.
 
-image:ui-spacing.jpg[Touch targets have ample size and spacing,title="Touch targets"]
+image::ui-spacing.jpg[Touch targets have ample size and spacing]
 
 === Interactive elements provide feedback
 
@@ -99,4 +99,4 @@ For example, if tapping a button does not provide feedback, a user might questio
 A template that provides visual feedback eliminates this guesswork for the user.
 * Highlight interactive elements briefly when they are tapped, display loading indicators to communicate the status of long-running operations, and use animation and sound to help clarify the results of actions.
 
-image:loading-indicators.jpg[Loading indicators communicate status,title="Loading indicators"]
+image::loading-indicators.jpg[Loading indicators communicate status]
