@@ -42,7 +42,8 @@ To enable in-app purchases for your Koji template, you must implement the `Iap` 
         0 : {
           "sku": "productID", <1>
           "name": "Purchase prompt", <2>
-          "price": "{{scope.key}}" <3>
+          "price": "{{scope.key}}", <3>
+          "isConsumable": true <4>
         }
       ]
     }
@@ -51,7 +52,10 @@ To enable in-app purchases for your Koji template, you must implement the `Iap` 
 ----
 <1> Identifier for the product to purchase.
 <2> Description displayed when a user is prompted to purchase the product.
-<3> Path to the <<vcc-overview#,Visual Customization Control (VCC)>> that defines the purchase price.
+<3> Path to the <<vcc-overview#,Visual Customization Control (VCC)>> that defines the purchase price, if applicable.
+Alternatively, use `"priceIsUnset": true` to define a product without a set price.
+For example, a donation or "pay what you want" price.
+<4> (Optional) Whether the product can be purchased more than once.
 
 [.hcode, id="new Iap", reftext="new Iap"]
 === new Iap(projectID, projectToken)
@@ -225,7 +229,9 @@ You can use <<#.updateReceipt>> to update these values.
 <10> Purchase price of the product.
 Defined in the  <<#_iap,entitlements file>> file of the template.
 <11> Indicator of whether a purchase price is defined for the product.
-<12> Indicator of whether a product can be used only once.
+Defined in the entitlements file of the template.
+<12> Indicator of whether a product can be purchased more than once.
+Defined in the entitlements file of the template.
 <13> Description displayed when the user was prompted to purchase the product.
 Defined in the entitlements file of the template.
 <14> Identifier of the purchased product.
