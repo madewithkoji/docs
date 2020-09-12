@@ -125,7 +125,7 @@ Products are defined in the <<#_iap,entitlements file>> and registered or update
 * `success` – Boolean that indicates whether the purchase was successful.
 * `handler` – Function to handle the results of the purchase.
 * `userToken` – String, temporary token for the current user's session.
-See <<#.getToken>>.
+See <<.getToken>>.
 
 ==== Example
 
@@ -144,11 +144,11 @@ Retrieves the user's receipts, which can be used to validate purchases for speci
 ==== Parameters
 
 * `userToken` – String, temporary token for the current user's session.
-See <<#.getToken>>.
+See <<.getToken>>.
 
 ==== Returns
 
-(Async) Array of <<#_iapreceipt>> objects for the user's purchases.
+(Async) Array of <<_iapreceipt>> objects for the user's purchases.
 
 ==== Example
 
@@ -184,7 +184,7 @@ const receipt = await iap.updateReceipt(receiptId, { isConsumed: true });
 == IapReceipt
 
 An `IapReceipt` object represents a receipt for a user's purchase of a product.
-To determine whether a user has purchased a specific product, you can use use <<#.resolveReceipts>> to retrieve the `IapReceipt` objects associated with the user's token, and then look for a receipt with the product's SKU.
+To determine whether a user has purchased a specific product, you can use use <<.resolveReceipts>> to retrieve the `IapReceipt` objects associated with the user's token, and then look for a receipt with the product's SKU.
 
 The `IapReceipt` object includes the following properties.
 
@@ -217,11 +217,11 @@ TIP: Be sure to implement appropriate error handling to account for differences 
 <2> Koji user name of the user who purchased the product.
 The `userId` return value will always be `unavailable`.
 To avoid leaking/fingerprinting users at a global level, Kojis must interact with users via a short-lived user token.
-See <<#.getToken>>.
+See <<.getToken>>.
 <3> Unique identifier for the product.
 <4> Price the user paid for the product.
 <5> Object containing a list of custom key-value pairs associated with the receipt.
-You can use <<#.updateReceipt>> to update these values.
+You can use <<.updateReceipt>> to update these values.
 <6> Date of the purchase.
 <7> Unique identifier for this version of the product.
 <8> Name of the Koji template from which the product was purchased.
