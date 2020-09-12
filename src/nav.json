@@ -245,6 +245,10 @@
               "slug": "withkoji-dispatch-package"
             },
             {
+              "name": "@withkoji/koji-iap",
+              "slug": "withkoji-koji-iap-package"
+            },
+            {
               "name": "@withkoji/custom-vcc-sdk",
               "slug": "withkoji-custom-vcc-sdk"
             },
