@@ -16,16 +16,18 @@ We can’t wait to see what YOU make!
 
 image:Koji-developer.svg[Overview of the Koji development process,title="Koji development process",opts=interactive]
 
-== Getting Started
+== Getting started
 
 For some great resources to help you start developing templates on Koji, see:
 
 * <<start-guide-1#>> – Step-by-step instructions on how to create a remixable web application and publish it as a template on Koji.
+* <<blueprints-overview#>> – Block-by-block code samples for building cool things on Koji.
+Blueprints are intended for developers who prefer to jump straight to code.
 * <<starter-course#>> – Video tutorial of how to start developing applications on Koji.
 
-== Staying in Touch
+== Staying in touch
 
-Join the https://discord.gg/eQuMJF6[Koji community] on Discord to connect with other developers, makers, and the Koji team.
+* Join the https://discord.gg/eQuMJF6[Koji community] on Discord to connect with other developers, makers, and the Koji team.
 The community is the best place to share tips and tricks, provide peer feedback, and get support.
-
-Subscribe to the http://eepurl.com/g5odab[developer email list] to keep up with the latest announcements, featured content, events, and developer programs.
+* <<contribute-koji-developers#,Contribute to the developer site>> by coding, writing new articles, or suggesting edits to existing documentation.
+* Subscribe to the http://eepurl.com/g5odab[developer email list] to keep up with the latest announcements, featured content, events, and developer programs.

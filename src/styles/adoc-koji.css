@@ -13,7 +13,8 @@
 .admonitionblock td.icon .icon-caution:before { content: "\f06d"; color: #bf3400; }
 .admonitionblock td.icon .icon-important:before { content: "\f06a"; color: #bf0000; }
 
-.listingblock + .admonitionblock, .admonitionblock + .listingblock { margin-top: 20px; }
+
+.listingblock + .admonitionblock, .admonitionblock + .listingblock, .admonitionblock + .admonitionblock { margin-top: 20px; }
 
 /* Code Call outs */
 .conum { display: inline-block; color: white !important; background-color: #404040; -webkit-border-radius: 100px; border-radius: 100px; text-align: center; width: 20px; height: 20px; font-size: 12px; font-weight: bold; line-height: 20px; font-family: Arial, sans-serif; font-style: normal; position: relative; top: -2px; letter-spacing: -1px; user-select: none; }

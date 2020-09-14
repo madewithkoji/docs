@@ -6,24 +6,24 @@
       "defaultPath": "/docs/getting-started/introduction",
       "sections": [
         {
-          "name": "Getting Started",
+          "name": "Getting started",
           "root": "/getting-started",
           "items": [
             {
-              "name": "Intro to Koji",
+              "name": "Introduction to Koji",
               "slug": "introduction"
             },
             {
-              "name": "Starter guide",
+              "name": "What is a template?",
+              "slug": "templates"
+            },
+            {
+              "name": "Developing your first template",
               "slug": "start-guide-1"
             },
             {
-              "name": "Starter guide, part 2",
+              "name": "Extending your template",
               "slug": "start-guide-2"
-            },
-            {
-              "name": "Programs",
-              "slug": "programs"
             }
           ]
         },
@@ -36,11 +36,11 @@
               "slug": "blueprints-overview"
             },
             {
-              "name": "Magazine cover",
+              "name": "Magazine cover template",
               "slug": "magazine-cover-blueprint"
             },
             {
-              "name": "Vote counter",
+              "name": "Vote counter template",
               "slug": "vote-counter-blueprint"
             },
             {
@@ -50,13 +50,9 @@
           ]
         },
         {
-          "name": "Concepts",
-          "root": "/concepts",
+          "name": "Developing templates",
+          "root": "/develop",
           "items": [
-            {
-              "name": "Koji templates",
-              "slug": "templates"
-            },
             {
               "name": "Anatomy of a project",
               "slug": "projects"
@@ -64,130 +60,31 @@
             {
               "name": "Koji editor",
               "slug": "editor"
-            }
-          ]
-        },
-        {
-          "name": "Develop",
-          "root": "/develop",
-          "items": [
+            },
             {
-              "name": "Port existing code",
+              "name": "Porting existing code to Koji",
               "slug": "port-existing-code"
             },
             {
-              "name": "Add a service",
+              "name": "Adding a service",
               "slug": "add-service"
             },
             {
-              "name": "Use Git",
+              "name": "Using Git to manage projects",
               "slug": "use-git"
             },
             {
-              "name": "Work locally",
+              "name": "Working locally",
               "slug": "work-locally"
             }
           ]
         },
         {
-          "name": "Customizations",
+          "name": "Enabling customizations",
           "root": "/customizations",
           "items": [
             {
-              "name": "Build custom VCCs",
-              "slug": "build-custom-vcc"
-            }
-          ]
-        },
-        {
-          "name": "Publish and iterate",
-          "root": "/publish",
-          "items": [
-            {
-              "name": "Publish local projects",
-              "slug": "publish-locally-developed"
-            },
-            {
-              "name": "Support rich previews",
-              "slug": "rich-preview-image"
-            }
-          ]
-        },
-        {
-          "name": "Guidelines",
-          "root": "/guidelines",
-          "items": [
-            {
-              "name": "Template quality checklist",
-              "slug": "template-checklist"
-            },
-            {
-              "name": "Design guidelines",
-              "slug": "design-guidelines"
-            }
-          ]
-        },
-        {
-          "name": "Videos",
-          "root": "/videos",
-          "items": [
-            {
-              "name": "Starter course",
-              "slug": "starter-course"
-            },
-            {
-              "name": "Image best practices",
-              "slug": "image-best-practices"
-            },
-            {
-              "name": "KaiOS apps",
-              "slug": "kai-OS"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "name": "Reference",
-      "root": "/reference",
-      "defaultPath": "/reference/packages/packages-overview",
-      "sections": [
-        {
-          "name": "Packages",
-          "root": "/packages",
-          "items": [
-            {
-              "name": "Overview",
-              "slug": "packages-overview"
-            },
-            {
-              "name": "@withkoji/vcc",
-              "slug": "withkoji-vcc-package"
-            },
-            {
-              "name": "@withkoji/database",
-              "slug": "withkoji-database-package"
-            },
-            {
-              "name": "@withkoji/dispatch",
-              "slug": "withkoji-dispatch-package"
-            },
-            {
-              "name": "@withkoji/custom-vcc-sdk",
-              "slug": "withkoji-custom-vcc-sdk"
-            },
-            {
-              "name": "@withkoji/user-defaults",
-              "slug": "withkoji-user-defaults-package"
-            }
-          ]
-        },
-        {
-          "name": "VCC",
-          "root": "/vcc",
-          "items": [
-            {
-              "name": "Overview",
+              "name": "Visual Customization Controls",
               "slug": "vcc-overview"
             },
             {
@@ -203,7 +100,7 @@
               "slug": "color"
             },
             {
-              "name": "Text, Text Area",
+              "name": "Text, textarea",
               "slug": "text"
             },
             {
@@ -253,6 +150,111 @@
             {
               "name": "Object",
               "slug": "object"
+            },
+            {
+              "name": "Building custom VCCs",
+              "slug": "build-custom-vcc"
+            }
+          ]
+        },
+        {
+          "name": "Publishing and maintaining templates",
+          "root": "/publish",
+          "items": [
+            {
+              "name": "Supporting rich previews",
+              "slug": "rich-preview-image"
+            },
+            {
+              "name": "Publishing local projects",
+              "slug": "publish-locally-developed"
+            }
+          ]
+        },
+        {
+          "name": "Guidelines and best practices",
+          "root": "/guidelines",
+          "items": [
+            {
+              "name": "Template quality checklist",
+              "slug": "template-checklist"
+            },
+            {
+              "name": "Design guidelines",
+              "slug": "design-guidelines"
+            }
+          ]
+        },
+        {
+          "name": "About Koji for developers",
+          "root": "/about",
+          "items": [
+            {
+              "name": "Changelog",
+              "slug": "developer-updates"
+            },
+            {
+              "name": "Contributing to the developer site",
+              "slug": "contribute-koji-developers"
+            }
+          ]
+        },
+        {
+          "name": "Videos",
+          "root": "/videos",
+          "items": [
+            {
+              "name": "Starter course",
+              "slug": "starter-course"
+            },
+            {
+              "name": "Image best practices",
+              "slug": "image-best-practices"
+            },
+            {
+              "name": "KaiOS apps",
+              "slug": "kai-OS"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Reference",
+      "root": "/reference",
+      "defaultPath": "/reference/packages/packages-overview",
+      "sections": [
+        {
+          "name": "Packages for template features",
+          "root": "/packages",
+          "items": [
+            {
+              "name": "Available packages",
+              "slug": "packages-overview"
+            },
+            {
+              "name": "@withkoji/vcc",
+              "slug": "withkoji-vcc-package"
+            },
+            {
+              "name": "@withkoji/database",
+              "slug": "withkoji-database-package"
+            },
+            {
+              "name": "@withkoji/dispatch",
+              "slug": "withkoji-dispatch-package"
+            },
+            {
+              "name": "@withkoji/koji-iap",
+              "slug": "withkoji-koji-iap-package"
+            },
+            {
+              "name": "@withkoji/custom-vcc-sdk",
+              "slug": "withkoji-custom-vcc-sdk"
+            },
+            {
+              "name": "@withkoji/user-defaults",
+              "slug": "withkoji-user-defaults-package"
             }
           ]
         }

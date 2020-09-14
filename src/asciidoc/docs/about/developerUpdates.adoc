@@ -1,0 +1,72 @@
+= Changelog for Koji developers
+:page-slug: developer-updates
+
+To help developers stay up to date, this digest summarizes relevant updates to the Koji platform and developer site.
+
+TIP: To help improve the Koji developer experience, please share your thoughts, questions, and feedback by <<contribute-koji-developers#, contributing to the developer site>> or reaching out to `@Koji Team` on our https://discord.gg/eQuMJF6[Discord server].
+
+== 2020
+
+=== September 9
+
+* Released a new https://developer.withkoji.com[developer homepage].
+* Published guidelines and instructions for <<contribute-koji-developers#,contributing to the Koji developer site>>.
+* Added this changelog.
+* Updated styling and added support for Font Awesome icons.
+
+=== August 31
+
+* Released a major upgrade to code blocks on the developer site.
++
+image::tabbed-code-blocks.png[Code block upgrade]
+New features include:
+. Tabbed code samples by framework.
+. Toggle for light and dark themes.
+. Copy all with a click.
+. Expand and collapse for long samples.
+
+* The `onSetValue` method now enables you to skip the `onValueChanged` callback for an update.
+This option is useful for preventing unnecessary round trip notifications in cases such as text inputs.
+For updated documentation, see the <<withkoji-vcc-package#.onSetValue>> reference.
+* Enhanced metadata on the developer site.
+
+=== August 24
+
+* Added the <<withkoji-user-defaults-package#,User Defaults package>> for accessing user data and preferences across Koji templates.
+* Added new videos on the  https://www.youtube.com/channel/UCc5jM6NwVNQc7b5APigEsMw[Koji YouTube channel] to help inspire users to remix and share templates.
+* Updated the code samples for starting the watcher, and fixed bugs for the developer site, based on your feedback.
+
+=== August 17
+
+* Added a Vanilla JS version of the <<magazine-cover-blueprint#,magazine cover blueprint>> on the developer site.
+* Changed the Koji screenshot feature for rich preview (Open Graph) images.
+For the current guidelines and requirements, see <<rich-preview-image#>>.
+* Removed the `dismissOnCommit` type option for VCCs from the documentation because it is no longer supported on the platform.
+* Made additional bug fixes and responses to your feedback.
+
+=== August 11
+
+Added the <<cat-selector-blueprint#, cat selector blueprint>> as a new resource on the developer site.
+
+* Builds a custom selector VCC.
+* Integrates with a third-party API to retrieve a list of options.
+* Demonstrates how to style elements based on the remixer’s Koji theme.
+
+=== August 5
+
+Added the <<vote-counter-blueprint#, vote counter blueprint>> as a new resource on the developer site.
+
+* Builds a multi-user, interactive template.
+* Demonstrates Koji database and dispatch packages in action.
+* Includes code snippets in React and in Vanilla JS - pick your favorite!
+
+=== August 4
+
+Launched the new <<introduction#,home for Koji developer resources>>.
+
+image::developer-site-launch.png[New Koji developer site]
+
+. Resources for developers
+. Expanded reference information for packages and VCCs
+. Updated navigation, including an in-page Table of Contents
+. Search

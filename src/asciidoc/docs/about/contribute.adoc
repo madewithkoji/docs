@@ -1,0 +1,134 @@
+= Contributing to the Koji developer site
+:page-slug: contribute-koji-developers
+:page-description: A guide for contributing to the Koji for Developers site.
+
+The Koji for Developers documentation site is built and maintained by developers just like you.
+You too can help by contributing to the site *structure*, writing new *articles*, or *suggesting edits* to existing documentation.
+
+Anyone can open an issue about documentation, or contribute a change with a pull request to the `madewithkoji/docs` https://github.com/madewithkoji/docs[GitHub repository].
+
+include::../_includes/tip-discord-server.adoc[tags=*]
+
+== Editing the documentation
+
+The documentation is written in https://asciidoc.org/[Asciidoc], which is a lightweight markup language for simplifying the creation of documentation.
+All the AsciiDoc files that map to this site can be found in the repository under `src/asciidoc/`.
+
+Here's a quick example:
+
+[source, asciidoc]
+----
+= Koji for Developers
+
+Create your own templates for https://withkoji.com[Koji].
+
+== Use any framework
+
+* React
+* Vanilla JS
+
+[source,javascript]
+console.log('Hello World');
+----
+
+
+To see more examples and get a better understanding of the syntax, visit the https://powerman.name/doc/asciidoc[AsciiDoc cheatsheet] and the https://asciidoctor.org/docs/asciidoc-syntax-quick-reference/[AsciiDoc Syntax Quick Reference].
+
+TIP: To test how your documentation changes will look on the site, clone the https://github.com/madewithkoji/docs[GitHub repository] locally and run `gatsby develop` in the root directory.
+
+We have also extended the AsciiDoc syntax to make the developer site ever better.
+
+=== Page attributes
+Page attributes are used to add extra data related to a document.
+Add these to the top of your document, just under the document title.
+
+Page slug::
+	Corresponds to the page URL and is used for linking between different pages (see <<#_documentation_structure>>). +
+	`:page-slug: example-page`
+Page description::
+	Provides a short description of the content of the page and is used when sharing the link on social media and chat platforms. +
+	`:page-description: This page is an example`
+Page banner::
+	References an image, which is used as the thumbnail when sharing the link on social media and chat platforms. +
+	`:page-banner: \{imagesDir\}/example-page.png`
+
+[NOTE]
+====
+- `\{imagesDir\}` refers to the image directory, which can be found in the repository at `static/images`
+- If the page contains block images, you don't need to set the page banner attribute. The first block image on the page is used, instead.
+====
+
+=== Tabs
+Sometimes it can be useful to sort your content into tabs.
+You'll see them used particularly often to display code snippets for differing frameworks.
+To add tabs into your document use the following syntax:
+
+[source, asciidoc]
+----
+include::../_includes/tabs-example.adoc[tags=*]
+----
+
+The above code will output the following:
+
+include::../_includes/tabs-example.adoc[tags=*]
+
+You will also notice that on some pages changing tabs will switch the tabs in multiple places (for example, choosing a coding framework in a blueprint article). 
+To sync multiple sets of tabs, use the `scope` attribute. Then, selecting a tab on the page also selects any other tabs with the same scope and a matching tab title.
+
+[source, asciidoc]
+----
+include::../_includes/tabs-scope-example.adoc[tags=*]
+----
+
+include::../_includes/tabs-scope-example.adoc[tags=*]
+
+=== Documentation structure
+Understanding the file structure of the documentation is helpful when making modifications.
+While all the documentation is structured as per the site under `src/asciidoc/` there are two other file structures to understand that will help you build content:
+
+nav.json::
+	The site navigation is defined in the `src/nav.json` file. 
+	The `name` and `slug` attributes define where a page is listed in the sidebar as well as the URL structure.
+_includes/::
+	It can be useful to write documentation snippets and code blocks in external files so that they can be reused across multiple pages.
+	These are stored in `src/asciidoc/docs/_includes/` and can be included in any other documentation using the asciidoc syntax `include::file_name`.
+
+== Upgrading the site
+
+You can also contribute by making improvements to how the developer site runs. The developer site is built using https://www.gatsbyjs.com/[Gatsby], https://asciidoctor.org/docs/asciidoctor.js/[Asciidoctor.js] and the https://www.gatsbyjs.com/plugins/gatsby-transformer-asciidoc/[gatsby asciidoc transformer].
+
+Download https://github.com/madewithkoji/docs[the GitHub repository], run `npm install` to install all the dependencies, then start your development server by running either `npm start` or `gatsby develop`.
+You can also run a build and local serve to test how the site will be rendered in production using `gatsby build && gatsby serve`.
+
+== Submitting your contributions
+
+As the source code for this site is available on https://github.com/madewithkoji/docs[GitHub] you can make a contribution by creating a pull request to the repository. To do so you will need to complete the following steps:
+
+. https://docs.github.com/en/github/getting-started-with-github/fork-a-repo[Create a fork of the repository.]
+. Make your changes.
+. https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests/creating-a-pull-request-from-a-fork[Create a pull request.]
+
+Once you have created your pull request it will need to go through some checks before it's added to the Koji for Developers site.
+
+=== Build test
+
+First off a Travis CI will run a test build to ensure there are no errors.
+This step is automatic and will run shortly after you've created your pull request.
+After a few minutes, if nothing went wrong, you should see a green check mark against the second item in the branch action section of you pull request.
+
+image::pull-request-passed-build.png[GitHub all checks have passed]
+
+However, if the build didn't pass you will need to troubleshoot what went wrong.
+You can run the same build process on your local branch by running:
+
+[source,bash]
+----
+gatsby build
+----
+
+Once you've resolved the issue, push your new commits to the same branch and the pull request will re-run the build test.
+
+=== Manual Review
+After the build test has passed someone from the Koji team will need to review your pull request before it can be merged.
+The team may request you make some small changes or add other suggestions.
+Once you've addressed any feedback from the review push your code changes to the same branch and the team will re-review your the pull request.

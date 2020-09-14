@@ -86,14 +86,14 @@ const Actions = () => (
       <Action to="/docs/blueprints/magazine-cover-blueprint">
         <Image src="/images/FlyOffKoji.png" alt="Money" width="auto" height="100px" marginTop="20px" />
         <Title>{'Build your first template'}</Title>
-        <Description>{'Follow this block by block blueprint to get started quickly and publish your first web application on Koji.'}</Description>
+        <Description>{'Follow this block-by-block blueprint to get started quickly and publish your first web application on Koji.'}</Description>
       </Action>
-      <Action to="/reference/packages/packages-overview">
+      <Action to="/docs/develop/projects">
         <Image src="/images/ExploreKoji.png" alt="Money" width="auto" height="100px" marginTop="20px" />
-        <Title>{' Explore a Koji project'}</Title>
+        <Title>{'Explore a Koji project'}</Title>
         <Description>{'See the unique elements of a Koji web application and learn what powers the magic of customization.'}</Description>
       </Action>
-      <ExternalAction href="https://discord.com/invite/eQuMJF6">
+      <ExternalAction href="https://discord.gg/eQuMJF6" target="_blank">
         <Image src="/images/CommunityKoji.png" alt="Money" width="auto" height="100px" marginTop="20px" />
         <Title>{'Connect with the community'}</Title>
         <Description>{'Share tips and partner with other JavaScript developers, graphic designers, multimedia experts, and content creators.'}</Description>
