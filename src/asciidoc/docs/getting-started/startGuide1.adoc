@@ -1,5 +1,6 @@
 = Developing your first Koji template
 :page-slug: start-guide-1
+:page-description:
 
 On the Koji platform, you can develop JavaScript web applications that can be customized without coding.
 Instead, non-technical users can use Visual Customization Controls (VCCs) to quickly edit elements of the application, such as images, text, and sounds.
@@ -11,8 +12,23 @@ Then, you will publish your application as a new template so that Koji users can
 == Remixing the starter template
 
 . If you haven’t already, create an account at https://withkoji.com[withkoji.com].
-. Go to https://withkoji.com/templates/seane/react-project-no-vccs[https://withkoji.com/templates/seane/react-project-no-vccs].
-. Click *Create Remix*.
+. Open a starter scaffold that implements basic elements of your favorite framework.
++
+[.tabs,scope="lang"]
+--
+.React
+include::../_includes/starterScaffolds.adoc[tag=react]
+
+.Vanilla JS
+include::../_includes/starterScaffolds.adoc[tag=vanilla]
+
+.Angular
+include::../_includes/starterScaffolds.adoc[tag=angular]
+
+.Svelte
+include::../_includes/starterScaffolds.adoc[tag=svelte]
+--
+. Click *Edit Template (Advanced)*.
 +
 This action creates a clone of the starter template, and opens it in the Koji editor.
 . Explore the template and the Koji editor.
@@ -93,31 +109,131 @@ In this example, the file stores one customizable value (`settings.title`), and 
 To access a value from a JSON customization file within a template, you use a getter from the @withkoji/vcc package.
 Then, update the template to use dynamic values, instead of hard-coded values.
 
-. From the left pane of the editor, open the `frontend/common/App.js` file.
+. From the left pane of the editor, open the file that contains the template logic.
 +
-This file contains most of the template logic.
+[.tabs,scope="lang"]
+--
+.React
+`frontend/common/App.js`
+
+.Vanilla JS
+`frontend/index.js`
+
+.Angular
+`frontend/src/app/app.component.ts`
+
+.Svelte
+`src/App.svelte`
+--
 . At the top of the file, import the package.
 +
+[.tabs,scope="lang"]
+--
+.React
 [source,JavaScript]
 ----
 import { InstantRemixing } from '@withkoji/vcc';
 ----
-. In the React component, add the `componentDidMount` method.
+
+.Vanilla JS
+[source,JavaScript]
+----
+import { InstantRemixing } from '@withkoji/vcc';
+----
+
+.Angular
+[source,JavaScript]
+----
+import { InstantRemixing } from '@withkoji/vcc';
+----
+
+.Svelte
+[source,JavaScript]
+----
+<script>
+  import { InstantRemixing } from '@withkoji/vcc';
+</script>
+----
+--
+. Create a new instance of the `InstantRemixing` class to use in the template.
 +
-This method creates a new instance of the `InstantRemixing` class to use in the template.
-+
+[.tabs,scope="lang"]
+--
+.React
+====
 [source,JavaScript]
 ----
 componentDidMount() {
-this.instantRemixing = new InstantRemixing();
-console.log('instantRemixing', this.instantRemixing); // Confirm w/log
+  this.instantRemixing = new InstantRemixing();
+  console.log('instantRemixing', this.instantRemixing); // Confirm w/log
 
-// Alert Koji we are ready to use instantRemixing
-this.instantRemixing.ready();
+  // Alert Koji we are ready to use instantRemixing
+  this.instantRemixing.ready();
 }
 ----
-. Create a state to handle updates to the title (`h1`) value, and update the contents of the `h1` element to use the dynamic value.
+NOTE: In the React component, add the `componentDidMount` method.
+
+====
+
+.Vanilla JS
+====
+[source,JavaScript]
+----
+var instantRemixing = new InstantRemixing();
+
+// Alert Koji we are ready to use instantRemixing
+instantRemixing.ready();
+----
+NOTE: Above the `render` function definition, create a new instance of the  class and alert Koji that instant remixing is ready to use.
+
+====
+
+.Angular
+====
+[source,JavaScript]
+----
+ngOnInit() {
+  this.instantRemixing = new InstantRemixing();
+  console.log('instantRemixing', this.instantRemixing); // Confirm w/log
+
+  // Alert Koji we are ready to use instantRemixing
+  this.instantRemixing.ready();
+}
+----
+NOTE: In the Angular component, add the `ngOnInit` method.
+
+====
+
+.Svelte
+====
+[source,JavaScript]
+----
+<script>
+  import { onMount } from 'svelte';
+  import { InstantRemixing } from '@withkoji/vcc';
+
+  let instantRemixing;
+  let title;
+
+  onMount(() => {
+    instantRemixing = new InstantRemixing();
+
+    // Alert Koji we are ready to use instantRemixing
+    instantRemixing.ready();
+  });
+</script>
+----
+NOTE: In the Svelte component, add the `onMount` method.
+
+====
+--
+
+. Update the contents of the `h1` element to use the dynamic `title` value.
 +
+[.tabs,scope="lang"]
+--
+.React
+====
 [source,JavaScript]
 ----
 class App extends React.Component {
@@ -137,6 +253,60 @@ render() {
 }
 }
 ----
+NOTE: Create a state to handle updates to the title value.
+
+====
+
+.Vanilla JS
+====
+[source,JavaScript]
+----
+var title = instantRemixing.get(['settings', 'title']);
+
+// render app
+const render = () => {
+    document.body.innerHTML = `
+        <h1 id="title">${title}</h1>
+        <img id="logo" src="https://images.koji-cdn.com/e62ec06b-01be-4183-a7c0-ee6e8950f398/t5ues-600pxJavaScriptlogo.png"/>
+    `;
+};
+----
+NOTE: Create a variable to handle updates to the title value.
+Also, add an `id` attribute to access the element more easily in the next step.
+
+====
+
+.Angular
+====
+[source,JavaScript]
+----
+// app.component.ts
+class AppComponent implements OnInit {
+
+  title = '';
+
+  ...
+}
+
+// app.component.html
+
+<div class=”container”>
+  <h1>{{title}}</h1>
+  <img class=”image” src=”https://images.koji-cdn.com/cf19e146-554d-459e-96a1-b36b71eda51e/userData/gi3e2wscdw-b8ae90b11dbb4339a93af61c9e0a2100.png” />
+</div>
+----
+NOTE: Add properties to handle updates to the title value.
+
+====
+
+.Svelte
+====
+[source,JavaScript]
+----
+<h1>{title}>/h1>
+----
+====
+--
 
 . In the `componentDidMount` method, use the getter function from `instantRemixing` to get the default value from the customization file.
 +

@@ -1,0 +1,20 @@
+= Starter scaffolds
+
+// tag::react[]
+https://withkoji.com/templates/seane/simple-react-scaffold[Simple React scaffold]
+// end::react[]
+
+// tag::vanilla[]
+https://withkoji.com/templates/JamesHole/vanilla-js-scaffold[Vanilla JS scaffold]
+// end::vanilla[]
+
+// tag::svelte[]
+https://withkoji.com/~RadEgg/svelte-instant-remix-template-no-vccs[Svelte scaffold]
+// end::svelte[]
+
+// tag::angular[]
+https://withkoji.com/templates/waterfallstreamair/angular-project-no-vccs[Angular scaffold]
+// end::angular[]
+
+// tag::vue[]
+// end::vue[]
