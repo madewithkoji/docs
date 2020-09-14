@@ -7,6 +7,11 @@ TIP: To help improve the Koji developer experience, please share your thoughts, 
 
 == 2020
 
+=== September 14
+
+* Published the <<withkoji-koji-iap-package#,package reference for Koji in-app purchases>>.
+* Updated the developer site navigation.
+
 === September 9
 
 * Released a new https://developer.withkoji.com[developer homepage].
