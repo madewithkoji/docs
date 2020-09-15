@@ -19,6 +19,20 @@ class TemplateConverter {
       const target = node.getTarget();
       const text = node.getText();
 
+      // Handle xrefs
+      if (target[0] && target[0] === '#') {
+        // Grab the refid
+        const { refid } = node.attributes.$$smap;
+        if (refid) {
+          // If we have a refid, attempt to lookup the reftext in the parent doc
+          const { reftext } = node.document.catalog.$$smap.refs.$$smap[refid].attributes.$$smap;
+          if (reftext) {
+            // If we have refid and reftext, we can confidently rewrite the link (without brackets)
+            return `<a href="#${refid}">${reftext}</a>`;
+          }
+        }
+      }
+
       if (!target.includes('/') && target.includes('.html')) {
         // Remove the automatically appended .html
         const newTarget = target.replace('.html', '');
