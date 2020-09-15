@@ -40,15 +40,105 @@ import Database from '@withkoji/Database';
 const database = new Database();
 ----
 
+[.hcode, id=".arrayPush", reftext="arrayPush"]
+=== .arrayPush(collection, key, value)
+
+Adds data onto arrays in an existing database entry.
+
+NOTE: If the data you attempt to push onto an array is already present, it will not be added again.
+
+==== Parameters
+
+* `collection` – _String_, name of the collection.
+* `key` – _String_, key for the database entry.
+* `value` – _Any_, key-value pairs of arrays and the entries to add to them.
+
+==== Returns
+
+(Async) Boolean that indicates whether the data was successfully added to arrays.
+
+==== Example
+
+[source, javascript]
+const isAdded = await database.arrayPush('myCollection', 'myExistingKey', {'myValue':1});
+
+[.hcode, id=".arrayRemove", reftext="arrayRemove"]
+=== .arrayRemove(collection, key, value)
+
+Removes data from arrays in an existing database entry.
+
+==== Parameters
+
+* `collection` – _String_, name of the collection
+* `key` – _String_, key for the database entry.
+* `value` – _Any_, key-value pairs of arrays and the entries to remove from them.
+
+==== Returns
+
+(Async) Boolean that indicates whether the data was successfully removed from arrays.
+
+==== Example
+
+[source, javascript]
+const isAdded = await database.arrayRemove('myCollection', 'myExistingKey', {'myValue':1});
+
+[.hcode, id=".delete", reftext="delete"]
+=== .delete(collection, key)
+
+Deletes an entire entry from the database.
+
+==== Parameters
+
+* `collection` – _String_, name of the collection.
+* `key` – _String_, key from the database entry.
+
+==== Returns
+
+(Async) Boolean that indicates whether the entry was successfully deleted.
+
+==== Example
+
+[source, javascript]
+const isDeleted = await database.delete('myCollection', 'myExistingKey');
+
+[.hcode, id=".generateSignedUploadRequest", reftext="generateSignedUploadRequest"]
+=== .generateSignedUploadRequest(fileName)
+
+Generate a signed URL for uploading a file directly to the your project’s CDN.
+
+==== Parameters
+
+* `fileName` – String, name for the file to be uploaded.
+
+==== Returns
+
+(Async) `SignedUploadRequest`, structured data on of the signed request with the following structure:
+
+[source, typescript]
+----
+interface SignedUploadRequest {
+  url: string,
+  signedRequest: {
+    url: string,
+    fields: {[index: string]: string};
+  };
+}
+----
+
+==== Example
+
+[source, javascript]
+const signedUpload = await database.generateSignedUploadRequest("fileName");
+
 [.hcode, id=".get", reftext="get"]
-=== .get(collection, key)
+=== .get(collection[, key])
 
 Gets the specified value or collection of values.
 
 ==== Parameters
 
-* `collection` – String, name of the collection.
-* `key` – (Optional) String, key of the specific value.
+* `collection` – _String_, name of the collection.
+* `key` – (Optional) _String_, key of the specific value.
 
 ==== Returns
 
@@ -62,16 +152,113 @@ const myData = await database.get('myCollection');
 const myValue = await database.get('myCollection','myKey');
 ----
 
-[.hcode, id=".set", reftext="set"]
-=== .set(collection, key, value)
+[.hcode, id=".getAll", reftext="getAll"]
+=== .getAll(collection, keys)
 
-Adds a value to the database.
+Gets all the specified values.
 
 ==== Parameters
 
-* `collection` – String, name of the collection.
-* `key` – String, key for the value.
-* `value` – Any, value to add to the database.
+* `collection` – _String_, name of the collection.
+* `keys` – Array of _Strings_, list of of keys of the specified values.
+
+==== Returns
+
+(Async) Array of objects with the requested values.
+
+==== Example
+
+[source, javascript]
+const myValue = await database.getAll('myCollection',['myKey1', 'myKey2']);
+
+[.hcode, id=".getAllWhere", reftext="getAllWhere"]
+=== .getAllWhere(collection, predicateKey, predicateOperation, predicateValues)
+
+Gets all the database entries that match a query against a list of possible values.
+
+==== Parameters
+
+* `collection` – _String_, name of the collection.
+* `predicateKey` – _String_, key of the data to query against.
+* `predicateOperation` – _String_, operation to query the data against.
+* `predicateValues` – Array of _Strings_, list of values to run the query against.
+
+==== Returns
+
+(Async) Array of objects with values that match the queries.
+
+==== Example
+
+[source, javascript]
+const results = await database.getAllWhere('myCollection','predicateKey', '=', ['predicateValue1', 'predicateValue2']);
+
+[.hcode, id=".getCollections", reftext="getCollections"]
+=== .getCollections()
+
+Gets all the collections available in the database.
+
+==== Returns
+
+(Async) Array of strings containing the names of the collections.
+
+==== Example
+
+[source, javascript]
+const collections = await database.getCollections();
+
+[.hcode, id=".getWhere", reftext="getWhere"]
+=== .getWhere(collection, predicateKey, predicateOperation, predicateValue)
+
+Gets all the database entries that match a query against a value.
+
+==== Parameters
+
+* `collection` – _String_, name of the collection.
+* `predicateKey` – _String_, key of the data to query against.
+* `predicateOperation` – _String_, operation to query the data against.
+* `predicateValue` – _String_, value to run the query against.
+
+==== Returns
+
+(Async) Array of objects with values that match the query.
+
+==== Example
+
+[source, javascript]
+const results = await database.getAllWhere('myCollection','predicateKey', '=', 'predicateValue');
+
+[.hcode, id=".search", reftext="search"]
+=== .search(collection, queryKey, queryValue)
+
+Gets all the database entries that have a partial match on a particular key
+
+NOTE: The `queryKey` must be set for all entries in your data, if some entries have no value for that key it cannot be searched on.
+
+==== Parameters
+
+* `collection` – _String_, name of the collection.
+* `queryKey` – _String_, key to partially match against.
+* `queryValue` – _String_, value for the partial match.
+
+==== Returns
+
+(Async) Array of objects with values that have a partial match.
+
+==== Example
+
+[source, javascript]
+const results = await database.search('myCollection','myKey', 'myValue');
+
+[.hcode, id=".set", reftext="set"]
+=== .set(collection, key, value)
+
+Adds an entry to the database.
+
+==== Parameters
+
+* `collection` – _String_, name of the collection.
+* `key` – _String_, key for the value.
+* `value` – _Any_, key value pairs to add to the database.
 
 ==== Returns
 
@@ -81,11 +268,31 @@ Adds a value to the database.
 
 [source,javascript]
 ----
-const isAdded = await database.set('myCollection', 'myKey', 'myValue');
+const isAdded = await database.set('myCollection', 'myKey', {'myValue':1});
 ----
 
+[.hcode, id=".update", reftext="update"]
+=== .update(collection, key, value)
+
+Updates a value in the database with the given value.
+
+==== Parameters
+
+* `collection` – _String_, name of the collection.
+* `key` – _String_, key for the value in the database
+* `value` – _Any_, key value pairs to update on the value.
+
+==== Returns
+
+(Async) Boolean that indicates whether the update was successful.
+
+==== Example
+
+[source, javascript]
+const updated = await database.update('myCollection',"myKey", {"myValue":2});
+
 [.hcode, id=".uploadFile", reftext="uploadFile"]
-=== .uploadFile(path, filename, mimetype)
+=== .uploadFile(path[, filename, mimetype])
 
 Uploads files to your project's CDN. For example, images, profile pictures, and audio.
 
@@ -93,9 +300,9 @@ NOTE: The size limit for this method is 10MB per uploaded file.
 
 ==== Parameters
 
-* `path` – String, path to the file.
-* `filename` – String, name for the uploaded file.
-* `mimetype` – String, content type of the file.
+* `path` – _String_, path to the file.
+* `filename` – (Optional) _String_, name for the uploaded file.
+* `mimetype` – (Optional) _String_, content type of the file.
 
 ==== Returns
 
