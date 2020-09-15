@@ -30,6 +30,13 @@ class TemplateConverter {
             // If we have refid and reftext, we can confidently rewrite the link (without brackets)
             return `<a href="#${refid}">${reftext}</a>`;
           }
+
+          // Otherwise, we can see if there is a matching ref and do a title lookup
+          const ref = node.document.getRefs()[refid];
+          if (ref) {
+            const { title } = ref;
+            if (title) return `<a href="#${refid}">${title}</a>`;
+          }
         }
       }
 
