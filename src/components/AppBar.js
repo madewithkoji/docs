@@ -38,14 +38,6 @@ const SearchWrapper = styled.div`
   text-align: right;
 `;
 
-const StyledCloseIcon = styled(CloseIcon)`
-  fill: #333333;
-`;
-
-const StyledSearchIcon = styled(SearchIcon)`
-  fill: #333333;
-`;
-
 const SearchIconWrapper = styled.div`
   display: flex;
   align-items: center;
@@ -134,7 +126,13 @@ const AppBarComponent = (props) => {
           mobileSearchIsVisible &&
           <MobileSearchWrapper>
             <Search isMobile />
-            <StyledCloseIcon onClick={() => setMobileSearchIsVisible(false)} />
+            <CloseIcon
+              onClick={() => setMobileSearchIsVisible(false)}
+              style={{
+                color: '#333333',
+                cursor: 'pointer',
+              }}
+            />
           </MobileSearchWrapper>
         }
         {
@@ -153,7 +151,13 @@ const AppBarComponent = (props) => {
               />
             </Link>
             <SearchIconWrapper>
-              <StyledSearchIcon onClick={() => setMobileSearchIsVisible(true)} />
+              <SearchIcon
+                onClick={() => setMobileSearchIsVisible(true)}
+                style={{
+                  color: '#333333',
+                  cursor: 'pointer',
+                }}
+              />
             </SearchIconWrapper>
           </>
         }
