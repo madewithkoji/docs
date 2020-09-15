@@ -1,7 +1,12 @@
 import styled from 'styled-components';
 
 const Content = styled.div`
-  width: ${({ style: { isMobile } }) => isMobile ? '100%' : 'calc(100% - 296px)'};
+  width: calc(100% - 296px);
+  
+
+  @media screen and (max-width: 1023px) {
+    width: 100%;
+  }
 
   margin-bottom: 64px;
 
