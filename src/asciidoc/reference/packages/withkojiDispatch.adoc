@@ -41,7 +41,7 @@ When a shard is full, new users are added to a new shard unless a different shar
 
 [source,javascript]
 ----
-import { Dispatch } from '@withkoji/dispatch';
+import Dispatch from '@withkoji/dispatch';
 const dispatch = new Dispatch({
   projectId: instantRemixing.get(['metadata', 'projectId']),
   options: {
@@ -51,19 +51,192 @@ const dispatch = new Dispatch({
 });
 ----
 
+[.hcode, id=".clientId", reftext="clientId"]
+=== .clientId
+
+_String_, ID of the currently connected client.
+
+[.hcode, id=".connectedClients", reftext="connectedClients"]
+=== .connectedClients
+
+_Object_ containing IDs of currently connected clients as keys and an object containing their user data.
+
+==== Example
+[source,json]
+----
+{
+	"0dc15e36-81b4-442b-be4d-bf590ee73c2a": {
+		username: "test1",
+		lastPing: 1600218622595
+	},
+	"1fe2eb80-57e3-435f-9314-faa74853c34a": {
+		username: "test2",
+		lastPing: 1600218623097
+	}
+}
+----
+
 [.hcode, id=".latency", reftext="latency"]
-=== .latency()
+=== .latency
 
-Checks the latency of dispatch messages.
+_Number_, the latency of the last message in milliseconds.
 
-==== Returns
+[.hcode, id=".shardName", reftext="shardName"]
+=== .shardName
 
-Number, the latency of the last message in milliseconds.
+_String_, name of the shard the client is currently connected to.
+
+[.hcode, id=".userInfo", reftext="userInfo"]
+=== .userInfo
+
+_Object_, the user info of the currently connected client.
+
+[.hcode, id=".connect()", reftext="connect()"]
+=== .connect()
+
+(Async) Connects the dispatch client to an open shard.
 
 ==== Example
 
 [source,javascript]
-const myLatency = dispatch.latency();
+dispatch.connect();
+
+[.hcode, id=".disconnect()", reftext="disconnect()"]
+=== .disconnect()
+
+(Async) Disconnects the dispatch client from the active connection. 
+
+==== Example
+
+[source,javascript]
+dispatch.disconnect();
+
+[.hcode, id=".emitEvent()", reftext="emitEvent()"]
+=== .emitEvent(eventName, payload)
+
+Emits the named event to all clients on the current shard.
+
+==== Parameters
+
+* `eventName` – _String_, name of the event.
+* `payload` – _Any_, data to send with event.
+
+==== Example
+
+[source,javascript]
+dispatch.emitEvent('myEvent', myDataPayload);
+
+[.hcode, id=".info()", reftext="info()"]
+=== .info()
+
+Gets info on the shard the client is currently connected to.
+
+==== Returns
+
+(Async) _ShardInfo_, Object describing the shard the client is currently connected to with shard name and number of connected clients.
+
+==== Example
+
+[source,javascript]
+----
+dispatch.info.then((info) => {
+    currentInfo = info;
+});
+----
+
+[.hcode, id=".on()", reftext="on()"]
+=== .on(eventName, callback)
+
+Sets a callback to listen to a specific event and run when the event is dispatched over the shard.
+
+TIP: For custom events see DISPATCH_EVENT.
+
+==== Parameters
+
+* `eventName` – _String_, name of the event to subscribe to.
+* `callback` – _Callback_, the callback to run when the event is fired.
+
+==== Example
+
+[source,javascript]
+dispatch.on('myEvent', myCallbackFunction);
+
+[.hcode, id=".removeEventListener()", reftext="removeEventListener()"]
+=== .removeEventListener(eventName)
+
+Removes listeners from the specified event.
+
+==== Parameters
+
+* `eventName` – _String_, name of the event to remove listeners from.
+
+==== Example
+
+[source,javascript]
+dispatch.remveEventListener('myEvent');
+
+[.hcode, id=".setUserInfo()", reftext="setUserInfo()"]
+=== .setUserInfo(userInfo)
+
+Sets the current client's user info for the currently connected shard.
+
+==== Parameters
+
+* `userInfo` – _Any_, the data for user info to set.
+
+==== Example
+
+[source,javascript]
+dispatch.setUserInfo({username:"myUsername"});
+
+== DISPATCH_EVENT
+
+Constant holding special event keys for Koji Dispatch.
+
+[.hcode, id="CONNECTED", reftext="CONNECTED"]
+=== CONNECTED
+
+The event fired when the current client has successfully connected to a shard.
+
+==== Example
+
+[source,javascript]
+----
+import Dispatch, { DISPATCH_EVENT } from '@withkoji/dispatch';
+
+const dispatch = new Dispatch({
+  projectId: instantRemixing.get(['metadata', 'projectId'])
+});
+
+dispatch.connect();
+
+dispatch.on(DISPATCH_EVENT.CONNECTED, ({ clientId, shardName }) => {
+	// client has connected to shard
+});
+----
+
+
+[.hcode, id="CONNECTED_CLIENTS_CHANGED", reftext="CONNECTED_CLIENTS_CHANGED"]
+=== CONNECTED_CLIENTS_CHANGED
+
+The event fired when the list of clients currently connected to the shard changes.
+
+==== Example
+
+[source,javascript]
+----
+import Dispatch, { DISPATCH_EVENT } from '@withkoji/dispatch';
+
+const dispatch = new Dispatch({
+  projectId: instantRemixing.get(['metadata', 'projectId'])
+});
+
+dispatch.connect();
+
+dispatch.on(DISPATCH_EVENT.CONNECTED_CLIENTS_CHANGED, ({ connectedClients }) => {
+	// connected clients has changed
+});
+----
 
 == Utils
 
