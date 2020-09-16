@@ -149,7 +149,7 @@ dispatch.info.then((info) => {
 
 Sets a callback to listen to a specific event and run when the event is dispatched over the shard.
 
-TIP: For custom events see DISPATCH_EVENT.
+TIP: For Koji custom events see <<#_dispatch_event, DISPATCH_EVENT>>.
 
 ==== Parameters
 
@@ -192,6 +192,7 @@ dispatch.setUserInfo({username:"myUsername"});
 == DISPATCH_EVENT
 
 Constant holding special event keys for Koji Dispatch.
+To subscribe to these events see <<#.on()>>.
 
 [.hcode, id="CONNECTED", reftext="CONNECTED"]
 === CONNECTED
@@ -285,3 +286,4 @@ Utils.filterProfanity('sanitize this string');
 == Related resources
 
 * https://github.com/madewithkoji/koji-dispatch[@withkoji/dispatch on Github]
+* <<vote-counter-blueprint#>>
