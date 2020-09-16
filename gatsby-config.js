@@ -23,6 +23,10 @@ class TemplateConverter {
       if (target[0] && target[0] === '#') {
         // Grab the refid
         const { refid } = node.attributes.$$smap;
+
+        // If there is supplied text in the asciidoc, just use that
+        if (text) return `<a href="#${refid}">${text}</a>`;
+
         if (refid) {
           // If we have a refid, attempt to lookup the reftext in the parent doc
           const { reftext } = node.document.catalog.$$smap.refs.$$smap[refid].attributes.$$smap;
