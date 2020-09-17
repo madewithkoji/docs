@@ -20,7 +20,7 @@ const KojiHomeWrapper = styled.div`
 `;
 
 const MobileDrawer = (props) => (
-  <Drawer open={props.open}>
+  <Drawer className={'mobile'} open={props.open}>
     <Wrapper>
       <KojiHomeWrapper>
         <a

@@ -33,6 +33,7 @@ const KojiHomeWrapper = styled.div`
 
 const DrawerComponent = ({ location, navItem }) => (
   <StyledDrawer
+    className={'desktop'}
     open
     variant={'persistent'}
   >

@@ -99,6 +99,10 @@ const Nav = styled.div`
   > * {
     margin-bottom: 8px;
   }
+
+  @media screen and (max-width: 1023px) {
+    display: none;
+  }
 `;
 
 export const query = graphql`
@@ -138,9 +142,6 @@ export const query = graphql`
 `;
 
 const Asciidoc = (props) => {
-  const theme = useTheme();
-  const isMobile = useMediaQuery(theme.breakpoints.down('sm'), { noSsr: true });
-
   const [sections, setSections] = useState([]);
 
   const resolveTitleFromSlug = (slug) => {
@@ -218,10 +219,9 @@ const Asciidoc = (props) => {
       <SEO title={pageTitle} description={pageDesc} image={pageBanner} article />
       <Content
         dangerouslySetInnerHTML={{ __html: props.data.asciidoc.html }}
-        style={{ isMobile }}
       />
       {
-        !isMobile && sections.length > 0 &&
+        sections.length > 0 &&
         <Nav>
           <TOC>{'Table of Contents'}</TOC>
           {
