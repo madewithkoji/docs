@@ -31,31 +31,26 @@ import { CustomVcc } from '@withkoji/custom-vcc-sdk';
 const customVcc = new CustomVcc();
 ----
 
-[.hcode, id=".register", reftext="register"]
-=== .register(width, height)
+[.hcode, id=".blur()", reftext="blur()"]
+=== .blur()
 
-Indicates that the custom VCC has loaded and registers it to trigger the `on` events from the parent editor.
-
-==== Parameters
-
-* `width` – Any, width of the custom VCC.
-* `height` – Any, height of the custom VCC.
+Tracks blur events on the custom VCC for live collaboration.
 
 ==== Example
 
 [source,javascript]
 ----
-customVcc.register('300', '300');
+customVcc.blur();
 ----
 
-[.hcode, id=".change", reftext="change"]
+[.hcode, id=".change()", reftext="change()"]
 === .change(newValue)
 
 Updates the VCC value with the user-entered value.
 
 ==== Parameters
 
-* `newValue` – Any, current value of the VCC.
+* `newValue` – _Any_, current value of the VCC.
 
 ==== Example
 
@@ -64,8 +59,39 @@ Updates the VCC value with the user-entered value.
 customVcc.change(newValue);
 ----
 
-[.hcode, id=".onUpdate", reftext="onUpdate"]
-=== .onUpdate(handler[newValue])
+[.hcode, id=".focus()", reftext="focus()"]
+=== .focus()
+
+Tracks focus events on the custom VCC for live collaboration.
+
+==== Example
+
+[source,javascript]
+----
+customVcc.focus();
+----
+
+[.hcode, id=".onTheme()", reftext="onTheme()"]
+=== .onTheme(handler)
+
+Listens to changes to the theme value, to retrieve values relating to the Koji display theme.
+
+==== Parameters
+
+* `handler` – _Function_, called when theme is available, first parameter will be the theme object.
+
+==== Example
+
+[source,javascript]
+----
+customVcc.onTheme((theme) => {
+	// theme is a Koji editor theme of the shape: { colors: {}, mixins: {} }
+ 	// save this value in order to style your VCC to match the user's current theme
+});
+----
+
+[.hcode, id=".onUpdate()", reftext="onUpdate()"]
+=== .onUpdate(handler)
 
 Listens to changes in the custom value from the consumer application to enable updates to rendered values.
 
@@ -74,19 +100,45 @@ Calling `change` immediately fires an `onUpdate`.
 
 ==== Parameters
 
-* `handler` – Function to handle changes to the custom value.
-* `newValue` – Object containing the current state of the VCC value.
+* `handler` – _Function_, handle changes to the custom value.
 
 ==== Example
 
 [source,javascript]
 ----
-customVcc.onUpdate((newValue) => {
-  // Update rendered values
+customVcc.onUpdate((props) => {
+	// props is an object containing the VCC's current state. it looks like:
+	const {
+		type, // the type signature for this vcc
+		name, // string name of the VCC
+		value, // current value of the VCC
+		scope, // name of the section where this vcc appears
+		variableName, // resolved variable name of this vcc (`scope.key`)
+		options, // an object containing any options passed in `typeOptions`
+		collaborationDecoration, // an object containing any collaborators currently focused on this control
+		_config, // the full VCC configuration file. Generally this is not needed, as most controls should be fully isolated to a single value, but this can be useful when creating more complex custom controls like map builders
+	} = props;
 });
 ----
 
-[.hcode, id=".save", reftext="save"]
+[.hcode, id=".register()", reftext="register"]
+=== .register([width, height])
+
+Indicates that the custom VCC has loaded and registers it to trigger the on events from the parent editor.
+
+==== Parameters
+
+* `width` – (Optional) _Any_, width of the custom VCC.
+* `height` – (Optional) _Any_, height of the custom VCC.
+
+==== Example
+
+[source,javascript]
+----
+customVcc.register('300', '300');
+----
+
+[.hcode, id=".save()", reftext="save"]
 === .save()
 
 Saves the JSON customization file in the consumer application.
@@ -96,6 +148,46 @@ Saves the JSON customization file in the consumer application.
 [source,javascript]
 ----
 customVcc.save();
+----
+
+[.hcode, id=".showModal()", reftext="showModal"]
+=== .showModal(type, currentValue, onComplete)
+
+Triggers the `image`, `sound`, `file`, and `obj` (3D) modals using the SDK and specifies callbacks when those modals have been resolved.
+
+==== Parameters
+
+* `type` – _String_, modal type to display, possible values are `image`, `sound`, `obj` and `file`.
+* `currentValue` – _Any_, current value of the custom VCC.
+* `onComplete` – _Function_, called when modal has been resolved.
+
+==== Example
+
+[source,javascript]
+----
+customVcc.showModal('image', myImageUrl, (newUrl) => {
+  // change and save VCC to use the new URL value
+});
+----
+
+[.hcode, id=".uploadFile()", reftext="uploadFile"]
+=== .uploadFile(file, fileName, onComplete)
+
+Uploads a file blob to the Koji CDN.
+
+==== Parameters
+
+* `file` – _Blob_, file blob data to be uploaded.
+* `fileName` – _String_, name of the file to be uploaded.
+* `onComplete` – _Function_, called when upload has completed.
+
+==== Example
+
+[source,javascript]
+----
+customVcc.uploadFile(myBlob, myFileName, (url) => {
+  // url of the uploaded file
+});
 ----
 
 == Related resources
