@@ -246,7 +246,7 @@ Koji dispatch includes utility functions to help you build realtime multiplayer 
 [source,javascript]
 import { Utils } from '@withkoji/dispatch';
 
-[.hcode, id=".profanity", reftext="profanity"]
+[.hcode, id=".profanity()", reftext="profanity()"]
 === .profanity(string)
 
 Checks whether a string contains profanity.
@@ -265,7 +265,7 @@ Boolean that indicates whether the specified string contains profanity.
 [source,javascript]
 Utils.profanity('check this string');
 
-[.hcode, id=".filterProfanity", reftext="filterProfanity"]
+[.hcode, id=".filterProfanity()", reftext="filterProfanity()"]
 === .filterProfanity(string)
 
 Replaces profanity in a string with asterisks.
