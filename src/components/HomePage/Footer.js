@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'gatsby';
 
-import { ResourcesFooterItems, KojiPlatformFooterItems, CompanyFooterItems, ContactFooterItems } from './FooterItems';
+import { ResourcesFooterItems, KojiPlatformFooterItems, CompanyFooterItems, ConnectFooterItems } from './FooterItems';
 
 const Wrapper = styled.div`
   background: #111111;
@@ -99,7 +99,7 @@ const SectionItem = styled(Link)`
 
 const sections = [
   {
-    header: 'Developer resources',
+    header: 'Resources',
     items: ResourcesFooterItems,
   },
   {
@@ -111,8 +111,8 @@ const sections = [
     items: CompanyFooterItems,
   },
   {
-    header: 'Contact',
-    items: ContactFooterItems,
+    header: 'Connect',
+    items: ConnectFooterItems,
   },
 ];
 
