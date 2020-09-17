@@ -1,28 +1,26 @@
 import React from 'react';
 import styled from 'styled-components';
 // Resources
-import HelpIcon from '@material-ui/icons/Help';
-import ShareOutlinedIcon from '@material-ui/icons/ShareOutlined';
+import DescriptionIcon from '@material-ui/icons/Description';
+import CodeIcon from '@material-ui/icons/Code';
+import GitHubIcon from '@material-ui/icons/GitHub';
 import OndemandVideoOutlinedIcon from '@material-ui/icons/OndemandVideoOutlined';
 import RssFeedIcon from '@material-ui/icons/RssFeed';
+import BarChartIcon from '@material-ui/icons/BarChart';
+
+// Koji platform
+import ExtensionIcon from '@material-ui/icons/Extension';
+import ShareOutlinedIcon from '@material-ui/icons/ShareOutlined';
+import DeveloperBoardIcon from '@material-ui/icons/DeveloperBoard';
+import MonetizationOnIcon from '@material-ui/icons/MonetizationOn';
+import SettingsIcon from '@material-ui/icons/Settings';
+
+// Company
+import HelpIcon from '@material-ui/icons/Help';
 import SecurityIcon from '@material-ui/icons/Security';
 import AccessibilityNewIcon from '@material-ui/icons/AccessibilityNew';
 import CopyrightIcon from '@material-ui/icons/Copyright';
 import PermMediaIcon from '@material-ui/icons/PermMedia';
-import BarChartIcon from '@material-ui/icons/BarChart';
-
-// Developers
-import CodeIcon from '@material-ui/icons/Code';
-import ExtensionIcon from '@material-ui/icons/Extension';
-import PhotoLibraryIcon from '@material-ui/icons/PhotoLibrary';
-import DeveloperBoardIcon from '@material-ui/icons/DeveloperBoard';
-import MonetizationOnIcon from '@material-ui/icons/MonetizationOn';
-
-// Campaigns
-import WifiTetheringIcon from '@material-ui/icons/WifiTethering';
-import LinkIcon from '@material-ui/icons/Link';
-import InboxIcon from '@material-ui/icons/Inbox';
-import ListAltIcon from '@material-ui/icons/ListAlt';
 
 // Contact
 import TwitterIcon from '@material-ui/icons/Twitter';
@@ -41,21 +39,21 @@ const DiscordIcon = styled.img`
 const ResourcesFooterItems = [
   {
     id: 1,
-    icon: <CodeIcon />,
-    name: 'Developer docs',
-    link: 'https://developer.withkoji.com/',
+    icon: <DescriptionIcon />,
+    name: 'Docs',
+    link: 'https://developer.withkoji.com/docs/getting-started/introduction',
   },
   {
     id: 2,
     icon: <CodeIcon />,
     name: 'Reference',
-    link: 'https://developer.withkoji.com/',
+    link: 'https://developer.withkoji.com/reference/packages/packages-overview',
   },
   {
     id: 3,
-    icon: <CodeIcon />,
+    icon: <GitHubIcon />,
     name: 'Github',
-    link: 'https://developer.withkoji.com/',
+    link: 'https://github.com/madewithkoji',
   },
   {
     id: 4,
@@ -116,7 +114,7 @@ const KojiPlatformFooterItems = [
   },
   {
     id: 6,
-    icon: <MonetizationOnIcon />,
+    icon: <SettingsIcon />,
     name: 'Account settings',
     link: 'https://withkoji.com/settings/account',
   },

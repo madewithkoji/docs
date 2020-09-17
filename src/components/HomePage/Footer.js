@@ -99,7 +99,7 @@ const SectionItem = styled(Link)`
 
 const sections = [
   {
-    header: 'Resources',
+    header: 'Developer resources',
     items: ResourcesFooterItems,
   },
   {
