@@ -30,70 +30,65 @@ import FacebookIcon from '@material-ui/icons/Facebook';
 import LinkedInIcon from '@material-ui/icons/LinkedIn';
 import YouTubeIcon from '@material-ui/icons/YouTube';
 
+
+const DiscordIcon = styled.img`
+    display: flex;
+    flex-direction: row !important;
+    width: 21px;
+    margin-right: 0;
+`;
+
 const ResourcesFooterItems = [
   {
     id: 1,
-    icon: <HelpIcon />,
-    name: 'About',
-    link: 'https://withkoji.com/resources/about',
+    icon: <CodeIcon />,
+    name: 'Developer docs',
+    link: 'https://developer.withkoji.com/',
   },
   {
     id: 2,
-    icon: <ShareOutlinedIcon />,
-    name: 'Plugins',
-    link: 'https://withkoji.com/resources/plugins',
+    icon: <CodeIcon />,
+    name: 'Reference',
+    link: 'https://developer.withkoji.com/',
   },
   {
     id: 3,
-    icon: <OndemandVideoOutlinedIcon />,
-    name: 'Tutorials',
-    link: 'https://www.youtube.com/channel/UCc5jM6NwVNQc7b5APigEsMw',
+    icon: <CodeIcon />,
+    name: 'Github',
+    link: 'https://developer.withkoji.com/',
   },
   {
     id: 4,
+    icon: <OndemandVideoOutlinedIcon />,
+    name: 'Developer tutorials',
+    link: 'https://www.youtube.com/playlist?list=PLpzhdLI0f0z2vEJggWrXkcqw2hiy3cvCx',
+  },
+  {
+    id: 5,
+    icon: <DiscordIcon src="/images/discordIcon.png" />,
+    name: 'Community',
+    href: 'https://discord.com/invite/eQuMJF6',
+  },
+  {
+    id: 6,
     icon: <RssFeedIcon />,
     name: 'Blog',
     link: 'https://blog.withkoji.com/',
   },
   {
-    id: 5,
-    icon: <SecurityIcon />,
-    name: 'Privacy policy',
-    link: 'https://withkoji.com/resources/privacy',
-  },
-  {
-    id: 6,
-    icon: <AccessibilityNewIcon />,
-    name: 'Terms of use',
-    link: 'https://withkoji.com/resources/terms',
-  },
-  {
     id: 7,
-    icon: <CopyrightIcon />,
-    name: 'Copyright policy',
-    link: 'https://withkoji.com/resources/copyright',
-  },
-  {
-    id: 8,
-    icon: <PermMediaIcon />,
-    name: 'Media kit',
-    link: 'https://drive.google.com/drive/folders/1us80XaJqpoj408HX4TeXxbPIc3ZjtM5y',
-  },
-  {
-    id: 9,
     icon: <BarChartIcon />,
     name: 'Status',
     link: 'http://www.kojistatus.com/',
   },
-
 ];
 
-const DevelopersFooterItems = [
+const KojiPlatformFooterItems = [
   {
     id: 1,
     icon: <CodeIcon />,
-    name: 'Developer documentation',
-    link: 'https://developer.withkoji.com/',
+    name: 'Koji homepage',
+    link: 'https://withkoji.com/',
   },
   {
     id: 2,
@@ -103,15 +98,15 @@ const DevelopersFooterItems = [
   },
   {
     id: 3,
-    icon: <PhotoLibraryIcon />,
-    name: 'Create an asset pack',
-    link: 'https://www.youtube.com/watch?v=Ka4FYGHbiAM',
+    icon: <ShareOutlinedIcon />,
+    name: 'Plugins',
+    link: 'https://withkoji.com/resources/plugins',
   },
   {
     id: 4,
     icon: <DeveloperBoardIcon />,
-    name: 'Create an extension',
-    link: 'https://developer.withkoji.com/', // This is not correct, change to correct link
+    name: 'My projects',
+    link: 'https://withkoji.com/projects', // This is not correct, change to correct link
   },
   {
     id: 5,
@@ -119,42 +114,46 @@ const DevelopersFooterItems = [
     name: 'My monetized assets',
     link: 'https://withkoji.com/partners/registered-assets',
   },
-
+  {
+    id: 6,
+    icon: <MonetizationOnIcon />,
+    name: 'Account settings',
+    link: 'https://withkoji.com/settings/account',
+  },
 ];
 
-const CampaignsFooterItems = [
+const CompanyFooterItems = [
   {
     id: 1,
-    icon: <WifiTetheringIcon />,
-    name: 'Browse campaigns',
-    link: 'https://withkoji.com/campaigns',
+    icon: <HelpIcon />,
+    name: 'About',
+    link: 'https://withkoji.com/resources/about',
   },
   {
     id: 2,
-    icon: <LinkIcon />,
-    name: 'My campaign links',
-    link: 'https://withkoji.com/campaigns/activity/posts',
+    icon: <SecurityIcon />,
+    name: 'Privacy policy',
+    link: 'https://withkoji.com/resources/privacy',
   },
   {
     id: 3,
-    icon: <InboxIcon />,
-    name: 'My campaign submissions',
-    link: 'https://withkoji.com/campaigns/activity/submissions',
+    icon: <AccessibilityNewIcon />,
+    name: 'Terms of use',
+    link: 'https://withkoji.com/resources/terms',
   },
   {
     id: 4,
-    icon: <ListAltIcon />,
-    name: 'Campaign manager',
-    link: 'https://withkoji.com/campaigns/sponsor',
+    icon: <CopyrightIcon />,
+    name: 'Copyright policy',
+    link: 'https://withkoji.com/resources/copyright',
+  },
+  {
+    id: 5,
+    icon: <PermMediaIcon />,
+    name: 'Media kit',
+    link: 'https://drive.google.com/drive/folders/1us80XaJqpoj408HX4TeXxbPIc3ZjtM5y',
   },
 ];
-
-const DiscordIcon = styled.img`
-    display: flex;
-    flex-direction: row !important;
-    width: 21px;
-    margin-right: 0;
-`;
 
 const ContactFooterItems = [
   {
@@ -190,4 +189,4 @@ const ContactFooterItems = [
 
 ];
 
-export { ResourcesFooterItems, DevelopersFooterItems, CampaignsFooterItems, ContactFooterItems };
+export { ResourcesFooterItems, KojiPlatformFooterItems, CompanyFooterItems, ContactFooterItems };

@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'gatsby';
 
-import { ResourcesFooterItems, DevelopersFooterItems, CampaignsFooterItems, ContactFooterItems } from './FooterItems';
+import { ResourcesFooterItems, KojiPlatformFooterItems, CompanyFooterItems, ContactFooterItems } from './FooterItems';
 
 const Wrapper = styled.div`
   background: #111111;
@@ -103,12 +103,12 @@ const sections = [
     items: ResourcesFooterItems,
   },
   {
-    header: 'Developers',
-    items: DevelopersFooterItems,
+    header: 'Koji platform',
+    items: KojiPlatformFooterItems,
   },
   {
-    header: 'Campaigns',
-    items: CampaignsFooterItems,
+    header: 'Company',
+    items: CompanyFooterItems,
   },
   {
     header: 'Contact',
