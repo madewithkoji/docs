@@ -8,9 +8,6 @@ The @withkoji/database package enables you to
 implement a Koji database for the backend of your template.
 //end::description[]
 
-This reference provides examples for common methods.
-For a complete list of available methods, see the https://github.com/madewithkoji/koji-database-sdk/blob/master/src/adapter/DatabaseAdapter.ts[client-side SDK source code].
-
 == Install
 
 Install the package in the backend service of your Koji project.
@@ -104,7 +101,7 @@ const isDeleted = await database.delete('myCollection', 'myExistingKey');
 [.hcode, id=".generateSignedUploadRequest", reftext="generateSignedUploadRequest"]
 === .generateSignedUploadRequest(fileName)
 
-Generate a signed URL for uploading a file directly to the your project’s CDN.
+Generates a signed URL for uploading a file directly to the your project’s CDN.
 
 ==== Parameters
 
@@ -160,7 +157,7 @@ Gets all the specified values.
 ==== Parameters
 
 * `collection` – _String_, name of the collection.
-* `keys` – Array of _Strings_, list of of keys of the specified values.
+* `keys` – Array of _Strings_, list of keys of the specified values.
 
 ==== Returns
 
@@ -258,7 +255,7 @@ Adds an entry to the database.
 
 * `collection` – _String_, name of the collection.
 * `key` – _String_, key for the value.
-* `value` – _Any_, key value pairs to add to the database.
+* `value` – _Any_, key-value pairs to add to the database.
 
 ==== Returns
 
@@ -280,7 +277,7 @@ Updates a value in the database with the given value.
 
 * `collection` – _String_, name of the collection.
 * `key` – _String_, key for the value in the database
-* `value` – _Any_, key value pairs to update on the value.
+* `value` – _Any_, key-value pairs to update on the value.
 
 ==== Returns
 
