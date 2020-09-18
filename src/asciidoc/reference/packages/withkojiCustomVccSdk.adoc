@@ -31,7 +31,7 @@ import { CustomVcc } from '@withkoji/custom-vcc-sdk';
 const customVcc = new CustomVcc();
 ----
 
-[.hcode, id=".blur()", reftext="blur()"]
+[.hcode, id=".blur", reftext="blur"]
 === .blur()
 
 Tracks blur events on the custom VCC for live collaboration.
@@ -43,7 +43,7 @@ Tracks blur events on the custom VCC for live collaboration.
 customVcc.blur();
 ----
 
-[.hcode, id=".change()", reftext="change()"]
+[.hcode, id=".change", reftext="change"]
 === .change(newValue)
 
 Updates the VCC value with the user-entered value.
@@ -59,7 +59,7 @@ Updates the VCC value with the user-entered value.
 customVcc.change(newValue);
 ----
 
-[.hcode, id=".focus()", reftext="focus()"]
+[.hcode, id=".focus", reftext="focus"]
 === .focus()
 
 Tracks focus events on the custom VCC for live collaboration.
@@ -71,7 +71,7 @@ Tracks focus events on the custom VCC for live collaboration.
 customVcc.focus();
 ----
 
-[.hcode, id=".onTheme()", reftext="onTheme()"]
+[.hcode, id=".onTheme", reftext="onTheme"]
 === .onTheme(handler)
 
 Listens to changes to the theme value, to retrieve values relating to the Koji display theme.
@@ -90,7 +90,7 @@ customVcc.onTheme((theme) => {
 });
 ----
 
-[.hcode, id=".onUpdate()", reftext="onUpdate()"]
+[.hcode, id=".onUpdate", reftext="onUpdate"]
 === .onUpdate(handler)
 
 Listens to changes in the custom value from the consumer application to enable updates to rendered values.
@@ -121,7 +121,7 @@ customVcc.onUpdate((props) => {
 });
 ----
 
-[.hcode, id=".register()", reftext="register"]
+[.hcode, id=".register", reftext="register"]
 === .register([width, height])
 
 Indicates that the custom VCC has loaded and registers it to trigger the on events from the parent editor.
@@ -138,7 +138,7 @@ Indicates that the custom VCC has loaded and registers it to trigger the on even
 customVcc.register('300', '300');
 ----
 
-[.hcode, id=".save()", reftext="save"]
+[.hcode, id=".save", reftext="save"]
 === .save()
 
 Saves the JSON customization file in the consumer application.
@@ -150,7 +150,7 @@ Saves the JSON customization file in the consumer application.
 customVcc.save();
 ----
 
-[.hcode, id=".showModal()", reftext="showModal"]
+[.hcode, id=".showModal", reftext="showModal"]
 === .showModal(type, currentValue, onComplete)
 
 Triggers the `image`, `sound`, `file`, and `obj` (3D) modals using the SDK and specifies callbacks when those modals have been resolved.
@@ -170,7 +170,7 @@ customVcc.showModal('image', myImageUrl, (newUrl) => {
 });
 ----
 
-[.hcode, id=".uploadFile()", reftext="uploadFile"]
+[.hcode, id=".uploadFile", reftext="uploadFile"]
 === .uploadFile(file, fileName, onComplete)
 
 Uploads a file blob to the Koji CDN.

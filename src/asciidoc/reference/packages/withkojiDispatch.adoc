@@ -51,6 +51,8 @@ const dispatch = new Dispatch({
 });
 ----
 
+== Dispatch Properties
+
 [.hcode, id=".clientId", reftext="clientId"]
 === .clientId
 
@@ -91,7 +93,9 @@ _String_, name of the shard the client is currently connected to.
 
 _Object_, the user info of the currently connected client.
 
-[.hcode, id=".connect()", reftext="connect()"]
+== Dispatch Methods
+
+[.hcode, id=".connect", reftext="connect"]
 === .connect()
 
 (Async) Connects the dispatch client to an open shard.
@@ -101,7 +105,7 @@ _Object_, the user info of the currently connected client.
 [source,javascript]
 dispatch.connect();
 
-[.hcode, id=".disconnect()", reftext="disconnect()"]
+[.hcode, id=".disconnect", reftext="disconnect"]
 === .disconnect()
 
 (Async) Disconnects the dispatch client from the active connection. 
@@ -111,7 +115,7 @@ dispatch.connect();
 [source,javascript]
 dispatch.disconnect();
 
-[.hcode, id=".emitEvent()", reftext="emitEvent()"]
+[.hcode, id=".emitEvent", reftext="emitEvent"]
 === .emitEvent(eventName, payload)
 
 Emits the named event to all clients on the current shard.
@@ -126,7 +130,7 @@ Emits the named event to all clients on the current shard.
 [source,javascript]
 dispatch.emitEvent('myEvent', myDataPayload);
 
-[.hcode, id=".info()", reftext="info()"]
+[.hcode, id=".info", reftext="info"]
 === .info()
 
 Gets info on the shard the client is currently connected to.
@@ -144,7 +148,7 @@ dispatch.info.then((info) => {
 });
 ----
 
-[.hcode, id=".on()", reftext="on()"]
+[.hcode, id=".on", reftext="on"]
 === .on(eventName, callback)
 
 Sets a callback to listen to a specific event and run when the event is dispatched over the shard.
@@ -161,7 +165,7 @@ TIP: For Koji custom events see <<#_dispatch_event, DISPATCH_EVENT>>.
 [source,javascript]
 dispatch.on('myEvent', myCallbackFunction);
 
-[.hcode, id=".removeEventListener()", reftext="removeEventListener()"]
+[.hcode, id=".removeEventListener", reftext="removeEventListener"]
 === .removeEventListener(eventName)
 
 Removes listeners from the specified event.
@@ -175,7 +179,7 @@ Removes listeners from the specified event.
 [source,javascript]
 dispatch.remveEventListener('myEvent');
 
-[.hcode, id=".setUserInfo()", reftext="setUserInfo()"]
+[.hcode, id=".setUserInfo", reftext="setUserInfo"]
 === .setUserInfo(userInfo)
 
 Sets the current client's user info for the currently connected shard.
@@ -192,7 +196,7 @@ dispatch.setUserInfo({username:"myUsername"});
 == DISPATCH_EVENT
 
 Constant holding special event keys for Koji Dispatch.
-To subscribe to these events see <<#.on()>>.
+To subscribe to these events see <<#.on>>.
 
 [.hcode, id="CONNECTED", reftext="CONNECTED"]
 === CONNECTED
@@ -246,7 +250,7 @@ Koji dispatch includes utility functions to help you build realtime multiplayer 
 [source,javascript]
 import { Utils } from '@withkoji/dispatch';
 
-[.hcode, id=".profanity()", reftext="profanity()"]
+[.hcode, id=".profanity", reftext="profanity"]
 === .profanity(string)
 
 Checks whether a string contains profanity.
@@ -258,14 +262,14 @@ This method can be useful for checking usernames or chat content.
 
 ==== Returns
 
-Boolean that indicates whether the specified string contains profanity.
+_Boolean_, indicates whether the specified string contains profanity.
 
 ==== Example
 
 [source,javascript]
 Utils.profanity('check this string');
 
-[.hcode, id=".filterProfanity()", reftext="filterProfanity()"]
+[.hcode, id=".filterProfanity", reftext="filterProfanity"]
 === .filterProfanity(string)
 
 Replaces profanity in a string with asterisks.
@@ -276,7 +280,7 @@ Replaces profanity in a string with asterisks.
 
 ==== Returns
 
-String, replaces profanity in the specified string with asterisks.
+_String_, replaces profanity in the specified string with asterisks.
 
 ==== Example
 
