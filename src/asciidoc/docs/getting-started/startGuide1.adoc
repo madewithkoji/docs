@@ -1,6 +1,6 @@
 = Developing your first Koji template
 :page-slug: start-guide-1
-:page-description:
+:page-description: Follow these step-by-step instructions to create and publish your first remixable web application on Koji.
 
 On the Koji platform, you can develop JavaScript web applications that can be customized without coding.
 Instead, non-technical users can use Visual Customization Controls (VCCs) to quickly edit elements of the application, such as images, text, and sounds.
@@ -155,12 +155,14 @@ import { InstantRemixing } from '@withkoji/vcc';
 </script>
 ----
 --
-. Create a new instance of the `InstantRemixing` class to use in the template.
+. Create a new instance of the `InstantRemixing` class to use in the template and alert Koji that instant remixing is ready to use.
 +
 [.tabs,scope="lang"]
 --
 .React
 ====
+*In the React component, add the `componentDidMount` method.*
+
 [source,JavaScript]
 ----
 componentDidMount() {
@@ -171,8 +173,6 @@ componentDidMount() {
   this.instantRemixing.ready();
 }
 ----
-NOTE: In the React component, add the `componentDidMount` method.
-
 ====
 
 .Vanilla JS
@@ -184,7 +184,7 @@ var instantRemixing = new InstantRemixing();
 // Alert Koji we are ready to use instantRemixing
 instantRemixing.ready();
 ----
-NOTE: Above the `render` function definition, create a new instance of the  class and alert Koji that instant remixing is ready to use.
+NOTE: Above the `render` function definition, create a new instance of the class.
 
 ====
 
