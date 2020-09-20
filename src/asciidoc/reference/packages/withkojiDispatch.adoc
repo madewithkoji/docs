@@ -146,21 +146,21 @@ dispatch.info.then((info) => {
 ----
 
 [.hcode, id=".on", reftext="on"]
-=== .on(eventName, callback)
+=== .on(eventName, handler)
 
-Sets a callback to listen to a specific event and run when the event is dispatched over the shard.
+Sets a listener to a specific event and runs the handler when the event is dispatched over the shard.
 
 TIP: For Koji custom events see <<#_dispatch_event, DISPATCH_EVENT>>.
 
 ==== Parameters
 
 * `eventName` – _String_, name of the event to subscribe to.
-* `callback` – _Callback_, the callback to run when the event is fired.
+* `handler` – _Function_, the handler to run when the event is fired.
 
 ==== Example
 
 [source,javascript]
-dispatch.on('myEvent', myCallbackFunction);
+dispatch.on('myEvent', myHandlerFunction);
 
 [.hcode, id=".removeEventListener", reftext="removeEventListener"]
 === .removeEventListener(eventName)
