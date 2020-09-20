@@ -7,9 +7,6 @@ implement real-time functionality in your Koji template.
 //end::description[]
 For example, chats, multi-player games, and polls.
 
-This reference provides examples for common methods.
-For more information, see the https://github.com/madewithkoji/koji-dispatch[package documentation on GitHub].
-
 == Install
 
 Install the package in your Koji project.
