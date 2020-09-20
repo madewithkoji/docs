@@ -48,7 +48,7 @@ const dispatch = new Dispatch({
 });
 ----
 
-== Dispatch Properties
+== Dispatch properties
 
 [.hcode, id=".clientId", reftext="clientId"]
 === .clientId
@@ -90,7 +90,7 @@ _String_, name of the shard the client is currently connected to.
 
 _Object_, the user info of the currently connected client.
 
-== Dispatch Methods
+== Dispatch methods
 
 [.hcode, id=".connect", reftext="connect"]
 === .connect()
@@ -190,15 +190,14 @@ Sets the current client's user info for the currently connected shard.
 [source,javascript]
 dispatch.setUserInfo({username:"myUsername"});
 
-== DISPATCH_EVENT
+== Dispatch Constants
+=== DISPATCH_EVENT
 
 Constant holding special event keys for Koji Dispatch.
 To subscribe to these events see <<#.on>>.
 
-[.hcode, id="CONNECTED", reftext="CONNECTED"]
-=== CONNECTED
-
-The event fired when the current client has successfully connected to a shard.
+. `DISPATCH_EVENT.CONNECTED` - Fired when the current client has successfully connected to a shard.
+. `DISPATCH_EVENT.CONNECTED_CLIENTS_CHANGED` - Fired when the list of clients currently connected to the shard changes.
 
 ==== Example
 
@@ -215,25 +214,6 @@ dispatch.connect();
 dispatch.on(DISPATCH_EVENT.CONNECTED, ({ clientId, shardName }) => {
 	// client has connected to shard
 });
-----
-
-
-[.hcode, id="CONNECTED_CLIENTS_CHANGED", reftext="CONNECTED_CLIENTS_CHANGED"]
-=== CONNECTED_CLIENTS_CHANGED
-
-The event fired when the list of clients currently connected to the shard changes.
-
-==== Example
-
-[source,javascript]
-----
-import Dispatch, { DISPATCH_EVENT } from '@withkoji/dispatch';
-
-const dispatch = new Dispatch({
-  projectId: instantRemixing.get(['metadata', 'projectId'])
-});
-
-dispatch.connect();
 
 dispatch.on(DISPATCH_EVENT.CONNECTED_CLIENTS_CHANGED, ({ connectedClients }) => {
 	// connected clients has changed
