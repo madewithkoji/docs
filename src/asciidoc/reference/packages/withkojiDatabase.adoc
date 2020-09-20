@@ -128,7 +128,7 @@ interface SignedUploadRequest {
 const signedUpload = await database.generateSignedUploadRequest("fileName");
 
 [.hcode, id=".get", reftext="get"]
-=== .get(collection[, key])
+=== .get(collection, key)
 
 Gets the specified value or collection of values.
 
@@ -289,7 +289,7 @@ Updates a value in the database with the given value.
 const updated = await database.update('myCollection',"myKey", {"myValue":2});
 
 [.hcode, id=".uploadFile", reftext="uploadFile"]
-=== .uploadFile(path[, filename, mimetype])
+=== .uploadFile(path, filename, mimetype)
 
 Uploads files to your project's CDN. For example, images, profile pictures, and audio.
 

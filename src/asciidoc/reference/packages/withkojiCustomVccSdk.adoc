@@ -119,7 +119,7 @@ customVcc.onUpdate((props) => {
 ----
 
 [.hcode, id=".register", reftext="register"]
-=== .register([width, height])
+=== .register(width, height)
 
 Indicates that the custom VCC has loaded and registers it to trigger the on events from the parent editor.
 
