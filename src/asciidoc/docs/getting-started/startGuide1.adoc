@@ -161,7 +161,8 @@ import { InstantRemixing } from '@withkoji/vcc';
 --
 .React
 ====
-*In the React component, add the `componentDidMount` method.*
+[.intro]
+In the React component, add the `componentDidMount` method.
 
 [source,JavaScript]
 ----
@@ -177,6 +178,9 @@ componentDidMount() {
 
 .Vanilla JS
 ====
+[.intro]
+Add this code above the `render` function definition.
+
 [source,JavaScript]
 ----
 var instantRemixing = new InstantRemixing();
@@ -184,12 +188,13 @@ var instantRemixing = new InstantRemixing();
 // Alert Koji we are ready to use instantRemixing
 instantRemixing.ready();
 ----
-NOTE: Above the `render` function definition, create a new instance of the class.
-
 ====
 
 .Angular
 ====
+[.intro]
+In the Angular component, add the `ngOnInit` method.
+
 [source,JavaScript]
 ----
 ngOnInit() {
@@ -200,12 +205,13 @@ ngOnInit() {
   this.instantRemixing.ready();
 }
 ----
-NOTE: In the Angular component, add the `ngOnInit` method.
-
 ====
 
 .Svelte
 ====
+[.intro]
+In the Svelte component, add the `onMount` method.
+
 [source,JavaScript]
 ----
 <script>
@@ -223,8 +229,6 @@ NOTE: In the Angular component, add the `ngOnInit` method.
   });
 </script>
 ----
-NOTE: In the Svelte component, add the `onMount` method.
-
 ====
 --
 
@@ -234,6 +238,9 @@ NOTE: In the Svelte component, add the `onMount` method.
 --
 .React
 ====
+[.intro]
+Create a state to handle updates to the title value.
+
 [source,JavaScript]
 ----
 class App extends React.Component {
@@ -253,12 +260,13 @@ render() {
 }
 }
 ----
-NOTE: Create a state to handle updates to the title value.
-
 ====
 
 .Vanilla JS
 ====
+[.intro]
+Add an `id` attribute to access the element more easily in the next step.
+
 [source,JavaScript]
 ----
 // render app
@@ -269,9 +277,6 @@ const render = () => {
     `;
 };
 ----
-NOTE: Create a variable to handle updates to the title value.
-Also, add an `id` attribute to access the element more easily in the next step.
-
 ====
 
 .Angular
@@ -280,6 +285,9 @@ Also, add an `id` attribute to access the element more easily in the next step.
 =====
 .app.component.ts
 ======
+[.intro]
+Add a property to handle updates to the title value.
+
 [source,JavaScript]
 ----
 class AppComponent implements OnInit {
@@ -289,8 +297,6 @@ class AppComponent implements OnInit {
   ...
 }
 ----
-NOTE: Add a property to handle updates to the title value.
-
 ======
 
 .app.component.html
@@ -322,6 +328,7 @@ The getter accepts an array (`[scope, key]`) that maps to the scope (`settings`)
 ----
 componentDidMount() {
   this.instantRemixing = new InstantRemixing();
+  console.log('instantRemixing', this.instantRemixing); // Confirm w/log
 
   // Set the default value
   this.setState({
@@ -334,8 +341,13 @@ componentDidMount() {
 ----
 
 .Vanilla JS
+====
+[.intro]
+Create a variable to handle updates to the title value.
+
 [source,JavaScript]
 var title = instantRemixing.get(['settings', 'title']);
+====
 
 .Angular
 [source,JavaScript]
@@ -376,13 +388,14 @@ When a remixer enters a new value, the template must update automatically to ref
 --
 .React
 ====
+[.intro]
+Add the listener in the `componentDidMount` method.
+
 [source,JavaScript]
 ----
 componentDidMount() {
   this.instantRemixing = new InstantRemixing();
-
-  // Alert Koji we are ready to use instantRemixing
-  this.instantRemixing.ready();
+  console.log('instantRemixing', this.instantRemixing); // Confirm w/log
 
   // Set the default value
   this.setState({
@@ -395,14 +408,18 @@ componentDidMount() {
       this.setState({ title: newValue });
     }
   });
+
+  // Alert Koji we are ready to use instantRemixing
+  this.instantRemixing.ready();
 }
 ----
-NOTE: Add the listener in the `componentDidMount` method.
-
 ====
 
 .Vanilla JS
 ====
+[.intro]
+Add the listener below the `render` function call.
+
 [source,JavaScript]
 ----
 // Add a listener to the on change event of instant remixing to update the title
@@ -413,13 +430,14 @@ instantRemixing.onValueChanged((path, newValue) => {
     }
 });
 ----
-NOTE: Add the listener below the `render` function call.
-
 ====
 
 
 .Angular
 ====
+[.intro]
+Add the listener in the `ngOnInit` method.
+
 [source,JavaScript]
 ----
 ngOnInit() {
@@ -439,12 +457,13 @@ ngOnInit() {
   });
 }
 ----
-NOTE: Add the listener in the `ngOnInit` method.
-
 ====
 
 .Svelte
 ====
+[.intro]
+Add the listener in the `onMount` method.
+
 [source,JavaScript]
 ----
 onMount(() => {
@@ -464,8 +483,6 @@ onMount(() => {
   });
 });
 ----
-NOTE: Add the listener in the `onMount` method.
-
 ====
 --
 
@@ -512,17 +529,20 @@ let isRemixing;
 ----
 --
 
-. In the `componentDidMount` method, add the default value (`this.instantRemixing.isRemixing`) to the `setState` function, and add a listener that monitors the template for view changes.
-+
-This listener allows you to use `this.state.isRemixing` as a source of truth for the current view of the template.
+. Add a listener that monitors the template for view changes between remixing and viewing.
 +
 [.tabs,scope="lang"]
 --
 .React
+====
+[.intro]
+In the `setState` function, set the default value for `this.instantRemixing.isRemixing`, and then add the listener to maintain it as a source of truth for the current view.
+
 [source,JavaScript]
 ----
 componentDidMount() {
   this.instantRemixing = new InstantRemixing();
+  console.log('instantRemixing', this.instantRemixing); // Confirm w/log
 
   // Set the default value for title and isRemixing state
   this.setState({
@@ -546,6 +566,7 @@ componentDidMount() {
   this.instantRemixing.ready();
 }
 ----
+====
 
 .Vanilla JS
 [source,JavaScript]
@@ -629,9 +650,9 @@ The template must expose a way for a remixer to open the VCC when customizing it
 ----
 handleClick = () => {
   // Conditionally handle the click, only if the template is being remixed
-if (this.state.isRemixing) {
-this.instantRemixing.onPresentControl(['settings', 'title']);
-}
+  if (this.state.isRemixing) {
+  this.instantRemixing.onPresentControl(['settings', 'title']);
+  }
 };
 
 render() {
@@ -797,6 +818,9 @@ In this example, you’ll add a CSS style class for editable items and then appl
 --
 .React
 ====
+[.intro]
+In the `App.js` file, use a dynamic `className`.
+
 [source,JavaScript]
 ----
 <h1
@@ -806,12 +830,13 @@ In this example, you’ll add a CSS style class for editable items and then appl
   {this.state.title}
 </h1>
 ----
-NOTE: In the `App.js` file, use a dynamic `className`.
-
 ====
 
 .Vanilla JS
 ====
+[.intro]
+Add implementations of `startRemix` and `stopRemix` that modify the class name of the `h1` element, for simplicity in this tutorial.
+
 [source,JavaScript]
 ----
 // Modify elements to display state for remixing
@@ -826,12 +851,13 @@ const stopRemix = () => {
     titleElement.classList.remove('edit');
 };
 ----
-NOTE: Add implementations of `startRemix` and `stopRemix` that modify the class name of the `h1` element, for simplicity in this tutorial.
-
 ====
 
 .Angular
 ====
+[.intro]
+In the `app.component.html` file, use a dynamic `class`.
+
 [source,JavaScript]
 ----
 <h1
@@ -841,8 +867,6 @@ NOTE: Add implementations of `startRemix` and `stopRemix` that modify the class 
   {{title}}
 </h1>
 ----
-NOTE: In the `app.component.html` file, use a dynamic `class`.
-
 ====
 
 .Svelte
@@ -873,52 +897,56 @@ To ensure the template is displayed correctly in the Koji feed, you use the Feed
 ----
 import { FeedSdk, InstantRemixing } from '@withkoji/vcc';
 ----
-. At the end of the `componentDidMount` method, add the following code to display the template in the feed.
+. Add the following code to display the template in the feed.
 +
 [.tabs,scope="lang"]
 --
 .React
 ====
+[.intro]
+Add this code at the end of the `componentDidMount` method.
+
 [source,JavaScript]
 ----
 this.feed = new FeedSdk();
 this.feed.load();
 ----
-NOTE: Add this code at the end of the `componentDidMount` method.
-
 ====
 
 .Vanilla JS
 ====
+[.intro]
+Add this code below the `render` function call.
+
 [source,JavaScript]
 ----
 var feed = new FeedSdk();
 feed.load();
 ----
-NOTE: Add this code below the `render` function call.
-
 ====
 
 .Angular
 ====
+[.intro]
+Add this code at the end of the `ngOnInit` method.
+
 [source,JavaScript]
 ----
 this.feed = new FeedSdk();
 this.feed.load();
 ----
-NOTE: Add this code at the end of the `ngOnInit` method.
-
 ====
 
 .Svelte
 ====
+[.intro]
+Add this code at the end of the `onMount` method.
+
 [source,JavaScript]
 ----
 let feed = new FeedSdk();
 feed.load();
 ----
-NOTE: Add this code at the end of the `onMount` method.
-
 ====
 
 --
