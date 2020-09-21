@@ -20,17 +20,6 @@ const NavItemsWrapper = styled.div`
   overflow: auto;
 `;
 
-const KojiHomeWrapper = styled.div`
-  position: absolute;
-  bottom: 0;
-  height: 48px;
-  border-top: 1px solid rgba(0, 0, 0, 0.12);
-  width: 100%;
-  display: flex;
-  align-items: center;
-  padding: 0 16px;
-`;
-
 const DrawerComponent = ({ location, navItem }) => (
   <StyledDrawer
     className={'desktop'}
@@ -50,15 +39,6 @@ const DrawerComponent = ({ location, navItem }) => (
           ))
         }
       </NavItemsWrapper>
-      <KojiHomeWrapper>
-        <a 
-          href={'https://withkoji.com'}
-          rel={'noopener noreferrer'}
-          target={'_blank'}
-        >
-          {'Koji Homepage'}
-        </a>
-      </KojiHomeWrapper>
     </div>
   </StyledDrawer>
 );
