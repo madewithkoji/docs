@@ -502,7 +502,7 @@ The preview window should reflect your update automatically.
 The template must display differently and expose different click handlers depending on whether a user is viewing or customizing the template.
 In this example, you will add styles to show that the `h1` element is editable and a click handler to expose a VCC when a user is customizing the template.
 
-. Create a property (`isRemixing`) to track the current view state.
+. Create a property (`isRemixing`) to track the current view state, if needed.
 +
 [.tabs,scope="lang"]
 --
@@ -514,6 +514,10 @@ state = {
   title: '',
 };
 ----
+
+.Vanilla JS
+[.intro]
+Not needed
 
 .Angular
 [source,JavaScript]
@@ -641,7 +645,7 @@ onMount(() => {
 
 The template must expose a way for a remixer to open the VCC when customizing it.
 
-* Add a click handler to the `h1` element that opens the VCC when the remixer clicks the title.
+* Add a click handler that opens the VCC when the remixer clicks the title (`h1` element).
 +
 [.tabs,scope="lang"]
 --
