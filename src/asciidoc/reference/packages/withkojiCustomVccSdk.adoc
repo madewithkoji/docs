@@ -13,22 +13,22 @@ Install the package in your Koji project.
 [source,bash]
 npm install --save @withkoji/custom-vcc-sdk
 
-== CustomVcc
+== CustomVCC
 
-[.hcode, id="new CustomVcc", reftext="new CustomVcc"]
-=== new CustomVcc()
+[.hcode, id="new CustomVCC", reftext="new CustomVCC"]
+=== new CustomVCC()
 
-Instantiates `CustomVcc`.
+Instantiates `CustomVCC`.
 
 ==== Example
 
 [source,javascript]
 ----
-import { CustomVcc } from '@withkoji/custom-vcc-sdk';
-const customVcc = new CustomVcc();
+import CustomVCC from '@withkoji/custom-vcc-sdk';
+const customVcc = new CustomVCC();
 ----
 
-== CustomVcc methods
+== CustomVCC methods
 
 [.hcode, id=".blur", reftext="blur"]
 === .blur()
