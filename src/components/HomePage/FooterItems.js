@@ -41,7 +41,7 @@ const ResourcesFooterItems = [
     id: 1,
     icon: <CodeIcon />,
     name: 'Developer home',
-    link: 'https://developer.withkoji.com',
+    link: '/',
   },
   {
     id: 2,

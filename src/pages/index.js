@@ -49,7 +49,6 @@ const IndexPage = () => (
     <Actions />
     <Press />
     <CTA />
-    <Footer />
 
   </MyContainer>
 );
