@@ -1,4 +1,26 @@
+import React from 'react';
+import styled from 'styled-components';
+import { FeedSdk, InstantRemixing } from '@withkoji/vcc';
+
+const Container = styled.div`
+    background-color: #395b88;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: calc(10px + 2vmin);
+    text-align: center;
+    color: #fcfcfc;
+`;
+
+const Image = styled.img`
+    max-width: 50vmin;
+    max-height: 50vmin;
+`;
+
 class App extends React.Component {
+
     state = {
         isRemixing: false,
         title: '',
@@ -54,3 +76,5 @@ class App extends React.Component {
         );
     }
 }
+
+export default App;

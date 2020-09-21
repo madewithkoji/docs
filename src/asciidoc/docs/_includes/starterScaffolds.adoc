@@ -9,7 +9,7 @@ https://withkoji.com/templates/JamesHole/vanilla-js-scaffold[Vanilla JS scaffold
 // end::vanilla[]
 
 // tag::svelte[]
-https://withkoji.com/~RadEgg/svelte-instant-remix-template-no-vccs[Svelte scaffold]
+https://withkoji.com/templates/RadEgg/svelte-instant-remix-template-no-vccs[Svelte scaffold]
 // end::svelte[]
 
 // tag::angular[]

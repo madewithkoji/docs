@@ -28,9 +28,6 @@ const stopRemix = () => {
     titleElement.classList.remove('edit');
 };
 
-// render
-render();
-
 var feed = new FeedSdk();
 feed.load();
 
@@ -59,3 +56,6 @@ document.addEventListener('click', function (event) {
 
     instantRemixing.onPresentControl(['settings', 'title']);
 });
+
+// render
+render();

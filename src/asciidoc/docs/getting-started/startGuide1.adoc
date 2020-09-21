@@ -210,7 +210,7 @@ ngOnInit() {
 .Svelte
 ====
 [.intro]
-In the Svelte component, add the `onMount` method.
+Add the `onMount` method.
 
 [source,JavaScript]
 ----
@@ -302,9 +302,9 @@ class AppComponent implements OnInit {
 .app.component.html
 [source,JavaScript]
 ----
-<div class=”container”>
+<div class="container">
   <h1>{{title}}</h1>
-  <img class=”image” src=”https://images.koji-cdn.com/cf19e146-554d-459e-96a1-b36b71eda51e/userData/gi3e2wscdw-b8ae90b11dbb4339a93af61c9e0a2100.png” />
+  <img class="image" src="https://images.koji-cdn.com/cf19e146-554d-459e-96a1-b36b71eda51e/userData/gi3e2wscdw-b8ae90b11dbb4339a93af61c9e0a2100.png" />
 </div>
 ----
 =====
@@ -313,7 +313,7 @@ class AppComponent implements OnInit {
 .Svelte
 [source,JavaScript]
 ----
-<h1>{title}>/h1>
+<h1>{title}</h1>
 ----
 --
 
@@ -354,12 +354,13 @@ var title = instantRemixing.get(['settings', 'title']);
 ----
 ngOnInit() {
   this.instantRemixing = new InstantRemixing();
-
-  // Set the default value
-  this.title = this.instantRemixing.get(['settings', 'title'])
+  console.log('instantRemixing', this.instantRemixing); // Confirm w/log
 
   // Alert Koji we are ready to use instantRemixing
   this.instantRemixing.ready();
+
+  // Set the default value
+  this.title = this.instantRemixing.get(['settings', 'title'])
 }
 ----
 
@@ -442,6 +443,7 @@ Add the listener in the `ngOnInit` method.
 ----
 ngOnInit() {
   this.instantRemixing = new InstantRemixing();
+  console.log('instantRemixing', this.instantRemixing); // Confirm w/log
 
   // Alert Koji we are ready to use instantRemixing
   this.instantRemixing.ready();
@@ -590,6 +592,10 @@ instantRemixing.onSetRemixing((isRemixing) => {
 ----
 ngOnInit() {
   this.instantRemixing = new InstantRemixing();
+  console.log('instantRemixing', this.instantRemixing); // Confirm w/log
+
+  // Alert Koji we are ready to use instantRemixing
+  this.instantRemixing.ready();
 
   // Set the default value for title and isRemixing state
   this.isRemixing = this.instantRemixing.isRemixing;
@@ -607,9 +613,6 @@ ngOnInit() {
   this.instantRemixing.onSetRemixing((isRemixing) => {
     this.isRemixing = isRemixing;
   });
-
-  // Alert Koji we are ready to use instantRemixing
-  this.instantRemixing.ready();
 }
 ----
 
@@ -699,9 +702,9 @@ handleClick = () => {
 .app.component.html
 [source,JavaScript]
 ----
-    <div class=”container”>
-      <h1 (click)=”handleClick()”>{{title}}</h1>
-      <img class=”image” src=”https://images.koji-cdn.com/cf19e146-554d-459e-96a1-b36b71eda51e/userData/gi3e2wscdw-b8ae90b11dbb4339a93af61c9e0a2100.png” />
+    <div class="container">
+      <h1 (click)="handleClick()">{{title}}</h1>
+      <img class="image" src="https://images.koji-cdn.com/cf19e146-554d-459e-96a1-b36b71eda51e/userData/gi3e2wscdw-b8ae90b11dbb4339a93af61c9e0a2100.png" />
     </div>
   );
 }
@@ -865,8 +868,8 @@ In the `app.component.html` file, use a dynamic `class`.
 [source,JavaScript]
 ----
 <h1
-  class=”{{isRemixing ? 'active' : ''}}”
-  (click)=”handleClick()”
+  class="{{isRemixing ? 'active' : ''}}"
+  (click)="handleClick()"
 >
   {{title}}
 </h1>
@@ -998,3 +1001,58 @@ Then, under *More options*, click *See profiled attributes*.
 +
 If an error message appears when you open the link after profiling is completed, you can review the steps in this guide to fix it.
 To open your project again, go to *Koji home > My projects*, and click the template name.
+
+== Next steps
+
+In this guide, you learned how to add basic customizable elements to a template and then publish it on Koji.
+
+* To troubleshoot any issues with your template, you can compare your code to this completed sample of the logic described in this guide.
++
+[.tabs,scope="lang"]
+--
+.React
+====
+[.intro]
+`frontend/common/App.js`
+
+[source,JavaScript]
+----
+include::../_includes/startGuide1React.js[]
+----
+====
+
+.Vanilla JS
+====
+[.intro]
+`frontend/index.js`
+
+[source,JavaScript]
+----
+include::../_includes/startGuide1Vanilla.js[]
+----
+====
+
+.Angular
+====
+[.intro]
+`frontend/src/app/app.component.ts`
+
+[source,JavaScript]
+----
+include::../_includes/startGuide1Angular.js[]
+----
+====
+
+.Svelte
+====
+[.intro]
+`src/App.svelte`
+
+[source,JavaScript]
+----
+include::../_includes/startGuide1.svelte[]
+----
+====
+--
+
+* To continue working on this project and learn how to create a complete and compelling Koji template, see <<start-guide-2#>>.
