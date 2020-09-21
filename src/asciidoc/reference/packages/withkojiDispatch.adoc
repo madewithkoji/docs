@@ -25,13 +25,13 @@ Instantiates `Dispatch`.
 
 ==== Parameters
 
-* `project` – Object containing the details of your Koji project.
-** `projectId` – String, unique identifier for your Koji project.
+* `project` – _Object_, contains the details of your Koji project.
+** `projectId` – _String_, unique identifier for your Koji project.
 You can use the <<withkoji-vcc-package#>> package to obtain this value programmatically.
-** `options` – (Optional) Object containing the configuration options for dispatch shards.
-*** `shardName` – (Optional) String, name of the specific shard to use.
+** `options` – (Optional) _Object_, contains the configuration options for dispatch shards.
+*** `shardName` – (Optional) _String_, name of the specific shard to use.
 If this key is not present, the user will be placed into a shard automatically.
-*** `maxConnectionsPerShard`– (Optional) Number of users to allow on a shard before it is "full."
+*** `maxConnectionsPerShard`– (Optional) _Number_, total users to allow on a shard before it is "full."
 When a shard is full, new users are added to a new shard unless a different shard is explicity set.
 
 ==== Example
@@ -58,7 +58,7 @@ _String_, ID of the currently connected client.
 [.hcode, id=".connectedClients", reftext="connectedClients"]
 === .connectedClients
 
-_Object_ containing IDs of currently connected clients as keys and an object containing their user data.
+_Object_, contains IDs of currently connected clients as keys and an object of their user data.
 
 ==== Example
 [source,json]
@@ -235,7 +235,7 @@ This method can be useful for checking usernames or chat content.
 
 ==== Parameters
 
-* `string` – String to check.
+* `string` – _String_, text to check.
 
 ==== Returns
 
@@ -253,11 +253,11 @@ Replaces profanity in a string with asterisks.
 
 ==== Parameters
 
-* `string` – String to sanitize.
+* `string` – _String_, text to sanitize.
 
 ==== Returns
 
-_String_, replaces profanity in the specified string with asterisks.
+_String_, text with profanities replaced with asterisks.
 
 ==== Example
 

@@ -54,7 +54,7 @@ NOTE: If the data you attempt to push onto an array is already present, it will 
 
 ==== Returns
 
-(Async) Boolean that indicates whether the data was successfully added to arrays.
+(Async) _Boolean_, indicates whether the data was successfully added to arrays.
 
 ==== Example
 
@@ -74,7 +74,7 @@ Removes data from arrays in an existing database entry.
 
 ==== Returns
 
-(Async) Boolean that indicates whether the data was successfully removed from arrays.
+(Async) _Boolean_, indicates whether the data was successfully removed from arrays.
 
 ==== Example
 
@@ -93,7 +93,7 @@ Deletes an entire entry from the database.
 
 ==== Returns
 
-(Async) Boolean that indicates whether the entry was successfully deleted.
+(Async) _Boolean_, indicates whether the entry was successfully deleted.
 
 ==== Example
 
@@ -107,7 +107,7 @@ Generates a signed URL for uploading a file directly to the your project’s CDN
 
 ==== Parameters
 
-* `fileName` – String, name for the file to be uploaded.
+* `fileName` – _String_, name for the file to be uploaded.
 
 ==== Returns
 
@@ -141,7 +141,7 @@ Gets the specified value or collection of values.
 
 ==== Returns
 
-(Async) Object with the requested values.
+(Async) _Object_, the requested values from the collection.
 
 ==== Example
 
@@ -163,7 +163,7 @@ Gets all the specified values.
 
 ==== Returns
 
-(Async) Array of objects with the requested values.
+(Async) Array of _Objects_, the requested values from the collection.
 
 ==== Example
 
@@ -184,7 +184,7 @@ Gets all the database entries that match a query against a list of possible valu
 
 ==== Returns
 
-(Async) Array of objects with values that match the queries.
+(Async) Array of _Objects_, values that match the queries.
 
 ==== Example
 
@@ -198,7 +198,7 @@ Gets all the collections available in the database.
 
 ==== Returns
 
-(Async) Array of strings containing the names of the collections.
+(Async) Array of _Strings_, list containing the names of the collections.
 
 ==== Example
 
@@ -219,7 +219,7 @@ Gets all the database entries that match a query against a value.
 
 ==== Returns
 
-(Async) Array of objects with values that match the query.
+(Async) Array of _Objects_, list of the values that match the query.
 
 ==== Example
 
@@ -241,7 +241,7 @@ NOTE: The `queryKey` must be set for all entries in your data, if some entries h
 
 ==== Returns
 
-(Async) Array of objects with values that have a partial match.
+(Async) Array of _Objects_, list of the values that have a partial match.
 
 ==== Example
 
@@ -261,7 +261,7 @@ Adds an entry to the database.
 
 ==== Returns
 
-(Async) Boolean that indicates whether the value was successfully added.
+(Async) _Boolean_, indicates whether the value was successfully added.
 
 ==== Example
 
@@ -283,7 +283,7 @@ Updates a value in the database with the given value.
 
 ==== Returns
 
-(Async) Boolean that indicates whether the update was successful.
+(Async) _Boolean_, indicates whether the update was successful.
 
 ==== Example
 
@@ -305,8 +305,9 @@ NOTE: The size limit for this method is 10MB per uploaded file.
 
 ==== Returns
 
-(Async) Unique URL on `images.koji-cdn.com` or `objects.koji-cdn.com`, depending on the type of file.
-To prevent collisions, the specified filename is automatically modified to include a random string.
+(Async) _String_, Unique URL on `images.koji-cdn.com` or `objects.koji-cdn.com`, depending on the type of file.
+
+NOTE: To prevent collisions, the specified filename is automatically modified to include a random string.
 
 ==== Example
 
