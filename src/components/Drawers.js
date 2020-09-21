@@ -1,44 +1,53 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { useTheme } from '@material-ui/core/styles';
-import useMediaQuery from '@material-ui/core/useMediaQuery';
+import styled from 'styled-components';
 
 import Drawer from './Drawer';
 import MobileDrawer from './MobileDrawer';
 
-const Drawers = (props) => {
-  const theme = useTheme();
-  const isMobile = useMediaQuery(theme.breakpoints.down('sm'), { noSsr: true });
-
-  if (isMobile) {
-    return (
-      <MobileDrawer
-        location={props.location}
-        navItems={props.navItems}
-        open={props.mobileDrawerIsOpen}
-      />
-    );
+const Wrapper = styled.span`
+  .mobile {
+    display: none;
   }
 
-  return (
-    <>
-      {
-        props.navItems.sort((a, b) => a.idx - b.idx).map((navItem) => {
-          if (props.location.pathname.includes(navItem.root)) {
-            return (
-              <Drawer
-                key={navItem.root}
-                location={props.location}
-                navItem={navItem}
-              />
-            );
-          }
-          return null;
-        })
-      }
-    </>
-  );
-};
+  .desktop {
+    display: block;
+  }
+
+  @media screen and (max-width: 1023px) {
+    .mobile {
+      display: block;
+    }
+
+    .desktop {
+      display: none;
+    }
+  }
+`;
+
+const Drawers = (props) => (
+  <Wrapper>
+    <MobileDrawer
+      location={props.location}
+      navItems={props.navItems}
+      open={props.mobileDrawerIsOpen}
+    />
+    {
+      props.navItems.sort((a, b) => a.idx - b.idx).map((navItem) => {
+        if (props.location.pathname.includes(navItem.root)) {
+          return (
+            <Drawer
+              key={navItem.root}
+              location={props.location}
+              navItem={navItem}
+            />
+          );
+        }
+        return null;
+      })
+    }
+  </Wrapper>
+);
 
 Drawers.propTypes = {
   location: PropTypes.object,

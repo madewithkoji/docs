@@ -46,20 +46,6 @@ const Item = styled.div`
   }
 `;
 
-const StyledSearchIcon = styled(SearchIcon)`
-  fill: #333333;
-  position: relative;
-  right: 32px;
-  top: 6px;
-`;
-
-const StyledCloseIcon = styled(CloseIcon)`
-  fill: #333333;
-  position: relative;
-  right: 32px;
-  top: 6px;
-`;
-
 const SearchInput = styled.input`
   height: 32px;
   padding-right: 40px;
@@ -67,6 +53,7 @@ const SearchInput = styled.input`
 
 const Wrapper = styled.div`
   position: relative;
+  height: 32px;
 `;
 
 const ItemSection = styled.div`
@@ -213,8 +200,30 @@ const Search = ({ isMobile }) => {
         style={{ isMobile }}
         value={value}
       />
-      {(!value || value === '' || isMobile) && <StyledSearchIcon />}
-      {(value && value !== '' && !isMobile) && <StyledCloseIcon onClick={handleClearClick} />}
+      {
+        (!value || value === '' || isMobile) &&
+        <SearchIcon
+          style={{
+            color: '#333333',
+            position: 'relative',
+            right: '32px',
+            top: '8px',
+          }}
+        />
+      }
+      {
+        (value && value !== '' && !isMobile) &&
+        <CloseIcon
+          onClick={handleClearClick}
+          style={{
+            color: '#333333',
+            position: 'relative',
+            right: '32px',
+            top: '8px',
+            cursor: 'pointer',
+          }}
+        />
+      }
       {
         groups && groups.length > 0 &&
         <GroupsWrapper style={{ isMobile }}>
@@ -254,7 +263,7 @@ Search.propTypes = {
   isMobile: PropTypes.bool,
 };
 
-Search.deaultProps = {
+Search.defaultProps = {
   isMobile: false,
 };
 
