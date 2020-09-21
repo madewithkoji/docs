@@ -79,7 +79,7 @@ Removes data from arrays in an existing database entry.
 ==== Example
 
 [source, javascript]
-const isAdded = await database.arrayRemove('myCollection', 'myExistingKey', {'myValue':1});
+const isRemoved = await database.arrayRemove('myCollection', 'myExistingKey', {'myValue':1});
 
 [.hcode, id=".delete", reftext="delete"]
 === .delete(collection, key)
@@ -89,7 +89,7 @@ Deletes an entire entry from the database.
 ==== Parameters
 
 * `collection` – _String_, name of the collection.
-* `key` – _String_, key from the database entry.
+* `key` – _String_, key of the database entry.
 
 ==== Returns
 
@@ -107,11 +107,11 @@ Generates a signed URL for uploading a file directly to the your project’s CDN
 
 ==== Parameters
 
-* `fileName` – _String_, name for the file to be uploaded.
+* `fileName` – _String_, name of the file to be uploaded.
 
 ==== Returns
 
-(Async) `SignedUploadRequest`, structured data on of the signed request with the following structure:
+(Async) `SignedUploadRequest`, structured data of the signed request with the following structure:
 
 [source, typescript]
 ----
@@ -132,12 +132,12 @@ const signedUpload = await database.generateSignedUploadRequest("fileName");
 [.hcode, id=".get", reftext="get"]
 === .get(collection, key)
 
-Gets the specified value or collection of values.
+Gets the specified database entry or collection of entries.
 
 ==== Parameters
 
 * `collection` – _String_, name of the collection.
-* `key` – (Optional) _String_, key of the specific value.
+* `key` – (Optional) _String_, key of the database entry.
 
 ==== Returns
 
@@ -154,16 +154,16 @@ const myValue = await database.get('myCollection','myKey');
 [.hcode, id=".getAll", reftext="getAll"]
 === .getAll(collection, keys)
 
-Gets all the specified values.
+Gets all the specified database entries.
 
 ==== Parameters
 
 * `collection` – _String_, name of the collection.
-* `keys` – Array of _Strings_, list of keys of the specified values.
+* `keys` – Array of _Strings_, list of keys of the database entries to retrieve.
 
 ==== Returns
 
-(Async) Array of _Objects_, the requested values from the collection.
+(Async) Array of _Objects_, the requested database entries from the collection.
 
 ==== Example
 
@@ -179,17 +179,17 @@ Gets all the database entries that match a query against a list of possible valu
 
 * `collection` – _String_, name of the collection.
 * `predicateKey` – _String_, key of the data to query against.
-* `predicateOperation` – _String_, operation to query the data against.
+* `predicateOperation` – _String_, operation to query the data against, possible values are `<`, `\<=`, `==`, `>`, `>=`.
 * `predicateValues` – Array of _Strings_, list of values to run the query against.
 
 ==== Returns
 
-(Async) Array of _Objects_, values that match the queries.
+(Async) Array of _Objects_, database entries that match the queries.
 
 ==== Example
 
 [source, javascript]
-const results = await database.getAllWhere('myCollection','predicateKey', '=', ['predicateValue1', 'predicateValue2']);
+const results = await database.getAllWhere('myCollection','predicateKey', '==', ['predicateValue1', 'predicateValue2']);
 
 [.hcode, id=".getCollections", reftext="getCollections"]
 === .getCollections()
@@ -214,17 +214,17 @@ Gets all the database entries that match a query against a value.
 
 * `collection` – _String_, name of the collection.
 * `predicateKey` – _String_, key of the data to query against.
-* `predicateOperation` – _String_, operation to query the data against.
+* `predicateOperation` – _String_, operation to query the data against, possible values are `<`, `\<=`, `==`, `>`, `>=`.
 * `predicateValue` – _String_, value to run the query against.
 
 ==== Returns
 
-(Async) Array of _Objects_, list of the values that match the query.
+(Async) Array of _Objects_, list of the database entries that match the query.
 
 ==== Example
 
 [source, javascript]
-const results = await database.getAllWhere('myCollection','predicateKey', '=', 'predicateValue');
+const results = await database.getWhere('myCollection','predicateKey', '==', 'predicateValue');
 
 [.hcode, id=".search", reftext="search"]
 === .search(collection, queryKey, queryValue)
@@ -241,7 +241,7 @@ NOTE: The `queryKey` must be set for all entries in your data, if some entries h
 
 ==== Returns
 
-(Async) Array of _Objects_, list of the values that have a partial match.
+(Async) Array of _Objects_, list of database entries that have a partial match.
 
 ==== Example
 
@@ -261,7 +261,7 @@ Adds an entry to the database.
 
 ==== Returns
 
-(Async) _Boolean_, indicates whether the value was successfully added.
+(Async) _Boolean_, indicates whether the entry was successfully added.
 
 ==== Example
 
@@ -273,7 +273,7 @@ const isAdded = await database.set('myCollection', 'myKey', {'myValue':1});
 [.hcode, id=".update", reftext="update"]
 === .update(collection, key, value)
 
-Updates a value in the database with the given value.
+Updates an entry in the database with the given value.
 
 ==== Parameters
 
