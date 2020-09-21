@@ -28,6 +28,8 @@ import { CustomVcc } from '@withkoji/custom-vcc-sdk';
 const customVcc = new CustomVcc();
 ----
 
+== CustomVcc methods
+
 [.hcode, id=".blur", reftext="blur"]
 === .blur()
 

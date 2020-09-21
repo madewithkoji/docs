@@ -37,6 +37,8 @@ import Database from '@withkoji/Database';
 const database = new Database();
 ----
 
+== Database methods
+
 [.hcode, id=".arrayPush", reftext="arrayPush"]
 === .arrayPush(collection, key, value)
 
