@@ -1,6 +1,5 @@
 = Developing your first Koji template
 :page-slug: start-guide-1
-:page-description:
 
 On the Koji platform, you can develop JavaScript web applications that can be customized without coding.
 Instead, non-technical users can use Visual Customization Controls (VCCs) to quickly edit elements of the application, such as images, text, and sounds.
@@ -9,28 +8,13 @@ In this starter guide, you will start with an existing web application on Koji, 
 You will use the Koji editor and an npm package from Koji to define the customizable elements.
 Then, you will publish your application as a new template so that Koji users can create their own customized versions of it.
 
-== Remixing the starter scaffold
+== Remixing the starter template
 
 . If you haven’t already, create an account at https://withkoji.com[withkoji.com].
-. Open a starter scaffold that implements basic elements of your favorite framework.
+. Go to https://withkoji.com/templates/seane/react-project-no-vccs[https://withkoji.com/templates/seane/react-project-no-vccs].
+. Click *Create Remix*.
 +
-[.tabs,scope="lang"]
---
-.React
-include::../_includes/starterScaffolds.adoc[tag=react]
-
-.Vanilla JS
-include::../_includes/starterScaffolds.adoc[tag=vanilla]
-
-.Angular
-include::../_includes/starterScaffolds.adoc[tag=angular]
-
-.Svelte
-include::../_includes/starterScaffolds.adoc[tag=svelte]
---
-. Click *Edit template (Advanced)*.
-+
-This action creates a clone of the starter scaffold and opens it in the Koji editor.
+This action creates a clone of the starter template, and opens it in the Koji editor.
 . Explore the template and the Koji editor.
 * In the right pane, you can see a live preview of the template.
 * In the left pane, you can click *Source Code* to expand the file browser.
@@ -38,7 +22,7 @@ From here, you can open and edit your project files in the editor.
 * At the bottom, you can expand a set of terminal tabs.
 These tabs enable you to run the template locally from inside the editor and to execute other terminal functions, such as adding packages and committing changes.
 +
-NOTE: If you make changes to your project’s structure (by adding npm packages, for example), you might need to cancel the running process and restart the development server in the `frontend` terminal.
+NOTE: If you make changes to your project’s structure (by adding npm packages, for example), you might need to exit the running process and restart the development server in the `frontend` terminal.
 
 == Installing the @withkoji/vcc package
 
@@ -48,7 +32,7 @@ Finally, it provides a watcher function that allows you to monitor changes to cu
 
 . In the terminal, navigate to the `frontend` folder of your template.
 . Cancel the running process (for example, press *Ctrl+C*).
-. Install the latest version of the package.
+. Install the latest version of the package:
 [source, bash]
 npm install --save @withkoji/vcc
 . In the `frontend` folder of your project, reconfigure the `package.json` file to run the watcher concurrently with your development server.
@@ -58,7 +42,7 @@ For example:
 --
 include::../_includes/startWatcherPackageJSONReact.adoc[tags=*]
 --
-. Restart the process to reflect the new changes.
+. Restart the process to reflect the new changes:
 [source, bash]
 npm start
 
@@ -67,7 +51,7 @@ npm start
 A customization file is a JSON file that defines the names and types of the customizable values in a template, so that Koji can display the appropriate VCCs for remixers.
 
 . In the `.koji/customization` folder of your project, create a new JSON file.
-.. In the file browser, click the plus (*+*) next to the `.koji/customization` folder, and click *New file*.
+.. In the file browser, click the plus (*+*) next to the `.koji/customization` folder, and click *New File*.
 .. Enter a name for the file.
 For example: `settings.json`.
 . Paste the following code into your `settings.json` file.
@@ -109,131 +93,31 @@ In this example, the file stores one customizable value (`settings.title`), and 
 To access a value from a JSON customization file within a template, you use a getter from the @withkoji/vcc package.
 Then, update the template to use dynamic values, instead of hard-coded values.
 
-. From the left pane of the editor, open the file that contains the template logic.
+. From the left pane of the editor, open the `frontend/common/App.js` file.
 +
-[.tabs,scope="lang"]
---
-.React
-`frontend/common/App.js`
-
-.Vanilla JS
-`frontend/index.js`
-
-.Angular
-`frontend/src/app/app.component.ts`
-
-.Svelte
-`src/App.svelte`
---
+This file contains most of the template logic.
 . At the top of the file, import the package.
 +
-[.tabs,scope="lang"]
---
-.React
 [source,JavaScript]
 ----
 import { InstantRemixing } from '@withkoji/vcc';
 ----
-
-.Vanilla JS
-[source,JavaScript]
-----
-import { InstantRemixing } from '@withkoji/vcc';
-----
-
-.Angular
-[source,JavaScript]
-----
-import { InstantRemixing } from '@withkoji/vcc';
-----
-
-.Svelte
-[source,JavaScript]
-----
-<script>
-  import { InstantRemixing } from '@withkoji/vcc';
-</script>
-----
---
-. Create a new instance of the `InstantRemixing` class to use in the template.
+. In the React component, add the `componentDidMount` method.
 +
-[.tabs,scope="lang"]
---
-.React
-====
+This method creates a new instance of the `InstantRemixing` class to use in the template.
++
 [source,JavaScript]
 ----
 componentDidMount() {
-  this.instantRemixing = new InstantRemixing();
-  console.log('instantRemixing', this.instantRemixing); // Confirm w/log
-
-  // Alert Koji we are ready to use instantRemixing
-  this.instantRemixing.ready();
-}
-----
-NOTE: In the React component, add the `componentDidMount` method.
-
-====
-
-.Vanilla JS
-====
-[source,JavaScript]
-----
-var instantRemixing = new InstantRemixing();
+this.instantRemixing = new InstantRemixing();
+console.log('instantRemixing', this.instantRemixing); // Confirm w/log
 
 // Alert Koji we are ready to use instantRemixing
-instantRemixing.ready();
-----
-NOTE: Above the `render` function definition, create a new instance of the  class and alert Koji that instant remixing is ready to use.
-
-====
-
-.Angular
-====
-[source,JavaScript]
-----
-ngOnInit() {
-  this.instantRemixing = new InstantRemixing();
-  console.log('instantRemixing', this.instantRemixing); // Confirm w/log
-
-  // Alert Koji we are ready to use instantRemixing
-  this.instantRemixing.ready();
+this.instantRemixing.ready();
 }
 ----
-NOTE: In the Angular component, add the `ngOnInit` method.
-
-====
-
-.Svelte
-====
-[source,JavaScript]
-----
-<script>
-  import { onMount } from 'svelte';
-  import { InstantRemixing } from '@withkoji/vcc';
-
-  let instantRemixing;
-  let title;
-
-  onMount(() => {
-    instantRemixing = new InstantRemixing();
-
-    // Alert Koji we are ready to use instantRemixing
-    instantRemixing.ready();
-  });
-</script>
-----
-NOTE: In the Svelte component, add the `onMount` method.
-
-====
---
-
-. Update the contents of the `h1` element to use the dynamic `title` value.
+. Create a state to handle updates to the title (`h1`) value, and update the contents of the `h1` element to use the dynamic value.
 +
-[.tabs,scope="lang"]
---
-.React
-====
 [source,JavaScript]
 ----
 class App extends React.Component {
@@ -253,71 +137,11 @@ render() {
 }
 }
 ----
-NOTE: Create a state to handle updates to the title value.
 
-====
-
-.Vanilla JS
-====
-[source,JavaScript]
-----
-// render app
-const render = () => {
-    document.body.innerHTML = `
-        <h1 id="title">${title}</h1>
-        <img id="logo" src="https://images.koji-cdn.com/e62ec06b-01be-4183-a7c0-ee6e8950f398/t5ues-600pxJavaScriptlogo.png"/>
-    `;
-};
-----
-NOTE: Create a variable to handle updates to the title value.
-Also, add an `id` attribute to access the element more easily in the next step.
-
-====
-
-.Angular
-====
-[.tabs]
-=====
-.app.component.ts
-======
-[source,JavaScript]
-----
-class AppComponent implements OnInit {
-
-  title = '';
-
-  ...
-}
-----
-NOTE: Add a property to handle updates to the title value.
-
-======
-
-.app.component.html
-[source,JavaScript]
-----
-<div class=”container”>
-  <h1>{{title}}</h1>
-  <img class=”image” src=”https://images.koji-cdn.com/cf19e146-554d-459e-96a1-b36b71eda51e/userData/gi3e2wscdw-b8ae90b11dbb4339a93af61c9e0a2100.png” />
-</div>
-----
-=====
-====
-
-.Svelte
-[source,JavaScript]
-----
-<h1>{title}>/h1>
-----
---
-
-. Use the getter function from `instantRemixing` to get the default value from the customization file.
+. In the `componentDidMount` method, use the getter function from `instantRemixing` to get the default value from the customization file.
 +
 The getter accepts an array (`[scope, key]`) that maps to the scope (`settings`) and key (`title`) from the JSON customization file.
 +
-[.tabs,scope="lang"]
---
-.React
 [source,JavaScript]
 ----
 componentDidMount() {
@@ -332,142 +156,35 @@ componentDidMount() {
   this.instantRemixing.ready();
 }
 ----
-
-.Vanilla JS
-[source,JavaScript]
-var title = instantRemixing.get(['settings', 'title']);
-
-.Angular
-[source,JavaScript]
-----
-ngOnInit() {
-  this.instantRemixing = new InstantRemixing();
-
-  // Set the default value
-  this.title = this.instantRemixing.get(['settings', 'title'])
-
-  // Alert Koji we are ready to use instantRemixing
-  this.instantRemixing.ready();
-}
-----
-
-.Svelte
-[source,JavaScript]
-----
-onMount(() => {
-  instantRemixing = new InstantRemixing();
-
-  // Alert Koji we are ready to use instantRemixing
-  instantRemixing.ready();
-
-  // Set the default value
-  title = instantRemixing.get(['settings', 'title']);
-});
-----
---
 
 == Reacting to updated values
 
 When a remixer enters a new value, the template must update automatically to reflect the change.
 
-* Set up a listener to monitor for changes to the template value.
+* In the `componentDidMount` method, set up a listener to monitor for changes to the template value:
 +
-[.tabs,scope="lang"]
---
-.React
-====
 [source,JavaScript]
 ----
+
 componentDidMount() {
   this.instantRemixing = new InstantRemixing();
 
-  // Alert Koji we are ready to use instantRemixing
-  this.instantRemixing.ready();
+// Alert Koji we are ready to use instantRemixing
+this.instantRemixing.ready();
 
-  // Set the default value
-  this.setState({
-    title: this.instantRemixing.get(['settings', 'title'])
-  });
+// Set the default value
+this.setState({
+  title: this.instantRemixing.get(['settings', 'title'])
+});
 
-  // Set up a listener to update title value
-  this.instantRemixing.onValueChanged((path, newValue) => {
-    if (path[0] && path[1] && path[0] === 'settings' && path[1] === 'title') {
-      this.setState({ title: newValue });
-    }
-  });
+// Set up a listener to update title value
+this.instantRemixing.onValueChanged((path, newValue) => {
+  if (path[0] && path[1] && path[0] === 'settings' && path[1] === 'title') {
+    this.setState({ title: newValue });
+  }
+});
 }
 ----
-NOTE: Add the listener in the `componentDidMount` method.
-
-====
-
-.Vanilla JS
-====
-[source,JavaScript]
-----
-// Add a listener to the on change event of instant remixing to update the title
-instantRemixing.onValueChanged((path, newValue) => {
-    if (path[0] && path[0] === 'settings' && path[1] && path[1] === 'title') {
-        let titleElement = document.getElementById('title');
-        titleElement.textContent = newValue;
-    }
-});
-----
-NOTE: Add the listener below the `render` function call.
-
-====
-
-
-.Angular
-====
-[source,JavaScript]
-----
-ngOnInit() {
-  this.instantRemixing = new InstantRemixing();
-
-  // Alert Koji we are ready to use instantRemixing
-  this.instantRemixing.ready();
-
-  // Set the default value
-  this.title = this.instantRemixing.get(['settings', 'title'])
-
-  // Set up a listener to update title value
-  this.instantRemixing.onValueChanged((path, newValue) => {
-    if (path[0] && path[1] && path[0] === 'settings' && path[1] === 'title') {
-      this.title = newValue;
-    }
-  });
-}
-----
-NOTE: Add the listener in the `ngOnInit` method.
-
-====
-
-.Svelte
-====
-[source,JavaScript]
-----
-onMount(() => {
-  instantRemixing = new InstantRemixing();
-
-  // Alert Koji we are ready to use instantRemixing
-  instantRemixing.ready();
-
-  // Set the default value
-  title = instantRemixing.get(['settings', 'title']);
-
-  // Set up a listener to update title value
-  instantRemixing.onValueChanged((path, newValue) => {
-    if (path[0] && path[1] && path[0] === 'settings' && path[1] === 'title') {
-      title = newValue;
-    }
-  });
-});
-----
-NOTE: Add the listener in the `onMount` method.
-
-====
---
 
 ## Testing the current state of the template
 
@@ -485,11 +202,8 @@ The preview window should reflect your update automatically.
 The template must display differently and expose different click handlers depending on whether a user is viewing or customizing the template.
 In this example, you will add styles to show that the `h1` element is editable and a click handler to expose a VCC when a user is customizing the template.
 
-. Create a property (`isRemixing`) to track the current view state.
+. Create a property (`isRemixing`) to track the current view state, and set the initial state with a placeholder value.
 +
-[.tabs,scope="lang"]
---
-.React
 [source, JavaScript]
 ----
 state = {
@@ -498,123 +212,37 @@ state = {
 };
 ----
 
-.Angular
-[source,JavaScript]
-----
-isRemixing = false;
-title = '';
-----
-
-.Svelte
-[source,JavaScript]
-----
-let isRemixing;
-----
---
-
 . In the `componentDidMount` method, add the default value (`this.instantRemixing.isRemixing`) to the `setState` function, and add a listener that monitors the template for view changes.
 +
 This listener allows you to use `this.state.isRemixing` as a source of truth for the current view of the template.
 +
-[.tabs,scope="lang"]
---
-.React
 [source,JavaScript]
 ----
 componentDidMount() {
-  this.instantRemixing = new InstantRemixing();
+this.instantRemixing = new InstantRemixing();
 
-  // Set the default value for title and isRemixing state
-  this.setState({
-    isRemixing: this.instantRemixing.isRemixing,
-    title: this.instantRemixing.get(['settings', 'title'])
-  });
-
-    // Set up a listener to update title value
-  this.instantRemixing.onValueChanged((path, newValue) => {
-    if (path[0] && path[1] && path[0] === 'settings' && path[1] === 'title') {
-      this.setState({ title: newValue });
-    }
-  });
-
-  // Toggle the isRemixing state based on the listener
-  this.instantRemixing.onSetRemixing((isRemixing) => {
-    this.setState({ isRemixing });
-  });
-
-  // Alert Koji we are ready to use instantRemixing
-  this.instantRemixing.ready();
-}
-----
-
-.Vanilla JS
-[source,JavaScript]
-----
-// Add a listener to handle state changes between remixing and not
-instantRemixing.onSetRemixing((isRemixing) => {
-    if (isRemixing) {
-        startRemix();
-    } else {
-        stopRemix();
-    }
+// Set the default value for title and isRemixing state
+this.setState({
+  isRemixing: this.instantRemixing.isRemixing,
+  title: this.instantRemixing.get(['settings', 'title'])
 });
-----
-
-.Angular
-[source,JavaScript]
-----
-ngOnInit() {
-  this.instantRemixing = new InstantRemixing();
-
-  // Set the default value for title and isRemixing state
-  this.isRemixing = this.instantRemixing.isRemixing;
-  this.title = this.instantRemixing.get(['settings', 'title']);
-
-
-    // Set up a listener to update title value
-  this.instantRemixing.onValueChanged((path, newValue) => {
-    if (path[0] && path[1] && path[0] === 'settings' && path[1] === 'title') {
-      this.title = newValue;
-    }
-  });
-
-  // Toggle the isRemixing state based on the listener
-  this.instantRemixing.onSetRemixing((isRemixing) => {
-    this.isRemixing = isRemixing;
-  });
-
-  // Alert Koji we are ready to use instantRemixing
-  this.instantRemixing.ready();
-}
-----
-
-.Svelte
-[source,JavaScript]
-----
-onMount(() => {
-  instantRemixing = new InstantRemixing();
-
-  // Alert Koji we are ready to use instantRemixing
-  instantRemixing.ready();
-
-  // Set the default value for title and isRemixing state
-  isRemixing = instantRemixing.isRemixing;
-  title = instantRemixing.get(['settings', 'title']);
 
   // Set up a listener to update title value
-  instantRemixing.onValueChanged((path, newValue) => {
-    if (path[0] && path[1] && path[0] === 'settings' && path[1] === 'title') {
-      title = newValue;
-    }
-  });
-
-  // Toggle the isRemixing state based on the listener
-  instantRemixing.onSetRemixing((isRemixingTrue) => {
-    isRemixing = isRemixingTrue;
-  });
+this.instantRemixing.onValueChanged((path, newValue) => {
+  if (path[0] && path[1] && path[0] === 'settings' && path[1] === 'title') {
+    this.setState({ title: newValue });
+  }
 });
+
+// Toggle the isRemixing state based on the listener
+this.instantRemixing.onSetRemixing((isRemixing) => {
+  this.setState({ isRemixing });
+});
+
+// Alert Koji we are ready to use instantRemixing
+this.instantRemixing.ready();
+}
 ----
---
 
 == Exposing the VCC
 
@@ -622,9 +250,6 @@ The template must expose a way for a remixer to open the VCC when customizing it
 
 * Add a click handler to the `h1` element that opens the VCC when the remixer clicks the title.
 +
-[.tabs,scope="lang"]
---
-.React
 [source,JavaScript]
 ----
 handleClick = () => {
@@ -644,60 +269,6 @@ render() {
 }
 ----
 
-.Vanilla JS
-[source,JavaScript]
-----
-// Add click event listener to expose title VCC
-document.addEventListener('click', function (event) {
-    if (!event.target.matches('#title')) return;
-    event.preventDefault();
-
-    instantRemixing.onPresentControl(['settings', 'title']);
-});
-----
-
-.Angular
-====
-[.tabs]
-=====
-.app.component.ts
-[source,JavaScript]
-----
-handleClick = () => {
-  // Conditionally handle the click, only if the template is being remixed
-  if (this.isRemixing) {
-    this.instantRemixing.onPresentControl(['settings', 'title']);
-  }
-};
-----
-
-.app.component.html
-[source,JavaScript]
-----
-    <div class=”container”>
-      <h1 (click)=”handleClick()”>{{title}}</h1>
-      <img class=”image” src=”https://images.koji-cdn.com/cf19e146-554d-459e-96a1-b36b71eda51e/userData/gi3e2wscdw-b8ae90b11dbb4339a93af61c9e0a2100.png” />
-    </div>
-  );
-}
-----
-=====
-====
-
-.Svelte
-[source,JavaScript]
-----
-function editText() {
-  // Conditionally handle the click, only if the template is being remixed
-  if (isRemixing) {
-    instantRemixing.onPresentControl(['settings', 'title']);
-  }
-};
-...
-<h1 on:click={editText}>{title}</h1>
-----
---
-
 ## Testing the expose function
 
 To test whether the expose function is working, you can use the *Editing* tab of the *Live Preview* pane.
@@ -714,28 +285,9 @@ If this test works correctly, the VCC should be exposed correctly to the remixer
 To indicate that an item is “editable,” you can add a conditional visual effect that is displayed when the template is being customized.
 In this example, you’ll add a CSS style class for editable items and then apply the class to the `h1` when a user is customizing the template.
 
-. From the left pane of the editor, open the following file.
+. From the left pane of the editor, open the `frontend/common/index.html` file.
+. Add the following CSS style in the `head` element.
 +
-[.tabs,scope="lang"]
---
-.React
-`frontend/common/index.html`
-
-.Vanilla JS
-`frontend/style.css`
-
-.Angular
-`frontend/src/app/app.component.scss`
-
-.Svelte
-`src/App.svelte`
---
-
-. Add the following style definition.
-+
-[.tabs,scope="lang"]
---
-.React
 [source,HTML]
 ----
 <style>
@@ -750,53 +302,9 @@ In this example, you’ll add a CSS style class for editable items and then appl
   }
 </style>
 ----
-
-.Vanilla JS
-[source,CSS]
-----
-.edit {
-    border: 2px dashed grey;
-}
-----
-
-.Angular
-[source,CSS]
-----
-.active {
-  background-color: rgba(255, 255, 255, 0.4);
-  padding: 18px;
-  border-width: 1px;
-  border-style: solid;
-  border-color: rgb(255, 255, 255);
-  border-image: initial;
-  border-radius: 4px;
-}
-----
-
-.Svelte
-[source,HTML]
-----
-<style>
-  .remixing {
-    background-color: rgba(255, 255, 255, 0.4);
-    padding: 18px;
-    border-width: 1px;
-    border-style: solid;
-    border-color: rgb(255, 255, 255);
-    border-image: initial;
-    border-radius: 4px;
-  }
-</style>
-----
-
---
-
-. Update the `h1` element with dynamic styling.
 +
-[.tabs,scope="lang"]
---
-.React
-====
+. In the `App.js` file, update the `h1` element with a dynamic `className`.
++
 [source,JavaScript]
 ----
 <h1
@@ -806,58 +314,8 @@ In this example, you’ll add a CSS style class for editable items and then appl
   {this.state.title}
 </h1>
 ----
-NOTE: In the `App.js` file, use a dynamic `className`.
 
-====
-
-.Vanilla JS
-====
-[source,JavaScript]
-----
-// Modify elements to display state for remixing
-const startRemix = () => {
-    let titleElement = document.getElementById('title');
-    titleElement.classList.add('edit');
-};
-
-// Modify elements to display state for previewing
-const stopRemix = () => {
-    let titleElement = document.getElementById('title');
-    titleElement.classList.remove('edit');
-};
-----
-NOTE: Add implementations of `startRemix` and `stopRemix` that modify the class name of the `h1` element, for simplicity in this tutorial.
-
-====
-
-.Angular
-====
-[source,JavaScript]
-----
-<h1
-  class=”{{isRemixing ? 'active' : ''}}”
-  (click)=”handleClick()”
->
-  {{title}}
-</h1>
-----
-NOTE: In the `app.component.html` file, use a dynamic `class`.
-
-====
-
-.Svelte
-[source,JavaScript]
-----
-<h1
-  class={isRemixing ? 'remixing' : ''}
-  on:click={editText}
->
-  {title}
-</h1>
-----
---
-
-. To test the dynamic styling, you can toggle the live preview between the *Editing* and *Preview* modes.
+. To test the dynamic `className`, you can toggle the live preview between the *Editing* and *Preview* modes.
 * In *Editing* mode, the “editable” styles should be visible, and the click handler should open the VCC, as expected.
 * In *Preview* mode, the “editable” styles should not be visible, and nothing should happen when clicking the `h1` element.
 
@@ -875,56 +333,13 @@ import { FeedSdk, InstantRemixing } from '@withkoji/vcc';
 ----
 . At the end of the `componentDidMount` method, add the following code to display the template in the feed.
 +
-[.tabs,scope="lang"]
---
-.React
-====
-[source,JavaScript]
-----
-this.feed = new FeedSdk();
-this.feed.load();
-----
-NOTE: Add this code at the end of the `componentDidMount` method.
-
-====
-
-.Vanilla JS
-====
-[source,JavaScript]
-----
-var feed = new FeedSdk();
-feed.load();
-----
-NOTE: Add this code below the `render` function call.
-
-====
-
-.Angular
-====
-[source,JavaScript]
-----
-this.feed = new FeedSdk();
-this.feed.load();
-----
-NOTE: Add this code at the end of the `ngOnInit` method.
-
-====
-
-.Svelte
-====
-[source,JavaScript]
-----
-let feed = new FeedSdk();
-feed.load();
-----
-NOTE: Add this code at the end of the `onMount` method.
-
-====
-
---
-+
 This code creates an instance of the feed and calls a load function to indicate that the template is ready to be displayed in the feed, which is all that is required when the template does not use autoplay.
 +
+[source,JavaScript]
+----
+this.feed = new FeedSdk();
+this.feed.load();
+----
 NOTE: If you plan to develop templates that autoplay when focused in the feed, you can use the `onPlaybackStateChanged` listener to monitor for real-time updates as the template enters and leaves focus in the feed, similar to how this example uses `onSetRemixing`.
 
 ## Adding entitlements for the Koji profiler
