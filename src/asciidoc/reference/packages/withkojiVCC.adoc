@@ -116,6 +116,8 @@ Listens to the path of the currently active VCC control to enable a different ex
 ==== Parameters
 
 * `handler` – _Function_, handles changes to the current control.
+Receives the following property as input:
+** `path` – Array of _Strings_, the path of the active VCC control.
 
 ==== Example
 
@@ -149,6 +151,8 @@ States are optional and, if used, must be defined in the `.koji/customization/qu
 ==== Parameters
 
 * `handler` – _Function_, handles changes to the current state.
+Receives the following property as input:
+** `state` – _String_, key of the active state.
 
 ==== Example
 
@@ -160,13 +164,16 @@ instantRemixing.onSetCurrentState((state) => {
 ----
 
 [.hcode, id=".onSetRemixing", reftext="onSetRemixing"]
-=== .onSetRemixing(handler[isRemixing, editorAttributes])
+=== .onSetRemixing(handler)
 
 Listens to changes in remix state to enable different template experiences during remix than during preview or use.
 
 ==== Parameters
 
 * `handler` – _Function_, handles changes in remix state.
+Receives the following properties as inputs:
+** `isRemixing` – _Boolean_, indicates whether this app is in remixing mode.
+** `editorAttributes` – _Object_, describes the current editor.
 
 ==== Example
 
@@ -174,6 +181,7 @@ Listens to changes in remix state to enable different template experiences durin
 ----
 instantRemixing.onSetRemixing((isRemixing, editorAttributes) => {
   // Change template experience
+  // editorAttributes.type will be set to either "full" or "instant"
 });
 ----
 
@@ -207,6 +215,9 @@ Listens to changes in custom values.
 ==== Parameters
 
 * `handler` – _Function_, handles changes to custom values.
+Receives the following properties as inputs:
+** `path` – Array of _Strings_, the path of the changed VCC control.
+** `newValue` – _Any_, the new value of the changed VCC control.
 
 ==== Example
 
