@@ -160,7 +160,7 @@ Sets a listener to a specific event and runs the handler when the event is dispa
 
 * `eventName` – _String_, name of the event to subscribe to.
 * `handler` – _Function_, the handler to run when the event is fired
-Receieves the following property as input:
+Receives the following property as input:
 ** `payload` – _Any_, the data payload sent from the fired event.
 
 ==== Example
