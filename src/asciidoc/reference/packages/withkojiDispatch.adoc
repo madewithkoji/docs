@@ -105,7 +105,7 @@ dispatch.connect();
 [.hcode, id=".disconnect", reftext="disconnect"]
 === .disconnect()
 
-(Async) Disconnects the dispatch client from the active connection. 
+(Async) Disconnects the dispatch client from the active connection.
 
 ==== Example
 
@@ -150,17 +150,30 @@ dispatch.info.then((info) => {
 
 Sets a listener to a specific event and runs the handler when the event is dispatched over the shard.
 
-TIP: For Koji custom events see <<#_dispatch_event, DISPATCH_EVENT>>.
+[TIP]
+====
+* For Koji custom events see <<#_dispatch_event, DISPATCH_EVENT>>.
+* To send your own events see <<#.emitEvent, .emitEvent>>.
+====
 
 ==== Parameters
 
 * `eventName` – _String_, name of the event to subscribe to.
-* `handler` – _Function_, the handler to run when the event is fired.
+* `handler` – _Function_, the handler to run when the event is fired
+Receieves the following property as input:
+** `payload` – _Any_, the data payload sent from the fired event.
 
 ==== Example
 
 [source,javascript]
+----
 dispatch.on('myEvent', myHandlerFunction);
+
+// or with a custom payload
+dispatch.on('myOtherEvent', (payload) => {
+	// payload sent from the emitted event available here
+});
+----
 
 [.hcode, id=".removeEventListener", reftext="removeEventListener"]
 === .removeEventListener(eventName)
