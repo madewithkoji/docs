@@ -77,7 +77,9 @@ Listens to changes to the theme value, to retrieve values relating to the Koji d
 
 ==== Parameters
 
-* `handler` – _Function_, called when theme is available, first parameter will be the theme object.
+* `handler` – _Function_, called when theme is available.
+Receieves the following property as input:
+** `theme` – _Object_, represents the theme as an object with css colors and mixins.
 
 ==== Example
 
@@ -100,6 +102,8 @@ Calling `change` immediately fires an `onUpdate`.
 ==== Parameters
 
 * `handler` – _Function_, handle changes to the custom value.
+Receieves the following property as input:
+** `props` – _Object_, contains the properties of the VCC, see example for full structure.
 
 ==== Example
 
@@ -159,6 +163,8 @@ Triggers the `image`, `sound`, `file`, and `obj` (3D) modals using the SDK and s
 * `type` – _String_, modal type to display, possible values are `image`, `sound`, `obj` and `file`.
 * `currentValue` – _Any_, current value of the custom VCC.
 * `onComplete` – _Function_, called when modal has been resolved.
+Receieves the following property as input:
+** `newValue` – _Any_, the value set within the modal once it has been resolved.
 
 ==== Example
 
@@ -179,6 +185,8 @@ Uploads a file blob to the Koji CDN.
 * `file` – _Blob_, file blob data to be uploaded.
 * `fileName` – _String_, name of the file to be uploaded.
 * `onComplete` – _Function_, called when upload has completed.
+Receieves the following property as input:
+** `url`  – _String_, the url of the uploaded file.
 
 ==== Example
 
