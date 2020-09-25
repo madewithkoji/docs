@@ -273,15 +273,17 @@ const isAdded = await database.set('myCollection', 'myKey', {'myValue':1});
 ----
 
 [.hcode, id=".update", reftext="update"]
-=== .update(collection, key, value)
+=== .update(collection, key, data)
 
 Updates an entry in the database with the given value.
+
+NOTE: Only updates specified values, anything not present in `data` will be left unchanged.
 
 ==== Parameters
 
 * `collection` – _String_, name of the collection.
 * `key` – _String_, key for the database entry.
-* `value` – _Any_, key-value pairs to update on the value.
+* `data` – _Any_, key-value pairs to update on the value.
 
 ==== Returns
 
