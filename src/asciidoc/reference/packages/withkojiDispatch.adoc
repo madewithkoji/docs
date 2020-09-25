@@ -88,7 +88,8 @@ _String_, name of the shard the client is currently connected to.
 [.hcode, id=".userInfo", reftext="userInfo"]
 === .userInfo
 
-_Object_, the user info of the currently connected client.
+_Object_, the user information of the currently connected client.
+This can be modified using <<#.setUserInfo, .setUserInfo>>.
 
 == Dispatch methods
 
@@ -192,11 +193,11 @@ dispatch.removeEventListener('myEvent');
 [.hcode, id=".setUserInfo", reftext="setUserInfo"]
 === .setUserInfo(userInfo)
 
-Sets the current client's user info for the currently connected shard.
+Sets the current user's information (see <<#.userInfo, .userInfo>>) and broadcasts the update in the currently connected shard.
 
 ==== Parameters
 
-* `userInfo` – _Any_, the data for user info to set.
+* `userInfo` – _Any_, the data for user information to set.
 
 ==== Example
 
