@@ -209,7 +209,12 @@ Constant holding special event keys for Koji Dispatch.
 To subscribe to these events see <<#.on>>.
 
 . `DISPATCH_EVENT.CONNECTED` – Fired when the current client has successfully connected to a shard.
+Passes the following properties in its payload object:
+.. `clientID` - _String_, Unique ID of the user on the shard that's been connected to
+.. `shardName` - _String_, Name of the shard that's been connected to
 . `DISPATCH_EVENT.CONNECTED_CLIENTS_CHANGED` - Fired when the list of clients currently connected to the shard changes.
+Passes the following property in its payload object:
+.. `connectedClients` - _Object_, Mapping of connected client's IDs and their respective userInfo.
 
 ==== Example
 
