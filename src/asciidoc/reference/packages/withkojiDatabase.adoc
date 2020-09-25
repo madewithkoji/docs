@@ -181,10 +181,11 @@ Gets all the database entries that match a query against a list of possible valu
 * `predicateKey` – _String_, key of the data to query.
 * `predicateOperation` – _String_, operator to use for the query. Possible values are `<`, `\<=`, `==`, `>`, `>=`.
 * `predicateValues` – Array of _Strings_, list of values to run the query against.
+Database entries need to match *one or more* of these values to be returned.
 
 ==== Returns
 
-(Async) Array of _Objects_, database entries that match the queries.
+(Async) Array of _Objects_, database entries that match the queries of *at least one* predicateValue.
 
 ==== Example
 
