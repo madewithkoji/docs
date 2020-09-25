@@ -40,7 +40,7 @@ const database = new Database();
 == Database methods
 
 [.hcode, id=".arrayPush", reftext="arrayPush"]
-=== .arrayPush(collection, key, value)
+=== .arrayPush(collection, key, data)
 
 Adds data onto arrays in an existing database entry.
 
@@ -50,7 +50,7 @@ NOTE: If the data you attempt to push onto an array is already present, it will 
 
 * `collection` – _String_, name of the collection.
 * `key` – _String_, key for the database entry.
-* `value` – _Any_, key-value pairs of arrays and the entries to add to them.
+* `data` – _Any_, key-value pairs of arrays and the entries to add to them.
 
 ==== Returns
 
@@ -59,10 +59,10 @@ NOTE: If the data you attempt to push onto an array is already present, it will 
 ==== Example
 
 [source, javascript]
-const isAdded = await database.arrayPush('myCollection', 'myExistingKey', {'myValue':1});
+const isAdded = await database.arrayPush('myCollection', 'myExistingKey', {'myArray1':'myValue1', 'myArray2': 'myValue2'});
 
 [.hcode, id=".arrayRemove", reftext="arrayRemove"]
-=== .arrayRemove(collection, key, value)
+=== .arrayRemove(collection, key, data)
 
 Removes data from arrays in an existing database entry.
 
@@ -70,7 +70,7 @@ Removes data from arrays in an existing database entry.
 
 * `collection` – _String_, name of the collection
 * `key` – _String_, key for the database entry.
-* `value` – _Any_, key-value pairs of arrays and the entries to remove from them.
+* `data` – _Any_, key-value pairs of arrays and the entries to remove from them.
 
 ==== Returns
 
@@ -79,7 +79,7 @@ Removes data from arrays in an existing database entry.
 ==== Example
 
 [source, javascript]
-const isRemoved = await database.arrayRemove('myCollection', 'myExistingKey', {'myValue':1});
+const isRemoved = await database.arrayRemove('myCollection', 'myExistingKey', {'myArray1':'myValue1', 'myArray2': 'myValue2'});
 
 [.hcode, id=".delete", reftext="delete"]
 === .delete(collection, key)
