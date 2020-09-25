@@ -160,7 +160,7 @@ Triggers the `image`, `sound`, `file`, and `obj` (3D) modals using the SDK and s
 
 ==== Parameters
 
-* `type` – _String_, modal type to display, possible values are `image`, `sound`, `obj` and `file`.
+* `type` – _String_, modal type to display. Possible values are `image`, `sound`, `obj`, and `file`.
 * `currentValue` – _Any_, current value of the custom VCC.
 * `onComplete` – _Function_, called when modal has been resolved.
 Receives the following property as input:

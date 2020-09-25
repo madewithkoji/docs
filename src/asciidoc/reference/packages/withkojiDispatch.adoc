@@ -25,10 +25,10 @@ Instantiates `Dispatch`.
 
 ==== Parameters
 
-* `project` – _Object_, contains the details of your Koji project.
+* `project` – _Object_, dispatch configuration for your Koji project. Contains the following properties:
 ** `projectId` – _String_, unique identifier for your Koji project.
 You can use the <<withkoji-vcc-package#>> package to obtain this value programmatically.
-** `options` – (Optional) _Object_, contains the configuration options for dispatch shards.
+** `options` – (Optional) _Object_, configuration options for the dispatch shards. Contains the following properties:
 *** `shardName` – (Optional) _String_, name of the specific shard to use.
 If this key is not present, the user will be placed into a shard automatically.
 *** `maxConnectionsPerShard`– (Optional) _Number_, total users to allow on a shard before it is "full."
@@ -130,7 +130,7 @@ dispatch.emitEvent('myEvent', myDataPayload);
 [.hcode, id=".info", reftext="info"]
 === .info()
 
-Gets info on the shard the client is currently connected to.
+Gets information about the shard the client is currently connected to.
 
 ==== Returns
 
@@ -148,7 +148,7 @@ dispatch.info.then((info) => {
 [.hcode, id=".on", reftext="on"]
 === .on(eventName, handler)
 
-Sets a listener to a specific event and runs the handler when the event is dispatched over the shard.
+Sets a listener for a specific event, and runs the handler when the event is dispatched over the shard.
 
 [TIP]
 ====
@@ -182,12 +182,12 @@ Removes listeners from the specified event.
 
 ==== Parameters
 
-* `eventName` – _String_, name of the event to remove listeners from.
+* `eventName` – _String_, name of the event to unsubscribe from.
 
 ==== Example
 
 [source,javascript]
-dispatch.remveEventListener('myEvent');
+dispatch.removeEventListener('myEvent');
 
 [.hcode, id=".setUserInfo", reftext="setUserInfo"]
 === .setUserInfo(userInfo)
@@ -203,13 +203,14 @@ Sets the current client's user info for the currently connected shard.
 [source,javascript]
 dispatch.setUserInfo({username:"myUsername"});
 
-== Dispatch Constants
+== Dispatch constants
+
 === DISPATCH_EVENT
 
 Constant holding special event keys for Koji Dispatch.
 To subscribe to these events see <<#.on>>.
 
-. `DISPATCH_EVENT.CONNECTED` - Fired when the current client has successfully connected to a shard.
+. `DISPATCH_EVENT.CONNECTED` – Fired when the current client has successfully connected to a shard.
 . `DISPATCH_EVENT.CONNECTED_CLIENTS_CHANGED` - Fired when the list of clients currently connected to the shard changes.
 
 ==== Example
