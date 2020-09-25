@@ -2,15 +2,16 @@ import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'gatsby';
 
-import { ResourcesFooterItems, DevelopersFooterItems, CampaignsFooterItems, ContactFooterItems } from './FooterItems';
+import { ResourcesFooterItems, KojiPlatformFooterItems, CompanyFooterItems, ConnectFooterItems } from './FooterItems';
 
 const Wrapper = styled.div`
-  background: #111111;
-  color: rgb(249, 249, 249);
+  background: rgb(239,239,239);
+  color: rgb(17, 17, 17);
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
+  position: relative;
 `;
 
 const ContentWrapper = styled.div`
@@ -59,7 +60,7 @@ const ExternalSectionItem = styled.a`
   display: flex;
   align-items: center;
   font-size: 16px;
-  color: rgb(249, 249, 249);
+  color: rgb(17, 17, 17);
   margin-bottom: 16px;
 
   svg {
@@ -80,7 +81,7 @@ const SectionItem = styled(Link)`
   display: flex;
   align-items: center;
   font-size: 16px;
-  color: rgb(249, 249, 249);
+  color: rgb(17, 17, 17);
   margin-bottom: 16px;
 
   svg {
@@ -103,16 +104,16 @@ const sections = [
     items: ResourcesFooterItems,
   },
   {
-    header: 'Developers',
-    items: DevelopersFooterItems,
+    header: 'Koji platform',
+    items: KojiPlatformFooterItems,
   },
   {
-    header: 'Campaigns',
-    items: CampaignsFooterItems,
+    header: 'Company',
+    items: CompanyFooterItems,
   },
   {
-    header: 'Contact',
-    items: ContactFooterItems,
+    header: 'Connect',
+    items: ConnectFooterItems,
   },
 ];
 

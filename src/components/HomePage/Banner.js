@@ -14,7 +14,7 @@ const Wrapper = styled.div`
   padding: 16px;
 
   > div {
-    width: 50%;
+    width: 100%;
   }
 
   > div:first-child {
@@ -84,9 +84,6 @@ const Banner = () => (
         </Link>
       </div>
       <br />
-    </div>
-    <div>
-      <IFrame src={'https://withkoji.com/~JamesHole/kojidev'} />
     </div>
   </Wrapper>
 );
