@@ -151,11 +151,8 @@ dispatch.info.then((info) => {
 
 Sets a listener for a specific event, and runs the handler when the event is dispatched over the shard.
 
-[TIP]
-====
 * For Koji custom events see <<#_dispatch_event, DISPATCH_EVENT>>.
 * To send your own events see <<#.emitEvent, .emitEvent>>.
-====
 
 ==== Parameters
 
