@@ -10,7 +10,6 @@ import RssFeedIcon from '@material-ui/icons/RssFeed';
 // Koji platform
 import AppsIcon from '@material-ui/icons/Apps';
 import ExtensionIcon from '@material-ui/icons/Extension';
-import ShareOutlinedIcon from '@material-ui/icons/ShareOutlined';
 import DeveloperBoardIcon from '@material-ui/icons/DeveloperBoard';
 import SettingsIcon from '@material-ui/icons/Settings';
 import MonetizationOnIcon from '@material-ui/icons/MonetizationOn';
@@ -28,11 +27,10 @@ import FacebookIcon from '@material-ui/icons/Facebook';
 import LinkedInIcon from '@material-ui/icons/LinkedIn';
 import YouTubeIcon from '@material-ui/icons/YouTube';
 
-
 const DiscordIcon = styled.img`
     display: flex;
     flex-direction: row !important;
-    width: 18px;
+    width: 16px;
     margin-right: 0;
 `;
 
