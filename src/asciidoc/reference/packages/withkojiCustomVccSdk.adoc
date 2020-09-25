@@ -157,7 +157,8 @@ customVcc.save();
 [.hcode, id=".showModal", reftext="showModal"]
 === .showModal(type, currentValue, onComplete)
 
-Triggers the `image`, `sound`, `file`, and `obj` (3D) modals using the SDK and specifies callbacks when those modals have been resolved.
+Triggers the `image`, `sound`, `file`, and `obj` (3D) modals, these are the ones used by the built-in VCCs of the same names.
+When a value is chosen in the modal it invokes the onComplete handler passing the new value to it.
 
 ==== Parameters
 
@@ -165,7 +166,7 @@ Triggers the `image`, `sound`, `file`, and `obj` (3D) modals using the SDK and s
 * `currentValue` – _Any_, current value of the custom VCC.
 * `onComplete` – _Function_, called when modal has been resolved.
 Receives the following property as input:
-** `newValue` – _Any_, the value set within the modal once it has been resolved.
+** `newValue` – _Any_, the value set within the modal by the user.
 
 ==== Example
 
