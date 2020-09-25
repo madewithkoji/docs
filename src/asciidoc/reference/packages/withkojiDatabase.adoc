@@ -228,18 +228,18 @@ Gets all the database entries that match a query against a value.
 const results = await database.getWhere('myCollection','predicateKey', '==', 'predicateValue');
 
 [.hcode, id=".search", reftext="search"]
-=== .search(collection, queryKey, queryValue)
+=== .search(collection, searchAttribute, searchValue)
 
-Gets all the database entries that have a partial match on a particular key
+Returns all the database entries where the value of `searchAttribute` partially matches `searchValue`.
 
-NOTE: The `queryKey` must be set for all entries in your data.
-If some entries have no value for that key, an error will occur.
+NOTE: The `searchAttribute` must have a value set for all entries in your database.
+If some entries have no value for that key, nothing will be returned.
 
 ==== Parameters
 
 * `collection` – _String_, name of the collection.
-* `queryKey` – _String_, key to partially match against.
-* `queryValue` – _String_, value for the partial match.
+* `searchAttribute` – _String_, key to partially match against.
+* `searchValue` – _String_, value for the partial match.
 
 ==== Returns
 
