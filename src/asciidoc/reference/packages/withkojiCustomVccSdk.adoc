@@ -74,6 +74,7 @@ customVcc.focus();
 === .onTheme(handler)
 
 Listens to changes to the theme value, to retrieve values relating to the Koji display theme.
+The theme returned in the listener allows you to style the VCC to match the user’s current theme on Koji (dark or light).
 
 ==== Parameters
 
