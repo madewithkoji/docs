@@ -340,11 +340,11 @@ If your template also uses touch controls, you can use the `requestCancelTouch` 
 
 ==== Example
 
-[source,javascript]
+[source,html]
 ----
-<div
-  ontouchmove={(e) => feed.requestCancelTouch()}>
-  no touch control</div>
+<div ontouchmove={(e) => feed.requestCancelTouch()}>
+  no touch control
+</div>
 ----
 
 == Related resources
