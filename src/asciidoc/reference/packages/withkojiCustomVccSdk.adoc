@@ -13,22 +13,22 @@ Install the package in your Koji project.
 [source,bash]
 npm install --save @withkoji/custom-vcc-sdk
 
-== CustomVCC
+== CustomVcc
 
-[.hcode, id="new CustomVCC", reftext="new CustomVCC"]
-=== new CustomVCC()
+[.hcode, id="new CustomVcc", reftext="new CustomVcc"]
+=== new CustomVcc()
 
-Instantiates `CustomVCC`.
+Instantiates `CustomVcc`.
 
 ==== Example
 
 [source,javascript]
 ----
-import CustomVCC from '@withkoji/custom-vcc-sdk';
-const customVcc = new CustomVCC();
+import CustomVcc from '@withkoji/custom-vcc-sdk';
+const customVcc = new CustomVcc();
 ----
 
-== CustomVCC methods
+== CustomVcc methods
 
 [.hcode, id=".blur", reftext="blur"]
 === .blur()
@@ -74,6 +74,7 @@ customVcc.focus();
 === .onTheme(handler)
 
 Listens to changes to the theme value, to retrieve values relating to the Koji display theme.
+The theme returned in the listener allows you to style the VCC to match the user’s current theme on Koji (dark or light).
 
 ==== Parameters
 
@@ -156,15 +157,16 @@ customVcc.save();
 [.hcode, id=".showModal", reftext="showModal"]
 === .showModal(type, currentValue, onComplete)
 
-Triggers the `image`, `sound`, `file`, and `obj` (3D) modals using the SDK and specifies callbacks when those modals have been resolved.
+Triggers the `image`, `sound`, `file`, and `obj` (3D) modals, these are the ones used by the built-in VCCs of the same names.
+When a value is chosen in the modal it invokes the onComplete handler passing the new value to it.
 
 ==== Parameters
 
-* `type` – _String_, modal type to display, possible values are `image`, `sound`, `obj` and `file`.
+* `type` – _String_, modal type to display. Possible values are `image`, `sound`, `obj`, and `file`.
 * `currentValue` – _Any_, current value of the custom VCC.
 * `onComplete` – _Function_, called when modal has been resolved.
 Receives the following property as input:
-** `newValue` – _Any_, the value set within the modal once it has been resolved.
+** `newValue` – _Any_, the value set within the modal by the user.
 
 ==== Example
 

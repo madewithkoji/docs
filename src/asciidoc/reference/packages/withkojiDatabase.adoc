@@ -40,7 +40,7 @@ const database = new Database();
 == Database methods
 
 [.hcode, id=".arrayPush", reftext="arrayPush"]
-=== .arrayPush(collection, key, value)
+=== .arrayPush(collection, key, data)
 
 Adds data onto arrays in an existing database entry.
 
@@ -50,19 +50,19 @@ NOTE: If the data you attempt to push onto an array is already present, it will 
 
 * `collection` – _String_, name of the collection.
 * `key` – _String_, key for the database entry.
-* `value` – _Any_, key-value pairs of arrays and the entries to add to them.
+* `data` – _Any_, key-value pairs of arrays and the entries to add to them.
 
 ==== Returns
 
-(Async) _Boolean_, indicates whether the data was successfully added to arrays.
+(Async) _Boolean_, indicates whether the data was successfully added to the specified arrays.
 
 ==== Example
 
 [source, javascript]
-const isAdded = await database.arrayPush('myCollection', 'myExistingKey', {'myValue':1});
+const isAdded = await database.arrayPush('myCollection', 'myExistingKey', {'myArray1':'myValue1', 'myArray2': 'myValue2'});
 
 [.hcode, id=".arrayRemove", reftext="arrayRemove"]
-=== .arrayRemove(collection, key, value)
+=== .arrayRemove(collection, key, data)
 
 Removes data from arrays in an existing database entry.
 
@@ -70,16 +70,16 @@ Removes data from arrays in an existing database entry.
 
 * `collection` – _String_, name of the collection
 * `key` – _String_, key for the database entry.
-* `value` – _Any_, key-value pairs of arrays and the entries to remove from them.
+* `data` – _Any_, key-value pairs of arrays and the entries to remove from them.
 
 ==== Returns
 
-(Async) _Boolean_, indicates whether the data was successfully removed from arrays.
+(Async) _Boolean_, indicates whether the data was successfully removed from the specified arrays.
 
 ==== Example
 
 [source, javascript]
-const isRemoved = await database.arrayRemove('myCollection', 'myExistingKey', {'myValue':1});
+const isRemoved = await database.arrayRemove('myCollection', 'myExistingKey', {'myArray1':'myValue1', 'myArray2': 'myValue2'});
 
 [.hcode, id=".delete", reftext="delete"]
 === .delete(collection, key)
@@ -103,11 +103,11 @@ const isDeleted = await database.delete('myCollection', 'myExistingKey');
 [.hcode, id=".generateSignedUploadRequest", reftext="generateSignedUploadRequest"]
 === .generateSignedUploadRequest(fileName)
 
-Generates a signed URL for uploading a file directly to the your project’s CDN.
+Generates a signed URL for uploading a file directly to your project’s CDN.
 
 ==== Parameters
 
-* `fileName` – _String_, name of the file to be uploaded.
+* `fileName` – _String_, name of the file to upload.
 
 ==== Returns
 
@@ -178,13 +178,14 @@ Gets all the database entries that match a query against a list of possible valu
 ==== Parameters
 
 * `collection` – _String_, name of the collection.
-* `predicateKey` – _String_, key of the data to query against.
-* `predicateOperation` – _String_, operation to query the data against, possible values are `<`, `\<=`, `==`, `>`, `>=`.
+* `predicateKey` – _String_, key of the data to query.
+* `predicateOperation` – _String_, operator to use for the query. Possible values are `<`, `\<=`, `==`, `>`, `>=`.
 * `predicateValues` – Array of _Strings_, list of values to run the query against.
+Database entries need to match *one or more* of these values to be returned.
 
 ==== Returns
 
-(Async) Array of _Objects_, database entries that match the queries.
+(Async) Array of _Objects_, database entries that match the queries of *at least one* predicateValue.
 
 ==== Example
 
@@ -194,7 +195,7 @@ const results = await database.getAllWhere('myCollection','predicateKey', '==', 
 [.hcode, id=".getCollections", reftext="getCollections"]
 === .getCollections()
 
-Gets all the collections available in the database.
+Gets a list of all collections available in the database.
 
 ==== Returns
 
@@ -213,8 +214,8 @@ Gets all the database entries that match a query against a value.
 ==== Parameters
 
 * `collection` – _String_, name of the collection.
-* `predicateKey` – _String_, key of the data to query against.
-* `predicateOperation` – _String_, operation to query the data against, possible values are `<`, `\<=`, `==`, `>`, `>=`.
+* `predicateKey` – _String_, key of the data to query.
+* `predicateOperation` – _String_, operator to use for the query. Possible values are `<`, `\<=`, `==`, `>`, `>=`.
 * `predicateValue` – _String_, value to run the query against.
 
 ==== Returns
@@ -227,17 +228,18 @@ Gets all the database entries that match a query against a value.
 const results = await database.getWhere('myCollection','predicateKey', '==', 'predicateValue');
 
 [.hcode, id=".search", reftext="search"]
-=== .search(collection, queryKey, queryValue)
+=== .search(collection, searchAttribute, searchValue)
 
-Gets all the database entries that have a partial match on a particular key
+Returns all the database entries where the value of `searchAttribute` partially matches `searchValue`.
 
-NOTE: The `queryKey` must be set for all entries in your data, if some entries have no value for that key it cannot be searched on.
+NOTE: The `searchAttribute` must have a value set for all entries in your database.
+If some entries have no value for that key, nothing will be returned.
 
 ==== Parameters
 
 * `collection` – _String_, name of the collection.
-* `queryKey` – _String_, key to partially match against.
-* `queryValue` – _String_, value for the partial match.
+* `searchAttribute` – _String_, key to partially match against.
+* `searchValue` – _String_, value for the partial match.
 
 ==== Returns
 
@@ -271,15 +273,17 @@ const isAdded = await database.set('myCollection', 'myKey', {'myValue':1});
 ----
 
 [.hcode, id=".update", reftext="update"]
-=== .update(collection, key, value)
+=== .update(collection, key, data)
 
 Updates an entry in the database with the given value.
+
+NOTE: Only updates specified values, anything not present in `data` will be left unchanged.
 
 ==== Parameters
 
 * `collection` – _String_, name of the collection.
-* `key` – _String_, key for the value in the database
-* `value` – _Any_, key-value pairs to update on the value.
+* `key` – _String_, key for the database entry.
+* `data` – _Any_, key-value pairs to update on the value.
 
 ==== Returns
 
