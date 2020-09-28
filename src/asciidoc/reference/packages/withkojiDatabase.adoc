@@ -232,9 +232,6 @@ const results = await database.getWhere('myCollection','predicateKey', '==', 'pr
 
 Returns all the database entries where the value of `searchAttribute` partially matches `searchValue`.
 
-NOTE: The `searchAttribute` must have a value set for all entries in your database.
-If some entries have no value for that key, nothing will be returned.
-
 ==== Parameters
 
 * `collection` – _String_, name of the collection.
