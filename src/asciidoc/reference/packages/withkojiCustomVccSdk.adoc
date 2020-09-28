@@ -80,7 +80,7 @@ The theme returned in the listener allows you to style the VCC to match the user
 
 * `handler` – _Function_, called when theme is available.
 Receives the following property as input:
-** `theme` – _Object_, represents the theme as an object with css colors and mixins.
+** `theme` – _Object_, represents the theme as an object with CSS colors and mixins.
 
 ==== Example
 
@@ -188,7 +188,7 @@ Uploads a file blob to the Koji CDN.
 * `fileName` – _String_, name of the file to be uploaded.
 * `onComplete` – _Function_, called when upload has completed.
 Receives the following property as input:
-** `url`  – _String_, the url of the uploaded file.
+** `url`  – _String_, URL of the uploaded file.
 
 ==== Example
 
