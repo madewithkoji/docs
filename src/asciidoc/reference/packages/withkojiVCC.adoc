@@ -290,6 +290,8 @@ import { FeedSdk } from '@withkoji/vcc';
 const feed = new FeedSdk();
 ----
 
+== FeedSdk Methods
+
 [.hcode, id=".load", reftext="load"]
 === .load()
 
