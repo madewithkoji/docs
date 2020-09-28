@@ -64,7 +64,10 @@ const instantRemixing = new InstantRemixing();
 [.hcode, id=".get", reftext="get"]
 === .get(path)
 
-Gets initial values from Koji customization files.
+Gets initial values from Koji customization files or either of the special predefined environment values: `metadata` or `serviceMap`.
+
+* `metadata` – project data, contains `projectId`, the unique identifier for the Koji project.
+* `serviceMap` – endpoints for your currently registered services.
 
 ==== Parameters
 
@@ -77,7 +80,11 @@ _Any_, value of the <<vcc-overview#_vcc_types,VCC type>> at the specified path.
 ==== Example
 
 [source,javascript]
+----
 const myVariable = instantRemixing.get(['scope', 'key']);
+const projectId = instantRemixing.get(['metadata', 'projectId']);
+const backendService = instantRemixing.get(['serviceMap', 'backend']);
+----
 
 [.hcode, id=".onPresentControl", reftext="onPresentControl"]
 === .onPresentControl(path, position)
