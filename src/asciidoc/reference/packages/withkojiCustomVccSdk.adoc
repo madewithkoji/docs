@@ -30,18 +30,6 @@ const customVcc = new CustomVcc();
 
 == CustomVcc methods
 
-[.hcode, id=".blur", reftext="blur"]
-=== .blur()
-
-Tracks blur events on the custom VCC for live collaboration.
-
-==== Example
-
-[source,javascript]
-----
-customVcc.blur();
-----
-
 [.hcode, id=".change", reftext="change"]
 === .change(newValue)
 
@@ -56,18 +44,6 @@ Updates the VCC value with the user-entered value.
 [source,javascript]
 ----
 customVcc.change(newValue);
-----
-
-[.hcode, id=".focus", reftext="focus"]
-=== .focus()
-
-Tracks focus events on the custom VCC for live collaboration.
-
-==== Example
-
-[source,javascript]
-----
-customVcc.focus();
 ----
 
 [.hcode, id=".onTheme", reftext="onTheme"]
