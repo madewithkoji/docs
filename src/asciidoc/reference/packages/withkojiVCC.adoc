@@ -240,9 +240,9 @@ instantRemixing.ready();
 
 == VccMiddleware
 
-This package includes an Express middleware for resolving Instant Remix VCC data for dynamic backends, as a companion to the frontend `InstantRemixing` class.
+This package includes an http://expressjs.com/en/guide/using-middleware.html[Express middleware] for access to VCC values from dynamic backends, as a companion to the frontend `InstantRemixing` class.
 
-To implement this middleware, add it to your server.
+To implement this middleware, add it to your express server.
 
 [source,javascript]
 ----
@@ -252,7 +252,7 @@ const app = express();
 app.use(VccMiddleware.express);
 ----
 
-To access application-specific VCC values, use `res.locals.koji`.
+To access application-specific VCC values from an express endpoint, use `res.locals.koji` and the `scope` and `key` of the vcc value you require.
 
 [source,javascript]
 ----
