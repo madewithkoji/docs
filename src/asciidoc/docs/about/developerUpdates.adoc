@@ -8,6 +8,19 @@ TIP: To help improve the Koji developer experience, please share your thoughts, 
 
 == 2020
 
+=== September 28
+
+* Enhanced in-app purchases with the following new features:
+** Users now receive email and SMS receipts when they send or receive money via in-app purchases.
+** The new `fulfillment` entitlement enables you to capture a buyer's email, phone, or address on the transaction receipt.
+** The new `quantity` entitlement limits the number of times a product can be sold, providing basic inventory management.
+** The new `startPurchase` method enables you to capture a custom memo on the transaction receipt.
+
++
+For updated developer documentation, see the <<withkoji-koji-iap-package#,package reference for Koji in-app purchases>>.
+* Added a footer on the developer site with convenient links to key Koji features and resources.
+* Fixed intermittent layout and link errors on the developer site.
+
 === September 15
 
 * Updated the *Remix* button on the Koji platform.
