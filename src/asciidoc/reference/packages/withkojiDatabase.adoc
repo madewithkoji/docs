@@ -258,8 +258,8 @@ Adds an entry to the database.
 ==== Parameters
 
 * `collection` – _String_, name of the collection.
-* `key` – _String_, key for the value.
-* `value` – _Any_, key-value pairs to add to the database.
+* `key` – _String_, key of the database entry.
+* `data` – _Any_, key-value pairs to add to the database.
 
 ==== Returns
 
@@ -277,7 +277,7 @@ const isAdded = await database.set('myCollection', 'myKey', {'myValue':1});
 
 Updates an entry in the database with the given value.
 
-NOTE: Only updates specified values, anything not present in `data` will be left unchanged.
+NOTE: This method updates only the values specified in `data`. If additional values exist for the key, they are not changed.
 
 ==== Parameters
 
