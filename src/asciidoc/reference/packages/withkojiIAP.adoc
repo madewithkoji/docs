@@ -244,19 +244,19 @@ TIP: Be sure to implement appropriate error handling to account for differences 
   transaction?: Transaction|null; <8>
 }
 ----
-<1> Unique identifier for the receipt.
-<2> Koji user name of the user who purchased the product.
+<1> `id` – Unique identifier for the receipt.
+<2> `userId` – Koji user name of the user who purchased the product.
 The `userId` return value will always be `unavailable`.
 To avoid leaking/fingerprinting users at a global level, Kojis must interact with users via a short-lived user token.
 See <<.getToken>>.
-<3> Unique identifier for the product.
-<4> Price the user paid for the product.
-<5> Object containing a list of custom key-value pairs associated with the receipt.
+<3> `productId` – Unique identifier for the product.
+<4> `purchasedPrice` – Price the user paid for the product.
+<5> `attributes` – Object containing a list of custom key-value pairs associated with the receipt.
 You can use <<.updateReceipt>> to update these values.
 Additionally, the fulfillment information (`email`, `phone`, or `address`) and `customMessage` are included this object, if set at purchase time.
-<6> Date of the purchase.
-<7> <<_iapproduct>> object that represents the purchased product.
-<8> Object that represents the transaction information, if available.
+<6> `datePurchased` – Date of the purchase.
+<7> `product` – <<_iapproduct>> object that represents the purchased product.
+<8> `transaction` – Object that represents the transaction information, if available.
 
 === IapProduct
 
@@ -286,29 +286,29 @@ The `IapProduct` object includes the following properties.
   purchases?: IapReceipt[]; <15>
 }
 ----
-<1> Unique identifier for this version of the product.
-<2> Name of the Koji template from which the product was purchased.
-<3> Koji user name of the template publisher.
-<4> Purchase price of the product.
+<1> `id` – Unique identifier for this version of the product.
+<2> `appId` – Name of the Koji template from which the product was purchased.
+<3> `ownerUserId` – Koji user name of the template publisher.
+<4> `price` – Purchase price of the product.
 Defined in the  <<#_iap,entitlements file>> of the template.
-<5> Indicator of whether a purchase price is defined for the product.
+<5> `priceIsUnset` – Indicator of whether a purchase price is defined for the product.
 Defined in the entitlements file of the template.
-<6> Indicator of whether a product can be purchased more than once.
+<6> `isConsumable` – Indicator of whether a product can be purchased more than once.
 Defined in the entitlements file of the template.
-<7> Description displayed when the user was prompted to purchase the product.
+<7> `name` – Description displayed when the user was prompted to purchase the product.
 Defined in the entitlements file of the template.
-<8> Identifier of the purchased product.
+<8> `sku` – Identifier of the purchased product.
 Defined in the entitlements file of the template.
-<9> Date the product was registered or updated, which happens when the template is published.
-<10> Indicator of whether the product is still available for purchase.
-<11> Type of user information collected for order fulfillment.
+<9> `dateCreated` – Date the product was registered or updated, which happens when the template is published.
+<10> `isActive` – Indicator of whether the product is still available for purchase.
+<11> `fulfillment` – Type of user information collected for order fulfillment.
 Defined in the entitlements file of the template.
-<12> Total number of times the product can be sold (inventory threshold).
+<12> `quantity` – Total number of times the product can be sold (inventory threshold).
 Defined in the entitlements file of the template.
-<13> Remaining number of times the product can be sold.
+<13> `numAvailable` – Remaining number of times the product can be sold.
 Calculated based on the total inventory defined in the entitlements file, less the number of purchases.
-<14> Object that represents the template publisher ("seller").
-<15> Array of <<_iapreceipt>> objects representing purchases of the product.
+<14> `owner` – Object that represents the template publisher ("seller").
+<15> `purchases` – Array of <<_iapreceipt>> objects representing purchases of the product.
 
 == Related resources
 
