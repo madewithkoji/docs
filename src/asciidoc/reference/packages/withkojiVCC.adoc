@@ -354,6 +354,54 @@ If your template also uses touch controls, you can use the `requestCancelTouch` 
 </div>
 ----
 
+== Keystore
+
+The `Keystore` module is used in conjunction with the <<secret#, secret VCC type>>.
+The secret VCC allows setting of sensitive data such as product keys in a VCC without the value being visible when projects get remixed.
+Keystore is used to access the value in the secret VCC within your application code.
+
+NOTE: For security purposes `Keystore` is only available in backened services and cannot be used in user facing services.
+
+=== new Keystore
+
+Instantiates Keystore.
+
+==== Parameters
+* `projectId` – (Optional) _String_, the ID of the Koji project to attach the keystore to.
+Defaults to the current projects ID.
+* `projectToken` – (Optional) _String_, the token of the Koji project to attach the keystore to.
+Defaults to the current projects token.
+
+==== Example
+
+[source,javascript]
+----
+import { Keystore } from '@withkoji/vcc';
+const keystore = new Keystore();
+----
+
+== Keystore methods
+
+[.hcode, id=".resolveValue", reftext="resolveValue"]
+=== .resolveValue(keyPath)
+
+Description
+
+==== Parameters
+
+* `keyPath` – _String_, the path for accessing the key.
+This is acquired from the VCC value of the secret type VCC.
+
+==== Returns
+
+_String_, raw value of the secret VCC.
+
+==== Example
+
+[source,javascript]
+const password = await keystore.resolveValue(res.locals.koji.api.key);
+
+
 == Related resources
 
 * https://github.com/madewithkoji/koji-vcc[@withkoji/vcc on Github]
