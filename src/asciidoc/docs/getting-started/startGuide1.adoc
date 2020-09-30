@@ -46,18 +46,73 @@ The @withkoji/vcc package allows your template to access dynamic values that are
 It also allows you to expose VCCs so that a user can change the customizable items in your template.
 Finally, it provides a watcher function that allows you to monitor changes to customization files and perform a real-time set of the dynamic values stored in the customization files.
 
-. In the terminal, navigate to the `frontend` folder of your template.
-. Cancel the running process (for example, press *Ctrl+C*).
+. Open the `frontend` terminal, and cancel the running process (for example, press *Ctrl+C*).
 . Install the latest version of the package.
 [source, bash]
 npm install --save @withkoji/vcc
-. In the `frontend` folder of your project, reconfigure the `package.json` file to run the watcher concurrently with your development server.
+
+. To run the watcher concurrently with your development server, reconfigure the `package.json` file, if needed.
++
+[.tabs,scope="lang"]
+--
+.React
+====
+=====
 You can use a package like npm-run-all.
 For example:
-+
---
+
 include::../_includes/startWatcherPackageJSONReact.adoc[tags=*]
+=====
+====
+
+.Vanilla JS
+====
+=====
+You can use a package like npm-run-all.
+For example:
+
+include::../_includes/startWatcherPackageJSONReact.adoc[tags=*]
+=====
+====
+
+.Angular
+====
+=====
+Not needed.
+This scaffold already uses a `prestart` command in the `package.json` file, as follows.
+
+[source,JSON]
+----
+"scripts": {
+  ...
+  "prestart": "koji-vcc watch &",
+  "start": "cross-env NODE_ENV=development ng serve --host 0.0.0.0 --port 4200 --disableHostCheck=true",
+  "build": "cross-env NODE_ENV=production ng build --prod --deleteOutputPath=false",
+  ...
+}
+----
+=====
+====
+
+.Svelte
+====
+=====
+Not needed.
+This scaffold already uses a `prestart` command in the `package.json` file, as follows.
+
+[source,JSON]
+----
+"scripts": {
+  "prestart": "koji-vcc watch &",
+  "start": "parcel src/index.html -p 8080",
+  "build": "parcel build src/index.html"
+}
+----
+=====
+====
+
 --
+
 . Restart the process to reflect the new changes.
 [source, bash]
 npm start
@@ -193,16 +248,22 @@ instantRemixing.ready();
 .Angular
 ====
 [.intro]
-In the Angular component, add the `ngOnInit` method.
+In the Angular component, add a new property and update the `ngOnInit` method.
 
 [source,JavaScript]
 ----
-ngOnInit() {
-  this.instantRemixing = new InstantRemixing();
-  console.log('instantRemixing', this.instantRemixing); // Confirm w/log
+export class AppComponent implements OnInit {
 
-  // Alert Koji we are ready to use instantRemixing
-  this.instantRemixing.ready();
+  instantRemixing = null;
+  ...
+
+  ngOnInit() {
+    this.instantRemixing = new InstantRemixing();
+    console.log('instantRemixing', this.instantRemixing); // Confirm w/log
+
+    // Alert Koji we are ready to use instantRemixing
+    this.instantRemixing.ready();
+  }
 }
 ----
 ====
@@ -246,18 +307,18 @@ Create a state to handle updates to the title value.
 class App extends React.Component {
   state = {
     title: '',
-};
+  };
 
-...
+  ...
 
-render() {
-  return (
-    <Container>
-      <h1>{this.state.title}</h1>
-      <Image src={'https://images.koji-cdn.com/d9c6b38e-08c4-4faf-ae8e-01082c41a0fb/3f83q-9634d620e97345a6b250ca2feb7e5a2e.png'} />
-    </Container>
-);
-}
+  render() {
+    return (
+      <Container>
+        <h1>{this.state.title}</h1>
+        <Image src={'https://images.koji-cdn.com/d9c6b38e-08c4-4faf-ae8e-01082c41a0fb/3f83q-9634d620e97345a6b250ca2feb7e5a2e.png'} />
+      </Container>
+    );
+  }
 }
 ----
 ====
@@ -290,7 +351,7 @@ Add a property to handle updates to the title value.
 
 [source,JavaScript]
 ----
-class AppComponent implements OnInit {
+export class AppComponent implements OnInit {
 
   title = '';
 
@@ -575,6 +636,7 @@ componentDidMount() {
 ====
 
 .Vanilla JS
+====
 [source,JavaScript]
 ----
 // Add a listener to handle state changes between remixing and not
@@ -586,6 +648,9 @@ instantRemixing.onSetRemixing((isRemixing) => {
     }
 });
 ----
+NOTE: You will add implementations of `startRemix` and `stopRemix` in subsequent steps.
+
+====
 
 .Angular
 [source,JavaScript]
@@ -702,12 +767,10 @@ handleClick = () => {
 .app.component.html
 [source,JavaScript]
 ----
-    <div class="container">
-      <h1 (click)="handleClick()">{{title}}</h1>
-      <img class="image" src="https://images.koji-cdn.com/cf19e146-554d-459e-96a1-b36b71eda51e/userData/gi3e2wscdw-b8ae90b11dbb4339a93af61c9e0a2100.png" />
-    </div>
-  );
-}
+<div class="container">
+  <h1 (click)="handleClick()">{{title}}</h1>
+  <img class="image" src="https://images.koji-cdn.com/cf19e146-554d-459e-96a1-b36b71eda51e/userData/gi3e2wscdw-b8ae90b11dbb4339a93af61c9e0a2100.png" />
+</div>
 ----
 =====
 ====
@@ -935,12 +998,22 @@ feed.load();
 .Angular
 ====
 [.intro]
-Add this code at the end of the `ngOnInit` method.
+Add a new property and add code at the end of the `ngOnInit` method.
 
 [source,JavaScript]
 ----
-this.feed = new FeedSdk();
-this.feed.load();
+export class AppComponent implements OnInit {
+
+  feed = null;
+  ...
+
+  ngOnInit() {
+    ...
+    this.feed = new FeedSdk();
+    this.feed.load();
+    ...
+  }
+}
 ----
 ====
 

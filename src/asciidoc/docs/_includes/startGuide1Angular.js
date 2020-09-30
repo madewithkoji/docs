@@ -8,8 +8,10 @@ import { FeedSdk, InstantRemixing } from '@withkoji/vcc';
 })
 export class AppComponent implements OnInit {
 
+    instantRemixing = null;
     isRemixing = false;
     title = '';
+    feed = null;
 
     ngOnInit() {
         this.instantRemixing = new InstantRemixing();
