@@ -313,7 +313,7 @@ Otherwise, the feed will display a loading state, and will eventually time out a
 feed.load();
 
 [.hcode, id=".onPlaybackStateChanged", reftext="onPlaybackStateChanged"]
-=== .onPlaybackStateChanged(handler[isPlaying])
+=== .onPlaybackStateChanged(handler)
 
 Monitors visibility in the Koji feed, enabling the template to play certain features when it is in focus and pause them when it isn't in focus.
 For example, play or pause audio, video, a timer, or a countdown.
@@ -323,8 +323,9 @@ The template is loaded in the feed 10 times, and you can swipe or scroll through
 
 ==== Parameters
 
-* `handler` – Function to handle changes to template visibility in the feed.
-* `isPlaying` – Boolean that indicates whether the template is in focus in the feed.
+* `handler` – _Function_, handles changes to template visibility in the feed.
+Receives the following property as input:
+** `isPlaying` – _Boolean_, indicates whether the template is in focus in the feed.
 
 ==== Example
 
