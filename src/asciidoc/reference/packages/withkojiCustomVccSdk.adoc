@@ -6,6 +6,8 @@ The @withkoji/custom-vcc-sdk package enables you to
 implement custom Visual Customization Controls (VCCs) for your template.
 //end::description[]
 
+The Koji platform includes VCCs for standard elements, such as images, text, and sounds. In addition, you can build custom VCCs to provide new types of customizations that match closely with the application you are developing. For example, some Koji templates provide tile map editors, sound enhancers, or custom avatar creators to enhance the interactivity for remixers.
+
 == Install
 
 Install the package in your Koji project.
