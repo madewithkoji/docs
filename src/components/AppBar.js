@@ -4,8 +4,6 @@ import styled from 'styled-components';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import { useStaticQuery, graphql } from 'gatsby';
-import { useTheme } from '@material-ui/core/styles';
-import useMediaQuery from '@material-ui/core/useMediaQuery';
 import CloseIcon from '@material-ui/icons/Close';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
@@ -40,14 +38,6 @@ const SearchWrapper = styled.div`
   text-align: right;
 `;
 
-const StyledCloseIcon = styled(CloseIcon)`
-  fill: #333333;
-`;
-
-const StyledSearchIcon = styled(SearchIcon)`
-  fill: #333333;
-`;
-
 const SearchIconWrapper = styled.div`
   display: flex;
   align-items: center;
@@ -67,6 +57,24 @@ const MobileSearchWrapper = styled.div`
 
 const StyledAppBar = styled(AppBar)`
   background-color: #ffffff !important;
+
+  .mobile {
+    display: none;
+  }
+
+  .desktop {
+    display: inline-flex;
+  }
+
+  @media screen and (max-width: 1023px) {
+    .mobile {
+      display: inline-flex;
+    }
+
+    .desktop {
+      display: none;
+    }
+  }
 `;
 
 const NavLink = styled(Link)`
@@ -109,50 +117,53 @@ const AppBarComponent = (props) => {
 
   const { allNavItem: { nodes: navItems = [] } } = data;
 
-  const theme = useTheme();
-  const isMobile = useMediaQuery(theme.breakpoints.down('sm'), { noSsr: true });
-
   const [mobileSearchIsVisible, setMobileSearchIsVisible] = useState(false);
-
-  if (isMobile) {
-    return (
-      <StyledAppBar position={'fixed'}>
-        <Toolbar>
-          {
-            mobileSearchIsVisible &&
-            <MobileSearchWrapper>
-              <Search isMobile />
-              <StyledCloseIcon onClick={() => setMobileSearchIsVisible(false)} />
-            </MobileSearchWrapper>
-          }
-          {
-            !mobileSearchIsVisible &&
-            <>
-              <IconButton onClick={() => props.toggleMobileDrawer()}>
-                <MenuIcon />
-              </IconButton>
-              <Link
-                to={'/'}
-              >
-                <Logo
-                  alt={'Koji for Developers'}
-                  src={'/images/dev-logo.png'}
-                  style={{ isMobile }}
-                />
-              </Link>
-              <SearchIconWrapper>
-                <StyledSearchIcon onClick={() => setMobileSearchIsVisible(true)} />
-              </SearchIconWrapper>
-            </>
-          }
-        </Toolbar>
-      </StyledAppBar>
-    );
-  }
 
   return (
     <StyledAppBar position={'fixed'}>
-      <Toolbar>
+      <Toolbar className={'mobile'}>
+        {
+          mobileSearchIsVisible &&
+          <MobileSearchWrapper>
+            <Search isMobile />
+            <CloseIcon
+              onClick={() => setMobileSearchIsVisible(false)}
+              style={{
+                color: '#333333',
+                cursor: 'pointer',
+              }}
+            />
+          </MobileSearchWrapper>
+        }
+        {
+          !mobileSearchIsVisible &&
+          <>
+            <IconButton onClick={() => props.toggleMobileDrawer()}>
+              <MenuIcon />
+            </IconButton>
+            <Link
+              to={'/'}
+            >
+              <Logo
+                alt={'Koji for Developers'}
+                src={'/images/dev-logo.png'}
+                style={{ isMobile: true }}
+              />
+            </Link>
+            <SearchIconWrapper>
+              <SearchIcon
+                onClick={() => setMobileSearchIsVisible(true)}
+                style={{
+                  color: '#333333',
+                  cursor: 'pointer',
+                }}
+              />
+            </SearchIconWrapper>
+          </>
+        }
+      </Toolbar>
+
+      <Toolbar className={'desktop'}>
         <NavLinkWrapper style={{ logo: true }}>
           <NavLink
             to={'/'}
@@ -160,7 +171,7 @@ const AppBarComponent = (props) => {
             <Logo
               alt={'Koji for Developers'}
               src={'/images/dev-logo.png'}
-              style={{ isMobile }}
+              style={{ isMobile: false }}
             />
           </NavLink>
         </NavLinkWrapper>

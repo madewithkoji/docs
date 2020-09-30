@@ -9,28 +9,13 @@ In this starter guide, you will start with an existing web application on Koji, 
 You will use the Koji editor and an npm package from Koji to define the customizable elements.
 Then, you will publish your application as a new template so that Koji users can create their own customized versions of it.
 
-== Remixing the starter scaffold
+== Remixing the starter template
 
 . If you haven’t already, create an account at https://withkoji.com[withkoji.com].
-. Open a starter scaffold that implements basic elements of your favorite framework.
+. Go to https://withkoji.com/templates/seane/react-project-no-vccs[https://withkoji.com/templates/seane/react-project-no-vccs].
+. Click *Create Remix*.
 +
-[.tabs,scope="lang"]
---
-.React
-include::../_includes/starterScaffolds.adoc[tag=react]
-
-.Vanilla JS
-include::../_includes/starterScaffolds.adoc[tag=vanilla]
-
-.Angular
-include::../_includes/starterScaffolds.adoc[tag=angular]
-
-.Svelte
-include::../_includes/starterScaffolds.adoc[tag=svelte]
---
-. Click *Edit template (Advanced)*.
-+
-This action creates a clone of the starter scaffold and opens it in the Koji editor.
+This action creates a clone of the starter template, and opens it in the Koji editor.
 . Explore the template and the Koji editor.
 * In the right pane, you can see a live preview of the template.
 * In the left pane, you can click *Source Code* to expand the file browser.
@@ -38,7 +23,7 @@ From here, you can open and edit your project files in the editor.
 * At the bottom, you can expand a set of terminal tabs.
 These tabs enable you to run the template locally from inside the editor and to execute other terminal functions, such as adding packages and committing changes.
 +
-NOTE: If you make changes to your project’s structure (by adding npm packages, for example), you might need to cancel the running process and restart the development server in the `frontend` terminal.
+NOTE: If you make changes to your project’s structure (by adding npm packages, for example), you might need to exit the running process and restart the development server in the `frontend` terminal.
 
 == Installing the @withkoji/vcc package
 
@@ -122,7 +107,7 @@ npm start
 A customization file is a JSON file that defines the names and types of the customizable values in a template, so that Koji can display the appropriate VCCs for remixers.
 
 . In the `.koji/customization` folder of your project, create a new JSON file.
-.. In the file browser, click the plus (*+*) next to the `.koji/customization` folder, and click *New file*.
+.. In the file browser, click the plus (*+*) next to the `.koji/customization` folder, and click *New File*.
 .. Enter a name for the file.
 For example: `settings.json`.
 . Paste the following code into your `settings.json` file.
@@ -164,39 +149,11 @@ In this example, the file stores one customizable value (`settings.title`), and 
 To access a value from a JSON customization file within a template, you use a getter from the @withkoji/vcc package.
 Then, update the template to use dynamic values, instead of hard-coded values.
 
-. From the left pane of the editor, open the file that contains the template logic.
+. From the left pane of the editor, open the `frontend/common/App.js` file.
 +
-[.tabs,scope="lang"]
---
-.React
-`frontend/common/App.js`
-
-.Vanilla JS
-`frontend/index.js`
-
-.Angular
-`frontend/src/app/app.component.ts`
-
-.Svelte
-`src/App.svelte`
---
+This file contains most of the template logic.
 . At the top of the file, import the package.
 +
-[.tabs,scope="lang"]
---
-.React
-[source,JavaScript]
-----
-import { InstantRemixing } from '@withkoji/vcc';
-----
-
-.Vanilla JS
-[source,JavaScript]
-----
-import { InstantRemixing } from '@withkoji/vcc';
-----
-
-.Angular
 [source,JavaScript]
 ----
 import { InstantRemixing } from '@withkoji/vcc';
@@ -382,9 +339,6 @@ export class AppComponent implements OnInit {
 +
 The getter accepts an array (`[scope, key]`) that maps to the scope (`settings`) and key (`title`) from the JSON customization file.
 +
-[.tabs,scope="lang"]
---
-.React
 [source,JavaScript]
 ----
 componentDidMount() {
@@ -444,7 +398,7 @@ onMount(() => {
 
 When a remixer enters a new value, the template must update automatically to reflect the change.
 
-* Set up a listener to monitor for changes to the template value.
+* In the `componentDidMount` method, set up a listener to monitor for changes to the template value:
 +
 [.tabs,scope="lang"]
 --
@@ -455,6 +409,7 @@ Add the listener in the `componentDidMount` method.
 
 [source,JavaScript]
 ----
+
 componentDidMount() {
   this.instantRemixing = new InstantRemixing();
   console.log('instantRemixing', this.instantRemixing); // Confirm w/log
@@ -545,6 +500,7 @@ onMount(() => {
     }
   });
 });
+}
 ----
 ====
 --
@@ -567,9 +523,6 @@ In this example, you will add styles to show that the `h1` element is editable a
 
 . Create a property (`isRemixing`) to track the current view state, if needed.
 +
-[.tabs,scope="lang"]
---
-.React
 [source, JavaScript]
 ----
 state = {
@@ -695,19 +648,21 @@ onMount(() => {
   title = instantRemixing.get(['settings', 'title']);
 
   // Set up a listener to update title value
-  instantRemixing.onValueChanged((path, newValue) => {
-    if (path[0] && path[1] && path[0] === 'settings' && path[1] === 'title') {
-      title = newValue;
-    }
-  });
-
-  // Toggle the isRemixing state based on the listener
-  instantRemixing.onSetRemixing((isRemixingTrue) => {
-    isRemixing = isRemixingTrue;
-  });
+this.instantRemixing.onValueChanged((path, newValue) => {
+  if (path[0] && path[1] && path[0] === 'settings' && path[1] === 'title') {
+    this.setState({ title: newValue });
+  }
 });
+
+// Toggle the isRemixing state based on the listener
+this.instantRemixing.onSetRemixing((isRemixing) => {
+  this.setState({ isRemixing });
+});
+
+// Alert Koji we are ready to use instantRemixing
+this.instantRemixing.ready();
+}
 ----
---
 
 == Exposing the VCC
 
@@ -715,9 +670,6 @@ The template must expose a way for a remixer to open the VCC when customizing it
 
 * Add a click handler that opens the VCC when the remixer clicks the title (`h1` element).
 +
-[.tabs,scope="lang"]
---
-.React
 [source,JavaScript]
 ----
 handleClick = () => {
@@ -805,28 +757,9 @@ If this test works correctly, the VCC should be exposed correctly to the remixer
 To indicate that an item is “editable,” you can add a conditional visual effect that is displayed when the template is being customized.
 In this example, you’ll add a CSS style class for editable items and then apply the class to the `h1` when a user is customizing the template.
 
-. From the left pane of the editor, open the following file.
+. From the left pane of the editor, open the `frontend/common/index.html` file.
+. Add the following CSS style in the `head` element.
 +
-[.tabs,scope="lang"]
---
-.React
-`frontend/common/index.html`
-
-.Vanilla JS
-`frontend/style.css`
-
-.Angular
-`frontend/src/app/app.component.scss`
-
-.Svelte
-`src/App.svelte`
---
-
-. Add the following style definition.
-+
-[.tabs,scope="lang"]
---
-.React
 [source,HTML]
 ----
 <style>
@@ -841,48 +774,6 @@ In this example, you’ll add a CSS style class for editable items and then appl
   }
 </style>
 ----
-
-.Vanilla JS
-[source,CSS]
-----
-.edit {
-    border: 2px dashed grey;
-}
-----
-
-.Angular
-[source,CSS]
-----
-.active {
-  background-color: rgba(255, 255, 255, 0.4);
-  padding: 18px;
-  border-width: 1px;
-  border-style: solid;
-  border-color: rgb(255, 255, 255);
-  border-image: initial;
-  border-radius: 4px;
-}
-----
-
-.Svelte
-[source,HTML]
-----
-<style>
-  .remixing {
-    background-color: rgba(255, 255, 255, 0.4);
-    padding: 18px;
-    border-width: 1px;
-    border-style: solid;
-    border-color: rgb(255, 255, 255);
-    border-image: initial;
-    border-radius: 4px;
-  }
-</style>
-----
-
---
-
-. Update the `h1` element with dynamic styling.
 +
 [.tabs,scope="lang"]
 --
@@ -939,19 +830,7 @@ In the `app.component.html` file, use a dynamic `class`.
 ----
 ====
 
-.Svelte
-[source,JavaScript]
-----
-<h1
-  class={isRemixing ? 'remixing' : ''}
-  on:click={editText}
->
-  {title}
-</h1>
-----
---
-
-. To test the dynamic styling, you can toggle the live preview between the *Editing* and *Preview* modes.
+. To test the dynamic `className`, you can toggle the live preview between the *Editing* and *Preview* modes.
 * In *Editing* mode, the “editable” styles should be visible, and the click handler should open the VCC, as expected.
 * In *Preview* mode, the “editable” styles should not be visible, and nothing should happen when clicking the `h1` element.
 

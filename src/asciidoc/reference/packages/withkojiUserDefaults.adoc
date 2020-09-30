@@ -39,15 +39,18 @@ import KojiUserDefaults from '@withkoji/user-defaults';
 const kojiUserDefaults = new KojiUserDefaults();
 ----
 
+== KojiUserDefaults methods
+
 [.hcode, id=".onConnect", reftext="onConnect"]
-=== .onConnect(handler[isConnected])
+=== .onConnect(handler)
 
 Listens to the user's login state to enable access to permissioned user data.
 
 ==== Parameters
 
-* `handler` – Function to handle requests for user data.
-* `isConnected` – Boolean that indicates whether the user is logged in to Koji.
+* `handler` – _Function_, handles requests for user data.
+Receives the following property as input:
+** `isConnected` – _Boolean_, indicates whether the user is logged in to Koji.
 
 ==== Example
 
@@ -64,17 +67,19 @@ kojiUserDefaults.onConnect((isConnected) => {
 ----
 
 [.hcode, id=".get", reftext="get"]
-=== .get(key, handler[success, key, value])
+=== .get(key, handler)
 
 Gets a specified piece of user data and invokes a callback function to handle the results of the request.
 
 ==== Parameters
 
-* `key` – String, key of the user data to retrieve.
+* `key` – _String_, key of the user data to retrieve.
 See <<#_keys>>.
-* `handler` – Function to handle the results of the data request.
-* `success` – Boolean that indicates whether the request was successful.
-* `value` – String, value of the user data, if the request was successful.
+* `handler` – _Function_, handles the results of the data request.
+Receives the following properties as input:
+** `success` – _Boolean_, indicates whether the request was successful.
+** `key` – _String_, key of the user data.
+** `value` – _String_, value of the user data, if the request was successful.
 For an unsuccessful request, the value is `undefined`.
 
 ==== Example

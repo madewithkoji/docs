@@ -11,26 +11,9 @@ const Wrapper = styled.div`
   padding-left: 16px;
 `;
 
-const KojiHomeWrapper = styled.div`
-  height: 48px;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.12);
-  width: 100%;
-  display: flex;
-  align-items: center;
-`;
-
 const MobileDrawer = (props) => (
-  <Drawer open={props.open}>
+  <Drawer className={'mobile'} open={props.open}>
     <Wrapper>
-      <KojiHomeWrapper>
-        <a
-          href={'https://withkoji.com'}
-          rel={'noopener noreferrer'}
-          target={'_blank'}
-        >
-          {'Koji Homepage'}
-        </a>
-      </KojiHomeWrapper>
       {
         props.navItems.sort((a, b) => a.idx - b.idx).map((navItem) => (
           <List

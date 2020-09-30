@@ -5,12 +5,13 @@
   "version": "0.1.0",
   "scripts": {
     "build": "gatsby build",
+    "clean": "gatsby clean",
     "develop": "gatsby develop",
     "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md}\"",
-    "start": "npm run develop",
+    "lint": "eslint \"./src/**/*.js\"",
+    "preinstall": "npx npm-force-resolutions",
     "serve": "gatsby serve",
-    "clean": "gatsby clean",
-    "preinstall": "npx npm-force-resolutions"
+    "start": "npm run develop"
   },
   "dependencies": {
     "@material-ui/core": "^4.11.0",
