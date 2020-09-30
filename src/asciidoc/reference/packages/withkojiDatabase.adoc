@@ -8,6 +8,10 @@ The @withkoji/database package enables you to
 implement a Koji database for the backend of your template.
 //end::description[]
 
+Koji databases are made up of one or more `collections`.
+Each `collection` stores a series of database entries with a unique key and collection of key-value pairs.
+Values within the key-value pairs can be of any type, including strings, numbers and arrays.
+
 == Install
 
 Install the package in the backend service of your Koji project.
@@ -99,35 +103,6 @@ Deletes an entire entry from the database.
 
 [source, javascript]
 const isDeleted = await database.delete('myCollection', 'myExistingKey');
-
-[.hcode, id=".generateSignedUploadRequest", reftext="generateSignedUploadRequest"]
-=== .generateSignedUploadRequest(fileName)
-
-Generates a signed URL for uploading a file directly to your project’s CDN.
-
-==== Parameters
-
-* `fileName` – _String_, name of the file to upload.
-
-==== Returns
-
-(Async) `SignedUploadRequest`, structured data of the signed request with the following structure:
-
-[source, typescript]
-----
-interface SignedUploadRequest {
-  url: string,
-  signedRequest: {
-    url: string,
-    fields: {[index: string]: string};
-  };
-}
-----
-
-==== Example
-
-[source, javascript]
-const signedUpload = await database.generateSignedUploadRequest("fileName");
 
 [.hcode, id=".get", reftext="get"]
 === .get(collection, key)
@@ -231,9 +206,6 @@ const results = await database.getWhere('myCollection','predicateKey', '==', 'pr
 === .search(collection, searchAttribute, searchValue)
 
 Returns all the database entries where the value of `searchAttribute` partially matches `searchValue`.
-
-NOTE: The `searchAttribute` must have a value set for all entries in your database.
-If some entries have no value for that key, nothing will be returned.
 
 ==== Parameters
 

@@ -6,6 +6,8 @@ The @withkoji/custom-vcc-sdk package enables you to
 implement custom Visual Customization Controls (VCCs) for your template.
 //end::description[]
 
+The Koji platform includes VCCs for standard elements, such as images, text, and sounds. In addition, you can build custom VCCs to provide new types of customizations that match closely with the application you are developing. For example, some Koji templates provide tile map editors, sound enhancers, or custom avatar creators to enhance the interactivity for remixers.
+
 == Install
 
 Install the package in your Koji project.
@@ -30,18 +32,6 @@ const customVcc = new CustomVcc();
 
 == CustomVcc methods
 
-[.hcode, id=".blur", reftext="blur"]
-=== .blur()
-
-Tracks blur events on the custom VCC for live collaboration.
-
-==== Example
-
-[source,javascript]
-----
-customVcc.blur();
-----
-
 [.hcode, id=".change", reftext="change"]
 === .change(newValue)
 
@@ -58,18 +48,6 @@ Updates the VCC value with the user-entered value.
 customVcc.change(newValue);
 ----
 
-[.hcode, id=".focus", reftext="focus"]
-=== .focus()
-
-Tracks focus events on the custom VCC for live collaboration.
-
-==== Example
-
-[source,javascript]
-----
-customVcc.focus();
-----
-
 [.hcode, id=".onTheme", reftext="onTheme"]
 === .onTheme(handler)
 
@@ -80,14 +58,14 @@ The theme returned in the listener allows you to style the VCC to match the user
 
 * `handler` – _Function_, called when theme is available.
 Receives the following property as input:
-** `theme` – _Object_, represents the theme as an object with CSS colors and mixins.
+** `theme` – _Object_, represents the theme as an object, see <<Theme>>
 
 ==== Example
 
 [source,javascript]
 ----
 customVcc.onTheme((theme) => {
-	// theme is a Koji editor theme of the shape: { colors: {}, mixins: {} }
+	// theme is a Koji editor theme
  	// save this value in order to style your VCC to match the user's current theme
 });
 ----
@@ -104,24 +82,14 @@ Calling `change` immediately fires an `onUpdate`.
 
 * `handler` – _Function_, handle changes to the custom value.
 Receives the following property as input:
-** `props` – _Object_, contains the properties of the VCC, see example for full structure.
+** `props` – _Object_, contains the properties of the VCC, see <<Props>>.
 
 ==== Example
 
 [source,javascript]
 ----
 customVcc.onUpdate((props) => {
-	// props is an object containing the VCC's current state. it looks like:
-	const {
-		type, // the type signature for this vcc
-		name, // string name of the VCC
-		value, // current value of the VCC
-		scope, // name of the section where this vcc appears
-		variableName, // resolved variable name of this vcc (`scope.key`)
-		options, // an object containing any options passed in `typeOptions`
-		collaborationDecoration, // an object containing any collaborators currently focused on this control
-		_config, // the full VCC configuration file. Generally this is not needed, as most controls should be fully isolated to a single value, but this can be useful when creating more complex custom controls like map builders
-	} = props;
+	// props is an object containing the VCC's current state.
 });
 ----
 
@@ -157,7 +125,8 @@ customVcc.save();
 [.hcode, id=".showModal", reftext="showModal"]
 === .showModal(type, currentValue, onComplete)
 
-Triggers the `image`, `sound`, `file`, and `obj` (3D) modals, these are the ones used by the built-in VCCs of the same names.
+Opens the specified modal type, and invokes a callback function when the user selects a value in the modal.
+The available modal types correspond to the built-in VCCs of the same name.
 When a value is chosen in the modal it invokes the onComplete handler passing the new value to it.
 
 ==== Parameters
@@ -198,6 +167,58 @@ customVcc.uploadFile(myBlob, myFileName, (url) => {
   // url of the uploaded file
 });
 ----
+
+== CustomVcc objects
+
+=== Props
+
+A `props` object respresents the properties representing the current state of a custom VCC.
+It is returned to the handler listening to <<onUpdate>>.
+
+The `props` object includes the following properties.
+
+[source,javascript]
+----
+{
+	type: string;<1>
+	name: string;<2>
+	value: any;<3>
+	scope: string;<4>
+	variableName: string;<5>
+	options: object;<6>
+	collaborationDecoration: object;<7>
+	_config: object;<8>
+};
+----
+<1> `type` – the type signature for this vcc.
+<2> `name` – string name of the VCC.
+<3> `value` – current value of the VCC.
+<4> `scope` – name of the section where this vcc appears.
+<5> `variableName` – resolved variable name of this vcc (`scope.key`).
+<6> `options` – an object containing any options passed in `typeOptions`.
+<7> `collaborationDecoration` – an object containing any collaborators currently focused on this control.
+<8> `_config` – the full VCC configuration file. Generally this is not needed, as most controls should be fully isolated to a single value, but this can be useful when creating more complex custom controls like map builders.
+
+=== Theme
+
+A `theme` object allows you to style using matching colours and styles from remixers' active theme.
+It is returned to the handler listening to <<onTheme>>.
+
+The `theme` object includes the following properties.
+
+[source,javascript]
+----
+{
+	name: string;<1>
+	breakpoints: object;<2>
+	colors: object;<3>
+	mixins: object;<4>
+};
+----
+<1> `name` – name of the theme.
+<2> `breakpoints` – an object contain responsive style breakpoints of the theme.
+<3> `colors` – an object of key-value pairs representing the theme's named colors.
+<4> `mixins` – an object containing css mixins to style specific elements.
 
 == Related resources
 

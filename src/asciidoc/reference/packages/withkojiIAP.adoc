@@ -1,6 +1,6 @@
 = @withkoji/koji-iap
 :page-slug: withkoji-koji-iap-package
-:page-description: Enable in-app purchases from your Koji templates.
+:page-description: Implement in-app purchases from your Koji templates.
 
 The @withkoji/koji-iap package enables you to
 //tag::description[]
@@ -13,7 +13,7 @@ To implement a basic purchase flow in your template, use `getToken` on the front
 On the backend, use `resolveReceipts` to determine whether the user has purchased the product and return appropriate information to the frontend.
 Finally, on the frontend, display the appropriate experience based on whether or not the product has been purchased.
 For example, display a premium image that has been purchased.
-Or, if the user hasn't purchased the image, display a *Purchase* button and use `promptPurchase` to initiate a transaction when the user clicks the button.
+Or, if the user hasn't purchased the image, display a *Purchase* button and use `startPurchase` to initiate a transaction when the user clicks the button.
 
 == Install
 
@@ -41,9 +41,11 @@ To enable in-app purchases for your Koji template, you must implement the `Iap` 
       "products": [
         0 : {
           "sku": "productID", <1>
-          "name": "Purchase prompt", <2>
-          "price": "{{scope.key}}", <3>
-          "isConsumable": true <4>
+          "name": "{{scope.nameKey}}", <2>
+          "price": "{{scope.priceKey}}", <3>
+          "quantity": "{{scope.quantity}}",<4>
+          "fulfillment": "email", <5>
+          "isConsumable": true <6>
         }
       ]
     }
@@ -52,10 +54,17 @@ To enable in-app purchases for your Koji template, you must implement the `Iap` 
 ----
 <1> Identifier for the product to purchase.
 <2> Description displayed when a user is prompted to purchase the product.
-<3> Path to the <<vcc-overview#,Visual Customization Control (VCC)>> that defines the purchase price, if applicable.
+Can be a string or a path to the <<vcc-overview#,Visual Customization Control (VCC)>> that defines the description.
+<3> Path to the VCC that defines the purchase price, if applicable.
 Alternatively, use `"priceIsUnset": true` to define a product without a set price.
 For example, a donation or "pay what you want" price.
-<4> (Optional) Whether the product can be purchased more than once.
+<4> (Optional) Maximum number of times the product can be sold.
+After the inventory threshold is reached, further purchase attempts will display a “sold out!” message.
+If quantity is not present or is 0, the product will never sell out.
+<5> User information to collect for order fulfillment.
+Possible values are `email`, `phone`, or `address`.
+This value is stored as a custom attribute on the <<_iapreceipt,transaction receipt>>.
+<6> (Optional) Whether the product can be purchased more than once.
 
 [.hcode, id="new Iap", reftext="new Iap"]
 === new Iap(projectID, projectToken)
@@ -64,8 +73,8 @@ Instantiates `Iap`.
 
 ==== Parameters
 
-* `projectID` – (Backend only) String, unique identifier for the Koji.
-* `projectToken` – (Backend only) String, secret key for the Koji.
+* `projectID` – (Backend only) _String_, unique identifier for the Koji.
+* `projectToken` – (Backend only) _String_, secret key for the Koji.
 
 TIP: When instantiating `Iap` on the backend, you must provide these parameters, which are available as environment variables at runtime.
 For instant remixes, you must implement `VccMiddleware` to manage these variables.
@@ -87,22 +96,25 @@ const iap = new Iap(
 );
 ----
 
+== Iap methods
+
 [.hcode, id=".getToken", reftext="getToken"]
-=== .getToken(handler[userToken], forceRefresh)
+=== .getToken(handler, forceRefresh)
 
 Gets a token identifying the current user, and invokes a callback function to handle backend requests for the user's purchases.
 
 ==== Parameters
 
-* `handler` – Function to handle backend requests for the user's purchases.
-* `userToken` – String, temporary token for the current user's session.
+* `handler` – _Function_, handles backend requests for the user's purchases.
+Receives the following property as input:
+** `userToken` – _String_, temporary token for the current user's session.
 +
 NOTE: A user token is created when a logged-in user loads a Koji, and destroyed when the user closes the Koji.
 If the user revisits the Koji, a different token is generated.
 Tokens are specific to a user and a Koji, so the same user will have different tokens for different Kojis.
 To resolve purchases for a given user, both the user token, obtained on the frontend, and the project token, obtained from environment variables on the backend, are necessary.
 
-* `forceRefresh` – (Optional) Boolean that indicates whether to generate a new user token before invoking the callback function (`false` by default).
+* `forceRefresh` – (Optional) _Boolean_, indicates whether to generate a new user token before invoking the callback function (`false` by default).
 
 ==== Example
 
@@ -113,27 +125,25 @@ iap.getToken((token) => {
 });
 ----
 
-[.hcode, id=".promptPurchase", reftext="promptPurchase"]
-=== .promptPurchase(sku, handler[success, userToken])
+[.hcode, id=".loadProduct", reftext="loadProduct"]
+=== .loadProduct(sku)
 
-Prompts the user to purchase a product, and invokes a callback function to handle the results of the purchase.
+Gets the properties for a specified product to enable the template to leverage dynamic product information.
+For example, you can check the stock for a product with limited quantity (via the `numAvailable` property), and indicate the number of remaining items.
 
 ==== Parameters
 
-* `sku` – String, identifier for the product to purchase.
-Products are defined in the <<#_iap,entitlements file>> and registered or updated when the template is published.
-* `success` – Boolean that indicates whether the purchase was successful.
-* `handler` – Function to handle the results of the purchase.
-* `userToken` – String, temporary token for the current user's session.
-See <<.getToken>>.
+* `sku` – _String_, identifier for the product.
+
+==== Returns
+
+(Async) <<_iapproduct>> object, properties of the specified product.
 
 ==== Example
 
 [source,javascript]
 ----
-iap.promptPurchase(sku, (success, token) => {
-  // Update template based on whether the purchase was successful
-});
+const product = await iap.loadProduct(sku);
 ----
 
 [.hcode, id=".resolveReceipts", reftext="resolveReceipts"]
@@ -143,12 +153,12 @@ Retrieves the user's receipts, which can be used to validate purchases for speci
 
 ==== Parameters
 
-* `userToken` – String, temporary token for the current user's session.
+* `userToken` – _String_, temporary token for the current user's session.
 See <<.getToken>>.
 
 ==== Returns
 
-(Async) Array of <<_iapreceipt>> objects for the user's purchases.
+(Async) Array of <<_iapreceipt>> objects, the user's purchases.
 
 ==== Example
 
@@ -159,6 +169,35 @@ const receipts = await iap.resolveReceipts(token);
 hasPurchased = !!(receipts.find(({ product }) => product.sku === 'productID'));
 ----
 
+[.hcode, id=".startPurchase", reftext="startPurchase"]
+=== .startPurchase(sku, handler, purchaseOptions)
+
+Prompts the user to purchase a product, and invokes a callback function to handle the results of the purchase.
+
+==== Parameters
+
+* `sku` – _String_, identifier for the product to purchase.
+Products are defined in the <<#_iap,entitlements file>> and registered or updated when the template is published.
+* `handler` – _Function_, handles the results of the purchase.
+Receives the following properties as input:
+** `success` – _Boolean_, indicates whether the purchase was successful.
+** `userToken` – _String_, temporary token for the current user's session.
+See <<.getToken>>.
+* `purchaseOptions`– _Object_, custom information to add to the transaction receipt.
+Contains the following properties:
+** `price` – _Number_, (Optional) amount of the purchase.
+** `customMessage` – _String_, (Optional) custom message associated with the purchase.
+This value is stored as a custom attribute on the <<_iapreceipt,transaction receipt>>.
+
+==== Example
+
+[source,javascript]
+----
+iap.startPurchase(sku, (success, token, purchaseOptions) => {
+  // Update template based on whether the purchase was successful
+});
+----
+
 [.hcode, id=".updateReceipt", reftext="updateReceipt"]
 === .updateReceipt(receiptId, attributes)
 
@@ -167,12 +206,12 @@ For example, if a user purchases a "power up" and then uses it in a game, you ca
 
 ==== Parameters
 
-* `receiptId` – String, unique identifier for the receipt.
-* `attributes` – Object containing a list of key-value pairs to update.
+* `receiptId` – _String_, unique identifier for the receipt.
+* `attributes` – _Object_, list of key-value pairs to update.
 
 ==== Returns
 
-(Async) Confirmation of the update, if the request was successful, or an error message, if not.
+(Async) _Any_, confirmation of the update, if the request was successful, or an error message, if not.
 
 ==== Example
 
@@ -181,10 +220,12 @@ For example, if a user purchases a "power up" and then uses it in a game, you ca
 const receipt = await iap.updateReceipt(receiptId, { isConsumed: true });
 ----
 
-== IapReceipt
+== Iap objects
+
+=== IapReceipt
 
 An `IapReceipt` object represents a receipt for a user's purchase of a product.
-To determine whether a user has purchased a specific product, you can use use <<.resolveReceipts>> to retrieve the `IapReceipt` objects associated with the user's token, and then look for a receipt with the product's SKU.
+To determine whether a user has purchased a specific product, you can use <<.resolveReceipts>> to retrieve the `IapReceipt` objects associated with the user's token, and then look for a receipt with the product's SKU.
 
 The `IapReceipt` object includes the following properties.
 
@@ -199,48 +240,75 @@ TIP: Be sure to implement appropriate error handling to account for differences 
   purchasedPrice: number; <4>
   attributes: { [index: string]: any }; <5>
   datePurchased: Date; <6>
-  product: {
-    id: string; <7>
-    appId: string; <8>
-    ownerUserId: string; <9>
-    price: number; <10>
-    priceIsUnset: boolean; <11>
-    isConsumable: boolean; <12>
-    name: string; <13>
-    sku: string; <14>
-    dateCreated: string; <15>
-    isActive: boolean; <16>
-  };
+  product?: IapProduct; <7>
+  transaction?: Transaction|null; <8>
 }
 ----
-<1> Unique identifier for the receipt.
-<2> Koji user name of the user who purchased the product.
+<1> `id` – Unique identifier for the receipt.
+<2> `userId` – Koji user name of the user who purchased the product.
 The `userId` return value will always be `unavailable`.
 To avoid leaking/fingerprinting users at a global level, Kojis must interact with users via a short-lived user token.
 See <<.getToken>>.
-<3> Unique identifier for the product.
-<4> Price the user paid for the product.
-<5> Object containing a list of custom key-value pairs associated with the receipt.
+<3> `productId` – Unique identifier for the product.
+<4> `purchasedPrice` – Price the user paid for the product.
+<5> `attributes` – Object containing a list of custom key-value pairs associated with the receipt.
 You can use <<.updateReceipt>> to update these values.
-<6> Date of the purchase.
-<7> Unique identifier for this version of the product.
-<8> Name of the Koji template from which the product was purchased.
-<9> Koji user name of the template owner.
-<10> Purchase price of the product.
-Defined in the  <<#_iap,entitlements file>> file of the template.
-<11> Indicator of whether a purchase price is defined for the product.
-Defined in the entitlements file of the template.
-<12> Indicator of whether a product can be purchased more than once.
-Defined in the entitlements file of the template.
-<13> Description displayed when the user was prompted to purchase the product.
-Defined in the entitlements file of the template.
-<14> Identifier of the purchased product.
-Defined in the entitlements file of the template.
-<15> Date the product was registered or updated, which happens when the template is published.
-<16> Indicator of whether the product is still available for purchase.
+Additionally, the fulfillment information (`email`, `phone`, or `address`) and `customMessage` are included this object, if set at purchase time.
+<6> `datePurchased` – Date of the purchase.
+<7> `product` – <<_iapproduct>> object that represents the purchased product.
+<8> `transaction` – Object that represents the transaction information, if available.
 
+=== IapProduct
 
+An `IapProduct` object represents a specific product for purchase.
+Products are defined in the <<#_iap,entitlements file>> and registered or updated when the template is published.
+You can use <<.loadProduct>> to retrieve the properties associated with the product's SKU.
 
+The `IapProduct` object includes the following properties.
+
+[source,javascript]
+----
+{
+  id: string; <1>
+  appId: string; <2>
+  ownerUserId: string; <3>
+  price: number; <4>
+  priceIsUnset: boolean; <5>
+  isConsumable: boolean; <6>
+  name: string; <7>
+  sku: string; <8>
+  dateCreated: Date; <9>
+  isActive: boolean; <10>
+  fulfillment?: 'email'|'phone'|'address'; <11>
+  quantity?: number; <12>
+  numAvailable?: number; <13>
+  owner?: UserArtifact; <14>
+  purchases?: IapReceipt[]; <15>
+}
+----
+<1> `id` – Unique identifier for this version of the product.
+<2> `appId` – Name of the Koji template from which the product was purchased.
+<3> `ownerUserId` – Koji user name of the template publisher.
+<4> `price` – Purchase price of the product.
+Defined in the  <<#_iap,entitlements file>> of the template.
+<5> `priceIsUnset` – Indicator of whether a purchase price is defined for the product.
+Defined in the entitlements file of the template.
+<6> `isConsumable` – Indicator of whether a product can be purchased more than once.
+Defined in the entitlements file of the template.
+<7> `name` – Description displayed when the user was prompted to purchase the product.
+Defined in the entitlements file of the template.
+<8> `sku` – Identifier of the purchased product.
+Defined in the entitlements file of the template.
+<9> `dateCreated` – Date the product was registered or updated, which happens when the template is published.
+<10> `isActive` – Indicator of whether the product is still available for purchase.
+<11> `fulfillment` – Type of user information collected for order fulfillment.
+Defined in the entitlements file of the template.
+<12> `quantity` – Total number of times the product can be sold (inventory threshold).
+Defined in the entitlements file of the template.
+<13> `numAvailable` – Remaining number of times the product can be sold.
+Calculated based on the total inventory defined in the entitlements file, less the number of purchases.
+<14> `owner` – Object that represents the template publisher ("seller").
+<15> `purchases` – Array of <<_iapreceipt>> objects representing purchases of the product.
 
 == Related resources
 
