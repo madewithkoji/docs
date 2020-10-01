@@ -348,6 +348,6 @@ You should see an updated VCC that looks just like the standard text VCC.
 
 You've now created a replacement for an existing text VCC and learned the basics of how a custom VCC "talks" to the consumer application.
 
-If you want to create more complex custom VCCs, you can find more information in the https://github.com/madewithkoji/koji-custom-vcc-sdk[package documentation].
+If you want to create more complex custom VCCs, you can find more information in the <<withkoji-custom-vcc-sdk#, Custom VCC package reference>>.
 
 You can also find existing custom VCCs by searching for "vcc" on https://withkoji.com.
