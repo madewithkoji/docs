@@ -142,7 +142,7 @@ import { InstantRemixing } from '@withkoji/vcc';
 ----
 
 .Angular
-[source,JavaScript]
+[source,TypeScript]
 ----
 import { InstantRemixing } from '@withkoji/vcc';
 ----
@@ -195,12 +195,11 @@ instantRemixing.ready();
 [.intro]
 In the Angular component, add a new property and update the `ngOnInit` method.
 
-[source,JavaScript]
+[source,TypeScript]
 ----
 export class AppComponent implements OnInit {
 
   instantRemixing = null;
-  ...
 
   ngOnInit() {
     this.instantRemixing = new InstantRemixing();
@@ -292,14 +291,14 @@ const render = () => {
 .app.component.ts
 ======
 [.intro]
-Add a property to handle updates to the title value.
+Add a property to handle updates to the title value, and then update `app.component.html`.
 
-[source,JavaScript]
+[source,TypeScript]
 ----
 export class AppComponent implements OnInit {
 
+  instantRemixing = null;
   title = '';
-
   ...
 }
 ----
@@ -356,17 +355,17 @@ var title = instantRemixing.get(['settings', 'title']);
 ====
 
 .Angular
-[source,JavaScript]
+[source,TypeScript]
 ----
 ngOnInit() {
   this.instantRemixing = new InstantRemixing();
   console.log('instantRemixing', this.instantRemixing); // Confirm w/log
 
+  // Set the default value
+  this.title = this.instantRemixing.get(['settings', 'title']);
+
   // Alert Koji we are ready to use instantRemixing
   this.instantRemixing.ready();
-
-  // Set the default value
-  this.title = this.instantRemixing.get(['settings', 'title'])
 }
 ----
 
@@ -376,11 +375,11 @@ ngOnInit() {
 onMount(() => {
   instantRemixing = new InstantRemixing();
 
-  // Alert Koji we are ready to use instantRemixing
-  instantRemixing.ready();
-
   // Set the default value
   title = instantRemixing.get(['settings', 'title']);
+
+  // Alert Koji we are ready to use instantRemixing
+  instantRemixing.ready();
 });
 ----
 --
@@ -446,17 +445,14 @@ instantRemixing.onValueChanged((path, newValue) => {
 [.intro]
 Add the listener in the `ngOnInit` method.
 
-[source,JavaScript]
+[source,TypeScript]
 ----
 ngOnInit() {
   this.instantRemixing = new InstantRemixing();
   console.log('instantRemixing', this.instantRemixing); // Confirm w/log
 
-  // Alert Koji we are ready to use instantRemixing
-  this.instantRemixing.ready();
-
   // Set the default value
-  this.title = this.instantRemixing.get(['settings', 'title'])
+  this.title = this.instantRemixing.get(['settings', 'title']);
 
   // Set up a listener to update title value
   this.instantRemixing.onValueChanged((path, newValue) => {
@@ -464,6 +460,9 @@ ngOnInit() {
       this.title = newValue;
     }
   });
+
+  // Alert Koji we are ready to use instantRemixing
+  this.instantRemixing.ready();
 }
 ----
 ====
@@ -478,9 +477,6 @@ Add the listener in the `onMount` method.
 onMount(() => {
   instantRemixing = new InstantRemixing();
 
-  // Alert Koji we are ready to use instantRemixing
-  instantRemixing.ready();
-
   // Set the default value
   title = instantRemixing.get(['settings', 'title']);
 
@@ -490,10 +486,18 @@ onMount(() => {
       title = newValue;
     }
   });
+
+  // Alert Koji we are ready to use instantRemixing
+  instantRemixing.ready();
 });
 ----
 ====
 --
++
+{blank}
++
+TIP: Make sure to set up your listeners before calling the `ready` method.
+The Koji platform will queue any messages before the `ready` call to wait for the listeners to be ready.
 
 ## Testing the current state of the template
 
@@ -529,10 +533,11 @@ state = {
 Not needed
 
 .Angular
-[source,JavaScript]
+[source,TypeScript]
 ----
-isRemixing = false;
+instantRemixing = null;
 title = '';
+isRemixing = false;
 ----
 
 .Svelte
@@ -599,31 +604,26 @@ NOTE: You will add implementations of `startRemix` and `stopRemix` in subsequent
 ====
 
 .Angular
-[source,JavaScript]
+[source,TypeScript]
 ----
 ngOnInit() {
   this.instantRemixing = new InstantRemixing();
   console.log('instantRemixing', this.instantRemixing); // Confirm w/log
-
-  // Alert Koji we are ready to use instantRemixing
-  this.instantRemixing.ready();
 
   // Set the default value for title and isRemixing state
   this.isRemixing = this.instantRemixing.isRemixing;
   this.title = this.instantRemixing.get(['settings', 'title']);
 
 
-    // Set up a listener to update title value
+  // Set up a listener to update title value
   this.instantRemixing.onValueChanged((path, newValue) => {
-    if (path[0] && path[1] && path[0] === 'settings' && path[1] === 'title') {
-      this.title = newValue;
-    }
+      if (path[0] && path[1] && path[0] === 'settings' && path[1] === 'title') {
+          this.title = newValue;
+      }
   });
 
-  // Toggle the isRemixing state based on the listener
-  this.instantRemixing.onSetRemixing((isRemixing) => {
-    this.isRemixing = isRemixing;
-  });
+  // Alert Koji we are ready to use instantRemixing
+  this.instantRemixing.ready();
 }
 ----
 
@@ -632,9 +632,6 @@ ngOnInit() {
 ----
 onMount(() => {
   instantRemixing = new InstantRemixing();
-
-  // Alert Koji we are ready to use instantRemixing
-  instantRemixing.ready();
 
   // Set the default value for title and isRemixing state
   isRemixing = instantRemixing.isRemixing;
@@ -651,6 +648,9 @@ onMount(() => {
   instantRemixing.onSetRemixing((isRemixingTrue) => {
       isRemixing = isRemixingTrue;
   });
+  
+  // Alert Koji we are ready to use instantRemixing
+  instantRemixing.ready();
 });
 ----
 
@@ -670,7 +670,7 @@ The template must expose a way for a remixer to open the VCC when customizing it
 handleClick = () => {
   // Conditionally handle the click, only if the template is being remixed
   if (this.state.isRemixing) {
-  this.instantRemixing.onPresentControl(['settings', 'title']);
+    this.instantRemixing.onPresentControl(['settings', 'title']);
   }
 };
 
@@ -701,7 +701,7 @@ document.addEventListener('click', function (event) {
 [.tabs]
 =====
 .app.component.ts
-[source,JavaScript]
+[source,TypeScript]
 ----
 handleClick = () => {
   // Conditionally handle the click, only if the template is being remixed
@@ -945,20 +945,19 @@ feed.load();
 .Angular
 ====
 [.intro]
-Add a new property and add code at the end of the `ngOnInit` method.
+Add a new property, and add code at the end of the `ngOnInit` method.
 
-[source,JavaScript]
+[source,TypeScript]
 ----
 export class AppComponent implements OnInit {
 
-  feed = null;
   ...
+  feed = null;
 
   ngOnInit() {
     ...
     this.feed = new FeedSdk();
     this.feed.load();
-    ...
   }
 }
 ----
@@ -1057,9 +1056,9 @@ include::../_includes/startGuide1Vanilla.js[]
 [.intro]
 `frontend/src/app/app.component.ts`
 
-[source,JavaScript]
+[source,TypeScript]
 ----
-include::../_includes/startGuide1Angular.js[]
+include::../_includes/startGuide1Angular.ts[]
 ----
 ====
 

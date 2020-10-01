@@ -9,9 +9,6 @@
     onMount(() => {
         instantRemixing = new InstantRemixing();
 
-        // Alert Koji we are ready to use instantRemixing
-        instantRemixing.ready();
-
         // Set the default value for title and isRemixing state
         isRemixing = instantRemixing.isRemixing;
         title = instantRemixing.get(['settings', 'title']);
@@ -28,6 +25,9 @@
             isRemixing = isRemixingTrue;
         });
 
+        // Alert Koji we are ready to use instantRemixing
+        instantRemixing.ready();
+
         let feed = new FeedSdk();
         feed.load();
     });
@@ -37,7 +37,7 @@
         if (isRemixing) {
             instantRemixing.onPresentControl(['settings', 'title']);
         }
-};
+    };
 </script>
 
 <style>

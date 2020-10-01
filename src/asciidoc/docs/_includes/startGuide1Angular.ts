@@ -9,16 +9,13 @@ import { FeedSdk, InstantRemixing } from '@withkoji/vcc';
 export class AppComponent implements OnInit {
 
     instantRemixing = null;
-    isRemixing = false;
     title = '';
+    isRemixing = false;
     feed = null;
 
     ngOnInit() {
         this.instantRemixing = new InstantRemixing();
         console.log('instantRemixing', this.instantRemixing); // Confirm w/log
-
-        // Alert Koji we are ready to use instantRemixing
-        this.instantRemixing.ready();
 
         // Set the default value for title and isRemixing state
         this.isRemixing = this.instantRemixing.isRemixing;
@@ -36,6 +33,9 @@ export class AppComponent implements OnInit {
         this.instantRemixing.onSetRemixing((isRemixing) => {
             this.isRemixing = isRemixing;
         });
+
+        // Alert Koji we are ready to use instantRemixing
+        this.instantRemixing.ready();
 
         this.feed = new FeedSdk();
         this.feed.load();
