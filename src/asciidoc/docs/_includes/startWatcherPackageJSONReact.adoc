@@ -1,12 +1,6 @@
 = Start watcher in React
 
 // tag::all[]
-
-Install npm-run-all.
-[source,bash]
-npm install --save-dev npm-run-all
-
-Modify the `package.json` file.
 [source,json]
 ----
 {
@@ -18,6 +12,4 @@ Modify the `package.json` file.
   }
 }
 ----
-NOTE: Make sure to replace the value of `"start:server"` with the `"start"` command for your project.
-
 // end::all[]
