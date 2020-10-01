@@ -224,6 +224,33 @@ The `theme` object includes the following properties.
 <3> `colors` – An object of key-value pairs representing the theme's named colors.
 <4> `mixins` – An object containing CSS mixins to style specific elements.
 
+Here is an example of some of the properties of the `theme` object.
+
+[source,javascript]
+----
+{
+	"name": "aspergillus",
+	"breakpoints": {
+		"default": "(min-width: 1025px)",
+		"phone": "(max-width: 767px)",
+		"tablet": "(max-width: 1024px)"
+	},
+	"colors": {
+		"background.default": "#ffffff",
+		"foreground.default": "#111111",
+		"input.background": "#ffffff",
+		"input.foreground": "#111111"
+		...
+	},
+	"mixins": {
+		"card.default": "box-shadow: 0 6px 24px 0 rgba(0,0,0,0.05); background-color: #fff;",
+		"clickable": "cursor: pointer; user-select: none;",
+		...
+	}
+}
+----
+
+
 == Related resources
 
 * https://github.com/madewithkoji/koji-custom-vcc-sdk[@withkoji/custom-vcc-sdk on Github]
