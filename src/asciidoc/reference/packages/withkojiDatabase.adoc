@@ -10,7 +10,7 @@ implement a Koji database for the backend of your template.
 
 Koji databases are made up of one or more `collections`.
 Each `collection` stores a series of database entries with a unique key and collection of key-value pairs.
-Values within the key-value pairs can be of any type, including strings, numbers and arrays.
+Values within the key-value pairs can be of any type, including strings, numbers, and arrays.
 
 == Install
 
