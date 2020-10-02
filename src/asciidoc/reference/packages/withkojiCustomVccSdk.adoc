@@ -6,7 +6,9 @@ The @withkoji/custom-vcc-sdk package enables you to
 implement custom Visual Customization Controls (VCCs) for your template.
 //end::description[]
 
-The Koji platform includes VCCs for standard elements, such as images, text, and sounds. In addition, you can build custom VCCs to provide new types of customizations that match closely with the application you are developing. For example, some Koji templates provide tile map editors, sound enhancers, or custom avatar creators to enhance the interactivity for remixers.
+The Koji platform includes VCCs for standard elements, such as images, text, and sounds.
+In addition, you can build custom VCCs to provide new types of customizations that match closely with the application you are developing.
+For example, some Koji templates provide tile map editors, sound enhancers, or custom avatar creators to enhance the interactivity for remixers.
 
 == Install
 
@@ -58,7 +60,7 @@ The theme returned in the listener allows you to style the VCC to match the user
 
 * `handler` – _Function_, called when theme is available.
 Receives the following property as input:
-** `theme` – _Object_, represents the theme as an object, see <<Theme>>
+** `theme` – _Object_, represents the theme as an object. See <<Theme>>.
 
 ==== Example
 
@@ -82,7 +84,7 @@ Calling `change` immediately fires an `onUpdate`.
 
 * `handler` – _Function_, handle changes to the custom value.
 Receives the following property as input:
-** `props` – _Object_, contains the properties of the VCC, see <<Props>>.
+** `props` – _Object_, contains the properties of the VCC. See <<Props>>.
 
 ==== Example
 
@@ -172,7 +174,7 @@ customVcc.uploadFile(myBlob, myFileName, (url) => {
 
 === Props
 
-A `props` object respresents the properties representing the current state of a custom VCC.
+A `props` object represents the current state of a custom VCC.
 It is returned to the handler listening to <<onUpdate>>.
 
 The `props` object includes the following properties.
@@ -190,18 +192,20 @@ The `props` object includes the following properties.
 	_config: object;<8>
 };
 ----
-<1> `type` – the type signature for this vcc.
-<2> `name` – string name of the VCC.
-<3> `value` – current value of the VCC.
-<4> `scope` – name of the section where this vcc appears.
-<5> `variableName` – resolved variable name of this vcc (`scope.key`).
-<6> `options` – an object containing any options passed in `typeOptions`.
-<7> `collaborationDecoration` – an object containing any collaborators currently focused on this control.
-<8> `_config` – the full VCC configuration file. Generally this is not needed, as most controls should be fully isolated to a single value, but this can be useful when creating more complex custom controls like map builders.
+<1> `type` – Type signature for this VCC.
+<2> `name` – Name of the VCC.
+<3> `value` – Current value of the VCC.
+<4> `scope` – Name of the section where this VCC appears in the consumer application.
+<5> `variableName` – Resolved variable name of this VCC (`scope.key`).
+<6> `options` – An object containing any options passed in `typeOptions`.
+<7> `collaborationDecoration` – An object containing any collaborators currently focused on this control.
+<8> `_config` – The full VCC configuration file.
+Most controls are isolated to a single value.
+However, this object can be useful when creating more complex custom controls, like map builders.
 
 === Theme
 
-A `theme` object allows you to style using matching colours and styles from remixers' active theme.
+A `theme` object allows you to use styles that match the colors and styles of the remixer's active theme.
 It is returned to the handler listening to <<onTheme>>.
 
 The `theme` object includes the following properties.
@@ -215,10 +219,37 @@ The `theme` object includes the following properties.
 	mixins: object;<4>
 };
 ----
-<1> `name` – name of the theme.
-<2> `breakpoints` – an object contain responsive style breakpoints of the theme.
-<3> `colors` – an object of key-value pairs representing the theme's named colors.
-<4> `mixins` – an object containing css mixins to style specific elements.
+<1> `name` – Name of the theme.
+<2> `breakpoints` – An object containing responsive style breakpoints of the theme.
+<3> `colors` – An object of key-value pairs representing the theme's named colors.
+<4> `mixins` – An object containing CSS mixins to style specific elements.
+
+Here is an example of some of the properties of the `theme` object.
+
+[source,javascript]
+----
+{
+	"name": "aspergillus",
+	"breakpoints": {
+		"default": "(min-width: 1025px)",
+		"phone": "(max-width: 767px)",
+		"tablet": "(max-width: 1024px)"
+	},
+	"colors": {
+		"background.default": "#ffffff",
+		"foreground.default": "#111111",
+		"input.background": "#ffffff",
+		"input.foreground": "#111111"
+		...
+	},
+	"mixins": {
+		"card.default": "box-shadow: 0 6px 24px 0 rgba(0,0,0,0.05); background-color: #fff;",
+		"clickable": "cursor: pointer; user-select: none;",
+		...
+	}
+}
+----
+
 
 == Related resources
 
