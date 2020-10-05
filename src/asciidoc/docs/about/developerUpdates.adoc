@@ -8,6 +8,16 @@ TIP: To help improve the Koji developer experience, please share your thoughts, 
 
 == 2020
 
+=== October 5
+
+* Updated reference docs are now available for the <<withkoji-database-package#,Database>>, <<withkoji-dispatch-package#,Dispatch>>, and <<withkoji-custom-vcc-sdk#,Custom VCC>> packages.
+* Step-by-step instructions for <<start-guide-1#, developing your first template>> are now available in *four* “flavors” – React, Vanilla JS, Angular, and Svelte.
+* On the Koji platform, *My projects* has moved to *My repositories* in your https://withkoji.com/evolution/repositories[evolution dashboard].
+To open a list of starter scaffolds, you can click *New repository*.
++
+image::my-repositories-oct2020.png[My repositories]
+* Instructions were added to support <<work-locally#, working locally on Windows>>.
+
 === September 28
 
 * Enhanced in-app purchases with the following new features:
