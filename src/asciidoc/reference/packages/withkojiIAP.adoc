@@ -313,4 +313,4 @@ Calculated based on the total inventory defined in the entitlements file, less t
 == Related resources
 
 * https://github.com/madewithkoji/koji-iap[@withkoji/koji-iap on Github]
-* https://withkoji.com/templates/sean/aoyl/code[Reference project]
+* https://withkoji.com/code/sean/aoyl[Reference project]
