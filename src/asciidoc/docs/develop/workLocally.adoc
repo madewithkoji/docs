@@ -107,7 +107,7 @@ NOTE: This process alters the `package-lock.json` file, so that it can request t
 
 == Launching your project locally
 
-The https://withkoji.com/templates/Svarog1389/element-match[Element Match] game features both a frontend – so that you can play the game in your browser – and a backend – to access a database where the leaderboard scores are stored.
+The https://withkoji.com/~Svarog1389/element-match[Element Match] game features both a frontend – so that you can play the game in your browser – and a backend – to access a database where the leaderboard scores are stored.
 
 === Launching projects without a backend
 

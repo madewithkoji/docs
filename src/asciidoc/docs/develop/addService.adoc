@@ -19,7 +19,7 @@ To add and test a backend service, you'll start by remixing a project that alrea
 
 . Remix this scaffold:
 +
-https://withkoji.com/templates/seane/simple-react-scaffold
+https://withkoji.com/~seane/simple-react-scaffold
 . After your editor has loaded, rename the project.
 For example, `Adding a Backend Project`.
 

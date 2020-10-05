@@ -43,13 +43,15 @@ For more information, see this https://kinsta.com/blog/best-text-editors/[list o
 
 == Choosing a template for your project
 
-This tutorial uses the https://withkoji.com/templates/Svarog1389/element-match[Element Match] template as an example because it illustrates a completed game with code that runs both on the backend and on the frontend.
+This tutorial uses the *Element Match* template as an example because it illustrates a completed game with code that runs both on the backend and on the frontend.
 However, the instructions in this tutorial apply to any Koji project.
 You can start a Koji project by remixing any other template on Koji.
-For some great starting points, check out the https://withkoji.com/create/scaffolds[Scaffolds] page.
+For some great starting points, check out the https://withkoji.com/tag/scaffolds[Scaffolds] page.
 
-. Go to the https://withkoji.com/templates/Svarog1389/element-match[Element Match] project.
-. Click *Fork with Koji*.
+. Go to the https://withkoji.com/~Svarog1389/element-match[Element Match] project.
+. {blank}
++
+include::../_includes/remixNav.adoc[tag=all]
 +
 After a short loading time, the Koji editor opens.
 
@@ -58,11 +60,12 @@ After a short loading time, the Koji editor opens.
 When you remix a project, Koji creates a new fork of the project's Git repository for you.
 This new repository has a unique identifier string.
 If you fork the same project twice, you will get a different identifier string each time.
-The Koji repositories are stored at https://projects.koji-cdn.com/.
+The Koji repositories are stored at
+`\https://projects.koji-cdn.com/`.
 
 To clone your Koji repository locally, you need these strings:
 
-* The *repository URL* on https://projects.koji-cdn.com/.
+* The *repository URL* on `\https://projects.koji-cdn.com/`.
 * The *username* that you created when you registered with Koji.
 * An *access token*, which you must generate and store securely.
 
