@@ -304,6 +304,12 @@ const Content = styled.div`
     }
   }
 
+  .intro {
+    background-color: #f7f7f7;
+    color: rgba(0, 0, 0, 0.87);
+    font-weight: 500;
+  }
+
   .tabbed__tab {
     > .title {
       display: none;

@@ -1,4 +1,4 @@
-# draft-docs
+# Koji docs
 
 ## Installation & Local Development
 

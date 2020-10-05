@@ -30,11 +30,16 @@ To build a simple application with these features, you can follow these starter 
 * <<start-guide-2#>>
 ====
 
-. In your main application code, add a conditional statement to the `render` function that displays a different image for social shares.
+. In your application code, add a conditional statement to display a different image for social shares.
+For example:
 +
 [.tabs,scope="lang"]
 --
 .React
+====
+[.intro]
+Add a conditional statement in the `render` function.
+
 [source,JavaScript]
 ----
 render() {
@@ -51,6 +56,82 @@ render() {
   ...
 }
 ----
+====
+
+.Vanilla JS
+====
+[.intro]
+Wrap a conditional statement around the `render` function.
+
+[source,JavaScript]
+----
+// render the social share preview
+const socialShareRender = () => {
+    document.body.innerHTML = `
+        <div id="socialSharePreview">
+            <h1 style="font-size:${titleSize}px" id="title">${title}</h1>
+            <img id="logo" src="${optimizeURL(logo)}"/>
+        </div>`;
+}
+
+// render
+if (window.location.search.includes('koji-screenshot=1')) {
+    socialShareRender();
+} else {
+    render();
+}
+----
+====
+
+.Angular
+====
+[.intro]
+Add a conditional statement in the `ngOnInit` function and use it to apply a dynamic `id`.
+
+[.tabs]
+=====
+.app.component.ts
+[source,JavaScript]
+----
+ngOnInit() {
+  ...
+  this.social = false
+  if (window.location.search.includes('koji-screenshot=1')) {
+    this.social = true
+  }
+  ...
+}
+----
+
+.app.component.html
+[source,JavaScript]
+----
+<div class="container" id="{{social ? socialSharePreview : ''}}">
+        <h1 style="fontSize: {{titleOptions.fontSize}}px;">{{titleOptions.title}}</h1>
+        <img src="{{optimizeURL(logo)}}"
+    />
+    </div>
+----
+=====
+====
+
+.Svelte
+====
+[.intro]
+Add a conditional statement in the `App.svelte` file.
+
+[source,JavaScript]
+----
+{#if (window.location.search.includes('koji-screenshot=1'))}
+    <div class="social-share" style="background-image: url('{optimizeURL(image)}');">
+    <h1 style='font-size: {titleOptions.fontSize}px'>{titleOptions.title}</h1>
+    </div>
+{:else}
+...
+{/if}
+----
+====
+
 --
 . Define appropriate styles for the rich preview image.
 +
@@ -73,5 +154,54 @@ const SocialSharePreview = styled.div`
   color: #fcfcfc;
 `;
 ----
+
+.Vanilla JS
+[source,CSS]
+----
+#socialSharePreview {
+  background-color: #395b88;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  text-align: center;
+  color: #fcfcfc;
+}
+----
+
+.Angular
+[source,CSS]
+----
+#socialSharePreview {
+  background-color: #395b88;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  text-align: center;
+  color: #fcfcfc;
+}
+----
+
+.Svelte
+[source,CSS]
+----
+.social-share {
+  background-color: #395b88;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  text-align: center;
+  color: #fcfcfc;
+}
+----
+
 --
 . To test the preview image, open your staging link and append `?koji-screenshot=1` to the URL.

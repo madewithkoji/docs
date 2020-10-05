@@ -1,0 +1,51 @@
+= Start watcher
+
+// tag::all[]
+
+Install npm-run-all.
+[source,bash]
+npm install --save-dev npm-run-all
+
+Modify the `package.json` file.
+
+// tag::tabs[]
+[.tabs,scope="lang"]
+--
+.React
+// tag::plain[]
+include::../_includes/startWatcherPackageJSONReact.adoc[tags=all]
+// end::plain[]
+
+.Vanilla JS
+include::../_includes/startWatcherPackageJSONReact.adoc[tags=all]
+
+.Angular
+[source,JSON]
+----
+"scripts": {
+  ...
+  "start": "npm-run-all -p watch start:server",
+  "watch": "koji-vcc watch",
+  "start:server": "cross-env NODE_ENV=development ng serve --host 0.0.0.0 --port 4200 --disableHostCheck=true",
+  ...
+}
+----
+
+.Svelte
+[source,JSON]
+----
+"scripts": {
+  "start": "npm-run-all -p watch start:server",
+  "watch": "koji-vcc watch",
+  "start:server": "parcel src/index.html -p 8080",
+  ...
+}
+----
+
+--
+
+// end::tabs[]
+
+WARNING: Make sure to replace the value of `"start:server"` with the `"start"` command for your project and remove the `prestart` command, if there is one.
+
+// end::all[]
