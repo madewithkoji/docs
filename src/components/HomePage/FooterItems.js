@@ -78,13 +78,13 @@ const KojiPlatformFooterItems = [
     id: 2,
     icon: <ExtensionIcon />,
     name: 'Scaffolds',
-    link: 'https://withkoji.com/create/scaffolds',
+    link: 'https://withkoji.com/tag/scaffolds',
   },
   {
     id: 3,
     icon: <DeveloperBoardIcon />,
-    name: 'My projects',
-    link: 'https://withkoji.com/projects', // This is not correct, change to correct link
+    name: 'My repositories',
+    link: 'https://withkoji.com/evolution/repositories',
   },
   {
     id: 4,

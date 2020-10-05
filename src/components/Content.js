@@ -18,7 +18,7 @@ const Container = styled.div`
 const Content = (props) => (
   <Container ref={props.contentRef} style={{ hasDrawer: props.hasDrawer }}>
     {cloneElement(props.children, { currentHeader: props.currentHeader })}
-    <Footer/>
+    <Footer />
   </Container>
 );
 
