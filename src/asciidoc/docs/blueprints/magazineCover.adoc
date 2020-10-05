@@ -29,10 +29,10 @@ Remix an existing web application on Koji that implements basic elements of your
 [.tabs,scope="lang"]
 --
 .React
-https://withkoji.com/templates/seane/simple-react-scaffold[Simple React scaffold]
+include::../_includes/starterScaffolds.adoc[tag=reactVccs]
 
 .Vanilla JS
-https://withkoji.com/templates/JamesHole/vanilla-js-scaffold[Vanilla JS scaffold]
+include::../_includes/starterScaffolds.adoc[tag=vanilla]
 --
 
 === Install the packages

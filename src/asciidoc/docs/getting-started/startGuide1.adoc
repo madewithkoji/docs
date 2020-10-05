@@ -28,7 +28,9 @@ include::../_includes/starterScaffolds.adoc[tag=angular]
 .Svelte
 include::../_includes/starterScaffolds.adoc[tag=svelte]
 --
-. Click *Edit template (Advanced)*.
+. {blank}
++
+include::../_includes/remixNav.adoc[tag=all]
 +
 This action creates a clone of the starter scaffold and opens it in the Koji editor.
 . Explore the template and the Koji editor.
@@ -648,7 +650,7 @@ onMount(() => {
   instantRemixing.onSetRemixing((isRemixingTrue) => {
       isRemixing = isRemixingTrue;
   });
-  
+
   // Alert Koji we are ready to use instantRemixing
   instantRemixing.ready();
 });
