@@ -29,7 +29,6 @@ include::../_includes/starterScaffolds.adoc[tag=angular]
 include::../_includes/starterScaffolds.adoc[tag=svelte]
 --
 . {blank}
-+
 include::../_includes/remixNav.adoc[tag=all]
 +
 This action creates a clone of the starter scaffold and opens it in the Koji editor.
