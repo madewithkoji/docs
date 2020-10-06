@@ -63,12 +63,12 @@ import { InstantRemixing } from '@withkoji/vcc';
 const instantRemixing = new InstantRemixing();
 ----
 
-== InstantRemixing Methods
+== InstantRemixing methods
 
 [.hcode, id=".get", reftext="get"]
 === .get(path)
 
-Gets initial values from Koji customization files or either of the special predefined environment values: `metadata` or `serviceMap`.
+Gets initial values from Koji customization files or one of these predefined environment values:
 
 * `metadata` – project data, contains `projectId`, the unique identifier for the Koji project.
 * `serviceMap` – endpoints for your currently registered services.
@@ -183,7 +183,7 @@ Listens to changes in remix state to enable different template experiences durin
 
 * `handler` – _Function_, handles changes in remix state.
 Receives the following properties as inputs:
-** `isRemixing` – _Boolean_, indicates whether this app is in remixing mode.
+** `isRemixing` – _Boolean_, indicates whether the template is in remixing mode.
 ** `editorAttributes` – _Object_, describes the current editor.
 
 ==== Example
@@ -227,8 +227,8 @@ Listens to changes in custom values.
 
 * `handler` – _Function_, handles changes to custom values.
 Receives the following properties as inputs:
-** `path` – Array of _Strings_, the path of the changed VCC control.
-** `newValue` – _Any_, the new value of the changed VCC control.
+** `path` – Array of _Strings_, the path of the changed VCC value.
+** `newValue` – _Any_, the new value of the changed VCC.
 
 ==== Example
 
@@ -253,7 +253,7 @@ instantRemixing.ready();
 
 This package includes an http://expressjs.com/en/guide/using-middleware.html[Express middleware] for access to VCC values from dynamic backends, as a companion to the frontend `InstantRemixing` class.
 
-To implement this middleware, add it to your express server.
+To implement this middleware, add it to your Express server.
 
 [source,javascript]
 ----
@@ -263,7 +263,7 @@ const app = express();
 app.use(VccMiddleware.express);
 ----
 
-To access application-specific VCC values from an express endpoint, use `res.locals.koji` and the `scope` and `key` of the vcc value you require.
+To access application-specific VCC values from an Express endpoint, use `res.locals.koji` and the `scope` and `key` of the VCC value you require.
 
 [source,javascript]
 ----
@@ -301,7 +301,7 @@ import { FeedSdk } from '@withkoji/vcc';
 const feed = new FeedSdk();
 ----
 
-== FeedSdk Methods
+== FeedSdk methods
 
 [.hcode, id=".load", reftext="load"]
 === .load()
@@ -362,10 +362,10 @@ If your template also uses touch controls, you can use the `requestCancelTouch` 
 == Keystore
 
 The `Keystore` module is used in conjunction with the <<secret#, secret VCC type>>.
-The secret VCC allows setting of sensitive data such as premium images in a VCC without the value being visible when projects get remixed.
+The secret VCC enables you to store sensitive data in a VCC without the value being visible when the project is remixed.
 Keystore is used to access the value in the secret VCC within your application code.
 
-NOTE: For security purposes `Keystore` is only available in backened services and cannot be used in user facing services.
+NOTE: For security purposes, `Keystore` is available only in backend services and cannot be used in user-facing services.
 
 === new Keystore
 
@@ -373,9 +373,9 @@ Instantiates Keystore.
 
 ==== Parameters
 * `projectId` – (Optional) _String_, the ID of the Koji project to attach the keystore to.
-Defaults to the current projects ID.
+Defaults to the current project's ID.
 * `projectToken` – (Optional) _String_, the token of the Koji project to attach the keystore to.
-Defaults to the current projects token.
+Defaults to the current project's token.
 
 ==== Example
 
@@ -399,7 +399,7 @@ This is acquired from the VCC value of the secret type VCC.
 
 ==== Returns
 
-_String_, value of the secret VCC.
+(Async) _String_, value of the secret VCC.
 
 ==== Example
 
