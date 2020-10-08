@@ -22,11 +22,11 @@ npm install --save @withkoji/vcc
 
 == Start the watcher
 
-Reconfigure the `package.json` file to run the watcher (`koji-vcc watch`) concurrently with your development server.
+Reconfigure the `package.json` file to run the watcher (`koji-vcc watch`) concurrently with your development  server.
 You can use a package like npm-run-all.
 For example:
 
-include::../../docs/_includes/startWatcherPackageJSONReact.adoc[tags=*]
+include::../../docs/_includes/startWatcherPackage.adoc[tags=all;plain;!tabs]
 
 == InstantRemixing
 

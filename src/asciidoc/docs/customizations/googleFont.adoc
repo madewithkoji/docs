@@ -34,7 +34,7 @@ Adds a selector that supports all font families served by Google Fonts.
 
 === Implementation
 
-For examples of how to implement the Google Font VCC and the Web Font Loader library in your application, see the https://withkoji.com/templates/JamesHole/google-font-vcc/code[package documentation, window=_blank].
+For examples of how to implement the Google Font VCC and the Web Font Loader library in your application, see the https://withkoji.com/code/JamesHole/google-font-vcc[package documentation].
 
 == Custom selector VCC from API
 
@@ -43,4 +43,4 @@ To integrate simple APIs without touching the code, this VCC provides configurat
 
 NOTE: To use this VCC without modifying the code, the API must support passing the key via URL and must return a valid JSON object.
 
-For a complete list of configuration options, see the https://withkoji.com/templates/JamesHole/google-font-vcc/code[package documentation, window=_blank].
+For a complete list of configuration options, see the https://withkoji.com/code/JamesHole/google-font-vcc[package documentation].

@@ -26,7 +26,7 @@ See the second part of the tutorial.
 
 == Changing a custom value
 
-For the https://withkoji.com/templates/Svarog1389/element-match[Element Match] game, a new game title would be a simple change that is obvious to test.
+For the https://withkoji.com/~Svarog1389/element-match[Element Match] game, a new game title would be a simple change that is obvious to test.
 To change the title in the Koji editor, you would click *Customization > Game Settings* on the left side, which opens the Game Settings editor in Visual mode.
 This mode shows the visual controls that will enable non-technical users to customize your template when you have finished developing it.
 

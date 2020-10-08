@@ -32,10 +32,10 @@ Remix an existing web application on Koji that implements basic elements of your
 [.tabs,scope="lang"]
 --
 .React
-https://withkoji.com/templates/seane/simple-react-scaffold[Simple React scaffold]
+include::../_includes/starterScaffolds.adoc[tag=reactVccs]
 
 .Vanilla JS
-https://withkoji.com/templates/JamesHole/vanilla-js-scaffold[Vanilla JS scaffold]
+include::../_includes/starterScaffolds.adoc[tag=vanilla]
 --
 
 === Install the packages
@@ -200,8 +200,8 @@ To save development time, Koji provides an easy way to test a custom VCC before 
 . Click *Copy URL* to get the staging URL for your project.
 . Open another project to act as the "consumer" for testing the VCC.
 +
-TIP: If you don't have another project, you can create a test project by remixing the
-https://withkoji.com/templates/seane/simple-react-scaffold-remix-[Simple React Scaffold].
+TIP: If you don't have another project, you can create a test project by <<_remix_the_scaffold, remixing the
+scaffold>> again.
 . In your consumer project, open a JSON customization file, and add or edit a field to the custom VCC.
 +
 The type must match this format, using the URL you just copied as YOUR-URL:

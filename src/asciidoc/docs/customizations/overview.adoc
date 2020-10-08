@@ -30,8 +30,9 @@ The customization file defines the names, types, configuration options, and defa
         {
           "key":  "param", <8>
           "name":  "An Example Parameter", <9>
-          "type":  "image", <10>
-          "typeOptions": { <11>
+          "description": "My description of the parameter", <10>
+          "type":  "image", <11>
+          "typeOptions": { <12>
 
           }
         }
@@ -40,18 +41,21 @@ The customization file defines the names, types, configuration options, and defa
   ]
 }
 ----
-<1> Section that defines the scope and default values for customizable elements.
-<2> Section that defines how VCCs are displayed to remixers.
-<3> Scope used to access values in your template logic. Should match the filename.
-<4> Name displayed in the Koji editor for developers.
-<5> (Optional) Icon displayed in the Koji editor for developers.
-<6> Filename from which to obtain values. Should be the same file, in most cases.
-<7> Array of VCC definitions.
-<8> Key used to access the value in your template logic.
-<9> Display name of the element for remixers.
-<10> VCC type.
-<11> (Optional) Configuration options for the VCC. The available options vary by type.
-
+<1> `<__scope__>` – Section that defines the scope and default values for customizable elements.
+<2> `@@editor` – Section that defines how VCCs are displayed to remixers.
+<3> `key` – Scope used to access values in your template logic.
+Should match the filename.
+<4> `name` – Name displayed in the Koji editor for developers.
+<5> `icon` – (Optional) Icon displayed in the Koji editor for developers.
+<6> `source` – Filename from which to obtain values.
+Should be the same file, in most cases.
+<7> `fields` – Array of VCC definitions.
+<8> `key` – Key used to access the value in your template logic.
+<9> `name` – Display name of the element for remixers.
+<10> `description` – (Optional) Description of the element for remixers.
+<11> `type` – VCC type.
+<12> `typeOptions` – (Optional) Configuration options for the VCC.
+The available options vary by type.
 
 == VCC Types
 

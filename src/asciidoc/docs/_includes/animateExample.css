@@ -1,0 +1,10 @@
+.animate-example {
+      animation-name: example;
+      animation-duration: 4s;
+      animation-iteration-count: infinite;
+  }
+
+ @keyframes example {
+      from {background-color: tomato;}
+      to {background-color: white;}
+  }
