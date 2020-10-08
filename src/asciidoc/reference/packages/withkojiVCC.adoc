@@ -36,10 +36,6 @@ IMPORTANT: To empower casual users, implementing instant remixes for your templa
 
 To enable instant remixing for your Koji template, you must implement the `InstantRemixing` class and enable the `InstantRemixing` entitlement in the `.koji/project/entitlements.json` file.
 
-WARNING: The <<#.get, get()>> function will work before or after <<#.ready, ready()>> has been called.
-However, all the listeners should be set before calling `ready()`.
-The platform will queue any messages prior to calling `ready()` to wait for the listeners to be ready.
-
 .Entitlements
 [source,json]
 ----
@@ -243,6 +239,10 @@ instantRemixing.onValueChanged((path, newValue) => {
 === .ready()
 
 Indicates that the application is ready to start receiving events.
+
+WARNING: All the listeners should be set before calling `ready()`.
+The platform will queue any messages prior to calling `ready()` to wait for the listeners to be ready.
+However, the <<#.get>> function will work before or after `ready()` has been called.
 
 ==== Example
 
