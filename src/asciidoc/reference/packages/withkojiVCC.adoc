@@ -71,11 +71,15 @@ Gets initial values from Koji customization files or one of these predefined env
 
 ==== Parameters
 
-* `path` – Array of _Strings_, keys pointing to the desired VCC value.
+* `path` – Array of _Strings_, keys pointing to the desired VCC value or either `metadata` or `serviceMap`
 
 ==== Returns
 
 _Any_, value of the <<vcc-overview#_vcc_types,VCC type>> at the specified path.
+For the predefined environment values the following will be returned:
+
+`["metadata", "projectId"]`:: _String_, the unique identifier for the Koji project.
+`["serviceMap", "backend"]`:: _String_, url of the service specified in the second part of the path.
 
 ==== Example
 
