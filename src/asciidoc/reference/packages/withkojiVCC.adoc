@@ -184,7 +184,8 @@ Listens to changes in remix state to enable different template experiences durin
 * `handler` – _Function_, handles changes in remix state.
 Receives the following properties as inputs:
 ** `isRemixing` – _Boolean_, indicates whether the template is in remixing mode.
-** `editorAttributes` – _Object_, describes the current editor.
+** `editorAttributes` – _Object_, describes the current editor. Contains the following attributes:
+*** `type` – _String_, describes the current editor type, either `full` or `instant`.
 
 ==== Example
 
