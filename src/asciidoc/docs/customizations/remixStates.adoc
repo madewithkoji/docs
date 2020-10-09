@@ -1,0 +1,358 @@
+= Using remix states to expose customizations
+:page-slug: remix-states
+:page-description: Use remix states to improve the remix experience for templates with numerous customizations or distinct contexts.
+
+If a template uses remix states, the available states are displayed during remixing so that a user can switch between them.
+You might use remix states to target different aspects of the experience or to break up options into manageable chunks, when a template includes too many customizable elements to expose at one time.
+For example, in a game template, you might use different remix states to present the avatar options separate from the level options.
+
+To use remix states in your template, you must define the available states in the `.koji/customization/quickstart.json` file.
+Then, set up an `onSetCurrentState` listener to track the current remix state so that you can expose different customizations based on it.
+
+== Defining remix states
+
+The following example demonstrates how to set up two remix states, one to expose text options, and one to expose logo options.
+This example assumes you have already installed the @withkoji/vcc package, started the watcher, and implemented `InstantRemixing`.
+
+include::../_includes/starterExamples.adoc[tag=all]
+
+. In the `.koji/customization` folder, add a new file: `quickstart.json`.
+. Paste the following JSON code.
++
+This code defines two states that you can leverage when users are remixing the template.
++
+[source,json]
+----
+{
+   "quickstart": {
+        "states": [
+            { "key": "text", "label": "Edit text" },
+            { "key": "logo", "label": "Edit logo" }
+        ]
+    }
+}
+----
+
+== Tracking template state changes
+
+. In your application code, set the default remix state to `text`.
++
+[.tabs,scope="lang"]
+--
+.React
+====
+[.intro]
+In `App.js`, add a `templateState` property to the state.
+
+[source,JavaScript]
+----
+state = {
+   isRemixing: false,
+   logo: '',
+   templateState: 'text',
+   title: '',
+};
+----
+====
+
+.Vanilla JS
+====
+[.intro]
+In `index.js` file, add variables to track the remix state.
+
+[source,JavaScript]
+----
+var remixState = 'text';
+var remixing = false;
+----
+====
+
+.Angular
+====
+[.intro]
+In `app.component.ts`, add a `templateState` property.
+
+[source,JavaScript]
+templateState = 'text';
+
+====
+
+.Svelte
+====
+[.intro]
+In `App.svelte`, add a `templateState` property.
+
+[source,JavaScript]
+----
+let templateState = 'text';
+----
+====
+
+--
+
+. Use the `onSetCurrentState` method to update the remix state.
++
+[.tabs,scope="lang"]
+--
+.React
+====
+[.intro]
+In the `componentDidMount` method, add `onSetCurrentState`.
+
+[source,JavaScript]
+----
+...
+this.instantRemixing.onSetCurrentState((templateState) => {
+      this.setState({ templateState });
+    });
+
+// Alert Koji we are ready to use instantRemixing
+    this.instantRemixing.ready();
+...
+----
+====
+
+.Vanilla JS
+====
+[.intro]
+In the `onSetRemixing` listener, set the `remixing` value.
+Then, add `onSetCurrentState`.
+
+[source,JavaScript]
+----
+// Add a listener to handle state changes between remixing and not
+instantRemixing.onSetRemixing((isRemixing) => {
+  remixing = isRemixing;
+  if (isRemixing) {
+      startRemix();
+  } else {
+      stopRemix();
+  }
+});
+
+// Set current remixing state
+instantRemixing.onSetCurrentState((templateState) => {
+  remixState = templateState;
+  if (remixing) {
+    stopRemix();
+    startRemix();
+  }
+});
+----
+====
+
+.Angular
+====
+[.intro]
+In the `ngOnInit` method, add `onSetCurrentState`.
+
+[source,JavaScript]
+----
+...
+this.instantRemixing.onSetCurrentState((templateState) => {
+      this.templateState = templateState;
+    });
+
+// Alert Koji we are ready to use instantRemixing
+    this.instantRemixing.ready();
+...
+----
+====
+
+.Svelte
+====
+[.intro]
+In the `onMount` method, add `onSetCurrentState`.
+
+[source,JavaScript]
+----
+instantRemixing.onSetCurrentState((templateStateSet) => {
+      templateState = templateStateSet;
+    });
+
+// Alert Koji we are ready to use instantRemixing
+    instantRemixing.ready();
+...
+----
+====
+--
+
+== Adding conditional rendering based on remix state
+
+. Use the remix state to expose customizable elements and handle clicks on a conditional basis.
++
+[.tabs,scope="lang"]
+--
+.React
+====
+[.intro]
+Update the `render` method and the click handlers.
+
+[source,JavaScript]
+----
+...
+
+handleTitleClick = () => {
+  if (this.state.isRemixing && this.state.templateState === 'text') {
+    this.instantRemixing.onPresentControl(['settings', 'title']);
+  }
+};
+
+handleLogoClick = () => {
+  if (this.state.isRemixing && this.state.templateState === 'logo') {
+    this.instantRemixing.onPresentControl(['settings', 'logo']);
+  }
+};
+
+render() {
+  return (
+    <Container>
+      <H1
+        className={this.state.isRemixing && this.state.templateState === 'text' ? 'active' : ''}
+        fontSize={this.state.titleOptions.fontSize}
+        onClick={this.handleTitleClick} >{this.state.titleOptions.title}</H1>
+        <Image
+        className={this.state.isRemixing  && this.state.templateState === 'logo' ? 'active' : ''}
+        onClick={this.handleLogoClick}
+        src={this.optimizeURL(this.state.logo)} />
+    </Container>
+  );
+}
+----
+====
+
+.Vanilla JS
+====
+[.intro]
+Update the `startRemix` and `stopRemix` methods and the click handlers.
+
+[source,JavaScript]
+----
+// Modify elements to display state for remixing
+const startRemix = () => {
+    if (remixState === 'text') {
+      let titleElement = document.getElementById('title');
+      titleElement.classList.add('edit');
+    } else if (remixState === 'logo') {
+      let logoImage = document.getElementById('logo');
+      logoImage.classList.add('edit');
+    }
+
+};
+
+// Modify elements to display state for previewing
+const stopRemix = () => {
+    let titleElement = document.getElementById('title');
+    let logoImage = document.getElementById('logo');
+    titleElement.classList.remove('edit');
+    logoImage.classList.remove('edit');
+};
+
+...
+
+// Add click event listener to expose title VCC
+document.addEventListener('click', function (event) {
+    if (!event.target.matches('#title')) return;
+    if (remixState !== 'text') return;
+    event.preventDefault();
+
+    instantRemixing.onPresentControl(['settings', 'title']);
+});
+
+// Add click event listener to expose logo VCC
+document.addEventListener('click', function (event) {
+    if (!event.target.matches('#logo')) return;
+    if (remixState !== 'logo') return;
+    event.preventDefault();
+
+    instantRemixing.onPresentControl(['settings', 'logo']);
+});
+----
+====
+
+.Angular
+====
+[.intro]
+Update the click handlers and the editable elements.
+
+[.tabs]
+=====
+.app.component.ts
+[source,JavaScript]
+----
+handleTitleClick = () => {
+  if (this.isRemixing && this.templateState === 'text') {
+    this.instantRemixing.onPresentControl(['settings', 'title']);
+  }
+};
+
+handleLogoClick = () => {
+  if (this.isRemixing && this.templateState === 'logo') {
+    this.instantRemixing.onPresentControl(['settings', 'logo']);
+  }
+};
+----
+
+.app.component.html
+[source,JavaScript]
+----
+<div class="container" >
+  <h1
+  class="{{isRemixing && templateState === 'text' ? 'active' : ''}}"
+  style="fontSize: {{titleOptions.fontSize}}px;"
+  (click)="handleTitleClick()"
+  >
+  {{titleOptions.title}}
+  </h1>
+  <img
+    class="{{isRemixing && templateState === 'logo' ? 'active image' : 'image'}}"
+    (click)="handleLogoClick()"
+    src="{{optimizeURL(logo)}}"
+  />
+</div>
+----
+=====
+====
+
+.Svelte
+====
+[.intro]
+Update the remix view and the click handlers.
+
+[source,JavaScript]
+----
+...
+function editImage()
+  {
+    // This function calls Koji VCC editor to open for 'settings.logo'
+    if (isRemixing && templateState === 'logo') {
+     instantRemixing.onPresentControl(['settings', 'logo']);
+    }
+  }
+
+function editText()
+  {
+    // This function calls Koji VCC editor to open for 'settings.title'
+    if (isRemixing && templateState === 'text') {
+      instantRemixing.onPresentControl(['settings', 'title']);
+    }
+  }
+...
+
+<div class={isRemixing && templateState === 'logo' ? 'image remixing' : 'image'}
+  on:click={editImage}
+  style="background-image: url('{image + "?optimize=50"}');">
+</div>
+<h1 class={isRemixing && templateState === 'text' ? 'remixing' : ''}
+  on:click={editText} >
+  {title}</h1>
+----
+====
+
+--
+
+. To test the states, use the buttons at the bottom of the live preview to toggle between the *Edit Text* and *Edit Logo* states.
+
+== Related resources
+
+* <<withkoji-vcc-package#, @withkoji/vcc package reference>>

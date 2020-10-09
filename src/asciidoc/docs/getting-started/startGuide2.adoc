@@ -5,26 +5,20 @@
 In the first starter guide, you learned how to add basic customizable elements to a web application on Koji and then publish it as a Koji template.
 In this starter guide, part 2, you will continue working on the project that you created in the previous guide, and learn how to add the features required for a complete and compelling Koji template.
 
-You will use remix states to expose different elements of the template at different times during the remix experience.
+To provide a more exciting remix experience, you will add different types of customization options.
 You will implement support for autoplay features in the Koji feed.
-You will also implement good practices for the remix experience, including image optimization, improvements to remix usability, and loading experience enhancements.
-Then, you will publish the updated version of your template.
+You will also implement good practices for the template experience, including image optimization and loading experience enhancements.
+Then, you will publish an updated version of your template.
 
 == Prerequisites
 
 * Complete the <<start-guide-1#, first starter guide>>.
 * Open your starter guide project in the Koji editor.
 
-== Using remix states
-
-When a template includes many customizable elements, you can use remix states to break up the remixing experience into manageable chunks.
-Remix states are also helpful for specifically targeting different sections of the experience.
-For example, some of the customizable elements might be visible at different times, and you can use remix states to control when and how those elements are visible.
+== Adding different types of customizations
 
 In this example, you will first add the ability to customize the logo image in the template.
-Then, you will add two remix states, one to expose the text as editable, and one to expose the image as editable.
-
-=== Adding remix functionality to the image
+Then, you will add a customization for the font size of the title, and combine it with the text customization to compose a higher-order control.
 
 . Update the `.koji/customization/settings.json` file to add a `logo` key for the image.
 +
@@ -170,15 +164,14 @@ In `app.component.ts`, add a `logo` property, get the default state, update the 
 
 [source,JavaScript]
 ----
-class AppComponent implements OnInit {
-  isRemixing = false;
+export class AppComponent implements OnInit {
+  ...
   logo = '';
-  title = '';
 
   ngOnInit() {
     this.instantRemixing = new InstantRemixing();
 
-    // Set the default value for our title, logo, and isRemixing state
+    // Set the default values
     this.logo = this.instantRemixing.get(['settings', 'logo']);
     this.isRemixing = this.instantRemixing.isRemixing;
     this.title = this.instantRemixing.get(['settings', 'title']);
@@ -218,8 +211,6 @@ class AppComponent implements OnInit {
       this.instantRemixing.onPresentControl(['settings', 'logo']);
     }
   };
-
-  ...
 }
 ----
 ====
@@ -245,46 +236,48 @@ In `App.svelte`, add an `image` property, get the default value, update the `onV
 
     function editImage()
     {
-    // This function calls Koji VCC editor to open for 'settings.logo'
-    instantRemixing.onPresentControl(['settings', 'logo']);
+      // This function calls Koji VCC editor to open for 'settings.logo'
+      instantRemixing.onPresentControl(['settings', 'logo']);
     }
 
     function editText()
     {
-    // This function calls Koji VCC editor to open for 'settings.title'
-    instantRemixing.onPresentControl(['settings', 'title']);
+      // This function calls Koji VCC editor to open for 'settings.title'
+      instantRemixing.onPresentControl(['settings', 'title']);
     }
 
     onMount(() => {
-    instantRemixing = new InstantRemixing();
-    instantRemixing.ready();
+      instantRemixing = new InstantRemixing();
 
-    // Getting the current value for image and title
-    image = instantRemixing.get(['settings', 'logo']);
-    title = instantRemixing.get(['settings', 'title']);
+      // Getting the current value for image and title
+      image = instantRemixing.get(['settings', 'logo']);
+      title = instantRemixing.get(['settings', 'title']);
 
-    // Function which gets called when the VCC values change.
-    instantRemixing.onValueChanged((path, newValue) => {
-    if (path[0] && path[1])
-    {
-    if (path[0] === 'settings' && path[1] === 'title')
-    {
-    title = newValue;
-    }
-    if (path[0] === 'settings' && path[1] === 'logo')
-    {
-    image = newValue;
-    }
-    }
-    });
+      // Function which gets called when the VCC values change.
+      instantRemixing.onValueChanged((path, newValue) => {
+      if (path[0] && path[1])
+      {
+      if (path[0] === 'settings' && path[1] === 'title')
+      {
+      title = newValue;
+      }
+      if (path[0] === 'settings' && path[1] === 'logo')
+      {
+      image = newValue;
+      }
+      }
+      });
 
-    instantRemixing.onSetRemixing((isRemixingTrue) => {
-    // Checks if the Remix View
-    isRemixing = isRemixingTrue;
-    });
+      instantRemixing.onSetRemixing((isRemixingTrue) => {
+      // Checks if the Remix View
+      isRemixing = isRemixingTrue;
+      });
 
-    feed = new FeedSdk();
-    feed.load();
+      // Alert Koji we are ready to use instantRemixing
+      instantRemixing.ready();
+
+      feed = new FeedSdk();
+      feed.load();
     });
 </script>
 ...
@@ -336,7 +329,7 @@ Update the `app.component.html` file.
 
 [source,JavaScript]
 ----
-<div class="container" id="{{social ? 'socialSharePreview' : ''}}">
+<div class="container">
  <h1
    class="{{isRemixing ? 'active' : ''}}"
    (click)="handleTitleClick()"
@@ -344,7 +337,7 @@ Update the `app.component.html` file.
    {{title}}
  </h1>
  <img
-   class="{{isRemixing ? 'image active' : 'image'}}"
+   class="{{isRemixing ? 'active image' : 'image'}}"
    (click)="handleLogoClick()"
    src="{{logo}}"
  />
@@ -356,720 +349,17 @@ Update the `app.component.html` file.
 .Svelte
 [source,JavaScript]
 ----
-<!-- General Koji Apps -->
-{#if isRemixing}
-<!-- Remix View -->
-<div on:click={editImage} class="image remixing" style="background-image: url('{image}');"></div>
-<h1 on:click={editText} class="remixing">{title}</h1>
-{:else}
-<!-- Standard View -->
-<div class="image" style="background-image: url('{image}');"></div>
-<h1>{title}</h1>
-{/if}
-----
-
---
-
-=== Adding states
-
-. In the `.koji/customization` folder, add a new file: `quickstart.json`.
-. Paste the following JSON code.
-+
-This code defines two states that you can leverage when users are remixing the template.
-+
-[source,json]
-----
-{
-   "quickstart": {
-        "states": [
-            { "key": "text", "label": "Edit text" },
-            { "key": "logo", "label": "Edit logo" }
-        ]
-    }
-}
-----
-
-=== Tracking template state changes
-
-. In your application code, set the default remix state to `text`.
-+
-[.tabs,scope="lang"]
---
-.React
-====
-[.intro]
-In `App.js`, add a `templateState` property to the state.
-
-[source,JavaScript]
-----
-state = {
-   isRemixing: false,
-   logo: '',
-   templateState: 'text',
-   title: '',
-};
-----
-====
-
-.Vanilla JS
-====
-[.intro]
-In `index.js` file, add variables to track the remix state.
-
-[source,JavaScript]
-----
-var remixState = 'text';
-var remixing = false;
-----
-====
-
-.Angular
-====
-[.intro]
-In `app.component.ts`, add a `templateState` property.
-
-[source,JavaScript]
-templateState = 'text';
-
-====
-
-.Svelte
-====
-[.intro]
-In `App.svelte`, add a `templateState` property.
-
-[source,JavaScript]
-----
-let templateState = 'text';
-----
-====
-
---
-
-. Use the `onSetCurrentState` method to update the remix state.
-+
-[.tabs,scope="lang"]
---
-.React
-====
-[.intro]
-In the `componentDidMount` method, add `onSetCurrentState`.
-
-[source,JavaScript]
-----
-...
-this.instantRemixing.onSetCurrentState((templateState) => {
-      this.setState({ templateState });
-    });
-
-// Alert Koji we are ready to use instantRemixing
-    this.instantRemixing.ready();
-...
-----
-====
-
-.Vanilla JS
-====
-[.intro]
-In the `onSetRemixing` listener, set the `remixing` value.
-Then, add `onSetCurrentState`.
-
-[source,JavaScript]
-----
-// Add a listener to handle state changes between remixing and not
-instantRemixing.onSetRemixing((isRemixing) => {
-    remixing = isRemixing;
-    if (isRemixing) {
-        startRemix();
-    } else {
-        stopRemix();
-    }
-});
-
-// Set current remixing state
-instantRemixing.onSetCurrentState((templateState) => {
-  remixState = templateState;
-  if (remixing) {
-    stopRemix();
-    startRemix();
-  }
-});
-----
-====
-
-.Angular
-====
-[.intro]
-In the `ngOnInit` method, add `onSetCurrentState`.
-
-[source,JavaScript]
-----
-...
-this.instantRemixing.onSetCurrentState((templateState) => {
-      this.templateState = templateState;
-    });
-
-// Alert Koji we are ready to use instantRemixing
-    this.instantRemixing.ready();
-...
-----
-====
-
-.Svelte
-====
-[.intro]
-In the `onMount` method, add `onSetCurrentState`.
-
-[source,JavaScript]
-----
-instantRemixing.onSetCurrentState((templateStateSet) => {
-      templateState = templateStateSet;
-    });
-
-// Alert Koji we are ready to use instantRemixing
-    instantRemixing.ready();
-...
-----
-====
---
-
-=== Adding conditional rendering based on remix state
-
-. Update the application code to incorporate the remix state to expose which elements are editable and to handle clicks on a conditional basis.
-+
-[.tabs,scope="lang"]
---
-.React
-====
-[.intro]
-Update the `render` method and the click handlers.
-
-[source,JavaScript]
-----
-...
-
-handleTitleClick = () => {
-    if (this.state.isRemixing && this.state.templateState === 'text') {
-      this.instantRemixing.onPresentControl(['settings', 'title']);
-    }
-  };
-
-handleLogoClick = () => {
-  if (this.state.isRemixing && this.state.templateState === 'logo') {
-    this.instantRemixing.onPresentControl(['settings', 'logo']);
-  }
-};
-
-render() {
-  return (
-    <Container>
-      <h1
-        className={this.state.isRemixing && this.state.templateState === 'text' ? 'active' : ''}
-        onClick={this.handleTitleClick}
-      >
-        {this.state.title}
-      </h1>
-      <Image
-        className={this.state.isRemixing && this.state.templateState === 'logo' ? 'active' : ''}
-        onClick={this.handleLogoClick}
-        src={this.state.logo}
-      />
-    </Container>
-  );
-}
-----
-====
-
-.Vanilla JS
-====
-[.intro]
-Update the `startRemix` and `stopRemix` methods and the click handlers.
-
-[source,JavaScript]
-----
-// Modify elements to display state for remixing
-const startRemix = () => {
-    if (remixState === 'text') {
-      let titleElement = document.getElementById('title');
-      titleElement.classList.add('edit');
-    } else if (remixState === 'logo') {
-      let logoImage = document.getElementById('logo');
-      logoImage.classList.add('edit');
-    }
-
-};
-
-// Modify elements to display state for previewing
-const stopRemix = () => {
-    let titleElement = document.getElementById('title');
-    let logoImage = document.getElementById('logo');
-    titleElement.classList.remove('edit');
-    logoImage.classList.remove('edit');
-};
-
-...
-
-// Add click event listener to expose title VCC
-document.addEventListener('click', function (event) {
-    if (!event.target.matches('#title')) return;
-    if (remixState !== 'text') return;
-    event.preventDefault();
-
-    instantRemixing.onPresentControl(['settings', 'title']);
-});
-
-// Add click event listener to expose logo VCC
-document.addEventListener('click', function (event) {
-    if (!event.target.matches('#logo')) return;
-    if (remixState !== 'logo') return;
-    event.preventDefault();
-
-    instantRemixing.onPresentControl(['settings', 'logo']);
-});
-----
-====
-
-.Angular
-====
-[.intro]
-Update the click handlers and the editable elements.
-
-[.tabs]
-=====
-.app.component.ts
-[source,JavaScript]
-----
-handleTitleClick = () => {
-  if (this.isRemixing && this.templateState === 'text') {
-    this.instantRemixing.onPresentControl(['settings', 'title']);
-  }
-};
-
-handleLogoClick = () => {
-  if (this.isRemixing && this.templateState === 'logo') {
-    this.instantRemixing.onPresentControl(['settings', 'logo']);
-  }
-};
-----
-
-.app.component.html
-[source,JavaScript]
-----
-<div class="container" >
-    <h1
-      class="{{isRemixing && templateState === 'text' ? 'active' : ''}}"
-      (click)="handleTitleClick()"
-    >
-      {{title}}
-    </h1>
-    <img
-      class="{{isRemixing && templateState === 'logo' ? 'active image' : 'image'}}"
-      (click)="handleLogoClick()"
-      src="{{logo}}"
-    />
-</div>
-----
-=====
-====
-
-.Svelte
-====
-[.intro]
-Update the remix view and the click handlers.
-
-[source,JavaScript]
-----
-...
-function editImage()
-  {
-    // This function calls Koji VCC editor to open for 'settings.logo'
-    if (isRemixing && templateState === 'logo') {
-     instantRemixing.onPresentControl(['settings', 'logo']);
-    }
-  }
-
-function editText()
-  {
-    // This function calls Koji VCC editor to open for 'settings.title'
-    if (isRemixing && templateState === 'text') {
-        instantRemixing.onPresentControl(['settings', 'title']);
-    }
-  }
-...
-
-<div class={isRemixing && templateState === 'logo' ? 'image remixing' : 'image'}
+<div class={isRemixing ? 'image remixing' : 'image'}
   on:click={editImage}
-  style="background-image: url('{image + "?optimize=50"}');"></div>
-  <h1 class={isRemixing && templateState === 'text' ? 'remixing' : ''}
+  style="background-image: url('{image}');"></div>
+<h1 class={isRemixing ? 'remixing' : ''}
   on:click={editText} >
   {title}</h1>
 ----
-====
 
 --
 
-. To test the states, use the buttons at the bottom of the live preview to toggle between the *Edit Text* and *Edit Logo* states.
-
-== Reacting to feed state changes
-
-When users are browsing the Koji feed, they can swipe up and down through the content.
-To optimize the user’s experience, Koji preloads content so that, ideally, any resources required to display a template in the feed have already loaded by the time the user swipes the template into view.
-
-To ensure your template is displayed correctly, you use the FeedSdk from the @withkoji/vcc package.
-For all templates, you must enable the FeedEvents entitlement and call the `load` method in the template to ensure it is preloaded correctly in the feed.
-For templates that include autoplay features, such as slideshows or interactions, you might also monitor visibility in the feed so that you can play the feature when the user swipes the template into view and stop it when the template isn’t in view.
-
-. Use the `onPlaybackStateChanged` method to monitor the feed for real-time updates as the template enters and leaves focus.
-+
-[.tabs,scope="lang"]
---
-.React
-====
-[.intro]
-Add an `isPlaying` state property and an `onPlaybackStateChanged` listener.
-
-[source,JavaScript]
-----
-state = {
-  isPlaying: false,
-  isRemixing: false,
-  logo: '',
-  templateState: 'text',
-  title: '',
-};
-
-componentDidMount() {
-  ...
-
-  this.feed = new FeedSdk();
-  this.feed.load();
-  // Toggle the isPlaying state based on the listener
-  this.feed.onPlaybackStateChanged((isPlaying) => {
-    this.setState({ isPlaying });
-  });
-}
-----
-====
-
-.Vanilla JS
-====
-[.intro]
-Add an `onPlaybackStateChanged` listener that modifies the class on the title element.
-
-[source,JavaScript]
-----
-// Add feed event listener to modify title class
-feed.onPlaybackStateChanged((isPlaying) => {
-  let titleElement = document.getElementById('title');
-  if (isPlaying) {
-    titleElement.classList.add('animate');
-  } else {
-    titleElement.classList.remove('animate');
-  }
-});
-----
-====
-
-.Angular
-====
-[.intro]
-Add an `isPlaying` property and an `onPlaybackStateChanged` listener.
-
-[source,JavaScript]
-----
-isPlaying = false;
-isRemixing = false;
-logo = '';
-templateState = 'text';
-title = '';
-
-ngOnInit() {
-  ...
-
-  this.feed = new FeedSdk();
-  this.feed.load();
-  // Toggle the isPlaying state based on the listener
-  this.feed.onPlaybackStateChanged((isPlaying) => {
-    this.isPlaying = isPlaying;
-  });
-}
-----
-====
-
-.Svelte
-====
-[.intro]
-Add an `isPlaying` property and an `onPlaybackStateChanged` listener.
-
-[source,JavaScript]
-----
-let isPlaying = false;
-
-onMount(() => {
-    ...
-
-    feed = new FeedSdk();
-    feed.load();
-    feed.onPlaybackStateChanged((isPlayingTrue) => {
-        isPlaying = isPlayingTrue;
-    });
-});
-----
-====
-
---
-
-. Add a CSS animation to the template.
-+
-[.tabs,scope="lang"]
---
-.React
-====
-[.intro]
-In `frontend/common/index.html`, add this code in the `head` element.
-
-[source,CSS]
-----
-include::../_includes/animateExample.css[]
-----
-====
-
-.Vanilla JS
-====
-[.intro]
-In `styles.css`, add this code.
-
-[source,CSS]
-----
-include::../_includes/animateExample.css[]
-----
-====
-
-.Angular
-====
-[.intro]
-In `frontend/src/app/app.component.scss`, add this code.
-
-[source,CSS]
-----
-include::../_includes/animateExample.css[]
-----
-====
-
-.Svelte
-====
-[.intro]
-In `src/index.html`, add this code in the `head` element.
-
-[source,CSS]
-----
-include::../_includes/animateExample.css[]
-----
-====
-
---
-
-. Update the template with dynamic styling that starts the animation when the template is in view.
-+
-[.tabs,scope="lang"]
---
-.React
-====
-[.intro]
-In `App.js`, update the `div` element with a dynamic `className`.
-
-[source,JavaScript]
-----
-<Container className={this.state.isPlaying ? 'animate-example' : ''}>
-  <h1
-    className={this.state.isRemixing && this.state.templateState == 'text' ? 'active' : ''}
-    onClick={this.handleTitleClick}
-  >
-    {this.state.title}
-  </h1>
-  <Image
-    className={this.state.isRemixing && this.state.templateState == 'logo' ? 'active' : ''}
-    onClick={this.handleLogoClick}
-    src={this.state.logo}
-  />
-</Container>
-----
-====
-
-.Vanilla JS
-[.intro]
-Not needed
-
-.Angular
-====
-[.intro]
-In `app.component.html`, update the `div` element with a dynamic `class`.
-
-[source,JavaScript]
-----
-<div class="{{isPlaying ? 'animate-example container' : 'container'}}">
-  <h1
-    class="{{isRemixing && templateState === 'text' ? 'active' : ''}}"
-   (click)="handleTitleClick()"
-  >
-    {{title}}
-  </h1>
-  <img
-    class="{{isRemixing && templateState === 'logo' ? 'active image' : 'image'}}"
-    (click)="handleLogoClick()"
-    src="{{logo}}"
-  />
-</div>
-----
-====
-
-.Svelte
-====
-[.intro]
-In `App.svelte`, add a conditional statement.
-
-[source,JavaScript]
-----
-...
-{#if isPlaying}
-    <div class="image animate-example" style="background-image: url('{image + "?optimize=50"}');"></div>
-	<h1>{title}</h1>
-{:else}
-    <div class={isRemixing && templateState === 'logo' ? 'image remixing' : 'image'}
-    on:click={editImage}
-    style="background-image: url('{image + "?optimize=50"}');"></div>
-    <h1 class={isRemixing && templateState === 'text' ? 'remixing' : ''}
-    on:click={editText} >
-    {title}</h1>
-{/if}
-...
-----
-====
-
---
-+
-{blank}
-+
-TIP: To test autoplay features, you can open a published template and append `?feedDebug=true` to the URL.
-The template is loaded in the feed 10 times, and you can swipe or scroll through to ensure the animation starts and stops as expected.
-
-== Providing a good remix experience
-
-As a developer, you can take additional steps to create a better remix experience for users.
-In this example, you will use the https://docs.fastly.com/api/imageopto/[Fastly API] to optimize the size of the image while maintaining the correct aspect ratio.
-Then, you will add features that improve the VCC usability and the loading experience for users.
-
-=== Optimizing images
-
-. Add a method that appends Fastly query parameters to the image source.
-+
-This example uses the `width` and `height` parameters to define the size of the region where the image is displayed, the `fit` parameter to resize the image so it fits entirely within the `bounds` of the specified region, and the `optimize` parameter to compress the image size while preserving the visual quality.
-+
-[.tabs,scope="lang"]
---
-.React
-[source,JavaScript]
-----
-optimizeURL = url => `${url}?fit=bounds&width=${window.innerWidth/2}&
-  height=${window.innerHeight/2}&optimize=medium`;
-----
-
-.Vanilla JS
-[source,JavaScript]
-----
-const optimizeURL = url => `${url}?fit=bounds&width=${window.innerWidth/2}&height=${window.innerHeight/2}&optimize=medium`;
-----
-
-.Angular
-[source,JavaScript]
-----
-optimizeURL = url => `${url}?fit=bounds&width=${window.innerWidth/2}&height=${window.innerHeight/2}&optimize=medium`;
-----
-
-.Svelte
-[source,JavaScript]
-----
-function optimizeURL(url)
-    {
-        url += '?fit=bounds&width=${window.innerWidth/2}&height=${window.innerHeight/2}&optimize=medium';
-        return url;
-    }
-----
-
---
-
-. Update the image `src` to use the optimized image.
-+
-[.tabs,scope="lang"]
---
-.React
-[source,JavaScript]
-----
-render() {
-   return (
-     <Container className={this.state.isPlaying ? 'animate-example' : ''} >
-       <h1
-       className={this.state.isRemixing && this.state.templateState === 'text' ? 'active' : ''}
-       onClick={this.handleTitleClick}>{this.state.title}</h1>
-       <Image
-       className={this.state.isRemixing && this.state.templateState === 'logo' ? 'active' : ''}
-       onClick={this.handleLogoClick}
-       src={this.optimizeURL(this.state.logo)} />
-     </Container>
-   );
- }
-}
-----
-
-.Vanilla JS
-[source,JavaScript]
-----
-...
-<img id="logo" src="${optimizeURL(logo)}"/>
-...
-----
-
-.Angular
-[source,JavaScript]
-----
-<div class="{{isPlaying ? 'animate-example container' : 'container'}}">
-  <h1
-    class="{{isRemixing && templateState === 'text' ? 'active' : ''}}"
-   (click)="handleTitleClick()"
-  >
-    {{title}}
-  </h1>
-  <img
-    class="{{isRemixing && templateState === 'logo' ? 'active image' : 'image'}}"
-    (click)="handleLogoClick()"
-    src="{{optimizeURL(logo)}}"
-  />
-</div>
-----
-
-.Svelte
-[source,JavaScript]
-----
-...
-{#if isPlaying}
-    <div class="image animate-example" style="background-image: url('{optimizeURL(image)}');"></div>
-	<h1>{title}</h1>
-{:else}
-    <div class={isRemixing && templateState === 'logo' ? 'image remixing' : 'image'}
-    on:click={editImage}
-    style="background-image: url('{optimizeURL(image)}');"></div>
-    <h1 class={isRemixing && templateState === 'text' ? 'remixing' : ''}
-    on:click={editText} >
-    {title}</h1>
-{/if}
-...
-----
-
---
-
-=== Improving remix usability
-
-. Add a `titleOptions` object that includes the existing text VCC (`title`) as well as a new range VCC (`fontSize`).
+. In the `.koji/customization/settings.json` file, add a `titleOptions` object that includes the existing text VCC (`title`) as well as a new range VCC (`fontSize`).
 +
 The range VCC will enable users to specify the font size quickly, while enforcing sensible minimum and maximum values.
 +
@@ -1136,36 +426,35 @@ In `App.js`, update the state properties, get the default state, and update the 
 [source,JavaScript]
 ----
 state = {
-       isPlaying: false,
-       isRemixing: false,
-       logo: '',
-       templateState: 'text', // Our default template state
-       titleOptions: {
-           title: '',
-           fontSize: 10,
-       },
-   };
+  isRemixing: false,
+  logo: '',
+  titleOptions: {
+    title: '',
+    fontSize: 10,
+  },
+};
 ...
 
 this.setState({
+  ...
   titleOptions: this.instantRemixing.get(['settings', 'titleOptions']),
   ...
 });
 ...
 
 this.instantRemixing.onValueChanged((path, newValue) => {
-    if (path[0] && path[1] && path[0] === 'settings' && path[1] === 'titleOptions') {
-      this.setState({ titleOptions: newValue });
-    }
-    ...
-  });
+  if (path[0] && path[1] && path[0] === 'settings' && path[1] === 'titleOptions') {
+    this.setState({ titleOptions: newValue });
+  }
+  ...
+});
 ...
 
 handleTitleClick = () => {
-       if (this.state.isRemixing && this.state.templateState === 'text') {
-           this.instantRemixing.onPresentControl(['settings', 'titleOptions']);
-       }
-   };
+  if (this.state.isRemixing) {
+    this.instantRemixing.onPresentControl(['settings', 'titleOptions']);
+  }
+};
 ----
 ====
 
@@ -1181,11 +470,11 @@ instantRemixing.onValueChanged((path, newValue) => {
     if (path[0] && path[0] === 'settings' && path[1] && path[1] === 'titleOptions') {
         let titleElement = document.getElementById('title');
         titleElement.textContent = newValue.title;
-        titleElement.style.fontSize = newValue.fontSize+"px";
+        titleElement.style.fontSize = newValue.fontSize+'px';
     }
     if (path[0] && path[0] === 'settings' && path[1] && path[1] === 'logo') {
         let logoImage = document.getElementById('logo');
-        logoImage.src = optimizeURL(newValue);
+        logoImage.src = newValue;
     }
 });
 ...
@@ -1193,7 +482,6 @@ instantRemixing.onValueChanged((path, newValue) => {
 // Add click event listener to expose title VCC
 document.addEventListener('click', function (event) {
     if (!event.target.matches('#title')) return;
-    if (remixState !== 'text') return;
     event.preventDefault();
 
     instantRemixing.onPresentControl(['settings', 'titleOptions']);
@@ -1208,33 +496,29 @@ In `app.component.ts`, update the default state, and update the `onValueChanged`
 
 [source,JavaScript]
 ----
-isPlaying = false;
-        isRemixing = false;
-        logo = '';
-        templateState: 'text'; // Our default template state
-        titleOptions: {
-            title: '',
-            fontSize: 20,
-        };
-  ...
+...
+logo = '';
+titleOptions: {
+  title: '',
+  fontSize: 20,
+};
+...
 
-  this.titleOptions = this.instantRemixing.get(['settings', 'titleOptions']);
-  ...
+this.titleOptions = this.instantRemixing.get(['settings', 'titleOptions']);
+...
 
-  this.instantRemixing.onValueChanged((path, newValue) => {
-       if (path[0] && path[1] && path[0] === 'settings' && path[1] === 'titleOptions') {
-         this.titleOptions = newValue;
-       }
-       ...
-     });
+this.instantRemixing.onValueChanged((path, newValue) => {
+  if (path[0] && path[1] && path[0] === 'settings' && path[1] === 'titleOptions') {
+    this.titleOptions = newValue;
+  }
   ...
+});
+...
 
-  handleTitleClick = () => {
-          if (isRemixing && templateState === 'text') {
-              this.instantRemixing.onPresentControl(['settings', 'titleOptions']);
-          }
-      };
-  ...
+handleTitleClick = () => {
+  if (this.isRemixing) {
+    this.instantRemixing.onPresentControl(['settings', 'titleOptions']);
+  }
 };
 ----
 ====
@@ -1252,23 +536,27 @@ let titleOptions = {title:'', fontSize:10};
 function editText()
     {
     // This function calls Koji VCC editor to open for 'settings.titleOptions'
-    if (isRemixing && templateState === 'text') {
-        instantRemixing.onPresentControl(['settings', 'titleOptions']);
+    if (isRemixing) {
+      instantRemixing.onPresentControl(['settings', 'titleOptions']);
     }
     }
 ...
 titleOptions = instantRemixing.get(['settings', 'titleOptions']);
 ...
 
- instantRemixing.onValueChanged((path, newValue) => {
-     if (path[0] && path[1] && path[0] === 'settings' && path[1] === 'titleOptions') {
-       titleOptions = newValue;
-     }
-     ...
+instantRemixing.onValueChanged((path, newValue) => {
+    if (path[0] && path[1])
+    {
+    if (path[0] === 'settings' && path[1] === 'titleOptions')
+    {
+    titleOptions = newValue;
+    }
+  ...}
 });
 ...
 ----
 ====
+
 --
 
 . Update the display to use the dynamic `fontSize` and the new object structure.
@@ -1290,11 +578,12 @@ const H1 = styled.h1`
 
 render() {
 ...
-   <H1
-    className={this.state.isRemixing && this.state.templateState === 'text' ? 'active' : ''}
+  <H1
+    className={this.state.isRemixing ? 'active' : ''}
     fontSize={this.state.titleOptions.fontSize}
     onClick={this.handleTitleClick}>
-    {this.state.titleOptions.title}</H1>
+    {this.state.titleOptions.title}
+  </H1>
 ...}
 ----
 ====
@@ -1324,10 +613,9 @@ In `app.component.html`, add an inline style to the `h1` element and use the new
 [source,JavaScript]
 ----
 <h1
- class="{{isRemixing && templateState === 'text' ? 'active' : ''}}"
+ class="{{isRemixing ? 'active' : ''}}"
  style="fontSize: {{titleOptions.fontSize}}px;"
- (click)="handleTitleClick()"
->
+ (click)="handleTitleClick()">
  {{titleOptions.title}}
 </h1>
 ----
@@ -1341,14 +629,251 @@ In `App.svelte`, update the display to use the new object and style.
 
 [source,JavaScript]
 ----
+
+<div class={isRemixing ? 'image remixing' : 'image'}
+  on:click={editImage}
+  style="background-image: url('{image}');"></div>
+<h1 class={isRemixing ? 'remixing' : ''}
+style='font-size: {titleOptions.fontSize}px'
+on:click={editText} >
+{titleOptions.title}</h1>
+----
+====
+
+--
+
+== Reacting to feed state changes
+
+When users are browsing the Koji feed, they can swipe up and down through the content.
+To optimize the user’s experience, Koji preloads content so that, ideally, any resources required to display a template in the feed have already loaded by the time the user swipes the template into view.
+
+To ensure your template is displayed correctly, you use the FeedSdk from the @withkoji/vcc package.
+For all templates, you must enable the FeedEvents entitlement and call the `load` method in the template to ensure it is preloaded correctly in the feed.
+For templates that include autoplay features, such as slideshows or interactions, you might also monitor visibility in the feed so that you can play the feature when the user swipes the template into view and stop it when the template isn’t in view.
+
+. Use the `onPlaybackStateChanged` method to monitor the feed for real-time updates as the template enters and leaves focus.
++
+[.tabs,scope="lang"]
+--
+.React
+====
+[.intro]
+Add an `isPlaying` state property and an `onPlaybackStateChanged` listener.
+
+[source,JavaScript]
+----
+state = {
+  isPlaying: false,
+  isRemixing: false,
+  logo: '',
+  titleOptions: {
+    title: '',
+    fontSize: 10,
+  },
+};
+
+componentDidMount() {
+  ...
+
+  this.feed = new FeedSdk();
+  this.feed.load();
+  // Toggle the isPlaying state based on the listener
+  this.feed.onPlaybackStateChanged((isPlaying) => {
+    this.setState({ isPlaying });
+  });
+}
+----
+====
+
+.Vanilla JS
+====
+[.intro]
+Add an `onPlaybackStateChanged` listener that modifies the class on the title element.
+
+[source,JavaScript]
+----
+var feed = new FeedSdk();
+feed.load();
+
+// Add feed event listener to modify title class
+feed.onPlaybackStateChanged((isPlaying) => {
+  let titleElement = document.getElementById('title');
+  if (isPlaying) {
+    titleElement.classList.add('animate');
+  } else {
+    titleElement.classList.remove('animate');
+  }
+});
+----
+====
+
+.Angular
+====
+[.intro]
+Add an `isPlaying` property and an `onPlaybackStateChanged` listener.
+
+[source,JavaScript]
+----
+...
+isPlaying = false;
+
+ngOnInit() {
+  ...
+
+  this.feed = new FeedSdk();
+  this.feed.load();
+  // Toggle the isPlaying state based on the listener
+  this.feed.onPlaybackStateChanged((isPlaying) => {
+    this.isPlaying = isPlaying;
+  });
+}
+----
+====
+
+.Svelte
+====
+[.intro]
+Add an `isPlaying` property and an `onPlaybackStateChanged` listener.
+
+[source,JavaScript]
+----
+let isPlaying = false;
+
+onMount(() => {
+  ...
+
+  feed = new FeedSdk();
+  feed.load();
+  feed.onPlaybackStateChanged((isPlayingTrue) => {
+    isPlaying = isPlayingTrue;
+  });
+});
+----
+====
+
+--
+
+. Add a CSS animation to the template.
++
+[.tabs,scope="lang"]
+--
+.React
+====
+[.intro]
+In `frontend/common/index.html`, add this code in the `style` element.
+
+[source,CSS]
+----
+include::../_includes/animateExample.css[]
+----
+====
+
+.Vanilla JS
+====
+[.intro]
+In `styles.css`, add this code.
+
+[source,CSS]
+----
+include::../_includes/animateExample.css[]
+----
+====
+
+.Angular
+====
+[.intro]
+In `frontend/src/app/app.component.scss`, add this code.
+
+[source,CSS]
+----
+include::../_includes/animateExample.css[]
+----
+====
+
+.Svelte
+====
+[.intro]
+In `src/index.html`, add this code in the `head` element.
+
+[source,CSS]
+----
+<style>
+include::../_includes/animateExample.css[indent=1]
+</style>
+----
+====
+
+--
+
+. Update the template with dynamic styling that starts the animation when the template is in view.
++
+[.tabs,scope="lang"]
+--
+.React
+====
+[.intro]
+In `App.js`, update the `div` element with a dynamic `className`.
+
+[source,JavaScript]
+----
+<Container className={this.state.isPlaying ? 'animate-example' : ''}>
+  <H1
+    className={this.state.isRemixing ? 'active' : ''}
+    fontSize={this.state.titleOptions.fontSize}
+    onClick={this.handleTitleClick}>
+    {this.state.titleOptions.title}
+  </H1>
+  <Image
+    className={this.state.isRemixing ? 'active' : ''}
+    onClick={this.handleLogoClick}
+    src={this.state.logo}
+  />
+</Container>
+----
+====
+
+.Vanilla JS
+[.intro]
+Not needed
+
+.Angular
+====
+[.intro]
+In `app.component.html`, update the `div` element with a dynamic `class`.
+
+[source,JavaScript]
+----
+<div class="{{isPlaying ? 'animate-example container' : 'container'}}">
+  <h1
+    class="{{isRemixing ? 'active' : ''}}"
+    style="fontSize: {{titleOptions.fontSize}}px;"
+    (click)="handleTitleClick()">
+    {{titleOptions.title}}
+  </h1>
+  <img
+    class="{{isRemixing ? 'active image' : 'image'}}"
+    (click)="handleLogoClick()"
+    src="{{logo}}"
+  />
+</div>
+----
+====
+
+.Svelte
+====
+[.intro]
+In `App.svelte`, add a conditional statement.
+
+[source,JavaScript]
+----
 {#if isPlaying}
-    <div class="image animate-example" style="background-image: url('{optimizeURL(image)}');"></div>
+    <div class="image animate-example" style="background-image: url('{image}');"></div>
 	<h1 style='font-size: {titleOptions.fontSize}px'>{titleOptions.title}</h1>
 {:else}
-    <div class={isRemixing && templateState === 'logo' ? 'image remixing' : 'image'}
+    <div class={isRemixing ? 'image remixing' : 'image'}
     on:click={editImage}
-    style="background-image: url('{optimizeURL(image)}');"></div>
-    <h1 class={isRemixing && templateState === 'text' ? 'remixing' : ''}
+    style="background-image: url('{image}');"></div>
+    <h1 class={isRemixing ? 'remixing' : ''}
     style='font-size: {titleOptions.fontSize}px'
     on:click={editText} >
     {titleOptions.title}</h1>
@@ -1357,12 +882,123 @@ In `App.svelte`, update the display to use the new object and style.
 ====
 
 --
++
+{blank}
++
+TIP: To test autoplay features, you can open a published template and append `?feedDebug=true` to the URL.
+The template is loaded in the feed 10 times, and you can swipe or scroll through to ensure the animation starts and stops as expected.
 
-=== Improving the template loading experience
+== Optimizing images
+
+When developing Koji templates, you can use the https://docs.fastly.com/api/imageopto/[Fastly API] to optimize the size of an image while maintaining the correct aspect ratio.
+In this example, you will use the following Fastly parameters:
+
+* `width` and `height` – Defines the size of the region where the image is displayed.
+* `fit` – Resizes the image so it fits entirely within the `bounds` of the specified region.
+* `optimize` – Compresses the image size while preserving the visual quality.
+
+To optimize the user-selected image in your template:
+
+. Add a method that appends Fastly query parameters to the image source.
++
+[.tabs,scope="lang"]
+--
+.React
+[source,JavaScript]
+----
+optimizeURL = url => `${url}?fit=bounds&width=${window.innerWidth/2}&
+  height=${window.innerHeight/2}&optimize=medium`;
+----
+
+.Vanilla JS
+[source,JavaScript]
+----
+const optimizeURL = url => `${url}?fit=bounds&width=${window.innerWidth}&height=${window.innerHeight}&optimize=medium`;
+----
+
+.Angular
+[source,JavaScript]
+----
+optimizeURL = url => `${url}?fit=bounds&width=${window.innerWidth/2}&height=${window.innerHeight/2}&optimize=medium`;
+----
+
+.Svelte
+[source,JavaScript]
+----
+function optimizeURL(url)
+  {
+    url += '?fit=bounds&width=${window.innerWidth/2}&height=${window.innerHeight/2}&optimize=medium';
+    return url;
+  }
+----
+
+--
+
+. Update the image `src` to use the optimized image.
++
+[.tabs,scope="lang"]
+--
+.React
+[source,JavaScript]
+----
+<Image
+className={this.state.isRemixing ? 'active' : ''}
+onClick={this.handleLogoClick}
+src={this.optimizeURL(this.state.logo)} />
+----
+
+.Vanilla JS
+[source,JavaScript]
+----
+<img id="logo" src="${optimizeURL(logo)}"/>
+----
+
+.Angular
+====
+[.intro]
+Update `app.component.html`.
+
+[source,JavaScript]
+----
+<img
+  class="{{isRemixing ? 'active image' : 'image'}}"
+  (click)="handleLogoClick()"
+  src="{{optimizeURL(logo)}}"
+/>
+----
+====
+
+.Svelte
+[source,JavaScript]
+----
+{#if isPlaying}
+  <div class="image animate-example" style="background-image: url('{optimizeURL(image)}');"></div>
+	<h1 style='font-size: {titleOptions.fontSize}px'>{titleOptions.title}</h1>
+{:else}
+  <div class={isRemixing ? 'image remixing' : 'image'}
+  on:click={editImage}
+  style="background-image: url('{optimizeURL(image)}');"></div>
+  <h1 class={isRemixing ? 'remixing' : ''}
+  style='font-size: {titleOptions.fontSize}px'
+  on:click={editText} >
+  {titleOptions.title}</h1>
+{/if}
+----
+
+--
+
+== Improving the template loading experience
+
+This example demonstrates the following best practices to ensure that your template provides a good loading experience.
+
+* Wait for content to load before displaying the template, for a coordinated start to the experience.
+* If loading is delayed, display a standard loading indicator.
+* Consider using an animation effect to improve the visual transition from the loading indicator to loaded content.
+
+TIP: *For Svelte developers*: Because Svelte is a compile-time framework, the loading experience and starting transitions are handled without additional code in this example.
+If you switch to a different framework, be sure to implement these additional steps.
 
 . Update your application code to display the template after all images have been preloaded.
-+
-Waiting for content to load before displaying the template will ensure a coordinated start to the experience.
 +
 [.tabs,scope="lang"]
 --
@@ -1377,7 +1013,6 @@ state = {
   isPlaying: false,
   isRemixing: false,
   logo: '',
-  templateState: 'text', // Our default template state
   titleOptions: {
     title: '',
     fontSize: 10,
@@ -1387,8 +1022,6 @@ state = {
 
 componentDidMount() {
 ...
-  // Alert Koji we are ready to use instantRemixing
-  this.instantRemixing.ready();
 
   // Preload images
   const preloadImages = async () => {
@@ -1417,10 +1050,15 @@ componentDidMount() {
 .Vanilla JS
 ====
 [.intro]
-In `index.js`, add an `imagesLoaded` variable, and then add a `preload` function that calls `render` when loading is completed. Replace the call to `render` with `preload`.
+In `index.js`, add a `remixing` variable, and update `onSetRemixing` to set it.
+Add an `imagesLoaded` variable, and add a `preload` function that calls `render` after loading images.
+Replace the call to `render` with `preload`.
 
 [source,JavaScript]
 ----
+var remixing = false;
+...
+
 // Preload images before calling render
 var imagesLoaded;
 const preload = () => {
@@ -1442,6 +1080,12 @@ const preload = () => {
 };
 ...
 
+instantRemixing.onSetRemixing((isRemixing) => {
+  remixing = isRemixing;
+  ...
+});
+...
+
 preload();
 ----
 <1> If you need to preload more images as your application expands, you can append them to this array.
@@ -1454,21 +1098,12 @@ In `app.component.ts`, add an `imagesLoaded` class property, and then add a func
 
 [source,JavaScript]
 ----
-isPlaying = false;
-isRemixing = false;
-logo = '';
-templateState = 'text'; // Our default template state
-titleOptions = {
-  title: '',
-  fontSize: 10,
-};
+...
 imagesLoaded = false;
 
 ngOnInit() {
 ...
-  // Alert Koji we are ready to use instantRemixing
-  this.instantRemixing.ready();
-...
+
   // Preload images
   const preloadImages = async () => {
     const promises = [];
@@ -1520,7 +1155,7 @@ For more information, see the https://github.com/anderjason/skytree-koji[package
 .Angular
 ====
 [source,bash]
-npm install --save @angular/material
+npm install --save @angular/material @angular/cdk
 
 TIP: This package provides functionality for Angular applications.
 For more information, see the https://material.angular.io/components/progress-spinner/examples[package documentation].
@@ -1540,6 +1175,10 @@ This example uses the https://www.react-reveal.com/[React Reveal] library.
 [source,bash]
 npm install react-reveal --save
 ====
+
+.Vanilla JS
+[.intro]
+Not applicable
 
 .Angular
 ====
@@ -1598,8 +1237,6 @@ In `app.module.ts`, import `MatProgressSpinnerModule` from @angular/material and
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
-...
-
 @NgModule({
   declarations: [AppComponent],
   imports: [
@@ -1633,11 +1270,11 @@ render() {
       <Container className={this.state.isPlaying ? 'animate-example' : ''}>
         <Fade top cascade>
         <H1
-        className={this.state.isRemixing && this.state.templateState === 'text' ? 'active' : ''}
+        className={this.state.isRemixing ? 'active' : ''}
         fontSize={this.state.titleOptions.fontSize}
         onClick={this.handleTitleClick} >{this.state.titleOptions.title}</H1>
         <Image
-        className={this.state.isRemixing  && this.state.templateState === 'logo' ? 'active' : ''}
+        className={this.state.isRemixing ? 'active' : ''}
         onClick={this.handleLogoClick}
         src={this.optimizeURL(this.state.logo)} />
         </Fade>
@@ -1686,14 +1323,14 @@ Update the `app.component.html` file.
   class="{{isPlaying ? 'animate-example container' : 'container'}}" >
 
   <h1
-  class="{{isRemixing && templateState === 'text' ? 'active' : ''}}"
+  class="{{isRemixing ? 'active' : ''}}"
   style="fontSize: {{titleOptions.fontSize}}px;"
   (click)="handleTitleClick()"
   >
   {{titleOptions.title}}
   </h1>
   <img
-    className="image {{isRemixing  && templateState === 'logo' ? 'active' : ''}}"
+    class="{{isRemixing ? 'active image' : 'image'}}"
     (click)="handleLogoClick()"
     src="{{optimizeURL(logo)}}"
   />
@@ -1724,7 +1361,7 @@ window.setTimeout(() => {
 .Vanilla JS
 ====
 [.intro]
-Add a timeout before the `preload` function.
+Update the `preload` call to add a timeout.
 If this test works correctly, the loading indicator will display for a few seconds, and then the template elements will load.
 
 [source,JavaScript]
@@ -1761,3 +1398,55 @@ The new version replaces the previous version on the Koji platform and is availa
 . Review the name and description, and update them if desired.
 . Click *Publish*.
 . When publishing is completed, click the link to view and test your updated template.
+
+== Completed samples
+
+In this guide, you learned how to add features to a Koji template and then republish it on Koji.
+To troubleshoot any issues with your template, you can compare your code to this completed sample of the logic described in this guide.
+
+[.tabs,scope="lang"]
+--
+.React
+====
+[.intro]
+`frontend/common/App.js`
+
+[source,JavaScript]
+----
+include::../_includes/startGuide2React.js[]
+----
+====
+
+.Vanilla JS
+====
+[.intro]
+`frontend/index.js`
+
+[source,JavaScript]
+----
+include::../_includes/startGuide2Vanilla.js[]
+----
+====
+
+.Angular
+====
+[.intro]
+`frontend/src/app/app.component.ts`
+
+[source,TypeScript]
+----
+include::../_includes/startGuide2Angular.ts[]
+----
+====
+
+.Svelte
+====
+[.intro]
+`src/App.svelte`
+
+[source,JavaScript]
+----
+include::../_includes/startGuide2.svelte[]
+----
+====
+--

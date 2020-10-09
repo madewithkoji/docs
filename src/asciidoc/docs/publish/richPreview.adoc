@@ -20,15 +20,9 @@ For optimal rich preview support, design this view with the following considerat
 
 image::Koji-screenshot=1.svg[Render a view for the rich preview image]
 
-For the following example, assume the application supports remixes of the title, font size, and logo.
+For the following example, assume the template supports remixes of the title, font size, and logo.
 
-[TIP]
-====
-To build a simple application with these features, you can follow these starter guides:
-
-* <<start-guide-1#>>
-* <<start-guide-2#>>
-====
+include::../_includes/starterExamples.adoc[tag=all]
 
 . In your application code, add a conditional statement to display a different image for social shares.
 For example:
