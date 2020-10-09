@@ -28,6 +28,16 @@ For example:
 
 include::../../docs/_includes/startWatcherPackage.adoc[tags=all;plain;!tabs]
 
+== Building with TypeScript
+
+In order for your TypeScript projects to properly work with Koji VCCs, you will need to add the following line to the `scripts` section of your project's `package.json`:
+
+[source, JSON]
+"prebuild": "koji-vcc preinstall-ts"
+
+This causes your app to build the VCC config files prior to compiling your TypeScript code when publishing, just like when koji-vcc sets a watch on your config files during development.
+This is necessary to prevent errors by TypeScript during compile time.
+
 == InstantRemixing
 
 Instant remixing enables users to customize values directly from the template preview, rather than from the Koji editor, for a quick and easy way to remix without coding.
