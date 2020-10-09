@@ -47,10 +47,8 @@ In `App.js`, add a `templateState` property to the state.
 [source,JavaScript]
 ----
 state = {
-   isRemixing: false,
-   logo: '',
    templateState: 'text',
-   title: '',
+   ...
 };
 ----
 ====
@@ -194,7 +192,7 @@ Update the `render` method and the click handlers.
 
 handleTitleClick = () => {
   if (this.state.isRemixing && this.state.templateState === 'text') {
-    this.instantRemixing.onPresentControl(['settings', 'title']);
+    this.instantRemixing.onPresentControl(['settings', 'titleOptions']);
   }
 };
 
@@ -256,7 +254,7 @@ document.addEventListener('click', function (event) {
     if (remixState !== 'text') return;
     event.preventDefault();
 
-    instantRemixing.onPresentControl(['settings', 'title']);
+    instantRemixing.onPresentControl(['settings', 'titleOptions']);
 });
 
 // Add click event listener to expose logo VCC
@@ -282,7 +280,7 @@ Update the click handlers and the editable elements.
 ----
 handleTitleClick = () => {
   if (this.isRemixing && this.templateState === 'text') {
-    this.instantRemixing.onPresentControl(['settings', 'title']);
+    this.instantRemixing.onPresentControl(['settings', 'titleOptions']);
   }
 };
 
@@ -334,18 +332,19 @@ function editText()
   {
     // This function calls Koji VCC editor to open for 'settings.title'
     if (isRemixing && templateState === 'text') {
-      instantRemixing.onPresentControl(['settings', 'title']);
+      instantRemixing.onPresentControl(['settings', 'titleOptions']);
     }
   }
 ...
 
 <div class={isRemixing && templateState === 'logo' ? 'image remixing' : 'image'}
   on:click={editImage}
-  style="background-image: url('{image + "?optimize=50"}');">
+  style="background-image: url('{optimizeURL(image)}');">
 </div>
 <h1 class={isRemixing && templateState === 'text' ? 'remixing' : ''}
+  style='font-size: {titleOptions.fontSize}px'
   on:click={editText} >
-  {title}</h1>
+  {titleOptions.title}</h1>
 ----
 ====
 
