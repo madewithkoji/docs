@@ -692,6 +692,9 @@ Add an `onPlaybackStateChanged` listener that modifies the class on the title el
 
 [source,JavaScript]
 ----
+var feed = new FeedSdk();
+feed.load();
+
 // Add feed event listener to modify title class
 feed.onPlaybackStateChanged((isPlaying) => {
   let titleElement = document.getElementById('title');
@@ -757,7 +760,7 @@ onMount(() => {
 .React
 ====
 [.intro]
-In `frontend/common/index.html`, add this code in the `head` element.
+In `frontend/common/index.html`, add this code in the `style` element.
 
 [source,CSS]
 ----
@@ -910,7 +913,7 @@ optimizeURL = url => `${url}?fit=bounds&width=${window.innerWidth/2}&
 .Vanilla JS
 [source,JavaScript]
 ----
-const optimizeURL = url => `${url}?fit=bounds&width=${window.innerWidth/2}&height=${window.innerHeight/2}&optimize=medium`;
+const optimizeURL = url => `${url}?fit=bounds&width=${window.innerWidth}&height=${window.innerHeight}&optimize=medium`;
 ----
 
 .Angular

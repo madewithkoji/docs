@@ -13,7 +13,7 @@ var logo = instantRemixing.get(['settings', 'logo']);
 
 var remixing = false;
 
-const optimizeURL = url => `${url}?fit=bounds&width=${window.innerWidth / 2}&height=${window.innerHeight / 2}&optimize=medium`;
+const optimizeURL = url => `${url}?fit=bounds&width=${window.innerWidth}&height=${window.innerHeight}&optimize=medium`;
 
 // render app
 const render = () => {
