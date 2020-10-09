@@ -28,15 +28,15 @@ For example:
 
 include::../../docs/_includes/startWatcherPackage.adoc[tags=all;plain;!tabs]
 
-== Building with TypeScript
+== Support TypeScript
 
-In order for your TypeScript projects to properly work with Koji VCCs, you will need to add the following line to the `scripts` section of your project's `package.json`:
+To ensure that VCCs work correctly in your TypeScript project, add the following line to the `scripts` section of the `package.json` file.
 
 [source, JSON]
 "prebuild": "koji-vcc preinstall-ts"
 
-This causes your app to build the VCC config files prior to compiling your TypeScript code when publishing, just like when koji-vcc sets a watch on your config files during development.
-This is necessary to prevent errors by TypeScript during compile time.
+This command builds the VCC configuration files before compiling your TypeScript code when publishing the template, similar to how koji-vcc watches the files during development.
+This step is necessary to prevent errors by TypeScript during compile time.
 
 == InstantRemixing
 
@@ -81,15 +81,15 @@ Gets initial values from Koji customization files or one of these predefined env
 
 ==== Parameters
 
-* `path` – Array of _Strings_, keys pointing to the desired VCC value or either `metadata` or `serviceMap`
+* `path` – Array of _Strings_, keys pointing to the desired VCC value, `metadata` and `projectId`, or `serviceMap` and the service name.
 
 ==== Returns
 
 _Any_, value of the <<vcc-overview#_vcc_types,VCC type>> at the specified path.
-For the predefined environment values the following will be returned:
+For the predefined environment values, the following values are returned:
 
 `["metadata", "projectId"]`:: _String_, the unique identifier for the Koji project.
-`["serviceMap", "backend"]`:: _String_, url of the service specified in the second part of the path.
+`["serviceMap", "backend"]`:: _String_, URL of the service specified in the second part of the path.
 
 ==== Example
 
@@ -306,7 +306,7 @@ To ensure a template is displayed correctly in the Koji feed, you must implement
 ----
 
 NOTE: Kojis must be authorized by the Koji team to be displayed within the feed.
-When you are confident that your app is able to function well within a feed, please contact us for review and authorization.
+When you are confident that your template is able to function well within a feed, please contact us for review and authorization.
 
 [.hcode, id="new FeedSdk", reftext="new FeedSdk"]
 === new FeedSdk()
