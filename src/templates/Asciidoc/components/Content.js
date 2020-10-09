@@ -92,6 +92,9 @@ const Content = styled.div`
       opacity: 0.5;
       color: #333;
     }
+    &:before {
+      display: none;
+    }
   }
 
   pre {

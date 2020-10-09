@@ -1,5 +1,6 @@
 = @withkoji/vcc
 :page-slug: withkoji-vcc-package
+:page-description: Implement core platform features in your Koji template, including instant remixing, Visual Customization Controls (VCCs), and the Koji feed.
 
 The @withkoji/vcc package enables you to
 //tag::description[]
@@ -26,6 +27,16 @@ You can use a package like npm-run-all.
 For example:
 
 include::../../docs/_includes/startWatcherPackage.adoc[tags=all;plain;!tabs]
+
+== Support TypeScript
+
+To ensure that VCCs work correctly in your TypeScript project, add the following line to the `scripts` section of the `package.json` file.
+
+[source, JSON]
+"prebuild": "koji-vcc preinstall-ts"
+
+This command builds the VCC configuration files before compiling your TypeScript code when publishing the template, similar to how koji-vcc watches the files during development.
+This step is necessary to prevent errors by TypeScript during compile time.
 
 == InstantRemixing
 
@@ -58,74 +69,76 @@ import { InstantRemixing } from '@withkoji/vcc';
 const instantRemixing = new InstantRemixing();
 ----
 
+== InstantRemixing methods
+
 [.hcode, id=".get", reftext="get"]
 === .get(path)
 
-Gets initial values from Koji customization files.
+Gets initial values from Koji customization files or one of these predefined environment values:
+
+* `metadata` – project data, contains `projectId`, the unique identifier for the Koji project.
+* `serviceMap` – endpoints for your currently registered services.
 
 ==== Parameters
 
-* `path` – Array of keys pointing to the desired VCC value.
+* `path` – Array of _Strings_, keys pointing to the desired VCC value, `metadata` and `projectId`, or `serviceMap` and the service name.
 
 ==== Returns
 
-Value of the <<vcc-overview#_vcc_types,VCC type>> at the specified path.
+_Any_, value of the <<vcc-overview#_vcc_types,VCC type>> at the specified path.
+For the predefined environment values, the following values are returned:
+
+`["metadata", "projectId"]`:: _String_, the unique identifier for the Koji project.
+`["serviceMap", "backend"]`:: _String_, URL of the service specified in the second part of the path.
 
 ==== Example
 
 [source,javascript]
+----
 const myVariable = instantRemixing.get(['scope', 'key']);
+const projectId = instantRemixing.get(['metadata', 'projectId']);
+const backendService = instantRemixing.get(['serviceMap', 'backend']);
+----
 
-[.hcode, id=".onSetRemixing", reftext="onSetRemixing"]
-=== .onSetRemixing(handler[isRemixing, editorAttributes])
+[.hcode, id=".onPresentControl", reftext="onPresentControl"]
+=== .onPresentControl(path, position)
 
-Listens to changes in remix state to enable different template experiences during remix than during preview or use.
+Opens a VCC to enable editing of a custom value.
+For example, show the title VCC when a user taps an editable title.
 
 ==== Parameters
 
-* `handler` – Function to handle changes in remix state.
-* `isRemixing` – Boolean that indicates whether the template is being remixed.
-* `editorAttributes` – (Optional) Object containing a key to describe the type of remix experience, either `full` for the Koji editor or `instant` for an instant remix (default).
-
+* `path` – Array of _Strings_, keys pointing to the VCC value.
+* `position` – (Optional) _Object_, the size and position of the affected element, to keep it in the frame during editing.
 
 ==== Example
 
 [source,javascript]
 ----
-instantRemixing.onSetRemixing((isRemixing, editorAttributes) => {
-  // Change template experience
-});
-----
+instantRemixing.onPresentControl(['scope', 'key']);
 
-[.hcode, id=".onValueChanged", reftext="onValueChanged"]
-=== .onValueChanged(handler[path, newValue])
-
-Listens to changes in custom values.
-
-==== Parameters
-
-* `handler` – Function to handle changes to custom values.
-* `path` – Array of keys pointing to the changed VCC value.
-* `newValue` – New value of the <<vcc-overview#_vcc_types,VCC type>> at the specified path.
-
-==== Example
-
-[source,javascript]
-----
-instantRemixing.onValueChanged((path, newValue) => {
-  // Use new custom value in template
+// With optional position object
+const {
+  x,
+  y,
+  width,
+  height,
+} = e.target.getBoundingClientRect();
+this.instantRemixing.onPresentControl(['result', 'position'], {
+  position: { x, y, width, height },
 });
 ----
 
 [.hcode, id=".onSetActivePath", reftext="onSetActivePath"]
-=== .onSetActivePath(handler[path])
+=== .onSetActivePath(handler)
 
 Listens to the path of the currently active VCC control to enable a different experience when editing values (for example, highlight the active control or pause the interface).
 
 ==== Parameters
 
-* `handler` – Function to handle changes to the current control.
-* `path` – Array of keys pointing to the changed VCC value.
+* `handler` – _Function_, handles changes to the current control.
+Receives the following property as input:
+** `path` – Array of _Strings_, the path of the active VCC control.
 
 ==== Example
 
@@ -137,7 +150,7 @@ instantRemixing.onSetActivePath((path) => {
 ----
 
 [.hcode, id=".onSetCurrentState", reftext="onSetCurrentState"]
-=== .onSetCurrentState(handler[state])
+=== .onSetCurrentState(handler)
 
 Listens to the changes to the current state.
 If a template has more than one state, the available states are listed when remixing so the user can switch between them.
@@ -158,8 +171,9 @@ States are optional and, if used, must be defined in the `.koji/customization/qu
 
 ==== Parameters
 
-* `handler` – Function to handle changes to the current state.
-* `state` – String value of the current state key.
+* `handler` – _Function_, handles changes to the current state.
+Receives the following property as input:
+** `state` – _String_, key of the active state.
 
 ==== Example
 
@@ -170,31 +184,26 @@ instantRemixing.onSetCurrentState((state) => {
 });
 ----
 
-[.hcode, id=".onPresentControl", reftext="onPresentControl"]
-=== .onPresentControl(path, position)
+[.hcode, id=".onSetRemixing", reftext="onSetRemixing"]
+=== .onSetRemixing(handler)
 
-Opens a VCC to enable editing of a custom value. For example, show the title VCC when a user taps an editable title.
+Listens to changes in remix state to enable different template experiences during remix than during preview or use.
 
 ==== Parameters
 
-* `path` – Array of keys pointing to the VCC value.
-* `position` – (Optional) Object containing the size and position of the affected element, to keep it in the frame during editing.
+* `handler` – _Function_, handles changes in remix state.
+Receives the following properties as inputs:
+** `isRemixing` – _Boolean_, indicates whether the template is in remixing mode.
+** `editorAttributes` – _Object_, describes the current editor. Contains the following attributes:
+*** `type` – _String_, describes the current editor type, either `full` or `instant`.
 
 ==== Example
 
 [source,javascript]
 ----
-instantRemixing.onPresentControl(['scope', 'key']);
-
-// With optional position object
-const {
-  x,
-  y,
-  width,
-  height,
-} = e.target.getBoundingClientRect();
-this.instantRemixing.onPresentControl(['result', 'position'], {
-  position: { x, y, width, height },
+instantRemixing.onSetRemixing((isRemixing, editorAttributes) => {
+  // Change template experience
+  // editorAttributes.type will be set to either "full" or "instant"
 });
 ----
 
@@ -205,9 +214,9 @@ Explicitly sets the value for the VCC at the specified path.
 
 ==== Parameters
 
-* `path` – Array of keys pointing to the desired VCC value.
-* `newValue` – New value for the <<vcc-overview#_vcc_types,VCC type>> at the specified path.
-* `skipUpdate` – (Optional) Boolean that indicates whether to skip the `onValueChanged` callback for this update (`false`, by default).
+* `path` – Array of _Strings_, keys that points to the desired VCC value.
+* `newValue` – _Any_, New value for the <<vcc-overview#_vcc_types,VCC type>> at the specified path.
+* `skipUpdate` – (Optional) _Boolean_, indicates whether to skip the `onValueChanged` callback for this update (`false`, by default).
 To allow the template to manage the update state, set this parameter to `true`.
 +
 TIP: The `skipUpdate` option is useful for preventing unnecessary round trip notifications in some cases.
@@ -220,10 +229,35 @@ For example, during text inputs.
 instantRemixing.onSetValue(['scope', 'key'], newValue, skipUpdate);
 ----
 
+[.hcode, id=".onValueChanged", reftext="onValueChanged"]
+=== .onValueChanged(handler)
+
+Listens to changes in custom values.
+
+==== Parameters
+
+* `handler` – _Function_, handles changes to custom values.
+Receives the following properties as inputs:
+** `path` – Array of _Strings_, the path of the changed VCC value.
+** `newValue` – _Any_, the new value of the changed VCC.
+
+==== Example
+
+[source,javascript]
+----
+instantRemixing.onValueChanged((path, newValue) => {
+  // Use new custom value in template
+});
+----
+
 [.hcode, id=".ready", reftext="ready"]
 === .ready()
 
 Indicates that the application is ready to start receiving events.
+
+WARNING: All the listeners should be set before calling `ready()`.
+The platform will queue any messages prior to calling `ready()` to wait for the listeners to be ready.
+However, the <<#.get>> function will work before or after `ready()` has been called.
 
 ==== Example
 
@@ -232,9 +266,9 @@ instantRemixing.ready();
 
 == VccMiddleware
 
-This package includes an Express middleware for resolving Instant Remix VCC data for dynamic backends, as a companion to the frontend `InstantRemixing` class.
+This package includes an http://expressjs.com/en/guide/using-middleware.html[Express middleware] to manage the environment variables for instant remixes and for access to VCC values from dynamic backends, as a companion to the frontend `InstantRemixing` class.
 
-To implement this middleware, add it to your server.
+To implement this middleware, add it to your Express server.
 
 [source,javascript]
 ----
@@ -244,7 +278,9 @@ const app = express();
 app.use(VccMiddleware.express);
 ----
 
-To access application-specific VCC values, use `res.locals.koji`.
+This middleware is required to manage the environment variables to scope them for instant remixes of the original template. In particular when using <<withkoji-koji-iap-package#>> or <<withkoji-database-package#>> you must call this middleware before instantiating those packages to ensure the correct environment is used by those packages.
+
+Additionally, to access application-specific VCC values from an Express endpoint, use `res.locals.koji` and the `scope` and `key` of the VCC value you require.
 
 [source,javascript]
 ----
@@ -269,6 +305,9 @@ To ensure a template is displayed correctly in the Koji feed, you must implement
 }
 ----
 
+NOTE: Kojis must be authorized by the Koji team to be displayed within the feed.
+When you are confident that your template is able to function well within a feed, please contact us for review and authorization.
+
 [.hcode, id="new FeedSdk", reftext="new FeedSdk"]
 === new FeedSdk()
 
@@ -281,6 +320,8 @@ Instantiates `FeedSdk`.
 import { FeedSdk } from '@withkoji/vcc';
 const feed = new FeedSdk();
 ----
+
+== FeedSdk methods
 
 [.hcode, id=".load", reftext="load"]
 === .load()
@@ -296,7 +337,7 @@ Otherwise, the feed will display a loading state, and will eventually time out a
 feed.load();
 
 [.hcode, id=".onPlaybackStateChanged", reftext="onPlaybackStateChanged"]
-=== .onPlaybackStateChanged(handler[isPlaying])
+=== .onPlaybackStateChanged(handler)
 
 Monitors visibility in the Koji feed, enabling the template to play certain features when it is in focus and pause them when it isn't in focus.
 For example, play or pause audio, video, a timer, or a countdown.
@@ -306,8 +347,9 @@ The template is loaded in the feed 10 times, and you can swipe or scroll through
 
 ==== Parameters
 
-* `handler` – Function to handle changes to template visibility in the feed.
-* `isPlaying` – Boolean that indicates whether the template is in focus in the feed.
+* `handler` – _Function_, handles changes to template visibility in the feed.
+Receives the following property as input:
+** `isPlaying` – _Boolean_, indicates whether the template is in focus in the feed.
 
 ==== Example
 
@@ -330,12 +372,60 @@ If your template also uses touch controls, you can use the `requestCancelTouch` 
 
 ==== Example
 
+[source,html]
+----
+<div ontouchmove={(e) => feed.requestCancelTouch()}>
+  no touch control
+</div>
+----
+
+== Keystore
+
+The `Keystore` module is used in conjunction with the <<secret#, secret VCC type>>.
+The secret VCC enables you to store sensitive data in a VCC without the value being visible when the project is remixed.
+Keystore is used to access the value in the secret VCC within your application code.
+
+NOTE: For security purposes, `Keystore` is available only in backend services and cannot be used in user-facing services.
+
+=== new Keystore
+
+Instantiates Keystore.
+
+==== Parameters
+* `projectId` – (Optional) _String_, the ID of the Koji project to attach the keystore to.
+Defaults to the current project's ID.
+* `projectToken` – (Optional) _String_, the token of the Koji project to attach the keystore to.
+Defaults to the current project's token.
+
+==== Example
+
 [source,javascript]
 ----
-<div
-  ontouchmove={(e) => feed.requestCancelTouch()}>
-  no touch control</div>
+import { Keystore } from '@withkoji/vcc';
+const keystore = new Keystore();
 ----
+
+== Keystore methods
+
+[.hcode, id=".resolveValue", reftext="resolveValue"]
+=== .resolveValue(keyPath)
+
+Resolves a secret VCC value from its keypath.
+
+==== Parameters
+
+* `keyPath` – _String_, the key for the secret VCC.
+This is acquired from the VCC value of the secret type VCC.
+
+==== Returns
+
+(Async) _String_, value of the secret VCC.
+
+==== Example
+
+[source,javascript]
+const password = await keystore.resolveValue(res.locals.koji.images.premium_image);
+
 
 == Related resources
 
