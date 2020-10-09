@@ -615,12 +615,16 @@ ngOnInit() {
   this.isRemixing = this.instantRemixing.isRemixing;
   this.title = this.instantRemixing.get(['settings', 'title']);
 
-
   // Set up a listener to update title value
   this.instantRemixing.onValueChanged((path, newValue) => {
       if (path[0] && path[1] && path[0] === 'settings' && path[1] === 'title') {
           this.title = newValue;
       }
+  });
+
+  // Toggle the isRemixing state based on the listener
+  this.instantRemixing.onSetRemixing((isRemixing) => {
+      this.isRemixing = isRemixing;
   });
 
   // Alert Koji we are ready to use instantRemixing
@@ -1022,7 +1026,7 @@ Then, under *More options*, click *See profiled attributes*.
 If an error message appears when you open the link after profiling is completed, you can review the steps in this guide to fix it.
 To open your project again, go to *Koji home > My projects*, and click the template name.
 
-== Next steps
+== Completed samples and next steps
 
 In this guide, you learned how to add basic customizable elements to a template and then publish it on Koji.
 

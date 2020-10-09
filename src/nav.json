@@ -154,6 +154,10 @@
             {
               "name": "Building custom VCCs",
               "slug": "build-custom-vcc"
+            },
+            {
+              "name": "Using remix states to expose customizations",
+              "slug": "remix-states"
             }
           ]
         },
