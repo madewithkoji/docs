@@ -256,7 +256,7 @@ instantRemixing.ready();
 
 == VccMiddleware
 
-This package includes an http://expressjs.com/en/guide/using-middleware.html[Express middleware] for access to VCC values from dynamic backends, as a companion to the frontend `InstantRemixing` class.
+This package includes an http://expressjs.com/en/guide/using-middleware.html[Express middleware] to manage the environment variables for instant remixes and for access to VCC values from dynamic backends, as a companion to the frontend `InstantRemixing` class.
 
 To implement this middleware, add it to your Express server.
 
@@ -268,7 +268,9 @@ const app = express();
 app.use(VccMiddleware.express);
 ----
 
-To access application-specific VCC values from an Express endpoint, use `res.locals.koji` and the `scope` and `key` of the VCC value you require.
+This middleware is required to manage the environment variables to scope them for instant remixes of the original template. In particular when using <<withkoji-koji-iap-package#>> or <<withkoji-database-package#>> you must call this middleware before instantiating those packages to ensure the correct environment is used by those packages.
+
+Additionally, to access application-specific VCC values from an Express endpoint, use `res.locals.koji` and the `scope` and `key` of the VCC value you require.
 
 [source,javascript]
 ----
