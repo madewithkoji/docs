@@ -295,6 +295,9 @@ To ensure a template is displayed correctly in the Koji feed, you must implement
 }
 ----
 
+NOTE: Kojis must be authorized by the Koji team to be displayed within the feed.
+When you are confident that your app is able to function well within a feed, please contact us for review and authorization.
+
 [.hcode, id="new FeedSdk", reftext="new FeedSdk"]
 === new FeedSdk()
 
