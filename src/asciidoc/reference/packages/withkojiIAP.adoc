@@ -45,26 +45,30 @@ To enable in-app purchases for your Koji template, you must implement the `Iap` 
           "price": "{{scope.priceKey}}", <3>
           "quantity": "{{scope.quantity}}",<4>
           "fulfillment": "email", <5>
-          "isConsumable": true <6>
+          "isConsumable": true, <6>
+          "dynamicReceipt":true <7>
         }
       ]
     }
   }
 }
 ----
-<1> Identifier for the product to purchase.
-<2> Description displayed when a user is prompted to purchase the product.
+<1> `sku` – Identifier for the product to purchase.
+<2> `name` – Description displayed when a user is prompted to purchase the product.
 Can be a string or a path to the <<vcc-overview#,Visual Customization Control (VCC)>> that defines the description.
-<3> Path to the VCC that defines the purchase price, if applicable.
+<3> `price` – Path to the VCC that defines the purchase price, if applicable.
 Alternatively, use `"priceIsUnset": true` to define a product without a set price.
 For example, a donation or "pay what you want" price.
-<4> (Optional) Maximum number of times the product can be sold.
+<4> `quantity` – (Optional) Maximum number of times the product can be sold.
 After the inventory threshold is reached, further purchase attempts will display a “sold out!” message.
-If quantity is not present or is 0, the product will never sell out.
-<5> User information to collect for order fulfillment.
+If quantity is not present or is `0`, the product will never sell out.
+<5> `fulfillment` – User information to collect for order fulfillment.
 Possible values are `email`, `phone`, or `address`.
 This value is stored as a custom attribute on the <<_iapreceipt,transaction receipt>>.
-<6> (Optional) Whether the product can be purchased more than once.
+<6> `isConsumable` – (Optional) Whether the product can be purchased more than once.
+<7> `dynamicReceipt` – (Optional) Whether the transaction receipt can display routes in the Koji.
+If enabled, a query parameter is appended to the URL when the buyer or seller views the receipt.
+For example, `dynamic-receipt=buyer` or `dynamic-receipt=seller`.
 
 [.hcode, id="new Iap", reftext="new Iap"]
 === new Iap(projectID, projectToken)
@@ -167,6 +171,32 @@ See <<.getToken>>.
 const receipts = await iap.resolveReceipts(token);
 // Look for the SKU to determine whether the user has purchased the product
 hasPurchased = !!(receipts.find(({ product }) => product.sku === 'productID'));
+----
+
+[.hcode, id=".resolveReceiptById", reftext="resolveReceiptById"]
+=== .resolveReceiptById(receiptId)
+
+Retrieves a specific transaction receipt, which can be used to facilitate fulfillment.
+For example, use a dynamic receipt to upload a video response from the seller and then share that response with the buyer.
+
+==== Parameters
+
+* `receiptId` – _String_, unique identifier for the receipt.
+
+==== Returns
+
+(Async) <<_iapreceipt>> object for the specified receipt.
+
+==== Example
+
+[source,javascript]
+----
+const receipt = await iap.resolveReceiptById(token);
+// Use custom attributes for a video response
+this.setState({
+  instructions: receipt.attributes.message,
+  video: receipt.attributes.video,
+});
 ----
 
 [.hcode, id=".startPurchase", reftext="startPurchase"]

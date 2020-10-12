@@ -8,6 +8,20 @@ TIP: To help improve the Koji developer experience, please share your thoughts, 
 
 == 2020
 
+=== October 12
+
+* Dynamic receipts are now available for handling fulfillment of <<withkoji-koji-iap-package#, in-app purchases>>.
+Dynamic receipts enable you to display a route in a Koji from a transaction receipt.
+For example, you can show a video response from a seller to a buyer.
+The following enhancements support implementation of dynamic receipts in Koji templates:
+** The `dynamicReceipt` entitlement enables the receipt for a product to display routes in the Koji.
+** When a buyer or seller views the transaction receipt for an applicable product, the platform appends the `dynamic-receipt` query parameter to the URL.
+For example, `dynamic-receipt=buyer` or `dynamic-receipt=seller`.
+** The `resolveReceiptById` method retrieves a specific transaction receipt.
+* Reference docs for the <<withkoji-vcc-package#,VCC package>> have been updated.
+* Step-by-step instructions for <<start-guide-2,extending your first template>> are now available in four “flavors” – React, Vanilla JS, Angular, and Svelte.
+* Several pages were updated based on your feedback, including <<vcc-overview#>> and <<magazine-cover-blueprint#, Magazine cover blueprint>>.
+
 === October 5
 
 * Updated reference docs are now available for the <<withkoji-database-package#,Database>>, <<withkoji-dispatch-package#,Dispatch>>, and <<withkoji-custom-vcc-sdk#,Custom VCC>> packages.
