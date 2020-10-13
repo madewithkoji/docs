@@ -8,6 +8,9 @@ import CloseIcon from '@material-ui/icons/Close';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import SearchIcon from '@material-ui/icons/Search';
+
+import { BLACK } from '../constants/colors';
+
 import Link from './Link';
 import Search from './Search';
 
@@ -82,12 +85,12 @@ const NavLink = styled(Link)`
   color: #333333;
 
   &:active, &:focus {
-    color: #000000;
+    color: ${BLACK}
     text-decoration: none;
   }
 
   &:hover {
-    color: #000000;
+    color: ${BLACK}
   }
 `;
 

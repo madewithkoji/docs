@@ -1,12 +1,14 @@
 import styled from 'styled-components';
 import { Link } from 'gatsby';
 
+import { BLACK, DARK_GRAY } from '../constants/colors';
+
 const StyledLink = styled(Link)`
-  color: #333333;
+  color: ${DARK_GRAY} !important;
   text-decoration: none;
 
   &:hover {
-    color: #000000;
+    color: ${BLACK} !important;
     text-decoration: none;
   }
 `;

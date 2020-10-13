@@ -11,6 +11,9 @@ import AppBar from '../components/AppBar';
 import Content from '../components/Content';
 import Drawers from '../components/Drawers';
 import SEO from '../components/Seo';
+
+import { BLUE } from '../constants/colors';
+
 import '../styles/adoc-koji.css';
 import './index.css';
 
@@ -19,6 +22,11 @@ const Wrapper = styled.div`
 
   a {
     text-decoration: none;
+    color: ${BLUE};
+  }
+
+  a:visited {
+    color: ${BLUE};
   }
 
   a[target="_blank"] {
