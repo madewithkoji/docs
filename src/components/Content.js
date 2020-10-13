@@ -1,7 +1,6 @@
 import React, { cloneElement } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import Footer from './HomePage/Footer';
 
 const Container = styled.div`
   margin-top: 64px;
@@ -18,7 +17,6 @@ const Container = styled.div`
 const Content = (props) => (
   <Container ref={props.contentRef} style={{ hasDrawer: props.hasDrawer }}>
     {cloneElement(props.children, { currentHeader: props.currentHeader })}
-    <Footer />
   </Container>
 );
 

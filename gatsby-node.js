@@ -33,7 +33,14 @@ exports.sourceNodes = ({ actions, createNodeId, createContentDigest }) => {
 };
 
 exports.createPages = async ({ actions, graphql, reporter }) => {
-  const { createPage } = actions;
+  const { createPage, createRedirect } = actions;
+
+  createRedirect({
+    fromPath: '/',
+    toPath: '/docs/getting-started/introduction',
+    redirectInBrowser: true,
+    force: true,
+  });
 
   const asciidocTemplate = require.resolve('./src/templates/Asciidoc/index.js');
 
