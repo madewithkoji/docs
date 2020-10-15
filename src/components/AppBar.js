@@ -147,7 +147,7 @@ const AppBarComponent = (props) => {
               to={'/'}
             >
               <Logo
-                alt={'Koji for Developers'}
+                alt={'Koji for developers'}
                 src={'/images/dev-logo.png'}
                 style={{ isMobile: true }}
               />
@@ -180,7 +180,7 @@ const AppBarComponent = (props) => {
             to={'/'}
           >
             <Tooltip>
-              {'for Developers'}
+              {'for developers'}
             </Tooltip>
           </Link>
         </NavLinkWrapper>
