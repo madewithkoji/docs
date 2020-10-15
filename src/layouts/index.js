@@ -137,7 +137,9 @@ const Layout = (props) => {
   }, [mobileDrawerIsOpen]);
 
   const { allNavItem: { nodes: navItems = [] } } = data;
-  const hasDrawer = navItems.map(({ root }) => props.location.pathname.includes(root)).reduce((a, b) => a || b);
+
+  // If we bring back a full screen home page, this can be un-commented and passed to the Content component
+  // const hasDrawer = navItems.map(({ root }) => props.location.pathname.includes(root)).reduce((a, b) => a || b);
 
   return (
     <>
@@ -168,7 +170,7 @@ const Layout = (props) => {
           <Content
             currentHeader={currentHeader}
             contentRef={contentRef}
-            hasDrawer={hasDrawer}
+            hasDrawer
           >
             {props.children}
           </Content>
