@@ -90,13 +90,13 @@ const TOC = styled.div`
 
 const Nav = styled.div`
   position: fixed;
-  top: 72px;
+  top: 88px;
   right: 16px;
   width: 296px;
   padding: 16px;
   display: flex;
   flex-direction: column;
-  height: calc(100vh - 108px);
+  height: calc(100vh - 88px);
   overflow: auto;
 
   > * {

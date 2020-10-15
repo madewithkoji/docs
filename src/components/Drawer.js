@@ -17,6 +17,7 @@ const StyledDrawer = styled(Drawer)`
 const NavItemsWrapper = styled.div`
   height: calc(100vh - 64px);
   overflow: auto;
+  padding-top: 24px;
 `;
 
 const DrawerComponent = ({ location, navItem }) => (
