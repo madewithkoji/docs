@@ -1,6 +1,8 @@
 import { red } from '@material-ui/core/colors';
 import { createMuiTheme } from '@material-ui/core/styles';
 
+import { BLUE } from './constants/colors';
+
 // A custom theme for this app
 const theme = createMuiTheme({
   props: {
@@ -14,7 +16,7 @@ const theme = createMuiTheme({
       main: '#556cd6',
     },
     secondary: {
-      main: '#19857b',
+      main: BLUE,
     },
     error: {
       main: red.A400,
