@@ -43,6 +43,9 @@ const DrawerComponent = ({ location, navItems }) => {
   const sortedNavItems = navItems.sort((a, b) => a.idx - b.idx);
 
   useEffect(() => {
+    // Handle navigating back to the root
+    if (location.pathname === '/') setActiveTab(0);
+
     sortedNavItems.forEach((navItem, idx) => {
       if (location.pathname.includes(navItem.name.toLowerCase())) {
         setActiveTab(idx);

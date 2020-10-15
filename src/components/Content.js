@@ -1,7 +1,7 @@
 import React, { cloneElement } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import Footer from './HomePage/Footer';
+import Footer from './Footer';
 
 const Container = styled.div`
   margin-top: 64px;
