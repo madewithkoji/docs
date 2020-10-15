@@ -2,8 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
+import Drawer from './Drawer';
 import MobileDrawer from './MobileDrawer';
-import TabbedDrawer from './TabbedDrawer';
 
 const Wrapper = styled.span`
   .mobile {
@@ -32,10 +32,21 @@ const Drawers = (props) => (
       navItems={props.navItems}
       open={props.mobileDrawerIsOpen}
     />
-    <TabbedDrawer
-      location={props.location}
-      navItems={props.navItems}
-    />
+    {
+      props.navItems.sort((a, b) => a.idx - b.idx).map((navItem, idx) => {
+        // This should get cleaned up after we re-add the home page
+        if ((props.location.pathname === '/' && idx === 0) || props.location.pathname.includes(navItem.root)) {
+          return (
+            <Drawer
+              key={navItem.root}
+              location={props.location}
+              navItem={navItem}
+            />
+          );
+        }
+        return null;
+      })
+    }
   </Wrapper>
 );
 

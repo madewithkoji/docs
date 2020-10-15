@@ -49,6 +49,8 @@ const Item = styled.div`
 const SearchInput = styled.input`
   height: 32px;
   padding-right: 40px;
+  border-radius: 4px;
+  padding-left: 8px;
 `;
 
 const Wrapper = styled.div`

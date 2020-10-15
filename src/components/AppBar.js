@@ -1,14 +1,18 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import { useStaticQuery, graphql } from 'gatsby';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import CloseIcon from '@material-ui/icons/Close';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import SearchIcon from '@material-ui/icons/Search';
+import Tabs from '@material-ui/core/Tabs';
+import Tab from '@material-ui/core/Tab';
+import { navigate } from '@reach/router';
 
-import { BLACK, BLUE } from '../constants/colors';
+import { BLACK, BLUE, LIGHT_GRAY } from '../constants/colors';
 
 import Link from './Link';
 import Logo from './Logo';
@@ -27,6 +31,7 @@ const LogoWrapper = styled.div`
 `;
 
 const NavLinkWrapper = styled.div`
+  margin-top: 6px;
   height: 64px;
   display: flex;
   align-items: center;
@@ -57,7 +62,7 @@ const MobileSearchWrapper = styled.div`
 `;
 
 const StyledAppBar = styled(AppBar)`
-  background-color: #ffffff !important;
+  background-color: ${LIGHT_GRAY} !important;
   box-shadow: none;
 
   .mobile {
@@ -118,8 +123,60 @@ const Tooltip = styled.div`
 }
 `;
 
+const StyledTabs = styled(Tabs)`
+  margin-left: 32px;
+`;
+
+const StyledTab = styled(Tab)`
+  color: ${BLACK};
+  min-width: 128px !important;
+`;
+
 const AppBarComponent = (props) => {
+  const data = useStaticQuery(graphql`
+    query NavItems {
+      allNavItem {
+        nodes {
+          id
+          defaultPath
+          idx
+          name
+          root
+          sections {
+            idx
+            items {
+              idx
+              name
+              path
+            }
+            name
+          }
+        }
+      }
+    }
+  `);
+
+  const { allNavItem: { nodes: navItems = [] } } = data;
+  const sortedNavItems = navItems.sort((a, b) => a.idx - b.idx);
+
   const [mobileSearchIsVisible, setMobileSearchIsVisible] = useState(false);
+  const [activeTab, setActiveTab] = useState(0);
+
+  const handleTabChange = (e, t) => {
+    if (sortedNavItems[t].defaultPath) navigate(sortedNavItems[t].defaultPath);
+    setActiveTab(t);
+  };
+
+  useEffect(() => {
+    // Handle navigating back to the root
+    if (props.location.pathname === '/') setActiveTab(0);
+
+    sortedNavItems.forEach((navItem, idx) => {
+      if (props.location.pathname.includes(navItem.name.toLowerCase())) {
+        setActiveTab(idx);
+      }
+    });
+  }, [props.location.pathname]);
 
   return (
     <StyledAppBar position={'fixed'}>
@@ -184,6 +241,18 @@ const AppBarComponent = (props) => {
             </Tooltip>
           </Link>
         </NavLinkWrapper>
+        <StyledTabs
+          value={activeTab}
+          onChange={handleTabChange}
+          aria-label={'Tabbed navigation'}
+          variant={'fullWidth'}
+        >
+          {
+            sortedNavItems.map((navItem) => (
+              <StyledTab key={navItem.name} label={navItem.name} />
+            ))
+          }
+        </StyledTabs>
         <SearchWrapper>
           <Search />
         </SearchWrapper>
@@ -193,10 +262,12 @@ const AppBarComponent = (props) => {
 };
 
 AppBarComponent.propTypes = {
+  location: PropTypes.object,
   toggleMobileDrawer: PropTypes.func,
 };
 
 AppBarComponent.defaultProps = {
+  location: {},
   toggleMobileDrawer() { },
 };
 
