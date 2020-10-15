@@ -199,8 +199,8 @@ const Content = styled.div`
     padding-left: 10px;
   }
 
-  .init-cap::first-letter {
-     text-transform: capitalize;
+  .init-cap::first-letter {
+    text-transform: capitalize;
   }
   .title, .tableblock > caption {
     line-height: 1.4;
@@ -212,7 +212,12 @@ const Content = styled.div`
 
   td.hdlist1 { padding-right: .8em; font-weight: bold; font-size: 16px;}
 
-  h1, h2, h3 {
+  h1 {
+    margin-top: 28px;
+    line-height: 1;
+  }
+
+  h2, h3 {
     margin-top: 1.9em;
   }
 
