@@ -37,7 +37,8 @@ const NavLinkWrapper = styled.div`
   align-items: center;
   position: relative;
   margin-right: ${({ style: { logo } }) => logo ? '8px' : '0'};
-  margin-left: ${({ style: { logo } }) => logo ? '18px' : '0'};
+  margin-left: ${({ style: { logo } }) => logo ? '42px' : '0'};
+  margin-top: 3px;
 `;
 
 const SearchWrapper = styled.div`
