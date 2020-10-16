@@ -4,15 +4,15 @@
  */
 
 body.darkCode .hljs {
-  background: #1E1E1E;
-  color: #DCDCDC;
+  background: rgb(42, 42, 42);
+  color: rgb(118, 217, 230);
 }
 
 body.darkCode .hljs-keyword,
 body.darkCode .hljs-literal,
 body.darkCode .hljs-symbol,
 body.darkCode .hljs-name {
-  color: #569CD6;
+  color: rgb(239, 59, 125);
 }
 body.darkCode .hljs-link {
   color: #569CD6;
@@ -26,17 +26,17 @@ body.darkCode .hljs-type {
 
 body.darkCode .hljs-number,
 body.darkCode .hljs-class {
-  color: #B8D7A3;
+  color: #a77afe;
 }
 
 body.darkCode .hljs-string,
 body.darkCode .hljs-meta-string {
-  color: #D69D85;
+  color: #e6d06c;
 }
 
 body.darkCode .hljs-regexp,
 body.darkCode .hljs-template-tag {
-  color: #9A5334;
+  color: #76d9e6;
 }
 
 body.darkCode .hljs-subst,
@@ -49,7 +49,7 @@ body.darkCode .hljs-formula {
 
 body.darkCode .hljs-comment,
 body.darkCode .hljs-quote {
-  color: #57A64A;
+  color: #6f705e;
   font-style: italic;
 }
 
@@ -65,7 +65,7 @@ body.darkCode .hljs-tag {
 
 body.darkCode .hljs-variable,
 body.darkCode .hljs-template-variable {
-  color: #BD63C5;
+  color: #fff;
 }
 
 body.darkCode .hljs-attr,
@@ -96,7 +96,7 @@ body.darkCode .hljs-selector-id,
 body.darkCode .hljs-selector-class,
 body.darkCode .hljs-selector-attr,
 body.darkCode .hljs-selector-pseudo {
-  color: #D7BA7D;
+  color: #ef3b7d;
 }
 
 body.darkCode .hljs-addition {
