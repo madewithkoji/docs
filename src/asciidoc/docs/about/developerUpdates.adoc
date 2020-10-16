@@ -8,6 +8,17 @@ TIP: To help improve the Koji developer experience, please share your thoughts, 
 
 == 2020
 
+=== October 19
+
+* Templates can now support simple content moderation and data collection by allowing a creator to view or download collected data and to quickly remove an offensive entry or a mistake.
++
+image::database-views-oct2020.png[Manage content]
+** To enable this feature in a template, configure a <<database#,database view>>.
+** To access the data for a Koji you created, use the *Koji button* in the top right, and then go to **More > Manage this Koji > View database**.
+* The new *magic link* enables you to register a custom `koji.to` link that points any Koji.
+For example, you could point to a Koji with your bio, and then share or post the magic link everywhere.
+If you ever want to update the bio or use a different Koji, you can update the magic link in one place.
+
 === October 12
 
 * Dynamic receipts are now available for handling fulfillment of <<withkoji-koji-iap-package#, in-app purchases>>.
