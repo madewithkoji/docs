@@ -72,8 +72,8 @@ const MobileSearchWrapper = styled.div`
 `;
 
 const StyledAppBar = styled(AppBar)`
-  box-shadow: none;
-  background: #ffffff;
+  box-shadow: none !important;
+  background: #ffffff !important;
 
   .mobile {
     display: none;
