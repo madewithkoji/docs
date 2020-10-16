@@ -1,0 +1,74 @@
+= Koji database
+:page-slug: koji-database
+:page-description: How to use the built-in Koji database in your templates on Koji.
+
+Each Koji project includes a key-value store that you can use as a backend database for simple use cases, such as collecting information from users, aggregating survey or poll results, and creating leaderboards for games.
+
+Koji databases are made up of one or more `collections`.
+Each collection stores a series of database entries with a unique key and collection of key-value pairs.
+Values within the key-value pairs can be of any type, including strings, numbers, and arrays.
+
+== Using the Koji database
+
+To use the Koji database, you must install and implement the <<withkoji-database-package#>> package in the backend service of your Koji project.
+
+== Database views
+
+For templates that use the Koji database you can view, export, and delete data from any collection.
+Additionally, you can define database views to customize the data presentation for users who remix your template, enabling simple content moderation and data collection.
+
+When developing a template, you can use the database explorer in the Koji editor to test the data collection logic and the database view configuration.
+
+To open the database explorer, go to *Advanced > Database*.
+
+TIP: To access the data for a Koji you created, use the *Koji button* in the top right, and then go to **More > Manage this Koji > View database**.
+
+You can specify user-friendly collection and column names, define the data types for rich data display, exclude unnecessary columns, and control the column order and default sort.
+
+In the `.koji/project/develop.json` file, database key
+
+A custom view that renders a leaderboard for a vote counter might look like the following example.
+
+[source,JSON]
+----
+{
+    "develop": {
+        "frontend": {
+            ...
+        },
+        "backend": {
+            ...
+        }
+    },
+    "database": {
+        "views": [
+            {
+                "name": "Leaderboard",
+                "collection": "votes",
+                "columns": [
+                    {
+                        "key": "amount",
+                        "name": "Count",
+                        "type": "number"
+                    },
+                    {
+                        "key": "userId",
+                        "name": "User",
+                        "type": "string"
+                    }
+                ],
+                "sort": {
+                    "key": "amount",
+                    "direction": "desc"
+                }
+            }
+        ]
+    }
+}
+----
+
+== Related resources
+
+* <<withkoji-database-package#>>
+* <<vote-counter-blueprint#>>
+* <<add-service#>>

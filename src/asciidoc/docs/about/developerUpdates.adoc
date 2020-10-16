@@ -10,14 +10,23 @@ TIP: To help improve the Koji developer experience, please share your thoughts, 
 
 === October 19
 
-* Templates can now support simple content moderation and data collection by allowing a creator to view or download collected data and to quickly remove an offensive entry or a mistake.
+.Koji platform updates
+* Templates now support simple content moderation and data collection by enabling a creator to view or download collected data and to quickly remove an offensive entry or a mistake.
 +
 image::database-views-oct2020.png[Manage content]
-** To enable this feature in a template, configure a <<database#,database view>>.
+** To customize the data presentation for remixers, configure a <<koji-database#, database view>> when developing the template.
+You can specify user-friendly collection and column names, define the data types for rich data display, exclude unnecessary columns, and control the column order and default sort.
 ** To access the data for a Koji you created, use the *Koji button* in the top right, and then go to **More > Manage this Koji > View database**.
-* The new *magic link* enables you to register a custom `koji.to` link that points any Koji.
-For example, you could point to a Koji with your bio, and then share or post the magic link everywhere.
-If you ever want to update the bio or use a different Koji, you can update the magic link in one place.
+* The new *Magic Link* enables you to register a custom `koji.to` link that points any Koji.
+For example, you could point to a Koji with your bio, and then share or post the link everywhere.
+If you ever want to update the bio or use a different Koji, you can change the link target in one place.
++
+image::magic-link-oct2020.png[Enable Magic Link]
+** To set up your Magic Link, tap your profile picture, and then tap *Magic Link*.
+Enable your Magic Link and enter your desired link address (for example, `\https://koji.to/myname`).
+By default, the link points to your Koji profile page.
+** To change the link target, open the desired Koji and tap the *Koji button* in the top right.
+Then, go to **More > Manage this Koji > Use as Magic Link**.
 
 === October 12
 
