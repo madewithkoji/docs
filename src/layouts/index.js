@@ -144,7 +144,11 @@ const Layout = (props) => {
   return (
     <>
       <SEO />
-      <Helmet>
+      <Helmet
+        bodyAttributes={{
+          class: localStorage.getItem('lightCode') ? '' : 'darkCode',
+        }}
+      >
         <link
           href={'https://fonts.googleapis.com/icon?family=Material+Icons'}
           rel={'stylesheet'}

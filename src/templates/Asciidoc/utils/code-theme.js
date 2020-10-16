@@ -11,14 +11,6 @@ const changeTheme = (e) => {
   }
 };
 
-const checkLocalStorage = () => {
-  if (localStorage.getItem('lightCode')) {
-    document.body.classList.remove('darkCode');
-  } else {
-    document.body.classList.add('darkCode');
-  }
-};
-
 // eslint-disable-next-line import/prefer-default-export
 export const addChangeThemeButton = (block) => {
   const button = document.createElement('button');
@@ -27,5 +19,4 @@ export const addChangeThemeButton = (block) => {
   button.innerHTML = '<i class="fa fa-adjust"></i>';
   block.parentNode.prepend(button);
   button.addEventListener('click', changeTheme);
-  checkLocalStorage();
 };
