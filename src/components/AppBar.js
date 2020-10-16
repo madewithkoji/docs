@@ -1,22 +1,22 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { useStaticQuery, graphql } from 'gatsby';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import CloseIcon from '@material-ui/icons/Close';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import SearchIcon from '@material-ui/icons/Search';
-import Tabs from '@material-ui/core/Tabs';
-import Tab from '@material-ui/core/Tab';
-import { navigate } from '@reach/router';
 
-import { BLACK, BLUE, LIGHT_GRAY } from '../constants/colors';
+import { BLACK, BLUE } from '../constants/colors';
 
 import Link from './Link';
 import Logo from './Logo';
 import Search from './Search';
+
+const StyledToolbar = styled(Toolbar)`
+  padding: 0;
+`;
 
 const LogoWrapper = styled.div`
   g {
@@ -37,6 +37,7 @@ const NavLinkWrapper = styled.div`
   align-items: center;
   position: relative;
   margin-right: ${({ style: { logo } }) => logo ? '8px' : '0'};
+  margin-left: ${({ style: { logo } }) => logo ? '18px' : '0'};
 `;
 
 const SearchWrapper = styled.div`
@@ -62,8 +63,8 @@ const MobileSearchWrapper = styled.div`
 `;
 
 const StyledAppBar = styled(AppBar)`
-  background-color: ${LIGHT_GRAY} !important;
   box-shadow: none;
+  background: #ffffff;
 
   .mobile {
     display: none;
@@ -123,64 +124,12 @@ const Tooltip = styled.div`
 }
 `;
 
-const StyledTabs = styled(Tabs)`
-  margin-left: 32px;
-`;
-
-const StyledTab = styled(Tab)`
-  color: ${BLACK};
-  min-width: 128px !important;
-`;
-
 const AppBarComponent = (props) => {
-  const data = useStaticQuery(graphql`
-    query NavItems {
-      allNavItem {
-        nodes {
-          id
-          defaultPath
-          idx
-          name
-          root
-          sections {
-            idx
-            items {
-              idx
-              name
-              path
-            }
-            name
-          }
-        }
-      }
-    }
-  `);
-
-  const { allNavItem: { nodes: navItems = [] } } = data;
-  const sortedNavItems = navItems.sort((a, b) => a.idx - b.idx);
-
   const [mobileSearchIsVisible, setMobileSearchIsVisible] = useState(false);
-  const [activeTab, setActiveTab] = useState(0);
-
-  const handleTabChange = (e, t) => {
-    if (sortedNavItems[t].defaultPath) navigate(sortedNavItems[t].defaultPath);
-    setActiveTab(t);
-  };
-
-  useEffect(() => {
-    // Handle navigating back to the root
-    if (props.location.pathname === '/') setActiveTab(0);
-
-    sortedNavItems.forEach((navItem, idx) => {
-      if (props.location.pathname.includes(navItem.name.toLowerCase())) {
-        setActiveTab(idx);
-      }
-    });
-  }, [props.location.pathname]);
 
   return (
     <StyledAppBar position={'fixed'}>
-      <Toolbar className={'mobile'}>
+      <StyledToolbar className={'mobile'}>
         {
           mobileSearchIsVisible &&
           <MobileSearchWrapper>
@@ -200,15 +149,24 @@ const AppBarComponent = (props) => {
             <IconButton onClick={() => props.toggleMobileDrawer()}>
               <MenuIcon />
             </IconButton>
-            <Link
-              to={'/'}
-            >
-              <Logo
-                alt={'Koji for developers'}
-                src={'/images/dev-logo.png'}
-                style={{ isMobile: true }}
-              />
-            </Link>
+            <NavLinkWrapper style={{ logo: true }}>
+              <NavLink
+                href={'https://withkoji.com'}
+              >
+                <LogoWrapper>
+                  <Logo />
+                </LogoWrapper>
+              </NavLink>
+            </NavLinkWrapper>
+            <NavLinkWrapper style={{ logo: false }}>
+              <Link
+                to={'/'}
+              >
+                <Tooltip>
+                  {'for developers'}
+                </Tooltip>
+              </Link>
+            </NavLinkWrapper>
             <SearchIconWrapper>
               <SearchIcon
                 onClick={() => setMobileSearchIsVisible(true)}
@@ -220,9 +178,9 @@ const AppBarComponent = (props) => {
             </SearchIconWrapper>
           </>
         }
-      </Toolbar>
+      </StyledToolbar>
 
-      <Toolbar className={'desktop'}>
+      <StyledToolbar className={'desktop'}>
         <NavLinkWrapper style={{ logo: true }}>
           <NavLink
             href={'https://withkoji.com'}
@@ -241,33 +199,19 @@ const AppBarComponent = (props) => {
             </Tooltip>
           </Link>
         </NavLinkWrapper>
-        <StyledTabs
-          value={activeTab}
-          onChange={handleTabChange}
-          aria-label={'Tabbed navigation'}
-          variant={'fullWidth'}
-        >
-          {
-            sortedNavItems.map((navItem) => (
-              <StyledTab key={navItem.name} label={navItem.name} />
-            ))
-          }
-        </StyledTabs>
         <SearchWrapper>
           <Search />
         </SearchWrapper>
-      </Toolbar>
+      </StyledToolbar>
     </StyledAppBar>
   );
 };
 
 AppBarComponent.propTypes = {
-  location: PropTypes.object,
   toggleMobileDrawer: PropTypes.func,
 };
 
 AppBarComponent.defaultProps = {
-  location: {},
   toggleMobileDrawer() { },
 };
 
