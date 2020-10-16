@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import Drawer from '@material-ui/core/Drawer';
 import List from '@material-ui/core/List';
 import ListItemText from '@material-ui/core/ListItemText';
+import { navigate } from '@reach/router';
 
 import NestedList from './NestedList';
 
@@ -24,6 +25,10 @@ const NavItemsWrapper = styled.div`
   margin-left: 16px;
 `;
 
+const StyledListItemText = styled(ListItemText)`
+  cursor: pointer;
+`;
+
 const DrawerComponent = (props) => (
   <StyledDrawer
     className={'desktop'}
@@ -38,7 +43,10 @@ const DrawerComponent = (props) => (
             aria-labelledby={'nested-list-subheader'}
             key={navItem.name}
           >
-            <ListItemText primary={navItem.name} />
+            <StyledListItemText
+              onClick={() => navigate(navItem.defaultPath)}
+              primary={navItem.name}
+            />
             <>
               {
                 navItem.sections.sort((a, b) => a.idx - b.idx).map((section) => (
