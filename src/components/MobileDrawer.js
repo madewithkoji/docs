@@ -7,7 +7,7 @@ import ListItemText from '@material-ui/core/ListItemText';
 import NestedList from './NestedList';
 
 const Wrapper = styled.div`
-  width: 240px;
+  width: 272px;
   padding-left: 16px;
 `;
 

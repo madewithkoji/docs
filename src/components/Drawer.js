@@ -11,7 +11,7 @@ const StyledDrawer = styled(Drawer)`
   > div {
     margin-top: 64px;
     z-index: 0;
-    width: 240px;
+    width: 272px;
     height: calc(100vh - 64px);
     overflow: hidden;
   }
