@@ -146,7 +146,7 @@ const Layout = (props) => {
       <SEO />
       <Helmet
         bodyAttributes={{
-          class: localStorage.getItem('lightCode') ? '' : 'darkCode',
+          class: typeof window !== 'undefined' && localStorage.getItem('lightCode') ? '' : 'darkCode',
         }}
       >
         <link
