@@ -221,7 +221,7 @@ const Search = ({ isMobile }) => {
             color: '#333333',
             position: 'relative',
             right: '32px',
-            top: '8px',
+            top: '7px',
             cursor: 'pointer',
           }}
         />

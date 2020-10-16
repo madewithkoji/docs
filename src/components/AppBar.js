@@ -39,6 +39,10 @@ const NavLinkWrapper = styled.div`
   margin-right: ${({ style: { logo } }) => logo ? '8px' : '0'};
   margin-left: ${({ style: { logo } }) => logo ? '42px' : '0'};
   margin-top: 3px;
+
+  @media screen and (max-width: 1023px) {
+    margin-left: -4px;
+  }
 `;
 
 const SearchWrapper = styled.div`
@@ -51,15 +55,19 @@ const SearchIconWrapper = styled.div`
   align-items: center;
   justify-content: flex-end;
   flex: 1 0 auto;
+  margin-right: 8px;
+  margin-top: -4px;
 `;
 
 const MobileSearchWrapper = styled.div`
   width: 100%;
   display: flex;
   align-items: center;
+  width: calc(100% - 40px);
+  margin-left: 32px;
 
   input {
-    width: calc(100vw - 80px) !important;
+    width: calc(100vw - 118px) !important;
   }
 `;
 
@@ -125,6 +133,15 @@ const Tooltip = styled.div`
 }
 `;
 
+const StyledIconButton = styled(IconButton)`
+  margin-top: -4px;
+  margin-left: -2px;
+
+  &:hover {
+    background: transparent;
+  }
+`;
+
 const AppBarComponent = (props) => {
   const [mobileSearchIsVisible, setMobileSearchIsVisible] = useState(false);
 
@@ -140,6 +157,7 @@ const AppBarComponent = (props) => {
               style={{
                 color: '#333333',
                 cursor: 'pointer',
+                marginTop: '4px',
               }}
             />
           </MobileSearchWrapper>
@@ -147,9 +165,9 @@ const AppBarComponent = (props) => {
         {
           !mobileSearchIsVisible &&
           <>
-            <IconButton onClick={() => props.toggleMobileDrawer()}>
+            <StyledIconButton onClick={() => props.toggleMobileDrawer()}>
               <MenuIcon />
-            </IconButton>
+            </StyledIconButton>
             <NavLinkWrapper style={{ logo: true }}>
               <NavLink
                 href={'https://withkoji.com'}
