@@ -5,12 +5,15 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import styled from 'styled-components';
 import { ThemeProvider } from '@material-ui/core/styles';
 import { useStaticQuery, graphql } from 'gatsby';
-import { Helmet } from "react-helmet"
+import { Helmet } from 'react-helmet';
 import theme from '../theme';
 import AppBar from '../components/AppBar';
 import Content from '../components/Content';
 import Drawers from '../components/Drawers';
 import SEO from '../components/Seo';
+
+import { BLUE } from '../constants/colors';
+
 import '../styles/adoc-koji.css';
 import './index.css';
 
@@ -19,6 +22,11 @@ const Wrapper = styled.div`
 
   a {
     text-decoration: none;
+    color: ${BLUE};
+  }
+
+  a:visited {
+    color: ${BLUE};
   }
 
   a[target="_blank"] {
@@ -129,23 +137,25 @@ const Layout = (props) => {
   }, [mobileDrawerIsOpen]);
 
   const { allNavItem: { nodes: navItems = [] } } = data;
-  const hasDrawer = navItems.map(({ root }) => props.location.pathname.includes(root)).reduce((a, b) => a || b);
+
+  // If we bring back a full screen home page, this can be un-commented and passed to the Content component
+  // const hasDrawer = navItems.map(({ root }) => props.location.pathname.includes(root)).reduce((a, b) => a || b);
 
   return (
     <>
-      <SEO/>
-      <Helmet>
-        <link
-          href={'https://fonts.googleapis.com/css?family=Roboto:400,500,700&display=swap'}
-          rel={'stylesheet'}
-        />
+      <SEO />
+      <Helmet
+        bodyAttributes={{
+          class: typeof window !== 'undefined' && localStorage.getItem('lightCode') ? '' : 'darkCode',
+        }}
+      >
         <link
           href={'https://fonts.googleapis.com/icon?family=Material+Icons'}
           rel={'stylesheet'}
         />
         <link
-          href={"https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"}
-          rel={"stylesheet"}
+          href={'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css'}
+          rel={'stylesheet'}
         />
       </Helmet>
       <ThemeProvider theme={theme}>
@@ -164,7 +174,7 @@ const Layout = (props) => {
           <Content
             currentHeader={currentHeader}
             contentRef={contentRef}
-            hasDrawer={hasDrawer}
+            hasDrawer
           >
             {props.children}
           </Content>
