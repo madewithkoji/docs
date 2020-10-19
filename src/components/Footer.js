@@ -2,11 +2,18 @@ import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'gatsby';
 
-import { ResourcesFooterItems, KojiPlatformFooterItems, CompanyFooterItems, ConnectFooterItems } from './FooterItems';
+import { BLACK, LIGHT_GRAY } from '../constants/colors';
+
+import {
+  ResourcesFooterItems,
+  KojiPlatformFooterItems,
+  CompanyFooterItems,
+  ConnectFooterItems,
+} from './FooterItems';
 
 const Wrapper = styled.div`
-  background: rgb(239,239,239);
-  color: rgb(17, 17, 17);
+  background: ${LIGHT_GRAY};
+  color: ${BLACK};
   width: 100%;
   display: flex;
   align-items: center;
@@ -60,7 +67,7 @@ const ExternalSectionItem = styled.a`
   display: flex;
   align-items: center;
   font-size: 16px;
-  color: rgb(17, 17, 17);
+  color: ${BLACK} !important;
   margin-bottom: 16px;
 
   svg {
@@ -81,7 +88,7 @@ const SectionItem = styled(Link)`
   display: flex;
   align-items: center;
   font-size: 16px;
-  color: rgb(17, 17, 17);
+  color: ${BLACK} !important;
   margin-bottom: 16px;
 
   svg {

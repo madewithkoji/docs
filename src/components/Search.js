@@ -49,6 +49,8 @@ const Item = styled.div`
 const SearchInput = styled.input`
   height: 32px;
   padding-right: 40px;
+  border-radius: 4px;
+  padding-left: 8px;
 `;
 
 const Wrapper = styled.div`
@@ -219,7 +221,7 @@ const Search = ({ isMobile }) => {
             color: '#333333',
             position: 'relative',
             right: '32px',
-            top: '8px',
+            top: '7px',
             cursor: 'pointer',
           }}
         />
