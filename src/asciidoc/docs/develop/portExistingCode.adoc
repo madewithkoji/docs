@@ -180,12 +180,16 @@ If you return to the App settings customization, changing the background color s
 
 == Publishing your template
 
-Because this project is compiled with webpack, you must `require` the local JavaScript files, instead of referencing them in the `index.html` file.
+Before publishing your template, you must `require` the local JavaScript files, so that webpack includes them in the bundle.
 You must also add an entitlement to indicate to the Koji platform that the template supports instant remixing.
 
 . Open the `frontend/index.html` file, and remove the `<script>` tags from the top of the file.
 +
 There should be four of them.
++
+NOTE: The `script` tag references work in the development environment because the files are available locally.
+To make sure the files are included in the published bundle, you must `require` them, instead.
+
 . Press *Ctrl+S* to save the file.
 . Open the `frontend/index.js` file, and add the following code above the block of code you pasted in the previous section:
 +
