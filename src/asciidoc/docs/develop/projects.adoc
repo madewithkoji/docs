@@ -125,7 +125,7 @@ These files have the following schema:
 === .koji/customization
 
 The JSON files in this directory define the names, types, configuration options, and default values for VCCs used in the template.
-Every file created in this directory is displayed in the Customization section in the left navigation pane.
+Every file created in this directory is displayed in the VCC Explorer section in the left navigation pane.
 
 The following file would be saved as `example.json` and displayed in the left pane as *Example*:
 

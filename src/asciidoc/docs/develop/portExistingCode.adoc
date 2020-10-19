@@ -34,7 +34,7 @@ include::../_includes/remixNav.adoc[tag=all]
 +
 After a short loading time, the Koji editor opens.
 . Verify that the project is working.
-.. Open *Customization > App settings* on the left side of the editor.
+.. Open *VCC Explorer > App settings* on the left side of the editor.
 .. Change "Hello world!" to something else.
 +
 If everything is working correctly, you should see the preview on the right update automatically with your new value.
@@ -83,7 +83,7 @@ Another way to think about this is "theming" or "reskinning" an application -- t
 Let's say you want to make the background color of the game customizable.
 You need to do two things: set up a VCC to handle the user input, and consume the value inside the application.
 
-. To set up the VCC, open *Customization > App settings* on the left side of the editor, and then click *Code* view at the top of the file.
+. To set up the VCC, open *VCC Explorer > App settings* on the left side of the editor, and then click *Code* view at the top of the file.
 . Paste the following code into the file, and then press *Ctrl+S* to save the file.
 +
 [source,json]
