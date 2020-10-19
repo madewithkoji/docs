@@ -1,5 +1,6 @@
 = @withkoji/user-defaults
 :page-slug: withkoji-user-defaults-package
+:page-description: Package that provides a secure interface for accessing permissioned user data across all Koji templates. 
 
 The @withkoji/user-defaults package provides
 //tag::description[]

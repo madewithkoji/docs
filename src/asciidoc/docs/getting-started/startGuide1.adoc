@@ -1,6 +1,6 @@
 = Developing your first Koji template
 :page-slug: start-guide-1
-:page-description: Follow these step-by-step instructions to create and publish your first remixable web application on Koji.
+:page-description: Step-by-step instructions for creating and publishing your first remixable web application on Koji.
 
 On the Koji platform, you can develop JavaScript web applications that can be customized without coding.
 Instead, non-technical users can use Visual Customization Controls (VCCs) to quickly edit elements of the application, such as images, text, and sounds.
