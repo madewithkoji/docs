@@ -102,6 +102,20 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
         slug: node.pageAttributes.slug,
       },
     });
+
+    // When we move back to an actual home page, just remove this
+    // section to prevent creation of the duplicate introduction page
+    if (node.pageAttributes.slug === 'introduction') {
+      createPage({
+        path: '/',
+        component: asciidocTemplate,
+        context: {
+          id: node.id,
+          // additional data can be passed via context
+          slug: node.pageAttributes.slug,
+        },
+      });
+    }
   });
 
   knownSlugs.forEach((knownSlug) => {

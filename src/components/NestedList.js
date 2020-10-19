@@ -7,11 +7,21 @@ import ListItemText from '@material-ui/core/ListItemText';
 import Collapse from '@material-ui/core/Collapse';
 import ExpandLess from '@material-ui/icons/ExpandLess';
 import ExpandMore from '@material-ui/icons/ExpandMore';
+
+import { LIGHT_GRAY } from '../constants/colors';
 import Link from './Link';
 
 const StyledListItem = styled(ListItem)`
   padding-bottom: 4px;
   padding-top: 4px;
+
+  :hover {
+    background: ${LIGHT_GRAY} !important;
+  }
+
+  &.Mui-selected {
+    background: ${LIGHT_GRAY} !important;
+  }
 `;
 
 const NestedList = ({ pathname, section, openByDefault }) => {

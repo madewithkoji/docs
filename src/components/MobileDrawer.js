@@ -4,11 +4,17 @@ import styled from 'styled-components';
 import Drawer from '@material-ui/core/Drawer';
 import List from '@material-ui/core/List';
 import ListItemText from '@material-ui/core/ListItemText';
+import { navigate } from '@reach/router';
+
 import NestedList from './NestedList';
 
 const Wrapper = styled.div`
-  width: 240px;
+  width: 272px;
   padding-left: 16px;
+`;
+
+const StyledListItemText = styled(ListItemText)`
+  cursor: pointer;
 `;
 
 const MobileDrawer = (props) => (
@@ -21,7 +27,10 @@ const MobileDrawer = (props) => (
             aria-labelledby={'nested-list-subheader'}
             key={navItem.name}
           >
-            <ListItemText primary={navItem.name} />
+            <StyledListItemText
+              onClick={() => navigate(navItem.defaultPath)}
+              primary={navItem.name}
+            />
             <>
               {
                 navItem.sections.sort((a, b) => a.idx - b.idx).map((section) => (

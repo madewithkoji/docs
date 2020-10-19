@@ -32,20 +32,10 @@ const Drawers = (props) => (
       navItems={props.navItems}
       open={props.mobileDrawerIsOpen}
     />
-    {
-      props.navItems.sort((a, b) => a.idx - b.idx).map((navItem) => {
-        if (props.location.pathname.includes(navItem.root)) {
-          return (
-            <Drawer
-              key={navItem.root}
-              location={props.location}
-              navItem={navItem}
-            />
-          );
-        }
-        return null;
-      })
-    }
+    <Drawer
+      location={props.location}
+      navItems={props.navItems}
+    />
   </Wrapper>
 );
 
