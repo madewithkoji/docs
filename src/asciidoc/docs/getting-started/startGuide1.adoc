@@ -100,8 +100,8 @@ This code defines a scope and the customizable values within that scope.
 ----
 . Press *Ctrl-S* to save the file.
 +
-A new item appears in the *Customization* section of the left pane.
-. Click the item in the *Customization* section to display the associated VCC in the editor.
+A new item appears in the *VCC Explorer* section of the left pane.
+. Click the item in the *VCC Explorer* section to display the associated VCC in the editor.
 +
 In this example, the file stores one customizable value (`settings.title`), and Koji displays a text VCC to collect this value from a remixer.
 
@@ -506,7 +506,7 @@ At this point, the template should be configured to use the default value from t
 To test this configuration, you can use the built-in VCC and live preview in the Koji editor.
 
 . In the top right of the *Live Preview* pane, click *Refresh* to make sure you are seeing the latest version.
-. From the left pane of the editor, click *Customization > App Settings* to open the VCC for the `settings.json` customization file.
+. From the left pane of the editor, click *VCC Explorer > App Settings* to open the VCC for the `settings.json` customization file.
 . In the VCC, update the value in the *App title* field.
 +
 The preview window should reflect your update automatically.

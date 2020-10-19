@@ -24,7 +24,7 @@ To test and use your custom VCC, you need a Koji application to act as the "cons
 https://withkoji.com/~seane/simple-react-scaffold
 . After the editor has loaded, rename the project.
 For example: `Custom VCC Consumer`.
-. In *Customization*, open the `Strings` file.
+. In *VCC Explorer*, open the `Strings` file.
 +
 This file contains one option for `Page Title`, which uses a text VCC.
 You will replace this text VCC with custom VCC that you create in this tutorial.

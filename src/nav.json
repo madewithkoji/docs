@@ -80,6 +80,16 @@
           ]
         },
         {
+          "name": "Developing templates (advanced)",
+          "root": "/develop-advanced",
+          "items": [
+            {
+              "name": "Koji database",
+              "slug": "koji-database"
+            }
+          ]
+        },
+        {
           "name": "Enabling customizations",
           "root": "/customizations",
           "items": [
