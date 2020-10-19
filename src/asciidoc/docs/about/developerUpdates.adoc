@@ -18,8 +18,8 @@ image::database-views-oct2020.png[Manage content]
 You can specify user-friendly collection and column names, define the data types for rich data display, exclude unnecessary columns, and control the column order and default sort.
 ** To access the data for a Koji you created, use the *Koji button* in the top right, and then go to **More > Manage this Koji > View database**.
 * The new *Magic Link* enables you to register a custom `koji.to` link that points any Koji.
-For example, you could point to a Koji with your bio, and then share or post the link everywhere.
-If you ever want to update the bio or use a different Koji, you can change the link target in one place.
+For example, you could point to a Koji "bio", and then share or post the link everywhere.
+If you ever want to update your bio or use a different Koji, you can change the link target in one place.
 +
 image::magic-link-oct2020.png[Enable Magic Link]
 ** To set up your Magic Link, tap your profile picture, and then tap *Magic Link*.
@@ -27,6 +27,10 @@ Enable your Magic Link and enter your desired link address (for example, `\https
 By default, the link points to your Koji profile page.
 ** To change the link target, open the desired Koji and tap the *Koji button* in the top right.
 Then, go to **More > Manage this Koji > Use as Magic Link**.
+
+.Developer site updates
+* Several pages have been updated with new code samples, including <<add-service#>> and <<port-existing-code#>>.
+* The site design and navigation has been updated.
 
 === October 12
 

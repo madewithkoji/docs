@@ -5,30 +5,28 @@
 Each Koji project includes a key-value store that you can use as a backend database for simple use cases, such as collecting information from users, aggregating survey or poll results, and creating leaderboards for games.
 
 Koji databases are made up of one or more `collections`.
-Each collection stores a series of database entries with a unique key and collection of key-value pairs.
+Each collection stores a series of database entries, each with a unique key and a collection of key-value pairs.
 Values within the key-value pairs can be of any type, including strings, numbers, and arrays.
+
+For templates that use the Koji database you can view, download to CSV, and delete data from any collection.
+Additionally, you can define database views of collections to customize the data presentation for users who remix your template, which enables simple content moderation and data collection.
 
 == Using the Koji database
 
 To use the Koji database, you must install and implement the <<withkoji-database-package#>> package in the backend service of your Koji project.
+Then, implement template logic to collect data on the frontend and manage data on the backend.
 
-== Database views
+TIP: To build a simple template that uses a Koji database, you can follow the <<vote-counter-blueprint#>>.
 
-For templates that use the Koji database you can view, export, and delete data from any collection.
-Additionally, you can define database views to customize the data presentation for users who remix your template, enabling simple content moderation and data collection.
+== Customizing database views
 
-When developing a template, you can use the database explorer in the Koji editor to test the data collection logic and the database view configuration.
-
-To open the database explorer, go to *Advanced > Database*.
-
-TIP: To access the data for a Koji you created, use the *Koji button* in the top right, and then go to **More > Manage this Koji > View database**.
+In the `.koji/project/develop.json` file, add the `database` property at the same level as the `develop` property.
+For each custom database view, add an object in the `views` array that specifies the presentation of the data objects in a collection.
 
 You can specify user-friendly collection and column names, define the data types for rich data display, exclude unnecessary columns, and control the column order and default sort.
+For example, this custom view renders a leaderboard for a vote counter.
 
-In the `.koji/project/develop.json` file, database key
-
-A custom view that renders a leaderboard for a vote counter might look like the following example.
-
+.JSON format of a custom database view
 [source,JSON]
 ----
 {
@@ -43,13 +41,13 @@ A custom view that renders a leaderboard for a vote counter might look like the 
     "database": {
         "views": [
             {
-                "name": "Leaderboard",
-                "collection": "votes",
-                "columns": [
+                "name": "Leaderboard", <1>
+                "collection": "votes", <2>
+                "columns": [ <3>
                     {
-                        "key": "amount",
-                        "name": "Count",
-                        "type": "number"
+                        "key": "amount", <4>
+                        "name": "Count", <5>
+                        "type": "number" <6>
                     },
                     {
                         "key": "userId",
@@ -57,15 +55,38 @@ A custom view that renders a leaderboard for a vote counter might look like the 
                         "type": "string"
                     }
                 ],
-                "sort": {
-                    "key": "amount",
-                    "direction": "desc"
+                "sort": { <7>
+                    "key": "amount", <8>
+                    "direction": "desc" <9>
                 }
             }
         ]
     }
 }
 ----
+<1> `name` – User-friendly name for the view.
+<2> `collection` – Collection to which the view applies.
+<3> `columns` – Array of columns to display in the database view.
+<4> `columns.key` – Key used to access and store the column data in your template logic.
+<5> `columns.name` – User-friendly name for the column in the database view.
+<6> `columns.type` – Data type of the column, which defines how the data appears in the view.
+Supported types are: `string` (default), `image`, `link`, `number`, `date` (Unix timestamp), `object`, and `boolean`.
+If a database view is not defined in the project, all data is displayed as strings.
+<7> `sort` – Default sort of the view.
+<8> `sort.key` – Column by which to sort the data.
+<9> `sort.direction` – Order in which to sort the data, `asc` or `desc`.
+
+== Viewing and managing the data
+
+When developing a template, you can use the database explorer in the Koji editor to test the data collection logic and the database view configuration.
+After you publish a template or remix a Koji, you can access the data from the Koji.
+
+* To open the database explorer in the Koji editor, go to *Advanced > Database*.
+Then, select the collection you want to view.
++
+TIP: If a custom database view is defined, you can toggle between the view and the raw data.
+
+* To access the data for a Koji you created, use the *Koji button* in the top right, and then go to **More > Manage this Koji > View database**.
 
 == Related resources
 
