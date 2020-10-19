@@ -275,11 +275,30 @@ That's because you will allow users to customize those sounds.
 You should now see two additional pickers that allow a user to choose sounds for your game.
 . Open the `frontend/index.js` file, and add the following code below the `upgradeBGColor` function.
 +
+This code sets the initial sounds based on the customization files and adds a function for dynamically loading sounds.
++
 [source,javascript]
 ----
 // Set the initial sounds
 let laserSound = instantRemixing.get(['settings', 'gameOptions', 'laserSound']);
 let explosionSound = instantRemixing.get(['settings', 'gameOptions', 'explosionSound']);
+
+const loadAudio = () => {
+  SFX = {
+    laser: new Audio(laserSound),
+    explosion: new Audio(explosionSound),
+  };
+
+  // preload audio
+  for (var sfx in SFX) {
+    (function () {
+      var audio = SFX[sfx];
+      SFX[sfx] = function () {
+        return audio.play();
+      }
+    })();
+  }
+};
 ----
 . Update the `onValueChanged` listener to monitor changes to the sound values.
 +
@@ -291,18 +310,37 @@ instantRemixing.onValueChanged((path, newValue) => {
     laserSound = newValue.laserSound;
     explosionSound = newValue.explosionSound;
     upgradeBGColor(newValue.backgroundColor);
+    loadAudio();
   }
 });
 ----
-. Press *Ctrl+F* to open the finder tool, and enter `.wav` to search for the wav files that the game is using.
-. Replace the block of code you found with the following code.
+. Press *Ctrl+F* to open the finder tool, and enter `.wav` to search for the WAV files and audio preloading that the game was using.
++
+It should look like the following example.
 +
 [source,javascript]
 ----
 SFX = {
-  laser:     new Audio(laserSound),
-  explosion: new Audio(explosionSound),
+  laser:     new Audio('39459__THE_bizniss__laser.wav'),
+  explosion: new Audio('51467__smcameron__missile_explosion.wav')
 };
+
+// preload audio
+for (var sfx in SFX) {
+  (function () {
+    var audio = SFX[sfx];
+    SFX[sfx] = function () {
+      return audio.play();
+    }
+  })();
+}
+----
+
+. Replace the code you found with a call to your new `loadAudio` function.
++
+[source,javascript]
+----
+loadAudio();
 ----
 . Press *Ctrl+S* to save the file.
 +
