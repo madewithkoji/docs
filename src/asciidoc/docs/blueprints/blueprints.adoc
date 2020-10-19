@@ -1,6 +1,6 @@
 = Blueprints
 :page-slug: blueprints-overview
-:page-description: Simple, block-by-block code samples for building something cool on Koji.
+:page-description: List of simple, block-by-block code samples for building something cool on Koji.
 
 Blueprints are a quick way to build something cool on Koji. Each blueprint includes a simple, block-by-block guide and “as-built” code samples for a fun Koji application.
 
