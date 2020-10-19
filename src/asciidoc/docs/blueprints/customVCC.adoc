@@ -1,5 +1,6 @@
 = Cat selector VCC
 :page-slug: cat-selector-blueprint
+:page-description: Blueprint for a custom Koji VCC that lets remixers choose from a list of cat breeds retrieved from a third-party API.
 
 Follow this blueprint to build a custom VCC that allows remixers to select from a drop-down list of cat breeds.
 

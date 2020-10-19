@@ -1,5 +1,6 @@
 = Available packages for template features
 :page-slug: packages-overview
+:page-description: List of available npm packages that provide features and functionality for use in Koji templates.
 
 The following packages provide features and functionality for use in Koji templates.
 

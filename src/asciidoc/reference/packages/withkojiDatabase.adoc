@@ -1,5 +1,6 @@
 = @withkoji/database
 :page-slug: withkoji-database-package
+:page-description: Package for implementing a Koji database for the backend of your template.
 
 Each Koji project includes a key-value store that you can use as a backend database for simple use cases, such as collecting information from users, aggregating survey or poll results, and creating leaderboards for games.
 

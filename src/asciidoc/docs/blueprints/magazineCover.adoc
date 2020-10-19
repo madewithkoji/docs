@@ -1,6 +1,6 @@
 = Magazine cover template
 :page-slug: magazine-cover-blueprint
-:page-description: Follow this blueprint to build a template for your own picture and headline on a magazine cover.
+:page-description: Blueprint for a template to put your own picture and headline on a magazine cover.
 
 Follow this blueprint to build a template for your own picture and headline on a magazine cover.
 You will add customizable images and text, and then publish the template on Koji.

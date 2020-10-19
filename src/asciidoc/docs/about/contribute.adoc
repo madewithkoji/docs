@@ -1,6 +1,6 @@
 = Contributing to the Koji developer site
 :page-slug: contribute-koji-developers
-:page-description: A guide for contributing to the Koji for Developers site.
+:page-description: Guide for contributing to the Koji for Developers site.
 
 The Koji for Developers documentation site is built and maintained by developers just like you.
 You too can help by contributing to the site *structure*, writing new *articles*, or *suggesting edits* to existing documentation.
@@ -72,7 +72,7 @@ The above code will output the following:
 
 include::../_includes/tabs-example.adoc[tags=*]
 
-You will also notice that on some pages changing tabs will switch the tabs in multiple places (for example, choosing a coding framework in a blueprint article). 
+You will also notice that on some pages changing tabs will switch the tabs in multiple places (for example, choosing a coding framework in a blueprint article).
 To sync multiple sets of tabs, use the `scope` attribute. Then, selecting a tab on the page also selects any other tabs with the same scope and a matching tab title.
 
 [source, asciidoc]
@@ -87,7 +87,7 @@ Understanding the file structure of the documentation is helpful when making mod
 While all the documentation is structured as per the site under `src/asciidoc/` there are two other file structures to understand that will help you build content:
 
 nav.json::
-	The site navigation is defined in the `src/nav.json` file. 
+	The site navigation is defined in the `src/nav.json` file.
 	The `name` and `slug` attributes define where a page is listed in the sidebar as well as the URL structure.
 _includes/::
 	It can be useful to write documentation snippets and code blocks in external files so that they can be reused across multiple pages.

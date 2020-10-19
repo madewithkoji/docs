@@ -1,5 +1,6 @@
 = @withkoji/custom-vcc-sdk
 :page-slug: withkoji-custom-vcc-sdk
+:page-description: Package for implementing custom Visual Customization Controls (VCCs) for your template.
 
 The @withkoji/custom-vcc-sdk package enables you to
 //tag::description[]
