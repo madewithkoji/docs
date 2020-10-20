@@ -1,6 +1,6 @@
 = The Koji editor
 :page-slug: editor
-:page-description: The browser-based IDE for developing and testing Koji templates.
+:page-description: Guide for the Koji editor, a browser-based IDE for developing and testing Koji templates.
 
 The Koji editor is browser-based integrated development environment (IDE).
 You can use the Koji editor to create application and game templates.

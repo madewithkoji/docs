@@ -1,6 +1,6 @@
 = Anatomy of a Koji project
 :page-slug: projects
-:page-description: The unique files and elements in a Koji project that power the magic of customization.
+:page-description: Description of the unique files and elements in a Koji project that power the magic of customization.
 
 Koji provides you with an environment for developing and publishing an application in your browser.
 The project environment includes a terminal connected to a running container with all the familiar tools, the same code editor that powers VSCode, and tools to help you deploy and publish your application to https://withkoji.com[withkoji.com].

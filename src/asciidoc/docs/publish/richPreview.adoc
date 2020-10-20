@@ -1,6 +1,6 @@
 = Supporting rich previews
 :page-slug: rich-preview-image
-:page-description: How to customize the rich preview (Open Graph) image for your template.
+:page-description: How to customize the rich preview (Open Graph) image for your Koji template.
 :page-banner: {imagesDir}/Koji-screenshot=1.png
 
 When users share a remix of your template on social media, Koji renders a rich preview (Open Graph) image based on a screenshot of the template.
