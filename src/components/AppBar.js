@@ -15,7 +15,7 @@ import Logo from './Logo';
 import Search from './Search';
 
 const StyledToolbar = styled(Toolbar)`
-  padding: 0;
+  padding: 0 !important;
 `;
 
 const LogoWrapper = styled.div`
