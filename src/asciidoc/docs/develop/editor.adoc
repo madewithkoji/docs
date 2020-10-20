@@ -1,5 +1,6 @@
 = The Koji editor
 :page-slug: editor
+:page-description: Guide for the Koji editor, a browser-based IDE for developing and testing Koji templates.
 
 The Koji editor is browser-based integrated development environment (IDE).
 You can use the Koji editor to create application and game templates.
@@ -9,14 +10,16 @@ The editor contains all of your project's code, Visual Customization Controls (V
 
 The Koji editor is divided into these sections:
 
-* *Project pane*: Lists project menu items and source code.
-* *Editing pane*: Displays open files. Supports multiple tabs.
-* *Preview pane*: Displays a live preview of the template and provides other testing and debugging tools.
-* *Terminal pane*: Provides command line access to the project's services. Supports multiple tabs and can be collapsed.
+* *Project pane* – Lists project menu items and source code.
+* *Editing pane* – Displays open files.
+Supports multiple tabs.
+* *Preview pane* – Displays a live preview of the template and provides other testing and debugging tools.
+* *Terminal pane* – Provides command line access to the project's services.
+Supports multiple tabs and can be collapsed.
 
 image::Koji-editor.png[Screenshot of the Koji editor process]
 
-== Koji Editor Code Hosting and Source Control
+== Koji editor code hosting and source control
 
 Each Koji project is backed by a Git repository.
 When you remix a project, Koji clones that project's Git repository to your account and loads it in the editor.
@@ -31,7 +34,7 @@ To find the remote URL of your project's Git repository, navigate to *Settings >
 
 For more in-depth walkthroughs of using Git to manage your project and working locally, please visit the Tutorials section of the Developer Portal.
 
-== Inline and Remote Previews
+== Previews
 
 === Inline preview
 
@@ -39,14 +42,14 @@ The Live Preview in the editor is a running preview of your template.
 
 The live preview provides these additional options:
 
-* *Editing* and *Preview* modes: Toggles between application *Preview* mode and *Editing* mode, which represents what remixers see when customizing values.
-* *Refresh*: Updates the preview with the latest version of your project code.
-* *Show Logs*: Opens a pane showing the console logs of your project.
+* *Editing* and *Preview* modes – Toggles between application *Preview* mode and *Editing* mode, which represents what remixers see when customizing values.
+* *Refresh* – Updates the preview with the latest version of your project code.
+* *Show Logs* – Opens a pane showing the console logs of your project.
 This is useful for debugging runtime errors or incorrect behaviors.
 
 === Remote preview
 
-The "Remote" tab enables you to test your template in a new tab or on another device by scanning the QR code.
+The *Remote* tab enables you to test your template in a new tab or on another device by scanning the QR code.
 You can even share the remote preview link with someone else, and they can see the preview as you develop.
 
 [NOTE]
@@ -55,7 +58,7 @@ The remote preview link will only work for as long as your editor session is sti
 When your template preview is open in another tab, you still have access to the console logs of the remote device.
 This allows you test your template on different devices and computers while working in the editor, including things like debugging different browsers, operating systems, and form factors.
 
-== Route Testing
+== Route testing
 
 The *Routes* tab is used for testing backend routes.
 You can build your request and then click *Send Request* to execute it.
