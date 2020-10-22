@@ -1,20 +1,27 @@
 = Introduction to Koji
 :page-slug: introduction
+:figure-caption!:
 
-Koji is a platform that enables everyone, including everyday users, to quickly create interactive content, such as selfies, memes, games, and utilities.
-Kojis can be shared via a link on social media and messengers as well as in an embedded iframe on a website.
+Kojis are mini web applications that can be shared on all social platforms, embedded in any website, and sent via messengers and email.
+Everyday users can create Kojis in minutes by “remixing” another Koji and customizing it.
 
-As a developer, you can build web applications on Koji, called “templates,” that enable users to customize, or “remix,” them without coding.
-At their core, Koji templates are embeddable, mini-web applications written in modern JavaScript.
-They are designed to be responsive, so that they can run on any browser and every device.
-They also enable non-technical users to quickly edit elements, such as images, text, and sounds, to create a custom version that they can share anywhere on the web.
+As a developer, you can build the underlying "template" applications that power Kojis, and your software will be remixed into custom Kojis and shared by millions of people across the world.
+As your template is remixed, and its remixes are remixed, your software can evolve and expand into new expressions and applications.
+Koji tracks this ancestry, and you retain a stake in the value of this "evolution pool" over time.
 
-On Koji, you can develop templates that will be used and shared by millions of users across the world.
-You can also monetize your work through licensing, asset packs, and other developer compensation programs.
-With the ability to create and share remixable, interactive content, the opportunities for creative new applications and experiences are countless.
+<<instant-remixing#, Learn more about remixing and evolution>>
+
+Koji templates are full-stack, modern JavaScript applications that can embed multimedia, leverage web AR/VR support, facilitate e-commerce transactions, and more.
+When you develop a template, you define customizable elements and leverage Koji platform technology to make it easy for non-technical users to remix those elements, without coding.
+You can develop templates for any type of web application, including visual biographies, memes, games, premium content sales, and utilities.
+
+<<templates#, Learn more about Koji templates>>
+
+image::Koji-developer.png[Koji development process]
+
+Your templates can empower artists, influencers, brands, and content creators with new, interactive ways to reach their audiences and express themselves.
+With the ability to create and share remixable, interactive content, the opportunities for creative new experiences are countless.
 We can’t wait to see what YOU make!
-
-image:Koji-developer.svg[Overview of the Koji development process,title="Koji development process",opts=interactive]
 
 == Getting started
 
@@ -27,7 +34,7 @@ Blueprints are intended for developers who prefer to jump straight to code.
 
 == Staying in touch
 
-* Join the https://discord.gg/eQuMJF6[Koji community] on Discord to connect with other developers, makers, and the Koji team.
+* Join the https://discord.gg/eQuMJF6[Koji community] on Discord to connect with other developers, creators, and the Koji team.
 The community is the best place to share tips and tricks, provide peer feedback, and get support.
 * <<contribute-koji-developers#,Contribute to the developer site>> by coding, writing new articles, or suggesting edits to existing documentation.
 * Subscribe to the http://eepurl.com/g5odab[developer email list] to keep up with the latest announcements, featured content, events, and developer programs.
