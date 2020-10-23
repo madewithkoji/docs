@@ -22,17 +22,17 @@ image::Koji-editor.png[Screenshot of the Koji editor process]
 == Koji editor code hosting and source control
 
 Each Koji project is backed by a Git repository.
-When you remix a project, Koji clones that project's Git repository to your account and loads it in the editor.
+When you remix a project, Koji clones that project's Git repository to your account and opens it in the editor.
 When you publish your application from the editor, Koji commits your changes and pushes to master.
 This push triggers a deploy.
 You can think of the state of your Koji editor in the same way as the state of a Git repository on your computer -- that is, it is a working HEAD of your repository.
-This means that if you make changes to your project from outside the Koji editor, you will need to `git pull` those changes from within the Koji editor to see them.
+This means that if you make changes to your project from outside the Koji editor, you must `git pull` those changes from within the Koji editor to see them.
 
-If you would like to use a remote editor, you will need to generate a Git Access Token from your Account Settings.
+If you would like to use a remote editor, you must generate a Git Access Token from your Account Settings.
 You can use this access token in place of a password when cloning your repositories.
 To find the remote URL of your project's Git repository, navigate to *Settings > Repository* from within the Koji editor.
 
-For more in-depth walkthroughs of using Git to manage your project and working locally, please visit the Tutorials section of the Developer Portal.
+For in-depth walkthroughs of working outside the Koji editor, see <<use-git#>>.
 
 == Previews
 
