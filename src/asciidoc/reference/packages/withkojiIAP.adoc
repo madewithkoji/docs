@@ -1,6 +1,6 @@
 = @withkoji/koji-iap
 :page-slug: withkoji-koji-iap-package
-:page-description: Implement in-app purchases from your Koji templates.
+:page-description: Package for implementing in-app purchases from your Koji templates.
 
 The @withkoji/koji-iap package enables you to
 //tag::description[]

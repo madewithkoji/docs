@@ -1,5 +1,6 @@
 = Vote counter template
 :page-slug: vote-counter-blueprint
+:page-description: Blueprint for a template that counts votes from multiple users in real-time.
 
 Follow this blueprint to build a template that counts votes from multiple users in real-time.
 You will implement a database to record the users and votes and real-time dispatch to provide users with an immediate, multi-user experience.

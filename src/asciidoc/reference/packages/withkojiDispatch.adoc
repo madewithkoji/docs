@@ -1,5 +1,6 @@
 = @withkoji/dispatch
 :page-slug: withkoji-dispatch-package
+:page-description: Package for implementing real-time functionality in your Koji template.
 
 The @withkoji/dispatch package enables you to
 //tag::description[]

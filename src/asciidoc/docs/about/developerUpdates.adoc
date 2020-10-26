@@ -37,7 +37,7 @@ Then, go to **More > Manage this Koji > Use as Magic Link**.
 
 .Developer site updates
 * Several pages have been updated with new code samples, including <<add-service#>> and <<port-existing-code#>>.
-* The site design and navigation has been updated.
+* The site design and navigation have been updated.
 
 === October 12
 

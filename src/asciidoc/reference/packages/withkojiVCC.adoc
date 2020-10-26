@@ -1,6 +1,6 @@
 = @withkoji/vcc
 :page-slug: withkoji-vcc-package
-:page-description: Implement core platform features in your Koji template, including instant remixing, Visual Customization Controls (VCCs), and the Koji feed.
+:page-description: Package for implementing core platform features in your Koji template, including instant remixing, Visual Customization Controls (VCCs), and the Koji feed.
 
 The @withkoji/vcc package enables you to
 //tag::description[]

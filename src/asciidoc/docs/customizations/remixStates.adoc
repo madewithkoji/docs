@@ -1,6 +1,6 @@
 = Using remix states to expose customizations
 :page-slug: remix-states
-:page-description: Use remix states to improve the remix experience for templates with numerous customizations or distinct contexts.
+:page-description: How to use remix states to improve the experience for templates with numerous customizations or distinct contexts.
 
 If a template uses remix states, the available states are displayed during remixing so that a user can switch between them.
 You might use remix states to target different aspects of the experience or to break up options into manageable chunks, when a template includes too many customizable elements to expose at one time.
