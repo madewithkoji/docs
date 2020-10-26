@@ -336,6 +336,27 @@ Otherwise, the feed will display a loading state, and will eventually time out a
 [source,javascript]
 feed.load();
 
+[.hcode, id=".navigate", reftext="navigate"]
+=== .navigate(url)
+
+Replaces the currently loaded Koji with the content at the specified URL, without triggering a browser navigation event.
+This method enables a smoother experience in embedded contexts.
+
+NOTE: If the site at the specified URL can't be rendered in a frame (the `x-frame-options` header prevents it), the user is prompted to navigate at the browser level.
+
+==== Parameters
+
+* `url` – _String_, URL of the content to load.
+
+==== Example
+
+[source,HTML]
+----
+<button type="button" onClick={() => feed.navigate(url)}>
+  My favorite Koji
+</button>
+----
+
 [.hcode, id=".onPlaybackStateChanged", reftext="onPlaybackStateChanged"]
 === .onPlaybackStateChanged(handler)
 
@@ -358,6 +379,27 @@ Receives the following property as input:
 feed.onPlaybackStateChanged((isPlaying) => {
   // Handle autoplay features
 });
+----
+
+[.hcode, id=".present", reftext="present"]
+=== .present(url)
+
+Opens the content at the specified URL in a modal window that animates from the bottom of the screen.
+If the parent Koji is already displayed in a modal window, the content will open in the same window, replacing the current view.
+
+NOTE: If the site at the specified URL can't be rendered in a frame (the `x-frame-options` header prevents it), the user is prompted to navigate at the browser level.
+
+==== Parameters
+
+* `url` – _String_, URL of the content to load.
+
+==== Example
+
+[source,HTML]
+----
+<button type="button" onClick={() => feed.present(url)}>
+  My favorite Koji
+</button>
 ----
 
 [.hcode, id=".requestCancelTouch", reftext="requestCancelTouch"]

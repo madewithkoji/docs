@@ -8,6 +8,13 @@ TIP: To help improve the Koji developer experience, please share your thoughts, 
 
 == 2020
 
+=== October 27
+
+* In the <<withkoji-vcc-package#, @withkoji/vcc package>>, the following new features are available when developing your templates.
+** The new `navigate` and `present` methods enable you to manage navigation without triggering browser events, for a smoother experience in embedded contexts.
+** Embed an iframe in a Koji by appending `?context=sticker` to the URL.
+* On the developer site, updated content is available to help new Koji developers onboard more quickly, including <<instant-remixing#>> (new), <<templates#>> (updated), and <<introduction#>> (updated).
+
 === October 19
 
 .Koji platform updates
