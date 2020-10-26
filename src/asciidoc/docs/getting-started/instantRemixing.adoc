@@ -2,7 +2,7 @@
 :page-slug: instant-remixing
 :page-description: Remixing enables creators to evolve Kojis by customizing elements and publishing their own version.
 
-Remixing enables creators to make their own Kojis by customizing elements of existing Kojis and publishing their own version.
+Remixing enables creators to make their own Kojis by customizing elements of existing Kojis and publishing their own versions.
 The Koji platform supports the following methods of remixing:
 
 * *Instant remixing* – Opens a template preview with simple controls for changing specific elements, without coding.
@@ -40,7 +40,7 @@ To provide more specialized customization types, you can develop custom VCCs or 
 === 3. Share it
 
 After customizing the desired values, the creator can preview the template before finalizing it.
-Optionally, the creator can add caption or set the visibility to `unlisted` (accessible by direct link only).
+Optionally, the creator can add a caption or set the visibility to `unlisted` (accessible by direct link only).
 
 When the creator finalizes their changes, a new Koji is published and is immediately available to share anywhere on the internet, without coding or DevOps.
 The creator can simply copy the direct link and paste it into any social media, email, or messenger service.

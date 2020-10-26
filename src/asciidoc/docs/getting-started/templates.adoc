@@ -3,7 +3,7 @@
 :page-description: Templates are the underlying web applications that power Kojis and enable everyday users to remix them without coding.
 
 Templates are the underlying web applications that power Kojis.
-As a developer, you can build Koji templates for any type of web application, including visual biographies, memes, games, premium content sales, and utilities.
+As a developer, you can build Koji templates for any type of web application, including interactive profile pages, memes, games, premium content sales, and utilities.
 
 What makes a Koji template so unique is its ability to evolve and change over time through "remixing."
 When you develop a template, you define which values are customizable and leverage Koji platform technology to make it easy for non-technical users to change them.
@@ -31,7 +31,7 @@ The following steps describe the general process when developing a remixable tem
 
 Because every template on Koji is a remix, you will want to find a good starting place for your development.
 You can start from a scaffold that implements your favorite frontend framework.
-Or, you could find a Koji that implements some of your desired functionality, such as a backend database.
+Or, you can find a Koji that implements some of your desired functionality, such as a backend database.
 
 From this starting point, you'll use the *Koji* button in the top right to fork the underlying template.
 
@@ -49,7 +49,7 @@ For each element, a value can point to a resource location or be consumed direct
 video::/videos/DefineCustomEl.mp4[width=50%]
 
 The value type affects the remixing experience for users in addition to how you use the value in your code.
-To provide a UI for customizing values, you can use the built-in <<vcc-overview#, Visual Customization Controls>> (VCCs) on the Koji platform for standard elements, such as images, text, and sounds.
+To provide a UI for customizing values, you can use the built-in <<vcc-overview#, Visual Customization Controls>> (VCCs) for standard elements, such as images, text, and sounds.
 To provide more specialized customization types, you can <<build-custom-vcc#, develop custom VCCs>> or other types of controls.
 
 === 3. Dynamically set custom values
@@ -64,8 +64,9 @@ video::/videos/SetCustomVal.mp4[width=50%]
 === 4. Enable platform features and entitlements
 
 The Koji platform provides additional features that can enhance your template's functionality, usability, and value.
-It is recommended that all Koji templates implement support for the Koji feed, using the `FeedSdk` in the @withkoji/vcc package.
+It is recommended that all Koji templates implement support for the Koji feed.
 The Koji feed enables users to browse available templates, moving them from off screen or out of focus, into the main window of the feed.
+To ensure your template can be displayed correctly in the Koji feed, you must implement the `FeedSdk` in the @withkoji/vcc package.
 
 You can also implement in-app purchases, the Koji database, and real-time dispatch in your Koji templates, as needed to support the desired functionality.
 For detailed reference documentation on these and other features, see <<packages-overview#>>.

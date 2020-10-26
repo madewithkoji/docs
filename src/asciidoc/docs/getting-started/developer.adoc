@@ -3,7 +3,7 @@
 :figure-caption!:
 
 Kojis are mini web applications that can be shared on all social platforms, embedded in any website, and sent via messengers and email.
-Everyday users can create Kojis in minutes by “remixing” another Koji and customizing it.
+Everyday users can create Kojis in minutes by “remixing” other Kojis and customizing them.
 
 As a developer, you can build the underlying "template" applications that power Kojis, and your software will be remixed into custom Kojis and shared by millions of people across the world.
 As your template is remixed, and its remixes are remixed, your software can evolve and expand into new expressions and applications.
@@ -13,7 +13,7 @@ Koji tracks this ancestry, and you retain a stake in the value of this "evolutio
 
 Koji templates are full-stack, modern JavaScript applications that can embed multimedia, leverage web AR/VR support, facilitate e-commerce transactions, and more.
 When you develop a template, you define customizable elements and leverage Koji platform technology to make it easy for non-technical users to remix those elements, without coding.
-You can develop templates for any type of web application, including visual biographies, memes, games, premium content sales, and utilities.
+You can develop templates for any type of web application, including interactive profile pages, memes, games, premium content sales, and utilities.
 
 <<templates#, Learn more about Koji templates>>
 
