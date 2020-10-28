@@ -8,11 +8,19 @@ TIP: To help improve the Koji developer experience, please share your thoughts, 
 
 == 2020
 
-=== October 27
+=== October 28
 
-* In the <<withkoji-vcc-package#, @withkoji/vcc package>>, the following new features are available when developing your templates.
-** The new `navigate` and `present` methods enable you to manage navigation without triggering browser events, for a smoother experience in embedded contexts.
-** Embed an iframe in a Koji by appending `?context=sticker` to the URL.
+* In the <<withkoji-vcc-package#>> package, the following new features are available when developing your templates.
+** *Navigation methods* – The new `navigate` and `present` methods enable you to manage navigation without triggering browser events, for a smoother experience in embedded contexts.
+** *Sticker context* – The new `?context=sticker` URL parameter enables you to embed another Koji in an iframe as a sticker.
+The `StickerContext` entitlement enables you to define a distinct template experience when the template is embedded in another Koji.
+** *Admin context* – The new `?context=admin` URL parameter and `AdminContext` entitlement enable you to design functionality that is intended for the creator of the Koji.
+* The new <<withkoji-koji-auth-sdk#>> package enables you to authenticate users in Koji templates.
+Available features include:
+** Determine whether the current user created the Koji so that you can tailor the experience accordingly.
+** Send notifications to the Koji account of the user who created the Koji.
++
+image::push-notifications-oct2020.png[Push notifications]
 * On the developer site, updated content is available to help new Koji developers onboard more quickly, including <<instant-remixing#>> (new), <<templates#>> (updated), and <<introduction#>> (updated).
 
 === October 19

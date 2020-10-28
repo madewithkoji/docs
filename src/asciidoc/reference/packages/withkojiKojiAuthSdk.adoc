@@ -1,0 +1,158 @@
+= @withkoji/koji-auth-sdk
+:page-slug: withkoji-koji-auth-sdk
+:page-description: Package that provides user authentication for Koji templates.
+
+The @withkoji/koji-auth-sdk package enables you to
+//tag::description[]
+authenticate users in Koji templates.
+//end::description[]
+
+This package provides methods for determining the current user's role (whether or not the user created the Koji).
+This information can be used to tailor the experience based on who is viewing the Koji.
+For example, you can design a protected "admin" experience that is accessible only to the creator of the Koji.
+It also enables the template to send notifications to the creator's Koji account.
+
+== Install
+
+Install the package in the frontend and backend services of your Koji project.
+
+[source,bash]
+----
+npm install --save @withkoji/auth
+----
+
+== Auth
+
+[.hcode, id="new Auth", reftext="new Auth"]
+=== new Auth(projectID, projectToken)
+
+Instantiates `Auth`.
+
+==== Parameters
+
+* `projectID` – (Backend only) _String_, unique identifier for the Koji.
+* `projectToken` – (Backend only) _String_, secret key for the Koji.
+
+TIP: When instantiating `Auth` on the backend, you must provide these parameters, which are available as environment variables at runtime.
+For instant remixes, you must implement `VccMiddleware` to manage these variables.
+See <<withkoji-vcc-package#>>.
+
+==== Example
+
+[source,javascript]
+----
+import Auth from '@withkoji/auth';
+
+// Frontend
+const auth = new Auth();
+
+// Backend
+const auth = new Auth(
+  process.env.KOJI_PROJECT_ID,
+  process.env.KOJI_PROJECT_TOKEN,
+);
+----
+
+== Auth methods
+
+[.hcode, id=".getRole", reftext="getRole"]
+=== .getRole(userToken)
+
+Gets the user's role for the current Koji, which can be used to enable a different experience for the creator.
+
+==== Parameters
+
+* `userToken` – _String_, temporary token for the current user’s session.
++
+NOTE: A user token is created when a logged-in user loads a Koji, and destroyed when the user closes the Koji.
+If the user revisits the Koji, a different token is generated.
+Tokens are specific to a user and a Koji, so the same user will have different tokens for different Kojis.
+To resolve the role for a given user, both the user token, obtained on the frontend, and the project token, obtained from environment variables on the backend, are necessary.
+
+==== Returns
+
+(Async) _String_, one of the following values:
+
+* `admin` – User is the "owner" (creator) of this Koji.
+* `user` – User is not the owner of this Koji.
+* `unknown` – User is not logged in.
+
+==== Example
+
+[source,javascript]
+----
+const token = await auth.getToken();
+----
+
+[.hcode, id=".getToken", reftext="getToken"]
+=== .getToken(forceRefresh)
+
+Gets a token identifying the current user, which can be used to validate the user's role for the current Koji.
+
+==== Parameters
+
+* `forceRefresh` – (Optional) _Boolean_, indicates whether to generate a new user token before returning it (`false` by default).
+
+==== Returns
+
+(Async) _String_, temporary token for the current user's session.
+
+==== Example
+
+[source,javascript]
+----
+const token = await auth.getToken();
+----
+
+[.hcode, id=".getTokenWithCallback", reftext="getTokenWithCallback"]
+=== .getTokenWithCallback(handler, forceRefresh)
+
+Gets a token identifying the current user, and invokes a callback function to handle backend requests for the user's role.
+
+==== Parameters
+
+* `handler` – _Function_, handles backend requests for the user's role.
+Receives the following property as input:
+** `userToken` – _String_, temporary token for the current user's session.
+* `forceRefresh` – (Optional) _Boolean_, indicates whether to generate a new user token before invoking the callback function (`false` by default).
+
+==== Example
+
+[source,javascript]
+----
+auth.getTokenWithCallback((token) => {
+  // Request user's role and update template based on it
+});
+----
+
+[.hcode, id=".pushNotificationToOwner", reftext="pushNotificationToOwner"]
+=== .pushNotificationToOwner(notification)
+
+(Async) Sends a notification to the Koji account of the user who created the Koji.
+
+==== Parameters
+
+* `notification` – _Object_, details of the desired notification.
+Contains the following properties:
+** `icon` – _String_, Icon to display next to the message, either the URL of an image or an emoji character.
+** `appName` – _String_, Headline for the message.
+For example, the name of the Koji that generated the notification.
+** `message` – _String_, Content of the message.
+** `ref` – (Optional) _String_, Query parameters to append to the Koji URL when the notification is tapped.
+For example, load the admin experience or a dynamic receipt from the notification.
+
+==== Example
+
+[source,javascript]
+----
+auth.pushNotificationToOwner({
+  icon: '❓',
+  appName: 'Ask me anything',
+  message: 'Someone asked you a question! Respond now',
+  ref: '?context=admin',
+});
+----
+
+== Related resources
+
+* https://github.com/madewithkoji/koji-auth-sdk[@withkoji/koji-auth-sdk on Github]
