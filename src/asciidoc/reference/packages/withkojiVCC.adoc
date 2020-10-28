@@ -195,8 +195,10 @@ Listens to changes in remix state to enable different template experiences durin
 * `handler` – _Function_, handles changes in remix state.
 Receives the following properties as inputs:
 ** `isRemixing` – _Boolean_, indicates whether the template is in remixing mode.
-** `editorAttributes` – _Object_, describes the current editor. Contains the following attributes:
-*** `type` – _String_, describes the current editor type, either `full` or `instant`.
+** `editorAttributes` – _Object_, describes the current editor.
+Contains the following attributes:
+*** `type` – _String_, describes the current editor type, either `full` for the Koji editor or `instant` for an instant remix.
+*** `mode` – _String_, distinguishes between a `new` remix and an `edit` to the user's existing Koji.
 
 ==== Example
 
@@ -204,7 +206,6 @@ Receives the following properties as inputs:
 ----
 instantRemixing.onSetRemixing((isRemixing, editorAttributes) => {
   // Change template experience
-  // editorAttributes.type will be set to either "full" or "instant"
 });
 ----
 

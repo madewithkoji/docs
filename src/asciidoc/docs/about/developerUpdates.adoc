@@ -10,7 +10,12 @@ TIP: To help improve the Koji developer experience, please share your thoughts, 
 
 === October 28
 
-* In the <<withkoji-vcc-package#>> package, the following new features are available when developing your templates.
+* The Koji platform now allows you to edit a Koji you created and republish it to the same URL.
+** To provide different template experiences for editing an existing Koji and for creating a new remix, use the new `mode` editor attribute in the `onSetRemixing` method.
+For example, you might want to clear the default values for a new remix but not for an edit.
+For updated documentation, see the <<withkoji-vcc-package#.onSetRemixing, package reference>>.
+** To edit a Koji you created, use the *Koji button* in the top right, and then go to **More > Manage this Koji > Edit this Koji**.
+* In the <<withkoji-vcc-package#>> package, the following `FeedSdk` features are now available when developing your templates.
 ** *Navigation methods* – The new `navigate` and `present` methods enable you to manage navigation without triggering browser events, for a smoother experience in embedded contexts.
 ** *Sticker context* – The new `?context=sticker` URL parameter enables you to embed another Koji in an iframe as a sticker.
 The `StickerContext` entitlement enables you to define a distinct template experience when the template is embedded in another Koji.
