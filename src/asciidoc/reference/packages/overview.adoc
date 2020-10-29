@@ -1,5 +1,6 @@
 = Available packages for template features
 :page-slug: packages-overview
+:page-description: List of available npm packages that provide features and functionality for use in Koji templates.
 
 The following packages provide features and functionality for use in Koji templates.
 
@@ -20,6 +21,10 @@ include::withkojiDispatch.adoc[tag=description]
 +
 [.init-cap]
 include::withkojiIAP.adoc[tag=description]
+<<withkoji-koji-auth-sdk#>> ::
++
+[.init-cap]
+include::withkojiKojiAuthSdk.adoc[tag=description]
 <<withkoji-custom-vcc-sdk#>> ::
 +
 [.init-cap]

@@ -1,12 +1,12 @@
 import React, { cloneElement } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import Footer from './HomePage/Footer';
+import Footer from './Footer';
 
 const Container = styled.div`
   margin-top: 64px;
-  margin-left: ${({ style: { hasDrawer } }) => hasDrawer ? '240px' : '0'};
-  width: ${({ style: { hasDrawer } }) => hasDrawer ? 'calc(100vw - 240px)' : '100vw'};
+  margin-left: ${({ style: { hasDrawer } }) => hasDrawer ? '272px' : '0'};
+  width: ${({ style: { hasDrawer } }) => hasDrawer ? 'calc(100vw - 272px)' : '100vw'};
   overflow-x: hidden;
 
   @media screen and (max-width: 1023px) {

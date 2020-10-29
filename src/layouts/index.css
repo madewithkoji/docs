@@ -1,8 +1,11 @@
 html {
   scroll-padding-top: 72px;
-  scroll-behavior: smooth;
 }
 
 * {
   box-sizing: border-box !important;
+}
+
+pre {
+  font-family: Menlo, Monaco, "Courier New", monospace;
 }

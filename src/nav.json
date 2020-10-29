@@ -14,6 +14,10 @@
               "slug": "introduction"
             },
             {
+              "name": "What is remixing?",
+              "slug": "instant-remixing"
+            },
+            {
               "name": "What is a template?",
               "slug": "templates"
             },
@@ -24,28 +28,6 @@
             {
               "name": "Extending your template",
               "slug": "start-guide-2"
-            }
-          ]
-        },
-        {
-          "name": "Blueprints",
-          "root": "/blueprints",
-          "items": [
-            {
-              "name": "Overview",
-              "slug": "blueprints-overview"
-            },
-            {
-              "name": "Magazine cover template",
-              "slug": "magazine-cover-blueprint"
-            },
-            {
-              "name": "Vote counter template",
-              "slug": "vote-counter-blueprint"
-            },
-            {
-              "name": "Cat selector VCC",
-              "slug": "cat-selector-blueprint"
             }
           ]
         },
@@ -76,6 +58,10 @@
             {
               "name": "Working locally",
               "slug": "work-locally"
+            },
+            {
+              "name": "Koji database",
+              "slug": "koji-database"
             }
           ]
         },
@@ -154,6 +140,10 @@
             {
               "name": "Building custom VCCs",
               "slug": "build-custom-vcc"
+            },
+            {
+              "name": "Using remix states to expose customizations",
+              "slug": "remix-states"
             }
           ]
         },
@@ -182,6 +172,28 @@
             {
               "name": "Design guidelines",
               "slug": "design-guidelines"
+            }
+          ]
+        },
+        {
+          "name": "Blueprints",
+          "root": "/blueprints",
+          "items": [
+            {
+              "name": "Overview",
+              "slug": "blueprints-overview"
+            },
+            {
+              "name": "Magazine cover template",
+              "slug": "magazine-cover-blueprint"
+            },
+            {
+              "name": "Vote counter template",
+              "slug": "vote-counter-blueprint"
+            },
+            {
+              "name": "Cat selector VCC",
+              "slug": "cat-selector-blueprint"
             }
           ]
         },
@@ -247,6 +259,10 @@
             {
               "name": "@withkoji/koji-iap",
               "slug": "withkoji-koji-iap-package"
+            },
+            {
+              "name": "@withkoji/koji-auth-sdk",
+              "slug": "withkoji-koji-auth-sdk"
             },
             {
               "name": "@withkoji/custom-vcc-sdk",

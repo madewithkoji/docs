@@ -4,31 +4,34 @@ import hljs from 'highlight.js';
 import styled from 'styled-components';
 import 'highlight.js/styles/github.css';
 import '../../styles/dark-code.css';
+
+import { graphql } from 'gatsby';
+import Container from '@material-ui/core/Container';
+
 import { lineNumbers } from './utils/line-numbers';
 import { addCopyCodeButton } from './utils/copy-code';
 import { addChangeThemeButton } from './utils/code-theme';
 import { addLanguageIndicator } from './utils/lang-indicator';
 import { makeCollapsible } from './utils/collapsible';
-import { graphql } from 'gatsby';
-import Container from '@material-ui/core/Container';
-import { useTheme } from '@material-ui/core/styles';
-import useMediaQuery from '@material-ui/core/useMediaQuery';
+
+import { BLACK, DARK_GRAY } from '../../constants/colors';
 import Content from './components/Content';
 import SEO from '../../components/Seo';
 
 // Load future-tabs conditionally for gatsby static rendering
-var Tabs = null;
-if (typeof Element !== `undefined`) {
+let Tabs = null;
+
+if (typeof Element !== 'undefined') {
+  // eslint-disable-next-line global-require
   Tabs = require('future-tabs');
 }
 
-
 const SectionLink = styled.a`
-  color: #333333;
+  color: ${DARK_GRAY} !important;
   position: relative;
 
   &:hover {
-    color: #000000;
+    color: ${BLACK} !important;
     text-decoration: none;
   }
 
@@ -49,12 +52,12 @@ const SectionLink = styled.a`
 `;
 
 const SubSectionLink = styled.a`
-  color: #333333;
+  color: ${DARK_GRAY} !important;
   margin-left: 16px;
   position: relative;
 
   &:hover {
-    color: #000000;
+    color: ${BLACK} !important;
     text-decoration: none;
   }
 
@@ -87,13 +90,13 @@ const TOC = styled.div`
 
 const Nav = styled.div`
   position: fixed;
-  top: 72px;
+  top: 88px;
   right: 16px;
   width: 296px;
   padding: 16px;
   display: flex;
   flex-direction: column;
-  height: calc(100vh - 108px);
+  height: calc(100vh - 88px);
   overflow: auto;
 
   > * {
@@ -170,15 +173,14 @@ const Asciidoc = (props) => {
     document.querySelectorAll('.tabbed__toggle[data-scope]').forEach((tab) => {
       const { scope, scopevalue } = tab.dataset;
       tab.addEventListener('click', (e) => {
-        let self = e.target;
-        if(e.isTrusted) {
-          document.querySelectorAll(`.tabbed__toggle[data-scope="${scope}"][data-scopevalue="${scopevalue}"]`).forEach((target)=> {
-            if (target != self) target.click();
+        const self = e.target;
+        if (e.isTrusted) {
+          document.querySelectorAll(`.tabbed__toggle[data-scope="${scope}"][data-scopevalue="${scopevalue}"]`).forEach((target) => {
+            if (target !== self) target.click();
           });
         }
       });
     });
-
   }, []);
 
   useEffect(() => {
@@ -199,7 +201,8 @@ const Asciidoc = (props) => {
 
   useEffect(() => {
     const tabContainers = document.querySelectorAll('.tabbed');
-    for (var i = tabContainers.length - 1; i >= 0; i--) {
+    for (let i = tabContainers.length - 1; i >= 0; i -= 1) {
+      // eslint-disable-next-line no-new
       if (Tabs) new Tabs.Tabs(tabContainers[i], 'tabbed');
     }
   }, []);
@@ -211,9 +214,11 @@ const Asciidoc = (props) => {
 
     return href;
   };
-  let pageTitle = props.data.asciidoc.document.title
-  let pageDesc = props.data.asciidoc.pageAttributes.description ? props.data.asciidoc.pageAttributes.description : '';
-  let pageBanner = props.data.asciidoc.pageAttributes.banner ? props.data.asciidoc.pageAttributes.banner : '';
+
+  const pageTitle = props.data.asciidoc.document.title;
+  const pageDesc = props.data.asciidoc.pageAttributes.description ? props.data.asciidoc.pageAttributes.description : '';
+  const pageBanner = props.data.asciidoc.pageAttributes.banner ? props.data.asciidoc.pageAttributes.banner : '';
+
   return (
     <StyledContainer maxWidth="lg">
       <SEO title={pageTitle} description={pageDesc} image={pageBanner} article />

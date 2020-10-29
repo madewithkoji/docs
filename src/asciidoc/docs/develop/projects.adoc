@@ -1,12 +1,13 @@
 = Anatomy of a Koji project
 :page-slug: projects
+:page-description: Description of the unique files and elements in a Koji project that power the magic of customization.
 
 Koji provides you with an environment for developing and publishing an application in your browser.
 The project environment includes a terminal connected to a running container with all the familiar tools, the same code editor that powers VSCode, and tools to help you deploy and publish your application to https://withkoji.com[withkoji.com].
 
-== Project Directory
+== Project directory
 
-The project directory at `/usr/src/app` includes a git repository for your project with two remotes.
+The project directory at `/usr/src/app` includes a Git repository for your project with two remotes.
 
 . `origin`: The git remote from which projects are built and deployed.
 . `upstream`: The git remote from which projects are forked (a repository on GitHub for example).
@@ -28,7 +29,7 @@ read instructions for syncing with an upstream repo here
 The `README.md` file is required at the top level your project directory.
 This markdown file documents the tech stack and any relevant information to aid someone working with the code.
 
-== Koji Directory
+== .koji directory
 
 The `.koji` directory is where your configuration and script files live, including project configuration for development and deploy and customizations for Visual Customization Controls (VCCs).
 
@@ -121,11 +122,12 @@ The .json files in this directory each have a very specific schema that controls
 develop.json deals with setting up your editor so you will have the best editing experience and deploy.json tells Koji how to turn your code into a live app.
 These files have the following schema:
 
-=== koji/customization
+=== .koji/customization
 
-Every `.json` file in this directory is created by the template creator and creates a tab in the Customization section in the navigation bar on the left side of the screen.
+The JSON files in this directory define the names, types, configuration options, and default values for VCCs used in the template.
+Every file created in this directory is displayed in the VCC Explorer section in the left navigation pane.
 
-The following would create a section called Example and would be in a file called `example.json`:
+The following file would be saved as `example.json` and displayed in the left pane as *Example*:
 
 [source,JSON]
 ----
@@ -151,4 +153,4 @@ The following would create a section called Example and would be in a file calle
 }
 ----
 
-If you are using the @withkoji/vcc npm package, you can access this property with `instantRemixing.get(['example', 'param'])` or `Koji.config.example.param`.
+If you are using the <<withkoji-vcc-package#>> package, you can access this property with `instantRemixing.get(['example', 'param'])`.

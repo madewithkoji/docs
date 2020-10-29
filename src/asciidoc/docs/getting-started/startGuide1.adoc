@@ -1,6 +1,6 @@
 = Developing your first Koji template
 :page-slug: start-guide-1
-:page-description: Follow these step-by-step instructions to create and publish your first remixable web application on Koji.
+:page-description: Step-by-step instructions for creating and publishing your first remixable web application on Koji.
 
 On the Koji platform, you can develop JavaScript web applications that can be customized without coding.
 Instead, non-technical users can use Visual Customization Controls (VCCs) to quickly edit elements of the application, such as images, text, and sounds.
@@ -100,8 +100,8 @@ This code defines a scope and the customizable values within that scope.
 ----
 . Press *Ctrl-S* to save the file.
 +
-A new item appears in the *Customization* section of the left pane.
-. Click the item in the *Customization* section to display the associated VCC in the editor.
+A new item appears in the *VCC Explorer* section of the left pane.
+. Click the item in the *VCC Explorer* section to display the associated VCC in the editor.
 +
 In this example, the file stores one customizable value (`settings.title`), and Koji displays a text VCC to collect this value from a remixer.
 
@@ -506,7 +506,7 @@ At this point, the template should be configured to use the default value from t
 To test this configuration, you can use the built-in VCC and live preview in the Koji editor.
 
 . In the top right of the *Live Preview* pane, click *Refresh* to make sure you are seeing the latest version.
-. From the left pane of the editor, click *Customization > App Settings* to open the VCC for the `settings.json` customization file.
+. From the left pane of the editor, click *VCC Explorer > App Settings* to open the VCC for the `settings.json` customization file.
 . In the VCC, update the value in the *App title* field.
 +
 The preview window should reflect your update automatically.
@@ -615,12 +615,16 @@ ngOnInit() {
   this.isRemixing = this.instantRemixing.isRemixing;
   this.title = this.instantRemixing.get(['settings', 'title']);
 
-
   // Set up a listener to update title value
   this.instantRemixing.onValueChanged((path, newValue) => {
       if (path[0] && path[1] && path[0] === 'settings' && path[1] === 'title') {
           this.title = newValue;
       }
+  });
+
+  // Toggle the isRemixing state based on the listener
+  this.instantRemixing.onSetRemixing((isRemixing) => {
+      this.isRemixing = isRemixing;
   });
 
   // Alert Koji we are ready to use instantRemixing
@@ -1022,7 +1026,7 @@ Then, under *More options*, click *See profiled attributes*.
 If an error message appears when you open the link after profiling is completed, you can review the steps in this guide to fix it.
 To open your project again, go to *Koji home > My projects*, and click the template name.
 
-== Next steps
+== Completed samples and next steps
 
 In this guide, you learned how to add basic customizable elements to a template and then publish it on Koji.
 

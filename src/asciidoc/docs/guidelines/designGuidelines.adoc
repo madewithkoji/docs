@@ -1,5 +1,6 @@
 = Koji design guidelines
 :page-slug: design-guidelines
+:page-description: Recommendations for developing Koji templates with compelling and consistent UI elements, presentation, and usability.
 
 == Principles
 

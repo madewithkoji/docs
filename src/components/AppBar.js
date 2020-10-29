@@ -3,34 +3,46 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
-import { useStaticQuery, graphql } from 'gatsby';
 import CloseIcon from '@material-ui/icons/Close';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import SearchIcon from '@material-ui/icons/Search';
+
+import { BLACK, BLUE } from '../constants/colors';
+
 import Link from './Link';
+import Logo from './Logo';
 import Search from './Search';
 
-const Logo = styled.img`
-  height: ${({ style: { isMobile } }) => isMobile ? '50px' : '64px'};
-  margin-top: ${({ style: { isMobile } }) => isMobile ? '4px' : '8px'};
+const StyledToolbar = styled(Toolbar)`
+  padding: 0 !important;
+`;
+
+const LogoWrapper = styled.div`
+  g {
+    fill: ${BLACK};
+  }
+
+  svg {
+    height: 32px;
+    width: auto;
+    margin-right: 8px;
+  }
 `;
 
 const NavLinkWrapper = styled.div`
+  margin-top: 6px;
   height: 64px;
   display: flex;
   align-items: center;
   position: relative;
-  margin-right: ${({ style: { logo } }) => logo ? '32px' : '16px'};
-`;
+  margin-right: ${({ style: { logo } }) => logo ? '8px' : '0'};
+  margin-left: ${({ style: { logo } }) => logo ? '42px' : '0'};
+  margin-top: 3px;
 
-const Active = styled.div`
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 4px;
-  background: #333333;
+  @media screen and (max-width: 1023px) {
+    margin-left: -4px;
+  }
 `;
 
 const SearchWrapper = styled.div`
@@ -43,20 +55,25 @@ const SearchIconWrapper = styled.div`
   align-items: center;
   justify-content: flex-end;
   flex: 1 0 auto;
+  margin-right: 8px;
+  margin-top: -4px;
 `;
 
 const MobileSearchWrapper = styled.div`
   width: 100%;
   display: flex;
   align-items: center;
+  width: calc(100% - 40px);
+  margin-left: 32px;
 
   input {
-    width: calc(100vw - 80px) !important;
+    width: calc(100vw - 118px) !important;
   }
 `;
 
 const StyledAppBar = styled(AppBar)`
-  background-color: #ffffff !important;
+  box-shadow: none !important;
+  background: #ffffff !important;
 
   .mobile {
     display: none;
@@ -77,51 +94,60 @@ const StyledAppBar = styled(AppBar)`
   }
 `;
 
-const NavLink = styled(Link)`
+const NavLink = styled.a`
   font-size: 18px;
   color: #333333;
 
   &:active, &:focus {
-    color: #000000;
+    color: ${BLACK}
     text-decoration: none;
   }
 
   &:hover {
-    color: #000000;
+    color: ${BLACK}
+  }
+`;
+
+const Tooltip = styled.div`
+  position: relative;
+  top: -4px;
+  font-size: 12px;
+  font-weight: bold;
+  background: ${BLUE};
+  color: white;
+  padding: 6px;
+  border-radius: 6px;
+
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: 9px;
+    left: -12px;
+    width: 0px;
+    height: 0px;
+    border: 6px solid #007aff;
+    border-color: transparent ${BLUE} transparent transparent;
+    z-index: -1;
+  }
+}
+`;
+
+const StyledIconButton = styled(IconButton)`
+  margin-top: -4px;
+  margin-left: -2px;
+
+  &:hover {
+    background: transparent;
   }
 `;
 
 const AppBarComponent = (props) => {
-  const data = useStaticQuery(graphql`
-    query NavItems {
-      allNavItem {
-        nodes {
-          id
-          defaultPath
-          idx
-          name
-          root
-          sections {
-            idx
-            items {
-              idx
-              name
-              path
-            }
-            name
-          }
-        }
-      }
-    }
-  `);
-
-  const { allNavItem: { nodes: navItems = [] } } = data;
-
   const [mobileSearchIsVisible, setMobileSearchIsVisible] = useState(false);
 
   return (
     <StyledAppBar position={'fixed'}>
-      <Toolbar className={'mobile'}>
+      <StyledToolbar className={'mobile'}>
         {
           mobileSearchIsVisible &&
           <MobileSearchWrapper>
@@ -131,6 +157,7 @@ const AppBarComponent = (props) => {
               style={{
                 color: '#333333',
                 cursor: 'pointer',
+                marginTop: '4px',
               }}
             />
           </MobileSearchWrapper>
@@ -138,18 +165,27 @@ const AppBarComponent = (props) => {
         {
           !mobileSearchIsVisible &&
           <>
-            <IconButton onClick={() => props.toggleMobileDrawer()}>
+            <StyledIconButton onClick={() => props.toggleMobileDrawer()}>
               <MenuIcon />
-            </IconButton>
-            <Link
-              to={'/'}
-            >
-              <Logo
-                alt={'Koji for Developers'}
-                src={'/images/dev-logo.png'}
-                style={{ isMobile: true }}
-              />
-            </Link>
+            </StyledIconButton>
+            <NavLinkWrapper style={{ logo: true }}>
+              <NavLink
+                href={'https://withkoji.com'}
+              >
+                <LogoWrapper>
+                  <Logo />
+                </LogoWrapper>
+              </NavLink>
+            </NavLinkWrapper>
+            <NavLinkWrapper style={{ logo: false }}>
+              <Link
+                to={'/'}
+              >
+                <Tooltip>
+                  {'for developers'}
+                </Tooltip>
+              </Link>
+            </NavLinkWrapper>
             <SearchIconWrapper>
               <SearchIcon
                 onClick={() => setMobileSearchIsVisible(true)}
@@ -161,45 +197,40 @@ const AppBarComponent = (props) => {
             </SearchIconWrapper>
           </>
         }
-      </Toolbar>
+      </StyledToolbar>
 
-      <Toolbar className={'desktop'}>
+      <StyledToolbar className={'desktop'}>
         <NavLinkWrapper style={{ logo: true }}>
           <NavLink
-            to={'/'}
+            href={'https://withkoji.com'}
           >
-            <Logo
-              alt={'Koji for Developers'}
-              src={'/images/dev-logo.png'}
-              style={{ isMobile: false }}
-            />
+            <LogoWrapper>
+              <Logo />
+            </LogoWrapper>
           </NavLink>
         </NavLinkWrapper>
-        {
-          navItems.sort((a, b) => a.idx - b.idx).map(({ defaultPath, id, name, root }) => (
-            <NavLinkWrapper key={id} style={{}}>
-              <NavLink to={defaultPath}>
-                {name}
-              </NavLink>
-              {props.location.pathname.includes(root) && <Active />}
-            </NavLinkWrapper>
-          ))
-        }
+        <NavLinkWrapper style={{ logo: false }}>
+          <Link
+            to={'/'}
+          >
+            <Tooltip>
+              {'for developers'}
+            </Tooltip>
+          </Link>
+        </NavLinkWrapper>
         <SearchWrapper>
           <Search />
         </SearchWrapper>
-      </Toolbar>
+      </StyledToolbar>
     </StyledAppBar>
   );
 };
 
 AppBarComponent.propTypes = {
-  location: PropTypes.object,
   toggleMobileDrawer: PropTypes.func,
 };
 
 AppBarComponent.defaultProps = {
-  location: {},
   toggleMobileDrawer() { },
 };
 
