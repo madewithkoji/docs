@@ -20,6 +20,8 @@ For updated documentation, see the <<withkoji-vcc-package#.onSetRemixing, packag
 ** *Sticker context* – The new `?context=sticker` URL parameter enables you to embed another Koji in an iframe as a sticker.
 The `StickerContext` entitlement enables you to define a distinct template experience when the template is embedded in another Koji.
 ** *Admin context* – The new `?context=admin` URL parameter and `AdminContext` entitlement enable you to design functionality that is intended for the creator of the Koji.
+The creator can access this functionality by using the *Koji button* in the top right, and then going to **More > Manage this Koji > Admin dashboard**.
+* Starting with version 1.1.40 of @withkoji/vcc package, developers using VccMiddleware must use `res.locals.KOJI_PROJECT_ID` and `res.locals.KOJI_PROJECT_TOKEN`, instead of `process.env.KOJI_PROJECT` and `process.env.KOJI_PROJECT_TOKEN`, when instantiating services such as database, auth, and in-app purchases.
 * The new <<withkoji-koji-auth-sdk#>> package enables you to authenticate users in Koji templates.
 Available features include:
 ** Determine whether the current user created the Koji so that you can tailor the experience accordingly.

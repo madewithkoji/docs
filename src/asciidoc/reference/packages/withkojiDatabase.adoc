@@ -17,7 +17,12 @@ Values within the key-value pairs can be of any type, including strings, numbers
 
 Install the package in the backend service of your Koji project.
 
-WARNING: To maintain adequate read/write security, your template must connect to the database only from a backend route.
+[WARNING]
+====
+* To maintain adequate read/write security, your template must connect to the database only from a backend route.
+* To support instant remixes of your template, you must also install the <<withkoji-vcc-package#>> package and implement the `VccMiddleware` on your backend server.
+This middleware maintains the environment variables for instant remixes, ensuring that database access is restricted to the correct remix version.
+====
 
 [source,bash]
 ----
@@ -25,21 +30,33 @@ cd backend
 npm install --save @withkoji/database
 ----
 
-Your access credentials are automatically configured from environment variables.
-
 == Database
 
 [.hcode, id="new Database", reftext="new Database"]
-=== new Database()
+=== new Database(config)
 
 Instantiates `Database`.
+
+==== Parameters
+
+* `config` – (Required for instant remix support) _Object_, environment variables that serve as access credentials.
+Contains the following properties:
+** `projectID` – _String_, unique identifier for the Koji.
+** `projectToken` – _String_, secret key for the Koji.
+
++
+TIP: For templates that support instant remixes, you must implement `VccMiddleware` to manage these variables.
+See <<withkoji-vcc-package#>>.
 
 ==== Example
 
 [source,javascript]
 ----
 import Database from '@withkoji/Database';
-const database = new Database();
+const database = new Database({
+  projectId: res.locals.KOJI_PROJECT_ID,
+  projectToken: res.locals.KOJI_PROJECT_TOKEN,
+});
 ----
 
 == Database methods

@@ -280,7 +280,8 @@ const app = express();
 app.use(VccMiddleware.express);
 ----
 
-This middleware is required to manage the environment variables to scope them for instant remixes of the original template. In particular when using <<withkoji-koji-iap-package#>> or <<withkoji-database-package#>> you must call this middleware before instantiating those packages to ensure the correct environment is used by those packages.
+This middleware is required to manage the environment variables to scope them for instant remixes of the original template.
+In particular, when using <<withkoji-koji-iap-package#>>, <<withkoji-database-package#>>, or <<withkoji-koji-auth-sdk#>>, you must call this middleware before instantiating those packages to ensure they use the correct environment.
 
 Additionally, to access application-specific VCC values from an Express endpoint, use `res.locals.koji` and the `scope` and `key` of the VCC value you require.
 
@@ -453,6 +454,9 @@ For example, the sticker view might include a click handler that opens the full 
 To use this context:
 ** *Define an admin experience* – Enable the `AdminContext` <<_feedsdk, entitlement>>, and define a view intended for the creator of the Koji.
 For example, enable the creator to respond to questions from users.
++
+NOTE: When the `AdminContext` entitlement is enabled, the creator can access the admin view by using the *Koji button* in the top right, and then going to **More > Manage this Koji > Admin dashboard**.
+
 ** *Load the admin experience* – Load the admin experience only when viewed with the URL parameter `context=admin` and when the current user is the creator of the Koji.
 +
 IMPORTANT: To determine whether the current user is the creator, use the <<withkoji-koji-auth-sdk#>> package.

@@ -48,8 +48,8 @@ const auth = new Auth();
 
 // Backend
 const auth = new Auth(
-  process.env.KOJI_PROJECT_ID,
-  process.env.KOJI_PROJECT_TOKEN,
+  res.locals.KOJI_PROJECT_ID,
+  res.locals.KOJI_PROJECT_TOKEN,
 );
 ----
 

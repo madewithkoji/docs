@@ -7,7 +7,7 @@ Everyday users can create Kojis in minutes by “remixing” other Kojis and cus
 
 As a developer, you can build the underlying "template" applications that power Kojis, and your software will be remixed into custom Kojis and shared by millions of people across the world.
 As your template is remixed, and its remixes are remixed, your software can evolve and expand into new expressions and applications.
-Koji tracks this ancestry, and you retain a stake in the value of this "evolution pool" over time.
+Koji tracks this lineage, and you retain a stake in the value of this "evolution pool" over time.
 
 <<instant-remixing#, Learn more about remixing and evolution>>
 
