@@ -12,6 +12,7 @@ implement core platform features in your Koji template, including instant remixi
 * Monitor changes to custom values with a watcher function.
 * Ensure the template is displayed correctly in the Koji feed.
 * Monitor and handle state transitions between in and out of focus in the Koji feed.
+* Define distinct template experiences for different viewing contexts.
 
 == Install
 
@@ -194,8 +195,10 @@ Listens to changes in remix state to enable different template experiences durin
 * `handler` – _Function_, handles changes in remix state.
 Receives the following properties as inputs:
 ** `isRemixing` – _Boolean_, indicates whether the template is in remixing mode.
-** `editorAttributes` – _Object_, describes the current editor. Contains the following attributes:
-*** `type` – _String_, describes the current editor type, either `full` or `instant`.
+** `editorAttributes` – _Object_, describes the current editor.
+Contains the following attributes:
+*** `type` – _String_, describes the current editor type, either `full` for the Koji editor or `instant` for an instant remix.
+*** `mode` – _String_, distinguishes between a `new` remix and an `edit` to the user's existing Koji.
 
 ==== Example
 
@@ -203,7 +206,6 @@ Receives the following properties as inputs:
 ----
 instantRemixing.onSetRemixing((isRemixing, editorAttributes) => {
   // Change template experience
-  // editorAttributes.type will be set to either "full" or "instant"
 });
 ----
 
@@ -278,7 +280,8 @@ const app = express();
 app.use(VccMiddleware.express);
 ----
 
-This middleware is required to manage the environment variables to scope them for instant remixes of the original template. In particular when using <<withkoji-koji-iap-package#>> or <<withkoji-database-package#>> you must call this middleware before instantiating those packages to ensure the correct environment is used by those packages.
+This middleware is required to manage the environment variables to scope them for instant remixes of the original template.
+In particular, when using <<withkoji-koji-iap-package#>>, <<withkoji-database-package#>>, or <<withkoji-koji-auth-sdk#>>, you must call this middleware before instantiating those packages to ensure they use the correct environment.
 
 Additionally, to access application-specific VCC values from an Express endpoint, use `res.locals.koji` and the `scope` and `key` of the VCC value you require.
 
@@ -293,17 +296,24 @@ app.get('/test', (req, res) => {
 
 The Koji feed enables users to browse available templates, moving them from off screen or out of focus, into the main window of the feed.
 
-To ensure a template is displayed correctly in the Koji feed, you must implement the `FeedSdk` and enable the `FeedEvents` entitlement in the `.koji/project/entitlements.json` file.
+To ensure a template can be displayed correctly in the Koji feed, you must implement the `FeedSdk` and enable the `FeedEvents` entitlement in the `.koji/project/entitlements.json` file.
 
 .Entitlements
 [source,json]
 ----
 {
   "entitlements": {
-    "FeedEvents": true
+    "FeedEvents": true, <1>
+    "StickerContext": true, <2>
+    "AdminContext": true <3>
   }
 }
 ----
+<1> `FeedEvents` – Indicates that the template can be displayed the Koji feed.
+<2> `StickerContext` – (Optional) Enables a distinct experience when the template is embedded in another Koji as a sticker (viewed with the `context=sticker` URL parameter).
+See <<_context>>.
+<3> `AdminContext` – (Optional) Enables a distinct experience when the template is viewed by the creator (viewed with the `context=admin` URL parameter).
+See <<_context>>.
 
 NOTE: Kojis must be authorized by the Koji team to be displayed within the feed.
 When you are confident that your template is able to function well within a feed, please contact us for review and authorization.
@@ -336,6 +346,27 @@ Otherwise, the feed will display a loading state, and will eventually time out a
 [source,javascript]
 feed.load();
 
+[.hcode, id=".navigate", reftext="navigate"]
+=== .navigate(url)
+
+Replaces the currently loaded Koji with the content at the specified URL, without triggering a browser navigation event.
+This method enables a smoother experience in embedded contexts.
+
+NOTE: If the site at the specified URL can't be rendered in a frame (the `x-frame-options` header prevents it), the user is prompted to navigate at the browser level.
+
+==== Parameters
+
+* `url` – _String_, URL of the content to load.
+
+==== Example
+
+[source,HTML]
+----
+<button type="button" onClick={() => feed.navigate(url)}>
+  My favorite Koji
+</button>
+----
+
 [.hcode, id=".onPlaybackStateChanged", reftext="onPlaybackStateChanged"]
 === .onPlaybackStateChanged(handler)
 
@@ -360,6 +391,27 @@ feed.onPlaybackStateChanged((isPlaying) => {
 });
 ----
 
+[.hcode, id=".present", reftext="present"]
+=== .present(url)
+
+Opens the content at the specified URL in a modal window that animates from the bottom of the screen.
+If the parent Koji is already displayed in a modal window, the content will open in the same window, replacing the current view.
+
+NOTE: If the site at the specified URL can't be rendered in a frame (the `x-frame-options` header prevents it), the user is prompted to navigate at the browser level.
+
+==== Parameters
+
+* `url` – _String_, URL of the content to load.
+
+==== Example
+
+[source,HTML]
+----
+<button type="button" onClick={() => feed.present(url)}>
+  My favorite Koji
+</button>
+----
+
 [.hcode, id=".requestCancelTouch", reftext="requestCancelTouch"]
 === .requestCancelTouch()
 
@@ -378,6 +430,72 @@ If your template also uses touch controls, you can use the `requestCancelTouch` 
   no touch control
 </div>
 ----
+
+== FeedSdk services
+
+[.hcode]
+=== context
+
+Enables distinct template experiences for different viewing contexts.
+
+==== URL pattern
+
+`?context={value}`
+
+==== Parameter values
+
+* `sticker` – Manages the context for Kojis embedded in iframes in other Kojis.
+To use this context:
+** *Embed a Koji as a sticker* – Append `?context=sticker` to the `src` URL to display the embedded Koji with a transparent background and handle post messages between the child and parent Kojis.
+For example, the parent Koji can display an updated experience in response to a successful transaction on the embedded child Koji.
+** *Define a sticker experience* – Enable the `StickerContext` <<_feedsdk, entitlement>>, and define a view that loads only when the Koji is viewed as a sticker (with the URL parameter `context=sticker`).
+For example, the sticker view might include a click handler that opens the full Koji in a modal window.
+* `admin` – Manages functionality designed for the creator of a Koji.
+To use this context:
+** *Define an admin experience* – Enable the `AdminContext` <<_feedsdk, entitlement>>, and define a view intended for the creator of the Koji.
+For example, enable the creator to respond to questions from users.
++
+NOTE: When the `AdminContext` entitlement is enabled, the creator can access the admin view by using the *Koji button* in the top right, and then going to **More > Manage this Koji > Admin dashboard**.
+
+** *Load the admin experience* – Load the admin experience only when viewed with the URL parameter `context=admin` and when the current user is the creator of the Koji.
++
+IMPORTANT: To determine whether the current user is the creator, use the <<withkoji-koji-auth-sdk#>> package.
+
+==== Examples
+
+[source, JavaScript]
+----
+// Embed a Koji as a sticker
+<iframe src="${url}?context=sticker" />
+
+// Load the admin experience
+if (searchParams.context === 'admin') {
+  return <Admin />;
+}
+----
+
+////
+
+Manages the context for Kojis embedded in iframes in other Kojis.
+
+==== Basic use
+
+Append `?context={value}` to the `src` URL to share information between the child Koji and the parent Koji.
+For example, the parent Koji can display an updated experience in response to a successful transaction on an embedded Koji.
+
+==== Parameter values
+
+* `sticker` – Embeds the child Koji as a "sticker", with a transparent background, and handles post messages between the child and parent Kojis.
+If the `StickerContext` <<_feedsdk, entitlement>> is enabled in the embedded Koji, the `context=sticker` parameter is appended to the URL, enabling a distinct experience for this context.
+For example, a template clicking the sticker opens the embedded Koji in a modal window.
+
+==== Example
+
+[source, HTML]
+----
+<iframe src="${url}?context=sticker" /> // Embed a Koji as a sticker
+----
+////
 
 == Keystore
 

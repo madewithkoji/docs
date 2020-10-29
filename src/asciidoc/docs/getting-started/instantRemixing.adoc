@@ -11,7 +11,7 @@ As a template developer, you can implement instant remixing to empower everyday 
 As a developer, you can fork a scaffold or an existing template, and then introduce your own code and functionality to create a new template.
 For more information about forking, read about <<templates#, the template development process>>.
 
-As a Koji evolves over time through remixing, Koji tracks this ancestry, and you retain a stake in the value of the "evolution pool."
+As a Koji evolves over time through remixing, Koji tracks this lineage, and you retain a stake in the value of the "evolution pool."
 
 == Instant remixing for creators
 
@@ -52,7 +52,7 @@ Additionally, anyone who discovers the new Koji can remix it, starting the remix
 
 == Lineage and evolution
 
-As a Koji evolves over time through remixing, Koji tracks this ancestry and makes it available to viewers.
+As a Koji evolves over time through remixing, Koji tracks this lineage and makes it available to viewers.
 For any Koji, you can trace its history as well as the subsequent versions it inspired.
 
 To see a summary of the lineage for any Koji, tap the *Koji* button, and then tap *More*.
@@ -63,6 +63,6 @@ As an evolution pool grows, Koji distributes the "value" of the iterations acros
 This value can be derived from platform experiences, such as discovery, search, ranking, and content analysis, and from monetary compensation.
 For example, if a template performs in-app purchases or other transactions, the platform disburses a percentage of the transaction value across the evolution pool.
 
-To see the complete ancestry, including the cap table for transactional values, open the summary, and then tap *See all*.
+To see the complete lineage, including the cap table for transactional values, open the summary, and then tap *See all*.
 
-image::lineageFull.png[Complete ancestry, width=50%]
+image::lineageFull.png[Complete lineage, width=50%]

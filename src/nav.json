@@ -261,6 +261,10 @@
               "slug": "withkoji-koji-iap-package"
             },
             {
+              "name": "@withkoji/koji-auth-sdk",
+              "slug": "withkoji-koji-auth-sdk"
+            },
+            {
               "name": "@withkoji/custom-vcc-sdk",
               "slug": "withkoji-custom-vcc-sdk"
             },
