@@ -21,6 +21,9 @@ Install the package in the frontend and backend services of your Koji project.
 npm install --save @withkoji/auth
 ----
 
+IMPORTANT: To support instant remixes of your template, you must also install the <<withkoji-vcc-package#>> package and implement the `VccMiddleware` on your backend server.
+This middleware maintains the environment variables for instant remixes, ensuring that user authentication applies to the correct remix version.
+
 == Auth
 
 [.hcode, id="new Auth", reftext="new Auth"]
