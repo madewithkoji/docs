@@ -125,30 +125,6 @@ Saves the JSON customization file in the consumer application.
 customVcc.save();
 ----
 
-[.hcode, id=".showModal", reftext="showModal"]
-=== .showModal(type, currentValue, onComplete)
-
-Opens the specified modal type, and invokes a callback function when the user selects a value in the modal.
-The available modal types correspond to the built-in VCCs of the same name.
-When a value is chosen in the modal it invokes the onComplete handler passing the new value to it.
-
-==== Parameters
-
-* `type` – _String_, modal type to display. Possible values are `image`, `sound`, `obj`, and `file`.
-* `currentValue` – _Any_, current value of the custom VCC.
-* `onComplete` – _Function_, called when modal has been resolved.
-Receives the following property as input:
-** `newValue` – _Any_, the value set within the modal by the user.
-
-==== Example
-
-[source,javascript]
-----
-customVcc.showModal('image', myImageUrl, (newUrl) => {
-  // change and save VCC to use the new URL value
-});
-----
-
 [.hcode, id=".uploadFile", reftext="uploadFile"]
 === .uploadFile(file, fileName, onComplete)
 
