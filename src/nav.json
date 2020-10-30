@@ -172,6 +172,10 @@
             {
               "name": "Design guidelines",
               "slug": "design-guidelines"
+            },
+            {
+              "name": "Frontend Uploading",
+              "slug": "frontend-uploading"
             }
           ]
         },

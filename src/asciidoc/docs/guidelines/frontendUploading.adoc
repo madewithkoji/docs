@@ -1,0 +1,99 @@
+= Uploading from the frontend
+:page-slug: frontend-uploading
+:page-description: Allowi users to upload files to the CDN from a Koji's frontend.
+
+This guide covers the topic of allowing users to upload files to the CDN from a Koji's frontend using the `generateSignedUploadRequest` method from the <<withkoji-database-package#.generateSignedUploadRequest, @withkoji/database-sdk>> package.
+
+If you are developing a template for something such as a public image board this is the optimal way for to give end users the ability to upload files.
+
+== Prerequisites
+This guide covers advanced topics, it is suggested you are familiar with the following before proceeding:
+
+* React and ES6 basics.
+* The Koji editor, remix process, and the <<withkoji-vcc-package,@withkoji/vcc>> package.
+* https://expressjs.com/[Express.js] web framework.
+* Backend communication and the <<withkoji-database-package,@withkoji/database-sdk>> package.
+* Performing HTTP requests (this example uses https://github.com/axios/axios[axios]).
+
+== Configure Backend
+
+To upload from the frontend you first need to acquire a presigned URL using the Koji database SDK.
+
+Within a backend service for your Koji project setup an Express.js server with a POST method to the endpoint `/get-upload-url`.
+From this endpoint call the following function.
+
+[source, javascript]
+----
+import Database from '@withkoji/database';
+
+const uploadImage = async (req, res) => {
+  try {
+    const { filename } = req.body;
+
+    const db = new Database({
+      projectId: res.locals.KOJI_PROJECT_ID,
+      projectToken: res.locals.KOJI_PROJECT_TOKEN,
+    });
+
+    const data = await db.generateSignedUploadRequest(filename);
+
+    res.status(200).json({ data });
+  } catch (err) {
+    console.log('err', err);
+    res.status(500).json({ err: err.toString() });
+  }
+};
+
+export default uploadImage;
+----
+
+== Configure Frontend
+
+From your frontend service call that endpoint to retrieve the presigned URL.
+
+[source,javascript]
+----
+const { data: { data: { signedRequest, url } } = {} } = await axios({
+  method: 'post',
+  url: `${serviceMap.backend}/get-upload-url`,
+  data: {
+    filename: file.name,
+  },
+  headers: {
+    'Content-Type': 'application/json',
+  },
+});
+----
+
+Create form data and include the presigned url data and the file object to be uploaded.
+
+[source,javascript]
+----
+// Build form data to send to s3
+const formData = new FormData();
+
+// Attach each of the request fields to the form
+Object.keys(signedRequest.fields).forEach((key) => {
+  formData.append(key, signedRequest.fields[key]);
+});
+
+// Append file last
+formData.append('file', file);
+----
+
+Post this data to the URL.
+There is no response data from the request so instead check the status, if 204 you can now use the URL which will point to your uploaded file.
+[source,javascript]
+----
+// Post to s3
+const { status } = await axios({
+  headers: { 'content-type': 'application/x-www-form-urlencoded' },
+  method: 'POST',
+  data: formData,
+  url: signedRequest.url,
+});
+
+if (status === 204) {
+  // do something with signedRequest.url
+}
+----
