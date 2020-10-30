@@ -474,29 +474,6 @@ if (searchParams.context === 'admin') {
 }
 ----
 
-////
-
-Manages the context for Kojis embedded in iframes in other Kojis.
-
-==== Basic use
-
-Append `?context={value}` to the `src` URL to share information between the child Koji and the parent Koji.
-For example, the parent Koji can display an updated experience in response to a successful transaction on an embedded Koji.
-
-==== Parameter values
-
-* `sticker` – Embeds the child Koji as a "sticker", with a transparent background, and handles post messages between the child and parent Kojis.
-If the `StickerContext` <<_feedsdk, entitlement>> is enabled in the embedded Koji, the `context=sticker` parameter is appended to the URL, enabling a distinct experience for this context.
-For example, a template clicking the sticker opens the embedded Koji in a modal window.
-
-==== Example
-
-[source, HTML]
-----
-<iframe src="${url}?context=sticker" /> // Embed a Koji as a sticker
-----
-////
-
 == Keystore
 
 The `Keystore` module is used in conjunction with the <<secret#, secret VCC type>>.
@@ -548,3 +525,5 @@ const password = await keystore.resolveValue(res.locals.koji.images.premium_imag
 == Related resources
 
 * https://github.com/madewithkoji/koji-vcc[@withkoji/vcc on Github]
+* <<instant-remixing#>>
+* <<start-guide-1#>>
