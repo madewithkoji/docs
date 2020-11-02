@@ -19,13 +19,13 @@ Or, if the user hasn't purchased the image, display a *Purchase* button and use 
 
 Install the package in the frontend and backend services of your Koji project.
 
-IMPORTANT: To support instant remixes of your template, you must also install the <<withkoji-vcc-package#>> package and implement the `VccMiddleware` on your backend server.
-This middleware maintains the process variables for instant remixes, ensuring that purchases are applied to the correct remix version.
-
 [source,bash]
 ----
 npm install --save @withkoji/iap
 ----
+
+IMPORTANT: To support instant remixes of your template, you must also install the <<withkoji-vcc-package#>> package and implement the `VccMiddleware` on your backend server.
+This middleware maintains the environment variables for instant remixes, ensuring that purchases are applied to the correct remix version.
 
 == Iap
 
@@ -213,6 +213,7 @@ Receives the following properties as input:
 ** `success` – _Boolean_, indicates whether the purchase was successful.
 ** `userToken` – _String_, temporary token for the current user's session.
 See <<.getToken>>.
+** `receiptId` – _String_, unique identifier for the receipt, if the purchase was successful, or `undefined`, if not.
 * `purchaseOptions`– _Object_, custom information to add to the transaction receipt.
 Contains the following properties:
 ** `price` – _Number_, (Optional) amount of the purchase.
