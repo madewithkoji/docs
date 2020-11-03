@@ -1,8 +1,8 @@
-= @withkoji/koji-iap
+= @withkoji/iap
 :page-slug: withkoji-koji-iap-package
 :page-description: Package for implementing in-app purchases from your Koji templates.
 
-The @withkoji/koji-iap package enables you to
+The @withkoji/iap package enables you to
 //tag::description[]
 implement in-app purchases from your Koji templates.
 //end::description[]
@@ -343,5 +343,5 @@ Calculated based on the total inventory defined in the entitlements file, less t
 
 == Related resources
 
-* https://github.com/madewithkoji/koji-iap[@withkoji/koji-iap on Github]
+* https://github.com/madewithkoji/koji-iap[@withkoji/iap on Github]
 * https://withkoji.com/code/sean/aoyl[Reference project]
