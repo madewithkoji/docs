@@ -101,10 +101,25 @@ include::../_includes/customVCCReact.js[tags=constructor,indent=0]
 ----
 
 .Vanilla JS
+====
+[.tabs]
+=====
+.index.js
+======
 [source,javascript]
 ----
 include::../_includes/customVCCVanilla.js[tags=initTheme,indent=0]
 ----
+======
+.default-theme.js
+======
+[source,javascript]
+----
+include::../_includes/customVCCVanillaDefaultTheme.js[indent=0]
+----
+======
+=====
+====
 --
 
 Register your custom VCC to connect to Koji and set a listener to update your application state when the custom VCC updates.
