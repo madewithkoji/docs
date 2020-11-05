@@ -1,14 +1,15 @@
 = Text, textarea
 :page-slug: text
+:page-description: Standard VCCs for entering custom text.
 
-* {blank}
+* Users can
 //tag::description[]
-Text can be changed by clicking the input field and typing the new text.
+change text by clicking the input field and entering the new text.
 //end::description[]
-* A TextArea VCC can be used by defining a `type` of `textarea`.
-* The difference between the 'Text Area' and just 'Text' is that a text area allows line breaks within it. Text can be changed by clicking in the input field and typing the new text.
+* The `text` VCC type supports short text that does not contain line breaks.
+* The `textarea` VCC type supports longer text and allows line breaks in the text entry.
 
-== Sample Text VCC
+== Sample text VCC
 
 [source,json]
 ----

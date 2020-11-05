@@ -1,5 +1,6 @@
 = Visual Customization Controls
 :page-slug: vcc-overview
+:page-description: How to use Visual Customization Controls for remixable elements in your Koji templates.
 :figure-caption!:
 
 Visual Customization Controls (VCCs) enable users to quickly edit elements of your template on Koji.
@@ -57,7 +58,7 @@ Should be the same file, in most cases.
 <12> `typeOptions` – (Optional) Configuration options for the VCC.
 The available options vary by type.
 
-== VCC Types
+== VCC types
 
 The Koji platform provides VCCs for standard elements, such as images, text, and sounds.
 To provide more specialized customization types, you can use custom VCCs published on the Koji platform and you can build your own custom VCCs.
@@ -65,68 +66,70 @@ To provide more specialized customization types, you can use custom VCCs publish
 To compose higher-order controls, you can combine VCCs into arrays or objects.
 You can also combine arrays and objects to create more elaborate controls.
 
-.Standard VCCs
-<<image#>> ::
-+
-[.init-cap]
-include::image.adoc[tag=description]
-<<sound#>> ::
-+
-[.init-cap]
-include::sound.adoc[tag=description]
-<<color#>> ::
-+
-[.init-cap]
-include::color.adoc[tag=description]
-<<text#>> ::
-+
-[.init-cap]
-include::text.adoc[tag=description]
+=== Standard VCCs (alphabetical)
+
 <<boolean#>> ::
 +
 [.init-cap]
 include::boolean.adoc[tag=description]
-<<range#>> ::
+<<color#>> ::
 +
 [.init-cap]
-include::range.adoc[tag=description]
-<<select#>> ::
-+
-[.init-cap]
-include::select.adoc[tag=description]
-<<secret#>> ::
-+
-[.init-cap]
-include::secret.adoc[tag=description]
-<<3d-object#>> ::
-+
-[.init-cap]
-include::3DObject.adoc[tag=description]
+include::color.adoc[tag=description]
 <<coordinate#>> ::
 +
 [.init-cap]
 include::coordinate.adoc[tag=description]
-<<size#>> ::
-+
-[.init-cap]
-include::size.adoc[tag=description]
-<<video#>> ::
-+
-[.init-cap]
-include::video.adoc[tag=description]
 <<file#>> ::
 +
 [.init-cap]
 include::file.adoc[tag=description]
+<<image#>> ::
++
+[.init-cap]
+include::image.adoc[tag=description]
+<<3d-object#>> ::
++
+[.init-cap]
+include::3DObject.adoc[tag=description]
+<<range#>> ::
++
+[.init-cap]
+include::range.adoc[tag=description]
+<<secret#>> ::
++
+[.init-cap]
+include::secret.adoc[tag=description]
+<<select#>> ::
++
+[.init-cap]
+include::select.adoc[tag=description]
+<<size#>> ::
++
+[.init-cap]
+include::size.adoc[tag=description]
+<<sound#>> ::
++
+[.init-cap]
+include::sound.adoc[tag=description]
+<<text#>> ::
++
+[.init-cap]
+include::text.adoc[tag=description]
+<<video#>> ::
++
+[.init-cap]
+include::video.adoc[tag=description]
 
-.Custom VCC showcase
+=== Custom VCC showcase
+
 <<google-font#>> ::
 +
---
+[.init-cap]
 include::googleFont.adoc[tag=description]
---
 
-.VCC composition controls
+=== VCC composition controls
+
 <<array#>> ::
 +
 [.init-cap]

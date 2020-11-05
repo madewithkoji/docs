@@ -1,12 +1,14 @@
 = Coordinate
 :page-slug: coordinate
+:page-description: Standard VCC for specifying a coordinate pair (x,y).
 
-* {blank}
+* Users can
 //tag::description[]
-Specify an (x,y) coordinate pair.
+specify a coordinate pair (x,y).
 //end::description[]
+For example, position an element on a canvas.
 
-== Sample Coordinate VCC
+== Sample coordinate VCC
 
 [source,json]
 ----
