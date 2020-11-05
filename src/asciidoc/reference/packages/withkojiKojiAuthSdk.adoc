@@ -1,8 +1,8 @@
-= @withkoji/koji-auth-sdk
+= @withkoji/auth
 :page-slug: withkoji-koji-auth-sdk
 :page-description: Package that provides user authentication for Koji templates.
 
-The @withkoji/koji-auth-sdk package enables you to
+The @withkoji/auth package enables you to
 //tag::description[]
 authenticate users in Koji templates.
 //end::description[]
@@ -158,4 +158,4 @@ auth.pushNotificationToOwner({
 
 == Related resources
 
-* https://github.com/madewithkoji/koji-auth-sdk[@withkoji/koji-auth-sdk on Github]
+* https://github.com/madewithkoji/koji-auth-sdk[@withkoji/auth on Github]
