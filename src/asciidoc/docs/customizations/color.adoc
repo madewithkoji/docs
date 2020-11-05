@@ -1,13 +1,13 @@
 = Color
 :page-slug: color
+:page-description: Standard VCCs for selecting a color.
 
 * Users can
 //tag::description[]
-pick a color
+select a color from a swatch or enter a color code (HEX, RGB, and HSL).
 //end::description[]
-by clicking the color or by clicking *Change* and a color swatch will appear to choose a color.
 
-== Sample Color VCC
+== Sample color VCC
 
 [source,json]
 ----

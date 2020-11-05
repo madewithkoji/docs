@@ -1,12 +1,13 @@
 = Size
 :page-slug: size
+:page-description: Standard VCC for specifying a (width, height) pair.
 
-* {blank}
+* Users can
 //tag::description[]
-Specify a (width,height) pair.
+specify a (width, height) pair.
 //end::description[]
 
-== Sample Size VCC
+== Sample size VCC
 
 [source,json]
 ----

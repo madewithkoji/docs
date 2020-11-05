@@ -1,13 +1,14 @@
 = Select
 :page-slug: select
+:page-description: Standard VCC for making a selection from a predefined list of options.
 
-* Lets the user
+* Users can
 //tag::description[]
-choose from a predefined set of options.
+make a selection from a predefined list of options.
 //end::description[]
 * The `typeOptions` must be defined for this VCC to work correctly.
 
-== Sample Select VCC
+== Sample select VCC
 
 [source,json]
 ----

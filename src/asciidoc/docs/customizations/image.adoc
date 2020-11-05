@@ -1,5 +1,6 @@
 = Image
 :page-slug: image
+:page-description: Standard VCC for selecting an image.
 
 * {blank}
 //tag::description[]
@@ -9,7 +10,7 @@ Pick an image by selecting from the available options, uploading, or entering a 
 * If the image is loaded through the *Advanced* section, the application will use the image at the specified URL. Keep in mind that if the link dies, the image will not appear.
 * Remember to keep images small as larger images will take much longer to load.
 
-== Sample Image VCC
+== Sample image VCC
 
 [source,json]
 ----
@@ -27,7 +28,7 @@ To automatically manipulate uploaded images, you can append query strings to any
 For example, you can apply parameters resize or crop images to optimize them for your template.
 For a reference of the available parameters, see the https://docs.fastly.com/api/imageopto/#api[Fastly API].
 
-== Custom Image Search
+== Custom image search
 
 To use a custom image search VCC in your project:
 
