@@ -8,7 +8,7 @@ TIP: To help improve the Koji developer experience, please share your thoughts, 
 
 == 2020
 
-=== November 3
+=== November 5
 
 * It's now easier to withdraw funds from your Koji wallet.
 Simply tap your profile picture, and then tap **Wallet > Withdraw**.
