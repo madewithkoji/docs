@@ -58,7 +58,7 @@ export default getUploadURL;
 == Configuring the frontend
 
 From your frontend service, call the `/get-upload-url` endpoint to retrieve the presigned URL.
-For more information on the response value see <<#_signed_request_response>>.
+For more information on the response value, see <<#_signed_request_response>>.
 
 [source,javascript]
 ----
