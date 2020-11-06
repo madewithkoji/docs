@@ -91,7 +91,7 @@ formData.append('file', file);
 ----
 
 Post this data to the URL, and then check for a successful status (since there is no response data).
-If the status is `204`, you can now use the URL, which will point to your uploaded file.
+If the status is `204`, you can now use `signedRequest.url` which will point to your uploaded file.
 
 [source,javascript]
 ----
@@ -104,7 +104,11 @@ const { status } = await axios({
 });
 
 if (status === 204) {
-  // do something with signedRequest.url
+  const image = new window.Image()
+  image.onload = () => {
+    document.body.append(image);
+  }
+  image.src = signedRequest.url;
 }
 ----
 

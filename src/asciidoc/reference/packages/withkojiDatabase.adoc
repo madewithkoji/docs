@@ -126,6 +126,7 @@ const isDeleted = await database.delete('myCollection', 'myExistingKey');
 === .generateSignedUploadRequest(fileName)
 
 Generates a signed URL for uploading a file directly to your project’s CDN.
+For an indepth guide to this method see <<frontend-uploading#>>.
 
 ==== Parameters
 
