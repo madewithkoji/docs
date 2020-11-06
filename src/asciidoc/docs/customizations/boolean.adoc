@@ -1,10 +1,12 @@
 = Boolean
 :page-slug: boolean
+:page-description: Standard VCC for toggling a Boolean value on or off (true or false).
 
-* Booleans are shown as a
+* Users can
 //tag::description[]
-toggle that is either off (gray) or on (blue).
+toggle a Boolean value on or off (`true` or `false`).
 //end::description[]
+* A `true` value is shown in blue and a `false` value is shown in gray.
 
 == Sample Boolean VCC
 

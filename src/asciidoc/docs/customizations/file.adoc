@@ -1,14 +1,16 @@
 = File
 :page-slug: file
+:page-description: Standard VCC for uploading a file.
 
 * User can
 //tag::description[]
 upload any file.
 //end::description[]
 
-NOTE: For specific file types, use the associated VCC where possible. For example, see <<image#>>, <<sound#>>, <<video#>>.
+NOTE: For specific file types, use the associated VCC where possible.
+For example, see <<image#>>, <<sound#>>, or <<video#>>.
 
-== Sample File VCC
+== Sample file VCC
 
 [source,json]
 ----

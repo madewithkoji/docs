@@ -8,6 +8,19 @@ TIP: To help improve the Koji developer experience, please share your thoughts, 
 
 == 2020
 
+=== November 5
+
+* It's now easier to withdraw funds from your Koji wallet.
+Simply tap your profile picture, and then tap **Wallet > Withdraw**.
+Follow the on-screen instructions to process the desired withdrawal amount.
+* You can now request a refund within 72 hours of a purchase through a Koji.
+From your Koji wallet, tap the transaction, and then tap **Refund transfer**.
+* The fee schedule for in-app purchases has been updated to the following allocation: 85% to the creator, 5% to the Koji platform, and 10% to the community (8% to evolution, 2% to genesis).
+* You can now track custom events in your Koji templates with the <<withkoji-koji-analytics-sdk#>> package.
+* The `startPurchase` method in the <<withkoji-koji-iap-package#.startPurchase#, @withkoji/iap>> package has been updated.
+The callback function now receives the receipt ID on successful purchases.
+* The `showmodal` method has been removed from the @withkoji/custom-vcc-sdk package.
+
 === October 29
 
 * The Koji platform now allows you to edit a Koji you created and republish it to the same URL.

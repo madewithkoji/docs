@@ -1,16 +1,17 @@
 = Array (composition)
 :page-slug: array
+:page-description: Composition control for creating a list values with a single VCC definition.
 
 The array control lets you
 //tag::description[]
-create a list of multiple values from a single VCC definition.
+create a list of values of the same type with a single VCC definition.
 //end::description[]
 
 To create an array, define the VCC type as `"type": "array<T>"` or `T[]` where `T` is a valid VCC type.
 For example, to specify an array of images, use a type of `array<image>` or `image[]`.
 You can optionally specify a maximum and/or minimum number of elements using the `arrayOptions` key.
 
-== Sample Array VCC
+== Sample array VCC
 
 [source,json]
 ----

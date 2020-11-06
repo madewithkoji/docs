@@ -4,7 +4,7 @@
 
 The following packages provide features and functionality for use in Koji templates.
 
-.Standard Koji packages
+.Featured packages
 <<withkoji-vcc-package#>> ::
 +
 [.init-cap]
@@ -13,23 +13,37 @@ include::withkojiVCC.adoc[tag=description]
 +
 [.init-cap]
 include::withkojiDatabase.adoc[tag=description]
-<<withkoji-dispatch-package#>> ::
+
+.All Koji packages (alphabetical)
+<<withkoji-koji-analytics-sdk#>>  ::
 +
 [.init-cap]
-include::withkojiDispatch.adoc[tag=description]
-<<withkoji-koji-iap-package#>> ::
-+
-[.init-cap]
-include::withkojiIAP.adoc[tag=description]
-<<withkoji-koji-auth-sdk#>> ::
+include::withkojiKojiAnalyticsSdk.adoc[tag=description]
+<<withkoji-koji-auth-sdk#>>  ::
 +
 [.init-cap]
 include::withkojiKojiAuthSdk.adoc[tag=description]
-<<withkoji-custom-vcc-sdk#>> ::
+<<withkoji-custom-vcc-sdk#>>  ::
 +
 [.init-cap]
 include::withkojiCustomVccSdk.adoc[tag=description]
-<<withkoji-user-defaults-package#>> ::
+<<withkoji-database-package#>> ::
++
+[.init-cap]
+include::withkojiDatabase.adoc[tag=description]
+<<withkoji-dispatch-package#>>  ::
++
+[.init-cap]
+include::withkojiDispatch.adoc[tag=description]
+<<withkoji-koji-iap-package#>>  ::
++
+[.init-cap]
+include::withkojiIAP.adoc[tag=description]
+<<withkoji-user-defaults-package#>>  ::
 +
 [.init-cap]
 include::withkojiUserDefaults.adoc[tag=description]
+<<withkoji-vcc-package#>>  ::
++
+[.init-cap]
+include::withkojiVCC.adoc[tag=description]

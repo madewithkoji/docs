@@ -1,13 +1,15 @@
 = Google Font
 :page-slug: google-font
+:page-description: Custom VCC for selecting a font family from Google Fonts.
 
-* {blank}
+* Users can
 //tag::description[]
-Adds a selector that supports all font families served by Google Fonts.
+select a font family from Google Fonts.
 //end::description[]
-* Shows a formatted text sample below the selector.
-* Allows developers to limit the available choices for application usability.
-* Provides configuration options for developers to create custom, API-driven selectors by remixing this VCC.
+* The selector shows a formatted text sample for each option.
+* The VCC supports all font families served by Google Fonts.
+You can limit the available choices for application usability.
+* The template provides configuration options for developers to create custom, API-driven selectors by remixing the VCC.
 
 == Sample Google Font VCC
 
