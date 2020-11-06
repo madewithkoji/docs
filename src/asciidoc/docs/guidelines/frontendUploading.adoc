@@ -1,26 +1,34 @@
-= Uploading from the frontend
+= Uploading files from the frontend
 :page-slug: frontend-uploading
-:page-description: Allowi users to upload files to the CDN from a Koji's frontend.
+:page-description: How to enable users to upload files to the CDN from a Koji's frontend.
 
-This guide covers the topic of allowing users to upload files to the CDN from a Koji's frontend using the `generateSignedUploadRequest` method from the <<withkoji-database-package#.generateSignedUploadRequest, @withkoji/database-sdk>> package.
+Some templates provide users with the ability to upload files from a Koji’s frontend.
+For example, a public image board.
+When developing such a template, the recommended way to upload files is to use the `generateSignedUploadRequest` method from the <<withkoji-database-package#.generateSignedUploadRequest, @withkoji/database-sdk>> package.
 
-If you are developing a template for something such as a public image board this is the optimal way for to give end users the ability to upload files.
+This method enables the file to be uploaded directly from the Koji’s frontend to the Koji CDN, for optimal performance.
+Other methods, such as `uploadFile`, would require the file to be uploaded to the project’s backend server and then to the CDN.
+
+To upload files with `generateSignedUploadRequest`, you configure the backend to acquire a presigned URL, which grants temporary access for uploading a file.
+Then, you configure the frontend to retrieve a presigned URL from the backend and use it to upload a file.
 
 == Prerequisites
-This guide covers advanced topics, it is suggested you are familiar with the following before proceeding:
+
+This guide covers advanced topics.
+It is suggested that you are familiar with the following topics before proceeding.
 
 * React and ES6 basics.
-* The Koji editor, remix process, and the <<withkoji-vcc-package,@withkoji/vcc>> package.
+* The Koji editor, <<instant-remixing#, remix process>>, and the <<withkoji-vcc-package,@withkoji/vcc>> package.
 * https://expressjs.com/[Express.js] web framework.
 * Backend communication and the <<withkoji-database-package,@withkoji/database-sdk>> package.
 * Performing HTTP requests (this example uses https://github.com/axios/axios[axios]).
 
-== Configure Backend
+== Configuring the backend
 
-To upload from the frontend you first need to acquire a presigned URL using the Koji database SDK.
+To upload from the frontend, you first need to acquire a presigned URL by using the Koji database SDK.
 
-Within a backend service for your Koji project setup an Express.js server with a POST method to the endpoint `/get-upload-url`.
-From this endpoint call the following function.
+In a backend service for your Koji project, set up an Express.js server with a POST method to the `/get-upload-url` endpoint.
+From this endpoint, call the following function.
 
 [source, javascript]
 ----
@@ -47,9 +55,9 @@ const uploadImage = async (req, res) => {
 export default uploadImage;
 ----
 
-== Configure Frontend
+== Configuring the frontend
 
-From your frontend service call that endpoint to retrieve the presigned URL.
+From your frontend service, call the `/get-upload-url` endpoint to retrieve the presigned URL.
 
 [source,javascript]
 ----
@@ -65,7 +73,7 @@ const { data: { data: { signedRequest, url } } = {} } = await axios({
 });
 ----
 
-Create form data and include the presigned url data and the file object to be uploaded.
+Create form data and include the presigned URL data and the file object to be uploaded.
 
 [source,javascript]
 ----
@@ -81,8 +89,9 @@ Object.keys(signedRequest.fields).forEach((key) => {
 formData.append('file', file);
 ----
 
-Post this data to the URL.
-There is no response data from the request so instead check the status, if 204 you can now use the URL which will point to your uploaded file.
+Post this data to the URL, and then check for a successful status (since there is no response data).
+If the status is `204`, you can now use the URL, which will point to your uploaded file.
+
 [source,javascript]
 ----
 // Post to s3
