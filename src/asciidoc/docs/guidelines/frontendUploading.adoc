@@ -34,7 +34,7 @@ From this endpoint, call the following function.
 ----
 import Database from '@withkoji/database';
 
-const uploadImage = async (req, res) => {
+const getUploadURL = async (req, res) => {
   try {
     const { filename } = req.body;
 
@@ -52,12 +52,13 @@ const uploadImage = async (req, res) => {
   }
 };
 
-export default uploadImage;
+export default getUploadURL;
 ----
 
 == Configuring the frontend
 
 From your frontend service, call the `/get-upload-url` endpoint to retrieve the presigned URL.
+For more information on the response value see <<#_signed_request_response>>.
 
 [source,javascript]
 ----
@@ -106,3 +107,38 @@ if (status === 204) {
   // do something with signedRequest.url
 }
 ----
+
+== Signed request response
+
+As the `generateSignedUploadRequest` method is a wrapper for the https://docs.aws.amazon.com/AmazonS3/latest/API/sigv4-authentication-HTTPPOST.html[presigned upload request in Amazon S3] the object returned from the `get-upload-url` endpoint is equivalent, all the data stored within the `signedRequest` property are related to the Amazon Web Services functionaliy.
+The response object includes the follow properties:
+
+[source, javascript]
+----
+{
+  data: {
+    signedRequest: {
+      url: string; <1>
+      fields: {
+        Policy: string; <2>
+        X-Amz-Algorithm: string; <3>
+        X-Amz-Credential: string; <4>
+        X-Amz-Date: string; <5>
+        X-Amz-Signature: string; <6>
+        bucket: string; <7>
+        key: string; <8>
+      }
+    },
+    url: string; <9>
+  }
+}
+----
+<1> `data.signedRequest.url` – The upload URL which points to the S3 bucket and where the file be sent.
+<2> `data.signedRequest.fields.Policy` – The Base64-encoded security policy for the request .
+<3> `data.signedRequest.fields.X-Amz-Algorithm` – The signing algoruthm used.
+<4> `data.signedRequest.fields.X-Amz-Credential` – The Amazon scope credentials used to sign this URL.
+<5> `data.signedRequest.fields.X-Amz-Date` – The ISO8601 formatted date of when the URL was signed.
+<6> `data.signedRequest.fields.X-Amz-Signature` – The HMAC-SHA256 hash of the Amazon security policy.
+<7> `data.signedRequest.fields.bucket` – The Amazon S3 bucket name.
+<8> `data.signedRequest.fields.key` – The Amazon S3 object key.
+<9> `data.url` – The destination URL, the file will be accessible via this URL once uploaded.
