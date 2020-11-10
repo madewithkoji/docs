@@ -110,7 +110,7 @@ For example, show the title VCC when a user taps an editable title.
 ==== Parameters
 
 * `path` – Array of _Strings_, keys pointing to the VCC value.
-* `attributes` – (Optional) _Object_, contains the `position` object, which sets an absolute position and/or size for the VCC.
+* `attributes` – (Optional) _Object_, contains the `position` object, which sets an absolute position for the VCC.
 If an absolute position is not set, the VCC opens in the position where the user clicks, in desktop view.
 
 ==== Example
