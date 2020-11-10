@@ -1,11 +1,17 @@
 = Obj
 :page-slug: 3d-object
 :page-description: Standard VCC for selecting a 3D object from Google Poly.
+:figure-caption!:
+
+[.float-group]
+--
+image::objectVCC.png[title="Object VCC",role="img-overview"]
 
 * Users can
 //tag::description[]
 browse and import 3D objects from Google Poly.
 //end::description[]
+--
 
 == Sample obj VCC
 

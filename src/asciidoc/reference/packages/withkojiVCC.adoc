@@ -102,7 +102,7 @@ const backendService = instantRemixing.get(['serviceMap', 'backend']);
 ----
 
 [.hcode, id=".onPresentControl", reftext="onPresentControl"]
-=== .onPresentControl(path, position)
+=== .onPresentControl(path, attributes)
 
 Opens a VCC to enable editing of a custom value.
 For example, show the title VCC when a user taps an editable title.
@@ -110,7 +110,8 @@ For example, show the title VCC when a user taps an editable title.
 ==== Parameters
 
 * `path` – Array of _Strings_, keys pointing to the VCC value.
-* `position` – (Optional) _Object_, the size and position of the affected element, to keep it in the frame during editing.
+* `attributes` – (Optional) _Object_, contains the `position` object, which sets an absolute position and/or size for the VCC.
+If an absolute position is not set, the VCC opens in the position where the user clicks, in desktop view.
 
 ==== Example
 
@@ -119,14 +120,8 @@ For example, show the title VCC when a user taps an editable title.
 instantRemixing.onPresentControl(['scope', 'key']);
 
 // With optional position object
-const {
-  x,
-  y,
-  width,
-  height,
-} = e.target.getBoundingClientRect();
 this.instantRemixing.onPresentControl(['result', 'position'], {
-  position: { x, y, width, height },
+  position: { x: 100, y: 100 },
 });
 ----
 
