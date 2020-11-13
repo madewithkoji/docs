@@ -1,12 +1,18 @@
 = Range
 :page-slug: range
 :page-description: Standard VCC for selecting a numeric value within a certain range.
+:figure-caption!:
+
+[.float-group]
+--
+image::rangeVCC.png[title="Range VCC",role="img-overview"]
 
 * Users can
 //tag::description[]
 drag a slider to specify a numeric value within a certain range.
 //end::description[]
 * You can configure the minimum value, maximum value, and default increment/step size.
+--
 
 == Sample range VCC
 

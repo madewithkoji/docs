@@ -1,12 +1,18 @@
 = Select
 :page-slug: select
 :page-description: Standard VCC for making a selection from a predefined list of options.
+:figure-caption!:
+
+[.float-group]
+--
+image::selectVCC.png[title="Select VCC",role="img-overview"]
 
 * Users can
 //tag::description[]
 make a selection from a predefined list of options.
 //end::description[]
 * The `typeOptions` must be defined for this VCC to work correctly.
+--
 
 == Sample select VCC
 

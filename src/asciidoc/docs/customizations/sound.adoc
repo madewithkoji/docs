@@ -1,6 +1,11 @@
 = Sound
 :page-slug: sound
 :page-description: Standard VCC for selecting a sound.
+:figure-caption!:
+
+[.float-group]
+--
+image::soundVCC.png[title="Sound VCC",role="img-overview"]
 
 * Users can
 //tag::description[]
@@ -11,6 +16,7 @@ select a sound either by  selecting from the available options, uploading, or en
 Keep in mind that if the link dies, the sound will not play.
 * Remember to keep sounds to a small length.
 This is part of projects that usually take up the most space and cause the longest load times.
+--
 
 == Sample sound VCC
 
