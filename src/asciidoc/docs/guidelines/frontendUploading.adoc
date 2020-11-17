@@ -5,9 +5,7 @@
 Some templates provide users with the ability to upload files from a Koji’s frontend.
 For example, a public image board.
 When developing such a template, the recommended way to upload files is to use the `generateSignedUploadRequest` method from the <<withkoji-database-package#.generateSignedUploadRequest, @withkoji/database-sdk>> package.
-
-This method enables the file to be uploaded directly from the Koji’s frontend to the Koji CDN, for optimal performance.
-Other methods, such as `uploadFile`, would require the file to be uploaded to the project’s backend server and then to the CDN.
+This method enables files to be uploaded directly from the Koji’s frontend to the Koji CDN, so that the template doesn't need to manage file storage and clean up on the backend server.
 
 To upload files with `generateSignedUploadRequest`, you configure the backend to acquire a presigned URL, which grants temporary access for uploading a file.
 Then, you configure the frontend to retrieve a presigned URL from the backend and use it to upload a file.

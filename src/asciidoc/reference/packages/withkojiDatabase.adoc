@@ -128,6 +128,8 @@ const isDeleted = await database.delete('myCollection', 'myExistingKey');
 Generates a signed URL for uploading a file directly to your project’s CDN.
 For an in-depth guide to this method, see <<frontend-uploading#>>.
 
+NOTE: The size limit for this method is 150MB per uploaded file.
+
 ==== Parameters
 
 * `fileName` – _String_, name of the file to upload.
@@ -317,7 +319,10 @@ const updated = await database.update('myCollection',"myKey", {"myValue":2});
 [.hcode, id=".uploadFile", reftext="uploadFile"]
 === .uploadFile(path, filename, mimetype)
 
-Uploads files to your project's CDN. For example, images, profile pictures, and audio.
+WARNING: **Deprecated.** Use <<#.generateSignedUploadRequest>> for new and upgraded templates.
+
+Uploads files to your project's CDN.
+For example, images, profile pictures, and audio.
 
 NOTE: The size limit for this method is 10MB per uploaded file.
 
