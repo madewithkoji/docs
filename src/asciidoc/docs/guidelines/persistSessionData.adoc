@@ -30,8 +30,8 @@ console.log(localStorage.getItem('username')); // prints undefined to the consol
 ----
 
 == Developer tips
-Check that `windows.localStorage` is accessable before using it.
-If the user has selected *Block third-party cookies and site data* in the content settings of the browser, local storage will be inaccessable. Local storage may also be inaccessable in incognito mode (private browsing).
+Check that `windows.localStorage` is accessible before using it.
+If the user has selected *Block third-party cookies and site data* in the content settings of the browser, local storage will be inaccessible. Local storage may also be inaccessible in incognito mode (private browsing).
 To avoid an error in these situations, always check that local storage is available before using it. An easy way to do this is to
 use something like this:
 [source,javascript]
@@ -48,4 +48,4 @@ function isLocalStorageAvailable() {
 }
 ----
 
-If local storage is inaccessable, you can decide to persist the data for only the duration of the session or you can save it to the database (see <<koji-database#, Koji Database>>).
+If local storage is inaccessible, you can decide to persist the data for only the duration of the session or you can save it to the database (see <<koji-database#, Koji Database>>).
