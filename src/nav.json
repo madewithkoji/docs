@@ -94,10 +94,6 @@
               "slug": "image"
             },
             {
-              "name": "Koji",
-              "slug": "koji-vcc"
-            },
-            {
               "name": "Obj",
               "slug": "3d-object"
             },
@@ -176,6 +172,10 @@
             {
               "name": "Design guidelines",
               "slug": "design-guidelines"
+            },
+            {
+              "name": "Developer Tip: Persisting Data Across Sessions",
+              "slug": "persisting-data-across-sessions"
             }
           ]
         },
