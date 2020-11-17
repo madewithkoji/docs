@@ -1,5 +1,5 @@
-= Developer Tip: Persisting data across sessions
-:page-slug: persisting-data-across-sessions
+= Persisting data across sessions
+:page-slug: persist-session-data
 :page-description: How to persist data that doesn't expire with the session.
 
 Data can be stored temporarily using window.sessionStorage. However, data stored in this way will expire when the session ends. If data needs to be persisted across sessions, `window.localStorage` may be used. Data stored in this way has no expiration date. It will be available until the browser's cache is cleared.
@@ -7,9 +7,8 @@ Data can be stored temporarily using window.sessionStorage. However, data stored
 == Using local storage
 There are two ways to use `window.localStorage`.
 
-* Property names may used directly:
-+
-[source,json]
+Property names may used directly:
+[source,javascript]
 ----
 localStorage.username = 'johnsmith001';
 console.log(localStorage.username); // prints johnsmith001 to the console
@@ -17,9 +16,8 @@ delete localStorage.username;
 console.log(localStorage.username); // prints undefined to the console
 ----
 
-* Alternatively, `localStorage` provides the methods `setItem` and `removeItem`, which may be used as follows:
-+
-[source,json]
+Alternatively, `localStorage` provides the methods `setItem` and `removeItem`, which may be used as follows:
+[source,javascript]
 ----
 localStorage.setItem('username', 'johnsmith001');
 console.log(localStorage.getItem('username')); // prints johnsmith001 to the console
@@ -27,13 +25,12 @@ localStorage.removeItem('username');
 console.log(localStorage.getItem('username')); // prints undefined to the console
 ----
 
-== Things to look out for
-* Check that `windows.localStorage` is accessable before using it.
-If the user has checked "Block third-party cookies and site data" in the content settings of the browser, local storage will be inaccessable. Local storage may also be inaccessable in incognito mode (i.e. private browsing).
+== Developer tips
+Check that `windows.localStorage` is accessable before using it.
+If the user has selected *Block third-party cookies and site data* in the content settings of the browser, local storage will be inaccessable. Local storage may also be inaccessable in incognito mode (private browsing).
 To avoid an error in these situations, always check that local storage is available before using it. An easy way to do this is to
 use something like this:
-+
-[source,json]
+[source,javascript]
 ----
 function isLocalStorageAvailable() {
     const test = 'test';
@@ -47,4 +44,4 @@ function isLocalStorageAvailable() {
 }
 ----
 
-* If local storage is inaccessable, the developer will have to settle for persisting the data only for the duration of the session or save it to a database.
+If local storage is inaccessable, you can decide to persist the data for only the duration of the session or you can save it to the database (see <<koji-database#, Koji Database>>).

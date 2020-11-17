@@ -174,8 +174,12 @@
               "slug": "design-guidelines"
             },
             {
-              "name": "Developer Tip: Persisting Data Across Sessions",
-              "slug": "persisting-data-across-sessions"
+              "name": "Uploading files from the frontend",
+              "slug": "frontend-uploading"
+            },
+            {
+              "name": "Persisting data across sessions",
+              "slug": "persist-session-data"
             }
           ]
         },
