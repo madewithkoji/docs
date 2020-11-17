@@ -23,6 +23,10 @@ Your templates can empower artists, influencers, brands, and content creators wi
 With the ability to create and share remixable, interactive content, the opportunities for creative new experiences are countless.
 We can’t wait to see what YOU make!
 
+== What's new icon:bullhorn[]
+
+For a summary of the latest updates to the Koji platform and developer site, check out the <<developer-updates#>>.
+
 == Getting started
 
 For some great resources to help you start developing templates on Koji, see:

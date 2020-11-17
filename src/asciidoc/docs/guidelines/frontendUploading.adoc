@@ -4,7 +4,7 @@
 
 Some templates provide users with the ability to upload files from a Koji’s frontend.
 For example, a public image board.
-When developing such a template, the recommended way to upload files is to use the `generateSignedUploadRequest` method from the <<withkoji-database-package#.generateSignedUploadRequest, @withkoji/database-sdk>> package.
+When developing such a template, the recommended way to upload files is to use the `generateSignedUploadRequest` method from the <<withkoji-database-package#.generateSignedUploadRequest, @withkoji/database>> package.
 This method enables files to be uploaded directly from the Koji’s frontend to the Koji CDN, so that the template doesn't need to manage file storage and clean up on the backend server.
 
 To upload files with `generateSignedUploadRequest`, you configure the backend to acquire a presigned URL, which grants temporary access for uploading a file.
@@ -18,7 +18,7 @@ It is suggested that you are familiar with the following topics before proceedin
 * React and ES6 basics.
 * The Koji editor, <<instant-remixing#, remix process>>, and the <<withkoji-vcc-package,@withkoji/vcc>> package.
 * https://expressjs.com/[Express.js] web framework.
-* Backend communication and the <<withkoji-database-package,@withkoji/database-sdk>> package.
+* Backend communication and the <<withkoji-database-package,@withkoji/database>> package.
 * Performing HTTP requests (this example uses https://github.com/axios/axios[axios]).
 
 == Configuring the backend
