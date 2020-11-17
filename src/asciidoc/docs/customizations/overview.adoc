@@ -60,13 +60,20 @@ The available options vary by type.
 
 == VCC types
 
-The Koji platform provides VCCs for standard elements, such as images, text, and sounds.
+The Koji platform provides built-in VCCs for standard elements, such as images, text, and sounds.
 To provide more specialized customization types, you can use custom VCCs published on the Koji platform and you can build your own custom VCCs.
 
 To compose higher-order controls, you can combine VCCs into arrays or objects.
 You can also combine arrays and objects to create more elaborate controls.
 
-=== Standard VCCs (alphabetical)
+=== Built-in VCCs (alphabetical)
+
+++++
+<div class="img-overview">
+<div class="title">Standard VCC remix demo [<a href="https://withkoji.com/~RachelSienko06/vcc-demo-template" target="blank">template link</a>]</div>
+<iframe src="https://withkoji.com/embed/3c6459f5-b7a5-4264-b604-1eca74d79733" width="350" height="480" frameborder="0" allowfullscreen > </iframe>
+</div>
+++++
 
 <<boolean#>> ::
 +
@@ -88,6 +95,10 @@ include::file.adoc[tag=description]
 +
 [.init-cap]
 include::image.adoc[tag=description]
+<<koji-vcc#>> ::
++
+[.init-cap]
+include::koji.adoc[tag=description]
 <<3d-object#>> ::
 +
 [.init-cap]

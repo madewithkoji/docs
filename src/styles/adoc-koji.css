@@ -306,3 +306,6 @@ span.icon > [class^="icon-"], span.icon > [class*=" icon-"] { cursor: default; }
 .sect1 { padding-bottom: 0; }
 
 ol > li p, ul > li p, ul dd, ol dd, .olist .olist, .ulist .olist, .olist .ulist { margin-bottom: 0.34375em; }
+
+.clearfix:before, .clearfix:after, .float-group:before, .float-group:after { content: ""; display: table; }
+.clearfix:after, .float-group:after { clear: both; }

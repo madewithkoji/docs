@@ -8,6 +8,18 @@ TIP: To help improve the Koji developer experience, please share your thoughts, 
 
 == 2020
 
+=== November 13
+
+* The new <<koji-vcc#, koji VCC>> enables remixers to create a new Koji or select an existing Koji, either from their profile or from a URL.
+The VCC stores the URL as the value.
+* In desktop view, the built-in <<vcc-overview#, Visual Customization Controls>> (VCCs) now appear as contextual menus, which open automatically in the position where the user clicks.
+** To use this feature in your existing templates, install version 1.1.42 of the <<withkoji-vcc-package#>> package.
+** To override the automatic positioning, set an absolute position with the `attributes` object when calling `onPresentControl`.
+* The <<color#, color VCC>> now accepts the `allowAlpha` type option, which shows a transparency slider when enabled.
+* The built-in VCCs have an updated look and feel.
++
+image::imageVCC-nov2020.png[Image VCC]
+
 === November 5
 
 * It's now easier to withdraw funds from your Koji wallet.

@@ -94,6 +94,10 @@
               "slug": "image"
             },
             {
+              "name": "Koji",
+              "slug": "koji-vcc"
+            },
+            {
               "name": "Obj",
               "slug": "3d-object"
             },
@@ -172,6 +176,10 @@
             {
               "name": "Design guidelines",
               "slug": "design-guidelines"
+            },
+            {
+              "name": "Uploading files from the frontend",
+              "slug": "frontend-uploading"
             }
           ]
         },
