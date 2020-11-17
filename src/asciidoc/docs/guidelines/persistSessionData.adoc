@@ -4,10 +4,14 @@
 
 Data can be stored temporarily using window.sessionStorage. However, data stored in this way will expire when the session ends. If data needs to be persisted across sessions, `window.localStorage` may be used. Data stored in this way has no expiration date. It will be available until the browser's cache is cleared.
 
+Here's an example of a Koji template that uses local storage: https://withkoji.com/~Svarog1389/chatbox[Chatbox]
+
+When you first run the app, your name is set to Anonymous. When you change it, the new name is saved in local storage. You can see the relevant code here: https://withkoji.com/code/Svarog1389/chatbox#frontend%2Fcommon%2FComponents%2FChatbox.js[Chatbox.js]
+
 == Using local storage
 There are two ways to use `window.localStorage`.
 
-Property names may used directly:
+Use property names directly:
 [source,javascript]
 ----
 localStorage.username = 'johnsmith001';
@@ -16,7 +20,7 @@ delete localStorage.username;
 console.log(localStorage.username); // prints undefined to the console
 ----
 
-Alternatively, `localStorage` provides the methods `setItem` and `removeItem`, which may be used as follows:
+Alternatively, `localStorage` provides the methods `setItem` and `removeItem`, which you can use as follows:
 [source,javascript]
 ----
 localStorage.setItem('username', 'johnsmith001');
