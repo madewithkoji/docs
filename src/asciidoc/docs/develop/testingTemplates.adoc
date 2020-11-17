@@ -1,0 +1,8 @@
+= Testing templates
+:page-slug: testing-templates
+:page-description: Techniques for testing your Koji templates
+
+This page provides a consolidated resource for methods a developer can use to test his/her templates prior to publication.
+
+== Publish unlisted
+

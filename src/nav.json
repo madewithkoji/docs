@@ -62,6 +62,10 @@
             {
               "name": "Koji database",
               "slug": "koji-database"
+            },
+                        {
+              "name": "Testing templates",
+              "slug": "testing-templates"
             }
           ]
         },
