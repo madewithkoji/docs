@@ -4,14 +4,13 @@
 :page-description: How to persist data that doesn't expire with the session.
 
 Some templates need to store data about the user's session, such as a user's name or game score.
-You can store data temporarily using `window.sessionStorage`.
+You can store data temporarily by using `window.sessionStorage`.
 However, data stored in this way expires when the session ends.
-If you need to persist data across sessions, `window.localStorage` can be used.
+If you need to persist data across sessions, use `window.localStorage`.
 Data stored in this way has no expiration date.
 It will be available until the browser's cache is cleared.
 
 For example, here is a link to a Koji that uses local storage to store the user's name: https://withkoji.com/~Svarog1389/chatbox[Chatbox]
-
 
 When you first run the Koji, your user name is set to Anonymous.
 You can change it by clicking on the cog icon in the top left corner.
