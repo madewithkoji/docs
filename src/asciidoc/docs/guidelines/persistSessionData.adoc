@@ -11,7 +11,8 @@ It will be available until the browser's cache is cleared.
 For example, here is link to a Koji that uses local storage to store the user's name: https://withkoji.com/~Svarog1389/chatbox[Chatbox]
 
 
-When you first run the Koji, your user name is set to Anonymous. You can change it by clicking on the cog icon in the top left corner.
+When you first run the Koji, your user name is set to Anonymous.
+You can change it by clicking on the cog icon in the top left corner.
 The new name will be saved to local storage.
 The relevant code is in the `Chatbox.js` file of the template: https://withkoji.com/code/Svarog1389/chatbox#frontend%2Fcommon%2FComponents%2FChatbox.js[Chatbox.js]
 
