@@ -144,5 +144,4 @@ The response object includes the follow properties:
 <6> `data.signedRequest.fields.X-Amz-Signature` – The HMAC-SHA256 hash of the Amazon security policy.
 <7> `data.signedRequest.fields.bucket` – The Amazon S3 bucket name.
 <8> `data.signedRequest.fields.key` – The Amazon S3 object key.
-<9> `data.url` – The destination URL.
-The file will be accessible via this URL when uploaded.
+<9> `data.url` – The destination URL. The file will be accessible via this URL when uploaded.
