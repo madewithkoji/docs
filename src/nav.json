@@ -94,6 +94,10 @@
               "slug": "image"
             },
             {
+              "name": "Koji",
+              "slug": "koji-vcc"
+            },
+            {
               "name": "Obj",
               "slug": "3d-object"
             },
