@@ -208,17 +208,6 @@ include::../_includes/vcc-blueprint-styles.css[]
 ----
 --
 
-=== Configure entitlements
-
-Create `.koji/project/entitlements.json` and disable instant remix support.
-
-[source,json]
-----
-include::../_includes/entitlements-none.json[]
-----
-
-NOTE: This project doesn't support instant remixing but you need to pass the entitlement so Koji can prepare the config for use with the InstantRemixing class.
-
 === Test
 
 To save development time, Koji provides an easy way to test a custom VCC before it is published.
