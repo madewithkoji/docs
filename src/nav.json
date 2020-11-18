@@ -94,10 +94,6 @@
               "slug": "image"
             },
             {
-              "name": "Koji",
-              "slug": "koji-vcc"
-            },
-            {
               "name": "Obj",
               "slug": "3d-object"
             },
@@ -180,6 +176,10 @@
             {
               "name": "Uploading files from the frontend",
               "slug": "frontend-uploading"
+            },
+            {
+              "name": "Persisting data across sessions",
+              "slug": "persist-session-data"
             }
           ]
         },
