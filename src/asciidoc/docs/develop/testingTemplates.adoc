@@ -1,8 +1,24 @@
 = Testing templates
 :page-slug: testing-templates
-:page-description: Techniques for testing your Koji templates
+:page-description: A consolidated resource for methods a developer can use to test templates
 
-This page provides a consolidated resource for methods a developer can use to test his/her templates prior to publication.
+There are various methods you can use to test your Koji templates.
 
 == Publish unlisted
 
+When you publish your template, you can select the *Unlisted* option.
+This will prevent anyone else from seeing the published template.
+
+Click *Publish form* to display the following form:
+
+image::publishUnlisted1.jpg[Publish form]
+
+Click *Show advanced options* near the bottom left of the form.
+This will display two checkboxes.
+Select *Unlisted*.
+Click *Publish* and follow the directions to publish your template. (See <<publish-locally-developed#,Publishing a project you developed locally>>.)
+
+image::publishUnlisted2.jpg[Select *Unlisted*]
+
+Now you can test the template under exactly the same conditions as a general user, but no general users will have access to it.
+When you are ready to give general users access, just unselect *Unlisted* and republish the template.
