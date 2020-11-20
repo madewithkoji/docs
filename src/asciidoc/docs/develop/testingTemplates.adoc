@@ -22,3 +22,23 @@ image::publishUnlisted2.jpg[Select *Unlisted*]
 
 Now you can test the template under exactly the same conditions as a general user, but no general users will have access to it.
 When you are ready to give general users access, just unselect *Unlisted* and republish the template.
+
+== Testing in editor mode
+
+If you're using the Koji Editor to develop your template, there are many options for previewing its behavior.
+These are covered in detail in the documentation for the Editor (see <<editor#>>).
+
+The *Live preview* tab allows you to toggle between *Preview* mode, which shows what the Koji looks like running, and *Editing* mode, which shows what remixers see when customizing values.
+*Editing* mode even allows you to perform remixing in the preview.
+
+The *Remote* tab offers several additional ways of previewing your Koji.
+You can test it on your smartphone or other mobile device by scanning the QR code.
+There are also options for opening the Koji in a new tab, running it in a live player, or copying the link for the preview.
+If you share this link with someone else, they can preview the Koji while it's still in development.
+
+[NOTE]
+The remote preview link will only work for as long as your editor session is still active, so it is not suitable for long-term sharing.
+
+The *Routes* tab is used for testing backend routes.
+You can build your request and then click *Send Request* to execute it.
+The *Fetch* tab generates a code snippet for the current request that you can easily add to your application's frontend.
