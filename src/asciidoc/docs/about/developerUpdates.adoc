@@ -8,6 +8,24 @@ TIP: To help improve the Koji developer experience, please share your thoughts, 
 
 == 2020
 
+=== November 23
+
+* New features are available in the <<withkoji-koji-auth-sdk#>> package.
+** Enable users to "sign in" to a Koji and create a custom user ID for it.
+To request authorization for the user's ID, use the new `grants` parameter in the `getToken` and `getTokenWithCallback` methods.
+The new `allowAnonymous` parameter enables users to proceed without logging in, when appropriate.
+** Send push notifications with a user's ID, if the user has granted this authorization to the Koji.
+To validate the user’s authorization grants and get the user's ID, use the new `checkGrant` and `getGrant` methods.
+To send the notification, use the new `pushNotification` method.
+* New features are available in the <<withkoji-dispatch-package#>> package.
+** Connect to dispatch from your backend service and use it to broadcast messages to connected clients.
+To instantiate dispatch on the backend, use the new `projectToken` configuration option.
+** Send secure messages to specific clients, rather than broadcasting every message to all clients.
+The new `identify` method allows a client to use a short-lived `authToken` to identify itself to Koji dispatch.
+Then, the server or other dispatch clients can send secure messages to that client by including an array of `recipients` when calling `emitEvent`.
+* New features are available in the <<withkoji-database-package#>> package.
+* On the developer site, new resources are available to help Koji developers solve common problems, including <<frontend-uploading#>> and <<persist-session-data#>>.
+
 === November 13
 
 * The new <<koji-vcc#, koji VCC>> enables remixers to create a new Koji or select an existing Koji, either from their profile or from a URL.
