@@ -3,6 +3,7 @@
 :page-description: A consolidated resource for methods a developer can use to test templates
 
 There are various methods you can use to test your Koji templates.
+Some of the most common methods are listed below.
 
 == Publish unlisted
 
@@ -31,14 +32,45 @@ These are covered in detail in the documentation for the Editor (see <<editor#>>
 The *Live preview* tab allows you to toggle between *Preview* mode, which shows what the Koji looks like running, and *Editing* mode, which shows what remixers see when customizing values.
 *Editing* mode even allows you to perform remixing in the preview.
 
+This is a screenshot of *Live preview* in *Preview* mode:
+
+image::default-preview.jpg[Preview mode]
+
+This is a screenshot of *Live preview* in *Editing* mode:
+
+image::remix.jpg[Editing mode]
+
 The *Remote* tab offers several additional ways of previewing your Koji.
-You can test it on your smartphone or other mobile device by scanning the QR code.
+You can test it on your mobile device by scanning a QR code.
 There are also options for opening the Koji in a new tab, running it in a live player, or copying the link for the preview.
 If you share this link with someone else, they can preview the Koji while it's still in development.
+
+This is a screenshot of the *Remote* tab:
+
+image::remote.jpg[Remote]
 
 [NOTE]
 The remote preview link will only work for as long as your editor session is still active, so it is not suitable for long-term sharing.
 
-The *Routes* tab is used for testing backend routes.
-You can build your request and then click *Send Request* to execute it.
-The *Fetch* tab generates a code snippet for the current request that you can easily add to your application's frontend.
+The *Routes* tab lets you test your backend routes.
+It's similar to using a program like curl or Fiddler.
+For instance, you can manually enter an http request, configure a header for it, send it, and then examine the results.
+
+This is a screenshot of the *Routes* tab:
+
+image::routes.jpg[Routes]
+
+== Viewing messages passed between the Koji and player bridges
+
+The *Live preview* pane includes one other tab that displays a thumbnail for the Koji.
+Below the thumbnail are a number of buttons.
+Clicking the last button on the right opens a pane to the right of the thumbnail which displays the messages that the Koji and player bridges pass back and forth.
+These messages are updated in real time.
+
+image::bridgeMessages.jpg[View messages]
+
+== Testing feed autoplay
+
+
+
+To test autoplay features, you can open a published template and append ?feedDebug=true to the URL. The template is loaded in the feed 10 times, and you can swipe or scroll through to ensure the animation starts and stops as expected.
