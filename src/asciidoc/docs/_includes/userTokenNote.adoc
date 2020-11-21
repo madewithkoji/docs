@@ -7,4 +7,4 @@ Tokens are specific to a user and a Koji, so the same user will have different t
 // tag::auth-only[]
 You can use a token to validate the user's role and authorization grants for the current Koji.
 // end::auth-only[]
-// end:all[]
+// end::all[]
