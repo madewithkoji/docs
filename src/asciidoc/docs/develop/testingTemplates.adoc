@@ -74,16 +74,27 @@ The transaction will be marked *pending*.
 You should be able to refund the transaction, resetting your balance to its original value and cancelling the transaction fee.
 
 [NOTE]
-If *KojiPay* doesn't allow you to refund the transaction, wait a few minutes and try again. It may not be finished processing.
+If *KojiPay* doesn't allow you to refund the transaction, wait a few minutes and try again.
+It may not be finished processing.
 
+=== Testing a share
 
+You can share your Koji on social media by clicking the Koji button at the top right of the Koji screen and then clicking the *Share* button.
+This will display menu of options, including *Share to Facebook*, *Share to Reddit*, and *Share to Twitter*.
+
+If you choose *Share to Facebook*, it will prompt you to log in to Facebook.
+It will then take you to a dialog box where you can set various options for your post.
+One of those options allow you to choose who will be able to see the post.
+If you choose *Only me*, then you will be the only one who is able to see it.
+After viewing the post on your Facebook feed, you can either delete it or edit it to change who is able to see it.
+
+There is no option for previewing a post on Reddit or Twitter.
 
 === Viewing messages passed between Koji and the iframe
 
 Your Koji is displayed in an iframe in the browser.
-Messages are passed back and forth between this iframe and the Koji.
-It may be useful to view these messages.
-You can do this in the Koji editor.
+Messages are passed back and forth between the iframe and Koji.
+You can view these messages in the Koji editor.
 
 The *Live preview* pane includes a tab that displays a thumbnail for the Koji.
 Below the thumbnail are a number of buttons.
