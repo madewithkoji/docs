@@ -2,15 +2,17 @@
 :page-slug: testing-templates
 :page-description: A consolidated resource for methods a developer can use to test templates
 
-There are various ways you can test your Koji templates.
+There are many ways you can test your Koji templates.
 Typically, you will begin testing in the Koji editor.
-Later, you'll want to publish the template as *Unlisted*, so you can test it in production before giving access to general users.
+Later, you'll want to publish the template as *Unlisted*, so you can test it in a production environment before giving access to general users.
 Some of the most common testing methods are listed below.
 
-== Testing in editor mode
+== Testing in the Koji editor
 
-If you're using the Koji editor to develop your template, there are many options for previewing its behavior.
+There are many options in the Koji editor for previewing a template's behavior.
 These are covered in more detail in the documentation for the editor (see <<editor#>>).
+
+=== Previewing the Koji
 
 The *Live preview* tab allows you to toggle between *Preview* mode, which shows what the Koji looks like when running and *Editing* mode, which allows you to perform remixing in the preview.
 
@@ -26,7 +28,38 @@ The *Routes* tab lets you test your backend routes.
 It's similar to using a program like curl or Fiddler.
 For instance, you can manually enter an HTTP request, configure a header for it, send the request, and examine the results returned by the server.
 
-== Viewing messages passed between the Koji and the iframe
+=== Writing to the console
+
+You can test javascript code by using the `console.log` method.
+This method prints to the console.
+To see the console in the Koji editor, open the *Thumbnail* tab and click on the following button:
+
+image::consoleButton.jpg[Console button]
+
+For example, the following code snippet prints *Key pressed* to the Koji console every time you press a key, as long as the *Live preview* pane is selected.
+
+[NOTE]
+You can select *Live preview* by clicking anywhere in its pane.
+
+[source,javascript]
+----
+    $(window).keydown(function (e) {
+        KEY_STATUS.keyDown = true;
+        if (KEY_CODES[e.keyCode]) {
+            e.preventDefault();
+            KEY_STATUS[KEY_CODES[e.keyCode]] = true;
+        }
+        console.log("Key pressed");
+    }).keyup(function (e) {
+        KEY_STATUS.keyDown = false;
+        if (KEY_CODES[e.keyCode]) {
+            e.preventDefault();
+            KEY_STATUS[KEY_CODES[e.keyCode]] = false;
+        }
+    });
+----
+
+=== Viewing messages passed between Koji and the iframe
 
 Your Koji is displayed in an iframe in the browser.
 Messages are passed back and forth between this iframe and the Koji.
@@ -42,7 +75,7 @@ image::bridgeMessagesButton.jpg[View messages]
 
 Click this button to open a pane that displays these messages.
 
-== Testing feed autoplay
+=== Testing feed autoplay
 
 If you have videos or audio files in your Koji that play automatically, you may want them to play only when they are visible to the user.
 For instance, if the user scrolls past a video, it should start playing when it first scrolls into view and stop playing when it scrolls offscreen.
@@ -55,7 +88,7 @@ This opens a preview in a new browser tab.
 `Open in new tab` will not work.
 This takes you to a staging area, where this feature is not available.
 
-== Publish unlisted
+== Trying out your Koji
 
 If you publish your template as *Unlisted*, you can test it under exactly the same conditions as a general user, but no general users will have access to it.
 
@@ -70,5 +103,5 @@ image::publishUnlisted.jpg[Select *Unlisted*]
 Click *Publish* and follow the directions to publish your template.
 (See <<publish-locally-developed#,Publishing a project you developed locally>>.)
 
-When you are ready to give general users access, just unselect *Unlisted* and republish the template.
+When you're ready to give general users access, just unselect the checkbox and republish the template.
 
