@@ -84,7 +84,7 @@ const KojiPlatformFooterItems = [
     id: 3,
     icon: <DeveloperBoardIcon />,
     name: 'My repositories',
-    link: 'https://withkoji.com/evolution/repositories',
+    link: 'https://withkoji.com/creator/repositories',
   },
   {
     id: 4,

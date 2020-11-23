@@ -58,6 +58,7 @@ npm install --save @withkoji/custom-vcc-sdk
 ----
 
 === Create the customization files
+
 Create `.koji/customization/settings.json` to define customizable values for the API URL, and the items key and item name key from the API response.
 
 [source,json]
@@ -71,6 +72,7 @@ Remove the unused customization files.
 `colors.json`, `images.json`, and `strings.json`
 
 === Configure the API
+
 This blueprint implements https://thecatapi.com/[The Cat API] to return a list of cat breeds.
 However, you can use any API that returns a list of items to implement a custom selector.
 
@@ -82,6 +84,7 @@ include::../_includes/vcc-blueprint-settings.json[tags=configuration]
 ----
 
 === Add the template logic
+
 Import the packages.
 
 [source,javascript]
@@ -227,16 +230,20 @@ The type must match this format, using the URL you just copied as YOUR-URL:
 You should see your custom VCC.
 
 === Publish
-Custom VCCs require a custom domain to be accessible to other Koji applications.
-Go to  *Advanced > Custom domains*, and add a domain under the `koji-vccs.com` root domain.
 
-Click *Publish now* and enter a *Name*, *Description* and other publish settings, as desired.
+Custom VCCs require a custom domain to be accessible to other Koji applications.
+
+. Click *Publish now* and enter a *Name*, *Description* and other publish settings, as desired.
 Then, click *Publish*.
+. When publishing is completed, click the link to open your live template on Koji.
+. Click the **Koji** button in the top right, and then go to **More > Manage this Koji > Custom domains**.
+. Add a new subdomain under the `koji-vccs.com` root domain.
 
 After you publish your custom VCC, you can use it in a Koji template with the VCC type: +
 `"type": "custom<YOUR-DOMAIN-NAME>"`
 
 == "As Built" sample code
+
 To see this blueprint as a completed template on Koji, visit the following link.
 From there, you can view the source code or remix the template into your own project.
 

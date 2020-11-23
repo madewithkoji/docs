@@ -196,20 +196,22 @@ The staging URL makes it easy to test a custom VCC while it is under development
 However, it is temporary and changes each time you open a new instance of the project.
 Instead, you can publish your custom VCC so that you can use it in other projects and share it with other developers.
 
-. In the left pane, navigate to *Advanced > Custom domains*.
-. In the upper right, click *Add domain*.
-. Under *Choose a Koji root domain*, select `koji-vccs.com`.
-. In *Domain*, enter a unique name for your VCC.
-For example, `myname-custom-text-vcc`.
-+
-You will use this name to implement your custom VCC in consumer applications.
-. Click *Add*.
 . In the left pane, click *Publish now*.
 Give your VCC a descriptive name, and add a thumbnail if you would like.
 +
 The name and thumbnail make it easier for other developers to find your custom VCC and understand what it does.
 For a VCC, a custom thumbnail might be a better representation of the functionality than the automatically generated screenshot.
 . Click *Publish*.
+. When the publishing process is completed, click the link to open your live template.
+. Click the **Koji** button in the top right, and then go to **More > Manage this Koji > Custom domains**.
+. In the top right, click *New*.
+. For the type of custom domain, select *Subdomain*, and then click **Next**.
+. For the root domain, select **koji-vccs.com**.
+. In *Domain*, enter a unique name for your VCC.
+For example, `myname-custom-text-vcc`.
++
+You will use this name to implement your custom VCC in consumer applications.
+. Click *Save*.
 
 == Using a published custom VCC
 

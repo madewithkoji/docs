@@ -4,7 +4,7 @@
 
 The Koji editor is browser-based integrated development environment (IDE).
 You can use the Koji editor to create application and game templates.
-The editor contains all of your project's code, Visual Customization Controls (VCCs) generated from the project's code, interfaces for publishing and deployment management, and interfaces to other production tools like Koji database, custom domains, and plugins.
+The editor contains all of your project's code, Visual Customization Controls (VCCs) generated from the project's code, interfaces for publishing and deployment management, and interfaces to other production tools such as the Koji database.
 
 == Overview
 
