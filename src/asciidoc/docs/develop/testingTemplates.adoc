@@ -59,6 +59,25 @@ You can select *Live preview* by clicking anywhere in its pane.
     });
 ----
 
+=== Testing in-app purchasing
+
+The @withkoji/iap package enables you to implement in-app purchases in your Koji templates.
+See <<withkoji-koji-iap-package#>> for details.
+
+After you've set up in-app purchasing, you can test it by using *Debug in live player* on the *Remote* tab.
+First, make sure you've topped up your *Wallet* in *KojiPay*.
+You'll be using the Koji to send money to yourself, so you'll be able to issue yourself a refund when you finish testing.
+
+Next, run your Koji in *Debug in live player* and try paying yourself the minimum allowed dollar amount.
+If all goes well, you'll see this amount deducted from your *Wallet*.
+The transaction will be marked *pending*.
+You should be able to refund the transaction, resetting your balance to its original value and cancelling the transaction fee.
+
+[NOTE]
+If *KojiPay* doesn't allow you to refund the transaction, wait a few minutes and try again. It may not be finished processing.
+
+
+
 === Viewing messages passed between Koji and the iframe
 
 Your Koji is displayed in an iframe in the browser.
@@ -88,7 +107,7 @@ This opens a preview in a new browser tab.
 `Open in new tab` will not work.
 This takes you to a staging area, where this feature is not available.
 
-== Trying out your Koji
+== Testing your Koji in the production environment
 
 If you publish your template as *Unlisted*, you can test it under exactly the same conditions as a general user, but no general users will have access to it.
 
