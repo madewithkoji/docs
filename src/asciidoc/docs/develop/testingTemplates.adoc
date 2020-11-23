@@ -3,35 +3,16 @@
 :page-description: A consolidated resource for methods a developer can use to test templates
 
 There are various ways you can test your Koji templates.
-Some of the most common methods are listed below.
-
-== Publish unlisted
-
-When you publish your template, you can select the *Unlisted* option.
-This will prevent anyone else from seeing the published template.
-
-Click *Publish form* to display the following form:
-
-image::publishUnlisted1.jpg[Publish form]
-
-Click *Show advanced options* near the bottom left of the form.
-This will display two checkboxes.
-Select *Unlisted*.
-Click *Publish* and follow the directions to publish your template.
-(See <<publish-locally-developed#,Publishing a project you developed locally>>.)
-
-image::publishUnlisted2.jpg[Select *Unlisted*]
-
-Now you can test the template under exactly the same conditions as a general user, but no general users will have access to it.
-When you are ready to give general users access, just unselect *Unlisted* and republish the template.
+Typically, you will begin testing in the Koji editor.
+Later, you'll want to publish the template as *Unlisted*, so you can test it in production before giving access to general users.
+Some of the most common testing methods are listed below.
 
 == Testing in editor mode
 
-If you're using the Koji Editor to develop your template, there are many options for previewing its behavior.
-These are covered in detail in the documentation for the Editor (see <<editor#>>).
+If you're using the Koji editor to develop your template, there are many options for previewing its behavior.
+These are covered in more detail in the documentation for the editor (see <<editor#>>).
 
-The *Live preview* tab allows you to toggle between *Preview* mode, which shows what the Koji looks like running, and *Editing* mode, which shows what remixers see when customizing values.
-*Editing* mode even allows you to perform remixing in the preview.
+The *Live preview* tab allows you to toggle between *Preview* mode, which shows what the Koji looks like when running and *Editing* mode, which allows you to perform remixing in the preview.
 
 The *Remote* tab offers several additional ways of previewing your Koji.
 You can test it on your mobile device by scanning a QR code.
@@ -45,14 +26,21 @@ The *Routes* tab lets you test your backend routes.
 It's similar to using a program like curl or Fiddler.
 For instance, you can manually enter an HTTP request, configure a header for it, send the request, and examine the results returned by the server.
 
-== Viewing messages passed between the Koji and player bridges
+== Viewing messages passed between the Koji and the iframe
 
-The *Live preview* pane includes one other tab that displays a thumbnail for the Koji.
+Your Koji is displayed in an iframe in the browser.
+Messages are passed back and forth between this iframe and the Koji.
+It may be useful to view these messages.
+You can do this in the Koji editor.
+
+The *Live preview* pane includes a tab that displays a thumbnail for the Koji.
 Below the thumbnail are a number of buttons.
-Clicking the last button on the right opens a pane to the right of the thumbnail which displays the messages that the Koji and player bridges pass back and forth.
-These messages are updated in real time.
 
-image::bridgeMessages.jpg[View messages]
+Find the button that looks like this:
+
+image::bridgeMessagesButton.jpg[View messages]
+
+Click this button to open a pane that displays these messages.
 
 == Testing feed autoplay
 
@@ -66,4 +54,21 @@ This opens a preview in a new browser tab.
 [NOTE]
 `Open in new tab` will not work.
 This takes you to a staging area, where this feature is not available.
+
+== Publish unlisted
+
+If you publish your template as *Unlisted*, you can test it under exactly the same conditions as a general user, but no general users will have access to it.
+
+Click *Publish form*.
+
+Click *Show advanced options* near the bottom of the form.
+
+Select the *Unlisted* checkbox.
+
+image::publishUnlisted.jpg[Select *Unlisted*]
+
+Click *Publish* and follow the directions to publish your template.
+(See <<publish-locally-developed#,Publishing a project you developed locally>>.)
+
+When you are ready to give general users access, just unselect *Unlisted* and republish the template.
 
