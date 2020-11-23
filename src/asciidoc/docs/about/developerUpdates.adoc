@@ -26,6 +26,8 @@ Then, the server or other dispatch clients can send secure messages to that clie
 * In the <<withkoji-database-package#>> package, you can now batch database updates into a single transaction, which can reduce latency when making multiple updates to different collections.
 To batch database updates, set the new `mode` parameter to `transaction` when instantiating the database.
 Then, use the new `beginTransaction` and `commitTransaction` methods to submit one or more update requests.
+* The <<withkoji-koji-iap-package#>> package now includes `transactionIds` in a receipt object.
+This information enables you to link to a transaction from a notification (for example, `\https://withkoji.com/payments/transactions/TXN_ID`).
 * On the developer site, new resources are available to help Koji developers solve common problems, including <<frontend-uploading#>> and <<persist-session-data#>>.
 
 === November 13

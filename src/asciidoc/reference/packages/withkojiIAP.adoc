@@ -272,6 +272,10 @@ TIP: Be sure to implement appropriate error handling to account for differences 
   datePurchased: Date; <6>
   product?: IapProduct; <7>
   transaction?: Transaction|null; <8>
+  transactionIds: { <9>
+    credit: string;
+    debit: string;
+  };
 }
 ----
 <1> `id` – Unique identifier for the receipt.
@@ -287,6 +291,8 @@ Additionally, the fulfillment information (`email`, `phone`, or `address`) and `
 <6> `datePurchased` – Date of the purchase.
 <7> `product` – <<_iapproduct>> object that represents the purchased product.
 <8> `transaction` – Object that represents the transaction information, if available.
+<9> `transactionIds` – Object containing the unique identifiers for the associated transactions.
+To link to the transaction record on the Koji platform, use the format `\https://withkoji.com/payments/transactions/TXN_ID`.
 
 === IapProduct
 
