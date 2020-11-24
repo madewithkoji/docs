@@ -2,12 +2,12 @@
 
 // tag::transaction[]
 WARNING: Available in `transaction` mode only.
-See <<new Database>>.
+See <<withkoji-database-package#new%20Database>>.
 
 // end::transaction[]
 
 // tag::immediate[]
 WARNING: Available in `immediate` mode only.
-See <<new Database>>.
+See <<withkoji-database-package#new%20Database>>.
 
 // end::immediate[]
