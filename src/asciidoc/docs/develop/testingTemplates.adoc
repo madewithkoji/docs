@@ -144,11 +144,15 @@ Then click the *Refresh* button on the top left of the *Database* tab.
 If the record insertion worked, you should see the new record displayed.
 
 [NOTE]
-It may take a few seconds for the database to be updated. If the new record does not appear in the table, try refreshing again.
+It may take a few seconds for the database to be updated.
+If the new record does not appear in the table, try refreshing again.
 
-You can delete a record from the table by clicking the trashcan icon at the end of the row. The preview will not be updated automatically. You can force it to refresh by clicking on the *Remix* tab and then clicking back on the *Default* tab.
+You can delete a record from the table by clicking the trashcan icon at the end of the row.
+The preview will not be updated automatically.
+You can force it to refresh by clicking on the *Remix* tab and then clicking back on the *Default* tab.
 
-This testing method works equally well when running the Koji in a new tab, in production, on a mobile device, etc. In those cases, you can just refresh the browser to update the Koji after deleting a record.
+This testing method works equally well when running the Koji in a new tab, in production, on a mobile device, etc.
+In those cases, you can just refresh the browser to update the Koji after deleting a record.
 
 == Using browser tools for testing
 
