@@ -3,9 +3,11 @@
 // tag::transaction[]
 WARNING: Available in `transaction` mode only.
 See <<new Database>>.
+
 // end::transaction[]
 
 // tag::immediate[]
 WARNING: Available in `immediate` mode only.
 See <<new Database>>.
+
 // end::immediate[]
