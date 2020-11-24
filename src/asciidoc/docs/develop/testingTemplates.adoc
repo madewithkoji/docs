@@ -60,7 +60,7 @@ You can select *Live preview* by clicking anywhere in its pane.
 ----
 
 When running your Koji outside the editor, either in production or as a preview, you can access the console through the browser's menu.
-See *Using browser tools for testing* for details.
+See <<testing-templates#_using_browser_tools_for_testing,Using browser tools for testing>> for details.
 
 === Testing in-app purchasing
 
@@ -165,7 +165,7 @@ Other browsers should be similar.
 Open the browser menu, click on *More tools*, and select *Developer tools*.
 (You can get to the same screen by pressing the F12 key on a Windows machine.)
 This will display a number of tabs, including the *Console* tab.
-See *Writing to the console* for an example of how to use this tab.
+See <<testing-templates#_writing_to_the_console,Writing to the console>> for an example of how to use this tab.
 
 The *Elements* tab displays the HTML code for the website.
 If you move your cursor over the sections of code in this tab, the corresponding sections in the website will be highlighted.
