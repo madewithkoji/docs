@@ -8,6 +8,9 @@ implement real-time functionality in your Koji template.
 //end::description[]
 For example, chats, multi-player games, and polls.
 
+You can use dispatch on the frontend to enable real-time updates and communication between connected clients.
+You can also use it transactionally on the backend to send secure messages to specific clients that have been identified with a short-live token.
+
 == Install
 
 Install the package in your Koji project.
@@ -37,7 +40,8 @@ If this key is not present, the user will be placed into a shard automatically.
 *** `maxConnectionsPerShard`– (Optional) _Number_, total users to allow on a shard before it is "full."
 When a shard is full, new users are added to a new shard unless a different shard is explicitly set.
 *** `projectToken` – (Backend only) _String_, secret key for the Koji.
-*** `authorization` – (Backend only, Optional) _String_, temporary token for an authorized backend.
+*** `authorization` – (Backend only, Optional) _String_, temporary token that identifies the client, so the server and other connected clients can send it secure messages.
+If the token is not included, you can use <<.identify>> to identify the client after it is connected.
 
 ==== Example
 
@@ -64,7 +68,8 @@ const dispatch = new Dispatch({
 [.hcode, id=".authToken", reftext="authToken"]
 === .authToken
 
-_String_, temporary token for the connected client.
+_String_, temporary token that identifies the connected client, so the server and other connected clients can send it secure messages.
+To get a token, use `getToken` in the <<withkoji-koji-auth-sdk#.getToken, @withkoji/auth>> package.
 
 [.hcode, id=".clientId", reftext="clientId"]
 === .clientId
@@ -195,7 +200,7 @@ Sets a listener for a specific event, and runs the handler when the event is dis
 ==== Parameters
 
 * `eventName` – _String_, name of the event to subscribe to.
-* `handler` – _Function_, the handler to run when the event is fired
+* `handler` – _Function_, the handler to run when the event is fired.
 Receives the following property as input:
 ** `payload` – _Any_, the data payload sent from the fired event.
 

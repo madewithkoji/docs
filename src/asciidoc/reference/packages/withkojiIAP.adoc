@@ -291,8 +291,8 @@ Additionally, the fulfillment information (`email`, `phone`, or `address`) and `
 <6> `datePurchased` – Date of the purchase.
 <7> `product` – <<_iapproduct>> object that represents the purchased product.
 <8> `transaction` – Object that represents the transaction information, if available.
-<9> `transactionIds` – Object containing the unique identifiers for the associated transactions.
-To link to the transaction record on the Koji platform, use the format `\https://withkoji.com/payments/transactions/TXN_ID`.
+<9> `transactionIds` – Object containing references to the associated transaction receipts – `credit` for the user receiving the funds (seller), `debit` for the user sending the funds (buyer).
+To link to the transaction receipt in the user's Koji wallet, use the format `\https://withkoji.com/payments/transactions/TXN_ID`.
 
 === IapProduct
 

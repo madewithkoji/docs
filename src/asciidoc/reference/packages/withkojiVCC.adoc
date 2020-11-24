@@ -340,10 +340,9 @@ Starts a new remix.
 ==== Parameters
 
 * `options` – (Optional) _Object_, configuration options for the remix.
-Contains the following properties:
+Contains the following property:
 ** `id` – (Optional) _String_, ID of the Koji project to remix.
 Defaults to the current Koji, if an ID is not specified.
-** `resetValues` – (Optional) _Boolean_, whether to clear all custom values for the remix (`false` by default).
 
 ==== Example
 
