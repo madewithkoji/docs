@@ -14,7 +14,7 @@ These are covered in more detail in the documentation for the editor (see <<edit
 
 === Previewing the Koji
 
-The *Live preview* tab allows you to toggle between *Preview* mode, which shows what the Koji looks like when running and *Editing* mode, which allows you to perform remixing in the preview.
+The *Live preview* tab allows you to toggle between *Preview* mode, which shows what the Koji looks like when running, and *Editing* mode, which allows you to perform remixing in the preview.
 
 The *Remote* tab offers several additional ways of previewing your Koji.
 You can test it on your mobile device by scanning a QR code.
@@ -71,7 +71,7 @@ After you've set up in-app purchasing, you can test it by using *Debug in live p
 First, make sure you've topped up your *Wallet* in *KojiPay*.
 You'll be using the Koji to send money to yourself, so you'll be able to issue yourself a refund when you finish testing.
 
-Next, run your Koji in *Debug in live player* and try paying yourself the minimum allowed dollar amount.
+Next, run your Koji in *Debug in live player* and try paying yourself a small amount.
 If all goes well, you'll see this amount deducted from your *Wallet*.
 The transaction will be marked *pending*.
 You should be able to refund the transaction, resetting your balance to its original value and cancelling the transaction fee.
@@ -106,7 +106,7 @@ Find the button that looks like this:
 
 image::bridgeMessagesButton.jpg[View messages]
 
-Click this button to open a pane that displays these messages.
+Click this button to open a pane that displays the messages.
 
 === Testing feed autoplay
 
@@ -121,6 +121,35 @@ This opens a preview in a new browser tab.
 `Open in new tab` will not work.
 This takes you to a staging area, where this feature is not available.
 
+=== Testing using the Koji database
+
+The Koji database provides an easy way for your project to store key/value pairs indefinitely.
+See <<withkoji-database-package#>> for details on how to set up your template to access this database.
+Once your project is set up to use the database, you can test it in the Koji editor.
+
+In the pane on the left-hand side of the editor, scroll down until you see *ADVANCED*.
+
+Click on this to display additional options.
+
+Click on the *Database* option.
+This will open the *Database* tab.
+A list of your database tables will be displayed in the tab.
+
+Click on a table name to display its contents.
+
+You can now use *Live preview* to test your database setup.
+Click on the *Default* tab under *Live preview*.
+Perform an action in the preview that should write a record to the table.
+Then click the *Refresh* button on the top left of the *Database* tab.
+If the record insertion worked, you should see the new record displayed.
+
+[NOTE]
+It may take a few seconds for the database to be updated. If the new record does not appear in the table, try refreshing again.
+
+You can delete a record from the table by clicking the trashcan icon at the end of the row. The preview will not be updated automatically. You can force it to refresh by clicking on the *Remix* tab and then clicking back on the *Default* tab.
+
+This testing method works equally well when running the Koji in a new tab, in production, on a mobile device, etc. In those cases, you can just refresh the browser to update the Koji after deleting a record.
+
 == Using browser tools for testing
 
 All modern browsers provide tools for debugging websites.
@@ -130,12 +159,13 @@ The following directions are for the Google Chrome browser.
 Other browsers should be similar.
 
 Open the browser menu, click on *More tools*, and select *Developer tools*.
-(You can get to the same screen by pressing the F12 key.)
+(You can get to the same screen by pressing the F12 key on a Windows machine.)
 This will display a number of tabs, including the *Console* tab.
-See *Writing to the console* for an example of how to use the console.
+See *Writing to the console* for an example of how to use this tab.
 
-The *Elements* tab displays the HTML code behind the website.
-If you move your cursor over the code blocks in this tab, the corresponding sections in the website will be highlighted.
+The *Elements* tab displays the HTML code for the website.
+If you move your cursor over the sections of code in this tab, the corresponding sections in the website will be highlighted.
+
 If you right-click on a section of the website, this will open a menu from which you can select *Inspect*.
 This will open the *Elements* tab (if it's not already open) and highlight the HTML code corresponding to that section.
 
