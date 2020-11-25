@@ -79,12 +79,15 @@ It may not be finished processing.
 
 === Testing a social media share
 
-When a user shares a remix of your template on social media, the Koji platform renders a rich preview (Open Graph) image based on a screenshot of the Koji. You can preview this image by opening the *Thumbnail* tab in the *Live preview* pane. See <<rich-preview-image#>> for information on how to customize the preview image.
+When a user shares a remix of your template on social media, the Koji platform renders a rich preview (Open Graph) image based on a screenshot of the Koji.
+You can preview this image by opening the *Thumbnail* tab in the *Live preview* pane.
+See <<rich-preview-image#>> for how to customize the image.
 
-=== Viewing messages passed between Koji and the iframe
+=== Viewing messages passed between a Koji and platform APIs
 
-Your Koji is displayed in an iframe in the browser.
-Messages are passed back and forth between the iframe and Koji.
+Platform features like VCCs and in-app purchases require communication between your Koji and platform APIs.
+To support that communication, your Koji is loaded into a "player" iframe inside the browser.
+This allows messages to be sent from your Koji to the parent window and vice versa by using the `window.postMessage` api.
 To view these messages, click the view messages button at the bottom of the *Live preview* pane:
 image:messagesButton.jpg[View messages]
 
@@ -93,7 +96,8 @@ image:messagesButton.jpg[View messages]
 If you have videos or audio files in your Koji that play automatically, you may want them to play only when they are visible to the user.
 For instance, if the user scrolls past a video, it should start playing when it first scrolls into view and stop playing when it scrolls offscreen.
 
-To test the autoplay feature, click on *Debug in live player* to open the Koji in a new tab (see <<testing-templates#_Previewing _the_Koji)>>). Append `?feedDebug=true` to the URL.
+To test the autoplay feature, click on *Debug in live player* to open the Koji in a new tab (see <<testing-templates#_Previewing _the_Koji)>>).
+Append `?feedDebug=true` to the URL.
 The template is loaded in the feed 10 times and you can swipe or scroll through to ensure the animation starts and stops as expected.
 You can perform the same test in production mode.
 
@@ -101,13 +105,13 @@ You can perform the same test in production mode.
 `Open in new tab` will not work.
 This takes you to a staging area, where this feature is not available.
 
-=== Using the Database Explorer
+=== Using the database explorer
 
-If your project uses the Koji database, you can test that it is working correctly by using the Database Explorer.
+If your project uses the Koji database, you can test transactions by using the database explorer.
 (See <<withkoji-database-package#>>.)
 
 In the pane on the left-hand side of the editor, select *ADVANCED > Database*.
-This will open the Database Explorer in the central panel. You should see a list of your tables.
+This will open the database explorer in the central panel. You should see a list of your tables.
 
 Click on a table in the list to display its contents.
 
@@ -133,17 +137,13 @@ For example, in Google Chrome, you can open the debugging tools by clicking *Mor
 
 == Testing your Koji in the production environment
 
-If you publish your template as *Unlisted*, you can test it under exactly the same conditions as a general user, but no one else will be able to see it unless you send them the direct link.
+If you publish your template as *Unlisted*, you can test it under exactly the same conditions as a general user, but no one else will have access unless you send them the direct link.
 
-. Click *Publish now*.
-
+. In the upper left of the editor, click *Publish now* to open the publish settings.
+. Review the name and description, and update them if desired.
 . Click *Show advanced options* near the bottom of the form.
-
 . Select *Unlisted*.
-
-. Click *Publish* and follow the directions to publish your template.
-
-image::publishUnlisted.jpg[Select *Unlisted*]
-
-When you're ready to give general users access, just unselect the checkbox and republish the template.
+. Click *Publish*.
+. When publishing is completed, click the link to view and test your updated template.
+. When you're ready to give general users access, unselect the *Unlisted* checkbox and republish the template.
 
