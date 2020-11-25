@@ -30,7 +30,7 @@ For instance, you can manually enter an HTTP request, configure a header for it,
 
 === Writing to the console
 
-You can test javascript code by using the `console.log` method.
+You can test JavaScript code by using the `console.log` method.
 This method prints to the console.
 To see the console in the Koji editor, open the *Thumbnail* tab and click on the following button:
 
@@ -62,12 +62,12 @@ You can select *Live preview* by clicking anywhere in its pane.
 When running your Koji outside the editor, either in production or as a preview, you can access the console through the browser's menu.
 See <<testing-templates#_using_browser_tools_for_testing,Using browser tools for testing>> for details.
 
-=== Testing in-app purchasing
+=== Testing in-app purchases
 
 The @withkoji/iap package enables you to implement in-app purchases in your Koji templates.
 See <<withkoji-koji-iap-package#>> for details.
 
-After you've set up in-app purchasing, you can test it by using *Debug in live player* on the *Remote* tab.
+After you've set up in-app purchases, you can test it by using *Debug in live player* on the *Remote* tab.
 First, make sure you've topped up your *Wallet* in *KojiPay*.
 You'll be using the Koji to send money to yourself, so you'll be able to issue yourself a refund when you finish testing.
 
@@ -80,18 +80,9 @@ You should be able to refund the transaction, resetting your balance to its orig
 If *KojiPay* doesn't allow you to refund the transaction, wait a few minutes and try again.
 It may not be finished processing.
 
-=== Testing a share
+=== Testing a social media share
 
-You can share your Koji on social media by clicking the Koji button at the top right of the Koji screen and then clicking the *Share* button.
-This will display a menu of options, including *Share to Facebook*, *Share to Reddit*, and *Share to Twitter*.
-
-If you choose *Share to Facebook*, it will prompt you to log in to Facebook.
-It will then take you to a dialog box where you can set various options for your post.
-One of those options allow you to choose who will be able to see the post.
-If you choose *Only me*, then you will be the only one who is able to see it.
-After viewing the post on your Facebook feed, you can either delete it or edit it to change who is able to see it.
-
-There is no option for previewing a post on Reddit or Twitter.
+When a user shares a remix of your template on social media, the Koji platform renders a rich preview (Open Graph) image based on a screenshot of the Koji. You can preview this image by opening the *Thumbnail* tab in the *Live preview* pane. See <<rich-preview-image#>> for information on how to customize the preview image.
 
 === Viewing messages passed between Koji and the iframe
 
@@ -99,14 +90,8 @@ Your Koji is displayed in an iframe in the browser.
 Messages are passed back and forth between the iframe and Koji.
 You can view these messages in the Koji editor.
 
-The *Live preview* pane includes a tab that displays a thumbnail for the Koji.
-Below the thumbnail are a number of buttons.
-
-Find the button that looks like this:
-
-image::bridgeMessagesButton.jpg[View messages]
-
-Click this button to open a pane that displays the messages.
+Click any of the tabs in the *Live preview* pane, then click the view messages button:
+image:messagesButton.jpg[View messages]
 
 === Testing feed autoplay
 
@@ -121,9 +106,9 @@ This opens a preview in a new browser tab.
 `Open in new tab` will not work.
 This takes you to a staging area, where this feature is not available.
 
-=== Testing using the Koji database
+=== Using the database explorer
 
-The Koji database provides an easy way for your project to store key/value pairs indefinitely.
+The Koji database provides an easy way for your project to store key-value pairs indefinitely.
 See <<withkoji-database-package#>> for details on how to set up your template to access this database.
 Once your project is set up to use the database, you can test it in the Koji editor.
 
@@ -178,15 +163,15 @@ This displays the HTML code in the form that it was delivered to the browser.
 For a simple website, this could be the same as the HTML code displayed in the *Elements* tab.
 More likely, *Elements* will show the code after it has been modified by the browser.
 The browser may do some error correction or normalization to the code.
-Javascript running in the browser may significantly alter the HTML code, sometimes changing it beyond recognition.
+JavaScript running in the browser may significantly alter the HTML code, sometimes changing it beyond recognition.
 
 In general, you will probably find *Inspect* to be more useful than *View page source*, but it's good to know that you have the option of viewing the unmodified code.
 
 == Testing your Koji in the production environment
 
-If you publish your template as *Unlisted*, you can test it under exactly the same conditions as a general user, but only you will have access to it.
+If you publish your template as *Unlisted*, you can test it under exactly the same conditions as a general user, but no one else will have access to it unless you send them the direct link.
 
-Click *Publish form*.
+Click *Publish now*.
 
 Click *Show advanced options* near the bottom of the form.
 
@@ -195,7 +180,6 @@ Select the *Unlisted* checkbox.
 image::publishUnlisted.jpg[Select *Unlisted*]
 
 Click *Publish* and follow the directions to publish your template.
-(See <<publish-locally-developed#,Publishing a project you developed locally>>.)
 
 When you're ready to give general users access, just unselect the checkbox and republish the template.
 
