@@ -146,7 +146,7 @@ To launch the frontend, you must specify the URL for connecting to the backend.
 To launch the backend, you must provide deployment details for your project.
 The Koji platform reads in these details from https://en.wikipedia.org/wiki/Environment_variable[environment variables] to ensure that the deployment data is kept separate from the code and configuration for your application.
 
-==== Launching the frontend
+==== Launching the frontend (Mac OS and other Unix-based operating systems)
 
 By default, the frontend is configured to run at `\http://0.0.0.0:8080` and the backend is configured to run on port `3333`.
 When you launch the frontend, you must specify the URL to use for accessing the backend.
@@ -155,21 +155,12 @@ On Mac OS and other Unix-based operating systems, you can use the `export` comma
 . Open a terminal window, and go to the `frontend` directory.
 . Run the following command, which sets the `KOJI_SERVICE_URL_backend` environment variable and then launches the frontend with `npm start`.
 +
-[.tabs,scope="os"]
---
-.Linux
 [source,bash]
 ----
 export KOJI_SERVICE_URL_backend=http://0.0.0.0:3333 && npm start
 ----
++
 
-.Windows
-[source,bash]
-----
-set KOJI_SERVICE_URL_backend=http://localhost:3333 && npm start
-----
-
---
 +
 Your terminal will look something like this:
 +
@@ -185,6 +176,35 @@ $ export KOJI_SERVICE_URL_backend=http://0.0.0.0:3333 && npm start
 
 ℹ ｢wds｣: Compiled successfully
 ----
+
+==== Launching the frontend (Windows only)
+
+By default, the frontend is configured to run at `\http://0.0.0.0:8080` and the backend is configured to run on port `3333`.
+When you launch the frontend, you must specify the URL to use for accessing the backend.
+
+. Open a terminal window, and go to the `frontend` directory.
+. You can specify the URL by using one of two commands, depending on whether you're using a *Command prompt* terminal or *Windows Powershell*. Both commands set the `KOJI_SERVICE_URL_backend` environment variable.
+
++
+[.tabs,scope="os"]
+--
+
+.Command prompt
+[source,bash]
+----
+set KOJI_SERVICE_URL_backend=http://localhost:3333
+----
+
+.Windows Powershell
+[source,powershell]
+----
+$Env:KOJI_SERVICE_URL_backend=http://localhost:3333
+----
+
+--
+
+[IMPORTANT]
+For Windows users, keep this terminal window open and use it to run the commands in the next section.
 
 ==== Starting the watcher on the frontend (Windows only)
 
