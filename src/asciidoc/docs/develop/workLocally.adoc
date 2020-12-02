@@ -182,11 +182,12 @@ $ export KOJI_SERVICE_URL_backend=http://0.0.0.0:3333 && npm start
 By default, the frontend is configured to run at `\http://0.0.0.0:8080` and the backend is configured to run on port `3333`.
 When you launch the frontend, you must specify the URL to use for accessing the backend.
 
-. Open a terminal window, and go to the `frontend` directory.
-. You can specify the URL by using one of two commands, depending on whether you're using a *Command prompt* terminal or *Windows Powershell*. Both commands set the `KOJI_SERVICE_URL_backend` environment variable.
+1. Open a terminal window, and go to the `frontend` directory.
+2. Run the following command to set the `KOJI_SERVICE_URL_backend` environment variable.
+The command will differ slightly, depending on whether you are in a *Command prompt* or *Windows Powershell* terminal.
 
 +
-[.tabs,scope="os"]
+[.tabs]
 --
 
 .Command prompt
@@ -203,20 +204,23 @@ $Env:KOJI_SERVICE_URL_backend=http://localhost:3333
 
 --
 
++
+{nbsp}
+
++
 [IMPORTANT]
-For Windows users, keep this terminal window open and use it to run the commands in the next section.
+Keep this terminal window open and use it to run the other commands in this section.
 
-==== Starting the watcher on the frontend (Windows only)
-
-On Windows, launching the frontend requires additional steps to start the file watcher alongside your project.
++
+Launching the frontend requires additional steps to start the file watcher alongside your project.
 You must create a custom workflow to work locally that won't interfere with your project in the Koji editor.
 
-. Install npm-run-all.
+3. Install npm-run-all.
 +
 [source,bash]
 npm i --save-dev npm-run-all
 
-. Modify the `package.json` file.
+4. Modify the `package.json` file.
 +
 [source,JSON]
 {
@@ -227,9 +231,9 @@ npm i --save-dev npm-run-all
   }
 }
 
-. Remove the `prestart` script in your `scripts` section, if there is one.
+5. Remove the `prestart` script in your `scripts` section, if there is one.
 
-. Launch the frontend with the following command.
+6. Launch the frontend with the following command.
 +
 [source,bash]
 npm run start-windows
@@ -298,22 +302,27 @@ However, you will not need to make changes to the Koji database system, so you c
 
 . If `npm` fails to read the values from the `.env` file, you can set the environment variables manually in the terminal before starting the server, using the `KOJI_PROJECT_ID` and `KOJI_PROJECT_TOKEN` values you copied earlier.
 +
-[.tabs,scope="os"]
+[.tabs]
 --
 .Linux
-
 [source,bash]
 ----
 export KOJI_PROJECT_ID=c00484db-827a-45bb-8541-f2c09c2f192e
 export KOJI_PROJECT_TOKEN=a6676f53-44fe-4109-819a-69df620ad7ed
 ----
 
-.Windows
-
+.Windows (command prompt)
 [source,bash]
 ----
 set KOJI_PROJECT_ID=c00484db-827a-45bb-8541-f2c09c2f192e
 set KOJI_PROJECT_TOKEN=a6676f53-44fe-4109-819a-69df620ad7ed
+----
+
+.Windows (Powershell)
+[source,powershell]
+----
+$Env:KOJI_PROJECT_ID=c00484db-827a-45bb-8541-f2c09c2f192e
+$Env:KOJI_PROJECT_TOKEN=a6676f53-44fe-4109-819a-69df620ad7ed
 ----
 
 --
