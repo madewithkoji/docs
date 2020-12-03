@@ -28,10 +28,6 @@
             {
               "name": "Extending your template",
               "slug": "start-guide-2"
-            },
-            {
-              "name": "Enabling plugins",
-              "slug": "enabling-plugins"
             }
           ]
         },
@@ -162,6 +158,10 @@
             {
               "name": "Publishing local projects",
               "slug": "publish-locally-developed"
+            },
+            {
+              "name": "Plugins",
+              "slug": "plugins"
             }
           ]
         },

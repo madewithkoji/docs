@@ -1,0 +1,41 @@
+= Enabling plugins in your Koji template
+:page-slug: plugins
+:page-description: Plugins
+
+A plugin is a piece of software that can be added to any Koji to provide additional functionality.
+Plugins are added after publication.
+
+. Run the Koji and click the Koji button at the top right.
+. Navigate to *More > Manage this Koji > Plugins*.
+. Choose a plugin from the list of available plugins.
+. Configure and enable the plugin.
+
+== Advantages of plugins
+
+Search engines and social crawlers often do not render JavaScript when indexing pages.
+Plugins can overcome this limitation.
+Because Koji Plugins are computed server-side, they are available to all crawlers and bots without any additional 
+configuration or 3rd-party services.
+
+Plugins can serve synthetic responses.
+In other words, a plugin can generate and serve a response that is not coded for in the actual Koji.
+
+== Limitations
+
+At this time, Koji plugins are not designed to modify app functionality or to inject code that interfaces with an app's native code.
+This is an intentional decision to avoid fragmentation and spaghettification.
+Meaningful changes to functionality should simply be done within the code of the app, and repeated core behaviors should leveage JS packages and the larger Javascript community.
+
+Plugins are only injected into static services.
+If your app contains multiple static services, plugins will be injected into all of them.
+At this time, there is no way to enable or disable plugins on a per-service basis.
+
+== Developing plugins
+
+At this time, plugin development is not open to the community.
+This is coming 
+soon! For now, if you have an idea for a plugin, please share it on Discord and 
+we'll see what we can do!
+
+
+
