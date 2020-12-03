@@ -167,5 +167,5 @@ You may prefer to set up a web server and launch your Koji template on your deve
 This allows you to use your preferred suite of development tools.
 It may also be faster than using the Koji editor, since you aren't accessing your code over an Internet connection. For directions on how to set up a Koji template for working locally, see <<work-locally#>>.
 
-Obviously, the available methods of testing locally will depend heavily on the development tools you are using, but one tool that is always available is writing to the console.
+The available methods of testing will depend on the development tools you are using, but one tool that is always available is writing to the console.
 See the example code in <<testing-templates#_writing_to_the_console,Writing to the console>>.

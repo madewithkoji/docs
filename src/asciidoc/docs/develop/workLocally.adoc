@@ -184,25 +184,12 @@ When you launch the frontend, you must specify the URL to use for accessing the 
 
 1. Open a terminal window, and go to the `frontend` directory.
 2. Run the following command to set the `KOJI_SERVICE_URL_backend` environment variable.
-The command will differ slightly, depending on whether you are in a *Command prompt* or *Windows Powershell* terminal.
 
 +
-[.tabs]
---
-
-.Command prompt
 [source,bash]
 ----
 set KOJI_SERVICE_URL_backend=http://localhost:3333
 ----
-
-.Windows Powershell
-[source,powershell]
-----
-$Env:KOJI_SERVICE_URL_backend=http://localhost:3333
-----
-
---
 
 +
 {nbsp}
@@ -311,20 +298,12 @@ export KOJI_PROJECT_ID=c00484db-827a-45bb-8541-f2c09c2f192e
 export KOJI_PROJECT_TOKEN=a6676f53-44fe-4109-819a-69df620ad7ed
 ----
 
-.Windows (command prompt)
+.Windows
 [source,bash]
 ----
 set KOJI_PROJECT_ID=c00484db-827a-45bb-8541-f2c09c2f192e
 set KOJI_PROJECT_TOKEN=a6676f53-44fe-4109-819a-69df620ad7ed
 ----
-
-.Windows (Powershell)
-[source,powershell]
-----
-$Env:KOJI_PROJECT_ID=c00484db-827a-45bb-8541-f2c09c2f192e
-$Env:KOJI_PROJECT_TOKEN=a6676f53-44fe-4109-819a-69df620ad7ed
-----
-
 --
 +
 {blank}
@@ -373,6 +352,8 @@ If you haven't played the game yet, there will be no scores to show, but you wil
 . When the game is over, submit your user name.
 +
 The Leaderboard should now show your name and your score.
+
+TIP: If your project includes a backend, you may find it necessary to set the environment variables every time you start up your code editor and before you launch your Koji. In this case, you may find it helpful to create batch files that run all the relevant commands.
 
 == Next steps
 
