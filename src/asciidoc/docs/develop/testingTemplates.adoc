@@ -161,12 +161,3 @@ If you publish your template as *Unlisted*, you can test it under exactly the sa
 . When publishing is completed, click the link to view and test your updated template.
 . When you're ready to give general users access, unselect the *Unlisted* checkbox and republish the template.
 
-== Testing locally
-
-You may prefer to set up a web server and launch your Koji template on your development machine, so you can work locally.
-This allows you to use your preferred suite of development tools.
-It may also be faster than using the Koji editor, since you aren't accessing your code over an Internet connection. For directions on how to set up a Koji template for working locally, see <<work-locally#>>.
-
-You should be able to use all the standard debugging tools that come with most code editors when working locally.
-One tool that is always available is writing to the console.
-See the example code in <<testing-templates#_writing_to_the_console,Writing to the console>>.
