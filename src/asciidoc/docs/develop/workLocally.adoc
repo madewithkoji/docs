@@ -146,7 +146,7 @@ To launch the frontend, you must specify the URL for connecting to the backend.
 To launch the backend, you must provide deployment details for your project.
 The Koji platform reads in these details from https://en.wikipedia.org/wiki/Environment_variable[environment variables] to ensure that the deployment data is kept separate from the code and configuration for your application.
 
-==== Launching the frontend (Mac OS and other Unix-based operating systems)
+==== Launching the frontend
 
 By default, the frontend is configured to run at `\http://0.0.0.0:8080` and the backend is configured to run on port `3333`.
 When you launch the frontend, you must specify the URL to use for accessing the backend.
@@ -155,12 +155,21 @@ On Mac OS and other Unix-based operating systems, you can use the `export` comma
 . Open a terminal window, and go to the `frontend` directory.
 . Run the following command, which sets the `KOJI_SERVICE_URL_backend` environment variable and then launches the frontend with `npm start`.
 +
+[.tabs,scope="os"]
+--
+.Linux
 [source,bash]
 ----
 export KOJI_SERVICE_URL_backend=http://0.0.0.0:3333 && npm start
 ----
-+
 
+.Windows
+[source,bash]
+----
+set KOJI_SERVICE_URL_backend=http://localhost:3333 && npm start
+----
+
+--
 +
 Your terminal will look something like this:
 +
@@ -177,37 +186,17 @@ $ export KOJI_SERVICE_URL_backend=http://0.0.0.0:3333 && npm start
 ℹ ｢wds｣: Compiled successfully
 ----
 
-==== Launching the frontend (Windows only)
+==== Starting the watcher on the frontend (Windows only)
 
-By default, the frontend is configured to run at `\http://0.0.0.0:8080` and the backend is configured to run on port `3333`.
-When you launch the frontend, you must specify the URL to use for accessing the backend.
-
-1. Open a terminal window, and go to the `frontend` directory.
-2. Run the following command to set the `KOJI_SERVICE_URL_backend` environment variable.
-
-+
-[source,bash]
-----
-set KOJI_SERVICE_URL_backend=http://localhost:3333
-----
-
-+
-{nbsp}
-
-+
-[IMPORTANT]
-Keep this terminal window open and use it to run the other commands in this section.
-
-+
-Launching the frontend requires additional steps to start the file watcher alongside your project.
+On Windows, launching the frontend requires additional steps to start the file watcher alongside your project.
 You must create a custom workflow to work locally that won't interfere with your project in the Koji editor.
 
-3. Install npm-run-all.
+. Install npm-run-all.
 +
 [source,bash]
 npm i --save-dev npm-run-all
 
-4. Modify the `package.json` file.
+. Modify the `package.json` file.
 +
 [source,JSON]
 {
@@ -218,9 +207,9 @@ npm i --save-dev npm-run-all
   }
 }
 
-5. Remove the `prestart` script in your `scripts` section, if there is one.
+. Remove the `prestart` script in your `scripts` section, if there is one.
 
-6. Launch the frontend with the following command.
+. Launch the frontend with the following command.
 +
 [source,bash]
 npm run start-windows
@@ -289,9 +278,10 @@ However, you will not need to make changes to the Koji database system, so you c
 
 . If `npm` fails to read the values from the `.env` file, you can set the environment variables manually in the terminal before starting the server, using the `KOJI_PROJECT_ID` and `KOJI_PROJECT_TOKEN` values you copied earlier.
 +
-[.tabs]
+[.tabs,scope="os"]
 --
 .Linux
+
 [source,bash]
 ----
 export KOJI_PROJECT_ID=c00484db-827a-45bb-8541-f2c09c2f192e
@@ -299,11 +289,13 @@ export KOJI_PROJECT_TOKEN=a6676f53-44fe-4109-819a-69df620ad7ed
 ----
 
 .Windows
+
 [source,bash]
 ----
 set KOJI_PROJECT_ID=c00484db-827a-45bb-8541-f2c09c2f192e
 set KOJI_PROJECT_TOKEN=a6676f53-44fe-4109-819a-69df620ad7ed
 ----
+
 --
 +
 {blank}
@@ -352,8 +344,6 @@ If you haven't played the game yet, there will be no scores to show, but you wil
 . When the game is over, submit your user name.
 +
 The Leaderboard should now show your name and your score.
-
-TIP: If your project includes a backend, you may find it necessary to set the environment variables every time you start up your code editor and before you launch your Koji. In this case, you may find it helpful to create batch files that run all the relevant commands.
 
 == Next steps
 
