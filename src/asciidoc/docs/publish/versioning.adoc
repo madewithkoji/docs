@@ -12,7 +12,7 @@ If you update a template to a new version, you can decide how to handle instant 
 
 == Updating vs. forking a template
 
-When you're planning to make changes to your template, you must decide whether to update it to a new version or to fork it and create a new template.
+When you're planning to make changes to your template, you must decide whether to update it to a new version or fork it and create a new template.
 There are several factors to consider, including the scope of the changes and the compatibility of the Visual Customization Control (VCC) data.
 
 To update a template to a new version, you modify the code and republish the project.
@@ -29,8 +29,8 @@ For example, you might fork the code base to integrate a new feature on the Koji
 TIP: For a digest of the latest changes and new features in the Koji platform and developer packages, see the <<developer-updates#>>.
 
 When forking a code base, keep in mind that creators can still remix any Kojis made with the original project, and those remixes will also use the original project code.
-If multiple "branches" are available for remix, creators might be confused and might continue to use the older version for its original purpose.
-Therefore, you might want to continue to support the original project with updates and fixes, as needed.
+That means, creators will continue to use the original template, and could get confused or frustrated if it doesn't work as expected.
+Therefore, you might want to continue support for the original project with updates and fixes, as needed.
 
 == Viewing version history
 
@@ -46,8 +46,8 @@ TIP: If you are <<use-git#,working locally>> and pushing updates to Koji with gi
 == Managing instant remix versions
 
 If your template supports instant remixing, you can manage which version of the base template an instant remix will use.
-By default, an instant remix uses the same template version as the Koji that is remixed, even if it was created with an older version.
-You can configure your template so that all remixes use the current version, regardless of which version was used to create the Koji.
+By default, an instant remix uses the same template version as the Koji that is remixed, even if the Koji was created with an older version.
+You can configure your project so that all remixes use the current version, regardless of which version was used to create the Koji.
 This setting ensures that new remixes can take advantage of the latest features and fixes in your template as it continues to evolve and improve.
 
 TIP: Edits to an existing Koji always use the source version, regardless of the instant remix settings.
@@ -95,18 +95,18 @@ include::../_includes/starterExamples.adoc[tag=all]
 [source,JavaScript]
 ----
 function upgrade(sourceVersionNumber, vccValues) {
-  if (sourceVersionNumber === 0){
-    throw new Error('unsupported'); <1>
-  }
-  if (sourceVersionNumber === 1) { <2>
+  if (sourceVersionNumber === 1) { <1>
     vccValues.settings.titleOptions = {"title" : vccValues.settings.title};
     delete vccValues.settings.title;
+  }
+  if (sourceVersionNumber === 0){
+    throw new Error('unsupported'); <2>
   }
   return vccValues; <3>
 }
 ----
-<1> Throw an error to fall back to the default behavior for unsupported cases.
-<2> Transform values from the old JSON format to the new format.
+<1> Transform values from the old JSON format to the new format.
+<2> Throw an error to fall back to the default behavior for unsupported cases.
 <3> Return the transformed values.
 
 === Testing transformations
@@ -117,7 +117,7 @@ After you enter a VCC value upgrade function, you can test it with different ver
 +
 The *Input data* is automatically populated with the default JSON data from that version.
 +
-NOTE: If the test input data is not working as expected, try performing a hard rebuild the project to fix the error.
+NOTE: If the test input data is not working as expected, try performing a hard rebuild of the project to fix the error.
 In the editor, go to **Advanced > Remote environment**, and then click **Hard reset project**.
 
 . Click **Test**.
