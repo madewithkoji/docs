@@ -160,5 +160,5 @@ If you publish your template as *Unlisted*, you can test it under exactly the sa
 . Select *Unlisted*.
 . Click *Publish*.
 . When publishing is completed, click the link to view and test your updated template.
-. When you're ready to give general users access, unselect the *Unlisted* checkbox and republish the template.
+. When you're ready to give general users access, unselect *Unlisted* and republish the template.
 
