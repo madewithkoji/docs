@@ -125,7 +125,8 @@ If your project uses the Koji database, you can test transactions by using the d
 (See <<withkoji-database-package#>>.)
 
 In the pane on the left-hand side of the editor, select *ADVANCED > Database*.
-This will open the database explorer in the central panel. You should see a list of your tables.
+This will open the database explorer in the central panel.
+You should see a list of your tables.
 
 Click on a table in the list to display its contents.
 
