@@ -21,9 +21,10 @@ A creator who remixes your template from the base URL can now take advantage of 
 
 However, a creator can still remix a Koji that was created from an older version of your template.
 To handle this case, you can configure the project settings so that <<_managing_instant_remix_versions,instant remixes always use the latest version>> of the template.
-For the remix experience to work the way the user expects, the template must be able to support VCC values in the older format, and any new features must have reasonable default values.
+For the remix experience to work the way the user expects, the template must be able to support the custom values from the older Koji, and any new features must have reasonable default values.
+If the VCC structure has changed between versions, you might be able to apply an upgrade function to <<_transforming_vcc_values,transform the custom values>> from the old format to the new format.
 
-If an updated template would not be able to support VCC values in the older format, or if the changes would fundamentally change how the template is used, you can consider forking the code base and creating a new template.
+If the VCC structure has changed to the extent that the values can't be transformed in a reasonable way, or if the changes would fundamentally change how the template is used, you can consider forking the code base and creating a new template.
 For example, you might fork the code base to integrate a new feature on the Koji platform or to support a different use case than the original template.
 
 TIP: For a digest of the latest changes and new features in the Koji platform and developer packages, see the <<developer-updates#>>.
