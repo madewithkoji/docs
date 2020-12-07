@@ -24,6 +24,8 @@ If you share this link with someone else, they can preview the Koji while it's s
 [NOTE]
 The remote preview link will only work for as long as your editor session is still active, so it is not suitable for long-term sharing.
 
+=== Testing backend routes
+
 The *Routes* tab lets you test your backend routes.
 It's similar to using a program like curl or Fiddler.
 For instance, you can manually enter an HTTP request, configure a header for it, send the request, and examine the results returned by the server.
@@ -45,7 +47,7 @@ You will have to preview them by using the query string method.
 === Writing to the console
 
 You can test JavaScript code by using the `console.log` method, which prints to the console.
-To see the console in the Koji editor, open the *Thumbnail* tab and click on the console button:
+To see the console in the Koji editor, open the *Thumbnail* tab and click the console button:
 image:consoleButton.jpg[Console button]
 
 For example, the following code snippet prints *Key pressed* to the console every time you press a key, as long as the *Live preview* pane is selected.
@@ -110,7 +112,7 @@ image:messagesButton.jpg[View messages]
 If you have videos or audio files in your Koji that play automatically, you may want them to play only when they are visible to the user.
 For instance, if the user scrolls past a video, it should start playing when it first scrolls into view and stop playing when it scrolls offscreen.
 
-To test the autoplay feature, click on *Debug in live player* to open the Koji in a new tab (see <<testing-templates#_Previewing _the_Koji)>>).
+To test the autoplay feature, click *Debug in live player* to open the Koji in a new tab (see <<testing-templates#_Previewing _the_Koji)>>).
 Append `?feedDebug=true` to the URL.
 The template is loaded in the feed 10 times and you can swipe or scroll through to ensure the animation starts and stops as expected.
 You can perform the same test in production mode.
@@ -121,29 +123,27 @@ This takes you to a staging area, where this feature is not available.
 
 === Using the database explorer
 
-If your project uses the Koji database, you can test transactions by using the database explorer.
-(See <<withkoji-database-package#>>.)
+If your project uses the <<koji-database#,Koji database>>, you can test transactions by using the database explorer.
 
-In the pane on the left-hand side of the editor, select *ADVANCED > Database*.
-This will open the database explorer in the central panel.
-You should see a list of your tables.
+In the editor, select *ADVANCED > Database*.
+A list of your collections opens.
 
-Click on a table in the list to display its contents.
+Click a collection in the list to display its contents.
 
 You can now use *Live preview > Default* to test your database setup.
-Perform an action in the preview that should write a record to the selected table, then click *Refresh* in the *Database* tab.
+Perform an action in the preview that should write a record to the selected collection, then click *Refresh* in the *Database* tab.
 If the record insertion worked, you should see the new record displayed.
 
 [NOTE]
 It may take a few seconds for the database to be updated.
-If the new record does not appear in the table, try refreshing again.
+If the new record does not appear in the collection, try refreshing again.
 
-You can delete a record from the table by clicking the trashcan icon at the end of the row.
+You can delete a record from the collection by clicking the trashcan icon at the end of the row.
 The preview will not be updated automatically.
-You can force it to refresh by clicking on the *Remix* tab and then clicking back on the *Default* tab.
+You can force it to refresh by clicking the *Remix* tab and then clicking back on the *Default* tab.
 
-This testing method works equally well when running the Koji in a new tab, in production, on a mobile device, etc.
-In those cases, you can just refresh the browser to update the Koji after deleting a record.
+This testing method works equally well when running the Koji in a new tab or on a mobile device.
+In this case, you must refresh the browser to update the Koji after deleting a record.
 
 == Using browser tools for testing
 
@@ -160,5 +160,5 @@ If you publish your template as *Unlisted*, you can test it under exactly the sa
 . Select *Unlisted*.
 . Click *Publish*.
 . When publishing is completed, click the link to view and test your updated template.
-. When you're ready to give general users access, unselect *Unlisted* and republish the template.
+. When you're ready to give general users access, clear *Unlisted* and republish the template.
 
