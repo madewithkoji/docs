@@ -3,15 +3,16 @@
 :page-description: Package for implementing a Koji database for the backend of your template.
 
 Each Koji project includes a key-value store that you can use as a backend database for simple use cases, such as collecting information from users, aggregating survey or poll results, and creating leaderboards for games.
+Koji databases are made up of one or more `collections`.
+Each `collection` stores a series of database entries with a unique key and collection of key-value pairs.
+Values within the key-value pairs can be of any type, including strings, numbers, and arrays.
 
 The @withkoji/database package enables you to
 //tag::description[]
 implement a Koji database for the backend of your template.
 //end::description[]
-
-Koji databases are made up of one or more `collections`.
-Each `collection` stores a series of database entries with a unique key and collection of key-value pairs.
-Values within the key-value pairs can be of any type, including strings, numbers, and arrays.
+In `immediate` mode (default), you send database updates one request at a time.
+In `transaction` mode, you can batch several updates together by calling `beginTransaction`, calling the request methods, and then calling `commitTransaction` to submit the batch.
 
 == Install
 
@@ -33,7 +34,7 @@ npm install --save @withkoji/database
 == Database
 
 [.hcode, id="new Database", reftext="new Database"]
-=== new Database(config)
+=== new Database(config, mode)
 
 Instantiates `Database`.
 
@@ -47,6 +48,12 @@ Contains the following properties:
 +
 TIP: For templates that support instant remixes, you must implement `VccMiddleware` to manage these variables.
 See <<withkoji-vcc-package#>>.
+
+* `mode` – (Optional) _String_, when to send updates to the database.
+Use one of the following modes:
+** `immediate` – send one update at a time (default).
+** `transaction` – send one or more updates in a batch.
+See <<.beginTransaction>> and <<.commitTransaction>>.
 
 ==== Example
 
@@ -103,6 +110,30 @@ Removes data from arrays in an existing database entry.
 [source, javascript]
 const isRemoved = await database.arrayRemove('myCollection', 'myExistingKey', {'myArray1':'myValue1', 'myArray2': 'myValue2'});
 
+[.hcode, id=".beginTransaction", reftext="beginTransaction"]
+=== .beginTransaction()
+
+Creates a new transaction for sending one or more updates to the database in a batch.
+
+include::../../docs/_includes/databaseNote.adoc[tag=transaction]
+
+==== Example
+
+[source, javascript]
+database.beginTransaction();
+
+[.hcode, id=".commitTransaction", reftext="commitTransaction"]
+=== .commitTransaction()
+
+(Async) Submits a batch of update requests to the database in a single transaction.
+
+include::../../docs/_includes/databaseNote.adoc[tag=transaction]
+
+==== Example
+
+[source, javascript]
+await database.commitTransaction();
+
 [.hcode, id=".delete", reftext="delete"]
 === .delete(collection, key)
 
@@ -122,10 +153,46 @@ Deletes an entire entry from the database.
 [source, javascript]
 const isDeleted = await database.delete('myCollection', 'myExistingKey');
 
+[.hcode, id=".generateSignedUploadRequest", reftext="generateSignedUploadRequest"]
+=== .generateSignedUploadRequest(fileName)
+
+Generates a signed URL for uploading a file directly to your project’s CDN.
+For an in-depth guide to this method, see <<frontend-uploading#>>.
+
+NOTE: The size limit for this method is 150MB per uploaded file.
+
+include::../../docs/_includes/databaseNote.adoc[tag=immediate]
+
+==== Parameters
+
+* `fileName` – _String_, name of the file to upload.
+
+==== Returns
+
+(Async) `SignedUploadRequest`, structured data of the signed request with the following structure:
+
+[source, typescript]
+----
+interface SignedUploadRequest {
+  url: string,
+  signedRequest: {
+    url: string,
+    fields: {[index: string]: string};
+  };
+}
+----
+
+==== Example
+
+[source, javascript]
+const signedUpload = await database.generateSignedUploadRequest("fileName");
+
 [.hcode, id=".get", reftext="get"]
 === .get(collection, key)
 
 Gets the specified database entry or collection of entries.
+
+include::../../docs/_includes/databaseNote.adoc[tag=immediate]
 
 ==== Parameters
 
@@ -149,6 +216,8 @@ const myValue = await database.get('myCollection','myKey');
 
 Gets all the specified database entries.
 
+include::../../docs/_includes/databaseNote.adoc[tag=immediate]
+
 ==== Parameters
 
 * `collection` – _String_, name of the collection.
@@ -167,6 +236,8 @@ const myValue = await database.getAll('myCollection',['myKey1', 'myKey2']);
 === .getAllWhere(collection, predicateKey, predicateOperation, predicateValues)
 
 Gets all the database entries that match a query against a list of possible values.
+
+include::../../docs/_includes/databaseNote.adoc[tag=immediate]
 
 ==== Parameters
 
@@ -190,6 +261,8 @@ const results = await database.getAllWhere('myCollection','predicateKey', '==', 
 
 Gets a list of all collections available in the database.
 
+include::../../docs/_includes/databaseNote.adoc[tag=immediate]
+
 ==== Returns
 
 (Async) Array of _Strings_, list containing the names of the collections.
@@ -203,6 +276,8 @@ const collections = await database.getCollections();
 === .getWhere(collection, predicateKey, predicateOperation, predicateValue)
 
 Gets all the database entries that match a query against a value.
+
+include::../../docs/_includes/databaseNote.adoc[tag=immediate]
 
 ==== Parameters
 
@@ -224,6 +299,8 @@ const results = await database.getWhere('myCollection','predicateKey', '==', 'pr
 === .search(collection, searchAttribute, searchValue)
 
 Returns all the database entries where the value of `searchAttribute` partially matches `searchValue`.
+
+include::../../docs/_includes/databaseNote.adoc[tag=immediate]
 
 ==== Parameters
 
@@ -287,9 +364,14 @@ const updated = await database.update('myCollection',"myKey", {"myValue":2});
 [.hcode, id=".uploadFile", reftext="uploadFile"]
 === .uploadFile(path, filename, mimetype)
 
-Uploads files to your project's CDN. For example, images, profile pictures, and audio.
+WARNING: **Deprecated.** Use <<#.generateSignedUploadRequest>> for new and upgraded templates.
+
+Uploads files to your project's CDN.
+For example, images, profile pictures, and audio.
 
 NOTE: The size limit for this method is 10MB per uploaded file.
+
+include::../../docs/_includes/databaseNote.adoc[tag=immediate]
 
 ==== Parameters
 

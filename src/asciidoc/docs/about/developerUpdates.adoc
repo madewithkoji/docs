@@ -8,6 +8,40 @@ TIP: To help improve the Koji developer experience, please share your thoughts, 
 
 == 2020
 
+=== November 24
+
+* The following features are now available in the <<withkoji-koji-auth-sdk#>> package.
+** Enable users to "sign in" to a Koji and create a custom user ID for it.
+To request authorization for the user's ID, use the new `grants` parameter in the `getToken` and `getTokenWithCallback` methods.
+The new `allowAnonymous` parameter enables users to proceed without logging in, when appropriate.
+** Send push notifications with a user's ID, if the user has granted this authorization to the Koji.
+To validate the user’s authorization grants and get the user's ID, use the new `checkGrant` and `getGrant` methods.
+To send the notification, use the new `pushNotification` method.
+* The following features are now available in the <<withkoji-dispatch-package#>> package.
+** Connect to dispatch from your backend service and use it to broadcast messages to connected clients.
+To instantiate dispatch on the backend, use the new `projectToken` configuration option.
+** Send secure messages to specific clients, rather than broadcasting every message to all clients.
+The new `identify` method allows a client to use a short-lived `authToken` to identify itself to Koji dispatch.
+Then, the server or other dispatch clients can send secure messages to that client by including an array of `recipients` when calling `emitEvent`.
+* The following features are now available in the <<withkoji-vcc-package#>> package.
+** Design an About page as a landing page for remixers of a Koji.
+To provide an About page, enable the new `AboutContext` entitlement, and use the new `createRemix` method to trigger the remix from it.
++
+image::aboutPage-nov2020.png[About page, width=50%]
+
+** Use the new `?context=remix` URL parameter to determine when a Koji is being remixed.
+* In the <<withkoji-database-package#>> package, you can now batch database updates into a single transaction, which can reduce latency when making multiple updates to different collections.
+To batch database updates, set the new `mode` parameter to `transaction` when instantiating the database.
+Then, use the new `beginTransaction` and `commitTransaction` methods to submit one or more update requests.
+* The <<withkoji-koji-iap-package#>> package now includes `transactionIds` in a receipt object.
+This information enables you to link to a transaction from a notification (for example, `\https://withkoji.com/payments/transactions/TXN_ID`).
+* On the Koji platform, you can now manage plugins and custom domains directly from a Koji, without opening the code.
+** To manage the plugins for a Koji you created, use the Koji button in the top right, and then go to **More > Manage this Koji > Plugins**.
+Plugins are available to add common functionality, such as Google Analytics and Facebook Pixel, to the frontend of a Koji.
+** To manage the custom domains for a Koji you created, use the Koji button in the top right, and then go to **More > Manage this Koji > Custom domains**.
+* On the Koji platform, your new https://withkoji.com/creator[creator dashboard] replaces your evolution dashboard.
+* On the developer site, new resources are available to help Koji developers solve common problems, including <<frontend-uploading#>> and <<persist-session-data#>>.
+
 === November 13
 
 * The new <<koji-vcc#, koji VCC>> enables remixers to create a new Koji or select an existing Koji, either from their profile or from a URL.
@@ -100,7 +134,7 @@ For example, `dynamic-receipt=buyer` or `dynamic-receipt=seller`.
 
 * Updated reference docs are now available for the <<withkoji-database-package#,Database>>, <<withkoji-dispatch-package#,Dispatch>>, and <<withkoji-custom-vcc-sdk#,Custom VCC>> packages.
 * Step-by-step instructions for <<start-guide-1#, developing your first template>> are now available in *four* “flavors” – React, Vanilla JS, Angular, and Svelte.
-* On the Koji platform, *My projects* has moved to *My repositories* in your https://withkoji.com/evolution/repositories[evolution dashboard].
+* On the Koji platform, *My projects* has moved to *My repositories* in your **evolution dashboard**.
 To open a list of starter scaffolds, you can click *New repository*.
 +
 image::my-repositories-oct2020.png[My repositories]

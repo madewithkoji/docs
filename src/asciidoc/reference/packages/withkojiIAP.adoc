@@ -113,9 +113,8 @@ Gets a token identifying the current user, and invokes a callback function to ha
 Receives the following property as input:
 ** `userToken` – _String_, temporary token for the current user's session.
 +
-NOTE: A user token is created when a logged-in user loads a Koji, and destroyed when the user closes the Koji.
-If the user revisits the Koji, a different token is generated.
-Tokens are specific to a user and a Koji, so the same user will have different tokens for different Kojis.
+[NOTE]
+include::../../docs/_includes/userTokenNote.adoc[tags=all;!auth-only]
 To resolve purchases for a given user, both the user token, obtained on the frontend, and the project token, obtained from environment variables on the backend, are necessary.
 
 * `forceRefresh` – (Optional) _Boolean_, indicates whether to generate a new user token before invoking the callback function (`false` by default).
@@ -273,6 +272,10 @@ TIP: Be sure to implement appropriate error handling to account for differences 
   datePurchased: Date; <6>
   product?: IapProduct; <7>
   transaction?: Transaction|null; <8>
+  transactionIds: { <9>
+    credit: string;
+    debit: string;
+  };
 }
 ----
 <1> `id` – Unique identifier for the receipt.
@@ -288,6 +291,8 @@ Additionally, the fulfillment information (`email`, `phone`, or `address`) and `
 <6> `datePurchased` – Date of the purchase.
 <7> `product` – <<_iapproduct>> object that represents the purchased product.
 <8> `transaction` – Object that represents the transaction information, if available.
+<9> `transactionIds` – Object containing references to the associated transaction receipts – `credit` for the user receiving the funds (seller), `debit` for the user sending the funds (buyer).
+To link to the transaction receipt in the user's Koji wallet, use the format `\https://withkoji.com/payments/transactions/TXN_ID`.
 
 === IapProduct
 

@@ -8,6 +8,9 @@ implement real-time functionality in your Koji template.
 //end::description[]
 For example, chats, multi-player games, and polls.
 
+You can use dispatch on the frontend to enable real-time updates and communication between connected clients.
+You can also use it transactionally on the backend to send secure messages to specific clients that have been identified with a short-lived token.
+
 == Install
 
 Install the package in your Koji project.
@@ -26,30 +29,47 @@ Instantiates `Dispatch`.
 
 ==== Parameters
 
-* `project` – _Object_, dispatch configuration for your Koji project. Contains the following properties:
+* `project` – _Object_, dispatch configuration for your Koji project.
+Contains the following properties:
 ** `projectId` – _String_, unique identifier for your Koji project.
 You can use the <<withkoji-vcc-package#>> package to obtain this value programmatically.
-** `options` – (Optional) _Object_, configuration options for the dispatch shards. Contains the following properties:
+** `options` – (Optional on frontend) _Object_, configuration options for the dispatch instance.
+Contains the following properties:
 *** `shardName` – (Optional) _String_, name of the specific shard to use.
 If this key is not present, the user will be placed into a shard automatically.
 *** `maxConnectionsPerShard`– (Optional) _Number_, total users to allow on a shard before it is "full."
-When a shard is full, new users are added to a new shard unless a different shard is explicity set.
+When a shard is full, new users are added to a new shard unless a different shard is explicitly set.
+*** `projectToken` – (Backend only) _String_, secret key for the Koji.
+*** `authorization` – (Backend only, Optional) _String_, temporary token that identifies the client, so the server and other connected clients can send it secure messages.
+If the token is not included, you can use <<.identify>> to identify the client after it is connected.
 
 ==== Example
 
 [source,javascript]
 ----
 import Dispatch from '@withkoji/dispatch';
+
+// Frontend
 const dispatch = new Dispatch({
   projectId: instantRemixing.get(['metadata', 'projectId']),
+});
+
+// Backend
+const dispatch = new Dispatch({
+  projectId: res.locals.KOJI_PROJECT_ID || process.env.KOJI_PROJECT_ID,
   options: {
-    shardName: 'explicitShardName',
-    maxConnectionsPerShard: 20,
-  }
+    projectToken: res.locals.KOJI_PROJECT_TOKEN || process.env.KOJI_PROJECT_TOKEN,
+  },
 });
 ----
 
 == Dispatch properties
+
+[.hcode, id=".authToken", reftext="authToken"]
+=== .authToken
+
+_String_, temporary token that identifies the connected client, so the server and other connected clients can send it secure messages.
+To get a token, use `getToken` in the <<withkoji-koji-auth-sdk#.getToken, @withkoji/auth>> package.
 
 [.hcode, id=".clientId", reftext="clientId"]
 === .clientId
@@ -115,19 +135,41 @@ dispatch.connect();
 dispatch.disconnect();
 
 [.hcode, id=".emitEvent", reftext="emitEvent"]
-=== .emitEvent(eventName, payload)
+=== .emitEvent(eventName, payload, recipients)
 
-Emits the named event to all clients on the current shard.
+Emits the named event to the specified recipients or all clients.
 
 ==== Parameters
 
 * `eventName` – _String_, name of the event.
 * `payload` – _Any_, data to send with event.
+* `recipients` – (Optional) Array of _Strings_, list of clients to receive the event.
+If this parameter is not included, the event is sent to all clients on the current shard.
 
 ==== Example
 
 [source,javascript]
 dispatch.emitEvent('myEvent', myDataPayload);
+
+[.hcode, id=".identify", reftext="identify"]
+=== .identify(authToken)
+
+Identifies a connected client, which enables the server and other connected clients to send it secure messages.
+
+==== Parameters
+
+* `authToken` – _String_, temporary token for the connected client.
+To get a token, use `getToken` in the <<withkoji-koji-auth-sdk#.getToken, @withkoji/auth>> package.
+
+==== Example
+
+[source,javascript]
+----
+token = await auth.getToken(
+  ['username', 'push_notifications'],
+);
+dispatch.identify(token);
+----
 
 [.hcode, id=".info", reftext="info"]
 === .info()
@@ -158,7 +200,7 @@ Sets a listener for a specific event, and runs the handler when the event is dis
 ==== Parameters
 
 * `eventName` – _String_, name of the event to subscribe to.
-* `handler` – _Function_, the handler to run when the event is fired
+* `handler` – _Function_, the handler to run when the event is fired.
 Receives the following property as input:
 ** `payload` – _Any_, the data payload sent from the fired event.
 

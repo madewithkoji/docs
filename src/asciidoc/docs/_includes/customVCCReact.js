@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import Koji from '@withkoji/vcc';
+import { InstantRemixing } from '@withkoji/vcc';
 import CustomVCC from '@withkoji/custom-vcc-sdk';
 
 // tag::styles[]
@@ -37,6 +37,8 @@ const StyledSelect = styled.select`
 `;
 // end::styles[]
 
+const instantRemixing = new InstantRemixing();
+
 class App extends React.Component {
   // tag::constructor[]
   constructor(props) {
@@ -65,13 +67,14 @@ class App extends React.Component {
   // end::mount[]
   // tag::loadAPI[]
   loadAPIValues() {
-    let url = Koji.config.settings.api_url;
+    let url = instantRemixing.get(['settings', 'api_url']);
     fetch(url)
       .then(res => res.json())
       .then((result) => {
+          let itemsKey = instantRemixing.get(['settings', 'items_key']);
           this.setState({
             isLoaded: true,
-            items: Koji.config.settings.items_key ? result[Koji.config.settings.items_key] : result
+            items: itemsKey ? result[itemsKey] : result
           });
         },
         (error) => {
@@ -97,6 +100,7 @@ class App extends React.Component {
     let colors = this.state.theme.colors ? this.state.theme.colors : {};
     let mixins = this.state.theme.mixins ? this.state.theme.mixins : {};
     let items = this.state.items ? this.state.items : [];
+    let itemNameKey = instantRemixing.get(['settings', 'item_name_key']);
     return (
         <Container
         color={colors['foreground.default'] ? colors['foreground.default'] : ""}
@@ -114,7 +118,7 @@ class App extends React.Component {
                 (item, item_index) => {
                     return(
                     <option key={item_index} value={JSON.stringify(item)}>
-                        {Koji.config.settings.item_name_key ? item[Koji.config.settings.item_name_key]: item}
+                        {itemNameKey ? item[itemNameKey]: item}
                     </option>
                     )
                 }
