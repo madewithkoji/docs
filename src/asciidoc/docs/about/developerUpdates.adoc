@@ -16,8 +16,9 @@ Then, when publishing a remix, set the *Subscriber only* option to designate the
 +
 image::publishSubscription-dec2020.png[Publish premium content, 400px]
 * The creator dashboard now shows consolidated analytics for all of your Kojis.
-The data includes standard, built-in metrics that are calculated from access logs.
+The overview includes standard, built-in metrics that are calculated from access logs as well as transaction and revenue data.
 * On the developer site, new content is available to help Koji developers get the most value from their templates, including <<template-versions#>>.
+* You now have more options for customizing your Koji profile page.
 * Transaction receipts on the Koji platform have been redesigned for enhanced usability.
 
 === November 24
