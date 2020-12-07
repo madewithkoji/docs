@@ -8,6 +8,18 @@ TIP: To help improve the Koji developer experience, please share your thoughts, 
 
 == 2020
 
+=== December 10
+
+* Creators can now publish subscription-only Kojis and charge a fee for their premium content, without additional template development or configuration.
+To offer premium content, configure a subscription from your https://withkoji.com/creator[creator dashboard].
+Then, when publishing a remix, set the *Subscriber only* option to designate the Koji as part of your subscription offering.
++
+image::publishSubscription-dec2020.png[Publish premium content, 400px]
+* The creator dashboard now shows consolidated analytics for all of your Kojis.
+The data includes standard, built-in metrics that are calculated from access logs.
+* On the developer site, new content is available to help Koji developers get the most value from their templates, including <<template-versions#>>.
+* Transaction receipts on the Koji platform have been redesigned for enhanced usability.
+
 === November 24
 
 * The following features are now available in the <<withkoji-koji-auth-sdk#>> package.
