@@ -1,6 +1,6 @@
 = Using Koji plugins
 :page-slug: plugins
-:page-description: The advantages and limitations of Koji plugins and how to use them
+:page-description: The advantages and limitations of Koji plugins and how to use them.
 
 A plugin is software that can be added to a Koji after publication to provide additional functionality.
 Basically, it allows for the injection of dynamic code.
