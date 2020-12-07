@@ -162,6 +162,10 @@
             {
               "name": "Publishing local projects",
               "slug": "publish-locally-developed"
+            },
+            {
+              "name": "Managing template versions",
+              "slug": "template-versions"
             }
           ]
         },
