@@ -22,7 +22,7 @@ Because Koji plugins are computed server-side, they are available to all bots wi
 configuration or third-party services.
 
 * A plugin can inject a new file at runtime, simplifying the creation of things like web app manifests.
-The developer just provides configurable values for the plugin and the injection intelligently wraps them with the code/syntax that makes sense.
+The plugin provides configurable values, and the injection wraps them with the relevant code.
 
 == Limitations
 
@@ -37,7 +37,7 @@ There is no way to enable or disable plugins on a per-service basis.
 
 == Enabling a plugin for your Koji
 
-. Run the Koji and click the Koji button at the top right.
+. Open the Koji and click the Koji button.
 . Go to *More > Manage this Koji > Plugins*.
 . Choose a plugin from the list of available plugins.
 . Configure and enable the plugin.
