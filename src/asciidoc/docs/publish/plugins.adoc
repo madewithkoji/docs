@@ -1,6 +1,6 @@
 = Using Koji plugins
 :page-slug: plugins
-:page-description: Plugins
+:page-description: The advantages and limitations of Koji plugins and how to use them
 
 A plugin is software that can be added to a Koji after publication to provide additional functionality.
 Basically, it allows for the injection of dynamic code.
@@ -8,12 +8,12 @@ Plugins can only be added by the creator of a Koji.
 They will not be passed down to remixes.
 
 Generally, a creator customizes a plugin for a particular Koji by specifying values for one or more fields.
-For example, the *Custom Boilerplate* plugin adds a popup requiring a user to acknowledge a licensing agreement before interacting with the Koji.
-The creator specifies the body text and the question text for the popup.
+For example, the *Custom Boilerplate* plugin adds a pop-up window requiring a user to acknowledge a licensing agreement before interacting with the Koji.
+The creator specifies the body text and the question text for the pop-up window.
 
 == Advantages of plugins
 
-In addition to allowing the developer to easily add functionality to a Koji, plugins offer a few other advantages.
+In addition to allowing the creator to easily add functionality to a Koji, plugins offer a few other advantages.
 
 * Search engines and social crawlers often do not render JavaScript when indexing pages.
 For instance, if you're using React, a bot may only see the root div and an "enable JavaScript" message.
@@ -38,7 +38,7 @@ There is no way to enable or disable plugins on a per-service basis.
 == Enabling a plugin for your Koji
 
 . Run the Koji and click the Koji button at the top right.
-. Navigate to *More > Manage this Koji > Plugins*.
+. Go to *More > Manage this Koji > Plugins*.
 . Choose a plugin from the list of available plugins.
 . Configure and enable the plugin.
 
