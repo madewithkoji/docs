@@ -10,7 +10,6 @@ Some of the most common testing methods are listed below.
 == Testing in the Koji editor
 
 The Koji editor provides various ways to preview a template's behavior.
-These are covered in more detail in the documentation for the editor (see <<editor#>>).
 
 === Previewing the Koji
 
@@ -26,7 +25,7 @@ Logs from the tab appear in a pane in the editor.
 
 * You can open it in  *Live player*.
 This opens another browser window where the Koji is displayed in an iframe, just as the published Koji will display.
-You can also use *Live player* to test *In-app purchases*.
+You can also use *Live player* to test in-app purchases.
 (See <<_testing_in_app_purchases>>.)
 Logs from the new browser window will appear in a pane in the editor.
 
@@ -40,22 +39,24 @@ The remote preview link will only work for as long as your editor session is sti
 
 The *Routes* tab lets you test your backend routes.
 It's similar to using a program like curl or Fiddler.
-For instance, you can manually enter an HTTP request, configure a header for it, send the request, and examine the results returned by the server.
+For example, you can manually enter an HTTP request, configure a header for it, send the request, and examine the results returned by the server.
 
 === Previewing different contexts
 
-A Koji can display different landing pages depending on the context in which it is running.
-For more on contexts, see <<withkoji-vcc-package#_feedsdk#>>.
+A Koji can display different template experiences depending on the context in which it is running.
+For more on contexts, see <<withkoji-vcc-package#_feedsdk>>.
 
-The editor provides built-in previews for standard contexts.
-To preview a custom context, you can append the query string to the URL.
-For example, if you create a custom context named *Test*, you can display it by appending `?context=test` to the URL.
+The editor provides built-in previews for standard contexts in the *Live preview* pane.
+Some standard contexts, such as *Admin*, *About*, and *Sticker*, only appear if the developer has enabled them.
+Others, such as in-app purchases, only appear if the developer has implemented them.
+
+A custom context cannot be viewed in *Live preview*.
+You can view it in *Live player* by appending `?context=test` to the URL (see <<_previewing_the_koji>>).
 
 === Writing to the console
 
 You can test JavaScript code by using the `console.log` method, which prints to the console.
-To see the console in the Koji editor, open the *Thumbnail* tab and click the console button:
-image:consoleButton.jpg[Console button]
+To see the console in the Koji editor, click the console button image:consoleButton.jpg[Console button] in the *Live preview* pane.
 
 For example, the following code snippet prints *Key pressed* to the console every time you press a key, as long as the *Live preview* pane is selected.
 
@@ -83,49 +84,49 @@ You can select *Live preview* by clicking anywhere in its pane.
 When running your Koji outside the editor, you can access the console through the browser's menu.
 (See <<_using_browser_tools_for_testing>>.)
 
-=== Testing In-app purchases
+=== Testing in-app purchases
 
-You can test *In-app purchases* by clicking *Debug in live player* on the *Remote* tab.
+If your template supports <<withkoji-koji-iap-package#,in-app purchases>>, you can test the functionality by clicking *Debug in live player* on the *Remote* tab.
 
-. First, make sure you've topped up your *Wallet* in *KojiPay*.
-You'll use the Koji to send money to yourself, so you can issue yourself a refund when you finish testing.
-
-. Open your Koji in *Debug in live player* and try paying yourself a small amount.
-If all goes well, you'll see this amount deducted from your *Wallet*.
-The transaction will be marked *pending*.
-
+. Log into your Koji account and click on your profile icon to open the main menu.
+. Click on *Wallet*.
+. If your *Wallet* is empty, top it up.
+. In another browser window, open the Koji editor.
+. Open the *Remote* tab and click *Debug in live player*.
+. Try paying yourself a small amount.
+. Go back to your *Wallet* to check that the transaction was successful.
+. If all went well, you'll see the amount you paid deducted from your balance. The transaction will be marked *pending*.
 . You should be able to refund the transaction, resetting your balance to its original value and cancelling the transaction fee.
 +
 [NOTE]
-If *KojiPay* doesn't allow you to refund the transaction, wait a minute or two and try again.
-It may not be finished processing.
+If *KojiPay* doesn't allow you to refund the transaction, it might not be finished processing the payment.
+Wait a minute or two and try again.
 
 === Testing a social media share
 
 When a user shares a remix of your template on social media, the Koji platform renders a rich preview (Open Graph) image based on a screenshot of the Koji.
 You can preview this image by opening the *Thumbnail* tab in the *Live preview* pane.
-See <<rich-preview-image#>> for how to customize the image.
+For information about how to customize the image, see <<rich-preview-image#>>.
 
-=== Viewing messages passed between a Koji and platform APIs
+=== Viewing messages passed between a template and platform APIs
 
-Platform features like VCCs and *In-app purchases* require communication between your Koji and platform APIs.
+Platform features like VCCs and in-app purchases require communication between your Koji and platform APIs.
 To support that communication, your Koji is loaded into a "player" iframe inside the browser.
-This allows messages to be sent from your Koji to the parent window and vice versa by using the `window.postMessage` api.
-To view these messages, click the view messages button at the bottom of the *Live preview* pane:
-image:messagesButton.jpg[View messages]
+This allows messages to be sent from your Koji to the parent window and vice versa by using the `window.postMessage` API.
+To view these messages, click the view messages button image:messagesButton.jpg[View messages] in the *Live preview* pane.
 
 === Testing feed autoplay
 
-If you have videos or audio files in your Koji that play automatically, you may want them to play only when they are visible to the user.
-For instance, if the user scrolls past a video, it should start playing when it first scrolls into view and stop playing when it scrolls offscreen.
+If you have videos or audio files in your Koji that play automatically, you might want them to play only when they are visible to the user.
+For example, if the user scrolls past a video, it should start playing when it first scrolls into view and stop playing when it scrolls off screen.
 
-To test the autoplay feature, click *Debug in live player* to open the Koji in a new tab (see <<_previewing_the_koji>>).
+To test the autoplay feature, click *Debug in live player* to open the Koji in a new tab.
 Append `?feedDebug=true` to the URL.
 The template is loaded in the feed 10 times and you can swipe or scroll through to ensure the animation starts and stops as expected.
 
 [NOTE]
-`Open in new tab` will not work.
-This takes you to a staging area, where this feature is not available.
+You cannot use *Open in new tab* to test autoplay in the feed.
+The tab opens in a staging area, where the feature is not available.
 
 === Using the database explorer
 
