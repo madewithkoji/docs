@@ -19,14 +19,14 @@ The *Live preview* tab allows you to toggle between *Preview* mode, which shows 
 The *Remote* tab offers several additional ways of previewing your Koji.
 
 * You can test it on your mobile device by scanning a QR code.
-Logs from the mobile device will appear in a pane in the editor.
+Logs from the mobile device appear in a pane in the editor.
 
 * You can open the Koji in a new tab.
-Logs from the tab will appear in a pane in the editor.
+Logs from the tab appear in a pane in the editor.
 
-* You can run it in a *live player*.
-This opens another browser window where the Koji is displayed in an iframe, just as the published Koji should display.
-You can also use *live player* to test *In-app purchases*.
+* You can open it in  *Live player*.
+This opens another browser window where the Koji is displayed in an iframe, just as the published Koji will display.
+You can also use *Live player* to test *In-app purchases*.
 (See <<_testing_in_app_purchases>>.)
 Logs from the new browser window will appear in a pane in the editor.
 
@@ -80,17 +80,17 @@ You can select *Live preview* by clicking anywhere in its pane.
     });
 ----
 
-When running your Koji outside the editor, either in production or as a preview, you can access the console through the browser's menu.
-(See <<testing-templates#_using_browser_tools_for_testing,Using browser tools for testing>>.)
+When running your Koji outside the editor, you can access the console through the browser's menu.
+(See <<_using_browser_tools_for_testing>>.)
 
 === Testing In-app purchases
 
-You can test *In-app purchases* by using *Debug in live player* on the *Remote* tab.
+You can test *In-app purchases* by clicking *Debug in live player* on the *Remote* tab.
 
 . First, make sure you've topped up your *Wallet* in *KojiPay*.
-You'll be using the Koji to send money to yourself, so you can issue yourself a refund when you finish testing.
+You'll use the Koji to send money to yourself, so you can issue yourself a refund when you finish testing.
 
-. Run your Koji in *Debug in live player* and try paying yourself a small amount.
+. Open your Koji in *Debug in live player* and try paying yourself a small amount.
 If all goes well, you'll see this amount deducted from your *Wallet*.
 The transaction will be marked *pending*.
 
@@ -119,7 +119,7 @@ image:messagesButton.jpg[View messages]
 If you have videos or audio files in your Koji that play automatically, you may want them to play only when they are visible to the user.
 For instance, if the user scrolls past a video, it should start playing when it first scrolls into view and stop playing when it scrolls offscreen.
 
-To test the autoplay feature, click *Debug in live player* to open the Koji in a new tab (see <<testing-templates#_Previewing _the_Koji)>>).
+To test the autoplay feature, click *Debug in live player* to open the Koji in a new tab (see <<_previewing_the_koji>>).
 Append `?feedDebug=true` to the URL.
 The template is loaded in the feed 10 times and you can swipe or scroll through to ensure the animation starts and stops as expected.
 
@@ -160,9 +160,9 @@ For example, in Google Chrome, you can open the debugging tools by clicking *Mor
 
 If you publish your template as *Unlisted*, you can test it under exactly the same conditions as a general user, but no one else will have access unless you send them the direct link.
 
-. In the upper left of the editor, click *Publish now* to open the publish settings.
+. Click *Publish now*.
 . Review the name and description, and update them if desired.
-. Click *Show advanced options* near the bottom of the form.
+. Click *Show advanced options*.
 . Select *Unlisted*.
 . Click *Publish*.
 . When publishing is completed, click the link to view and test your updated template.
