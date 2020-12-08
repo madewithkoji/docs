@@ -25,7 +25,9 @@ Logs from the mobile device will appear in a pane in the editor.
 Logs from the tab will appear in a pane in the editor.
 
 * You can run it in a *live player*.
-This opens another browser window where the Koji is displayed in an iframe, just as the published Koji is displayed.
+This opens another browser window where the Koji is displayed in an iframe, just as the published Koji should display.
+You can also use *live player* to test *In-app purchases*.
+(See <<_testing_in_app_purchases>>.)
 Logs from the new browser window will appear in a pane in the editor.
 
 * You can copy the link for the preview.
@@ -45,14 +47,9 @@ For instance, you can manually enter an HTTP request, configure a header for it,
 A Koji can display different landing pages depending on the context in which it is running.
 For more on contexts, see <<withkoji-vcc-package#_feedsdk#>>.
 
-When running a Koji outside the editor, you can display its landing page by appending a query string to the URL.
-For instance, if your Koji has an admin page, you can display it by appending `?context=admin` to the URL.
-
-Inside the editor, the *Live preview* tab will display buttons for the following contexts if they exist in your Koji: *Admin*, *About*, *Sticker*, *Buyer Receipt*, *Seller Receipt*.
-Clicking the button for one of these contexts displays a preview of its landing page.
-
-You can use other names for custom contexts, but *Live preview* will not display buttons for them.
-You will have to preview them by using the query string method.
+The editor provides built-in previews for standard contexts.
+To preview a custom context, you can append the query string to the URL.
+For example, if you create a custom context named *Test*, you can display it by appending `?context=test` to the URL.
 
 === Writing to the console
 
@@ -98,7 +95,7 @@ If all goes well, you'll see this amount deducted from your *Wallet*.
 The transaction will be marked *pending*.
 
 . You should be able to refund the transaction, resetting your balance to its original value and cancelling the transaction fee.
-
++
 [NOTE]
 If *KojiPay* doesn't allow you to refund the transaction, wait a minute or two and try again.
 It may not be finished processing.
@@ -111,7 +108,7 @@ See <<rich-preview-image#>> for how to customize the image.
 
 === Viewing messages passed between a Koji and platform APIs
 
-Platform features like VCCs and in-app purchases require communication between your Koji and platform APIs.
+Platform features like VCCs and *In-app purchases* require communication between your Koji and platform APIs.
 To support that communication, your Koji is loaded into a "player" iframe inside the browser.
 This allows messages to be sent from your Koji to the parent window and vice versa by using the `window.postMessage` api.
 To view these messages, click the view messages button at the bottom of the *Live preview* pane:
@@ -125,7 +122,6 @@ For instance, if the user scrolls past a video, it should start playing when it 
 To test the autoplay feature, click *Debug in live player* to open the Koji in a new tab (see <<testing-templates#_Previewing _the_Koji)>>).
 Append `?feedDebug=true` to the URL.
 The template is loaded in the feed 10 times and you can swipe or scroll through to ensure the animation starts and stops as expected.
-You can perform the same test in production mode.
 
 [NOTE]
 `Open in new tab` will not work.
@@ -135,7 +131,7 @@ This takes you to a staging area, where this feature is not available.
 
 If your project uses the <<koji-database#,Koji database>>, you can test transactions by using the database explorer.
 
-In the editor, select *ADVANCED > Database*.
+In the editor, select *Advanced > Database*.
 A list of your collections opens.
 
 Click a collection in the list to display its contents.
