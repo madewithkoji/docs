@@ -1,8 +1,8 @@
 = Testing templates
 :page-slug: testing-templates
-:page-description: A consolidated resource for methods a developer can use to test templates
+:page-description: Guide to testing Koji templates.
 
-There are many ways you can test your Koji templates.
+There are many powerful testing tools built into the Koji platform.
 Typically, you will begin testing in the Koji editor.
 Later, you'll want to publish the template as *Unlisted*, so you can test it in a production environment before giving access to general users.
 Some of the most common testing methods are listed below.
@@ -17,10 +17,20 @@ These are covered in more detail in the documentation for the editor (see <<edit
 The *Live preview* tab allows you to toggle between *Preview* mode, which shows what the Koji looks like when running, and *Editing* mode, which allows you to perform remixing in the preview.
 
 The *Remote* tab offers several additional ways of previewing your Koji.
-You can test it on your mobile device by scanning a QR code.
-There are also options for opening the Koji in a new tab, running it in a live player, or copying the link for the preview.
-If you share this link with someone else, they can preview the Koji while it's still in development.
 
+* You can test it on your mobile device by scanning a QR code.
+Logs from the mobile device will appear in a pane in the editor.
+
+* You can open the Koji in a new tab.
+Logs from the tab will appear in a pane in the editor.
+
+* You can run it in a *live player*.
+This opens another browser window where the Koji is displayed in an iframe, just as the published Koji is displayed.
+Logs from the new browser window will appear in a pane in the editor.
+
+* You can copy the link for the preview.
+If you share this link with someone else, they can preview the Koji while it's still in development.
++
 [NOTE]
 The remote preview link will only work for as long as your editor session is still active, so it is not suitable for long-term sharing.
 
