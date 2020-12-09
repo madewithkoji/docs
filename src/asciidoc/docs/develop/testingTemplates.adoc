@@ -2,32 +2,44 @@
 :page-slug: testing-templates
 :page-description: Guide to testing Koji templates.
 
-There are many powerful testing tools built into the Koji platform.
-Typically, you will begin testing in the Koji editor.
+The Koji platform provides a variety tools for testing templates.
+Many tests can be run inside the editor, so you don't have to go back and forth between the editor and a separate tab or window.
+For example, you can remix, test backend routes, and preview what your Koji will look like on social media without ever leaving the editor.
+
+Typically, you begin testing in the Koji editor.
 Later, you'll want to publish the template as *Unlisted*, so you can test it in a production environment before giving access to general users.
-Some of the most common testing methods are listed below.
 
 == Testing in the Koji editor
 
-The Koji editor provides various ways to preview a template's behavior.
+The Koji editor provides various ways to preview a Koji's behavior.
 
-=== Previewing the Koji
+=== Live preview
 
 The *Live preview* tab allows you to toggle between *Preview* mode, which shows what the Koji looks like when running, and *Editing* mode, which allows you to perform remixing in the preview.
 
+*Live preview* also allows you to preview the Koji in different contexts.
+You can display different template experiences depending on the context in which the template is running.
+For more on contexts, see <<withkoji-vcc-package#_feedsdk>>.
+
+The editor provides built-in previews for standard contexts in the *Live preview* pane.
+Some standard contexts, such as *Admin*, *About*, and *Sticker*, only appear if the developer has enabled them.
+Others, such as in-app purchases, only appear if the developer has implemented them.
+
+If you define a custom context in your application code, you can preview it in the *Live player* by appending the parameter to the URL. For example, ?context=custom. You cannot preview a custom context in the *Live preview*.
+
+=== Remote previews
+
 The *Remote* tab offers several additional ways of previewing your Koji.
 
-* You can test it on your mobile device by scanning a QR code.
+* On a mobile device – Generates a QR code that you can scan from any device.
 Logs from the mobile device appear in a pane in the editor.
 
-* You can open the Koji in a new tab.
+* In a new tab – Open a preview on a staging server.
 Logs from the tab appear in a pane in the editor.
 
-* You can open it in  *Live player*.
-This opens another browser window where the Koji is displayed in an iframe, just as the published Koji will display.
-You can also use *Live player* to test in-app purchases.
-(See <<_testing_in_app_purchases>>.)
-Logs from the new browser window will appear in a pane in the editor.
+* In the *Live player* - Open another browser window where the Koji is displayed in an iframe, just as the published Koji will display.
+You can also use the *Live player* to test <<_testing_in_app_purchases,in-app purchases>>.
+Logs from the w browser window appear in a pane in the editor.
 
 * You can copy the link for the preview.
 If you share this link with someone else, they can preview the Koji while it's still in development.
@@ -35,23 +47,15 @@ If you share this link with someone else, they can preview the Koji while it's s
 [NOTE]
 The remote preview link will only work for as long as your editor session is still active, so it is not suitable for long-term sharing.
 
+
+=== Previewing the Koji
+
+
 === Testing backend routes
 
 The *Routes* tab lets you test your backend routes.
 It's similar to using a program like curl or Fiddler.
 For example, you can manually enter an HTTP request, configure a header for it, send the request, and examine the results returned by the server.
-
-=== Previewing different contexts
-
-A Koji can display different template experiences depending on the context in which it is running.
-For more on contexts, see <<withkoji-vcc-package#_feedsdk>>.
-
-The editor provides built-in previews for standard contexts in the *Live preview* pane.
-Some standard contexts, such as *Admin*, *About*, and *Sticker*, only appear if the developer has enabled them.
-Others, such as in-app purchases, only appear if the developer has implemented them.
-
-A custom context cannot be viewed in *Live preview*.
-You can view it in *Live player* by appending `?context=test` to the URL (see <<_previewing_the_koji>>).
 
 === Writing to the console
 
@@ -88,14 +92,15 @@ When running your Koji outside the editor, you can access the console through th
 
 If your template supports <<withkoji-koji-iap-package#,in-app purchases>>, you can test the functionality by clicking *Debug in live player* on the *Remote* tab.
 
-. Log into your Koji account and click on your profile icon to open the main menu.
-. Click on *Wallet*.
+. Log into your Koji account and click your profile icon to open the main menu.
+. Click *Wallet*.
 . If your *Wallet* is empty, top it up.
 . In another browser window, open the Koji editor.
 . Open the *Remote* tab and click *Debug in live player*.
 . Try paying yourself a small amount.
 . Go back to your *Wallet* to check that the transaction was successful.
-. If all went well, you'll see the amount you paid deducted from your balance. The transaction will be marked *pending*.
+. If all went well, you'll see the amount you paid deducted from your balance.
+The transaction will be marked *pending*.
 . You should be able to refund the transaction, resetting your balance to its original value and cancelling the transaction fee.
 +
 [NOTE]
@@ -112,12 +117,12 @@ For information about how to customize the image, see <<rich-preview-image#>>.
 
 Platform features like VCCs and in-app purchases require communication between your Koji and platform APIs.
 To support that communication, your Koji is loaded into a "player" iframe inside the browser.
-This allows messages to be sent from your Koji to the parent window and vice versa by using the `window.postMessage` API.
+The player allows messages to be sent from your Koji to the parent window and vice versa by using the `window.postMessage` API.
 To view these messages, click the view messages button image:messagesButton.jpg[View messages] in the *Live preview* pane.
 
 === Testing feed autoplay
 
-If you have videos or audio files in your Koji that play automatically, you might want them to play only when they are visible to the user.
+If you have video or audio files in your Koji that play automatically, you might want them to play only when they are visible to the user.
 For example, if the user scrolls past a video, it should start playing when it first scrolls into view and stop playing when it scrolls off screen.
 
 To test the autoplay feature, click *Debug in live player* to open the Koji in a new tab.
@@ -134,7 +139,6 @@ If your project uses the <<koji-database#,Koji database>>, you can test transact
 
 In the editor, select *Advanced > Database*.
 A list of your collections opens.
-
 Click a collection in the list to display its contents.
 
 You can now use *Live preview > Default* to test your database setup.
@@ -149,7 +153,7 @@ You can delete a record from the collection by clicking the trashcan icon at the
 The preview will not be updated automatically.
 You can force it to refresh by clicking the *Remix* tab and then clicking back on the *Default* tab.
 
-This testing method works equally well when running the Koji in a new tab or on a mobile device.
+This testing method works equally well when previewing the Koji in a new tab or on a mobile device.
 In this case, you must refresh the browser to update the Koji after deleting a record.
 
 == Using browser tools for testing
