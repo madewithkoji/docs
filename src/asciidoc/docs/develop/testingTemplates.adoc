@@ -19,37 +19,71 @@ The *Live preview* tab allows you to toggle between *Preview* mode, which shows 
 
 *Live preview* also allows you to preview the Koji in different contexts.
 You can display different template experiences depending on the context in which the template is running.
-For more on contexts, see <<withkoji-vcc-package#_feedsdk>>.
+For more on contexts, see <<withkoji-vcc-package#_context>>.
 
 The editor provides built-in previews for standard contexts in the *Live preview* pane.
 Some standard contexts, such as *Admin*, *About*, and *Sticker*, only appear if the developer has enabled them.
-Others, such as in-app purchases, only appear if the developer has implemented them.
 
-If you define a custom context in your application code, you can preview it in the *Live player* by appending the parameter to the URL. For example, ?context=custom. You cannot preview a custom context in the *Live preview*.
+To enable a standard context, create a page for the context, then create `.koji/project/entitlements.json`, if it does not already exist.
+Add an entry for the context in the file.
+For example, to enable an *Admin* page, add `"AdminContext": true` to `entitlements.json`.
+The following code, shows the contents of a simple `entitlements.json` file with an entry for an *Admin* page.
+
+[source,json]
+----
+{
+  "entitlements": {
+    "AdminContext": true
+  }
+}
+----
+
+Other standard contexts, such as <<withkoji-koji-iap-package#,in-app purchases>>, only appear if the developer has implemented them.
+The following code, shows the contents of an `entitlements.json` file with in-app purchases enabled.
+It also shows <<withkoji-koji-iap-package#_iap,dynamic receipts>> enabled inside in-app purchases.
+
+[source,json]
+----
+{
+  "entitlements": {
+    "InAppPurchases": {
+      "enabled": true,
+      "products": [
+        {
+          "name": "Demo",
+          "sku": "demo",
+          "price": 100,
+          "dynamicReceipt": true
+        }
+      ]
+    },
+    "FeedEvents": false
+  }
+}
+----
+
+If you define a custom context in your application code, you can preview it in the *Live player* by appending the parameter to the URL. For example, `?context=custom`. You cannot preview a custom context in the *Live preview*.
 
 === Remote previews
 
 The *Remote* tab offers several additional ways of previewing your Koji.
 
-* On a mobile device – Generates a QR code that you can scan from any device.
-Logs from the mobile device appear in a pane in the editor.
+* On a mobile device – Open a preview on any device by scanning a QR code.
+Logs from the device appear in a pane in the editor.
 
 * In a new tab – Open a preview on a staging server.
 Logs from the tab appear in a pane in the editor.
 
 * In the *Live player* - Open another browser window where the Koji is displayed in an iframe, just as the published Koji will display.
+
 You can also use the *Live player* to test <<_testing_in_app_purchases,in-app purchases>>.
-Logs from the w browser window appear in a pane in the editor.
+Logs from the browser window appear in a pane in the editor.
 
 * You can copy the link for the preview.
 If you share this link with someone else, they can preview the Koji while it's still in development.
 +
 [NOTE]
 The remote preview link will only work for as long as your editor session is still active, so it is not suitable for long-term sharing.
-
-
-=== Previewing the Koji
-
 
 === Testing backend routes
 
@@ -116,6 +150,7 @@ For information about how to customize the image, see <<rich-preview-image#>>.
 === Viewing messages passed between a template and platform APIs
 
 Platform features like VCCs and in-app purchases require communication between your Koji and platform APIs.
+
 To support that communication, your Koji is loaded into a "player" iframe inside the browser.
 The player allows messages to be sent from your Koji to the parent window and vice versa by using the `window.postMessage` API.
 To view these messages, click the view messages button image:messagesButton.jpg[View messages] in the *Live preview* pane.
@@ -172,4 +207,3 @@ If you publish your template as *Unlisted*, you can test it under exactly the sa
 . Click *Publish*.
 . When publishing is completed, click the link to view and test your updated template.
 . When you're ready to give general users access, clear *Unlisted* and republish the template.
-
