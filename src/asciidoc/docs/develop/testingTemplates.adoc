@@ -39,7 +39,7 @@ The following code, shows the contents of a simple `entitlements.json` file with
 ----
 
 Other standard contexts, such as <<withkoji-koji-iap-package#,in-app purchases>>, only appear if the developer has implemented them.
-The following code, shows the contents of an `entitlements.json` file with in-app purchases enabled.
+The following code shows the contents of an `entitlements.json` file with in-app purchases enabled.
 It also shows <<withkoji-koji-iap-package#_iap,dynamic receipts>> enabled inside in-app purchases.
 
 [source,json]
@@ -74,12 +74,11 @@ Logs from the device appear in a pane in the editor.
 * In a new tab – Open a preview on a staging server.
 Logs from the tab appear in a pane in the editor.
 
-* In the *Live player* - Open another browser window where the Koji is displayed in an iframe, just as the published Koji will display.
-
+* In the *Live player* – Open another browser window where the Koji is displayed in an iframe, just as the published Koji will display.
 You can also use the *Live player* to test <<_testing_in_app_purchases,in-app purchases>>.
 Logs from the browser window appear in a pane in the editor.
 
-* You can copy the link for the preview.
+* With a shared link – You can copy the link for the preview.
 If you share this link with someone else, they can preview the Koji while it's still in development.
 +
 [NOTE]
