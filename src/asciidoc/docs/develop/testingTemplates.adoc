@@ -11,7 +11,7 @@ Later, you'll want to publish the template as *Unlisted*, so you can test it in 
 
 == Testing in the Koji editor
 
-The Koji editor provides various ways to preview a Koji's behavior.
+The Koji editor provides various ways of previewing a Koji's behavior.
 
 === Live preview
 
@@ -75,10 +75,10 @@ Logs from the device appear in a pane in the editor.
 Logs from the tab appear in a pane in the editor.
 
 * In the *Live player* – Open another browser window where the Koji is displayed in an iframe, just as the published Koji will display.
-You can also use the *Live player* to test <<_testing_in_app_purchases,in-app purchases>>.
+You can also use the *Live player* to <<_testing_in_app_purchases,test in-app purchases>>.
 Logs from the browser window appear in a pane in the editor.
 
-* With a shared link – You can copy the link for the preview.
+* With a shared link – Copy the link for the preview.
 If you share this link with someone else, they can preview the Koji while it's still in development.
 +
 [NOTE]
@@ -119,7 +119,7 @@ You can select *Live preview* by clicking anywhere in its pane.
 ----
 
 When running your Koji outside the editor, you can access the console through the browser's menu.
-(See <<_using_browser_tools_for_testing>>.)
+See <<_using_browser_tools_for_testing>>.
 
 === Testing in-app purchases
 
@@ -132,7 +132,7 @@ If your template supports <<withkoji-koji-iap-package#,in-app purchases>>, you c
 . Open the *Remote* tab and click *Debug in live player*.
 . Try paying yourself a small amount.
 . Go back to your *Wallet* to check that the transaction was successful.
-. If all went well, you'll see the amount you paid deducted from your balance.
+- If all went well, you'll see the amount you paid deducted from your balance.
 The transaction will be marked *pending*.
 . You should be able to refund the transaction, resetting your balance to its original value and cancelling the transaction fee.
 +
@@ -149,7 +149,6 @@ For information about how to customize the image, see <<rich-preview-image#>>.
 === Viewing messages passed between a template and platform APIs
 
 Platform features like VCCs and in-app purchases require communication between your Koji and platform APIs.
-
 To support that communication, your Koji is loaded into a "player" iframe inside the browser.
 The player allows messages to be sent from your Koji to the parent window and vice versa by using the `window.postMessage` API.
 To view these messages, click the view messages button image:messagesButton.jpg[View messages] in the *Live preview* pane.
