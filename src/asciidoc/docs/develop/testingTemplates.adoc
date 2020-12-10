@@ -11,7 +11,8 @@ Later, you'll want to publish the template as *Unlisted*, so you can test it in 
 
 == Testing in the Koji editor
 
-The Koji editor provides various ways of previewing a template's behavior.
+An important feature of the Koji editor is the ability it gives you to preview a template's behavior.
+*Live preview* allows you to preview a template in a pane inside the editor, while the *Remote* tab provides several options for previewing a template remotely.
 
 === Live preview
 
@@ -98,7 +99,8 @@ If your template supports <<withkoji-koji-iap-package#,in-app purchases>>, you c
 . Open the *Remote* tab and click *Debug in live player*.
 . Try paying yourself a small amount.
 . Go back to your *Wallet* to check that the transaction was successful.
-- If all went well, you'll see the amount you paid deducted from your balance.
++
+If all went well, you'll see the amount you paid deducted from your balance.
 The transaction will be marked *pending*.
 . You should be able to refund the transaction, resetting your balance to its original value and cancelling the transaction fee.
 +
