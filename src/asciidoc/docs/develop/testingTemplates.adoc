@@ -4,69 +4,35 @@
 
 The Koji platform provides a variety tools for testing templates.
 Many tests can be run inside the editor, so you don't have to go back and forth between the editor and a separate tab or window.
-For example, you can remix, test backend routes, and preview what your Koji will look like on social media without ever leaving the editor.
+For example, you can remix, test backend routes, and preview what your template will look like on social media without ever leaving the editor.
 
 Typically, you begin testing in the Koji editor.
 Later, you'll want to publish the template as *Unlisted*, so you can test it in a production environment before giving access to general users.
 
 == Testing in the Koji editor
 
-The Koji editor provides various ways of previewing a Koji's behavior.
+The Koji editor provides various ways of previewing a template's behavior.
 
 === Live preview
 
-The *Live preview* tab allows you to toggle between *Preview* mode, which shows what the Koji looks like when running, and *Editing* mode, which allows you to perform remixing in the preview.
+The *Live preview* tab allows you to toggle between *Preview* mode, which shows what the template looks like when running, and *Editing* mode, which allows you to perform remixing in the preview.
 
-*Live preview* also allows you to preview the Koji in different contexts.
+*Live preview* also allows you to preview the template in different contexts.
 You can display different template experiences depending on the context in which the template is running.
 For more on contexts, see <<withkoji-vcc-package#_context>>.
 
 The editor provides built-in previews for standard contexts in the *Live preview* pane.
-Some standard contexts, such as *Admin*, *About*, and *Sticker*, only appear if the developer has enabled them.
+Some standard contexts, such as *Admin*, *About*, and *Sticker*, only appear if you enable them.
 
-To enable a standard context, create a page for the context, then create `.koji/project/entitlements.json`, if it does not already exist.
-Add an entry for the context in the file.
-For example, to enable an *Admin* page, add `"AdminContext": true` to `entitlements.json`.
-The following code, shows the contents of a simple `entitlements.json` file with an entry for an *Admin* page.
+A few standard contexts only appear if you implement the feature that uses them and then enable them in that feature.
+For example, *Buyer receipt* and *Seller receipt* only appear in *Live preview* if you implement <<withkoji-koji-iap-package#_iap,in-app purchases>>, enable <<withkoji-koji-iap-package#_iap,dynamic receipts>>, and then enable *Buyer receipt* and *Seller receipt*.
 
-[source,json]
-----
-{
-  "entitlements": {
-    "AdminContext": true
-  }
-}
-----
-
-Other standard contexts, such as <<withkoji-koji-iap-package#,in-app purchases>>, only appear if the developer has implemented them.
-The following code shows the contents of an `entitlements.json` file with in-app purchases enabled.
-It also shows <<withkoji-koji-iap-package#_iap,dynamic receipts>> enabled inside in-app purchases.
-
-[source,json]
-----
-{
-  "entitlements": {
-    "InAppPurchases": {
-      "enabled": true,
-      "products": [
-        {
-          "name": "Demo",
-          "sku": "demo",
-          "price": 100,
-          "dynamicReceipt": true
-        }
-      ]
-    },
-    "FeedEvents": false
-  }
-}
-----
-
-If you define a custom context in your application code, you can preview it in the *Live player* by appending the parameter to the URL. For example, `?context=custom`. You cannot preview a custom context in the *Live preview*.
+If you define a custom context in your application code, you can preview it in the *Live player* by appending the parameter to the URL.For example, `?context=custom`.
+You cannot preview a custom context in the *Live preview*.
 
 === Remote previews
 
-The *Remote* tab offers several additional ways of previewing your Koji.
+The *Remote* tab offers several additional ways of previewing your template.
 
 * On a mobile device – Open a preview on any device by scanning a QR code.
 Logs from the device appear in a pane in the editor.
@@ -74,12 +40,12 @@ Logs from the device appear in a pane in the editor.
 * In a new tab – Open a preview on a staging server.
 Logs from the tab appear in a pane in the editor.
 
-* In the *Live player* – Open another browser window where the Koji is displayed in an iframe, just as the published Koji will display.
+* In the *Live player* – Open another browser window where the template is displayed in an iframe, just as the published template will display.
 You can also use the *Live player* to <<_testing_in_app_purchases,test in-app purchases>>.
 Logs from the browser window appear in a pane in the editor.
 
 * With a shared link – Copy the link for the preview.
-If you share this link with someone else, they can preview the Koji while it's still in development.
+If you share this link with someone else, they can preview the template while it's still in development.
 +
 [NOTE]
 The remote preview link will only work for as long as your editor session is still active, so it is not suitable for long-term sharing.
@@ -118,7 +84,7 @@ You can select *Live preview* by clicking anywhere in its pane.
     });
 ----
 
-When running your Koji outside the editor, you can access the console through the browser's menu.
+When running your template outside the editor, you can access the console through the browser's menu.
 See <<_using_browser_tools_for_testing>>.
 
 === Testing in-app purchases
@@ -142,23 +108,23 @@ Wait a minute or two and try again.
 
 === Testing a social media share
 
-When a user shares a remix of your template on social media, the Koji platform renders a rich preview (Open Graph) image based on a screenshot of the Koji.
+When a user shares a remix of your template on social media, the Koji platform renders a rich preview (Open Graph) image based on a screenshot of the template.
 You can preview this image by opening the *Thumbnail* tab in the *Live preview* pane.
 For information about how to customize the image, see <<rich-preview-image#>>.
 
 === Viewing messages passed between a template and platform APIs
 
-Platform features like VCCs and in-app purchases require communication between your Koji and platform APIs.
-To support that communication, your Koji is loaded into a "player" iframe inside the browser.
-The player allows messages to be sent from your Koji to the parent window and vice versa by using the `window.postMessage` API.
+Platform features like VCCs and in-app purchases require communication between your template and platform APIs.
+To support that communication, your template is loaded into a "player" iframe inside the browser.
+The player allows messages to be sent from your template to the parent window and vice versa by using the `window.postMessage` API.
 To view these messages, click the view messages button image:messagesButton.jpg[View messages] in the *Live preview* pane.
 
 === Testing feed autoplay
 
-If you have video or audio files in your Koji that play automatically, you might want them to play only when they are visible to the user.
+If you have video or audio files in your template that play automatically, you might want them to play only when they are visible to the user.
 For example, if the user scrolls past a video, it should start playing when it first scrolls into view and stop playing when it scrolls off screen.
 
-To test the autoplay feature, click *Debug in live player* to open the Koji in a new tab.
+To test the autoplay feature, click *Debug in live player* to open the template in a new tab.
 Append `?feedDebug=true` to the URL.
 The template is loaded in the feed 10 times and you can swipe or scroll through to ensure the animation starts and stops as expected.
 
@@ -186,15 +152,15 @@ You can delete a record from the collection by clicking the trashcan icon at the
 The preview will not be updated automatically.
 You can force it to refresh by clicking the *Remix* tab and then clicking back on the *Default* tab.
 
-This testing method works equally well when previewing the Koji in a new tab or on a mobile device.
-In this case, you must refresh the browser to update the Koji after deleting a record.
+This testing method works equally well when previewing the template in a new tab or on a mobile device.
+In this case, you must refresh the browser to update the template after deleting a record.
 
 == Using browser tools for testing
 
 All modern browsers provide tools for debugging websites.
 For example, in Google Chrome, you can open the debugging tools by clicking *More tools > Developer tools* or by pressing the F12 key.
 
-== Testing your Koji in the production environment
+== Testing your template in the production environment
 
 If you publish your template as *Unlisted*, you can test it under exactly the same conditions as a general user, but no one else will have access unless you send them the direct link.
 
