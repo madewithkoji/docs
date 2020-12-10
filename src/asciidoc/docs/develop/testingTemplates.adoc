@@ -11,43 +11,34 @@ Later, you'll want to publish the template as *Unlisted*, so you can test it in 
 
 == Testing in the Koji editor
 
-An important feature of the Koji editor is the ability it gives you to preview a template's behavior.
+The Koji editor provides various ways to preview a template’s behavior.
 
-=== Live preview
+=== Using live previews
 
-You can display different template experiences depending on the context in which the template is running. For more on contexts, see <<withkoji-vcc-package#_context>>.
+Your template might provide different experiences for different situations, or "contexts."
+For example, you might provide a different UI during a remix than when the template is running.
+The *Live preview* tab enables you to preview several standard contexts inside the Koji editor.
 
-Koji provides a number of standard contexts.
-If a standard context is enabled in your template, a button for it appears in the *Live preview* pane.
-Clicking the button for a context displays a preview of it.
+If a context is enabled in your template, a button for it appears in the *Live preview* pane.
+Click the button to display the preview.
 
-The following is a list of Koji's standard contexts.
-
-
-* *Default* – Displays what a template looks like when running. This context is always enabled.
+* *Default* – Displays what a template looks like when running.
+This context is always enabled.
 * *Remix* – Displays what a template looks like in edit mode.
 A creator enters edit mode when they remix a template.
-In the *Remix* preview, you set up the fields that the creator is allowed to change when remixing.
 The *Remix* context is always enabled, even if <<instant-remixing#,instant remixing>> is not.
-* *Thumbnail* – Displays what a template looks like when shared on social media. This context is always enabled.
-* *Admin* – Displays features that are only available to the owner of a Koji.
-An *Admin* button displays in *Live preview* only if you enable the *Admin* context.
-* *About* – Displays an introductory screen that a creator sees when they click *Remix this Koji*.
-An *About* button displays in *Live preview* only if you enable the *About* context.
-* *Sticker* – Displays what the template looks like when embedded in another Koji.
-A *Sticker* button displays in *Live preview* only if you enable the *Sticker* context.
+* *Thumbnail* – Displays what a template looks like when shared on social media.
+This context is always enabled.
+* *Admin*, *About*, and *Sticker* – Display previews of standard contexts, if you've enabled the associated entitlements.
+For more on contexts, see <<withkoji-vcc-package#_context>>.
++
+NOTE: If you create a custom context for your template, you can preview it in *Live player*.
+See <<_using_remote_previews>>.
 
-Two more contexts are available if you implement <<withkoji-koji-iap-package#_iap,in-app purchases>>.
+* *Buyer receipt* and *Seller receipt* – Displays previews of the transaction receipts for the buyer and seller.
+These contexts are available if you've implemented <<withkoji-koji-iap-package#_iap,in-app purchases>> and enabled the dynamic receipts entitlement.
 
-* *Buyer receipt* – Displays the receipt that a customer sees when they make a purchase.
-A *Buyer receipt* button displays in *Live preview* only if you implement <<withkoji-koji-iap-package#_iap,in-app purchases>>, enable <<withkoji-koji-iap-package#_iap,dynamic receipts>>, and enable *Buyer receipt*.
-* *Seller receipt*  – Displays the receipt that a creator sees when they make a sale.
-A *Seller receipt* button displays in *Live preview* only if you implement <<withkoji-koji-iap-package#_iap,in-app purchases>>, enable <<withkoji-koji-iap-package#_iap,dynamic receipts>>, and enable *Seller receipt*.
-
-[NOTE]
-If you create a custom context for your template, you can preview it in *Live player*. See <<_remote_previews>>.
-
-=== Remote previews
+=== Using remote previews
 
 The *Remote* tab provides options for previewing a template on different devices or in different environments.
 
