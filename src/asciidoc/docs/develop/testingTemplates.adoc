@@ -59,7 +59,7 @@ Logs from the browser window appear in a pane in the editor.
 You can use *Live player* to <<_testing_in_app_purchases,test in-app purchases>>.
 +
 You can use *Live player* to preview a custom context by appending the parameter to the URL.
-For example, `?context=custom.
+For example, `?context=custom`.
 See <<withkoji-vcc-package#_context>> for more on contexts.
 +
 
