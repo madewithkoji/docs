@@ -17,8 +17,8 @@ The Koji editor provides various ways of previewing a template's behavior.
 
 The *Live preview* tab allows you to toggle between *Preview* mode, which shows what the template looks like when running, and *Editing* mode, which allows you to perform remixing in the preview.
 
-*Live preview* also allows you to preview the template in different contexts.
 You can display different template experiences depending on the context in which the template is running.
+*Live preview* allows you to preview those experiences.
 For more on contexts, see <<withkoji-vcc-package#_context>>.
 
 The editor provides built-in previews for standard contexts in the *Live preview* pane.
