@@ -12,28 +12,40 @@ Later, you'll want to publish the template as *Unlisted*, so you can test it in 
 == Testing in the Koji editor
 
 An important feature of the Koji editor is the ability it gives you to preview a template's behavior.
-*Live preview* allows you to preview a template in a pane inside the editor, while the *Remote* tab provides several options for previewing a template remotely.
 
 === Live preview
 
-The *Live preview* tab allows you to toggle between *Preview* mode, which shows what the template looks like when running, and *Editing* mode, which allows you to perform remixing in the preview.
+A *Live preview* is a preview of a template in a pane inside the editor.
+There are a number of different types of live previews.
 
-You can display different template experiences depending on the context in which the template is running.
-*Live preview* allows you to preview those experiences.
+* *Default* – Displays what a template looks like when running.
+* *Remix* – Displays what a template looks like in edit mode.
+A creator enters edit mode when they start to remix a template.
+In the *Remix* preview, you set up the fields that the creator is allowed to change when remixing.
+* *Thumbnail* – Displays what a template looks like when shared on social media.
+* *Context preview* – Display a preview of a context.
 For more on contexts, see <<withkoji-vcc-package#_context>>.
++
+You can display different template experiences depending on the context in which the template is running.
+Koji provides several standard contexts which you preview by clicking a button in the *Live preview* pane.
 
-The editor provides built-in previews for standard contexts in the *Live preview* pane.
-Some standard contexts, such as *Admin*, *About*, and *Sticker*, only appear if you enable them.
-
-A few standard contexts only appear if you implement the feature that uses them and then enable them in that feature.
-For example, *Buyer receipt* and *Seller receipt* only appear in *Live preview* if you implement <<withkoji-koji-iap-package#_iap,in-app purchases>>, enable <<withkoji-koji-iap-package#_iap,dynamic receipts>>, and then enable *Buyer receipt* and *Seller receipt*.
-
-If you define a custom context in your application code, you can preview it in the *Live player* by appending the parameter to the URL.For example, `?context=custom`.
-You cannot preview a custom context in the *Live preview*.
+- *Admin* – Displays features that are only available to the owner of a Koji.
+An *Admin* button displays in *Live preview* only if you enable the *Admin* context.
+- *About* – Displays an introductory screen that a creator sees when they click *Remix this Koji*.
+An *About* button displays in *Live preview* only if you enable the *About* context.
+- *Sticker* – Displays what the template looks like when embedded in another Koji.
+A *Sticker* button displays in *Live preview* only if you enable the *Sticker* context.
+- *Buyer receipt* – Displays the receipt that a customer sees when they make a purchase.
+A *Buyer receipt* button displays in *Live preview* only if you implement <<withkoji-koji-iap-package#_iap,in-app purchases>>, enable <<withkoji-koji-iap-package#_iap,dynamic receipts>>, and enable *Buyer receipt*.
+- *Seller receipt*  – Displays the receipt that a creator sees when they make a sale.
+A *Seller receipt* button displays in *Live preview* only if you implement <<withkoji-koji-iap-package#_iap,in-app purchases>>, enable <<withkoji-koji-iap-package#_iap,dynamic receipts>>, and enable *Seller receipt*.
++
+[NOTE]
+You can create custom contexts for your template, but these cannot be viewed in *Live preview*. You can view these in *Live player*. See <<_remote_previews>>.
 
 === Remote previews
 
-The *Remote* tab offers several additional ways of previewing your template.
+The *Remote* tab provides options for previewing a template remotely.
 
 * On a mobile device – Open a preview on any device by scanning a QR code.
 Logs from the device appear in a pane in the editor.
@@ -41,9 +53,15 @@ Logs from the device appear in a pane in the editor.
 * In a new tab – Open a preview on a staging server.
 Logs from the tab appear in a pane in the editor.
 
-* In the *Live player* – Open another browser window where the template is displayed in an iframe, just as the published template will display.
-You can also use the *Live player* to <<_testing_in_app_purchases,test in-app purchases>>.
+* In *Live player* – Open another browser window where the template is displayed in an iframe, just as the published template will display.
 Logs from the browser window appear in a pane in the editor.
++
+You can use *Live player* to <<_testing_in_app_purchases,test in-app purchases>>.
++
+You can use *Live player* to preview a custom context by appending the parameter to the URL.
+For example, `?context=custom.
+See <<withkoji-vcc-package#_context>> for more on contexts.
++
 
 * With a shared link – Copy the link for the preview.
 If you share this link with someone else, they can preview the template while it's still in development.
