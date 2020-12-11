@@ -4,14 +4,14 @@ import { BLUE } from '../../../constants/colors';
 
 const Content = styled.div`
   width: 100%;
-  max-width: 640px;
+  max-width: 660px;
   
   @media screen and (max-width: 1023px) {
     width: 100%;
   }
 
-  margin: 18px 16px 64px 0;
-  padding: 0 24px;
+  margin: 18px 8px 64px 0;
+  padding: 0 24px 0 16px;
 
   @media screen and (max-width: 768px) {
     padding: 0;
@@ -35,7 +35,7 @@ const Content = styled.div`
   code {
     font-family: Menlo, Monaco, "Liberation Mono", Consolas, monospace;
     font-weight: normal;
-    font-size: 14px;
+    font-size: 13px;
     padding: 1px 4px;
     border: 1px solid #d4d9d9;
     transition: max-height 0.4s ease;

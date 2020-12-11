@@ -156,10 +156,10 @@ const AppSubBar = ({ location, navItems, onSearchClick }) => {
             <SectionDropdown onChange={handleSectionChange} value={currentItem.path}>
               {
                 (currentNavItem.sections || []).map(({ name, items: sectionItems }) => (
-                  <Section label={name}>
+                  <Section key={name} label={name}>
                     {
                       (sectionItems || []).map(({ name: itemName, path }) => (
-                        <Item value={path}>{itemName}</Item>
+                        <Item key={itemName} value={path}>{itemName}</Item>
                       ))
                     }
                   </Section>

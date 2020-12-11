@@ -18,10 +18,8 @@ import './index.css';
 
 const Container = styled.div`
   width: 100vw;
-  height: 100vh;
   display: flex;
   flex-direction: column;
-  overflow: ${({ style: { isSearching } }) => isSearching ? 'hidden' : 'auto'};
 `;
 
 const Header = styled.header`
@@ -107,6 +105,7 @@ const Layout = (props) => {
 
   const [isSearching, setIsSearching] = useState(false);
 
+  const containerRef = useRef(null);
   const contentRef = useRef(null);
 
   // Detect h2s on scroll
@@ -154,7 +153,7 @@ const Layout = (props) => {
 
   useEffect(() => {
     // If there isn't a hash on the page, scroll the content container to the top
-    if (!props.location.hash && contentRef.current) contentRef.current.scrollTo(0, 0);
+    if (!props.location.hash && containerRef.current) containerRef.current.scrollTo(0, 0);
 
     // Also reset the search visibility
     setIsSearching(() => false);
@@ -187,7 +186,7 @@ const Layout = (props) => {
           rel={'stylesheet'}
         />
       </Helmet>
-      <Container style={{ isSearching }}>
+      <Container ref={containerRef} style={{ isSearching }}>
         <SearchWrapper style={{ isSearching }}>
           <Overlay onClick={() => setIsSearching(() => false)} />
           <Search isSearching={isSearching} />
@@ -206,7 +205,7 @@ const Layout = (props) => {
               location={props.location}
               navItems={data.allNavItem.nodes || []}
             />
-            <Content currentHeader={currentHeader} contentRef={contentRef}>
+            <Content contentRef={contentRef} currentHeader={currentHeader}>
               {props.children}
             </Content>
           </MainWrapper>

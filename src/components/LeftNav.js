@@ -92,6 +92,32 @@ const StyledLink = styled(Link)`
   }
 `;
 
+const Divider = styled.div`
+  width: 100%;
+  height: 1px;
+  background: rgba(0, 0, 0, 0.5);
+  margin: 12px 0;
+`;
+
+const ExternalLink = styled.a`
+  display: block;
+  font-size: 13px;
+  padding: 5px 10px;
+  margin: 0 0 0 -10px;
+  background: transparent
+  cursor: pointer;
+  border-radius: 2.5px;
+  color: #333333;
+  text-decoration: none;
+
+
+  &:hover {
+    text-decoration: none;
+    background: ${LIGHT_GRAY};
+    color: ${BLUE};
+  }
+`;
+
 const LeftNav = ({ location, navItems }) => {
   const currentNavItem = navItems.find(({ root }) => location.pathname.includes(root)) || {};
 
@@ -121,6 +147,25 @@ const LeftNav = ({ location, navItems }) => {
           </Section>
         ))
       }
+      <Divider />
+      <ExternalLink
+        href={'https://withkoji.com/resources/privacy'}
+        target={'blank'}
+      >
+        {'Privacy'}
+      </ExternalLink>
+      <ExternalLink
+        href={'https://withkoji.com/resources/terms'}
+        target={'blank'}
+      >
+        {'Terms of Use'}
+      </ExternalLink>
+      <ExternalLink
+        href={'https://withkoji.com/resources/copyright'}
+        target={'blank'}
+      >
+        {'Copyright'}
+      </ExternalLink>
     </Container>
   );
 };

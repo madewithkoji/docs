@@ -6,6 +6,8 @@ import { Link } from 'gatsby';
 import { BLACK, BLUE, DARK_GRAY, LIGHT_GRAY } from '../constants/colors';
 
 import Logo from './Logo';
+import DiscordLogo from './DiscordLogo';
+import GithubLogo from './GithubLogo';
 
 const Container = styled.div`
   height: 76px;
@@ -120,6 +122,26 @@ const BackLink = styled.a`
   }
 `;
 
+const ExternalLink = styled.a`
+  display: flex;
+  padding: 0 !important;
+
+  @media screen and (max-width: 768px) {
+    display: none;
+  }
+
+  &:hover {
+    background: transparent !important;
+  }
+
+  svg {
+    width: 20px;
+    height: 20px;
+    fill: #a5a5a5;
+    margin-top: 4px;
+  }
+`;
+
 const AppBar = ({ navItems }) => (
   <Container>
     <Wrapper>
@@ -139,6 +161,21 @@ const AppBar = ({ navItems }) => (
         }
       </SectionLinks>
       <Spacer />
+      <ExternalLink
+        href={'https://github.com/madewithkoji'}
+        target={'_blank'}
+        title={'Check out our Github'}
+      >
+        <GithubLogo />
+      </ExternalLink>
+      <ExternalLink
+        href={'https://discord.com/invite/eQuMJF6'}
+        target={'_blank'}
+        title={'Join us on Discord'}
+        style={{ marginRight: '12px' }}
+      >
+        <DiscordLogo />
+      </ExternalLink>
       <BackLink href={'https://withkoji.com'} style={{ marginRight: 0 }}>
         {'Back to withkoji.com'}
       </BackLink>

@@ -9,7 +9,7 @@ body {
 }
 
 html {
-  scroll-padding-top: 8px;
+  scroll-padding-top: 16px;
 }
 
 * {
@@ -19,4 +19,5 @@ html {
 pre {
   font-family: Menlo, Monaco, "Courier New", monospace;
   border-radius: 4px;
+  font-size: 13px;
 }

@@ -10,7 +10,6 @@ import { graphql } from 'gatsby';
 import { lineNumbers } from './utils/line-numbers';
 import { addCopyCodeButton } from './utils/copy-code';
 import { addLanguageIndicator } from './utils/lang-indicator';
-import { makeCollapsible } from './utils/collapsible';
 
 import { BLACK, DARK_GRAY } from '../../constants/colors';
 import Content from './components/Content';
@@ -200,7 +199,6 @@ const Asciidoc = (props) => {
       lineNumbers(block);
       addCopyCodeButton(block);
       addLanguageIndicator(block);
-      makeCollapsible(block);
     });
 
     document.querySelectorAll('a[data-slug]').forEach((elem) => {
