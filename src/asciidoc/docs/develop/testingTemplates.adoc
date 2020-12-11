@@ -1,0 +1,187 @@
+= Testing templates
+:page-slug: testing-templates
+:page-description: Guide to testing Koji templates.
+
+The Koji platform provides a variety tools for testing templates.
+Many tests can be run inside the editor, so you don't have to go back and forth between the editor and a separate tab or window.
+For example, you can remix, test backend routes, and preview what your template will look like on social media without ever leaving the editor.
+
+Typically, you begin testing in the Koji editor.
+Later, you'll want to publish the template as *Unlisted*, so you can test it in a production environment before giving access to general users.
+
+== Testing in the Koji editor
+
+The Koji editor provides various ways to preview a template’s behavior.
+
+=== Using live previews
+
+Your template might provide different experiences for different situations, or "contexts."
+For example, you might provide a different UI during a remix than when the template is running.
+The *Live preview* tab enables you to preview several standard contexts inside the Koji editor.
+
+If a context is enabled in your template, a button for it appears in the *Live preview* pane.
+Click the button to display the preview.
+
+* *Default* – Displays what a template looks like when running.
+This context is always enabled.
+* *Remix* – Displays what a template looks like in edit mode.
+A creator enters edit mode when they remix a template.
+The *Remix* context is always enabled, even if <<instant-remixing#,instant remixing>> is not.
+* *Thumbnail* – Displays what a template looks like when shared on social media.
+This context is always enabled.
+* *Admin*, *About*, and *Sticker* – Display previews of standard contexts, if you've enabled the associated entitlements.
+For more on contexts, see <<withkoji-vcc-package#_context>>.
++
+NOTE: If you create a custom context for your template, you can preview it in *Live player*.
+See <<_using_remote_previews>>.
+
+* *Buyer receipt* and *Seller receipt* – Displays previews of the transaction receipts for the buyer and seller.
+These contexts are available if you've implemented <<withkoji-koji-iap-package#_iap,in-app purchases>> and enabled the dynamic receipts entitlement.
+
+=== Using remote previews
+
+The *Remote* tab provides options for previewing a template on different devices or in different environments.
+
+* On a mobile device – Open a preview on any device by scanning a QR code.
+Logs from the device appear in a pane in the editor.
+
+* In a new tab – Open a preview on a staging server.
+Logs from the tab appear in a pane in the editor.
+
+* In *Live player* – Open another browser window where the template is displayed in an iframe, just as the published template will display.
+Logs from the browser window appear in a pane in the editor.
++
+You can use *Live player* to <<_testing_in_app_purchases,test in-app purchases>>.
++
+You can use *Live player* to preview a custom context by appending the parameter to the URL.
+For example, `?context=custom`.
+See <<withkoji-vcc-package#_context>> for more on contexts.
+
+* With a shared link – Copy the link for the preview.
+If you share this link with someone else, they can preview the template while it's still in development.
++
+[NOTE]
+The remote preview link will only work for as long as your editor session is still active, so it is not suitable for long-term sharing.
+
+=== Testing backend routes
+
+The *Routes* tab lets you test your backend routes.
+It's similar to using a program like curl or Fiddler.
+For example, you can manually enter an HTTP request, configure a header for it, send the request, and examine the results returned by the server.
+
+=== Writing to the console
+
+You can test JavaScript code by using the `console.log` method, which prints to the console.
+To see the console in the Koji editor, click the console button image:consoleButton.jpg[Console button] in the *Live preview* pane.
+
+For example, the following code snippet prints *Key pressed* to the console every time you press a key, as long as the *Live preview* pane is selected.
+
+[NOTE]
+You can select *Live preview* by clicking anywhere in its pane.
+
+[source,javascript]
+----
+    $(window).keydown(function (e) {
+        KEY_STATUS.keyDown = true;
+        if (KEY_CODES[e.keyCode]) {
+            e.preventDefault();
+            KEY_STATUS[KEY_CODES[e.keyCode]] = true;
+        }
+        console.log("Key pressed");
+    }).keyup(function (e) {
+        KEY_STATUS.keyDown = false;
+        if (KEY_CODES[e.keyCode]) {
+            e.preventDefault();
+            KEY_STATUS[KEY_CODES[e.keyCode]] = false;
+        }
+    });
+----
+
+When running your template outside the editor, you can access the console through the browser's menu.
+See <<_using_browser_tools_for_testing>>.
+
+=== Testing in-app purchases
+
+If your template supports <<withkoji-koji-iap-package#,in-app purchases>>, you can test the functionality by clicking *Debug in live player* on the *Remote* tab.
+
+. Log into your Koji account and click your profile icon to open the main menu.
+. Click *Wallet*.
+. If your *Wallet* is empty, top it up.
+. In another browser window, open the Koji editor.
+. Open the *Remote* tab and click *Debug in live player*.
+. Try paying yourself a small amount.
+. Go back to your *Wallet* to check that the transaction was successful.
++
+If all went well, you'll see the amount you paid deducted from your balance.
+The transaction will be marked *pending*.
+. You should be able to refund the transaction, resetting your balance to its original value and cancelling the transaction fee.
++
+[NOTE]
+If *KojiPay* doesn't allow you to refund the transaction, it might not be finished processing the payment.
+Wait a minute or two and try again.
+
+=== Testing a social media share
+
+When a user shares a remix of your template on social media, the Koji platform renders a rich preview (Open Graph) image based on a screenshot of the template.
+You can preview this image by opening the *Thumbnail* tab in the *Live preview* pane.
+For information about how to customize the image, see <<rich-preview-image#>>.
+
+=== Viewing messages passed between a template and platform APIs
+
+Platform features like VCCs and in-app purchases require communication between your template and platform APIs.
+To support that communication, your template is loaded into a "player" iframe inside the browser.
+The player allows messages to be sent from your template to the parent window and vice versa by using the `window.postMessage` API.
+To view these messages, click the view messages button image:messagesButton.jpg[View messages] in the *Live preview* pane.
+
+=== Testing feed autoplay
+
+If you have video or audio files in your template that play automatically, you might want them to play only when they are visible to the user.
+For example, if the user scrolls past a video, it should start playing when it first scrolls into view and stop playing when it scrolls off screen.
+
+To test the autoplay feature, click *Debug in live player* to open the template in a new tab.
+Append `?feedDebug=true` to the URL.
+The template is loaded in the feed 10 times and you can swipe or scroll through to ensure the animation starts and stops as expected.
+
+[NOTE]
+You cannot use *Open in new tab* to test autoplay in the feed.
+The tab opens in a staging area, where the feature is not available.
+
+=== Using the database explorer
+
+If your project uses the <<koji-database#,Koji database>>, you can test transactions by using the database explorer.
+
+In the editor, select *Advanced > Database*.
+A list of your collections opens.
+Click a collection in the list to display its contents.
+
+You can now use *Live preview > Default* to test your database setup.
+Perform an action in the preview that should write a record to the selected collection, then click *Refresh* in the *Database* tab.
+If the record insertion worked, you should see the new record displayed.
+
+[NOTE]
+It may take a few seconds for the database to be updated.
+If the new record does not appear in the collection, try refreshing again.
+
+You can delete a record from the collection by clicking the trashcan icon at the end of the row.
+The preview will not be updated automatically.
+You can force it to refresh by clicking the *Remix* tab and then clicking back on the *Default* tab.
+
+This testing method works equally well when previewing the template in a new tab or on a mobile device.
+In this case, you must refresh the browser to update the template after deleting a record.
+
+== Using browser tools for testing
+
+All modern browsers provide tools for debugging websites.
+For example, in Google Chrome, you can open the debugging tools by clicking *More tools > Developer tools* or by pressing the F12 key.
+
+== Testing your template in the production environment
+
+If you publish your template as *Unlisted*, you can test it under exactly the same conditions as a general user, but no one else will have access unless you send them the direct link.
+
+. Click *Publish now*.
+. Review the name and description, and update them if desired.
+. Click *Show advanced options*.
+. Select *Unlisted*.
+. Click *Publish*.
+. When publishing is completed, click the link to view and test your updated template.
+. When you're ready to give general users access, clear *Unlisted* and republish the template.
