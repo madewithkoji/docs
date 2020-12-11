@@ -206,6 +206,13 @@ const Content = styled.div`
     width: 35%;
     float: right;
     padding-left: 10px;
+
+    @media screen and (max-width: 768px) {
+      float: none;
+      position: relative;
+      width: 100%;
+      min-width: unset;
+    }
   }
 
   .init-cap::first-letter {
