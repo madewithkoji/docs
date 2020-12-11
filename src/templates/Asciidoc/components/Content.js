@@ -1,24 +1,33 @@
 import styled from 'styled-components';
 
+import { BLUE } from '../../../constants/colors';
+
 const Content = styled.div`
-  width: calc(100% - 296px);
+  width: 100%;
+  max-width: 640px;
   
   @media screen and (max-width: 1023px) {
     width: 100%;
   }
 
-  margin-top: 36px;
-  margin-bottom: 64px;
+  margin: 18px 16px 64px 0;
+  padding: 0 24px;
 
-  padding: 0 16px;
+  @media screen and (max-width: 768px) {
+    padding: 0;
+  }
 
   a {
     text-decoration: underline;
   }
 
+  a, a:visited {
+    color: ${BLUE};
+  }
+
   p, body {
     font-size: 16px !important;
-    line-height: 1.6;
+    line-height: 21px;
     word-spacing: 0.04em;
     letter-spacing: 0.01em;
   }
@@ -184,7 +193,7 @@ const Content = styled.div`
     display: block;
     position: absolute;
     top: 6px;
-    right: 90px;
+    right: 42px;
     opacity: 0.6;
     z-index: 12;
     &:before {
@@ -216,18 +225,19 @@ const Content = styled.div`
     margin-top: 0;
     line-height: 1;
     font-size: 2.125em;
-  }
-
-  h2, h3 {
-    margin-top: 1.9em;
+    font-weight: 500;
   }
 
   h2 {
     font-size: 1.6875em;
+    margin-top: 1.9em;
+    font-weight: 400;
   }
 
   h3 {
     font-size: 1.375em;
+    margin-top: 1.2em;
+    font-weight: 400;
   }
 
   h4 {
@@ -302,6 +312,7 @@ const Content = styled.div`
   .tabs {
     border: 1px solid #AAA;
     position: relative;
+    border-radius: 0 4px 4px 4px;
     &:after {
       content: '';
       display: block;
