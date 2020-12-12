@@ -1,24 +1,20 @@
 import React, { cloneElement } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import Footer from './Footer';
 
 const Container = styled.div`
-  margin-top: 64px;
-  margin-left: ${({ style: { hasDrawer } }) => hasDrawer ? '272px' : '0'};
-  width: ${({ style: { hasDrawer } }) => hasDrawer ? 'calc(100vw - 272px)' : '100vw'};
-  overflow-x: hidden;
+  width: calc(100% - 246px);
+  height: 100%;
 
-  @media screen and (max-width: 1023px) {
-    margin-left: 0 !important;
-    width: 100vw !important;
+  @media screen and (max-width: 768px) {
+    width: 100%;
+    
   }
 `;
 
 const Content = (props) => (
-  <Container ref={props.contentRef} style={{ hasDrawer: props.hasDrawer }}>
+  <Container ref={props.contentRef}>
     {cloneElement(props.children, { currentHeader: props.currentHeader })}
-    <Footer />
   </Container>
 );
 
@@ -32,13 +28,11 @@ Content.propTypes = {
     PropTypes.shape({ current: PropTypes.any }),
   ]),
   currentHeader: PropTypes.string,
-  hasDrawer: PropTypes.bool,
 };
 
 Content.defaultProps = {
   contentRef: null,
   currentHeader: null,
-  hasDrawer: false,
 };
 
 export default Content;

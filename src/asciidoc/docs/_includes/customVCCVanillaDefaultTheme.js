@@ -1,6 +1,6 @@
 export const defaultTheme = {
   colors: {
-    'background.default': '#1e1e1e',
+    'background.default': '#f6f8fa',
     'border.default': '#34342e',
     'foreground.default': '#d3d3d3',
     'foreground.primary': '#358aeb',

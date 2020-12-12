@@ -1,11 +1,11 @@
 /* Admonitions */
-.admonitionblock > table { background: none; width: 100%; border: 1px solid #bfbfbf;background-color: #f7f7f7; }
-.admonitionblock > table td.icon { text-align: center; width: 80px; }
+.admonitionblock > table { padding: 8px 0; background: none; width: 100%; border-left: 4px solid #bfbfbf;background-color: #f7f7f7; }
+.admonitionblock > table td.icon { text-align: center; width: 48px; vertical-align: top; font-size: 10px; }
 .admonitionblock > table td.icon img { max-width: none; }
 .admonitionblock > table td.icon .title { font-weight: bold; text-transform: uppercase; }
-.admonitionblock > table td.content { padding-left: 1.125em; padding-right: 1.25em; border-left: 1px solid #dddddd; color: #404040; line-height: 1.5; font-size: 15px; }
+.admonitionblock > table td.content { padding-left: 4px; padding-right: 40px; color: #404040; line-height: 1.5; font-size: 15px; }
 .admonitionblock > table td.content > :last-child > :last-child { margin-bottom: 0; }
-
+.admonitionblock > table p:first-child { margin-top: 0 !important; }
 .admonitionblock td.icon i:before { font-size: 2.5em; text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5); cursor: default; }
 .admonitionblock td.icon .icon-note:before { content: "\f05a"; color: #006699; color: #004c73; }
 .admonitionblock td.icon .icon-tip:before { content: "\f0eb"; font-weight: 400; text-shadow: 1px 1px 2px rgba(255, 215, 0, 0.8); }
@@ -40,7 +40,7 @@ table, td, th { padding: 3px; }
 ul.checklist li > p:first-child > input[type="checkbox"]:first-child { position: relative; top: 1px; }
 
 /* Unordered Lists */
-ul li ul, ul li ol { margin-left: 1.25em; margin-bottom: 0.625em; font-size: 16px; /* Override nested font-size change */ }
+ul li ul, ul li ol { margin-bottom: 0.625em; font-size: 16px; /* Override nested font-size change */ }
 ul.square li ul, ul.circle li ul, ul.disc li ul { list-style: inherit; }
 ul.square { list-style-type: square; }
 ul.circle { list-style-type: circle; }
@@ -48,7 +48,7 @@ ul.disc { list-style-type: disc; }
 ul.no-bullet { list-style: none; }
 
 /* Ordered Lists */
-ol li ul, ol li ol { margin-left: 1.25em; margin-bottom: 0.625em; }
+ol li ul, ol li ol { margin-bottom: 0.625em; }
 
 
 .exampleblock:not(.tabbed__tab):not(.tabs) > .content { border-style: solid; border-width: 1px; border-color: #cccccc; margin-bottom: 1.25em; padding: 1.25em; background: #e5e5e5; -webkit-border-radius: 0; border-radius: 0; }
@@ -136,9 +136,9 @@ p.tableblock.header { color: #222222; font-weight: bold; }
 
 td > div.verse { white-space: pre; }
 
-ol { margin-left: 1.875em; }
+/* ol { margin-left: 1.875em; } */
 
-ul li ol { margin-left: 1.625em; }
+/* ul li ol { margin-left: 1.625em; } */
 
 dl dd { margin-left: 2em; }
 
@@ -178,7 +178,7 @@ ol.upperroman { list-style-type: upper-roman; }
 
 ol.lowergreek { list-style-type: lower-greek; }
 
-.hdlist > table, .colist > table { border: 0; background: none; }
+.hdlist > table, .colist > table { border: 0; background: none; line-height: 18px; }
 .hdlist > table > tbody > tr, .colist > table > tbody > tr { background: none; }
 
 td.hdlist1 { padding-right: .8em; font-weight: bold; }

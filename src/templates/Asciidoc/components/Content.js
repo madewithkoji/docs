@@ -1,24 +1,43 @@
+/* eslint-disable max-len */
 import styled from 'styled-components';
 
+import { BLUE } from '../../../constants/colors';
+
 const Content = styled.div`
-  width: calc(100% - 296px);
+  width: 100%;
+  max-width: 660px;
   
   @media screen and (max-width: 1023px) {
     width: 100%;
   }
 
-  margin-top: 36px;
-  margin-bottom: 64px;
+  margin: 18px 8px 64px 0;
+  padding: 0 24px 0 16px;
 
-  padding: 0 16px;
+  @media screen and (max-width: 768px) {
+    padding: 0;
+  }
 
   a {
     text-decoration: underline;
   }
 
+  a, a:visited {
+    color: ${BLUE};
+  }
+
+  a[target="_blank"] {
+    &:after {
+      content: url('data:image/svg+xml; utf8, <svg xmlns="http://www.w3.org/2000/svg" height="16" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0z" fill="none"/><path d="M19 19H5V5h7V3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"/></svg>');
+      position: relative;
+      top: 3px;
+      opacity: 0.7;
+    }
+  }
+
   p, body {
     font-size: 16px !important;
-    line-height: 1.6;
+    line-height: 21px;
     word-spacing: 0.04em;
     letter-spacing: 0.01em;
   }
@@ -26,9 +45,9 @@ const Content = styled.div`
   code {
     font-family: Menlo, Monaco, "Liberation Mono", Consolas, monospace;
     font-weight: normal;
-    font-size: 14px;
+    font-size: 13px;
     padding: 1px 4px;
-    border: 1px solid #d4d9d9;
+    border-radius: 1px;
     transition: max-height 0.4s ease;
     position: relative;
     background-color: #F8F8F8;
@@ -184,7 +203,7 @@ const Content = styled.div`
     display: block;
     position: absolute;
     top: 6px;
-    right: 90px;
+    right: 42px;
     opacity: 0.6;
     z-index: 12;
     &:before {
@@ -197,6 +216,13 @@ const Content = styled.div`
     width: 35%;
     float: right;
     padding-left: 10px;
+
+    @media screen and (max-width: 768px) {
+      float: none;
+      position: relative;
+      width: 100%;
+      min-width: unset;
+    }
   }
 
   .init-cap::first-letter {
@@ -216,18 +242,19 @@ const Content = styled.div`
     margin-top: 0;
     line-height: 1;
     font-size: 2.125em;
-  }
-
-  h2, h3 {
-    margin-top: 1.9em;
+    font-weight: 500;
   }
 
   h2 {
     font-size: 1.6875em;
+    margin-top: 1.9em;
+    font-weight: 400;
   }
 
   h3 {
     font-size: 1.375em;
+    margin-top: 1.2em;
+    font-weight: 400;
   }
 
   h4 {
@@ -302,6 +329,7 @@ const Content = styled.div`
   .tabs {
     border: 1px solid #AAA;
     position: relative;
+    border-radius: 0 4px 4px 4px;
     &:after {
       content: '';
       display: block;
@@ -336,7 +364,7 @@ const Content = styled.div`
       }
       code {
         background-color: #FFF;
-        border: 1px solid #d4d9d9;
+        border-radius: 1px;
       }
     }
   }
