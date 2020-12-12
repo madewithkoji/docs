@@ -36,10 +36,8 @@ const Content = styled.div`
   }
 
   p, body {
-    font-size: 16px !important;
-    line-height: 21px;
-    word-spacing: 0.04em;
-    letter-spacing: 0.01em;
+    font-size: 15px !important;
+    line-height: 22px;
   }
 
   code {
@@ -109,7 +107,7 @@ const Content = styled.div`
       user-select: none;
       content: ' ' attr(data-line-number) ' | ';
       opacity: 0.5;
-      color: #333;
+      color: #111111;
     }
     &:before {
       display: none;
@@ -125,7 +123,7 @@ const Content = styled.div`
       top: 5px;
       border: none;
       background-color: transparent;
-      color: #333;
+      color: #111111;
       font-size: 20px;
       cursor: pointer;
       &:hover {
@@ -140,7 +138,7 @@ const Content = styled.div`
         top: 100%;
         left: 50%;
         transform: translateX(-50%);
-        background-color: #333;
+        background-color: #111111;
         font-size: 12px;
         color: #DCDCDC;
         padding: 3px 5px;
@@ -157,7 +155,7 @@ const Content = styled.div`
       right: 5px;
       transition: 0.2s ease-in-out;
       &:after {
-        color: #333;
+        color: #111111;
         content: '\f00c';
         font-weight: 900;
         font-family: "Font Awesome 5 Free";
@@ -241,20 +239,20 @@ const Content = styled.div`
   h1 {
     margin-top: 0;
     line-height: 1;
-    font-size: 2.125em;
-    font-weight: 500;
+    font-size: 2.5rem;
+    font-weight: 800;
   }
 
   h2 {
     font-size: 1.6875em;
     margin-top: 1.9em;
-    font-weight: 400;
+    font-weight: bold;
   }
 
   h3 {
     font-size: 1.375em;
     margin-top: 1.2em;
-    font-weight: 400;
+    font-weight: bold;
   }
 
   h4 {

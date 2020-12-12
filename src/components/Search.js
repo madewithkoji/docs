@@ -18,7 +18,7 @@ const GroupsWrapper = styled.div`
   width: 100%;
   background: #ffffff;
   overflow: auto;
-  color: #333333;
+  color: #111111;
   padding: 16px;
   text-align: left;
   flex: 1 0 auto;

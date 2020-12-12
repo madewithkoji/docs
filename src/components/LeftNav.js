@@ -58,8 +58,8 @@ const SectionHeader = styled.h3`
   margin: 25px auto 8px;
   font-size: 13px;
   text-transform: uppercase;
-  font-weight: 500;
-  color: #333333;
+  font-weight: bold;
+  color: #111111;
 `;
 
 const SectionItems = styled.ul`
@@ -75,11 +75,13 @@ const SectionItem = styled.li`
   background: ${({ style: { isActive } }) => isActive ? BLUE : 'transparent'};
   cursor: pointer;
   border-radius: 2.5px;
-  color: ${({ style: { isActive } }) => isActive ? '#ffffff' : '#333333'};
+  color: ${({ style: { isActive } }) => isActive ? '#ffffff' : '#111111'};
 
   &:hover {
-    background: ${LIGHT_GRAY};
-    color: ${BLUE};
+    ${({ style: { isActive } }) => !isActive && `
+      background: ${LIGHT_GRAY};
+      color: ${BLUE};
+    `}
   }
 `;
 
@@ -88,7 +90,9 @@ const StyledLink = styled(Link)`
   text-decoration: none;
 
   &:hover {
-    color: ${BLUE};
+    ${({ style: { isActive } }) => !isActive && `
+      color: ${BLUE};
+    `}
   }
 `;
 
@@ -104,10 +108,10 @@ const ExternalLink = styled.a`
   font-size: 13px;
   padding: 5px 10px;
   margin: 0 0 0 -10px;
-  background: transparent
+  background: transparent;
   cursor: pointer;
   border-radius: 2.5px;
-  color: #333333;
+  color: #111111;
   text-decoration: none;
 
 
@@ -147,25 +151,6 @@ const LeftNav = ({ location, navItems }) => {
           </Section>
         ))
       }
-      <Divider />
-      <ExternalLink
-        href={'https://withkoji.com/resources/privacy'}
-        target={'blank'}
-      >
-        {'Privacy'}
-      </ExternalLink>
-      <ExternalLink
-        href={'https://withkoji.com/resources/terms'}
-        target={'blank'}
-      >
-        {'Terms of Use'}
-      </ExternalLink>
-      <ExternalLink
-        href={'https://withkoji.com/resources/copyright'}
-        target={'blank'}
-      >
-        {'Copyright'}
-      </ExternalLink>
     </Container>
   );
 };

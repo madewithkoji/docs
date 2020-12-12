@@ -228,9 +228,9 @@ abbr { text-transform: none; }
 
 /* Blockquotes */
 blockquote { margin: 0 0 1.375em; padding: 0 0 0 1em; border-left: 5px solid #ededed; }
-blockquote cite { display: block; font-size: 0.8125em; color: #333333; }
+blockquote cite { display: block; font-size: 0.8125em; color: #111111; }
 blockquote cite:before { content: "\2014 \0020"; }
-blockquote cite a, blockquote cite a:visited { color: #333333; }
+blockquote cite a, blockquote cite a:visited { color: #111111; }
 
 blockquote, blockquote p { line-height: 1.4; color: #404040; }
 
@@ -363,7 +363,7 @@ table.tableblock #preamble > .sectionbody > .paragraph:first-of-type p { font-si
 .exampleblock > .content { border-style: solid; border-width: 1px; border-color: #cccccc; margin-bottom: 1.25em; padding: 1.25em; background: #e5e5e5; -webkit-border-radius: 0; border-radius: 0; }
 .exampleblock > .content > :first-child { margin-top: 0; }
 .exampleblock > .content > :last-child { margin-bottom: 0; }
-.exampleblock > .content h1, .exampleblock > .content h2, .exampleblock > .content h3, .exampleblock > .content #toctitle, .sidebarblock.exampleblock > .content > .title, .exampleblock > .content h4, .exampleblock > .content h5, .exampleblock > .content h6, .exampleblock > .content p { color: #333333; }
+.exampleblock > .content h1, .exampleblock > .content h2, .exampleblock > .content h3, .exampleblock > .content #toctitle, .sidebarblock.exampleblock > .content > .title, .exampleblock > .content h4, .exampleblock > .content h5, .exampleblock > .content h6, .exampleblock > .content p { color: #111111; }
 .exampleblock > .content h1, .exampleblock > .content h2, .exampleblock > .content h3, .exampleblock > .content #toctitle, .sidebarblock.exampleblock > .content > .title, .exampleblock > .content h4, .exampleblock > .content h5, .exampleblock > .content h6 { line-height: 1; margin-bottom: 0.625em; }
 .exampleblock > .content h1.subheader, .exampleblock > .content h2.subheader, .exampleblock > .content h3.subheader, .exampleblock > .content .subheader#toctitle, .sidebarblock.exampleblock > .content > .subheader.title, .exampleblock > .content h4.subheader, .exampleblock > .content h5.subheader, .exampleblock > .content h6.subheader { line-height: 1.4; }
 
@@ -372,7 +372,7 @@ table.tableblock #preamble > .sectionbody > .paragraph:first-of-type p { font-si
 .sidebarblock { border-style: solid; border-width: 1px; border-color: #cccccc; margin-bottom: 1.25em; padding: 1.25em; background: #e5e5e5; -webkit-border-radius: 0; border-radius: 0; }
 .sidebarblock > :first-child { margin-top: 0; }
 .sidebarblock > :last-child { margin-bottom: 0; }
-.sidebarblock h1, .sidebarblock h2, .sidebarblock h3, .sidebarblock #toctitle, .sidebarblock > .content > .title, .sidebarblock h4, .sidebarblock h5, .sidebarblock h6, .sidebarblock p { color: #333333; }
+.sidebarblock h1, .sidebarblock h2, .sidebarblock h3, .sidebarblock #toctitle, .sidebarblock > .content > .title, .sidebarblock h4, .sidebarblock h5, .sidebarblock h6, .sidebarblock p { color: #111111; }
 .sidebarblock h1, .sidebarblock h2, .sidebarblock h3, .sidebarblock #toctitle, .sidebarblock > .content > .title, .sidebarblock h4, .sidebarblock h5, .sidebarblock h6 { line-height: 1; margin-bottom: 0.625em; }
 .sidebarblock h1.subheader, .sidebarblock h2.subheader, .sidebarblock h3.subheader, .sidebarblock .subheader#toctitle, .sidebarblock > .content > .subheader.title, .sidebarblock h4.subheader, .sidebarblock h5.subheader, .sidebarblock h6.subheader { line-height: 1.4; }
 .sidebarblock > .content > .title { color: #4d4d4d; margin-top: 0; line-height: 1.4; }
@@ -422,7 +422,7 @@ table.pyhltable .linenodiv { background-color: transparent !important; padding-r
 .quoteblock { margin: 0 0 1.375em; padding: 0 0 0 1em; border-left: 5px solid #ededed; }
 .quoteblock blockquote { margin: 0 0 1.375em 0; padding: 0 0 0.5625em 0; border: 0; }
 .quoteblock blockquote > .paragraph:last-child p { margin-bottom: 0; }
-.quoteblock .attribution { margin-top: -.25em; padding-bottom: 0.5625em; font-size: 0.8125em; color: #333333; }
+.quoteblock .attribution { margin-top: -.25em; padding-bottom: 0.5625em; font-size: 0.8125em; color: #111111; }
 .quoteblock .attribution br { display: none; }
 .quoteblock .attribution cite { display: block; margin-bottom: 0.625em; }
 
@@ -617,7 +617,7 @@ span.icon > [class^="icon-"], span.icon > [class*=" icon-"] { cursor: default; }
 .admonitionblock td.icon .icon-caution:before { content: "\f06d"; color: #bf3400; }
 .admonitionblock td.icon .icon-important:before { content: "\f06a"; color: #bf0000; }
 
-.conum { display: inline-block; color: white !important; background-color: #404040; -webkit-border-radius: 100px; border-radius: 100px; text-align: center; width: 20px; height: 20px; font-size: 12px; font-weight: bold; line-height: 20px; font-family: Arial, sans-serif; font-style: normal; position: relative; top: -2px; letter-spacing: -1px; }
+.conum { display: inline-block; color: white !important; background-color: #404040; -webkit-border-radius: 100px; border-radius: 100px; text-align: center; width: 20px; height: 20px; font-size: 12px; font-weight: bold; line-height: 20px; font-family: Arial, sans-serif; font-style: normal; position: relative; top: -2px; }
 .conum * { color: white !important; }
 .conum + b { display: none; }
 .conum:after { content: attr(data-value); }

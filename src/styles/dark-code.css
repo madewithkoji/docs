@@ -5,7 +5,7 @@
 
 body.darkCode .hljs {
   background: #f5f5f5;
-  color: #333333;
+  color: #111111;
 }
 
 body.darkCode .hljs-keyword,
@@ -117,7 +117,7 @@ body.darkCode .hljs-deletion {
 
 body.darkCode code {
   background-color: #f5f5f5;
-  color: #333333;
+  color: #111111;
   border-color: #f5f5f5;
   border-radius: 2.5px;
 }
@@ -128,7 +128,7 @@ body.darkCode .hljs .lineNum:after {
 
 body.darkCode .listingblock pre button, body.darkCode .lang-indicator {
   color: #888888;
-  font-weight: 500 !important;
+  font-weight: bold !important;
 }
 
 body.darkCode .listingblock pre button:after {
@@ -174,7 +174,7 @@ body.darkCode .tabbed .tabs .tabbed__tab .admonitionblock .content code {
 }
 
 body.darkCode .tabbed .tabs .tabbed__tab .listingblock ~ div:not(.listingblock) {
-  border-top-color: #333;
+  border-top-color: #111111;
 }
 
 body.darkCode code .collapsible:after {
