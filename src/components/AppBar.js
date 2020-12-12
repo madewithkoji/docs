@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { Link } from 'gatsby';
 
-import { BLACK, BLUE, DARK_GRAY, LIGHT_GRAY } from '../constants/colors';
+import { BLACK, DARK_GRAY, LIGHT_GRAY } from '../constants/colors';
 
 import Logo from './Logo';
 import DiscordLogo from './DiscordLogo';

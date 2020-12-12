@@ -4,7 +4,7 @@
  */
 
 body.darkCode .hljs {
-  background: #f5f5f5;
+  background: #f4f4f4;
   color: #111111;
 }
 
@@ -116,9 +116,9 @@ body.darkCode .hljs-deletion {
 /* Koji doc specific changes */
 
 body.darkCode code {
-  background-color: #f5f5f5;
+  background-color: #f4f4f4;
   color: #111111;
-  border-color: #f5f5f5;
+  border-color: #f4f4f4;
   border-radius: 2.5px;
 }
 
@@ -128,7 +128,6 @@ body.darkCode .hljs .lineNum:after {
 
 body.darkCode .listingblock pre button, body.darkCode .lang-indicator {
   color: #888888;
-  font-weight: bold !important;
 }
 
 body.darkCode .listingblock pre button:after {
@@ -138,27 +137,17 @@ body.darkCode .listingblock pre button:after {
 body.darkCode .tabbed .tabbed__toggle {
   color: #666666;
   background-color: rgba(0, 0, 0, 0.05);
-  border-color: rgba(0, 0, 0, 0.05);
   opacity: 0.7;
 }
 
 body.darkCode .tabbed .tabbed__toggle.tabbed__toggle_active, body.darkCode .tabbed .tabbed__toggle.tabbed__toggle_active:after {
-  background-color: #f5f5f5;
-  border-color: #f5f5f5;
-  color: #666666;
+  background-color: #f4f4f4;
+  color: #111111;
   opacity: 1;
 }
 
-body.darkCode .tabbed .tabbed .tabbed__toggle.tabbed__toggle_active, body.darkCode .tabbed .tabbed .tabbed__toggle:hover {
-  border-bottom-color: #666666;
-}
-
-body.darkCode .tabbed .tabs {
-  border-color: #f5f5f5;
-}
-
 body.darkCode .tabbed .tabs .tabbed__tab {
-  background-color: #f5f5f5;
+  background-color: #f4f4f4;
   color: #666666;
 }
 
@@ -167,14 +156,9 @@ body.darkCode .tabbed .tabs .tabbed__tab a {
 }
 
 body.darkCode .tabbed .tabs .tabbed__tab .admonitionblock .content code {
-  background-color: #f5f5f5;
+  background-color: #f4f4f4;
   color: #666666;
-  border-color: #f5f5f5;
   overflow: hidden;
-}
-
-body.darkCode .tabbed .tabs .tabbed__tab .listingblock ~ div:not(.listingblock) {
-  border-top-color: #111111;
 }
 
 body.darkCode code .collapsible:after {

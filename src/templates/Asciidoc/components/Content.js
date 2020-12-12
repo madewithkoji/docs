@@ -43,12 +43,12 @@ const Content = styled.div`
   code {
     font-family: Menlo, Monaco, "Liberation Mono", Consolas, monospace;
     font-weight: normal;
-    font-size: 13px;
-    padding: 1px 4px;
+    font-size: 12px;
+    padding: 4px;
     border-radius: 1px;
     transition: max-height 0.4s ease;
     position: relative;
-    background-color: #F8F8F8;
+    background-color: #f4f4f4;
     &.expanded {
       padding-bottom: 50px;
     }
@@ -124,7 +124,7 @@ const Content = styled.div`
       border: none;
       background-color: transparent;
       color: #111111;
-      font-size: 20px;
+      font-size: 16px;
       cursor: pointer;
       &:hover {
         color: #999;
@@ -186,7 +186,7 @@ const Content = styled.div`
   }
 
   pre, pre > code {
-    line-height: 1.6;
+    line-height: 1.5;
     margin: 0;
     position: relative;
   }
@@ -200,10 +200,12 @@ const Content = styled.div`
     text-transform: uppercase;
     display: block;
     position: absolute;
-    top: 6px;
-    right: 42px;
+    top: 8px;
+    right: 36px;
     opacity: 0.6;
     z-index: 12;
+    font-size: 11px;
+    font-weight: normal!important;
     &:before {
       content: attr(data-language);
     }
@@ -239,8 +241,8 @@ const Content = styled.div`
   h1 {
     margin-top: 0;
     line-height: 1;
-    font-size: 2.5rem;
-    font-weight: 800;
+    font-size: 2.3rem;
+    font-weight: bold;
   }
 
   h2 {
@@ -283,23 +285,21 @@ const Content = styled.div`
   }
 
   .tabbed__toggle {
-    border: 1px solid #AAA;
-    border-bottom: none;
     padding: 5px 12px;
     display: inline-block;
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
     cursor: pointer;
     background-color: #DDD;
     position: relative;
     user-select: none;
     z-index: 10;
     font-weight: bold;
-    margin-right: 5px;
-    font-size: 16px;
+    font-size: 11px;
+    text-transform: uppercase;
+
     &.tabbed__toggle_active, &:hover {
       background-color: rgb(248,248,248);
     }
+
     &.tabbed__toggle_active:after {
       content: '';
       position: absolute;
@@ -325,7 +325,6 @@ const Content = styled.div`
   }
 
   .tabs {
-    border: 1px solid #AAA;
     position: relative;
     border-radius: 0 4px 4px 4px;
     &:after {

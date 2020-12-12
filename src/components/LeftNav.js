@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { Link } from 'gatsby';
 
-import { BLACK, BLUE, DARK_GRAY, LIGHT_GRAY } from '../constants/colors';
+import { BLACK, BLUE, LIGHT_GRAY } from '../constants/colors';
 
 const Container = styled.nav`
   width: 246px;
@@ -93,32 +93,6 @@ const StyledLink = styled(Link)`
     ${({ style: { isActive } }) => !isActive && `
       color: ${BLUE};
     `}
-  }
-`;
-
-const Divider = styled.div`
-  width: 100%;
-  height: 1px;
-  background: rgba(0, 0, 0, 0.5);
-  margin: 12px 0;
-`;
-
-const ExternalLink = styled.a`
-  display: block;
-  font-size: 13px;
-  padding: 5px 10px;
-  margin: 0 0 0 -10px;
-  background: transparent;
-  cursor: pointer;
-  border-radius: 2.5px;
-  color: #111111;
-  text-decoration: none;
-
-
-  &:hover {
-    text-decoration: none;
-    background: ${LIGHT_GRAY};
-    color: ${BLUE};
   }
 `;
 
