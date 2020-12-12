@@ -47,7 +47,7 @@ const Content = styled.div`
     font-weight: normal;
     font-size: 13px;
     padding: 1px 4px;
-    border: 1px solid #d4d9d9;
+    border-radius: 1px;
     transition: max-height 0.4s ease;
     position: relative;
     background-color: #F8F8F8;
