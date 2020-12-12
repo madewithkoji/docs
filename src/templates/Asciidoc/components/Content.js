@@ -364,7 +364,7 @@ const Content = styled.div`
       }
       code {
         background-color: #FFF;
-        border: 1px solid #d4d9d9;
+        border-radius: 1px;
       }
     }
   }
