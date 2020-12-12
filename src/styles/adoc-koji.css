@@ -187,7 +187,13 @@ td.hdlist1, td.hdlist2 { vertical-align: top; }
 
 .imageblock.left, .imageblock[style*="float: left"] { margin: 0.25em 0.625em 1.25em 0; }
 .imageblock.right, .imageblock[style*="float: right"] { margin: 0.25em 0 1.25em 0.625em; }
-.imageblock > .title { margin-bottom: 0; }
+.imageblock > .title { 
+    margin-bottom: 0!important;
+    font-size: 12px!important;
+    text-align: center!important;
+    color: #666!important;
+    font-weight: normal!important;
+}
 .imageblock.thumb, .imageblock.th { border-width: 6px; }
 .imageblock.thumb > .title, .imageblock.th > .title { padding: 0 0.125em; }
 
