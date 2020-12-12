@@ -178,7 +178,7 @@ ol.upperroman { list-style-type: upper-roman; }
 
 ol.lowergreek { list-style-type: lower-greek; }
 
-.hdlist > table, .colist > table { border: 0; background: none; }
+.hdlist > table, .colist > table { border: 0; background: none; line-height: 18px; }
 .hdlist > table > tbody > tr, .colist > table > tbody > tr { background: none; }
 
 td.hdlist1 { padding-right: .8em; font-weight: bold; }
