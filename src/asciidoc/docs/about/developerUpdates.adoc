@@ -24,7 +24,9 @@ The overview includes standard, built-in metrics that are calculated from access
 ** Transaction receipts on the Koji platform have been redesigned for enhanced usability.
 * The following features are now available in the <<withkoji-vcc-package#>> package.
 ** In Keystore, `generateSignedUrl`.
-* On the developer site, new content is available to help Koji developers get the most value from their templates, including <<template-versions#>>, <<testing-templates#>>, and <<plugins#>>.
+* The developer site includes the following updates.
+** New content is available to help Koji developers get the most value from their templates, including <<template-versions#>>, <<testing-templates#>>, and <<plugins#>>.
+** The site design and navigation have been updated.
 
 === November 24
 
