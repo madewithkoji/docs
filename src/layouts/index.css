@@ -1,5 +1,15 @@
+body {
+  margin: 0;
+  font-family: franklin-gothic-urw, sans-serif;
+  width: 100vw;
+  height: 100vh;
+  overflow: auto;
+  overflow-x: hidden;
+  color: #333333;
+}
+
 html {
-  scroll-padding-top: 72px;
+  scroll-padding-top: 16px;
 }
 
 * {
@@ -8,4 +18,6 @@ html {
 
 pre {
   font-family: Menlo, Monaco, "Courier New", monospace;
+  border-radius: 4px;
+  font-size: 13px;
 }

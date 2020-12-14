@@ -3,29 +3,55 @@ import PropTypes from 'prop-types';
 import * as JsSearch from 'js-search';
 import styled from 'styled-components';
 import { useStaticQuery, graphql } from 'gatsby';
-import CloseIcon from '@material-ui/icons/Close';
+
 import SearchIcon from '@material-ui/icons/Search';
 import Divider from '@material-ui/core/Divider';
+
+import { BLUE } from '../constants/colors';
+
 import Link from './Link';
 import { resolveBreadcrumbFromSlug } from '../utils/resolveBreadcrumbFromSlug';
 
 const GroupsWrapper = styled.div`
-  position: absolute;
-  top: 40px;
-  right:  ${({ style: { isMobile } }) => isMobile ? '0px' : '22px'};
   display: flex;
   flex-direction: column;
-  z-index: 10000;
-  width: 80vw;
-  max-width: 480px;
-  max-height: 80vh;
+  width: 100%;
   background: #ffffff;
   overflow: auto;
   color: #333333;
   padding: 16px;
-  border-radius: 4px;
   text-align: left;
-  box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+  flex: 1 0 auto;
+  height: calc(100% - 80px);
+
+  &:hover {
+    ::-webkit-scrollbar-thumb {
+      background-color: #babac0;
+    }
+  }
+
+  /* total width */
+  ::-webkit-scrollbar {
+      background-color: #fff;
+      width: 16px;
+  }
+
+  /* background of the scrollbar except button or resizer */
+  ::-webkit-scrollbar-track {
+      background-color: #fff;
+  }
+
+  /* scrollbar itself */
+  ::-webkit-scrollbar-thumb {
+      background-color: transparent;
+      border-radius: 16px;
+      border: 4px solid #fff;
+  }
+
+  /* set button(top and bottom of the scrollbar) */
+  ::-webkit-scrollbar-button {
+      display:none;
+  }
 `;
 
 const Group = styled.div`
@@ -38,7 +64,7 @@ const GroupHeader = styled.div`
 const Item = styled.div`
   display: flex;
   padding: 8px 0;
-  flex-direction: ${({ style: { isMobile } }) => isMobile ? 'column' : 'row'};
+  flex-direction: row;
 
   p {
     margin-bottom: 0;
@@ -47,21 +73,41 @@ const Item = styled.div`
 `;
 
 const SearchInput = styled.input`
-  height: 32px;
+  height: 48px;
   padding-right: 40px;
   border-radius: 4px;
   padding-left: 8px;
+  width: calc(100% - 32px);
+  margin: 16px auto;
+  flex: 1 0 auto;
+  max-height: 48px;
+  border-color: ${BLUE};
+  outline-color: ${BLUE};
+  font-size: 18px;
 `;
 
 const Wrapper = styled.div`
-  position: relative;
-  height: 32px;
+  z-index: 200;
+  width: calc(100vw - 60px);
+  max-width: 720px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: calc(100vh - 60px);
+  background: #ffffff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 4px;
+  overflow: hidden;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.1), 0 10px 30px rgba(0,0,0,0.05);
 `;
 
 const ItemSection = styled.div`
   min-width: 120px;
   width: 120px;
-  text-align: ${({ style: { isMobile } }) => isMobile ? 'left' : 'right'};
+  text-align: right;
   padding-right: 8px;
 `;
 
@@ -79,7 +125,14 @@ const ItemTitle = styled.div`
   font-weight: bold;
 `;
 
-const Search = ({ isMobile }) => {
+const Empty = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+`;
+
+const Search = ({ isSearching }) => {
   const [value, setValue] = useState('');
   const [groups, setGroups] = useState([]);
   const [search, setSearch] = useState(null);
@@ -186,87 +239,63 @@ const Search = ({ isMobile }) => {
   }, [search, value]);
 
   const inputRef = useRef(null);
-  const handleClearClick = () => {
-    setValue('');
-    setGroups([]);
 
-    if (inputRef && inputRef.current) inputRef.current.focus();
-  };
+  useEffect(() => {
+    if (isSearching && inputRef.current) inputRef.current.focus();
+  }, [isSearching]);
 
   return (
-    <Wrapper>
+    <Wrapper className={'search-wrapper'}>
       <SearchInput
-        autoFocus={isMobile}
         onChange={(e) => setValue(e.currentTarget.value)}
         ref={inputRef}
-        style={{ isMobile }}
         value={value}
       />
-      {
-        (!value || value === '' || isMobile) &&
-        <SearchIcon
-          style={{
-            color: '#333333',
-            position: 'relative',
-            right: '32px',
-            top: '8px',
-          }}
-        />
-      }
-      {
-        (value && value !== '' && !isMobile) &&
-        <CloseIcon
-          onClick={handleClearClick}
-          style={{
-            color: '#333333',
-            position: 'relative',
-            right: '32px',
-            top: '7px',
-            cursor: 'pointer',
-          }}
-        />
-      }
-      {
-        groups && groups.length > 0 &&
-        <GroupsWrapper style={{ isMobile }}>
-          {
-            groups.map((group) => (
-              <Group>
-                <GroupHeader>{group.name}</GroupHeader>
-                <Divider />
-                {
-                  group.items.map((item) => (
-                    <Item style={{ isMobile }}>
-                      <ItemSection style={{ isMobile }}>{item.breadcrumb[1].name}</ItemSection>
-                      <Divider orientation={isMobile ? 'horizontal' : 'vertical'} flexItem />
-                      <Link to={item.link} onClick={() => setGroups([])}>
-                        <ItemContent>
-                          <ItemTitle>{item.document.title}</ItemTitle>
-                          <p>
-                            {
-                              `${item.html.replace(/(<([^>]+)>)/ig, '').slice(0, 140)}...`
-                            }
-                          </p>
-                        </ItemContent>
-                      </Link>
-                    </Item>
-                  ))
-                }
-              </Group>
-            ))
-          }
-        </GroupsWrapper>
-      }
+      <GroupsWrapper>
+        {
+          groups.map((group) => (
+            <Group>
+              <GroupHeader>{group.name}</GroupHeader>
+              <Divider />
+              {
+                group.items.map((item) => (
+                  <Item>
+                    <ItemSection>{item.breadcrumb[1].name}</ItemSection>
+                    <Divider orientation={'vertical'} flexItem />
+                    <Link to={item.link}>
+                      <ItemContent>
+                        <ItemTitle>{item.document.title}</ItemTitle>
+                        <p>
+                          {
+                            `${item.html.replace(/(<([^>]+)>)/ig, '').slice(0, 140)}...`
+                          }
+                        </p>
+                      </ItemContent>
+                    </Link>
+                  </Item>
+                ))
+              }
+            </Group>
+          ))
+        }
+        {
+          (!groups || groups.length === 0) &&
+          <Empty>
+            <SearchIcon />
+            {'Start typing to search...'}
+          </Empty>
+        }
+      </GroupsWrapper>
     </Wrapper>
   );
 };
 
 Search.propTypes = {
-  isMobile: PropTypes.bool,
+  isSearching: PropTypes.bool,
 };
 
 Search.defaultProps = {
-  isMobile: false,
+  isSearching: false,
 };
 
 export default Search;

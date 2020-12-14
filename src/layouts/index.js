@@ -1,41 +1,73 @@
 /* eslint-disable max-len */
 import React, { useEffect, useRef, useState } from 'react';
 import PropTypes from 'prop-types';
-import CssBaseline from '@material-ui/core/CssBaseline';
 import styled from 'styled-components';
-import { ThemeProvider } from '@material-ui/core/styles';
 import { useStaticQuery, graphql } from 'gatsby';
 import { Helmet } from 'react-helmet';
-import theme from '../theme';
-import AppBar from '../components/AppBar';
-import Content from '../components/Content';
-import Drawers from '../components/Drawers';
-import SEO from '../components/Seo';
+import { navigate } from '@reach/router';
 
-import { BLUE } from '../constants/colors';
+import AppBar from '../components/AppBar';
+import AppSubBar from '../components/AppSubBar';
+import Content from '../components/Content';
+import LeftNav from '../components/LeftNav';
+import Search from '../components/Search';
+import SEO from '../components/Seo';
 
 import '../styles/adoc-koji.css';
 import './index.css';
 
-const Wrapper = styled.div`
+const Container = styled.div`
+  width: 100vw;
   display: flex;
+  flex-direction: column;
+`;
 
-  a {
-    text-decoration: none;
-    color: ${BLUE};
-  }
+const Header = styled.header`
+  background: #ffffff;
+  position: relative;
+  top: 0;
+  width: 100%;
+  z-index: 100;
 
-  a:visited {
-    color: ${BLUE};
+  @media screen and (max-width: 768px) {
+    position: fixed;
+    top: 0;
   }
+`;
 
-  a[target="_blank"] {
-    &:after {
-      content: url('data:image/svg+xml; utf8, <svg xmlns="http://www.w3.org/2000/svg" height="16" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0z" fill="none"/><path d="M19 19H5V5h7V3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"/></svg>');
-      position: relative;
-      top: 2px;
-    }
+const Main = styled.div`
+  margin-top: 0;
+
+  @media screen and (max-width: 768px) {
+    margin-top: 114px;
   }
+`;
+
+const MainWrapper = styled.div`
+  display: flex;
+  width: calc(100% - 60px);
+  max-width: 1100px;
+  margin: 16px auto 0 auto;
+  min-height: calc(100% - 114px);
+`;
+
+const Overlay = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.3);
+  z-index: 199;
+`;
+
+const SearchWrapper = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: ${({ style: { isSearching } }) => isSearching ? 'block' : 'none'};
 `;
 
 const Layout = (props) => {
@@ -71,8 +103,9 @@ const Layout = (props) => {
     }
   `);
 
-  const [mobileDrawerIsOpen, setMobileDrawerIsOpen] = useState(false);
+  const [isSearching, setIsSearching] = useState(false);
 
+  const containerRef = useRef(null);
   const contentRef = useRef(null);
 
   // Detect h2s on scroll
@@ -120,26 +153,20 @@ const Layout = (props) => {
 
   useEffect(() => {
     // If there isn't a hash on the page, scroll the content container to the top
-    if (!props.location.hash && contentRef.current) contentRef.current.scrollTo(0, 0);
+    if (!props.location.hash && containerRef.current) containerRef.current.scrollTo(0, 0);
 
-    // If the mobile drawer is open, close it
-    if (mobileDrawerIsOpen) setMobileDrawerIsOpen(false);
+    // Also reset the search visibility
+    setIsSearching(() => false);
   }, [props.location]);
 
-  // Handle all clicks and allow closing of menu
+  // Handle the current home page redirect
   useEffect(() => {
-    const onDocClick = (e) => {
-      if (e.target.classList.contains('MuiBackdrop-root') && mobileDrawerIsOpen) setMobileDrawerIsOpen(false);
-    };
+    if (props.location.pathname === '/') navigate('/docs/getting-started/introduction');
+  }, [props.location]);
 
-    document.addEventListener('click', onDocClick);
-    return () => document.removeEventListener('click', onDocClick);
-  }, [mobileDrawerIsOpen]);
-
-  const { allNavItem: { nodes: navItems = [] } } = data;
-
-  // If we bring back a full screen home page, this can be un-commented and passed to the Content component
-  // const hasDrawer = navItems.map(({ root }) => props.location.pathname.includes(root)).reduce((a, b) => a || b);
+  if (props.location.pathname === '/') {
+    return null;
+  }
 
   return (
     <>
@@ -149,6 +176,7 @@ const Layout = (props) => {
           class: typeof window !== 'undefined' && localStorage.getItem('lightCode') ? '' : 'darkCode',
         }}
       >
+        <link rel={'stylesheet'} href={'https://use.typekit.net/kru4cvn.css'} />
         <link
           href={'https://fonts.googleapis.com/icon?family=Material+Icons'}
           rel={'stylesheet'}
@@ -158,28 +186,31 @@ const Layout = (props) => {
           rel={'stylesheet'}
         />
       </Helmet>
-      <ThemeProvider theme={theme}>
-        <CssBaseline />
-        <Wrapper>
-          <AppBar
+      <Container ref={containerRef} style={{ isSearching }}>
+        <SearchWrapper style={{ isSearching }}>
+          <Overlay onClick={() => setIsSearching(() => false)} />
+          <Search isSearching={isSearching} />
+        </SearchWrapper>
+        <Header>
+          <AppBar navItems={data.allNavItem.nodes || []} />
+          <AppSubBar
             location={props.location}
-            mobileDrawerIsOpen={mobileDrawerIsOpen}
-            toggleMobileDrawer={() => setMobileDrawerIsOpen(!mobileDrawerIsOpen)}
+            navItems={data.allNavItem.nodes || []}
+            onSearchClick={() => setIsSearching(() => true)}
           />
-          <Drawers
-            location={props.location}
-            mobileDrawerIsOpen={mobileDrawerIsOpen}
-            navItems={navItems}
-          />
-          <Content
-            currentHeader={currentHeader}
-            contentRef={contentRef}
-            hasDrawer
-          >
-            {props.children}
-          </Content>
-        </Wrapper>
-      </ThemeProvider>
+        </Header>
+        <Main>
+          <MainWrapper>
+            <LeftNav
+              location={props.location}
+              navItems={data.allNavItem.nodes || []}
+            />
+            <Content contentRef={contentRef} currentHeader={currentHeader}>
+              {props.children}
+            </Content>
+          </MainWrapper>
+        </Main>
+      </Container>
     </>
   );
 };

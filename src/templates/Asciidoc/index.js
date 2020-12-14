@@ -6,13 +6,10 @@ import 'highlight.js/styles/github.css';
 import '../../styles/dark-code.css';
 
 import { graphql } from 'gatsby';
-import Container from '@material-ui/core/Container';
 
 import { lineNumbers } from './utils/line-numbers';
 import { addCopyCodeButton } from './utils/copy-code';
-import { addChangeThemeButton } from './utils/code-theme';
 import { addLanguageIndicator } from './utils/lang-indicator';
-import { makeCollapsible } from './utils/collapsible';
 
 import { BLACK, DARK_GRAY } from '../../constants/colors';
 import Content from './components/Content';
@@ -26,9 +23,15 @@ if (typeof Element !== 'undefined') {
   Tabs = require('future-tabs');
 }
 
+const Container = styled.div`
+
+`;
+
 const SectionLink = styled.a`
   color: ${DARK_GRAY} !important;
   position: relative;
+  font-size: 13px;
+  text-decoration: none;
 
   &:hover {
     color: ${BLACK} !important;
@@ -44,7 +47,7 @@ const SectionLink = styled.a`
     top: 0;
     left: 0;
     z-index: 10000;
-    transform: translate(-16px, 6px);
+    transform: translate(-16px, 4px);
     border-radius: 50%;
     opacity: ${({ style: { isActive } }) => isActive ? 1 : 0};
     transition: all 0.2s ease-in-out;
@@ -55,6 +58,8 @@ const SubSectionLink = styled.a`
   color: ${DARK_GRAY} !important;
   margin-left: 16px;
   position: relative;
+  font-size: 13px;
+  text-decoration: none;
 
   &:hover {
     color: ${BLACK} !important;
@@ -70,7 +75,7 @@ const SubSectionLink = styled.a`
     top: 0;
     left: 0;
     z-index: 10000;
-    transform: translate(-16px, 6px);
+    transform: translate(-16px, 4px);
     border-radius: 50%;
     opacity: ${({ style: { isActive } }) => isActive ? 1 : 0};
     transition: all 0.2s ease-in-out;
@@ -86,17 +91,22 @@ const TOC = styled.div`
   font-size: 12px;
   font-weight: bold;
   color: #999999;
+
+  a, a:hover {
+    text-decoration: none;
+  }
 `;
 
 const Nav = styled.div`
-  position: fixed;
-  top: 88px;
-  right: 16px;
-  width: 296px;
+  position: sticky;
+  top: 8px;
+  margin-top: 4px;
+  min-width: 200px;
+  width: 200px;
   padding: 16px;
   display: flex;
   flex-direction: column;
-  height: calc(100vh - 88px);
+  height: calc(100vh - 48px);
   overflow: auto;
 
   > * {
@@ -105,6 +115,35 @@ const Nav = styled.div`
 
   @media screen and (max-width: 1023px) {
     display: none;
+  }
+
+  &:hover {
+    ::-webkit-scrollbar-thumb {
+      background-color: #babac0;
+    }
+  }
+
+  /* total width */
+  ::-webkit-scrollbar {
+      background-color: #fff;
+      width: 16px;
+  }
+
+  /* background of the scrollbar except button or resizer */
+  ::-webkit-scrollbar-track {
+      background-color: #fff;
+  }
+
+  /* scrollbar itself */
+  ::-webkit-scrollbar-thumb {
+      background-color: transparent;
+      border-radius: 16px;
+      border: 4px solid #fff;
+  }
+
+  /* set button(top and bottom of the scrollbar) */
+  ::-webkit-scrollbar-button {
+      display:none;
   }
 `;
 
@@ -159,9 +198,7 @@ const Asciidoc = (props) => {
       hljs.highlightBlock(block);
       lineNumbers(block);
       addCopyCodeButton(block);
-      addChangeThemeButton(block);
       addLanguageIndicator(block);
-      makeCollapsible(block);
     });
 
     document.querySelectorAll('a[data-slug]').forEach((elem) => {
