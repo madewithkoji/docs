@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { Link } from 'gatsby';
 
-import { BLACK, BLUE, DARK_GRAY, LIGHT_GRAY } from '../constants/colors';
+import { BLACK, DARK_GRAY, LIGHT_GRAY } from '../constants/colors';
 
 import Logo from './Logo';
 import DiscordLogo from './DiscordLogo';
@@ -33,7 +33,6 @@ const Wrapper = styled.div`
   a {
     font-size: 16px;
     color: ${DARK_GRAY};
-    margin-right: 16px;
     padding: 4px 8px;
     border-radius: 8px;
     text-decoration: none;
@@ -57,31 +56,6 @@ const LogoWrapper = styled.div`
   }
 `;
 
-const Tooltip = styled.div`
-  position: relative;
-  top: -4px;
-  font-size: 12px;
-  font-weight: bold;
-  background: ${BLUE};
-  color: white;
-  padding: 6px;
-  border-radius: 6px;
-  margin-left: 4px;
-
-
-  &::after {
-    content: '';
-    position: absolute;
-    top: 9px;
-    left: -12px;
-    width: 0px;
-    height: 0px;
-    border: 6px solid #007aff;
-    border-color: transparent ${BLUE} transparent transparent;
-    z-index: -1;
-  }
-`;
-
 const StyledLink = styled(Link)`
   text-decoration: none;
 
@@ -93,7 +67,7 @@ const StyledLink = styled(Link)`
 const LogoLink = styled(StyledLink)`
   display: flex;
   align-items: center;
-  margin: 8px 0 0 -8px;
+  margin: 4px 0 0 -8px;
 
   a:hover, &:hover {
     background: transparent !important;
@@ -103,7 +77,6 @@ const LogoLink = styled(StyledLink)`
 const SectionLinks = styled.div`
   display: flex;
   align-items: center;
-  margin-left: 32px;
 
   @media screen and (max-width: 768px) {
     display: none;
@@ -125,6 +98,7 @@ const BackLink = styled.a`
 const ExternalLink = styled.a`
   display: flex;
   padding: 0 !important;
+  margin-right: 10px!important;
 
   @media screen and (max-width: 768px) {
     display: none;
@@ -138,6 +112,12 @@ const ExternalLink = styled.a`
     width: 20px;
     height: 20px;
     fill: #a5a5a5;
+  }
+`;
+
+const DiscordLink = styled(ExternalLink)`
+  margin-right: 4px!important;
+  svg {
     margin-top: 4px;
   }
 `;
@@ -149,9 +129,6 @@ const AppBar = ({ navItems }) => (
         <LogoWrapper>
           <Logo />
         </LogoWrapper>
-        <Tooltip>
-          {'for developers'}
-        </Tooltip>
       </LogoLink>
       <SectionLinks>
         {
@@ -168,14 +145,14 @@ const AppBar = ({ navItems }) => (
       >
         <GithubLogo />
       </ExternalLink>
-      <ExternalLink
+      <DiscordLink
         href={'https://discord.com/invite/eQuMJF6'}
         target={'_blank'}
         title={'Join us on Discord'}
         style={{ marginRight: '12px' }}
       >
         <DiscordLogo />
-      </ExternalLink>
+      </DiscordLink>
       <BackLink href={'https://withkoji.com'} style={{ marginRight: 0 }}>
         {'Back to withkoji.com'}
       </BackLink>

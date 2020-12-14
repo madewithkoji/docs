@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import { navigate } from '@reach/router';
 
 import SearchIcon from '@material-ui/icons/Search';
+import ArrowIcon from '@material-ui/icons/KeyboardArrowRight';
 
 const Container = styled.div`
   width: 100%;
@@ -11,8 +12,8 @@ const Container = styled.div`
   padding: 0 30px;
   font-size: 14px;
   position: relative;
-  background-color: #f5f5f5;
-  border-bottom: 1px solid #dadee2;
+  background-color: #f4f4f4;
+  border-bottom: 1px solid rgba(0,0,0,0.1);
   display: flex;
   color: #666666;
 `;
@@ -60,7 +61,7 @@ const NavItemDropdown = styled.select`
   max-width: 72px;
 
   &:hover {
-    border: 1px solid #333333;
+    border: 1px solid #111111;
     background: #ffffff;
   }
 `;
@@ -82,7 +83,7 @@ const SectionDropdown = styled.select`
   max-width: 160px;
 
   &:hover {
-    border: 1px solid #333333;
+    border: 1px solid #111111;
     background: #ffffff;
   }
 `;
@@ -105,7 +106,16 @@ const BreadCrumb = styled.div`
 `;
 
 const Crumb = styled.div`
-  margin-right: 12px;
+  margin-right: 6px;
+  display: flex;
+  align-items: center;
+  line-height: 1;
+  font-size: 13px;
+
+  svg {
+    width: 18px;
+    height: 18px;
+  }
 `;
 
 const SearchWrapper = styled.div`
@@ -113,6 +123,7 @@ const SearchWrapper = styled.div`
   align-items: center;
   margin-right: 8px;
   cursor: pointer;
+  width: 184px;
 
   svg {
     fill: #666666;
@@ -176,11 +187,15 @@ const AppSubBar = ({ location, navItems, onSearchClick }) => {
                 <Crumb>
                   {currentNavItem.name}
                 </Crumb>
-                <Crumb>&gt;</Crumb>
+                <Crumb>
+                  <ArrowIcon />
+                </Crumb>
                 <Crumb>
                   {currentSection.name}
                 </Crumb>
-                <Crumb>&gt;</Crumb>
+                <Crumb>
+                  <ArrowIcon />
+                </Crumb>
                 <Crumb>
                   {currentItem.name}
                 </Crumb>

@@ -36,21 +36,19 @@ const Content = styled.div`
   }
 
   p, body {
-    font-size: 16px !important;
-    line-height: 21px;
-    word-spacing: 0.04em;
-    letter-spacing: 0.01em;
+    font-size: 15px !important;
+    line-height: 22px;
   }
 
   code {
     font-family: Menlo, Monaco, "Liberation Mono", Consolas, monospace;
     font-weight: normal;
-    font-size: 13px;
-    padding: 1px 4px;
+    font-size: 12px;
+    padding: 4px;
     border-radius: 1px;
     transition: max-height 0.4s ease;
     position: relative;
-    background-color: #F8F8F8;
+    background-color: #f4f4f4;
     &.expanded {
       padding-bottom: 50px;
     }
@@ -109,7 +107,7 @@ const Content = styled.div`
       user-select: none;
       content: ' ' attr(data-line-number) ' | ';
       opacity: 0.5;
-      color: #333;
+      color: #111111;
     }
     &:before {
       display: none;
@@ -125,8 +123,8 @@ const Content = styled.div`
       top: 5px;
       border: none;
       background-color: transparent;
-      color: #333;
-      font-size: 20px;
+      color: #111111;
+      font-size: 16px;
       cursor: pointer;
       &:hover {
         color: #999;
@@ -140,7 +138,7 @@ const Content = styled.div`
         top: 100%;
         left: 50%;
         transform: translateX(-50%);
-        background-color: #333;
+        background-color: #111111;
         font-size: 12px;
         color: #DCDCDC;
         padding: 3px 5px;
@@ -157,7 +155,7 @@ const Content = styled.div`
       right: 5px;
       transition: 0.2s ease-in-out;
       &:after {
-        color: #333;
+        color: #111111;
         content: '\f00c';
         font-weight: 900;
         font-family: "Font Awesome 5 Free";
@@ -188,7 +186,7 @@ const Content = styled.div`
   }
 
   pre, pre > code {
-    line-height: 1.6;
+    line-height: 1.5;
     margin: 0;
     position: relative;
   }
@@ -202,10 +200,12 @@ const Content = styled.div`
     text-transform: uppercase;
     display: block;
     position: absolute;
-    top: 6px;
-    right: 42px;
+    top: 8px;
+    right: 36px;
     opacity: 0.6;
     z-index: 12;
+    font-size: 11px;
+    font-weight: normal!important;
     &:before {
       content: attr(data-language);
     }
@@ -241,20 +241,20 @@ const Content = styled.div`
   h1 {
     margin-top: 0;
     line-height: 1;
-    font-size: 2.125em;
-    font-weight: 500;
+    font-size: 2.3rem;
+    font-weight: bold;
   }
 
   h2 {
     font-size: 1.6875em;
     margin-top: 1.9em;
-    font-weight: 400;
+    font-weight: bold;
   }
 
   h3 {
     font-size: 1.375em;
     margin-top: 1.2em;
-    font-weight: 400;
+    font-weight: bold;
   }
 
   h4 {
@@ -285,23 +285,21 @@ const Content = styled.div`
   }
 
   .tabbed__toggle {
-    border: 1px solid #AAA;
-    border-bottom: none;
     padding: 5px 12px;
     display: inline-block;
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
     cursor: pointer;
     background-color: #DDD;
     position: relative;
     user-select: none;
     z-index: 10;
     font-weight: bold;
-    margin-right: 5px;
-    font-size: 16px;
+    font-size: 11px;
+    text-transform: uppercase;
+
     &.tabbed__toggle_active, &:hover {
       background-color: rgb(248,248,248);
     }
+
     &.tabbed__toggle_active:after {
       content: '';
       position: absolute;
@@ -327,7 +325,6 @@ const Content = styled.div`
   }
 
   .tabs {
-    border: 1px solid #AAA;
     position: relative;
     border-radius: 0 4px 4px 4px;
     &:after {

@@ -17,13 +17,11 @@ You can develop templates for any type of web application, including interactive
 
 <<templates#, Learn more about Koji templates>>
 
-image::Koji-developer.png[Koji development process]
-
 Your templates can empower artists, influencers, brands, and content creators with new, interactive ways to reach their audiences and express themselves.
 With the ability to create and share remixable, interactive content, the opportunities for creative new experiences are countless.
 We can’t wait to see what YOU make!
 
-== What's new icon:bullhorn[]
+== What's new
 
 For a summary of the latest updates to the Koji platform and developer site, check out the <<developer-updates#>>.
 
