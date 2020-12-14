@@ -8,7 +8,7 @@ TIP: To help improve the Koji developer experience, please share your thoughts, 
 
 == 2020
 
-=== December 14
+=== December 15
 
 * The following features are now available on the Koji platform.
 ** The <<video#,video VCC>> can now support HTTP Live Streaming (HLS) for delivery of longer content, such as courses and short films.
@@ -23,7 +23,10 @@ The overview includes standard, built-in metrics that are calculated from access
 ** You now have more options for customizing your Koji profile page.
 ** Transaction receipts on the Koji platform have been redesigned for enhanced usability.
 * The following features are now available in the <<withkoji-vcc-package#>> package.
-** In Keystore, `generateSignedUrl`.
+** You can now generate a signed URL for any objects stored on the Koji CDN, enabling Kojis to serve them without exposing a permanent URI.
+This feature provides additional security protection against sharing or rehosting of private or subscription-only content.
+To use a signed URL, use the new `Keystore.generateSignedUrl` method.
+** The new `finish` method and the `InstantRemixingNativeNavigation` entitlement.
 * The developer site includes the following updates.
 ** New content is available to help Koji developers get the most value from their templates, including <<template-versions#>>, <<testing-templates#>>, and <<plugins#>>.
 ** The site design and navigation have been updated.
