@@ -1,0 +1,66 @@
+= Using custom domains
+:page-slug: custom-domains
+:page-description: How to configure your Koji to use a custom domain.
+
+== Using a Koji subdomain
+
+. Open the Koji and click the Koji button.
+
+. Go to *Settings > Custom domains*.
+
+. If you have already configured a domain and want to change it, follow the steps for <<_releasing_a_domain>> and then come back to this step.
+If you have not already configured a domain for this Koji, click New.
+
+. Select *Subdomain*.
+
+. Click Next.
+
+. Select a root domain.
+
+. Enter a name for the domain.
+
+. Click save.
+If the domain name you entered is already taken, "That domain is not available" will be displayed.
+If the domain name you entered is available, the new URL will be displayed followed by a right arrow.
+
+. Click the right arrow to display the status of your subdomain.
+You should see "Your Koji has been successfully configured to start receiving traffic from your custom domain".
+
+. Click *Open* to go to the new URL. Your Koji should display.
+
+== Using a domain you own
+
+. Open the Koji and click the Koji button.
+
+. Go to *Settings > Custom domains*.
+
+. If you have already configured a domain and want to change it, follow the steps for <<_releasing_a_domain>> and then come back to this step.
+If you have not already configured a domain for this Koji, click New.
+
+. Select *A domain you own*.
+
+. Click Next.
+
+. Select a root domain.
+
+. Enter your complete domain name.
+
+. Click save.
+If the domain name you entered is already taken, "That domain is not available" will be displayed.
+If the domain name you entered is available, the new URL will be displayed followed by a right arrow.
+
+. Click the right arrow to display the status of your subdomain. You should see "Your Koji has been successfully configured to start receiving traffic from your custom domain".
+
+. Click *Open* to go to the new URL. Your Koji should be displayed.
+
+== Releasing a domain
+
+. Open the Koji and click the Koji button.
+
+. Go to *Settings > Custom domains*.
+
+. Your complete domain name should appear. Click on the right arrow.
+
+. Click *Release domain*.
+
+. Click *Yes, release*.

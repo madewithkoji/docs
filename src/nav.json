@@ -170,6 +170,10 @@
             {
               "name": "Managing template versions",
               "slug": "template-versions"
+            },
+            {
+              "name": "Using custom domains",
+              "slug": "custom-domains"
             }
           ]
         },
