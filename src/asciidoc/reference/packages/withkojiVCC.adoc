@@ -52,10 +52,14 @@ To enable instant remixing for your Koji template, you must implement the `Insta
 ----
 {
   "entitlements": {
-    "InstantRemixing": true
+    "InstantRemixing": true, <1>
+    "InstantRemixingNativeNavigation": true <2>
   }
 }
 ----
+<1> `InstantRemixing` – Indicates that the template supports instant remixing.
+<2> `InstantRemixingNativeNavigation` – (Optional) Hides the default action for advancing from a remix to a preview, so that the template can control this action.
+When this entitlement is enabled, the template must use <<.finish>> to advance to the preview, or the Koji will not be remixable.
 
 [.hcode, id="new InstantRemixing", reftext="new InstantRemixing"]
 === new InstantRemixing()
@@ -71,6 +75,23 @@ const instantRemixing = new InstantRemixing();
 ----
 
 == InstantRemixing methods
+
+[.hcode, id=".finish", reftext="finish"]
+=== .finish()
+
+Advances a Koji from a remix to a preview.
+
+IMPORTANT: If the `InstantRemixingNativeNavigation` entitlement is enabled, this method must be called to advance the remix, as the Koji remix editor will not show the default action.
+You can use this option to handle validation and other processing before advancing to a preview.
+
+==== Example
+
+[source,HTML]
+----
+<button onClick={() => instantRemixing.finish()}>
+  Next
+</button>
+----
 
 [.hcode, id=".get", reftext="get"]
 === .get(path)
@@ -512,25 +533,60 @@ Keystore is used to access the value in the secret VCC within your application c
 
 NOTE: For security purposes, `Keystore` is available only in backend services and cannot be used in user-facing services.
 
-=== new Keystore
+[.hcode, id="new Keystore", reftext="new Keystore"]
+=== new Keystore(projectID, projectToken)
 
 Instantiates Keystore.
 
 ==== Parameters
-* `projectId` – (Optional) _String_, the ID of the Koji project to attach the keystore to.
-Defaults to the current project's ID.
-* `projectToken` – (Optional) _String_, the token of the Koji project to attach the keystore to.
-Defaults to the current project's token.
+* `projectId` – _String_, unique ID of the Koji project to attach the keystore to.
+* `projectToken` – _String_, token of the Koji project to attach the keystore to.
+
+TIP: These parameters are available as environment variables at runtime.
+For instant remixes, you must implement `VccMiddleware` to manage these variables.
 
 ==== Example
 
 [source,javascript]
 ----
 import { Keystore } from '@withkoji/vcc';
-const keystore = new Keystore();
+const keystore = new Keystore(
+  res.locals.KOJI_PROJECT_ID,
+  res.locals.KOJI_PROJECT_TOKEN,
+);
 ----
 
 == Keystore methods
+
+[.hcode, id=".generateSignedUrl", reftext="generateSignedUrl"]
+=== .generateSignedUrl(resource, expirySeconds)
+
+Generates a signed URL for securely serving a file that is stored in your project’s CDN, without exposing the permanent URI.
+This method provides additional security against sharing or rehosting of protected content.
+
+==== Parameters
+
+* `resource` – _String_, full URL of the file on your CDN.
++
+NOTE: If you want to use query parameters, apply them to the signed URL rather than the resource argument.
+For example, when resizing or cropping images.
+
+* `expirySeconds` – (Optional) _Number_, amount of time for which the signed URL remains valid, in seconds.
+If undefined, signed videos expire after 1 hour, and any other resource expire after 5 minutes.
+
+==== Returns
+
+(Async) _String_, signed URL for the requested resource.
+For example, the signed URL for a standard video file will look something like `\https://objects.koji-cdn.com/signed/TOKEN`.
+The signed URL for an HLS video file will follow a slightly different pattern.
+
+==== Example
+
+[source,javascript]
+----
+const signedUrl = await keystore.generateSignedUrl(premium_image);
+optimizedUrl = `${signedUrl}?format=jpg&optimize=medium`;
+----
 
 [.hcode, id=".resolveValue", reftext="resolveValue"]
 === .resolveValue(keyPath)
