@@ -25,8 +25,10 @@ The overview includes standard, built-in metrics that are calculated from access
 * The following features are now available in the <<withkoji-vcc-package#>> package.
 ** You can now generate a signed URL for any objects stored on the Koji CDN, enabling Kojis to serve them without exposing a permanent URI.
 This feature provides additional security protection against sharing or rehosting of private or subscription-only content.
-To use a signed URL, use the new `Keystore.generateSignedUrl` method.
-** The new `finish` method and the `InstantRemixingNativeNavigation` entitlement.
+To use a signed URL, use the new `generateSignedUrl` method.
+** You can now hide the default action for advancing from a remix to a preview, enabling the template to handle validation and other processing first.
+To hide the default action, enable the new `InstantRemixingNativeNavigation` entitlement.
+To advance to a preview, use the new `finish` method.
 * The developer site includes the following updates.
 ** New content is available to help Koji developers get the most value from their templates, including <<template-versions#>>, <<testing-templates#>>, and <<plugins#>>.
 ** The site design and navigation have been updated.

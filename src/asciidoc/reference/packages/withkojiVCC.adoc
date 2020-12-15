@@ -52,10 +52,14 @@ To enable instant remixing for your Koji template, you must implement the `Insta
 ----
 {
   "entitlements": {
-    "InstantRemixing": true
+    "InstantRemixing": true, <1>
+    "InstantRemixingNativeNavigation": true <2>
   }
 }
 ----
+<1> `InstantRemixing` – Indicates that the template supports instant remixing.
+<2> `InstantRemixingNativeNavigation` – (Optional) Hides the default action for advancing from a remix to a preview, so that the template can control this action.
+When this entitlement is enabled, the template must use <<.finish>> to advance to the preview, or the Koji will not be remixable.
 
 [.hcode, id="new InstantRemixing", reftext="new InstantRemixing"]
 === new InstantRemixing()
@@ -71,6 +75,23 @@ const instantRemixing = new InstantRemixing();
 ----
 
 == InstantRemixing methods
+
+[.hcode, id=".finish", reftext="finish"]
+=== .finish()
+
+Advances a Koji from a remix to a preview.
+
+IMPORTANT: If the `InstantRemixingNativeNavigation` entitlement is enabled, this method must be called to advance the remix, as the Koji remix editor will not show the default action.
+You can use this option to handle validation and other processing before advancing to a preview.
+
+==== Example
+
+[source,HTML]
+----
+<button onClick={() => instantRemixing.finish()}>
+  Next
+</button>
+----
 
 [.hcode, id=".get", reftext="get"]
 === .get(path)
