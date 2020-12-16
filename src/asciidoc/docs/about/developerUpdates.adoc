@@ -36,9 +36,9 @@ Then, use the new `beginTransaction` and `commitTransaction` methods to submit o
 * The <<withkoji-koji-iap-package#>> package now includes `transactionIds` in a receipt object.
 This information enables you to link to a transaction from a notification (for example, `\https://withkoji.com/payments/transactions/TXN_ID`).
 * On the Koji platform, you can now manage plugins and custom domains directly from a Koji, without opening the code.
-** To manage the plugins for a Koji you created, use the Koji button in the top right, and then go to **More > Manage this Koji > Plugins**.
+** To manage the plugins for a Koji you created, use the Koji button in the top right, and then go to *More > Manage this Koji > Plugins*.
 Plugins are available to add common functionality, such as Google Analytics and Facebook Pixel, to the frontend of a Koji.
-** To manage the custom domains for a Koji you created, use the Koji button in the top right, and then go to **More > Manage this Koji > Custom domains**.
+** To manage the custom domains for a Koji you created, use the *Koji* button in the top right, and then go to *Settings > Custom domains*.
 * On the Koji platform, your new https://withkoji.com/creator[creator dashboard] replaces your evolution dashboard.
 * On the developer site, new resources are available to help Koji developers solve common problems, including <<frontend-uploading#>> and <<persist-session-data#>>.
 
@@ -57,10 +57,10 @@ image::imageVCC-nov2020.png[Image VCC]
 === November 5
 
 * It's now easier to withdraw funds from your Koji wallet.
-Simply tap your profile picture, and then tap **Wallet > Withdraw**.
+Simply tap your profile picture, and then tap *Wallet > Withdraw*.
 Follow the on-screen instructions to process the desired withdrawal amount.
 * You can now request a refund within 72 hours of a purchase through a Koji.
-From your Koji wallet, tap the transaction, and then tap **Refund transfer**.
+From your Koji wallet, tap the transaction, and then tap *Refund transfer*.
 * The fee schedule for in-app purchases has been updated to the following allocation: 85% to the creator, 5% to the Koji platform, and 10% to the community (8% to evolution, 2% to genesis).
 * You can now track custom events in your Koji templates with the <<withkoji-koji-analytics-sdk#>> package.
 * The `startPurchase` method in the <<withkoji-koji-iap-package#.startPurchase#, @withkoji/iap>> package has been updated.
@@ -73,13 +73,13 @@ The callback function now receives the receipt ID on successful purchases.
 ** To provide different template experiences for editing an existing Koji and for creating a new remix, use the new `mode` editor attribute in the `onSetRemixing` method.
 For example, you might want to clear the default values for a new remix but not for an edit.
 For updated documentation, see the <<withkoji-vcc-package#.onSetRemixing, package reference>>.
-** To edit a Koji you created, use the *Koji button* in the top right, and then go to **More > Manage this Koji > Edit this Koji**.
+** To edit a Koji you created, use the *Koji button* in the top right, and then go to *More > Manage this Koji > Edit this Koji*.
 * The following features are now available in the <<withkoji-vcc-package#>> package.
 ** *Navigation methods* – The new `navigate` and `present` methods enable you to manage navigation without triggering browser events, for a smoother experience in embedded contexts.
 ** *Sticker context* – The new `?context=sticker` URL parameter enables you to embed another Koji in an iframe as a sticker.
 The `StickerContext` entitlement enables you to define a distinct template experience when the template is embedded in another Koji.
 ** *Admin context* – The new `?context=admin` URL parameter and `AdminContext` entitlement enable you to design functionality that is intended for the creator of the Koji.
-The creator can access this functionality by using the *Koji button* in the top right, and then going to **More > Manage this Koji > Admin dashboard**.
+The creator can access this functionality by using the *Koji button* in the top right, and then going to *More > Manage this Koji > Admin dashboard*.
 * Starting with version 1.1.40 of @withkoji/vcc package, developers using VccMiddleware must use `res.locals.KOJI_PROJECT_ID` and `res.locals.KOJI_PROJECT_TOKEN`, instead of `process.env.KOJI_PROJECT` and `process.env.KOJI_PROJECT_TOKEN`, when instantiating services such as database, auth, and in-app purchases.
 * The new <<withkoji-koji-auth-sdk#>> package enables you to authenticate users in Koji templates.
 Available features include:
@@ -100,7 +100,7 @@ For updated documentation, see <<rich-preview-image#>>.
 image::database-views-oct2020.png[Manage content]
 ** To customize the data presentation for remixers, configure a <<koji-database#, database view>> when developing the template.
 You can specify user-friendly collection and column names, define the data types for rich data display, exclude unnecessary columns, and control the column order and default sort.
-** To access the data for a Koji you created, use the *Koji button* in the top right, and then go to **More > Manage this Koji > View database**.
+** To access the data for a Koji you created, use the *Koji button* in the top right, and then go to *More > Manage this Koji > View database*.
 * The new *Magic Link* enables you to register a custom `koji.to` link that points any Koji.
 For example, you could point to a Koji "bio", and then share or post the link everywhere.
 If you ever want to update your bio or use a different Koji, you can change the link target in one place.
@@ -110,7 +110,7 @@ image::magic-link-oct2020.png[Enable Magic Link]
 Enable your Magic Link and enter your desired link address (for example, `\https://koji.to/myname`).
 By default, the link points to your Koji profile page.
 ** To change the link target, open the desired Koji and tap the *Koji button* in the top right.
-Then, go to **More > Manage this Koji > Use as Magic Link**.
+Then, go to *More > Manage this Koji > Use as Magic Link*.
 
 .Developer site updates
 * Several pages have been updated with new code samples, including <<add-service#>> and <<port-existing-code#>>.
@@ -134,7 +134,7 @@ For example, `dynamic-receipt=buyer` or `dynamic-receipt=seller`.
 
 * Updated reference docs are now available for the <<withkoji-database-package#,Database>>, <<withkoji-dispatch-package#,Dispatch>>, and <<withkoji-custom-vcc-sdk#,Custom VCC>> packages.
 * Step-by-step instructions for <<start-guide-1#, developing your first template>> are now available in *four* “flavors” – React, Vanilla JS, Angular, and Svelte.
-* On the Koji platform, *My projects* has moved to *My repositories* in your **evolution dashboard**.
+* On the Koji platform, *My projects* has moved to *My repositories* in your *evolution dashboard*.
 To open a list of starter scaffolds, you can click *New repository*.
 +
 image::my-repositories-oct2020.png[My repositories]

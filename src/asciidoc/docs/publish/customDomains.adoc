@@ -2,11 +2,10 @@
 :page-slug: custom-domains
 :page-description: How to configure your Koji to use a custom domain.
 
-When you're ready to go live with your template, you might want to use a custom domain name in place of the name provided by Koji.
+When you're ready to go live with your Koji, you might want to use a custom domain name in place of the name provided by Koji.
 A custom domain can have the advantage of being easier to remember, and it usually just looks better.
 
-Koji has a few subdomains that you can use at no cost and with no additional configuration.
-These include:
+Koji has a few subdomains that you can use at no cost and with no additional configuration, including:
 
 * withkoji.com
 * koji.sh
@@ -14,32 +13,28 @@ These include:
 
 You can also use a domain name that you purchase from somewhere like *Google Domains* or *Namecheap*.
 
+[NOTE]
+You can only assign one Koji subdomain to a Koji.
+If you've already assigned a subdomain and you want to change it, follow the steps for <<_releasing_a_domain, releasing a domain>> before assigning the new one.
+Then you can assign the new one.
+You can assign as many domains as you want to a Koji if they are domains you own.
+
 == Using a Koji subdomain
 
-. Open the Koji and click the Koji button.
-
+. Open the Koji and click the *Koji* button.
 . Go to *Settings > Custom domains*.
-
-. If you have already configured a domain and want to change it, follow the steps for <<_releasing_a_domain>> and then come back to this step.
-If you have not already configured a domain for this Koji, click *New*.
-
+. Click *New*.
 . Select *Subdomain*.
-
 . Click *Next*.
-
 . Select a *root domain*.
-
 . Enter the name that you want to come before the subdomain.
-
 . Click *Save*.
 If the domain name you chose is already taken, "That domain is not available" will be displayed.
 If the domain name is available, the complete domain name will be displayed.
-
 . Click the domain name.
 You should see "Your Koji has been successfully configured to start receiving traffic from your custom domain".
-
 . Click *Open* to go to the new URL.
-Your Koji should display.
+Your Koji should be displayed.
 
 == Using a domain you own
 
@@ -49,36 +44,22 @@ Your Koji should display.
 If you want to host your Koji on a subdomain of your custom domain name (for example, *www.mycustomdomain.com or game.mycustomdomain.com*), you need to use your domain provider's tools to add a CNAME record for that subdomain (*www* or *game*) that points to *cnames.withkoji.com*.
 
 . Open the Koji and click the Koji button.
-
 . Go to *Settings > Custom domains*.
-
-. If you have already configured a domain and want to change it, follow the steps for <<_releasing_a_domain>> and then come back to this step.
-If you have not already configured a domain for this Koji, click *New*.
-
+. Click *New*.
 . Select *A domain you own*.
-
 . Click *Next*.
-
 . Enter your complete domain name.
-
-. Click *save*.
+. Click *Save*.
 The domain name should be displayed.
-
 . Click the domain name.
 You should see "Your Koji has been successfully configured to start receiving traffic from your custom domain".
-
 . Click *Open* to go to the new URL.
 Your Koji should be displayed.
 
 == Releasing a domain
 
 . Open the Koji and click the Koji button.
-
 . Go to *Settings > Custom domains*.
-
-. Your complete domain name should appear.
-Click on the domain name.
-
+. Click the domain name you want to release.
 . Click *Release domain*.
-
 . Click *Yes, release*.

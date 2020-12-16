@@ -164,12 +164,12 @@
               "slug": "publish-locally-developed"
             },
             {
-              "name": "Using Koji plugins",
-              "slug": "plugins"
-            },
-            {
               "name": "Managing template versions",
               "slug": "template-versions"
+            },
+            {
+              "name": "Using Koji plugins",
+              "slug": "plugins"
             },
             {
               "name": "Using custom domains",
