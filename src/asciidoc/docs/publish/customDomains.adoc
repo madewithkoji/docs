@@ -2,8 +2,9 @@
 :page-slug: custom-domains
 :page-description: How to configure your Koji to use a custom domain.
 
-When you're ready to go live with your Koji, you might want to use a custom domain name in place of the name provided by Koji.
+You can assign a custom domain name to your Koji after publication.
 A custom domain can have the advantage of being easier to remember, and it usually just looks better.
+Custom domains are about where you want to serve the experience.
 
 Koji has a few subdomains that you can use at no cost and with no additional configuration, including:
 
@@ -14,8 +15,8 @@ Koji has a few subdomains that you can use at no cost and with no additional con
 You can also use a domain name that you purchase from somewhere like *Google Domains* or *Namecheap*.
 
 [NOTE]
-You can only assign one Koji subdomain to a Koji.
-If you've already assigned a subdomain and you want to change it, follow the steps for <<_releasing_a_domain, releasing a domain>> before assigning the new one.
+You can assign only one Koji subdomain to a Koji.
+If you've already assigned a subdomain and you want to change it, follow the steps for <<_releasing_a_domain, releasing a domain>>.
 Then you can assign the new one.
 You can assign as many domains as you want to a Koji if they are domains you own.
 
