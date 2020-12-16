@@ -12,6 +12,9 @@ Koji has a few subdomains that you can use at no cost and with no additional con
 * koji.sh
 * koji.game
 
+To use a Koji subdomain, you must add a subdomain of your choosing in front of the Koji subdomain.
+For example, if you add "myvideogame" in from of ".koji.game", the full domain name will be `+++https://myvideogame.koji.game+++`.
+
 You can also use a domain name that you purchase from somewhere like *Google Domains* or *Namecheap*.
 
 [NOTE]
@@ -33,7 +36,7 @@ You can assign as many domains as you want to a Koji if they are domains you own
 If the domain name you chose is already taken, "That domain is not available" will be displayed.
 If the domain name is available, the complete domain name will be displayed.
 . Click the domain name.
-You should see "Your Koji has been successfully configured to start receiving traffic from your custom domain".
+You should see a message verifying that your custom domain has been successfully assigned to the Koji.
 . Click *Open* to go to the new URL.
 Your Koji should be displayed.
 
@@ -53,7 +56,7 @@ If you want to host your Koji on a subdomain of your custom domain name (for exa
 . Click *Save*.
 The domain name should be displayed.
 . Click the domain name.
-You should see "Your Koji has been successfully configured to start receiving traffic from your custom domain".
+You should see a message verifying that your custom domain has been successfully assigned to the Koji.
 . Click *Open* to go to the new URL.
 Your Koji should be displayed.
 
