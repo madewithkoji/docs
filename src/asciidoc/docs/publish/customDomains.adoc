@@ -2,20 +2,26 @@
 :page-slug: custom-domains
 :page-description: How to configure your Koji to use a custom domain.
 
-You can assign a custom domain name to your Koji after publication.
-A custom domain can have the advantage of being easier to remember, and it usually just looks better.
+The domain name for your Koji is its web address.
+The Koji platform assigns a domain name to your Koji when you publish it.
+A typical domain name might look like this: `+++withkoji.com/~johnsmith789/my-video-game+++`.
+This web address is hard to remember, and it doesn't look very professional.
+You can solve this problem by assigning a custom domain name to your Koji.
 Custom domains are about where you want to serve the experience.
 
-Koji has a few subdomains that you can use at no cost and with no additional configuration, including:
+In the example above, `+++withkoji.com+++` is the root domain.
+Koji has several other root domains that you can use at no cost and with no additional configuration, including:
 
 * withkoji.com
 * koji.sh
 * koji.game
 
-To use a Koji subdomain, you must add a subdomain of your choosing in front of the Koji subdomain.
-For example, if you add "myvideogame" in from of ".koji.game", the full domain name will be `+++https://myvideogame.koji.game+++`.
+You can create a custom domain by adding a subdomain of your choosing in front of a Koji root domain.
+For example, if you add "myvideogame" in front of ".koji.game", your custom domain name will be `+++myvideogame.koji.game+++`.
 
 You can also use a domain name that you purchase from somewhere like *Google Domains* or *Namecheap*.
+In this case, you can make your domain name almost anything you want it to be, as long as it's not already taken.
+For example: `+++thenextgreatvideogame.com+++`.
 
 [NOTE]
 You can assign only one Koji subdomain to a Koji.
@@ -23,7 +29,7 @@ If you've already assigned a subdomain and you want to change it, follow the ste
 Then you can assign the new one.
 You can assign as many domains as you want to a Koji if they are domains you own.
 
-== Using a Koji subdomain
+== Using a subdomain with a Koji root domain
 
 . Open the Koji and click the *Koji* button.
 . Go to *Settings > Custom domains*.
