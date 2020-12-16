@@ -1,8 +1,8 @@
-= Changelog for Koji developers
+= News updates for Koji developers
 :page-slug: developer-updates
 :page-description: Brief digest of relevant updates to the Koji platform and developer site.
 
-To help developers stay up to date, this digest summarizes relevant updates to the Koji platform and developer site.
+To help developers stay up to date, this digest summarizes relevant updates to the Koji platform, packages, and developer site.
 
 TIP: To help improve the Koji developer experience, please share your thoughts, questions, and feedback by <<contribute-koji-developers#, contributing to the developer site>> or reaching out to `@Koji Team` on our https://discord.gg/eQuMJF6[Discord server].
 
