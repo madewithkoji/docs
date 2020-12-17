@@ -8,6 +8,19 @@ TIP: To help improve the Koji developer experience, please share your thoughts, 
 
 == 2020
 
+=== December 22
+
+* The Koji debugger is now available to enable live <<testing-templates#,testing and debugging>> in a production environment.
+To open the debugger, go to https://withkoji.com/creator/repositories[My repositories] and click *Open debugger* next to the project you want to test.
+Features include:
+** Dynamic view of remix events, for a better understanding of how VCC data is changing over time in response to user actions.
+** At-a-glance database explorer, in-app purchase receipts, and auth grants, as well as easy ways to delete records for these services.
+** Debugging views for the different contexts that might be available in the Koji, such as *Admin* or *About*.
+** Thumbnail debugging that uses the same APIs as the live screenshot capture, so you can see exactly how sharing images will look.
+** Environment overrides for debugging in your development environments, so you can develop and debug remixing without deploying a new version.
+* On the developer site, new content is available about custom-domains.
+Also, *News updates for Koji developers*, formerly the Changelog, has been moved.
+
 === December 15
 
 * The following features are now available on the Koji platform.
