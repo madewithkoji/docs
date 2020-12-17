@@ -3,14 +3,15 @@
 :page-description: How to configure your Koji to use a custom domain.
 
 The domain name for your Koji is its web address.
+A domain name consists of a *root domain*, such as `+++withkoji.com+++`, and usually one or more subdomains.
+For example, in the domain name `+++withkoji.com/~johnsmith789/my-video-game+++`, `+++~johnsmith789+++` and `+++my-video-game+++` are subdomains.
 The Koji platform assigns a domain name to your Koji when you publish it.
-A typical domain name might look like this: `+++withkoji.com/~johnsmith789/my-video-game+++`.
-This web address is hard to remember, and it doesn't look very professional.
-You can solve this problem by assigning a custom domain name to your Koji.
+
+You might want to assign a custom domain name to your Koji.
+A custom domain name can be much easier to remember, and it usually just looks better.
 Custom domains are about where you want to serve the experience.
 
-In the example above, `+++withkoji.com+++` is the root domain.
-Koji has several other root domains that you can use at no cost and with no additional configuration, including:
+Koji has several root domains that you can use at no cost and with no additional configuration, including:
 
 * withkoji.com
 * koji.sh
@@ -20,7 +21,7 @@ You can create a custom domain by adding a subdomain of your choosing in front o
 For example, if you add "myvideogame" in front of ".koji.game", your custom domain name will be `+++myvideogame.koji.game+++`.
 
 You can also use a domain name that you purchase from somewhere like *Google Domains* or *Namecheap*.
-In this case, you can make your domain name almost anything you want it to be, as long as it's not already taken.
+Then you can make your domain name almost anything you want it to be.
 For example: `+++thenextgreatvideogame.com+++`.
 
 [NOTE]
