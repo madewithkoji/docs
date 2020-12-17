@@ -41,5 +41,3 @@ There is no way to enable or disable plugins on a per-service basis.
 . Go to *More > Manage this Koji > Plugins*.
 . Choose a plugin from the list of available plugins.
 . Configure and enable the plugin.
-
-
