@@ -2,14 +2,11 @@
 :page-slug: custom-domains
 :page-description: How to configure your Koji to use a custom domain.
 
-The domain name for your Koji is its web address.
-A domain name consists of a *root domain*, such as `+++withkoji.com+++`, and usually one or more subdomains.
-For example, in the domain name `+++withkoji.com/~johnsmith789/my-video-game+++`, `+++~johnsmith789+++` and `+++my-video-game+++` are subdomains.
-The Koji platform assigns a domain name to your Koji when you publish it.
-
-You might want to assign a custom domain name to your Koji.
-A custom domain name can be much easier to remember, and it usually just looks better.
-Custom domains are about where you want to serve the experience.
+When you publish a Koji, it's automatically assigned a permalink based on your user name and lives on the `+++withkoji.com+++` domain.
+Example: `+++withkoji.com/~johnsmith789/my-video-game+++`.
+You have the option of additionally serving your Koji at a custom domain.
+This can be helpful if you already own a domain that ties into your marketing strategy, or if you want to create a URL that is easier to identify or verbalize.
+The custom domain feature allows you to work with an existing domain or one of our alternative root domains.
 
 Koji has several root domains that you can use at no cost and with no additional configuration, including:
 
@@ -17,8 +14,8 @@ Koji has several root domains that you can use at no cost and with no additional
 * koji.sh
 * koji.game
 
-You can create a custom domain by adding a subdomain of your choosing in front of a Koji root domain.
-For example, if you add "myvideogame" in front of ".koji.game", your custom domain name will be `+++myvideogame.koji.game+++`.
+You can create a custom domain by appending a Koji root domain to a subdomain of your choosing.
+For example, if you append ".koji.game" to "myvideogame", your custom domain name will be `+++myvideogame.koji.game+++`.
 
 You can also use a domain name that you purchase from somewhere like *Google Domains* or *Namecheap*.
 Then you can make your domain name almost anything you want it to be.
@@ -49,10 +46,10 @@ Your Koji should be displayed.
 
 == Using a domain you own
 
- . Use your domain provider's management tools to configure the appropriate DNS records.
-+
-[NOTE]
-If you want to host your Koji on a subdomain of your custom domain name (for example, *www.mycustomdomain.com or game.mycustomdomain.com*), you need to use your domain provider's tools to add a CNAME record for that subdomain (*www* or *game*) that points to *cnames.withkoji.com*.
+If you buy your own domain name from somewhere like *Google Domains* or *Namecheap*, you can easily configure that domain to serve your Koji.
+Simply register your domain in your project, and then use your domain provider's management tools to configure the appropriate DNS records.
+
+=== Registering your domain in your project
 
 . Open the Koji and click the Koji button.
 . Go to *Settings > Custom domains*.
@@ -64,8 +61,38 @@ If you want to host your Koji on a subdomain of your custom domain name (for exa
 The domain name should be displayed.
 . Click the domain name.
 You should see a message verifying that your custom domain has been successfully assigned to the Koji.
+. Follow the steps for <<_configuring_dns_records, configuring DNS records>>.
 . Click *Open* to go to the new URL.
 Your Koji should be displayed.
+
+=== Configuring DNS records
+
+If you want to host your Koji on a subdomain of your custom domain name (for example, `+++www.mycustomdomain.com+++` or `+++game.mycustomdomain.com+++`), you will need to use your domain provider's tools to add a CNAME record for that subdomain (www or game) that points to `+++cnames.withkoji.com+++`.
+
+If you want your Koji to be served from the root domain name (`+++mycustomdomain.com+++`), you need to add an *A record* for the domain's root that maps it to Koji's *IP block*:
+
+151.101.1.78 +
+151.101.65.78 +
+151.101.129.78 +
+151.101.193.78 +
+
+If you are configuring a root domain via *A records*, it is also recommended to configure *AAAA records* to support *IPv6*.
+Koji's *IPv6 block* is:
+
+2a04:4e42::334 +
+2a04:4e42:200::334 +
+2a04:4e42:400::334 +
+2a04:4e42:600::334 +
+2a04:4e42:800::334 +
+2a04:4e42:a00::334 +
+2a04:4e42:c00::334 +
+2a04:4e42:e00::334 +
+
+Different domain providers have different tools for managing DNS records, and some of those tools are more complex than others.
+If you have questions about how to configure your domain's DNS records, please connect with us on *Discord* and someone will be happy to help.
+
+Managed subdomains (`+++withkoji.com+++`, `+++koji.sh+++`, and `+++koji.game+++`) automatically manage HTTPS termination.
+This means that your Koji's traffic is secured with HTTPS, but your app itself does not require any special configuration, like listening on both ports 80 and 443, serving certificates and managing certificate lifecycle and renewal, and dealing with mixed-security content.
 
 == Releasing a domain
 
