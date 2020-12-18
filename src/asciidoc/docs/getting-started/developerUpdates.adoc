@@ -18,6 +18,7 @@ Features include:
 ** Debugging views for the different contexts that might be available in the Koji, such as *Admin* or *About*.
 ** Thumbnail debugging that uses the same APIs as the live screenshot capture, so you can see exactly how sharing images will look.
 ** Overrides to enable debugging sessions of development environments, so you can develop and debug remixing without deploying a new version.
+* In the <<withkoji-database-package#>> package, the new `transcodeAsset` and `getTranscodeStatus` methods are available for programmatically uploading and transcoding HTTP Live Streaming (HLS) video, enabling more ways to use uploaded videos in your templates.
 * On the developer site, new content is available about <<custom-domains#,custom domains>>.
 Also, *News updates for Koji developers*, formerly the Changelog, has been moved.
 
