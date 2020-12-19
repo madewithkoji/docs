@@ -9,13 +9,14 @@ image::soundVCC.png[title="Sound VCC",role="img-overview"]
 
 * Users can
 //tag::description[]
-select a sound either by  selecting from the available options, uploading, or entering a URL.
+select a sound either by selecting from the available options, uploading, or entering a URL.
 //end::description[]
 * If the sound is loaded through the 'Upload' section, the sound can be cropped to play only a portion of it and the sound will be stored with the template.
 * If the sound is loaded through the 'Advanced' section, it will use the sound that is at this URL.
 Keep in mind that if the link dies, the sound will not play.
 * Remember to keep sounds to a small length.
 This is part of projects that usually take up the most space and cause the longest load times.
+* Enable the optional `hideExtensions` type option to hide all asset packs and VCC extensions in cases where they do not make sense (for example, templates for selling premium sounds).
 --
 
 == Sample sound VCC
@@ -26,6 +27,9 @@ This is part of projects that usually take up the most space and cause the longe
   "key": "mySound",
   "name": "My Sound",
   "description": "This is my sound description",
-  "type": "sound"
+  "type": "sound",
+  "typeOptions": {
+      "hideExtensions": true
+  }
 }
 ----
