@@ -22,9 +22,13 @@ Features include:
 * In the <<withkoji-koji-iap-package#>> package, the new `notificationMessage` parameter enables you to send custom messages when updating receipts.
 * On the developer site, new content is available about <<custom-domains#,custom domains>>.
 Also, *News updates for Koji developers*, formerly the Changelog, has been moved.
-* The following features are now available on the Koji platform.
-** The <<image#,image>> and <<sound#,sound>> VCC types now enable you to hide all asset packs and VCC extensions in cases where they do not make sense (for example, templates for selling premium assets).
+* The <<image#,image>> and <<sound#,sound>> VCC types now enable you to hide all asset packs and VCC extensions in cases where they do not make sense (for example, templates for selling premium assets).
 To use this feature in your templates, enable the `hideExtensions` type option.
+* On the Koji platform, the following usability updates improve the remixing experience for creators.
+** When remixing, the interactive preview mode now handles auth and in-app purchase events by displaying an alert, for better user feedback.
+** About cards now always open in the full frame, instead of modal windows.
+** Feed navigation is no longer used when browsing templates from the *Create* button.
+** Fixed a bug that incorrectly prompted anonymous users to log in when remixing templates with secure content, such as premium images.
 
 === December 15
 
