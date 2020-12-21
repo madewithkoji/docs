@@ -93,10 +93,6 @@
               "slug": "editor"
             },
             {
-              "name": "Koji debugger",
-              "slug": "debugger"
-            },
-            {
               "name": "Porting existing code to Koji",
               "slug": "port-existing-code"
             },
@@ -231,6 +227,10 @@
             {
               "name": "Using custom domains",
               "slug": "custom-domains"
+            },
+            {
+              "name": "Koji debugger",
+              "slug": "debugger"
             }
           ]
         },
