@@ -227,10 +227,6 @@
             {
               "name": "Using custom domains",
               "slug": "custom-domains"
-            },
-            {
-              "name": "Koji debugger",
-              "slug": "debugger"
             }
           ]
         },
