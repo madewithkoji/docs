@@ -385,8 +385,9 @@ include::../../docs/_includes/databaseNote.adoc[tag=immediate]
 
 ==== Parameters
 
-* `path` – _String_, path to the asset.
-* `transcodeType` – _String_, (Optional) type of resource that the asset will be transcoded to (`video+hls`, by default).
+* `path` – _String_, URL of the asset on the Koji CDN.
+For example, `\https://objects.koji-cdn.com/KOJI-ID/userData/resource.mp4`.
+* `transcodeType` – _String_, (Optional) type of resource that the asset will be transcoded to (`video+hls`).
 
 ==== Returns
 
