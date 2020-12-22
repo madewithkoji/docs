@@ -210,50 +210,50 @@ If you select a context that is not enabled, a message will be displayed saying 
 
 The following contexts are available for selection.
 
-==== Default context
+==== Default
 
-Selecting the *Default* context shows you a preview of the running template.
-Events associated with the *Default* context are displayed in an event pane.
+Selecting *Default* shows you a preview of the running template.
+Events associated with the default context are displayed in an event pane.
 See <<_viewing_events>>.
 
 In the *Default* context, you can see what happens when the template asks the platform for things like <<withkoji-koji-iap-package#, in-app purchases>> or <<withkoji-koji-auth-sdk#, auth grants>>.
 
-==== Remix context
+==== Remix
 
-Selecting the *Remix* context displays a special remixing page, if you defined one in your template.
+Selecting *Remix* displays a special remixing page, if you defined one in your template.
 Otherwise, it displays the editable elements of your template and allows you to change them.
-A separate pane displays the *VCC Values* as they appear in the code for the Koji.
+A separate pane displays the *VCC Values* as they appear in the code for the template.
 Events associated with the *Remix* context are displayed in an event pane.
 See <<_viewing_events>>.
 
 *Remix* gives you a dynamic view of remix events, for a better understanding of how VCC data is changing over time in response to user actions.
 
-==== *Thumbnail*
+==== Thumbnail
 
-Selecting the *Thumbnail* context shows you exactly how your template will look if you share it on social media.
+Selecting the *Thumbnail* shows you exactly how your template will look if you share it on social media.
 See <<rich-preview-image#>>.
 
 *Thumbnail* shows previews in both square and rectangular format.
 
 ==== Admin
 
-If the *Admin* context is enabled, the admin page is displayed.
-Events associated with the *Admin* context are displayed in an events pane.
+If the admin context is enabled, selecting *Admin* displays the admin page.
+Events associated with the admin context are displayed in an events pane.
 See <<_viewing_events>>.
 
 ==== About
 
-If the *About* context is enabled, a page is displayed that appears when the user clicks *Remix this Koji*.
-Events associated with the *About* context are displayed in an events pane.
+If the about context is enabled, clicking *About* displays the page that appears when the user clicks *Remix this Koji*.
+Events associated with the about context are displayed in an events pane.
 See <<_viewing_events>>.
 
 ==== Sticker
 
 If another template is embedded in your template, a page for the embedded template is displayed.
-Events associated with the *Sticker* context are displayed in an events pane.
+Events associated with the sticker context are displayed in an events pane.
 See <<_viewing_events>>.
 
-==== *Dynamic Receipt*
+==== Dynamic Receipt
 
 If a dynamic receipt is enabled, a page is displayed for editing it.
 See <<withkoji-koji-iap-package#, in-app purchases>>.
@@ -317,20 +317,79 @@ If you click on a feature that is not implemented, a message will be displayed s
 
 The *Info and Features pane* includes the following panels:
 
-==== *Environment info*
+==== Environment info
 
-The *Environment info* panel displays your templates's *App Id*, frame URL, and *VCC editor source*.
-You can edit the frame URL and the VCC editor values.
+The *Environment info* panel displays your templates's *App Id*, frame URL, and *VCC editor source*, and allows you to edit the frame URL.
 
-==== *Database*
+By default, the debugger uses the VCC editor data from the live template.
+You can override the live data by specifying different VCC editor data.
+Click *Modify*, then select *Override and use different VCC editor data*.
+The VCC editor data will be displayed in JSON format.
+You directly modify the JSON to change the data.
+
+[source, json]
+----
+[
+  {
+    "key": "general",
+    "name": "General",
+    "fields": [
+      {
+        "key": "name",
+        "name": "Name",
+        "type": "text"
+      },
+      {
+        "key": "title",
+        "name": "Title",
+        "type": "text"
+      },
+      {
+        "key": "description",
+        "name": "Description",
+        "type": "text"
+      },
+      {
+        "key": "profileSrc",
+        "name": "Profile Image",
+        "type": "image"
+      },
+      {
+        "key": "newMessageBackground",
+        "name": "New Message Background",
+        "type": "image"
+      },
+      {
+        "key": "photo",
+        "name": "Photo",
+        "type": "image"
+      },
+      {
+        "key": "video",
+        "name": "Video",
+        "type": "video"
+      },
+      {
+        "key": "price",
+        "name": "Price Per Message",
+        "type": "text"
+      }
+    ],
+    "source": "general.json"
+  }
+]
+----
+
+==== Database
 
 If your template uses the Koji database, the database views will be displayed in a panel, and the records for each view can be displayed.
 *Database* also gives you an easy way to delete records.
 
-==== *In-app purchase receipts*
+==== In-app purchase receipts
 
 If *in-app purchases* is implemented in your template, the *in-app purchase receipts* panel allows you to view and delete receipts.
 
-==== *Auth grants*
+==== Auth grants
 
-If your template uses auth grants, the *Auth grants* panel will display them.
+If your template has any auth grants, *Auth grants* displays them.
+It also allows you to easily delete auth grants.
