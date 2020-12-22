@@ -1,18 +1,32 @@
 = Anatomy of a Koji project
 :page-slug: projects
-:page-description: Description of the unique files and elements in a Koji project that power the magic of customization.
+:page-description: Description of the unique features and files in a Koji project that power the magic of customization.
 
-Koji provides you with an environment for developing and publishing an application in your browser.
-The project environment includes a terminal connected to a running container with all the familiar tools, the same code editor that powers VSCode, and tools to help you deploy and publish your application to https://withkoji.com[withkoji.com].
+A Koji project contains everything that defines a template, including the source code, build configurations, and unique configuration files that power Koji features.
+When you fork a scaffold or another template to start your new template, the Koji platform creates a clone of the underlying project and opens it in the Koji editor.
 
-== Project directory
+As you add in the logic for your template, you must consider what additional features to offer, and then design experiences for different types of users and the different ways they might use it.
+This page provides an overview of the functional considerations for a Koji template and a description of the required files and elements to power them.
 
-The project directory at `/usr/src/app` includes a Git repository for your project with two remotes.
+//Koji provides you with an environment for developing and publishing an application in your browser.
+//The project environment includes a terminal connected to a running container with all the familiar tools, the same code editor that powers VSCode, and tools to help you deploy and publish your application to https://withkoji.com[withkoji.com].
 
-. `origin`: The git remote from which projects are built and deployed.
-. `upstream`: The git remote from which projects are forked (a repository on GitHub for example).
+//== Koji template features and functions
 
-Run `git remote -v` to see the remotes in your project.
+== Git repositories
+
+Koji projects use Git repositories for source control.
+A project directory on the Koji CDN stores the underlying code base and configuration files for each template.
+When you fork a scaffold or template, the underlying project directory is cloned, and your new project directory is associated with the following Git repositories.
+
+* `origin` – The Git repository for your project.
+Your template is built and deployed from this repository.
+To work locally, you can clone this repository and push changes to it.
+* `upstream` – The Git repository from which your project was forked.
+To propose changes to the template you forked, you can create pull requests for this repository.
+
+When you open your project in the Koji editor, the development environment includes the project directory at `/usr/src/app` and Git remotes for these repositories.
+To see the remotes from the editor, you can open a terminal tab and run `git remote -v`.
 
 [source,bash]
 ----
@@ -21,33 +35,55 @@ origin  https://projects.koji-cdn.com/8a129043-4c22-4be7-875f-38b422008695.git (
 origin  https://projects.koji-cdn.com/8a129043-4c22-4be7-875f-38b422008695.git (push)
 upstream        https://projects.koji-cdn.com/e4d6b4bf-781a-4a49-9f0f-1d9cf3bbb7ff.git (fetch)
 upstream        https://projects.koji-cdn.com/e4d6b4bf-781a-4a49-9f0f-1d9cf3bbb7ff.git (push)
-read instructions for syncing with an upstream repo here
 ----
 
-== README
+== Project directory structure and contents
 
-The `README.md` file is required at the top level your project directory.
-This markdown file documents the tech stack and any relevant information to aid someone working with the code.
-
-== .koji directory
-
-The `.koji` directory is where your configuration and script files live, including project configuration for development and deploy and customizations for Visual Customization Controls (VCCs).
+A typical Koji project contains the `.koji` directory, which includes the configuration and build files for your template, a directory for each service in the application, and a README file.
+For example:
 
 [source,console]
 ----
-.
+.koji
 ├── customization
 │   ├── about_customization.md
-│   ├── buttons.json
 │   ├── colors.json
 │   ├── images.json
-│   ├── metadata.json
 │   ├── settings.json
-│   └── sounds.json
 ├── project
 │   ├── about_project.md
 │   ├── deploy.json
-│   └── develop.json
+│   ├── develop.json
+│   └── entitlements.json
+frontend
+├── common
+├── package-lock.json
+├── package.json
+README.md
+----
+
+For your project to be built and deployed as a template on the Koji platform, the only required files are `develop.json` and `deploy.json`, in the `.koji/project` directory, and `README.md`, at the top level.
+
+In addition, specific files and elements are required to enable the Koji features that are implemented in your template, including JSON files for supporting custom values, in the `.koji/customization` directory, and the `entitlements.json` file, in the `.koji/project` directory.
+
+////
+=== .koji directory
+
+The `.koji` directory contains the configuration and script files, including project configuration for development and deploy and customizations for Visual Customization Controls (VCCs).
+
+[source,console]
+----
+.koji
+├── customization
+│   ├── about_customization.md
+│   ├── colors.json
+│   ├── images.json
+│   ├── settings.json
+├── project
+│   ├── about_project.md
+│   ├── deploy.json
+│   ├── develop.json
+│   └── entitlements.json
 ----
 
 [IMPORTANT]
@@ -58,10 +94,11 @@ The only required files for Koji to work are:
 * `develop.json`: Lets the Koji editor know how your project development works (project path, port, start command, and events).
 * `deploy.json`: Lets deploy know where your project build works (build path, port, build commands).
 ====
+////
 
 === develop.json
 
-`.koji/project/develop.json` contains development configuration for your project.
+The `.koji/project/develop.json` file contains the development configuration for your project.
 
 [source,JSON]
 ----
@@ -154,3 +191,8 @@ The following file would be saved as `example.json` and displayed in the left pa
 ----
 
 If you are using the <<withkoji-vcc-package#>> package, you can access this property with `instantRemixing.get(['example', 'param'])`.
+
+=== README
+
+The `README.md` file is required at the top level your project directory.
+This markdown file should document the tech stack and any relevant information to aid someone working with the code.
