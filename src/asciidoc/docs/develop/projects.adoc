@@ -6,14 +6,14 @@ A Koji project contains everything that defines a template, including the source
 When you fork a scaffold or another template to start your new template, the Koji platform creates a clone of the underlying project and opens it in the Koji editor.
 
 As you add in the logic for your template, you must consider what additional features to offer, and then design experiences for different types of users and the different ways they might use it.
-This page provides an overview of the functional considerations for a Koji template and a description of the required files and elements to power them.
+This page provides an overview of the functional considerations for a Koji template and a description of the required files and elements that power them.
 
 //Koji provides you with an environment for developing and publishing an application in your browser.
 //The project environment includes a terminal connected to a running container with all the familiar tools, the same code editor that powers VSCode, and tools to help you deploy and publish your application to https://withkoji.com[withkoji.com].
 
 //== Koji template features and functions
 
-== Git repositories
+== Source control
 
 Koji projects use Git repositories for source control.
 A project directory on the Koji CDN stores the underlying code base and configuration files for each template.
@@ -39,7 +39,7 @@ upstream        https://projects.koji-cdn.com/e4d6b4bf-781a-4a49-9f0f-1d9cf3bbb7
 
 == Project directory structure and contents
 
-A typical Koji project contains the `.koji` directory, which includes the configuration and build files for your template, a directory for each service in the application, and a README file.
+A typical Koji project contains the `.koji` directory, which includes the configuration and build files for your template, a directory for each service in the template, and a README file.
 For example:
 
 [source,console]
@@ -62,90 +62,47 @@ frontend
 README.md
 ----
 
-For your project to be built and deployed as a template on the Koji platform, the only required files are `develop.json` and `deploy.json`, in the `.koji/project` directory, and `README.md`, at the top level.
+For your project to be built and deployed as a template on the Koji platform, the required files are `develop.json` and `deploy.json`, in the `.koji/project` directory, and `README.md`, at the top level.
 
-In addition, specific files and elements are required to enable the Koji features that are implemented in your template, including JSON files for supporting custom values, in the `.koji/customization` directory, and the `entitlements.json` file, in the `.koji/project` directory.
+Additional files are required to enable certain Koji features, if they are implemented in your template.
+These requirements include the JSON files for supporting custom values, in the `.koji/customization` directory, and the `entitlements.json` file, in the `.koji/project` directory.
 
 ////
 === .koji directory
 
 The `.koji` directory contains the configuration and script files, including project configuration for development and deploy and customizations for Visual Customization Controls (VCCs).
 
-[source,console]
-----
-.koji
-├── customization
-│   ├── about_customization.md
-│   ├── colors.json
-│   ├── images.json
-│   ├── settings.json
-├── project
-│   ├── about_project.md
-│   ├── deploy.json
-│   ├── develop.json
-│   └── entitlements.json
-----
-
-[IMPORTANT]
-====
-The only required files for Koji to work are:
-
 * `README.md`: Displays project information in the project overview.
 * `develop.json`: Lets the Koji editor know how your project development works (project path, port, start command, and events).
 * `deploy.json`: Lets deploy know where your project build works (build path, port, build commands).
-====
+
 ////
 
 === develop.json
 
 The `.koji/project/develop.json` file contains the development configuration for your project.
+It specifies the project path, port, start command, and events for the services in your template.
+For example:
 
-[source,JSON]
+[source,json]
 ----
-{
-  "develop": {
-    "frontend": {
-      "path": "frontend",
-      "port": 8080,
-      "startCommand": "npm start"
-    }
-  }
-}
+include::../_includes/develop.json[tags=**,indent=0]
 ----
 
-In this file the important things to look at are:
+The file defines the following properties for each service:
 
-* `path`: Indicates the directory for your frontend and backend.
-* `port`:  Matches the port on which your development server is running.
-* `startCommand` for your application is placed in the start script of your package.json (for npm start to work).
+* `path` – Indicates the source code directory for the service.
+* `port` – Indicates the port on which the development server will run.
+* `startCommand` – Works with the start script defined in the `package.json` file of the service.
 
 === deploy.json
 
-`.koji/project/deploy.json` contains deploy configuration for your project.
+`.koji/project/deploy.json` contains deployment configuration for your project.
+It specifies the build path, port, and build commands for the services in your template.
 
-[source,JSON]
+[source,json]
 ----
-{
-  "deploy":  {
-    "frontend":  {
-      "output":  "frontend/build",
-      "commands":  [
-        "cd frontend",
-        "npm install",
-        "export NODE_ENV=production && npm run compile"
-      ],
-    },
-    "backend":  {
-      "output":  "backend/dist",
-      "type": "dynamic",
-      "commands":  [
-        "cd backend",
-        "npm install",
-        "export NODE_ENV=production && npm run compile"
-      ]
-    }
-  }
-}
+include::../_includes/deploy.json[tags=**,indent=0]
 ----
 
 In `deploy.json` make sure to check that:
@@ -157,7 +114,6 @@ In `deploy.json` make sure to check that:
 
 The .json files in this directory each have a very specific schema that controls how the Koji editor deals with files.
 develop.json deals with setting up your editor so you will have the best editing experience and deploy.json tells Koji how to turn your code into a live app.
-These files have the following schema:
 
 === .koji/customization
 
@@ -192,7 +148,7 @@ The following file would be saved as `example.json` and displayed in the left pa
 
 If you are using the <<withkoji-vcc-package#>> package, you can access this property with `instantRemixing.get(['example', 'param'])`.
 
-=== README
+=== README.md
 
 The `README.md` file is required at the top level your project directory.
 This markdown file should document the tech stack and any relevant information to aid someone working with the code.
