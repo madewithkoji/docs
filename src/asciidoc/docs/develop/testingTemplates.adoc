@@ -266,8 +266,8 @@ The info for each event includes:
 
 If you open a template and select the *Remix* context, here's an example of some events that you might see in the events pane:
 
-[source, text]
-----
+[EXAMPLE]
+====
 TEMPLATE
 Ready
 
@@ -282,7 +282,7 @@ PATH
 [general, title]
 NEW VALUE
 ""
-----
+====
 
 If you click in an editable field on the remixing page, a *Clicked* event will appear in the event pane.
 For example:
@@ -321,7 +321,9 @@ The *Info and Features pane* includes the following panels.
 
 The *Environment info* panel displays your template's *App Id*, *Frame URL*, and *VCC editor source*.
 
-The *Environment info* panel allows you to edit the *VCC editor source*.
+You can change the frame URL by clicking *Modify > Custom URL*.
+
+You can also change the *VCC editor source*.
 When you publish a template, the VCC editor data defines the VCCs available in the template.
 So when the template calls something like `InstantRemixing.onPresentControl(['general', 'photo'])`, the editor looks in the data for the `general.photo` path and knows to show the image VCC.
 If you're working on a new version of a template that uses different VCCs from the currently published template, and you're using the debugger to override the URL and debug something running locally or running in the web IDE, you can edit the *VCC editor source* to override the live data.
