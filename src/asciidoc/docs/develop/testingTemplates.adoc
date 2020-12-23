@@ -201,73 +201,50 @@ The debugger will open in a new browser tab.
 
 === Debugging contexts
 
-A set of tabs allow you to select the context you want to debug.
-See <<_using_live_previews>> for an explanation of contexts.
-For example, if you select *Remix*, tools for debugging the remix context will be displayed.
+Your template might provide different experiences for different situations, or "contexts."
+Select the tab of a context to display relevant tools for debugging it.
+For example, select *Remix*, to display tools for debugging the remixing experience.
 
-The following contexts are available for selection.
-If the selected context is not enabled, a message will be displayed saying that it is unavailable.
+TIP: If the selected context is not enabled in the template, a message will be displayed saying that it is unavailable.
+For more about contexts, see <<_using_live_previews>>.
 
-==== Default
+Many contexts display an events pane for debugging communication between the platform and the template.
+For information on how to use this tool, see <<_viewing_events>>.
 
-Select *Default* to debug the running template.
-You can view real-time events from the template and the platform and filter for events related to specific features, such as in-app purchases and auth grants.
-See <<_viewing_events>>.
+The following contexts are available in the Koji debugger:
 
-==== Remix
-
-Select *Remix* to debug the editable elements of your template.
+* *Default* – Debug the running template.
+You can view real-time events from the template and the platform.
+You can also filter for events related to specific features, such as in-app purchases and auth grants.
+* *Remix* – Debug the editable elements of your template.
 You can view real-time events related to your changes.
-See <<_viewing_events>>.
-
-==== Thumbnail
-
-Selecting the *Thumbnail* shows you exactly how your template will look if you share it on social media.
-See <<rich-preview-image#>>.
-
-*Thumbnail* shows previews in both square and rectangular format.
-
-==== Admin
-
-Select *Admin* to debug the admin page, if you defined one in your template.
+* *Thumbnail* – See exactly how your template will look if you share it on social media.
+*Thumbnail* shows sharing images in both square and rectangular format.
+For information about how to customize the image, see <<rich-preview-image#>>.
+* *Admin* – Debug the admin page, if you defined one in your template.
 You can view real-time events related to the admin context.
-See <<_viewing_events>>.
-
-==== About
-
-Select *About* to debug the page that appears when the user clicks *Remix this Koji*, if you defined one in your template.
+* *About* – Debug the page that appears when the user clicks *Remix this Koji*, if you defined one in your template.
 You can view real-time events related to the about context.
-See <<_viewing_events>>.
-
-==== Sticker
-
-Select *Sticker* to debug how your template behaves when it's embedded inside another template.
-You can view real-time events related to the sticker context.
-See <<_viewing_events>>.
-
-==== Dynamic Receipt
-
-Select *Dynamic Receipt* to debug the receipts that are sent to the buyer and seller when the in-app purchases feature is implemented in the template.
+* *Sticker* – Debug how your template behaves when it's embedded inside another template.
+* *Dynamic Receipt* – Debug the receipts that are sent to the buyer and seller, when in-app purchases are implemented with dynamic receipts.
 You can view real-time events related to the receipts.
-See <<withkoji-koji-iap-package#, in-app purchases>>.
 
 === Viewing events
 
 The template generates events that are sent to the Koji platform, and the Koji platform generates events that are sent to the template.
-In most cases, selecting one of the contexts in the debugger displays an events pane which shows the events associated with that context.
-An events pane allows you to see in real time the events that are generated as you interact with the template in the selected context.
+In most cases, selecting one of the contexts in the debugger displays an events pane where you can see these events in real time, as you interact with the template in the selected context.
 
-The info for each event includes:
+The information for each event includes:
 
 * The type of event – PLATFORM or TEMPLATE
 * The name of the event – For example: *Checked*
 * Properties set by the event (optional) – This may include descriptions of the properties.
 * New values for the properties (optional) – The new values for the properties set by the event.
 
-If you open a template and select the *Remix* context, here's an example of some events that you might see in the events pane:
+Here's an example of the events that you might see when you open the *Remix* context:
 
-[EXAMPLE]
 ====
+....
 TEMPLATE
 Ready
 
@@ -282,24 +259,26 @@ PATH
 [general, title]
 NEW VALUE
 ""
+....
 ====
 
 If you click in an editable field on the remixing page, a *Clicked* event will appear in the event pane.
 For example:
 
-[source, text]
-----
+====
+....
 TEMPLATE
 Clicked
 POSITION
 (131, 583)
-----
+....
+====
 
 If you then change the value of the field you clicked, a *Set Value* event will appear.
 For example:
 
-[source, text]
-----
+====
+....
 TEMPLATE
 Set value
 PATH
@@ -308,98 +287,31 @@ NEW VALUE
 "21.00"
 TYPE
 Skip update
-----
+....
+====
 
 === Info and Features
 
-You can view and modify environment info for your template, as well as settings and data for implemented features.
+You can view and modify environment information for your template, as well as settings and data for implemented features.
 If a feature is not implemented, a message indicates that no data was found for it.
 
 The *Info and Features pane* includes the following panels.
 
 ==== Environment info
 
-The *Environment info* panel displays your template's *App Id*, *Frame URL*, and *VCC editor source*.
+The *Environment info* panel displays your template's *App Id*, *Frame URL*, and *VCC editor source* and enables you to override settings for the debugging session.
 
-You can change the frame URL by clicking *Modify > Custom URL*.
+To change the frame URL, click *Modify > Custom URL*.
+You can use this override to debug a template that is running locally or in a staging environment (in the Koji editor).
 
-You can also change the *VCC editor source*.
-When you publish a template, the VCC editor data defines the VCCs available in the template.
-So when the template calls something like `InstantRemixing.onPresentControl(['general', 'photo'])`, the editor looks in the data for the `general.photo` path and knows to show the image VCC.
-If you're working on a new version of a template that uses different VCCs from the currently published template, and you're using the debugger to override the URL and debug something running locally or running in the web IDE, you can edit the *VCC editor source* to override the live data.
+To change the *VCC editor source*, click *Modify* and select *Override and use different VCC editor data*.
+The VCC data is displayed in JSON format.
+Then, you can directly edit the JSON code to override the live values.
 
-You edit the *VCC editor source* by clicking *Modify* and selecting *Override and use different VCC editor data*.
-This displays the data in JSON format.
-You can directly edit the JSON code to override the live values.
+If you're working on a new version of a template that uses different VCCs from the currently published template, you can override the URL and edit the VCC data to test your changes without republishing the template.
 
-For example, suppose the VCC editor data for a template reads as follows:
-
-[source, json]
-----
-[
-  {
-    "key": "general",
-    "name": "General",
-    "fields": [
-      {
-        "key": "name",
-        "name": "Name",
-        "type": "text"
-      },
-      {
-        "key": "title",
-        "name": "Title",
-        "type": "text"
-      },
-      {
-        "key": "description",
-        "name": "Description",
-        "type": "text"
-      },
-      {
-        "key": "profileSrc",
-        "name": "Profile Image",
-        "type": "image"
-      },
-      {
-        "key": "newMessageBackground",
-        "name": "New Message Background",
-        "type": "image"
-      },
-      {
-        "key": "photo",
-        "name": "Photo",
-        "type": "image"
-      },
-      {
-        "key": "video",
-        "name": "Video",
-        "type": "video"
-      },
-      {
-        "key": "price",
-        "name": "Price Per Message",
-        "type": "text"
-      }
-    ],
-    "source": "general.json"
-  }
-]
-----
-
-The following portion of the JSON data tells Koji that the template will use a profile image and, when remixing, the prompt for that image will be "Profile Image":
-
-[source, json]
-----
-{
-    "key": "profileSrc",
-    "name": "Profile Image",
-    "type": "image"
-},
-----
-
-Without using the override, you would need to update the VCC definition and republish in order to preview the change.
-Overriding the VCC data enables you to test the new VCC definition without republishing the template.
+For example, suppose the new version of the template uses a profile video where the previous version used a profile image.
+You can override the live data by changing the type, from `image` to `video`, and changing the name, from `Profile Image` to `Profile Video`.
 
 ==== Database
 
