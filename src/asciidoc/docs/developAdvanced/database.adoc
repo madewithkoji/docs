@@ -86,7 +86,7 @@ Then, select the collection you want to view.
 +
 TIP: If a custom database view is defined, you can toggle between the view and the raw data.
 
-* To access the data for a Koji you created, use the *Koji button* in the top right, and then go to **More > Manage this Koji > View database**.
+* To access the data for a Koji you created, use the *Koji button* in the top right, and then go to **Settings > View database**.
 
 == Related resources
 

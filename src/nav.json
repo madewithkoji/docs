@@ -77,6 +77,10 @@
             {
               "name": "Extending your template",
               "slug": "start-guide-2"
+            },
+            {
+              "name": "News for Koji developers",
+              "slug": "developer-updates"
             }
           ]
         },
@@ -278,10 +282,6 @@
           "name": "About Koji for developers",
           "root": "/about",
           "items": [
-            {
-              "name": "Changelog",
-              "slug": "developer-updates"
-            },
             {
               "name": "Contributing to the developer site",
               "slug": "contribute-koji-developers"
