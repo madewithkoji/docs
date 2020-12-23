@@ -226,6 +226,7 @@ You can view real-time events related to the admin context.
 * *About* – Debug the page that appears when the user clicks *Remix this Koji*, if you defined one in your template.
 You can view real-time events related to the about context.
 * *Sticker* – Debug how your template behaves when it's embedded inside another template.
+You can view real-time events related to the sticker context.
 * *Dynamic Receipt* – Debug the receipts that are sent to the buyer and seller, when in-app purchases are implemented with dynamic receipts.
 You can view real-time events related to the receipts.
 
