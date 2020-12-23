@@ -8,7 +8,7 @@ TIP: To help improve the Koji developer experience, please share your thoughts, 
 
 == 2020
 
-=== December 22
+=== December 23
 
 * The Koji debugger is now available to enable live <<testing-templates#,testing and debugging>> in a production environment.
 To open the debugger, go to https://withkoji.com/creator/repositories[My repositories] and click *Open debugger* next to the project you want to test.
@@ -19,11 +19,14 @@ Features include:
 ** Thumbnail debugging that uses the same APIs as the live screenshot capture, so you can see exactly how sharing images will look.
 ** Ability to point the debugging session at a development environment, so you can develop and debug remixing without deploying a new version.
 * In the <<withkoji-database-package#>> package, the new `transcodeAsset` and `getTranscodeStatus` methods are available for programmatically uploading and transcoding HTTP Live Streaming (HLS) video, enabling more ways to use uploaded videos in your templates.
-* In the <<withkoji-koji-iap-package#>> package, the new `notificationMessage` parameter enables you to send custom messages when updating receipts.
+* The following features are now available in the <<withkoji-koji-iap-package#>> package.
+** The new `notificationMessage` parameter enables you to send custom messages when updating receipts.
+** The new `resolveReceiptsBySku` method retrieves all the receipts for a product, for an easier way to aggregate sales data.
 * On the developer site, new content is available about <<custom-domains#,custom domains>>.
 Also, *News updates for Koji developers*, formerly the Changelog, has been moved.
 * The <<image#,image>> and <<sound#,sound>> VCC types now enable you to hide all asset packs and VCC extensions in cases where they do not make sense (for example, templates for selling premium assets).
 To use this feature in your templates, enable the `hideExtensions` type option.
+* In the <<withkoji-koji-auth-sdk#>> package, the new `usageDescription` parameter enables you to display custom messages when requesting authorization grants.
 * On the Koji platform, the following usability updates improve the remixing experience for creators.
 ** When remixing, the interactive preview mode now handles auth and in-app purchase events by displaying an alert, for better user feedback.
 ** About cards now always open in the full frame, instead of modal windows.
