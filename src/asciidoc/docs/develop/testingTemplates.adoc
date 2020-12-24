@@ -8,6 +8,7 @@ For example, you can remix, test backend routes, and preview what your template 
 
 Typically, you begin testing in the Koji editor.
 Later, you'll want to publish the template as *Unlisted*, so you can test it in a production environment before giving access to general users.
+After you publish your Koji for the first time, you will also have access to the Koji debugger, which provides many additional tools for troubleshooting.
 
 == Testing in the Koji editor
 
@@ -185,3 +186,143 @@ If you publish your template as *Unlisted*, you can test it under exactly the sa
 . Click *Publish*.
 . When publishing is completed, click the link to view and test your updated template.
 . When you're ready to give general users access, clear *Unlisted* and republish the template.
+
+== Using the Koji debugger
+
+The Koji debugger enables live testing and debugging in a production environment.
+It allows you to follow the communication happening between the Koji platform and the template.
+
+[NOTE]
+The debugger is only available after you publish your template for the first time.
+
+To open the debugger, go to *My repositories* and click *Open debugger* next to the project that you want to test.
+You can also open it by clicking *Open debugger* in the Koji editor.
+The debugger will open in a new browser tab.
+
+=== Debugging contexts
+
+Your template might provide different experiences for different situations, or "contexts."
+Select the tab of a context to display relevant tools for debugging it.
+For example, select *Remix*, to display tools for debugging the remixing experience.
+
+TIP: If the selected context is not enabled in the template, a message will be displayed saying that it is unavailable.
+For more about contexts, see <<_using_live_previews>>.
+
+Many contexts display an events pane for debugging communication between the platform and the template.
+For information on how to use this tool, see <<_viewing_events>>.
+
+The following contexts are available in the Koji debugger:
+
+* *Default* – Debug the running template.
+You can view real-time events from the template and the platform.
+You can also filter for events related to specific features, such as in-app purchases and auth grants.
+* *Remix* – Debug the editable elements of your template.
+You can view real-time events related to your changes.
+* *Thumbnail* – See exactly how your template will look if you share it on social media.
+*Thumbnail* shows sharing images in both square and rectangular format.
+For information about how to customize the image, see <<rich-preview-image#>>.
+* *Admin* – Debug the admin page, if you defined one in your template.
+You can view real-time events related to the admin context.
+* *About* – Debug the page that appears when the user clicks *Remix this Koji*, if you defined one in your template.
+You can view real-time events related to the about context.
+* *Sticker* – Debug how your template behaves when it's embedded inside another template.
+You can view real-time events related to the sticker context.
+* *Dynamic Receipt* – Debug the receipts that are sent to the buyer and seller, when in-app purchases are implemented with dynamic receipts.
+You can view real-time events related to the receipts.
+
+=== Viewing events
+
+The template generates events that are sent to the Koji platform, and the Koji platform generates events that are sent to the template.
+In most cases, selecting one of the contexts in the debugger displays an events pane where you can see these events in real time, as you interact with the template in the selected context.
+
+The information for each event includes:
+
+* The type of event – PLATFORM or TEMPLATE
+* The name of the event – For example: *Checked*
+* Properties set by the event (optional) – This may include descriptions of the properties.
+* New values for the properties (optional) – The new values for the properties set by the event.
+
+Here's an example of the events that you might see when you open the *Remix* context:
+
+====
+....
+TEMPLATE
+Ready
+
+PLATFORM
+Changing remix state
+VALUE
+Remixing
+
+TEMPLATE
+Set value
+PATH
+[general, title]
+NEW VALUE
+""
+....
+====
+
+If you click in an editable field on the remixing page, a *Clicked* event will appear in the event pane.
+For example:
+
+====
+....
+TEMPLATE
+Clicked
+POSITION
+(131, 583)
+....
+====
+
+If you then change the value of the field you clicked, a *Set Value* event will appear.
+For example:
+
+====
+....
+TEMPLATE
+Set value
+PATH
+[general, goal]
+NEW VALUE
+"21.00"
+TYPE
+Skip update
+....
+====
+
+=== Info and Features
+
+You can view and modify environment information for your template, as well as settings and data for implemented features.
+If a feature is not implemented, a message indicates that no data was found for it.
+
+The *Info and Features pane* includes the following panels.
+
+==== Environment info
+
+The *Environment info* panel displays your template's *App Id*, *Frame URL*, and *VCC editor source* and enables you to override settings for the debugging session.
+
+To change the frame URL, click *Modify > Custom URL*.
+You can use this override to debug a template that is running locally or in a staging environment (in the Koji editor).
+
+To change the *VCC editor source*, click *Modify* and select *Override and use different VCC editor data*.
+The VCC data is displayed in JSON format.
+Then, you can directly edit the JSON code to override the live values.
+
+If you're working on a new version of a template that uses different VCCs from the currently published template, you can override the URL and edit the VCC data to test your changes without republishing the template.
+
+For example, suppose the new version of the template uses a profile video where the previous version used a profile image.
+You can override the live data by changing the type, from `image` to `video`, and changing the name, from `Profile Image` to `Profile Video`.
+
+==== Database
+
+If your template uses the Koji database, the database views will be displayed in a panel, and the records for each view can be displayed.
+*Database* also gives you an easy way to delete records.
+
+==== In-app purchase receipts
+
+If in-app purchases are implemented in your template, the *In-app purchase receipts* panel allows you to view and delete receipts.
+
+==== Auth grants
+
+If auth grants are implemented in your template, the *Auth grants* panel allows you to view and delete them.
