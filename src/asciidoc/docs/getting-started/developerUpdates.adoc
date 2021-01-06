@@ -11,25 +11,27 @@ TIP: To help improve the Koji developer experience, please share your thoughts, 
 === January 8
 
 * A new https://help.withkoji.com/[Help Center] is now available for finding answers to general platform questions, such as how withdrawals work.
-* The new project overview page lets you access key information about your templates without loading them in the Koji editor.
+* For template developers, the following new features and navigation updates are available.
+** The new project overview page lets you access key information about your templates without loading them in the Koji editor.
 For example, open the debugger, or view the build logs, commit history, and other git info.
 As part of this enhancement, the *My Repositories* page has changed to *My Projects* and has an updated layout.
 To access the project overview for one of your templates, go to https://withkoji.com/developer/projects[My Projects] and click the desired project.
 +
 image::project-overview-jan2021.png[Project overivew page]
-* The new Developer Tools view shows the advanced details and metadata about any Koji.
+** The new Developer Tools view shows the advanced details and metadata about any Koji.
 To access it, tap the Koji button, and then tap *More > Developer Tools*.
-* For creators, a new dashboard view provides access to information and settings for a Koji you create.
-To access it, tap the Koji button, and then tap *Koji Settings*.
-* In the <<withkoji-vcc-package#>> package, the new `share` method enables templates to open the sharing menu.
-* The new `CustomMetadata` entitlement enables a custom title and description when sharing a Koji on social media.
+** The new `CustomMetadata` entitlement enables a custom title and description when sharing a Koji on social media.
 See <<rich-preview-image#>>.
-* The built-in <<vcc-overview#,Visual Customization Controls>> (VCCs) were updated with a more streamlined look and feel to improve the remixing experience.
-* Sharing your Koji profile page on social media now renders a rich preview.
+** In the <<withkoji-vcc-package#>> package, the new `share` method enables templates to open the sharing menu.
+* For all creators, the following new features and navigation updates are available.
+** A new dashboard view provides access to information and settings for a Koji you create.
+To access it, tap the Koji button, and then tap *Koji Settings*.
+** The built-in <<vcc-overview#,Visual Customization Controls>> (VCCs) were updated with a more streamlined look and feel to improve the remixing experience.
+** Sharing your Koji profile page on social media now renders a rich preview.
 * The following bugs have been fixed.
 ** When uploading media in a VCC, it is no longer possible to accidentally dismiss the control and cancel the upload.
 ** Lineage now correctly computes all descendants, instead of only the Koji’s children.
-** Scrolling the home page no longer causes templates to load at the wrong scroll offset.
+** Scrolling the Koji home page no longer causes templates to load at the wrong scroll offset.
 
 == 2020
 
