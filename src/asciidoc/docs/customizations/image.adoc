@@ -3,7 +3,6 @@
 :page-description: Standard VCC for selecting an image.
 :figure-caption!:
 
---
 * Users can
 //tag::description[]
 select an image by selecting from the available options, uploading, or entering a URL.
@@ -13,7 +12,6 @@ select an image by selecting from the available options, uploading, or entering 
 * Remember to keep images small as larger images will take much longer to load.
 
 image::imageVCC.png[title="Image VCC"]
---
 
 == Sample image VCC
 

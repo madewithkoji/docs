@@ -3,7 +3,6 @@
 :page-description: Standard VCC for selecting a numeric value within a certain range.
 :figure-caption!:
 
---
 * Users can
 //tag::description[]
 drag a slider to specify a numeric value within a certain range.
@@ -11,7 +10,6 @@ drag a slider to specify a numeric value within a certain range.
 * You can configure the minimum value, maximum value, and default increment/step size.
 
 image::rangeVCC.png[title="Range VCC"]
---
 
 == Sample range VCC
 
