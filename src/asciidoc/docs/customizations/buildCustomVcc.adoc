@@ -203,7 +203,7 @@ The name and thumbnail make it easier for other developers to find your custom V
 For a VCC, a custom thumbnail might be a better representation of the functionality than the automatically generated screenshot.
 . Click *Publish*.
 . When the publishing process is completed, click the link to open your live template.
-. Click the *Koji* button in the top right, and then go to *Settings > Custom domains*.
+. Click the *Koji* button in the top right, and then go to *Koji Settings > Custom Domains*.
 . In the top right, click *New*.
 . For the type of custom domain, select *Subdomain*, and then click *Next*.
 . For the root domain, select *koji-vccs.com*.
