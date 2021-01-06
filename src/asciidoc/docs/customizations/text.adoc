@@ -3,16 +3,15 @@
 :page-description: Standard VCCs for entering custom text.
 :figure-caption!:
 
-[.float-group]
 --
-image::textVCC.png[title="Text VCC",role="img-overview"]
-
 * Users can
 //tag::description[]
 change text by clicking the input field and entering the new text.
 //end::description[]
 * The `text` VCC type supports short text that does not contain line breaks.
 * The `textarea` VCC type supports longer text and allows line breaks in the text entry.
+
+image::textVCC.png[title="Text VCC"]
 --
 
 == Sample text VCC
