@@ -330,10 +330,10 @@ When you are confident that your template is able to function well within a feed
 }
 ----
 <1> `FeedEvents` – Indicates that the template can be displayed the Koji feed.
-<2> `AboutContext` – (Optional) Displays a modal window when the template is remixed, which enables a remix landing page (About page).
+<2> `AboutContext` – (Optional) Displays a distinct experience when the template is remixed (About page).
 See <<_context>>.
 When this entitlement is enabled, the template must use <<.createRemix>> to trigger a remix from the About page, or the Koji will not be remixable.
-<3> `AdminContext` – (Optional) Enables a distinct experience when the template is viewed by the creator (viewed with the `context=admin` URL parameter).
+<3> `AdminContext` – (Optional) Enables a distinct experience for the creator of a Koji (when viewed with the `context=admin` URL parameter).
 See <<_context>>.
 <4> `StickerContext` – (Optional) Enables a distinct experience when the template is embedded in another Koji as a sticker (viewed with the `context=sticker` URL parameter).
 See <<_context>>.
@@ -497,7 +497,7 @@ To use this context:
 ** *Define an admin experience* – Enable the `AdminContext` <<_feedsdk, entitlement>>, and define a view intended for the creator of the Koji.
 For example, enable the creator to respond to questions from users.
 +
-NOTE: When the `AdminContext` entitlement is enabled, the creator can access the admin view by using the *Koji button* in the top right, and then going to **More > Manage this Koji > Admin dashboard**.
+NOTE: When the `AdminContext` entitlement is enabled, the creator can access the admin view by using the *Koji button* in the top right, and then going to **Settings > Admin dashboard**.
 
 ** *Load the admin experience* – Load the admin experience only when viewed with the URL parameter `context=admin` and when the current user is the creator of the Koji.
 +

@@ -131,7 +131,7 @@ const token = await auth.getToken();
 ----
 
 [.hcode, id=".getToken", reftext="getToken"]
-=== .getToken(grants, allowAnonymous)
+=== .getToken(grants, allowAnonymous, usageDescription)
 
 Gets a token identifying the current user, and requests the specified authorization grants for the current Koji.
 
@@ -145,6 +145,7 @@ See <<_authgrantcapability>>.
 * `allowAnonymous` – _Boolean_, (Optional) determines how to proceed for a user who is not logged in to Koji.
 If set to `true`, the returned token will be `null`.
 If set to `false` or undefined, the user is prompted to log in before a token is generated.
+* `usageDescription` – _String_, (Optional) custom message to display when requesting the grant.
 
 ==== Returns
 

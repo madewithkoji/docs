@@ -10,6 +10,8 @@ select an image by selecting from the available options, uploading, or entering 
 * If the image is loaded through the *Upload* section, the image can be resized or the background can be removed and the image will be stored with the application.
 * If the image is loaded through the *Advanced* section, the application will use the image at the specified URL. Keep in mind that if the link dies, the image will not appear.
 * Remember to keep images small as larger images will take much longer to load.
+* Configure a <<_custom_image_search,custom image search>> by passing additional type options.
+* Enable the optional `hideExtensions` type option to hide all asset packs and VCC extensions in cases where they do not make sense (for example, templates for selling premium images).
 
 image::imageVCC.png[title="Image VCC"]
 
@@ -21,7 +23,10 @@ image::imageVCC.png[title="Image VCC"]
   "key": "myImage",
   "name": "My Image",
   "description": "This is my image description",
-  "type": "image"
+  "type": "image",
+  "typeOptions": {
+      "hideExtensions": true
+  }
 }
 ----
 
