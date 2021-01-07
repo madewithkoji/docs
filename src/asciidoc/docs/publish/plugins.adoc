@@ -18,7 +18,7 @@ In addition to allowing the creator to easily add functionality to a Koji, plugi
 * Search engines and social crawlers often do not render JavaScript when indexing pages.
 For instance, if you're using React, a bot may only see the root div and an "enable JavaScript" message.
 A plugin can overcome this limitation by injecting keywords into a webpage's header.
-Because Koji plugins are computed server-side, they are available to all bots without any additional 
+Because Koji plugins are computed server-side, they are available to all bots without any additional
 configuration or third-party services.
 
 * A plugin can inject a new file at runtime, simplifying the creation of things like web app manifests.
@@ -38,6 +38,6 @@ There is no way to enable or disable plugins on a per-service basis.
 == Enabling a plugin for your Koji
 
 . Open the Koji and click the Koji button.
-. Go to *More > Manage this Koji > Plugins*.
+. Go to *Settings > Plugins*.
 . Choose a plugin from the list of available plugins.
 . Configure and enable the plugin.
