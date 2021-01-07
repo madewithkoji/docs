@@ -32,10 +32,6 @@ The *Remix* context is always enabled, even if <<instant-remixing#,instant remix
 This context is always enabled.
 * *Admin*, *About*, and *Sticker* – Display previews of standard contexts, if you've enabled the associated entitlements.
 For more on contexts, see <<withkoji-vcc-package#_context>>.
-+
-NOTE: If you create a custom context for your template, you can preview it in the *Debugger*.
-See <<_debugging_contexts>>.
-
 * *Buyer receipt* and *Seller receipt* – Displays previews of the transaction receipts for the buyer and seller.
 These contexts are available if you've implemented <<withkoji-koji-iap-package#_iap,in-app purchases>> and enabled the dynamic receipts entitlement.
 
@@ -176,10 +172,6 @@ You can view real-time events related to the about context.
 You can view real-time events related to the sticker context.
 * *Dynamic Receipt* – Debug the receipts that are sent to the buyer and seller, when in-app purchases are implemented with dynamic receipts.
 You can view real-time events related to the receipts.
-
-TIP: To preview a custom context, you can override the environment settings to append the parameter to the URL.
-For example, `?context=custom`.
-See <<_overriding_settings_for_a_debugging_session>>.
 
 === Viewing events
 
