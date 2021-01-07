@@ -3,16 +3,13 @@
 :page-description: Standard VCC for specifying a coordinate pair (x,y).
 :figure-caption!:
 
-[.float-group]
---
-image::coordinateVCC.png[title="Coordinate VCC",role="img-overview"]
-
 * Users can
 //tag::description[]
 specify a coordinate pair (x,y).
 //end::description[]
 For example, position an element on a canvas.
---
+
+image::coordinateVCC.png[title="Coordinate VCC"]
 
 == Sample coordinate VCC
 
