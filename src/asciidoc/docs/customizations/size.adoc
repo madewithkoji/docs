@@ -3,15 +3,12 @@
 :page-description: Standard VCC for specifying a (width, height) pair.
 :figure-caption!:
 
-[.float-group]
---
-image::sizeVCC.png[title="Size VCC",role="img-overview"]
-
 * Users can
 //tag::description[]
 specify a (width, height) pair.
 //end::description[]
---
+
+image::sizeVCC.png[title="Size VCC"]
 
 == Sample size VCC
 

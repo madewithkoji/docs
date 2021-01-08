@@ -3,16 +3,13 @@
 :page-description: Standard VCC for toggling a Boolean value on or off (true or false).
 :figure-caption!:
 
-[.float-group]
---
-image::booleanVCC.png[title="Boolean VCC",role="img-overview"]
-
 * Users can
 //tag::description[]
 toggle a Boolean value on or off (`true` or `false`).
 //end::description[]
 * A `true` value is shown in blue and a `false` value is shown in gray.
---
+
+image::booleanVCC.png[title="Boolean VCC"]
 
 == Sample Boolean VCC
 

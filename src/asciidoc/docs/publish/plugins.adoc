@@ -38,6 +38,6 @@ There is no way to enable or disable plugins on a per-service basis.
 == Enabling a plugin for your Koji
 
 . Open the Koji and click the Koji button.
-. Go to *Settings > Plugins*.
+. Go to *Koji Settings > Configure Plugins*.
 . Choose a plugin from the list of available plugins.
 . Configure and enable the plugin.

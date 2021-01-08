@@ -37,8 +37,9 @@ Therefore, you might want to continue support for the original project with upda
 
 Each time you publish a project, a new version of the template replaces the existing version at the same URL.
 
-To view the version history for your template, open the project in the Koji editor, and then go to **Advanced > Versions**.
-You can view or download the build logs for any published version.
+To view the version history for your template, go to *Developer Portal > My projects* and click the project.
+Then, click *Build History* on the project overview page.
+Click any build version to view or download the logs.
 
 image::versions.png[Version history]
 
