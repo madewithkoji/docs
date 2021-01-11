@@ -3,7 +3,6 @@
 :page-description: Standard VCC for selecting an image, file, sound, or video.
 :figure-caption!:
 
---
 * Users can
 //tag::description[]
 select an image, file, sound, or video either by selecting from the available options, uploading, or entering a URL.
@@ -14,21 +13,46 @@ For example, if you use `media` to load an image through the *Upload* section, t
 Go to the documentation for the specific media type to see the notes for that type: <<image#>>, <<file#>>, <<sound#>>, <<video#>>.
 
 image::mediaVCC.png[title="Media VCC"]
---
 
 == Sample media VCC
 
 [source,json]
 ----
 {
-  "key": "imageOrVideo",
-  "name": "Image or Video",
-  "type": "media",
-  "typeOptions": {
-    "acceptOnly": ["image", "video"],
-    "videoOptions": {
-      "hls": true
+    "key": "imageOrVideo",
+    "name": "Image or Video",
+    "type": "media",
+    "typeOptions": {
+        "acceptOnly": ["image", "video"],
+        "videoOptions": {
+            "hls": true
+        }
     }
-  }
 }
 ----
+
+== Hiding Extensions in media VCC
+
+The `media` VCC type enables you to hide all asset packs and VCC extensions in cases where they don't make sense (for example, templates for selling premium assets).
+To use this feature in your templates, enable the `hideExtensions` type option.
+In the following code sample, extensions are hidden, so *Browse Image Asset Packs* will not appear as a selection.
+
+[source,json]
+----
+{
+    "key": "hideExtensions",
+    "name": "Image or Video No Extensions",
+    "type": "media",
+    "typeOptions": {
+        "acceptOnly": ["image", "video"],
+        "hideExtensions": true,
+        "videoOptions": {
+        "hls": true
+        }
+    }
+}
+----
+
+The sample code will display the following selections.
+
+image::mediaNoExtensionsVCC.png[title="Media No Extensions VCC"]
