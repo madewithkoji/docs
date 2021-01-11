@@ -54,7 +54,7 @@ For some great starting points, check out the https://withkoji.com/tag/scaffolds
 +
 include::../_includes/remixNav.adoc[tag=all]
 +
-After a short loading time, the Koji editor opens.
+After a short loading time, the *Project Details* page opens.
 
 == Cloning the Git repository
 
