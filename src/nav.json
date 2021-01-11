@@ -155,6 +155,10 @@
               "slug": "koji-vcc"
             },
             {
+              "name": "Media",
+              "slug": "media"
+            },
+            {
               "name": "Obj",
               "slug": "3d-object"
             },

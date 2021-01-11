@@ -8,13 +8,27 @@
 //tag::description[]
 select an image, file, sound, or video either by selecting from the available options, uploading, or entering a URL.
 //end::description[]
-* The `media` VCC type allows you to use one VCC type to capture multiple types of content and automatically handle transcoding/editing for different types of content.
 * `image`, `video`, `file`, and `sound` VCC types are still supported and will continue to be supported, however, behind the scenes they are now powered by the `media` VCC type.
 * The same notes that apply to the individual `image`, `video`, `file`, and `sound` VCC types apply when using `media`.
 For example, if you use `media` to load an image through the *Upload* section, the image can be resized or the background can be removed and the image will be stored with the application.
-Go to the documentation for the specific media type to see the notes for that type: 
+Go to the documentation for the specific media type to see the notes for that type: <<image#>>, <<file#>>, <<sound#>>, <<video#>>.
 
-image::textVCC.png[title="Text VCC"]
+image::mediaVCC.png[title="Media VCC"]
 --
 
-== Sample text VCC
+== Sample media VCC
+
+[source,json]
+----
+{
+  "key": "imageOrVideo",
+  "name": "Image or Video",
+  "type": "media",
+  "typeOptions": {
+    "acceptOnly": ["image", "video"],
+    "videoOptions": {
+      "hls": true
+    }
+  }
+}
+----
