@@ -64,27 +64,42 @@ If the value of `acceptOnly` is an empty array, or if `acceptOnly` is not includ
 
 The possible types are as follows.
 
-==== image
-
-If you set `acceptOnly` to an array containing `image`, the user will be prompted to choose an image file for the VCC.
+* *image* - If you set `acceptOnly` to an array containing `image`, the user will be prompted to choose an image file for the VCC.
 Using a `media` VCC with `acceptOnly` set to `["image"]` is equivalent to using an <<image#, image VCC>>.
 
-==== video
-
-If you set `acceptOnly` to an array containing `video`, the user will be prompted to choose a video file for the VCC.
+* *video* - If you set `acceptOnly` to an array containing `video`, the user will be prompted to choose a video file for the VCC.
 Using a `media` VCC with `acceptOnly` set to `["video"]` is equivalent to using a <<video#, video VCC>>.
 
-==== audio
-
-If you set `acceptOnly` to an array containing `audio`, the user will be prompted to choose a sound file for the VCC.
+* *audio* - If you set `acceptOnly` to an array containing `audio`, the user will be prompted to choose a sound file for the VCC.
 Using a `media` VCC with `acceptOnly` set to `["audio"]` is equivalent to using a <<sound#, sound VCC>>.
 
-==== file
-
-If you set `acceptOnly` to an array containing `file`, the user will be prompted to choose a file for  the VCC. The file selected can be of any type.
+* *file* - If you set `acceptOnly` to an array containing `file`, the user will be prompted to choose a file for  the VCC. The file selected can be of any type.
 Using a `media` VCC with `acceptOnly` set to `["file"]` is equivalent to using a <<file#, file VCC>>.
 
 === returnType
+
+`returnType` takes a value of `url` or `extended`.
+If `returnType` is set to `url`, a string will be returned.
+If it's set to `extended`, an object will be returned.
+
+[source,json]
+----
+{
+    "url": "string",
+    "type": "string",
+    "sizeBytes": "string",
+    "videoMetadata": {
+        "thumbnailUrl": "string",
+    },
+    "audioMetadata": {
+        "durationSeconds": "number",
+    },
+    "imageMetadata": {
+        "naturalWidth": "number",
+        "naturalHeight": "number",
+    }
+}
+----
 
 === hideExtensions
 
