@@ -8,7 +8,7 @@
 //tag::description[]
 upload any file.
 //end::description[]
-* For image, sound, or video file types, use the <<media#, "media VCC>>.
+* Using a `file` VCC is equivalent to using a <<media#, media VCC>> with `acceptOnly` set to `["file"]`.
 
 image::fileVCC.png[title="File VCC"]
 --
