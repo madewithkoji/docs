@@ -31,7 +31,7 @@ cd backend
 npm install --save @withkoji/database
 ----
 
-== DatabaseAdapter.valueTypes
+== valueTypes
 
 The `valueTypes` object provides atomic operations as static methods that can be used with database requests.
 
@@ -51,7 +51,7 @@ See <<.update>>.
 [source,javascript]
 ----
 const updated = await database.update('collection', 'document', {
-    'myValue': DatabaseAdapter.valueTypes.increment(1),
+    'myValue': Database.valueTypes.increment(1),
 });
 ----
 
@@ -455,7 +455,7 @@ const updated = await database.update('myCollection','myKey', {'myValue':2});
 
 // To increment the numeric value in `myValue`
 const updated = await database.update('collection', 'document', {
-    'myValue': DatabaseAdapter.valueTypes.increment(1),
+    'myValue': Database.valueTypes.increment(1),
 });
 ----
 
