@@ -8,7 +8,7 @@ track custom events in your Koji templates.
 //end::description[]
 For example, track onClick events for the links and buttons in a Koji.
 
-To view the analytics data for your published Koji, use the *Koji button* in the top right, and then go to **Settings > Analytics**.
+To view the analytics data for your published Koji, use the *Koji button* in the top right, and then go to *Koji Settings > Open Analytics*.
 You will see data for your custom events along with a standard set of built-in metrics, which are calculated from the Koji's access logs.
 
 TIP: Analytics data is processed at frequent intervals throughout the day.

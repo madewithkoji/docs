@@ -236,7 +236,7 @@ See <<.getToken>>.
 ** `receiptId` – _String_, unique identifier for the receipt, if the purchase was successful, or `undefined`, if not.
 * `purchaseOptions`– _Object_, custom information to add to the transaction receipt.
 Contains the following properties:
-** `price` – _Number_, (Optional) amount of the purchase.
+** `amount` – _Number_, (Optional) amount of the purchase.
 ** `customMessage` – _String_, (Optional) custom message associated with the purchase.
 This value is stored as a custom attribute on the <<_iapreceipt,transaction receipt>>.
 

@@ -3,7 +3,6 @@
 :page-description: Standard VCC for selecting an image.
 :figure-caption!:
 
---
 * Users can
 //tag::description[]
 select an image by selecting from the available options, uploading, or entering a URL.
@@ -15,7 +14,6 @@ select an image by selecting from the available options, uploading, or entering 
 * Enable the optional `hideExtensions` type option to hide all asset packs and VCC extensions in cases where they do not make sense (for example, templates for selling premium images).
 
 image::imageVCC.png[title="Image VCC"]
---
 
 == Sample image VCC
 

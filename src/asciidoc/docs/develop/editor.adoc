@@ -28,9 +28,9 @@ This push triggers a deploy.
 You can think of the state of your Koji editor in the same way as the state of a Git repository on your computer -- that is, it is a working HEAD of your repository.
 This means that if you make changes to your project from outside the Koji editor, you must `git pull` those changes from within the Koji editor to see them.
 
-If you would like to use a remote editor, you must generate a Git Access Token from your Account Settings.
+If you would like to use a remote editor, you must generate a Git access token.
 You can use this access token in place of a password when cloning your repositories.
-To find the remote URL of your project's Git repository, navigate to *Settings > Repository* from within the Koji editor.
+To find the remote URL of your project's Git repository, go to *Advanced > Repository Info* in the Koji editor.
 
 For in-depth walkthroughs of working outside the Koji editor, see <<use-git#>>.
 
