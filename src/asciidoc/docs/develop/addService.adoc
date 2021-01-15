@@ -333,3 +333,7 @@ So, for `frontend`, you will see an ENV like `KOJI_SERVICE_URL_FRONTEND`.
 == Wrapping up
 
 Hopefully, this tutorial has given you a better understanding of how to add a service, as well as the service map configuration.
+
+TIP: When adding backend services to your templates, keep in mind that requests to Koji backends are rate limited to protect against bursts of traffic.
+Users who send too many requests in quick succession might see error messages with a status code of `429`.
+To gracefully handle rate limiting in your templates, you can watch for this status code and build in a retry mechanism.
