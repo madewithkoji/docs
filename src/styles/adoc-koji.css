@@ -1,6 +1,6 @@
 /* Admonitions */
 .admonitionblock > table { padding: 8px 0; background: none; width: 100%; border-left: 4px solid #bfbfbf;background-color: #f7f7f7; }
-.admonitionblock > table td.icon { 
+.admonitionblock > table td.icon {
     text-align: center;
     width: 12px;
     vertical-align: top;
@@ -8,7 +8,7 @@
     padding: 5px 6px 0 12px;
 }
 .admonitionblock > table td.icon img { max-width: none; }
-.admonitionblock > table td.icon .title { 
+.admonitionblock > table td.icon .title {
     font-weight: bold;
     text-transform: uppercase;
     color: #666666;
@@ -198,12 +198,10 @@ td.hdlist1, td.hdlist2 { vertical-align: top; }
 
 .imageblock.left, .imageblock[style*="float: left"] { margin: 0.25em 0.625em 1.25em 0; }
 .imageblock.right, .imageblock[style*="float: right"] { margin: 0.25em 0 1.25em 0.625em; }
-.imageblock > .title { 
+.imageblock > .title {
     margin-bottom: 0!important;
     font-size: 12px!important;
-    text-align: center!important;
     color: #666!important;
-    font-weight: normal!important;
 }
 .imageblock.thumb, .imageblock.th { border-width: 6px; }
 .imageblock.thumb > .title, .imageblock.th > .title { padding: 0 0.125em; }

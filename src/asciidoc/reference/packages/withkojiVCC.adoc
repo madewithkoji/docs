@@ -472,6 +472,20 @@ If your template also uses touch controls, you can use the `requestCancelTouch` 
 </div>
 ----
 
+[.hcode, id=".share", reftext="share"]
+=== .share()
+
+Opens the sharing menu.
+
+==== Example
+
+[source,html]
+----
+<button type="button" onClick={() => feed.share()}>
+  Share my Koji
+</button>
+----
+
 == FeedSdk services
 
 [.hcode]
@@ -497,7 +511,7 @@ To use this context:
 ** *Define an admin experience* – Enable the `AdminContext` <<_feedsdk, entitlement>>, and define a view intended for the creator of the Koji.
 For example, enable the creator to respond to questions from users.
 +
-NOTE: When the `AdminContext` entitlement is enabled, the creator can access the admin view by using the *Koji button* in the top right, and then going to **Settings > Admin dashboard**.
+NOTE: When the `AdminContext` entitlement is enabled, the creator can access the admin view by using the *Koji button* in the top right, and then going to *Koji Settings > Open Admin Page*.
 
 ** *Load the admin experience* – Load the admin experience only when viewed with the URL parameter `context=admin` and when the current user is the creator of the Koji.
 +

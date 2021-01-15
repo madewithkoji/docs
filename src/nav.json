@@ -213,7 +213,7 @@
           "root": "/publish",
           "items": [
             {
-              "name": "Supporting rich previews",
+              "name": "Sharing rich previews and custom metadata",
               "slug": "rich-preview-image"
             },
             {

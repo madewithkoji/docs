@@ -3,7 +3,6 @@
 :page-description: Standard VCC for selecting or creating a Koji from another Koji.
 :figure-caption!:
 
---
 * Users can
 //tag::description[]
 create a new Koji or select an existing Koji, either from the user's profile or from a URL.
@@ -12,7 +11,6 @@ create a new Koji or select an existing Koji, either from the user's profile or 
 For example, add a link to the user's favorite Koji or <<withkoji-vcc-package#_context, embed the Koji as a sticker>>.
 
 image::kojiVCC.png[title="Koji VCC"]
---
 
 == Sample koji VCC
 
