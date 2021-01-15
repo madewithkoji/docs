@@ -9,7 +9,9 @@
 upload video files.
 //end::description[]
 * Use `video` when you want to limit the user to selecting a video file.
-* Using a `video` VCC is equivalent to using a <<media#, media VCC>> with `acceptOnly` set to `["video"]`.
+To allow multiple types of media files, see <<media#, media>>.
+To allow upload of raw files of any type, see <<file#, file>>.
+* Using a `video` VCC is equivalent to using a media VCC with `acceptOnly` set to `["video"]`.
 * Uploaded videos are automatically compressed and cropped for optimal playback across devices.
 Videos are cropped relative to the original aspect ratio, for a resulting aspect ratio of 16:9 (landscape) or 9:16 (portrait).
 * By default, uploaded videos are transcoded to .mp4 format.
