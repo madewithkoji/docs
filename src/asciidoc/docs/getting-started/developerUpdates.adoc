@@ -13,6 +13,7 @@ TIP: To help improve the Koji developer experience, please share your thoughts, 
 * For template developers, the following features are now available on the Koji platform.
 ** The new media VCC provides a single control for customizing image, file, sound, and video values.
 You can configure which of the underlying media types to allow as well as the options for each type.
+As part of this change, the <<image#,image VCC>> now supports type options for all Fastly parameters, enabling you to automatically manipulate uploaded images.
 ** The new `@initialTransform` key for JSON customization files enables templates to reset specific VCC values when a new remix is created.
 For example, in templates for selling items, you might want to reset the product name and description to placeholder text.
 See <<vcc-overview#>>.
