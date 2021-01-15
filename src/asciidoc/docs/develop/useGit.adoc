@@ -97,7 +97,7 @@ You can, however, revoke your token and generate a new one if you have forgotten
 
 . Return to the browser tab for *Project Details*.
 . Click the line of text under *Repository* in the dialog box to highlight it.
-This line has the form `git clone https://projects.koji-cdn.com/[unique identifier].git`, where [unique identifier] is the identifier for the repository directory on `\https://projects.koji-cdn.com/`.
+This line has the form `git clone \https://projects.koji-cdn.com/[[unique identifier]].git`, where [unique identifier] is the identifier for the repository directory on `\https://projects.koji-cdn.com/`.
 . Copy the highlighted line to the clipboard.
 . Open a terminal window, and go to the directory on your local machine where you want to save your project.
 . Paste the line you copied to the clipboard.
