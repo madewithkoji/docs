@@ -108,6 +108,10 @@ include::image.adoc[tag=description]
 +
 [.init-cap]
 include::koji.adoc[tag=description]
+<<media#>> ::
++
+[.init-cap]
+include::media.adoc[tag=description]
 <<3d-object#>> ::
 +
 [.init-cap]
