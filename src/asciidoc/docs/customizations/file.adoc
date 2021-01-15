@@ -8,6 +8,8 @@
 //tag::description[]
 upload any file.
 //end::description[]
+* You should use `file` if you want the user to be able to select a file that is not an image, video, or audio file.
+Otherwise, use an <<image#, image>>, <<video#, video>>, <<sound#, sound>>, or <<media#, media>> VCC.
 * Using a `file` VCC is equivalent to using a <<media#, media VCC>> with `acceptOnly` set to `["file"]`.
 
 image::fileVCC.png[title="File VCC"]

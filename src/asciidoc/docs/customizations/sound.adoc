@@ -8,6 +8,7 @@
 //tag::description[]
 select a sound either by selecting from the available options, uploading, or entering a URL.
 //end::description[]
+* Use `sound` when you want to limit the user to selecting an audio file.
 * Using a `sound` VCC is equivalent to using a <<media#, media VCC>> with `acceptOnly` set to `["audio"]`.
 * If the sound is loaded through the 'Upload' section, the sound can be cropped to play only a portion of it and the sound will be stored with the template.
 * If the sound is loaded through the 'Advanced' section, it will use the sound that is at this URL.

@@ -3,10 +3,15 @@
 :page-description: Standard VCC for selecting an image, file, sound, or video.
 :figure-caption!:
 
-Users can
+* Users can
 //tag::description[]
 select an image, file, sound, or video by selecting from the available options, uploading, or entering a URL.
 //end::description[]
+* You can use `media` to allow the user to to select from more than one type of media. For example, you can allow the user to select an image file or a video file.
+* You can use `media` to limit the user to selecting from one type of media.
+This is equivalent to using an <<image#, image>>, <<video#, video>>, or <<sound#, sound>> VCC.
+* You can use `media` to allow the user to select any type of file.
+This is equivalent to using a <<file#, file>> VCC.
 
 image::mediaVCC.png[title="Media VCC"]
 

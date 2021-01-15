@@ -8,6 +8,7 @@
 //tag::description[]
 select an image by selecting from the available options, uploading, or entering a URL.
 //end::description[]
+* Use `image` when you want to limit the user to selecting an image file.
 * Using an `image` VCC is equivalent to using a <<media#, media VCC>> with `acceptOnly` set to `["image"]`.
 * If the image is loaded through the *Upload* section, the image can be resized or the background can be removed and the image will be stored with the application.
 * If the image is loaded through the *Advanced* section, the application will use the image at the specified URL. Keep in mind that if the link dies, the image will not appear.
