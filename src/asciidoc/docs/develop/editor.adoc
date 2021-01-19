@@ -2,7 +2,7 @@
 :page-slug: editor
 :page-description: Guide for the Koji editor, a browser-based IDE for developing and testing Koji templates.
 
-The Koji editor is browser-based integrated development environment (IDE).
+The Koji editor is a browser-based integrated development environment (IDE).
 You can use the Koji editor to create application and game templates.
 The editor contains all of your project's code, Visual Customization Controls (VCCs) generated from the project's code, interfaces for publishing and deployment management, and interfaces to other production tools such as the Koji database.
 
@@ -35,6 +35,34 @@ To find the remote URL of your project's Git repository, go to *Advanced > Repos
 For in-depth walkthroughs of working outside the Koji editor, see <<use-git#>>.
 
 == Previews
+
+The preview pane displays different previews of your template, depending on the selected tab.
+
+=== Default preview
+
+Selecting *Default* shows a running preview of your template.
+
+=== Remix preview
+
+Selecting *Remix* shows what remixers see when customizing values.
+
+=== More previews
+
+Selecting *More* displays a menu of additional previews.
+
+image::more.png[More menu]
+
+* *About* - Shows an About page, if one is defined.
+
+* *Admin* - Shows an Admin page, if one is defined.
+
+* *Receipt (seller)* - Shows seller's receipt, if in-app purchases is implemented.
+
+* *Receipt (buyer)* - Shows buyer's receipt, if in-app purchases is implemented.
+
+* *Sticker* - Shows how your template will look if it's imbedded in another template.
+
+* *Thumbnail* - Shows how your template will look if it's shared on social media.
 
 === Inline preview
 
