@@ -3,17 +3,17 @@
 :page-description: Standard VCC for uploading a file.
 :figure-caption!:
 
-[.float-group]
---
-image::fileVCC.png[title="File VCC",role="img-overview"]
-
 * User can
 //tag::description[]
 upload any file.
 //end::description[]
-* For specific file types, use the associated VCC where possible.
-For example, see <<image#>>, <<sound#>>, or <<video#>>.
---
+* Use the `file` type to enable users to upload raw files in their original format.
+For example, to offer high-resolution images for download rather than for display in a browser.
+* To apply automatic transcoding and transformations for specific file types, use the associated VCC.
+See <<image#, image>>, <<video#, video>>, <<sound#, sound>>, or <<media#, media>>.
+* Using a `file` VCC is equivalent to using a <<media#, media VCC>> with `acceptOnly` set to `["file"]`.
+
+image::fileVCC.png[title="File VCC"]
 
 == Sample file VCC
 

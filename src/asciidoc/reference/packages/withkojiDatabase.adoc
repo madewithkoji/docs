@@ -31,6 +31,30 @@ cd backend
 npm install --save @withkoji/database
 ----
 
+== valueTypes
+
+The `valueTypes` object provides atomic operations as static methods that can be used with database requests.
+
+[.hcode, id=".increment", reftext="increment"]
+=== .increment(number)
+
+Increments a numeric value by a specified amount.
+You can use this method to increment numeric values in the database with a single request.
+See <<.update>>.
+
+==== Parameters
+
+* `number` – _Number_, the amount to increment the value.
+
+==== Example
+
+[source,javascript]
+----
+const updated = await database.update('collection', 'document', {
+    'myValue': Database.valueTypes.increment(1),
+});
+----
+
 == Database
 
 [.hcode, id="new Database", reftext="new Database"]
@@ -295,6 +319,40 @@ include::../../docs/_includes/databaseNote.adoc[tag=immediate]
 [source, javascript]
 const results = await database.getWhere('myCollection','predicateKey', '==', 'predicateValue');
 
+[.hcode, id=".getTranscodeStatus", reftext="getTranscodeStatus"]
+=== .getTranscodeStatus(callbackToken)
+
+Gets the status of transcoding for an asset that was requested with <<.transcodeAsset>>.
+
+include::../../docs/_includes/databaseNote.adoc[tag=immediate]
+
+==== Parameters
+
+* `callbackToken` – _String_, token identifying the asset.
+Returned by `transcodeAsset` when transcoding is requested.
+
+==== Returns
+
+(Async) _Boolean_, indicates whether transcoding has completed.
+
+==== Example
+
+[source, javascript]
+----
+await new Promise((resolve: any) => {
+  const checkStatus = async () => {
+    const { isFinished } = await database.getTranscodeStatus(transcodedVideo.callbackToken);
+    if (isFinished) {
+      resolve();
+    } else {
+      setTimeout(() => checkStatus(), 500);
+    }
+  };
+
+  checkStatus();
+});
+----
+
 [.hcode, id=".search", reftext="search"]
 === .search(collection, searchAttribute, searchValue)
 
@@ -339,12 +397,45 @@ Adds an entry to the database.
 const isAdded = await database.set('myCollection', 'myKey', {'myValue':1});
 ----
 
+[.hcode, id=".transcodeAsset", reftext="transcodeAsset"]
+=== .transcodeAsset(path, transcodeType)
+
+Transcodes an asset that has been uploaded to the Koji CDN.
+
+NOTE: Video transcoding usually completes in a few seconds, but can take longer depending on the length of the video.
+You can use <<.getTranscodeStatus>> to poll for transcode progress.
+
+include::../../docs/_includes/databaseNote.adoc[tag=immediate]
+
+==== Parameters
+
+* `path` – _String_, URL of the asset on the Koji CDN.
+For example, `\https://objects.koji-cdn.com/KOJI-ID/userData/resource.mp4`.
+* `transcodeType` – _String_, (Optional) type of resource that the asset will be transcoded to (`video+hls`).
+
+==== Returns
+
+(Async) _Object_, contains the following properties:
+
+* `url` – _String_, URL of the transcoded asset.
+* `callbackToken` – _String_, token identifying the asset.
+Use this token with <<.getTranscodeStatus>> to check whether transcoding has completed.
+
+==== Example
+
+[source,javascript]
+----
+const transcodedVideo = await database.transcodeAsset(path);
+----
+
 [.hcode, id=".update", reftext="update"]
 === .update(collection, key, data)
 
 Updates an entry in the database with the given value.
+To increment numeric values with a single `update` request, you can use <<.increment>>.
 
-NOTE: This method updates only the values specified in `data`. If additional values exist for the key, they are not changed.
+NOTE: This method updates only the values specified in `data`.
+If additional values exist for the key, they are not changed.
 
 ==== Parameters
 
@@ -359,7 +450,14 @@ NOTE: This method updates only the values specified in `data`. If additional val
 ==== Example
 
 [source, javascript]
-const updated = await database.update('myCollection',"myKey", {"myValue":2});
+----
+const updated = await database.update('myCollection','myKey', {'myValue':2});
+
+// To increment the numeric value in `myValue`
+const updated = await database.update('collection', 'document', {
+    'myValue': Database.valueTypes.increment(1),
+});
+----
 
 [.hcode, id=".uploadFile", reftext="uploadFile"]
 === .uploadFile(path, filename, mimetype)

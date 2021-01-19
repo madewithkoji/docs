@@ -3,16 +3,13 @@
 :page-description: Standard VCCs for selecting a color.
 :figure-caption!:
 
-[.float-group]
---
-image::colorVCC.png[title="Color VCC",role="img-overview"]
-
 * Users can
 //tag::description[]
 select a color from a swatch or enter a color code (HEX, RGB, and HSL).
 //end::description[]
 * Enable the `allowAlpha` type option to show a transparency slider (RBGA, HSLA).
---
+
+image::colorVCC.png[title="Color VCC"]
 
 == Sample color VCC
 

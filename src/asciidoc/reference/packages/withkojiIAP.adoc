@@ -198,6 +198,27 @@ this.setState({
 });
 ----
 
+[.hcode, id=".resolveReceiptsBySku", reftext="resolveReceiptsBySku"]
+=== .resolveReceiptsBySku(sku)
+
+Retrieves all receipts for a specified product, which can be used to aggregate sales data.
+
+==== Parameters
+
+* `sku` – _String_, identifier for the product.
+Products are defined in the <<#_iap,entitlements file>> and registered or updated when the template is published.
+
+==== Returns
+
+(Async) Array of <<_iapreceipt>> objects for the specified product.
+
+==== Example
+
+[source,javascript]
+----
+const receipts = await iap.resolveReceiptsBySku(sku);
+----
+
 [.hcode, id=".startPurchase", reftext="startPurchase"]
 === .startPurchase(sku, handler, purchaseOptions)
 
@@ -215,7 +236,7 @@ See <<.getToken>>.
 ** `receiptId` – _String_, unique identifier for the receipt, if the purchase was successful, or `undefined`, if not.
 * `purchaseOptions`– _Object_, custom information to add to the transaction receipt.
 Contains the following properties:
-** `price` – _Number_, (Optional) amount of the purchase.
+** `amount` – _Number_, (Optional) amount of the purchase.
 ** `customMessage` – _String_, (Optional) custom message associated with the purchase.
 This value is stored as a custom attribute on the <<_iapreceipt,transaction receipt>>.
 
@@ -229,7 +250,7 @@ iap.startPurchase(sku, (success, token, purchaseOptions) => {
 ----
 
 [.hcode, id=".updateReceipt", reftext="updateReceipt"]
-=== .updateReceipt(receiptId, attributes)
+=== .updateReceipt(receiptId, attributes, notificationMessage)
 
 Updates the custom attributes for a specified receipt.
 For example, if a user purchases a "power up" and then uses it in a game, you can update the receipt to indicate that the product has been consumed and is not available for future sessions.
@@ -238,6 +259,8 @@ For example, if a user purchases a "power up" and then uses it in a game, you ca
 
 * `receiptId` – _String_, unique identifier for the receipt.
 * `attributes` – _Object_, list of key-value pairs to update.
+* `notificationMessage` – _String_, (Optional) custom message to sent the user when the receipt is updated (up to 80 characters).
+If undefined, the message will read: `Your receipt for PRODUCT_NAME was updated`.
 
 ==== Returns
 
@@ -247,7 +270,7 @@ For example, if a user purchases a "power up" and then uses it in a game, you ca
 
 [source,javascript]
 ----
-const receipt = await iap.updateReceipt(receiptId, { isConsumed: true });
+const receipt = await iap.updateReceipt(receiptId, { isConsumed: true }, 'Your power up has been used');
 ----
 
 == Iap objects

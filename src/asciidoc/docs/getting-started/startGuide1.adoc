@@ -1020,11 +1020,10 @@ When publishing is completed, a link appears in the message.
 +
 The template might be published before profiling is completed.
 Therefore, you might need to wait longer before testing features that require profiling, such as inclusion in the feed or the ability to instantly remix the template.
-To see the results of the most recent profiling, from your live template, click *Make your own > Fork template* to open the template welcome screen.
-Then, under *More options*, click *See profiled attributes*.
+To see the results of the most recent profiling, from your live template, click the Koji button, and then click *More > Developer Tools*.
+Select the attributes you want to see, such as *Content Audit* or *Entitlements*.
 +
 If an error message appears when you open the link after profiling is completed, you can review the steps in this guide to fix it.
-To open your project again, go to *Koji home > My projects*, and click the template name.
 
 == Completed samples and next steps
 

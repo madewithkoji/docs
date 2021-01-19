@@ -76,9 +76,9 @@ You need to use the repository URL only once, you should know your username by h
 
 To find the URL of the Koji repository:
 
-. On the left side of the Koji editor, go to *Advanced > Repository info*.
+. On the left side of the Koji editor, go to *Advanced > Repository Info*.
 +
-The Repository information tab shows links to two repositories.
+The Repository Info tab shows links to two repositories.
 +
 image::remote-repository.png[Remote repository URL in the Koji editor]
 . Copy the URL for the remote repository.
@@ -93,10 +93,10 @@ If your intention is to propose improvements to the original project, then you c
 To clone your Koji repository locally, you must generate an access key and store it securely.
 Access keys are strong, randomly-generated, 32-character hexadecimal strings that you generate to allow programmatic access to your Koji projects.
 
-. From any page on https://withkoji.com[withkoji.com], click your avatar in the top right, and then click *Settings*.
+. From any page on https://withkoji.com[withkoji.com], click your profile picture in the top right, and then click *Developer Portal*.
 +
-. Expand the menu on the left side, and click *Access keys*.
-. Click *Generate new token* in the top right.
+. Click *My Access Keys*.
+. Click *Generate New Key* in the top right.
 +
 A window opens to display the new access key.
 . Copy the access key and keep it somewhere safe, where only you can find it.

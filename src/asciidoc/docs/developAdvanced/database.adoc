@@ -78,15 +78,14 @@ If a database view is not defined in the project, all data is displayed as strin
 
 == Viewing and managing the data
 
-When developing a template, you can use the database explorer in the Koji editor to test the data collection logic and the database view configuration.
-After you publish a template or remix a Koji, you can access the data from the Koji.
+When developing a template, you can use the Koji debugger to test the data collection logic and the database view configuration.
+When you publish a template or remix a Koji, you can access the data from the Koji.
 
-* To open the database explorer in the Koji editor, go to *Advanced > Database*.
-Then, select the collection you want to view.
-+
-TIP: If a custom database view is defined, you can toggle between the view and the raw data.
+* To test your database implementation, open the Koji debugger.
+In the *Database* panel, select the collection you want to view.
+For more information, see <<testing-templates#_debugging_database_views>>.
 
-* To access the data for a Koji you created, use the *Koji button* in the top right, and then go to **More > Manage this Koji > View database**.
+* To access the data for a Koji you created, use the *Koji button* in the top right, and then go to *Koji Settings > Database*.
 
 == Related resources
 
