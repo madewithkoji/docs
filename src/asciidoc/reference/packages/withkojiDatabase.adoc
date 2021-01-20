@@ -31,6 +31,30 @@ cd backend
 npm install --save @withkoji/database
 ----
 
+== valueTypes
+
+The `valueTypes` object provides atomic operations as static methods that can be used with database requests.
+
+[.hcode, id=".increment", reftext="increment"]
+=== .increment(number)
+
+Increments a numeric value by a specified amount.
+You can use this method to increment numeric values in the database with a single request.
+See <<.update>>.
+
+==== Parameters
+
+* `number` – _Number_, the amount to increment the value.
+
+==== Example
+
+[source,javascript]
+----
+const updated = await database.update('collection', 'document', {
+    'myValue': Database.valueTypes.increment(1),
+});
+----
+
 == Database
 
 [.hcode, id="new Database", reftext="new Database"]
@@ -408,8 +432,10 @@ const transcodedVideo = await database.transcodeAsset(path);
 === .update(collection, key, data)
 
 Updates an entry in the database with the given value.
+To increment numeric values with a single `update` request, you can use <<.increment>>.
 
-NOTE: This method updates only the values specified in `data`. If additional values exist for the key, they are not changed.
+NOTE: This method updates only the values specified in `data`.
+If additional values exist for the key, they are not changed.
 
 ==== Parameters
 
@@ -424,7 +450,14 @@ NOTE: This method updates only the values specified in `data`. If additional val
 ==== Example
 
 [source, javascript]
-const updated = await database.update('myCollection',"myKey", {"myValue":2});
+----
+const updated = await database.update('myCollection','myKey', {'myValue':2});
+
+// To increment the numeric value in `myValue`
+const updated = await database.update('collection', 'document', {
+    'myValue': Database.valueTypes.increment(1),
+});
+----
 
 [.hcode, id=".uploadFile", reftext="uploadFile"]
 === .uploadFile(path, filename, mimetype)

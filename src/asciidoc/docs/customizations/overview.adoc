@@ -21,19 +21,24 @@ The customization file defines the names, types, configuration options, and defa
   "example":  { <1>
     "param":  "this is the value of the param"
   },
-  "@@editor":  [ <2>
+  "@@initialTransform": { <2>
+    "example": {
+      "param": "this is the placeholder text for new remixes"
+    }
+  },
+  "@@editor":  [ <3>
     {
-      "key":  "example", <3>
-      "name":  "Example", <4>
-      "icon":  "😄", <5>
-      "source":  "example.json", <6>
-      "fields":  [ <7>
+      "key":  "example", <4>
+      "name":  "Example", <5>
+      "icon":  "😄", <6>
+      "source":  "example.json", <7>
+      "fields":  [ <8>
         {
-          "key":  "param", <8>
-          "name":  "An Example Parameter", <9>
-          "description": "My description of the parameter", <10>
-          "type":  "image", <11>
-          "typeOptions": { <12>
+          "key":  "param", <9>
+          "name":  "An Example Parameter", <10>
+          "description": "My description of the parameter", <11>
+          "type":  "image", <12>
+          "typeOptions": { <13>
 
           }
         }
@@ -43,19 +48,23 @@ The customization file defines the names, types, configuration options, and defa
 }
 ----
 <1> `<__scope__>` – Section that defines the scope and default values for customizable elements.
-<2> `@@editor` – Section that defines how VCCs are displayed to remixers.
-<3> `key` – Scope used to access values in your template logic.
+Default values are used in the published template.
+<2> `@@initialTransform` – (Optional) Section that defines the placeholder values for new remixes.
+For keys defined in this section, the placeholder value is used as the starting value for new remixes.
+For other keys, the VCC value from the remixed Koji is used.
+<3> `@@editor` – Section that defines how VCCs are displayed to remixers.
+<4> `key` – Scope used to access values in your template logic.
 Should match the filename.
-<4> `name` – Name displayed in the Koji editor for developers.
-<5> `icon` – (Optional) Icon displayed in the Koji editor for developers.
-<6> `source` – Filename from which to obtain values.
+<5> `name` – Name displayed in the Koji editor for developers.
+<6> `icon` – (Optional) Icon displayed in the Koji editor for developers.
+<7> `source` – Filename from which to obtain values.
 Should be the same file, in most cases.
-<7> `fields` – Array of VCC definitions.
-<8> `key` – Key used to access the value in your template logic.
-<9> `name` – Display name of the element for remixers.
-<10> `description` – (Optional) Description of the element for remixers.
-<11> `type` – VCC type.
-<12> `typeOptions` – (Optional) Configuration options for the VCC.
+<8> `fields` – Array of VCC definitions.
+<9> `key` – Key used to access the value in your template logic.
+<10> `name` – Display name of the element for remixers.
+<11> `description` – (Optional) Description of the element for remixers.
+<12> `type` – VCC type.
+<13> `typeOptions` – (Optional) Configuration options for the VCC.
 The available options vary by type.
 
 == VCC types
@@ -99,6 +108,10 @@ include::image.adoc[tag=description]
 +
 [.init-cap]
 include::koji.adoc[tag=description]
+<<media#>> ::
++
+[.init-cap]
+include::media.adoc[tag=description]
 <<3d-object#>> ::
 +
 [.init-cap]
