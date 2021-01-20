@@ -36,17 +36,18 @@ For in-depth walkthroughs of working outside the Koji editor, see <<use-git#>>.
 
 == Previews
 
-The preview pane displays different previews of your template, depending on the selected tab.
+You can select the type of preview to display in the preview pane.
+The following types are available.
 
-=== Default preview
+=== Default
 
 Selecting *Default* shows a running preview of your template.
 
-=== Remix preview
+=== Remix
 
 Selecting *Remix* shows what remixers see when customizing values.
 
-=== More previews
+=== More
 
 Selecting *More* displays a menu of additional previews.
 
@@ -56,38 +57,23 @@ image::more.png[More menu]
 
 * *Admin* - Shows an Admin page, if one is defined.
 
-* *Receipt (seller)* - Shows seller's receipt, if in-app purchases is implemented.
+* *Receipt (seller)* - Shows the seller's receipt, if in-app purchases is implemented.
 
-* *Receipt (buyer)* - Shows buyer's receipt, if in-app purchases is implemented.
+* *Receipt (buyer)* - Shows the buyer's receipt, if in-app purchases is implemented.
 
 * *Sticker* - Shows how your template will look if it's imbedded in another template.
 
 * *Thumbnail* - Shows how your template will look if it's shared on social media.
 
-=== Inline preview
+=== Remote previews
 
-The Live Preview in the editor is a running preview of your template.
+You can preview your template remotely using the following buttons, which are located in the preview pane.
 
-The live preview provides these additional options:
+* The QR code button image:QRcode.png[QR code button] displays a QR code for the template.
+You can scan this code to preview the template on your mobile device.
 
-* *Editing* and *Preview* modes – Toggles between application *Preview* mode and *Editing* mode, which represents what remixers see when customizing values.
-* *Refresh* – Updates the preview with the latest version of your project code.
-* *Show Logs* – Opens a pane showing the console logs of your project.
-This is useful for debugging runtime errors or incorrect behaviors.
+* The remote staging button image:remote-staging.png[Remote staging button] opens a preview of your template in a new browser tab.
 
-=== Remote preview
+=== Launching the debugger
 
-The *Remote* tab enables you to test your template in a new tab or on another device by scanning the QR code.
-You can even share the remote preview link with someone else, and they can see the preview as you develop.
-
-[NOTE]
-The remote preview link will only work for as long as your editor session is still active, so it is not suitable for long-term sharing.
-
-When your template preview is open in another tab, you still have access to the console logs of the remote device.
-This allows you test your template on different devices and computers while working in the editor, including things like debugging different browsers, operating systems, and form factors.
-
-== Route testing
-
-The *Routes* tab is used for testing backend routes.
-You can build your request and then click *Send Request* to execute it.
-The *Fetch* tab generates a code snippet for the current request that you can easily add to your application's frontend.
+*Launch Debugger* opens the debugger in a new browser tab.
