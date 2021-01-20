@@ -53,21 +53,21 @@ Selecting *More* displays a menu of additional previews.
 
 image::more.png[More menu]
 
-* *About* - Shows an About page, if one is defined.
+* *About* - Displays an About page, if you've enabled the associated entitlement.
 
-* *Admin* - Shows an Admin page, if one is defined.
+* *Admin* - Displays an Admin page, if you've enabled the associated entitlement.
 
-* *Receipt (seller)* - Shows the seller's receipt, if in-app purchases is implemented.
+* *Receipt (seller)* - Displays a preview of the transaction receipt for the seller, if you've implemented in-app purchases and enabled the dynamic receipts entitlement.
 
-* *Receipt (buyer)* - Shows the buyer's receipt, if in-app purchases is implemented.
+* *Receipt (buyer)* - Displays a preview of the transaction receipt for the buyer, if you've implemented in-app purchases and enabled the dynamic receipts entitlement.
 
-* *Sticker* - Shows how your template will look if it's imbedded in another template.
+* *Sticker* - Displays how your template will look if it's imbedded in another template.
 
-* *Thumbnail* - Shows how your template will look if it's shared on social media.
+* *Thumbnail* - Displays how your template will look if it's shared on social media.
 
 === Remote previews
 
-You can preview your template remotely using the following buttons, which are located in the preview pane.
+You can preview your template remotely using the following buttons.
 
 * The QR code button image:QRcode.png[QR code button] displays a QR code for the template.
 You can scan this code to preview the template on your mobile device.
