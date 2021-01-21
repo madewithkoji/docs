@@ -85,7 +85,7 @@ When you publish a template or remix a Koji, you can access the data from the Ko
 In the *Database* panel, select the collection you want to view.
 For more information, see <<testing-templates#_debugging_database_views>>.
 
-* To access the data for a Koji you created, use the *Koji button* in the top right, and then go to *Koji Settings > Database*.
+* To access the data for a Koji you created, go to *Manage this Koji > Open Creator Dashboard > Database*.
 
 == Related resources
 

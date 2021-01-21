@@ -41,7 +41,7 @@ The *Thumbnail* context is always enabled.
 - *Receipt (seller)* and *Receipt (buyer)* – Displays previews of the transaction receipts for the buyer and seller.
 These contexts are available if you've implemented <<withkoji-koji-iap-package#_iap,in-app purchases>> and enabled the dynamic receipts entitlement.
 
-* *Remote previews* - The preview pane provides options for previewing a template on different devices or in different environments.
+* *Remote previews* - The preview pane provides options for previewing a template outside of the Koji editor.
 
 - On a mobile device – Open a preview on any device by scanning a QR code.
 Click the QR code button image:QRcode.png[QR code button] in the preview pane to display the QR code.
@@ -53,7 +53,7 @@ Click the remote staging button image:remote-staging.png[Remote staging button] 
 
 You can test JavaScript code by using the `console.log` method, which prints to the console.
 
-Although the `console.log` method can be implemented in the Koji editor, the results must be viewed in the console, which is only available when the template is run remotely, such as in a new browser tab.
+Although the `console.log` method can be implemented in the Koji editor, the results must be viewed in the console, which is only available when the template is run remotely.
 You can use the remote staging button image:remote-staging.png[Remote staging button] in the preview pane to open a preview in a new browser tab.
 Then you can access the console through the browser's menu.
 See <<_using_browser_tools_for_testing>>.
@@ -98,7 +98,7 @@ Some features, such as the Koji feed, can only be tested in the production envir
 
 If you publish your template as *Unlisted*, you can test it under exactly the same conditions as a general user, but no one else will have access unless you send them the direct link.
 
-. Click *Publish now*.
+. Click *Publish Now*.
 . Review the name and description, and update them if desired.
 . Select *Unlisted*.
 . Click *Publish New Version*.

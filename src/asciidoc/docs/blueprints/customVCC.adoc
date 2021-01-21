@@ -235,7 +235,7 @@ Custom VCCs require a custom domain to be accessible to other Koji applications.
 . Click *Publish Now* and enter a *Name*, *Description* and other publish settings, as desired.
 Then, click *Publish New Version*.
 . When publishing is completed, click the link to open your live template on Koji.
-. Click the *Koji* button in the top right, and then go to *Koji Settings > Custom Domains*.
+. Go to *Manage this Koji > Open Creator Dashboard > Custom Domains*.
 . Add a new subdomain under the `koji-vccs.com` root domain.
 
 After you publish your custom VCC, you can use it in a Koji template with the VCC type: +

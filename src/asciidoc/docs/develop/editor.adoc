@@ -37,7 +37,7 @@ For in-depth walkthroughs of working outside the Koji editor, see <<use-git#>>.
 == Previews
 
 You can select the type of preview to display in the preview pane.
-See <<testing-templates.adoc#_using_previews,using previews>>.
+To learn more about using previews, see <<testing-templates#_testing_in_the_koji_editor,Testing in the Koji editor>>.
 The following types are available.
 
 === Default
@@ -68,8 +68,7 @@ image::more.png[More menu]
 
 === Remote previews
 
-The preview pane provides options for previewing a template on different devices or in different environments.
-You can preview your template outside of the Koji editor using the following buttons.
+The preview pane provides these options for previewing a template outside of the Koji editor.
 
 * The QR code button image:QRcode.png[QR code button] displays a QR code for the template.
 You can scan this code to preview the template on your mobile device.

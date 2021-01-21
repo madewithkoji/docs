@@ -49,7 +49,7 @@ See <<rich-preview-image#>>.
 ** In the <<withkoji-vcc-package#>> package, the new `share` method enables templates to open the sharing menu.
 * For all creators, the following new features and navigation updates are available.
 ** A new dashboard view provides access to information and settings for a Koji you create.
-To access it, tap the Koji button, and then tap *Koji Settings*.
+To access it, go to *Manage this Koji > Open Creator Dashboard*.
 ** The built-in <<vcc-overview#,Visual Customization Controls>> (VCCs) were updated with a more streamlined look and feel to improve the remixing experience.
 ** Sharing your Koji profile page on social media now renders a rich preview.
 * The following bugs have been fixed.
