@@ -8,6 +8,30 @@ TIP: To help improve the Koji developer experience, please share your thoughts, 
 
 == 2021
 
+=== January 15
+
+* For template developers, the following features are now available on the Koji platform.
+** The new <<media#,media VCC>> provides a single control for customizing image, file, sound, and video values.
+You can configure which of the underlying media types to allow as well as the options for each type.
+As part of this change, the <<image#,image VCC>> now supports type options for all Fastly parameters, enabling you to automatically manipulate uploaded images.
+** The new `@initialTransform` key for JSON customization files enables templates to reset specific VCC values when a new remix is created.
+For example, in templates for selling items, you might want to reset the product name and description to placeholder text.
+See <<vcc-overview#>>.
+** To improve stability and protect against bursts of traffic, requests to Koji backends are now rate limited to 900 requests, per 15 minutes, per IP address.
+Rate limits are applied per remix, so a user could make up to 900 requests each to multiple Koji backends in 15 minutes.
+Users who send too many requests in quick succession might see error messages with a status code of `429`.
+** To improve performance, the Koji debugger now debounces value updates.
+* In the <<withkoji-database-package#>> package, the new `increment` method provides an atomic operation for incrementing numeric values in the database with a single `update` request.
+* For all creators, the following usability enhancements are available on the Koji platform.
+** The new *Manage this Koji* button appears across the top of any Kojis you create and provides easy access to at-a-glance insights and settings.
+** The sharing menu has been updated.
+** Your Koji profile page is now available from the following automatic links:
++
+`\https://koji.to/~name` and `\https://koji.to/@name`
++
+(where `name` is your user name on Koji).
+** New caching and performance improvements were added to enhance content delivery.
+
 === January 8
 
 * A new https://help.withkoji.com/[Help Center] is now available for finding answers to general platform questions, such as how withdrawals work.
