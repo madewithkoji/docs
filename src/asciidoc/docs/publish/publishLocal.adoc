@@ -230,14 +230,14 @@ Since your template is under development, you might not be ready to broadcast it
 For now, you might prefer to test the template live yourself or get feedback from a small, hand-picked group.
 Fortunately, Koji gives you a way to publish your project as *unlisted*, which means that only people with the direct URL are able to visit your published template.
 
-. In the upper left of the Koji editor, click *Publish now* to open the publish settings.
+. In the upper left of the Koji editor, click *Publish Now* to open the publish settings.
 . To publish your project as unlisted, click *Show advanced options*, and then select the *Unlisted* checkbox.
 +
 NOTE: The next time you publish your template, the *Unlisted* option will be selected by default.
 Remember to clear this setting when your project is ready for the world to see.
 
 . If needed, edit additional information about your template, such as the name and description.
-. Click *Publish*.
+. Click *Publish New Version*.
 +
 A message appears to indicate that the publishing process has started. When publishing is completed, a link appears in the message.
 +

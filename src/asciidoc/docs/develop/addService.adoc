@@ -37,7 +37,7 @@ When you can see the `backend` service, you'll know that the service is set up c
 [source,javascript]
 console.log('serviceMap', instantRemixing.get(['serviceMap']));
 
-. In the Preview pane on the right, click the *Remote* tab, and then click *Open in new tab*.
+. In the preview pane on the right, click the remote staging button image:remote-staging.png[Remote staging button] to open your template in a new browser tab.
 . In the new tab, open the developer tools and confirm that you can see a console log of your current `serviceMap`.
 +
 It should look like this:
