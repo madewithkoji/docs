@@ -1,6 +1,7 @@
 = Using Git to manage your project
 :page-slug: use-git
 :page-description: How to use Git to clone a Koji project template to your development machine, so that you can work on it locally.
+:figure-caption!:
 
 Although Koji provides a feature-rich online project editor, you might prefer to use your own suite of development tools in some cases.
 This tutorial describes how to use Git to clone a Koji project template to your development machine, so that you can work on it locally.
@@ -77,11 +78,11 @@ To clone your Koji repository locally, you must generate an access key and store
 Access keys are strong, randomly-generated, 32-character hexadecimal strings that you generate to allow programmatic access to your Koji projects.
 
 . From *Project Details*, click *Clone*.
-A dialog similar to the following will be displayed.
+A dialog similar to the following opens.
 +
-image::git-clone.png[title="File VCC"]
+image::git-clone.png[]
 . Click *Manage access keys*.
-The *Access Keys* page will open in a new tab.
+The *Access Keys* page opens in a new tab.
 . Click *Generate new token* in the top right.
 +
 A window opens to display the new access key.
