@@ -1341,7 +1341,7 @@ Update the `app.component.html` file.
 --
 
 . To test the loading experience, add the following code to delay preloading.
-Then, from the *Remote* tab in the right pane, open the template in a new tab.
+Then, click the remote staging button image:remote-staging.png[Remote staging button] in the preview pane to open the preview in a new tab.
 +
 [.tabs,scope="lang"]
 --
@@ -1394,9 +1394,9 @@ WARNING: Remember to remove the test delay before publishing the template.
 At this point, you’re ready to publish the next version of your template.
 The new version replaces the previous version on the Koji platform and is available at the same URL, which is based on the name when you first published it.
 
-. In the upper left of the editor, click *Publish now* to open the publish settings.
+. In the upper left of the editor, click *Publish Now* to open the publish settings.
 . Review the name and description, and update them if desired.
-. Click *Publish*.
+. Click *Publish New Version*.
 . When publishing is completed, click the link to view and test your updated template.
 
 == Completed samples

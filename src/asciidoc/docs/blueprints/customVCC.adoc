@@ -215,8 +215,7 @@ include::../_includes/vcc-blueprint-styles.css[]
 
 To save development time, Koji provides an easy way to test a custom VCC before it is published.
 
-. In your custom VCC project, click the *Remote* tab in the right pane.
-. Click *Copy URL* to get the staging URL for your project.
+. In your custom VCC project, click the remote staging button image:remote-staging.png[Remote staging button] in the preview pane to open a preview in a new tab.
 . Open another project to act as the "consumer" for testing the VCC.
 +
 TIP: If you don't have another project, you can create a test project by <<_remix_the_scaffold, remixing the
@@ -233,8 +232,8 @@ You should see your custom VCC.
 
 Custom VCCs require a custom domain to be accessible to other Koji applications.
 
-. Click *Publish now* and enter a *Name*, *Description* and other publish settings, as desired.
-Then, click *Publish*.
+. Click *Publish Now* and enter a *Name*, *Description* and other publish settings, as desired.
+Then, click *Publish New Version*.
 . When publishing is completed, click the link to open your live template on Koji.
 . Click the *Koji* button in the top right, and then go to *Koji Settings > Custom Domains*.
 . Add a new subdomain under the `koji-vccs.com` root domain.

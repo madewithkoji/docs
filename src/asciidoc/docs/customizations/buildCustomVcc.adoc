@@ -116,8 +116,8 @@ componentDidMount() {
 
 To save development time, Koji provides an easy way to test a custom VCC before it is published.
 
-. In your custom VCC project, click the *Remote* tab in the right pane.
-. Click *Copy URL* to get the staging URL for your project.
+. In your custom VCC project, click the remote staging button image:remote-staging.png[Remote staging button] in the preview pane to open your template in a new browser tab.
+. Copy the URL from the address bar of the tab.
 . Open your consumer project.
 . In your consumer project, open the `Strings` customization file, and click *Code* to view the raw JSON.
 . For the `title` field, change the `type` to match this format, using the URL you just copied as `YOURURL`:
@@ -196,12 +196,12 @@ The staging URL makes it easy to test a custom VCC while it is under development
 However, it is temporary and changes each time you open a new instance of the project.
 Instead, you can publish your custom VCC so that you can use it in other projects and share it with other developers.
 
-. In the left pane, click *Publish now*.
+. In the left pane, click *Publish Now*.
 Give your VCC a descriptive name, and add a thumbnail if you would like.
 +
 The name and thumbnail make it easier for other developers to find your custom VCC and understand what it does.
 For a VCC, a custom thumbnail might be a better representation of the functionality than the automatically generated screenshot.
-. Click *Publish*.
+. Click *Publish New Version*.
 . When the publishing process is completed, click the link to open your live template.
 . Click the *Koji* button in the top right, and then go to *Koji Settings > Custom Domains*.
 . In the top right, click *New*.
