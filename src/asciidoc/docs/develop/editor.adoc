@@ -10,7 +10,7 @@ The editor contains all of your project's code, Visual Customization Controls (V
 
 The Koji editor is divided into these sections:
 
-* *Project pane* – Lists project menu items and source code.
+* *Navigation pane* – Lists menu items and source code.
 * *Editing pane* – Displays open files.
 Supports multiple tabs.
 * *Preview pane* – Displays a live preview of the template and provides other testing and debugging tools.
@@ -37,6 +37,7 @@ For in-depth walkthroughs of working outside the Koji editor, see <<use-git#>>.
 == Previews
 
 You can select the type of preview to display in the preview pane.
+See <<testing-templates.adoc#_using_previews,using previews>>.
 The following types are available.
 
 === Default
@@ -67,7 +68,8 @@ image::more.png[More menu]
 
 === Remote previews
 
-You can preview your template remotely using the following buttons.
+The preview pane provides options for previewing a template on different devices or in different environments.
+You can preview your template outside of the Koji editor using the following buttons.
 
 * The QR code button image:QRcode.png[QR code button] displays a QR code for the template.
 You can scan this code to preview the template on your mobile device.

@@ -44,15 +44,17 @@ These contexts are available if you've implemented <<withkoji-koji-iap-package#_
 * *Remote previews* - The preview pane provides options for previewing a template on different devices or in different environments.
 
 - On a mobile device – Open a preview on any device by scanning a QR code.
+Click the QR code button image:QRcode.png[QR code button] in the preview pane to display the QR code.
 
 - In a new tab – Open a preview on a staging server.
+Click the remote staging button image:remote-staging.png[Remote staging button] in the preview pane to open the preview in a new tab.
 
 === Writing to the console
 
 You can test JavaScript code by using the `console.log` method, which prints to the console.
 
 Although the `console.log` method can be implemented in the Koji editor, the results must be viewed in the console, which is only available when the template is run remotely, such as in a new browser tab.
-You can use the <<_using_remote_preview,remote preview>> option to run the template in a new tab.
+You can use the remote staging button image:remote-staging.png[Remote staging button] in the preview pane to open a preview in a new browser tab.
 Then you can access the console through the browser's menu.
 See <<_using_browser_tools_for_testing>>.
 
@@ -120,11 +122,9 @@ The Koji debugger enables live testing and debugging in a production environment
 It allows you to follow the communication happening between the Koji platform and the template.
 
 [NOTE]
-The debugger is only useful for debugging published templates.
-If a template is unpublished, no data is available to the debugger.
+You must publish your template before you can debug it using the Koji debugger.
 
-From the Koji editor, you can open the debugger by clicking *Launch Debugger* in the preview pane.
-From *Project Details*, you can open the debugger by clicking *Debugger*.
+To open the debugger, go to *Developer Portal > My projects* and click the project. Then, click *Debugger* on the project overview page. You can also open the debugger from the Koji editor by clicking *Launch Debugger* in the preview pane.
 
 === Debugging contexts
 
