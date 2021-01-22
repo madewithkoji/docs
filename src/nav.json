@@ -187,10 +187,6 @@
               "slug": "text"
             },
             {
-              "name": "Video",
-              "slug": "video"
-            },
-            {
               "name": "Google Font",
               "slug": "google-font"
             },
@@ -289,24 +285,6 @@
             {
               "name": "Contributing to the developer site",
               "slug": "contribute-koji-developers"
-            }
-          ]
-        },
-        {
-          "name": "Videos",
-          "root": "/videos",
-          "items": [
-            {
-              "name": "Starter course",
-              "slug": "starter-course"
-            },
-            {
-              "name": "Image best practices",
-              "slug": "image-best-practices"
-            },
-            {
-              "name": "KaiOS apps",
-              "slug": "kai-OS"
             }
           ]
         }

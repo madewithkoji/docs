@@ -1,8 +1,0 @@
-= Image resizing and scaling
-:page-slug: image-best-practices
-
-Watch the following video to learn how to optimize image sizes in your template.
-
-== Video tutorial
-
-video::4KDoYrSK0VE[youtube,560,361]
