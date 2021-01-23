@@ -4,16 +4,6 @@
 
 The following packages provide features and functionality for use in Koji templates.
 
-.Featured packages
-<<withkoji-vcc-package#>> ::
-+
-[.init-cap]
-include::withkojiVCC.adoc[tag=description]
-<<withkoji-database-package#>> ::
-+
-[.init-cap]
-include::withkojiDatabase.adoc[tag=description]
-
 .All Koji packages (alphabetical)
 <<withkoji-koji-analytics-sdk#>>  ::
 +
