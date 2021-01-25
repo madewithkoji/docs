@@ -14,6 +14,10 @@
               "slug": "packages-overview"
             },
             {
+              "name": "@withkoji/koji-core",
+              "slug": "withkoji-koji-core"
+            },
+            {
               "name": "@withkoji/custom-vcc-sdk",
               "slug": "withkoji-custom-vcc-sdk"
             },

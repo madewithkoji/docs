@@ -2,6 +2,8 @@
 :page-slug: withkoji-user-defaults-package
 :page-description: Package that provides a secure interface for accessing permissioned user data across all Koji templates. 
 
+include::../../docs/_includes/deprecatedPackage.adoc[tag=all]
+
 The @withkoji/user-defaults package provides
 //tag::description[]
 a secure interface for accessing permissioned user data across all Koji templates.

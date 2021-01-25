@@ -1,0 +1,121 @@
+= @withkoji/koji-core
+:page-slug: withkoji-koji-core
+:page-description: The core features for Koji templates.
+
+The @withkoji/koji-core package includes
+//tag::description[]
+the core features for Koji templates.
+//end::description[]
+
+== Core Features
+
+* *Analytics* - track custom events in your Koji templates.
++
+For example, track onClick events for the links and buttons in a Koji.
++
+To view the analytics data for your published Koji, go to *Manage this Koji > Open Creator Dashboard > Open Analytics*.
+You will see data for your custom events along with a standard set of built-in metrics, which are calculated from the Koji's access logs.
++
+TIP: Analytics data is processed at frequent intervals throughout the day.
+If you are testing the custom events in a published template and you don't see results at first, wait 10 minutes to account for data processing latency, and then check again.
+
+* *Authentication* - authenticate users in Koji templates.
++
+The Koji core provides methods for determining the current user's role (whether or not the user created the Koji).
+This information can be used to tailor the experience based on who is viewing the Koji.
+For example, you can design a protected "admin" experience that is accessible only to the creator of the Koji.
+It also enables the template to send notifications to the creator's Koji account.
+
+* *Database* - Each Koji project includes a key-value store that you can use as a backend database for simple use cases, such as collecting information from users, aggregating survey or poll results, and creating leaderboards for games.
+Koji databases are made up of one or more `collections`.
+Each `collection` stores a series of database entries with a unique key and collection of key-value pairs.
+Values within the key-value pairs can be of any type, including strings, numbers, and arrays.
++
+The Koji core enables you to
+//tag::description[]
+implement a Koji database for the backend of your template.
+//end::description[]
+In `immediate` mode (default), you send database updates one request at a time.
+In `transaction` mode, you can batch several updates together by calling `beginTransaction`, calling the request methods, and then calling `commitTransaction` to submit the batch.
+
+* *Dispatch* - implement real-time functionality in your Koji template.
+
+For example, chats, multi-player games, and polls.
+
+You can use dispatch on the frontend to enable real-time updates and communication between connected clients.
+You can also use it transactionally on the backend to send secure messages to specific clients that have been identified with a short-lived token.
+
+* *In-app purchases* - implement in-app purchases from your Koji templates.
++
+For example, require a purchase to unlock a premium asset or a game.
+The Koji core provides frontend methods, for managing transactions with users, and backend methods, for validating purchases against receipts.
++
+To implement a basic purchase flow in your template, use `getToken` on the frontend to obtain the current user's token. Then, use the callback function to route a request to the backend.
+On the backend, use `resolveReceipts` to determine whether the user has purchased the product and return appropriate information to the frontend.
+Finally, on the frontend, display the appropriate experience based on whether or not the product has been purchased.
+For example, display a premium image that has been purchased.
+Or, if the user hasn't purchased the image, display a *Purchase* button and use `startPurchase` to initiate a transaction when the user clicks the button.
+
+* *User Defaults* - a secure interface for accessing permissioned user data across all Koji templates.
++
+A template can request data with a reserved key, for the user's Koji profile data, or with a user key from any template on Koji, for additional preferences.
+This data can then be used to autofill values and personalize experiences.
+For example, automatically enter the user's name in a leaderboard, or display the user’s avatar in a game.
++
+Keys requested from any template are available in a global, unscoped namespace and do not need to be registered.
+When a request does not use a reserved key, Koji checks whether the user has entered a value for the requested key, either on the current template or on a different template.
+If not, the user is prompted to submit a value and allow it to be saved for later reuse.
+This method enables users to own and manage their data in a transparent, portable way, rather than relying on cookies or other measures.
+
+* *VCC* - implement core platform features in your Koji template, including instant remixing, Visual Customization Controls (VCCs), and the Koji feed.
++
+- Dynamically get and set custom values in Koji customization files.
+- Expose VCCs so that a user can change the customizable elements in your template.
+- Monitor changes to custom values with a watcher function.
+- Ensure the template is displayed correctly in the Koji feed.
+- Monitor and handle state transitions between in and out of focus in the Koji feed.
+- Define distinct template experiences for different viewing contexts.
+
+== Install
+
+Install the package in the frontend service of your Koji project.
+
+[source,bash]
+----
+npm install --save @withkoji/koji-core
+----
+
+== Analytics
+
+Import the package in your application code.
+
+[source,javascript]
+----
+import Koji core from '@withkoji/koji-core';
+----
+
+== Core methods
+
+////
+[.hcode, id=".track", reftext="track"]
+=== .track(event, payload)
+
+Generates an analytics event with the specified name and data payload, if applicable.
+
+==== Parameters
+
+* `event` – _String_, name of the custom event.
+* `payload` – _Object_, (Optional) list of custom key-value pairs to save with the event.
+
+==== Example
+
+[source,javascript]
+----
+Analytics.track('My Custom Event');
+Analytics.track('Won game', { score: 120 });
+----
+
+== Related resources
+
+* https://github.com/madewithkoji/koji-analytics-sdk[@withkoji/analytics on Github]
+////

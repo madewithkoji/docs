@@ -2,6 +2,8 @@
 :page-slug: withkoji-koji-analytics-sdk
 :page-description: Package for tracking custom events in your Koji templates.
 
+include::../../docs/_includes/deprecatedPackage.adoc[tag=all]
+
 The @withkoji/analytics package enables you to
 //tag::description[]
 track custom events in your Koji templates.

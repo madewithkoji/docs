@@ -4,7 +4,21 @@
 
 The following packages provide features and functionality for use in Koji templates.
 
-.All Koji packages (alphabetical)
+.Current packages
+<<withkoji-koji-core#>>  ::
++
+[.init-cap]
+include::withkojiKojiCore.adoc[tag=description]
+<<withkoji-custom-vcc-sdk#>>  ::
++
+[.init-cap]
+include::withkojiCustomVccSdk.adoc[tag=description]
+
+.Deprecated packages
+
+The following packages are now incorporated into *@withkoji/koji-core*.
+They should not be used in future templates.
+
 <<withkoji-koji-analytics-sdk#>>  ::
 +
 [.init-cap]
@@ -13,10 +27,6 @@ include::withkojiKojiAnalyticsSdk.adoc[tag=description]
 +
 [.init-cap]
 include::withkojiKojiAuthSdk.adoc[tag=description]
-<<withkoji-custom-vcc-sdk#>>  ::
-+
-[.init-cap]
-include::withkojiCustomVccSdk.adoc[tag=description]
 <<withkoji-database-package#>> ::
 +
 [.init-cap]

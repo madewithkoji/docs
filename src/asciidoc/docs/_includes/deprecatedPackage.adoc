@@ -1,0 +1,8 @@
+= Deprecated
+
+// tag::all[]
+[WARNING]
+====
+*[Deprecated]* - package is included only for backwards compatibility. It should not be used in future templates.
+====
+// end::all[]

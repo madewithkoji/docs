@@ -2,6 +2,8 @@
 :page-slug: withkoji-koji-auth-sdk
 :page-description: Package that provides user authentication for Koji templates.
 
+include::../../docs/_includes/deprecatedPackage.adoc[tag=all]
+
 The @withkoji/auth package enables you to
 //tag::description[]
 authenticate users in Koji templates.
