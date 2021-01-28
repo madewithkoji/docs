@@ -32,9 +32,7 @@ Each `collection` stores a series of database entries with a unique key and coll
 Values within the key-value pairs can be of any type, including strings, numbers, and arrays.
 +
 The Koji core enables you to
-//tag::description[]
 implement a Koji database for the backend of your template.
-//end::description[]
 In `immediate` mode (default), you send database updates one request at a time.
 In `transaction` mode, you can batch several updates together by calling `beginTransaction`, calling the request methods, and then calling `commitTransaction` to submit the batch.
 

@@ -1,4 +1,4 @@
-= @withkoji/database
+= @withkoji/database (deprecated)
 :page-slug: withkoji-database-package
 :page-description: Package for implementing a Koji database for the backend of your template.
 

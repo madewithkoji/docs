@@ -1,4 +1,4 @@
-= @withkoji/vcc
+= @withkoji/vcc (deprecated)
 :page-slug: withkoji-vcc-package
 :page-description: Package for implementing core platform features in your Koji template, including instant remixing, Visual Customization Controls (VCCs), and the Koji feed.
 

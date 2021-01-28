@@ -3,6 +3,7 @@
 // tag::all[]
 [WARNING]
 ====
-*[Deprecated]* - package is included only for backwards compatibility. It should not be used in future templates.
+This package is deprecated and is included only for backwards compatibility.
+For new templates, use <<withkoji-koji-core#>>.
 ====
 // end::all[]

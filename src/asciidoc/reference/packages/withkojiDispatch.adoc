@@ -1,4 +1,4 @@
-= @withkoji/dispatch
+= @withkoji/dispatch (deprecated)
 :page-slug: withkoji-dispatch-package
 :page-description: Package for implementing real-time functionality in your Koji template.
 
