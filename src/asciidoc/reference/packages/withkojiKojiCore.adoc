@@ -2,9 +2,9 @@
 :page-slug: withkoji-koji-core
 :page-description: The core features for Koji templates.
 
-The @withkoji/koji-core package includes
+The @withkoji/koji-core package enables you to
 //tag::description[]
-the core features for Koji templates.
+implement core platform features in your Koji template, including remixing, UI controls, identity services, and in-app purchases.
 //end::description[]
 
 == Core Features
