@@ -2,7 +2,7 @@
 :page-slug: editor
 :page-description: Guide for the Koji editor, a browser-based IDE for developing and testing Koji templates.
 
-The Koji editor is browser-based integrated development environment (IDE).
+The Koji editor is a browser-based integrated development environment (IDE).
 You can use the Koji editor to create application and game templates.
 The editor contains all of your project's code, Visual Customization Controls (VCCs) generated from the project's code, interfaces for publishing and deployment management, and interfaces to other production tools such as the Koji database.
 
@@ -10,7 +10,7 @@ The editor contains all of your project's code, Visual Customization Controls (V
 
 The Koji editor is divided into these sections:
 
-* *Project pane* – Lists project menu items and source code.
+* *Navigation pane* – Lists menu items and source code.
 * *Editing pane* – Displays open files.
 Supports multiple tabs.
 * *Preview pane* – Displays a live preview of the template and provides other testing and debugging tools.
@@ -36,30 +36,45 @@ For in-depth walkthroughs of working outside the Koji editor, see <<use-git#>>.
 
 == Previews
 
-=== Inline preview
+You can select the type of preview to display in the preview pane.
+To learn more about using previews, see <<testing-templates#_testing_in_the_koji_editor,Testing in the Koji editor>>.
+The following types are available.
 
-The Live Preview in the editor is a running preview of your template.
+=== Default
 
-The live preview provides these additional options:
+Selecting *Default* shows a running preview of your template.
 
-* *Editing* and *Preview* modes – Toggles between application *Preview* mode and *Editing* mode, which represents what remixers see when customizing values.
-* *Refresh* – Updates the preview with the latest version of your project code.
-* *Show Logs* – Opens a pane showing the console logs of your project.
-This is useful for debugging runtime errors or incorrect behaviors.
+=== Remix
 
-=== Remote preview
+Selecting *Remix* shows what remixers see when customizing values.
 
-The *Remote* tab enables you to test your template in a new tab or on another device by scanning the QR code.
-You can even share the remote preview link with someone else, and they can see the preview as you develop.
+=== More
 
-[NOTE]
-The remote preview link will only work for as long as your editor session is still active, so it is not suitable for long-term sharing.
+Selecting *More* displays a menu of additional previews.
 
-When your template preview is open in another tab, you still have access to the console logs of the remote device.
-This allows you test your template on different devices and computers while working in the editor, including things like debugging different browsers, operating systems, and form factors.
+image::more.png[More menu]
 
-== Route testing
+* *About* - Displays an About page, if you've enabled the associated entitlement.
 
-The *Routes* tab is used for testing backend routes.
-You can build your request and then click *Send Request* to execute it.
-The *Fetch* tab generates a code snippet for the current request that you can easily add to your application's frontend.
+* *Admin* - Displays an Admin page, if you've enabled the associated entitlement.
+
+* *Receipt (seller)* - Displays a preview of the transaction receipt for the seller, if you've implemented in-app purchases and enabled the dynamic receipts entitlement.
+
+* *Receipt (buyer)* - Displays a preview of the transaction receipt for the buyer, if you've implemented in-app purchases and enabled the dynamic receipts entitlement.
+
+* *Sticker* - Displays how your template will look if it's imbedded in another template.
+
+* *Thumbnail* - Displays how your template will look if it's shared on social media.
+
+=== Remote previews
+
+The preview pane provides these options for previewing a template outside of the Koji editor.
+
+* The QR code button image:QRcode.png[QR code button] displays a QR code for the template.
+You can scan this code to preview the template on your mobile device.
+
+* The remote staging button image:remote-staging.png[Remote staging button] opens a preview of your template in a new browser tab.
+
+=== Launching the debugger
+
+*Launch Debugger* opens the debugger in a new browser tab.

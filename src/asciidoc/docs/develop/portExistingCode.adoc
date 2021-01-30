@@ -211,10 +211,10 @@ require('ipad.js');
 }
 ----
 
-. When you are ready to see a live build of your project, click *Publish now* on the left side of the editor.
+. When you are ready to see a live build of your project, click *Publish Now* on the left side of the editor.
 +
 You will be prompted to enter additional information about your template, such as the name and description.
-. Click *Publish*.
+. Click *Publish New Version*.
 +
 Publishing runs the build commands specified for the project, and then displays a live link to your production template.
 

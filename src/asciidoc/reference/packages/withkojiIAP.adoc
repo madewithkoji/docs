@@ -1,6 +1,8 @@
-= @withkoji/iap
+= @withkoji/iap (deprecated)
 :page-slug: withkoji-koji-iap-package
 :page-description: Package for implementing in-app purchases from your Koji templates.
+
+include::../../docs/_includes/deprecatedPackage.adoc[tag=all]
 
 The @withkoji/iap package enables you to
 //tag::description[]
