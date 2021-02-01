@@ -89,7 +89,7 @@ const Spacer = styled.div`
 
 const BackLink = styled.a`
   display: flex;
-  
+
   @media screen and (max-width: 768px) {
     display: none;
   }
@@ -146,7 +146,7 @@ const AppBar = ({ navItems }) => (
         <GithubLogo />
       </ExternalLink>
       <DiscordLink
-        href={'https://discord.com/invite/eQuMJF6'}
+        href={'https://discord.com/invite/9egkTWf4ec'}
         target={'_blank'}
         title={'Join us on Discord'}
         style={{ marginRight: '12px' }}
