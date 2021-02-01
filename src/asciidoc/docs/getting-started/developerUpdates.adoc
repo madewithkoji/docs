@@ -8,6 +8,28 @@ TIP: To help improve the Koji developer experience, please share your thoughts, 
 
 == 2021
 
+=== February 1
+
+* The Koji developer community has a new channel.
+You can watch the https://withkoji.com/community[welcome video here].
+* The new <<withkoji-koji-core, @withkoji/core package>> includes everything you need to easily access platform services in your Kojis.
+** Implement core platform features in your Koji template, including remixing, in-app purchases, UI controls, messaging, and identity services.
+** Use straightforward methods that are scoped for frontend or backend services, with less boilerplate code.
+** Manage remix data with greater flexibility, without the need for specialized JSON customization files.
+** As part of this change, many existing packages are now deprecated.
+<<packages-overview#_deprecated_packages, Deprecated packages>> are still available for backwards compatibility; however, developers are encouraged to use the new core package for all new projects and updates going forward.
+* To enhance the developer experience, the following updates are now available on the Koji platform.
+** The Koji editor now uses the same live preview as the debugger, for seamless testing during development.
+** The publishing page in the Koji editor has been redesigned for a more streamlined experience.
+** The Koji editor and Project Details have been updated with more help text and improved styling for better usability.
+* The new *Template Details* page provides a place for remixers to learn about a template before they create their own version.
+** To make a new Koji from the Template Details, tap *Remix*, or tap *Preview* and then *Remix*.
++
+image::templateDetails-feb2021.png[Template Details page]
++
+This view is currently available for Koji-provided templates, and it will be rolled out to community-developed templates over the next few releases.
+** For a catalog of available templates, go to https://withkoji.com/create.
+
 === January 15
 
 * For template developers, the following features are now available on the Koji platform.
