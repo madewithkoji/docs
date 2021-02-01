@@ -23,10 +23,12 @@ You can watch the https://withkoji.com/community[welcome video here].
 ** The publishing page in the Koji editor has been redesigned for a more streamlined experience.
 ** The Koji editor and Project Details have been updated with more help text and improved styling for better usability.
 * The new *Template Details* page provides a place for remixers to learn about a template before they create their own version.
-To make a new Koji from the Template Details, tap *Remix*, or tap *Preview* and then *Remix*.
+** To make a new Koji from the Template Details, tap *Remix*, or tap *Preview* and then *Remix*.
 +
 image::templateDetails-feb2021.png[Template Details page]
++
 This view is currently available for Koji-provided templates, and it will be rolled out to community-developed templates over the next few releases.
+** For a catalog of available templates, go to https://withkoji.com/create.
 
 === January 15
 
