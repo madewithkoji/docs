@@ -1005,14 +1005,15 @@ This code indicates that the template supports remixes and is ready to be listed
 
 At this point, the template is ready to be published.
 
-. To view the template on the staging server before you publish it, click the *Remote* tab in the right pane, and then use one of the options to open a preview in another tab or on another device.
-. In the upper left of the editor, click *Publish now* to open the publish settings.
+. To preview the template on the staging server before you publish it, you can click the remote staging button image:remote-staging.png[Remote staging button] in the preview pane to open the preview in a new tab.
+. To preview the template on a mobile device, you can click the QR code button image:QRcode.png[QR code button] in the preview pane to display the QR code, then scan the code with your mobile device.
+. In the upper left of the editor, click *Publish Now* to open the publish settings.
 . Give your template a unique name and add a description.
 +
 NOTE: The permalink URL to your template is based on the name when you first publish it, so be sure to enter the name you want to use going forward.
 You can republish it to update any template functionality and settings, but the link remains the same.
 
-. Click *Publish*.
+. Click *Publish New Version*.
 +
 A message appears to indicate that the publishing process has started.
 When publishing is completed, a link appears in the message.

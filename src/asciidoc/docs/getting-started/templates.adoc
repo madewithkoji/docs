@@ -84,8 +84,8 @@ include::../_includes/entitlements.json[]
 When you have finished developing and testing your template, you can publish it from the Koji editor.
 If you've been working outside the editor, you must push those changes to your project’s origin repository, and pull the latest version into the Koji editor.
 
-From the editor, you click *Publish now* to open the publish settings.
-You can update the name, set the visibility (`unlisted` makes it accessible by direct link only), and configure additional settings.
+From the editor, you click *Publish Now* to open the publish settings.
+You can update the name, which sets the template URL when you first publish it, set the visibility to `unlisted` (accessible by direct link only), and configure additional settings.
 
 After you publish the template, the Koji profiler checks for errors, generates metadata about the application, and, if the template is error-free, enables the platform features configured in your entitlements file.
 

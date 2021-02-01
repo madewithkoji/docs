@@ -4,66 +4,61 @@
 
 The Koji platform provides a variety of tools for testing templates.
 Many tests can be run inside the editor, so you don't have to go back and forth between the editor and a separate tab or window.
-For example, you can remix, test backend routes, and preview what your template will look like on social media without ever leaving the editor.
+For example, you can remix your template and preview what it will look like on social media without ever leaving the editor.
 
 Typically, you begin testing in the Koji editor.
 Later, you'll want to publish the template as *Unlisted*, so you can test it in a production environment before giving access to general users.
-After you publish your Koji for the first time, you will also have access to the Koji debugger, which provides many additional tools for troubleshooting.
+After you publish your Koji for the first time, you will also be able to use the Koji debugger, which provides many additional tools for troubleshooting.
 
 == Testing in the Koji editor
 
 The Koji editor provides various ways to preview a template’s behavior.
 
-=== Using live previews
+=== Using previews
 
 Your template might provide different experiences for different situations, or "contexts."
 For example, you might provide a different UI during a remix than when the template is running.
-The *Live preview* tab enables you to preview several standard contexts inside the Koji editor.
+The preview pane enables you to preview several standard contexts inside the editor.
 
-If a context is enabled in your template, a button for it appears in the *Live preview* pane.
-Click the button to display the preview.
+You can select from the following types of previews.
 
 * *Default* – Displays what a template looks like when running.
-This context is always enabled.
+The *Default* context is always enabled.
+
 * *Remix* – Displays what a template looks like in edit mode.
 A creator enters edit mode when they remix a template.
 The *Remix* context is always enabled, even if <<instant-remixing#,instant remixing>> is not.
-* *Thumbnail* – Displays what a template looks like when shared on social media.
-This context is always enabled.
-* *Admin*, *About*, and *Sticker* – Display previews of standard contexts, if you've enabled the associated entitlements.
+
+* *More* - Displays a menu of additional previews.
+The additional previews include the following.
+
+- *Admin*, *About*, and *Sticker* – Display previews of standard contexts, if you've enabled the associated entitlements.
 For more on contexts, see <<withkoji-vcc-package#_context>>.
-* *Buyer receipt* and *Seller receipt* – Displays previews of the transaction receipts for the buyer and seller.
+
+- *Thumbnail* – Displays what a template looks like when shared on social media.
+The *Thumbnail* context is always enabled.
+
+- *Receipt (seller)* and *Receipt (buyer)* – Displays previews of the transaction receipts for the buyer and seller.
 These contexts are available if you've implemented <<withkoji-koji-iap-package#_iap,in-app purchases>> and enabled the dynamic receipts entitlement.
 
-=== Using remote previews
+* *Remote previews* - The preview pane provides options for previewing a template outside of the Koji editor.
 
-The *Remote* tab provides options for previewing a template on different devices or in different environments.
+- On a mobile device – Open a preview on any device by scanning a QR code.
+Click the QR code button image:QRcode.png[QR code button] in the preview pane to display the QR code.
 
-* On a mobile device – Open a preview on any device by scanning a QR code.
-Logs from the device appear in a pane in the editor.
-* In a new tab – Open a preview on a staging server.
-Logs from the tab appear in a pane in the editor.
-* With a shared link – Copy the link for the preview.
-If you share this link with someone else, they can preview the template while it's still in development.
-+
-[NOTE]
-The remote preview link will only work for as long as your editor session is still active, so it is not suitable for long-term sharing.
-
-=== Testing backend routes
-
-The *Routes* tab lets you test your backend routes.
-It's similar to using a program like curl or Fiddler.
-For example, you can manually enter an HTTP request, configure a header for it, send the request, and examine the results returned by the server.
+- In a new tab – Open a preview on a staging server.
+Click the remote staging button image:remote-staging.png[Remote staging button] in the preview pane to open the preview in a new tab.
 
 === Writing to the console
 
 You can test JavaScript code by using the `console.log` method, which prints to the console.
-To see the console in the Koji editor, click the console button image:consoleButton.jpg[Console button] in the *Live preview* pane.
 
-For example, the following code snippet prints *Key pressed* to the console every time you press a key, as long as the *Live preview* pane is selected.
+Although the `console.log` method can be implemented in the Koji editor, the results must be viewed in the console, which is only available when the template is run remotely.
+You can use the remote staging button image:remote-staging.png[Remote staging button] in the preview pane to open a preview in a new browser tab.
+Then you can access the console through the browser's menu.
+See <<_using_browser_tools_for_testing>>.
 
-[NOTE]
-You can select *Live preview* by clicking anywhere in its pane.
+For example, the following code snippet prints *Key pressed* to the console every time you press a key.
 
 [source,javascript]
 ----
@@ -83,21 +78,11 @@ You can select *Live preview* by clicking anywhere in its pane.
     });
 ----
 
-When running your template outside the editor, you can access the console through the browser's menu.
-See <<_using_browser_tools_for_testing>>.
-
 === Testing a social media share
 
 When a user shares a remix of your template on social media, the Koji platform renders a rich preview (Open Graph) image based on a screenshot of the template.
-You can preview this image by opening the *Thumbnail* tab in the *Live preview* pane.
+You can preview this image by selecting *More > Thumbnail*  in the preview pane.
 For information about how to customize the image, see <<rich-preview-image#>>.
-
-=== Viewing messages passed between a template and platform APIs
-
-Platform features like VCCs and in-app purchases require communication between your template and platform APIs.
-To support that communication, your template is loaded into a "player" iframe inside the browser.
-The player allows messages to be sent from your template to the parent window and vice versa by using the `window.postMessage` API.
-To view these messages, click the view messages button image:messagesButton.jpg[View messages] in the *Live preview* pane.
 
 == Using browser tools for testing
 
@@ -113,11 +98,10 @@ Some features, such as the Koji feed, can only be tested in the production envir
 
 If you publish your template as *Unlisted*, you can test it under exactly the same conditions as a general user, but no one else will have access unless you send them the direct link.
 
-. Click *Publish now*.
+. Click *Publish Now*.
 . Review the name and description, and update them if desired.
-. Click *Show advanced options*.
 . Select *Unlisted*.
-. Click *Publish*.
+. Click *Publish New Version*.
 . When publishing is completed, click the link to view and test your updated template.
 . When you're ready to give general users access, clear *Unlisted* and republish the template.
 
@@ -138,15 +122,15 @@ The Koji debugger enables live testing and debugging in a production environment
 It allows you to follow the communication happening between the Koji platform and the template.
 
 [NOTE]
-The debugger is only available after you publish your template for the first time.
+You must publish your template before you can debug it using the Koji debugger.
 
-To open the debugger, go to *Developer Portal > My projects* and click the project. Then, click *Debugger* on the project overview page.
+To open the debugger, go to *Developer Portal > My projects* and click the project. Then, click *Debugger* on the project overview page. You can also open the debugger from the Koji editor by clicking *Launch Debugger* in the preview pane.
 
 === Debugging contexts
 
 Your template might provide different experiences for different situations, or "contexts."
 Select the tab of a context to display relevant tools for debugging it.
-For example, select *Remix*, to display tools for debugging the remixing experience.
+For example, select *Remix* to display tools for debugging the remixing experience.
 
 TIP: If the selected context is not enabled in the template, a message will be displayed saying that it is unavailable.
 For more about contexts, see <<withkoji-vcc-package#_context>>.

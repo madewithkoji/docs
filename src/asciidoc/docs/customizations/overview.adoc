@@ -165,6 +165,5 @@ include::object.adoc[tag=description]
 
 == Related resources
 
-* https://withkoji.com/extensions[Custom VCCs on withkoji.com]
 * <<build-custom-vcc#>>
 * <<withkoji-custom-vcc-sdk#, Custom VCC package reference>>

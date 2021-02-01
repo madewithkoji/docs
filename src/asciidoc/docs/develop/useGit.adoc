@@ -1,6 +1,7 @@
 = Using Git to manage your project
 :page-slug: use-git
 :page-description: How to use Git to clone a Koji project template to your development machine, so that you can work on it locally.
+:figure-caption!:
 
 Although Koji provides a feature-rich online project editor, you might prefer to use your own suite of development tools in some cases.
 This tutorial describes how to use Git to clone a Koji project template to your development machine, so that you can work on it locally.
@@ -54,7 +55,7 @@ For some great starting points, check out the https://withkoji.com/tag/scaffolds
 +
 include::../_includes/remixNav.adoc[tag=all]
 +
-After a short loading time, the Koji editor opens.
+After a short loading time, the *Project Details* page opens.
 
 == Cloning the Git repository
 
@@ -66,37 +67,23 @@ The Koji repositories are stored at
 
 To clone your Koji repository locally, you need these strings:
 
-* The *repository URL* on `\https://projects.koji-cdn.com/`.
 * The *username* that you created when you registered with Koji.
 * An *access token*, which you must generate and store securely.
 
-You need to use the repository URL only once, you should know your username by heart, and the access token is a 32-character, randomly-generated hexadecimal number, which you need to note in a safe place.
-
-=== Obtaining the repository URL
-
-To find the URL of the Koji repository:
-
-. On the left side of the Koji editor, go to *Advanced > Repository Info*.
-+
-The Repository Info tab shows links to two repositories.
-+
-image::remote-repository.png[Remote repository URL in the Koji editor]
-. Copy the URL for the remote repository.
-+
-The *remote repository* is the personal repository for your template.
-+
-NOTE: The *upstream repository* is the repository from which your project was forked.
-If your intention is to propose improvements to the original project, then you can modify your remote repository and subsequently create pull requests, so that the developer can evaluate your proposed changes and update the project accordingly.
+You should know your username by heart, and the access token is a 32-character, randomly-generated hexadecimal number, which you need to note in a safe place.
 
 === Obtaining an access key
 
 To clone your Koji repository locally, you must generate an access key and store it securely.
 Access keys are strong, randomly-generated, 32-character hexadecimal strings that you generate to allow programmatic access to your Koji projects.
 
-. From any page on https://withkoji.com[withkoji.com], click your profile picture in the top right, and then click *Developer Portal*.
+. From *Project Details*, click *Clone*.
+A dialog similar to the following opens.
 +
-. Click *My Access Keys*.
-. Click *Generate New Key* in the top right.
+image::git-clone.png[]
+. Click *Manage access keys*.
+The *Access Keys* page opens in a new tab.
+. Click *Generate new token* in the top right.
 +
 A window opens to display the new access key.
 . Copy the access key and keep it somewhere safe, where only you can find it.
@@ -109,16 +96,21 @@ You can, however, revoke your token and generate a new one if you have forgotten
 
 === Authorizing Git to clone the repository
 
+. Return to the browser tab for *Project Details*.
+. Click the line of text under *Repository* in the dialog box to highlight it.
+This line has the form `git clone \https://projects.koji-cdn.com/[[unique identifier]].git`, where [unique identifier] is the identifier for the repository directory on `\https://projects.koji-cdn.com/`.
+. Copy the highlighted line to the clipboard.
 . Open a terminal window, and go to the directory on your local machine where you want to save your project.
-. Run the following command.
-+
-Replace `[repository URL]` with the URL that you copied in the previous procedure and `[directory name]` with the name of the directory that you want Git to create for your project.
+. Paste the line you copied to the clipboard.
+. Append a space followed by a name for the directory that you want Git to create for your project.
+The line should have the following format:
 +
 [source,bash]
 ----
 git clone [repository URL] [directory name]
 ----
 +
+. Press `Enter` to run the command.
 Your terminal will look something like this:
 +
 [source,bash]
@@ -127,8 +119,8 @@ Your terminal will look something like this:
 Cloning into 'MyKojiTemplate'...
 Username for 'https://projects.koji-cdn.com':
 ----
-. At the username prompt, enter your username on Koji and press *Enter*.
-. At the password prompt, enter the access key that you generated in the previous procedure.
+. If you are prompted for your username, enter your username on Koji and press *Enter*.
+. If you are prompted for a password, enter the access key that you generated in the previous procedure.
 +
 For security, the password will not be shown as you enter it.
 . Press *Enter* to start the cloning process.

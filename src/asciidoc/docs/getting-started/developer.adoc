@@ -32,7 +32,6 @@ For some great resources to help you start developing templates on Koji, see:
 * <<start-guide-1#>> – Step-by-step instructions on how to create a remixable web application and publish it as a template on Koji.
 * <<blueprints-overview#>> – Block-by-block code samples for building cool things on Koji.
 Blueprints are intended for developers who prefer to jump straight to code.
-* <<starter-course#>> – Video tutorial of how to start developing applications on Koji.
 
 == Staying in touch
 

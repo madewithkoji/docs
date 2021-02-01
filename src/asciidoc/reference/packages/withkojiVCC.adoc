@@ -1,6 +1,8 @@
-= @withkoji/vcc
+= @withkoji/vcc (deprecated)
 :page-slug: withkoji-vcc-package
 :page-description: Package for implementing core platform features in your Koji template, including instant remixing, Visual Customization Controls (VCCs), and the Koji feed.
+
+include::../../docs/_includes/deprecatedPackage.adoc[tag=all]
 
 The @withkoji/vcc package enables you to
 //tag::description[]
@@ -511,7 +513,7 @@ To use this context:
 ** *Define an admin experience* – Enable the `AdminContext` <<_feedsdk, entitlement>>, and define a view intended for the creator of the Koji.
 For example, enable the creator to respond to questions from users.
 +
-NOTE: When the `AdminContext` entitlement is enabled, the creator can access the admin view by using the *Koji button* in the top right, and then going to *Koji Settings > Open Admin Page*.
+NOTE: When the `AdminContext` entitlement is enabled, the creator can access the admin view by going to *Manage this Koji > Open Admin Tools*.
 
 ** *Load the admin experience* – Load the admin experience only when viewed with the URL parameter `context=admin` and when the current user is the creator of the Koji.
 +
