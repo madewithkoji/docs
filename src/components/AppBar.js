@@ -1,13 +1,13 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import styled from 'styled-components';
-import { Link } from 'gatsby';
+import React from "react";
+import PropTypes from "prop-types";
+import styled from "styled-components";
+import { Link } from "gatsby";
 
-import { BLACK, DARK_GRAY, LIGHT_GRAY } from '../constants/colors';
+import { BLACK, DARK_GRAY, LIGHT_GRAY } from "../constants/colors";
 
-import Logo from './Logo';
-import DiscordLogo from './DiscordLogo';
-import GithubLogo from './GithubLogo';
+import Logo from "./Logo";
+import DiscordLogo from "./DiscordLogo";
+import GithubLogo from "./GithubLogo";
 
 const Container = styled.div`
   height: 76px;
@@ -69,7 +69,8 @@ const LogoLink = styled(StyledLink)`
   align-items: center;
   margin: 4px 0 0 -8px;
 
-  a:hover, &:hover {
+  a:hover,
+  &:hover {
     background: transparent !important;
   }
 `;
@@ -89,7 +90,7 @@ const Spacer = styled.div`
 
 const BackLink = styled.a`
   display: flex;
-  
+
   @media screen and (max-width: 768px) {
     display: none;
   }
@@ -98,7 +99,7 @@ const BackLink = styled.a`
 const ExternalLink = styled.a`
   display: flex;
   padding: 0 !important;
-  margin-right: 10px!important;
+  margin-right: 10px !important;
 
   @media screen and (max-width: 768px) {
     display: none;
@@ -116,7 +117,7 @@ const ExternalLink = styled.a`
 `;
 
 const DiscordLink = styled(ExternalLink)`
-  margin-right: 4px!important;
+  margin-right: 4px !important;
   svg {
     margin-top: 4px;
   }
@@ -125,47 +126,51 @@ const DiscordLink = styled(ExternalLink)`
 const AppBar = ({ navItems }) => (
   <Container>
     <Wrapper>
-      <LogoLink to={'/'}>
+      <LogoLink to={"/"}>
         <LogoWrapper>
           <Logo />
         </LogoWrapper>
       </LogoLink>
       <SectionLinks>
-        {
-          navItems.sort((a, b) => a.idx - b.idx).map(({ id, name, defaultPath }) => (
-            <StyledLink key={id} to={defaultPath}>{name}</StyledLink>
-          ))
-        }
+        {navItems
+          .sort((a, b) => a.idx - b.idx)
+          .map(({ id, name, defaultPath }) => (
+            <StyledLink key={id} to={defaultPath}>
+              {name}
+            </StyledLink>
+          ))}
       </SectionLinks>
       <Spacer />
       <ExternalLink
-        href={'https://github.com/madewithkoji'}
-        target={'_blank'}
-        title={'Check out our Github'}
+        href={"https://github.com/madewithkoji"}
+        target={"_blank"}
+        title={"Check out our Github"}
       >
         <GithubLogo />
       </ExternalLink>
       <DiscordLink
-        href={'https://discord.com/invite/eQuMJF6'}
-        target={'_blank'}
-        title={'Join us on Discord'}
-        style={{ marginRight: '12px' }}
+        href={"https://discord.com/invite/9egkTWf4ec"}
+        target={"_blank"}
+        title={"Join us on Discord"}
+        style={{ marginRight: "12px" }}
       >
         <DiscordLogo />
       </DiscordLink>
-      <BackLink href={'https://withkoji.com'} style={{ marginRight: 0 }}>
-        {'Back to withkoji.com'}
+      <BackLink href={"https://withkoji.com"} style={{ marginRight: 0 }}>
+        {"Back to withkoji.com"}
       </BackLink>
     </Wrapper>
   </Container>
 );
 
 AppBar.propTypes = {
-  navItems: PropTypes.arrayOf(PropTypes.shape({
-    defaultPath: PropTypes.string,
-    id: PropTypes.string,
-    name: PropTypes.string,
-  })),
+  navItems: PropTypes.arrayOf(
+    PropTypes.shape({
+      defaultPath: PropTypes.string,
+      id: PropTypes.string,
+      name: PropTypes.string,
+    })
+  ),
 };
 
 AppBar.defaultProps = {
