@@ -12,7 +12,7 @@ include::../_includes/tip-discord-server.adoc[tags=*]
 
 * The Koji developer community has a new channel.
 You can watch the https://withkoji.com/community[welcome video here].
-* The new <<withkoji-koji-core, @withkoji/core package>> includes everything you need to easily access platform services in your Kojis.
+* The new <<withkoji-koji-core#, @withkoji/core package>> includes everything you need to easily access platform services in your Kojis.
 ** Implement core platform features in your Koji template, including remixing, in-app purchases, UI controls, messaging, and identity services.
 ** Use straightforward methods that are scoped for frontend or backend services, with less boilerplate code.
 ** Manage remix data with greater flexibility, without the need for specialized JSON customization files.
