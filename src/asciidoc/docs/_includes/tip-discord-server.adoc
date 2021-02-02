@@ -2,6 +2,6 @@
 
 // tag::all[]
 
-TIP: If you're stuck with anything you can reach out to the developer community or the `@Koji Team` on our https://discord.gg/eQuMJF6[Discord server].
+TIP: If you have thoughts, questions, or feedback, please reach out to the developer community or the `@Koji-Team` on our https://discord.com/invite/9egkTWf4ec[Discord server].
 
 // end::all[]
