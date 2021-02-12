@@ -89,6 +89,10 @@
               "slug": "start-guide-2"
             },
             {
+              "name": "Migrating to the Koji core package",
+              "slug": "migrate-koji-core"
+            },
+            {
               "name": "News for Koji developers",
               "slug": "developer-updates"
             }
