@@ -87,8 +87,11 @@ See <<_getting_and_setting_remix_data>>.
 * Detecting the current context no longer relies on URL query parameters.
 Instead, the context is available as a frontend property.
 See <<_context>>.
-* Dispatch no longer requires a constructor, and the `connect` method is promised-based.
+* Frontend modules no longer require a constructor.
+* For Kojis that use dispatch, the `connect` method is now promised-based.
 See <<_dispatch_on_the_frontend>>.
+* Obtaining user tokens and requesting authorization grants is simplified and consolidated into the Identity module.
+See <<_identity_on_the_frontend>>.
 
 +
 For a comprehensive mapping of deprecated packages to the replacement functionality in @withkoji/core, see the <<_package_comparison_reference>>.
@@ -100,6 +103,34 @@ npm remove @withkoji/auth @withkoji/dispatch @withkoji/iap @withkoji/vcc
 
 == Migrating backend features
 
+If your Koji has a backend service, update your code to use the @withkoji/core package.
+
+. Install the @withkoji/core package in the backend.
++
+[source, Bash]
+npm install @withkoji/core
+
+. Import the package in your backend code.
++
+[source,Javascript]
+import { KojiBackend } from '@withkoji/core';
+
+. middleware
+
+. Replace functionality from the deprecated packages with methods in the @withkoji/core package.
++
+The replacement methods vary depending on which packages and functionality you have implemented in your code.
+Key changes include:
+
+* All of the backend modules (Database, Dispatch, IAP, Identity, and Secret) now follow the same constructor pattern.
+
++
+For a comprehensive mapping of deprecated packages to the replacement functionality in @withkoji/core, see the <<_package_comparison_reference>>.
+. After you have implemented all backend functionality with the @withkoji/core package, you can remove the deprecated packages.
+For example:
++
+[source, Bash]
+npm remove @withkoji/auth @withkoji/dispatch @withkoji/database @withkoji/iap @withkoji/vcc
 
 == Package comparison reference
 
@@ -125,9 +156,100 @@ include::../_includes/deprecationQR.adoc[tag=all]
 | Deprecated package
 | @withkoji/core
 
-|
-|
+| constructor
+| Not needed on frontend
+
+backend/identity
+See <<_identity_on_the_backend>>.
+
+| checkGrant
+| frontend/identity
+See <<_identity_on_the_frontend>>.
+
+| getGrant
+| backend/identity
+See <<_identity_on_the_backend>>.
+
+| getRole
+| backend/identity
+See <<_identity_on_the_backend>>.
+
+| getToken
+| frontend/identity
+See <<_identity_on_the_frontend>>.
+
+
+| getTokenWithCallback
+| frontend/identity
+See <<_identity_on_the_frontend>>.
+
+| pushNotification
+| backend/identity
+See <<_identity_on_the_backend>>.
+
+| pushNotificationToOwner
+| backend/identity
+See <<_identity_on_the_backend>>.
 |===
+
+==== Identity on the frontend
+
+In @withkoji/core, the Identity module replaces the @withkoji/auth functionality from the deprecated packages.
+It simplifies the flow for identifying users and requesting authorization grants from them.
+For example:
+
+[source,JavaScript]
+----
+// Retrieve a short-lived user token to exchange on the backend
+const getToken = async () => {
+  const token = await Koji.identity.getToken();
+};
+
+// Silently request whether a user has already granted a set of permissions
+const checkGrants = async () => {
+  const hasGrants = await Koji.identity.checkGrants(['push_notifications', 'username']);
+};
+
+// Open a dialog to request new permissions from the user (and return a token)
+const requestGrants = async () => {
+  const token = await Koji.identity.requestGrants(['push_notifications', 'username']);
+};
+----
+
+==== Identity on the backend
+
+In @withkoji/core, the Identity module on the backend provides two main aspects of functionality – notifications and user data.
+
+Notifications now provides two methods – `pushNotificationToUser` and `pushNotificationToOwner`. Sending notifications to users requires a user ID, rather than a token, because the user must have granted permission to retrieve it.
+
+Resolving user data has been condensed into one method, `resolveUserFromToken`.
+
+[source,JavaScript]
+----
+...
+app.get('/get-user-role', async (req, res) => {
+  const identity = new KojiBackend.Identity({ res });
+
+  // Get the user token (generated using the frontend identity module)
+  const token = req.headers.authorization;
+
+  // Resolve the user
+  const user = await identity.resolveUserFromToken(token);
+
+  const {
+    id,           // The userId (specific to the template/remix)
+    attributes,   // Attributes about the user (username, etc.)
+    dateCreated,  // When the user first shared information
+    grants,       // Any permissions the user has granted
+    role,         // The user's role
+  } = user;
+
+  res.status(200).json({
+    role,
+  });
+});
+...
+----
 
 === @withkoji/database
 
@@ -138,9 +260,89 @@ include::../_includes/deprecationQR.adoc[tag=all]
 | Deprecated package
 | @withkoji/core
 
-|
-|
+| constructor
+| backend/database
+See <<_database_on_the_backend>>.
+
+| arrayPush
+| backend/database
+
+| arrayRemove
+| backend/database
+
+| beginTransaction
+| ???
+
+| commitTransaction
+| ???
+
+| delete
+| backend/database
+
+| generateSignedUploadRequest
+| backend/secret
+See <<_secrets>>.
+
+| get
+| backend/database
+
+| getAll
+| backend/database
+
+| getAllWhere
+| backend/database
+
+| getCollections
+| backend/database
+
+| getWhere
+| backend/database
+
+| getTranscodeStatus
+| ???
+
+| search
+| backend/database
+
+| set
+| backend/database
+See <<_database_on_the_backend>>.
+
+| transcodeAsset
+| frontend/ui/capture
+
+| update
+| backend/database
+
+| uploadFile
+| frontend/ui/capture
 |===
+
+==== Database on the backend
+
+Implementing the Database module works similarly in @withkoji/core to how it worked in the deprecated packages.
+For example:
+
+[source,JavaScript]
+----
+...
+
+app.get('/set-item', async (req, res) => {
+  const database = new KojiBackend.Database({ res });
+
+  // Get some data from the user
+  const { item } = req.body;
+
+  // Write the item to the database with a unique id
+  const update = await database.set('items', 'unique-id', item);
+
+  // Return the item
+  res.status(200).json({
+    item: update,
+  });
+});
+...
+----
 
 === @withkoji/dispatch
 
@@ -150,6 +352,12 @@ include::../_includes/deprecationQR.adoc[tag=all]
 |===
 | Deprecated package
 | @withkoji/core
+
+| constructor
+| Not needed on frontend
+
+backend/dispatch
+See <<_dispatch_on_the_backend>>.
 
 | authToken
 | ???
@@ -213,6 +421,15 @@ backend/dispatch
 | frontend/dispatch
 
 backend/dispatch
+
+2+|
+==== Utils
+
+| profanity
+| ???
+
+| filterProfanity
+| ???
 |===
 
 ==== Dispatch on the frontend
@@ -266,9 +483,94 @@ include::../_includes/deprecationQR.adoc[tag=all]
 | Deprecated package
 | @withkoji/core
 
-|
-|
+| constructor
+| Not needed on frontend
+
+backend/iap
+See <<_iap_on_the_backend>>.
+
+| getToken
+| frontend/identity
+See <<_identity_on_the_frontend>>.
+
+| loadProduct
+| backend/iap
+
+| resolveReceipts
+| backend/iap
+See <<_iap_on_the_backend>>.
+
+| resolveReceiptsById
+| backend/iap
+
+| resolveReceiptsBySku
+| backend/iap
+
+| startPurchase
+| frontend/iap
+See <<_iap_on_the_frontend>>.
+
+| updateReceipt
+| backend/iap
 |===
+
+==== IAP on the frontend
+
+Implementing in-app purchases in a frontend service works similarly in @withkoji/core to how it worked in the deprecated packages.
+You can begin a purchase flow by referencing the product's sku.
+For example:
+
+[source,JavaScript]
+----
+const startPurchase = async () => {
+  const purchase = await Koji.iap.startPurchase('productSku');
+
+  if (purchase.receiptId) {
+    // Success
+  } else {
+    // User cancelled transaction
+  }
+};
+
+const startDynamicPurchase = async () => {
+  const purchase = await Koji.iap.startPurchase('dynamicProductSku',
+    {
+      amount: 17,
+      customMessage: 'This is a custom message'.
+    },
+  );
+
+  if (purchase.receiptId) {
+    // Success
+  } else {
+    // User cancelled transaction
+  }
+};
+----
+
+==== IAP on the backend
+
+Implementing in-app purchases in a backend service works similarly in @withkoji/core to how it worked in the deprecated packages.
+However, some of the methods have been renamed for clarity.
+
+[source,JavaScript]
+----
+...
+app.get('/receipts-by-user', async (req, res) => {
+  const iap = new KojiBackend.IAP({ res });
+
+  // Get the user token (generated using the frontend identity module)
+  const token = req.headers.authorization;
+
+  // Get receipts by user
+  const receipts = await iap.resolveReceiptsByUserToken(token);
+
+  res.status(200).json({
+    receipts,
+  });
+});
+...
+----
 
 === @withkoji/user-defaults
 
@@ -294,6 +596,9 @@ include::../_includes/deprecationQR.adoc[tag=all]
 
 2+|
 ==== FeedSdk
+
+| constructor
+| ???
 
 | context
 | frontend/playerState See <<_context>>.
@@ -322,6 +627,9 @@ include::../_includes/deprecationQR.adoc[tag=all]
 2+|
 ==== InstantRemixing
 
+| constructor
+| Not needed
+
 | finish
 | frontend/remix See <<_getting_and_setting_remix_data>>.
 
@@ -337,7 +645,7 @@ include::../_includes/deprecationQR.adoc[tag=all]
 See <<_services>>.
 
 | onPresentControl
-| frontend/ui See <<_getting_and_setting_remix_data>>.
+| frontend/ui/capture See <<_getting_and_setting_remix_data>>.
 
 | onSetActivePath
 | ???
@@ -360,11 +668,24 @@ See <<_services>>.
 2+|
 ==== Keystore
 
+| constructor
+| Not needed on frontend
+
+backend/secret
+See <<_secrets>>.
+
 | generateSignedUrl
-| frontend/remix See <<_secrets>>.
+| backend/secret
 
 | resolveValue
-| frontend/remix, backend/secret See <<_secrets>>.
+| frontend/remix, backend/secret
+See <<_secrets>>.
+
+2+|
+==== VccMiddleware
+
+|
+| backend/middleware
 |===
 
 ==== Context
