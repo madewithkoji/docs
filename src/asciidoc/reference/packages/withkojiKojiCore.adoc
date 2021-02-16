@@ -7,6 +7,9 @@ The @withkoji/core package enables you to
 implement core platform features in your Koji template, including remixing, in-app purchases, UI controls, messaging, and identity services.
 //end::description[]
 
+NOTE: The @withkoji/core package replaces several <<packages-overview#_deprecated_packages,deprecated packages>>.
+If your Koji's code uses any of the deprecated packages, see <<migrate-koji-core#>>.
+
 == Available features
 
 This package provides client-side methods for use on the frontend of the Koji and server-side methods for use in backend services of your Koji.
