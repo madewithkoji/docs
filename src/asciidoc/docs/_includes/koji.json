@@ -1,5 +1,5 @@
 {
-  "develop": { <1>
+  "develop": {
     "frontend": {
       "path": "frontend",
       "port": 8080,
@@ -11,7 +11,7 @@
         "startCommand": "npm run start-dev"
     }
   },
-  "deploy": { <2>
+  "deploy": {
     "frontend": {
       "output": "frontend/build",
       "type": "static",
@@ -31,16 +31,16 @@
       ]
     }
   },
-  "remixData": { <3>
+  "remixData": {
     "backgroundColor": "#ffffff",
     "title": "My Template"
   },
-  "@@initialTransform": { <4>
+  "@@initialTransform": {
     "remixData": {
       "title": "Name your Koji"
     }
   },
-  "entitlements": { <5>
+  "entitlements": {
     "InstantRemixing": true,
     "FeedEvents": true,
     "InstantRemixingNativeNavigation": true,
