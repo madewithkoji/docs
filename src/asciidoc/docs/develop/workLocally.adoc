@@ -1,6 +1,6 @@
 = Working locally
 :page-slug: work-locally
-:page-description: How to set up a web server and launch your Koji template on your development machine, so that you can work on it locally. 
+:page-description: How to set up a web server and launch your Koji template on your development machine, so that you can work on it locally.
 
 Although Koji provides a feature-rich online project editor, you might prefer to use your own suite of development tools in some cases.
 In the first part of this tutorial, you learned how to use Git to clone a Koji project template to your development machine, so that you can work on it locally.
@@ -233,7 +233,7 @@ KOJI_PROJECT_TOKEN=a6676f53-44fe-4109-819a-69df620ad7ed
 . Run the following command to launch the backend.
 +
 [source,bash]
-npm run start-dev.
+npm run start-dev
 +
 Your terminal will look something like this:
 +
