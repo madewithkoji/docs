@@ -72,6 +72,8 @@ To clone your Koji repository locally, you need these strings:
 
 You should know your username by heart, and the access token is a 32-character, randomly-generated hexadecimal number, which you need to note in a safe place.
 
+If the project has a backend, you also need the values of the *`*KOJI_PROJECT_ID` and `KOJI_PROJECT_TOKEN` environment variables.
+
 === Obtaining an access key
 
 To clone your Koji repository locally, you must generate an access key and store it securely.
@@ -93,10 +95,25 @@ You will need to use this key each time you clone, pull, or push to the origin r
 WARNING: After you close the window, the access key will be displayed only by name (for example, `Token 1`).
 You will not be able to retrieve it from the Koji site again.
 You can, however, revoke your token and generate a new one if you have forgotten it, or if you believe that someone unauthorized has discovered it.
++
+NOTE: Keep the dialog open for the next two steps.
+
+=== Obtaining Koji environment variables
+
+[NOTE]
+If your project does not have a backend, skip this section.
+
+If your project has a backend, you need the values of the `KOJI_PROJECT_ID` and `KOJI_PROJECT_TOKEN` environment variables to access the leaderboard database.
+
+. If the Clone dialog is not already open, return to the browser tab for *Project Details*, and click *Clone*. The dialog opens.
+. Click the first line of text under *Environment Variables* to highlight it.
+. Copy the highlighted line to the clipboard.
+. Paste the line somewhere to save it for later.
+. Do the same with the second line of text.
 
 === Authorizing Git to clone the repository
 
-. Return to the browser tab for *Project Details*.
+. If the Clone dialog is not already open, return to the browser tab for *Project Details*, and click *Clone*. The dialog opens.
 . Click the line of text under *Repository* in the dialog box to highlight it.
 This line has the form `git clone \https://projects.koji-cdn.com/[[unique identifier]].git`, where [unique identifier] is the identifier for the repository directory on `\https://projects.koji-cdn.com/`.
 . Copy the highlighted line to the clipboard.
