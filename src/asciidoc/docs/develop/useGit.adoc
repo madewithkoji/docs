@@ -100,8 +100,9 @@ You can, however, revoke your token and generate a new one if you have forgotten
 If your project has a backend, you need the values of the `KOJI_PROJECT_ID` and `KOJI_PROJECT_TOKEN` environment variables to access it.
 
 . If the Clone dialog is not already open, return to the browser tab for *Project Details*, and click *Clone*.
-. The first line of text under *Environment Variables* is the project ID.
-Click the line to highlight it.
++
+The first line of text under *Environment Variables* is the project ID.
+. Click the line to highlight it.
 . Copy the highlighted line and paste it somewhere to save it for later.
 . Do the same with the second line of text, which is the project token.
 
