@@ -1,6 +1,6 @@
 = Working locally
 :page-slug: work-locally
-:page-description: How to set up a web server and launch your Koji template on your development machine, so that you can work on it locally. 
+:page-description: How to set up a web server and launch your Koji template on your development machine, so that you can work on it locally.
 
 Although Koji provides a feature-rich online project editor, you might prefer to use your own suite of development tools in some cases.
 In the first part of this tutorial, you learned how to use Git to clone a Koji project template to your development machine, so that you can work on it locally.
@@ -217,33 +217,10 @@ npm run start-windows
 ==== Launching the backend
 
 The backend needs to have the values of the `KOJI_PROJECT_ID` and `KOJI_PROJECT_TOKEN` environment variables to access the leaderboard database.
-You get the environment variables that Koji uses to deploy your project from the Koji editor.
+You saved the environment variables that Koji uses to deploy your project before you cloned it.
+If you need to find the environment variables again, follow the instructions in <<use-git#_obtaining_koji_environment_variables,Obtaining Koji environment variables>>.
 
-. Open your project in the Koji editor.
-. Open a new terminal tab and run the following command.
-+
-[source,bash]
-env | grep 'KOJI_'
-+
-Your terminal will look something like this:
-+
-[source,bash]
-----
-root@ip-172-31-15-24:/usr/src/app# env | grep 'KOJI_'
-...
-KOJI_SERVICE_URL_backend=https://3333-48006672-6558-4f69-a40c-e4142c15067f.koji-staging.com
-
-... (some variables not shown) ...
-
-KOJI_PROJECT_ID=a70f8329-e89e-48b0-8d85-7658c1542b9f
-KOJI_PROJECT_TOKEN=6679483a-dab8-4e89-9a83-6b56b53b4241
-...
-----
-NOTE: This example was edited to show only the relevant items.
-The values in your output will be unique to your project.
-
-. Copy the output for the `KOJI_PROJECT_ID` and `KOJI_PROJECT_TOKEN`.
-. On your local machine, create a file named `.env` at the root of your project, and paste the two lines that you have just copied into it.
+. On your local machine, create a file named `.env` at the root of your project, and paste the two lines for the environment variables.
 +
 Your file will look something like this (with your unique values):
 +
@@ -256,7 +233,7 @@ KOJI_PROJECT_TOKEN=a6676f53-44fe-4109-819a-69df620ad7ed
 . Run the following command to launch the backend.
 +
 [source,bash]
-npm run start-dev.
+npm run start-dev
 +
 Your terminal will look something like this:
 +
@@ -303,7 +280,6 @@ set KOJI_PROJECT_TOKEN=a6676f53-44fe-4109-819a-69df620ad7ed
 TIP: Another alternative is to use the https://www.npmjs.com/package/dotenv[dotenv] package to read the values from the `.env` file.
 
 ==== Starting the watcher on the backend (Windows only)
-
 
 . Install npm-run-all.
 +
