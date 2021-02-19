@@ -1,0 +1,56 @@
+{
+  "develop": {
+    "frontend": {
+      "path": "frontend",
+      "port": 8080,
+      "startCommand": "npm start"
+    },
+    "backend": {
+        "path": "backend",
+        "port": 3333,
+        "startCommand": "npm run start-dev"
+    }
+  },
+  "deploy": {
+    "frontend": {
+      "output": "frontend/build",
+      "type": "static",
+      "commands": [
+        "cd frontend",
+        "npm install",
+        "export NODE_ENV=production && npm run build"
+      ]
+    },
+    "backend": {
+      "output": "backend",
+      "type": "dynamic",
+      "commands": [
+        "cd backend",
+        "npm install",
+        "export NODE_ENV=production && npm run compile"
+      ]
+    }
+  },
+  "remixData": {
+    "backgroundColor": "#ffffff",
+    "title": "My Template"
+  },
+  "@@initialTransform": {
+    "remixData": {
+      "title": "Name your Koji"
+    }
+  },
+  "entitlements": {
+    "InstantRemixing": true,
+    "FeedEvents": true,
+    "InstantRemixingNativeNavigation": true,
+    "CustomMetadata": {
+      "enabled": true,
+      "metadata": {
+        "title": "Default Title",
+        "description": "{{remixData.title}}"
+      }
+    },
+    "AdminContext": true
+  }
+}
