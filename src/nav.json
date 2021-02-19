@@ -89,6 +89,10 @@
               "slug": "start-guide-2"
             },
             {
+              "name": "Migrating to the Koji core package",
+              "slug": "migrate-koji-core"
+            },
+            {
               "name": "News for Koji developers",
               "slug": "developer-updates"
             }
@@ -215,10 +219,6 @@
             {
               "name": "Building custom VCCs",
               "slug": "build-custom-vcc"
-            },
-            {
-              "name": "Using remix states to expose customizations",
-              "slug": "remix-states"
             }
           ]
         },

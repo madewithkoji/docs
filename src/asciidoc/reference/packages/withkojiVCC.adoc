@@ -171,37 +171,8 @@ instantRemixing.onSetActivePath((path) => {
 [.hcode, id=".onSetCurrentState", reftext="onSetCurrentState"]
 === .onSetCurrentState(handler)
 
-Listens to the changes to the current state.
-If a template has more than one state, the available states are listed when remixing so the user can switch between them.
-
-States are optional and, if used, must be defined in the `.koji/customization/quickstart.json` file.
-
-[source,json]
-----
-{
-   "quickstart": {
-        "states": [
-            { "key": "choice", "label": "Choice scene" },
-            { "key": "result", "label": "Result scene" }
-        ]
-    }
-}
-----
-
-==== Parameters
-
-* `handler` – _Function_, handles changes to the current state.
-Receives the following property as input:
-** `state` – _String_, key of the active state.
-
-==== Example
-
-[source,javascript]
-----
-instantRemixing.onSetCurrentState((state) => {
-  // Change experience per state
-});
-----
+*No longer supported*.
+For the most flexibility and control of the remix experience, implement the <<withkoji-koji-core#, @withkoji/core package>>.
 
 [.hcode, id=".onSetRemixing", reftext="onSetRemixing"]
 === .onSetRemixing(handler)
