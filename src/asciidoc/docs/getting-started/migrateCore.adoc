@@ -115,7 +115,7 @@ See <<_dispatch_on_the_frontend>>.
 See <<_identity_on_the_frontend>>.
 . Use the `Koji.ready` function to indicate that the application is ready to start receiving events.
 +
-You must call this function after initializing the package and subscribing to remix state changes, but before advancing to the preview with `Koji.remix.finish`. 
+You must call this function after initializing the package and subscribing to remix state changes, but before advancing to the preview with `Koji.remix.finish`.
 
 . In the `package.json` file, remove any scripts that reference the deprecated packages.
 +
@@ -137,6 +137,11 @@ If your Koji has a backend service, update your code to use the @withkoji/core p
 [source, Bash]
 npm install @withkoji/core
 
+. Make sure the `koji.json` file will be bundled with the backend service during deployment.
++
+In most frameworks, this file won’t be bundled by default because it is not in the same folder as the backend code.
+If the file is not bundled, the backend service will not be initialized correctly and the deployment will fail.
+To solve this problem, you can use a tool such as https://www.npmjs.com/package/babel-plugin-inline-json-import[babel-plugin-inline-json-import].
 . Import the package in your backend code.
 +
 [source,Javascript]
