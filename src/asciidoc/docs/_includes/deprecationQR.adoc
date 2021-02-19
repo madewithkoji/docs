@@ -1,0 +1,6 @@
+= Deprecated package quick reference
+
+// tag::all[]
+This table maps the features in the deprecated package to the replacement methods in @withkoji/core.
+Use it as a quick reference when updating your code.
+// end::all[]
