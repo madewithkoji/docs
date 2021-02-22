@@ -20,6 +20,14 @@ You can define and manage the details for your templates, including the base Koj
 Approved templates will be featured in the appropriate category on the store page.
 * A new guide is available to help you upgrade your code to the @withkoji/core package.
 See <<migrate-koji-core#>>.
+* The following features are now available in the <<withkoji-koji-core#, @withkoji/core package>>.
+** You can now use `initialValue` to set a starting value for color, range, and select captures.
+** The new frontend/navigate module provides methods for controlling navigation in your Kojis.
+** The new `custom` method in frontend/capture enables you to capture values with custom VCCs.
+** Fixed various issues.
+
++
+For a comprehensive list of changes and versions, see the https://github.com/madewithkoji/koji-core/releases[package release notes] in Github.
 * The values of the `KOJI_PROJECT_ID` and `KOJI_PROJECT_TOKEN` environment variables are now available from  Project Details, making it easier to set up your <<work-locally#, local development environment>>.
 * The Koji button and user profile menu have been redesigned for clarity and usability.
 New styles and menu options improve the experience of navigating around the Koji platform.
