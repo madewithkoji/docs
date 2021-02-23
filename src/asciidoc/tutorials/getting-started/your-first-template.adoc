@@ -1,0 +1,5 @@
+= Your first template
+:page-slug: your-first-template
+:figure-caption!:
+
+Your first template

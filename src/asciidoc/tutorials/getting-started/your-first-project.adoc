@@ -1,0 +1,5 @@
+= Your first project
+:page-slug: your-first-project
+:figure-caption!:
+
+Your first project

@@ -1,0 +1,5 @@
+= Using the code editor
+:page-slug: code-editor
+:figure-caption!:
+
+Using the code editor

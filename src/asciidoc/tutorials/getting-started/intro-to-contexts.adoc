@@ -1,0 +1,5 @@
+= Introduction to contexts
+:page-slug: intro-to-contexts
+:figure-caption!:
+
+Introduction to contexts

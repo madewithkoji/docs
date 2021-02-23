@@ -1,0 +1,5 @@
+= Creating a remixable project
+:page-slug: remixable-project
+:figure-caption!:
+
+Creating a remixable project

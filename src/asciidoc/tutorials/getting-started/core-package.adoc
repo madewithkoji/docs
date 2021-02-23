@@ -1,0 +1,5 @@
+= The @withkoji/core package
+:page-slug: core-package
+:figure-caption!:
+
+The @withkoji/core package

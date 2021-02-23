@@ -311,6 +311,43 @@
           ]
         }
       ]
+    },
+    {
+      "name": "Tutorials",
+      "root": "/tutorials",
+      "defaultPath": "/tutorials/quick-start/your-first-project",
+      "sections": [
+        {
+          "name": "Quick start",
+          "root": "/quick-start",
+          "items": [
+            {
+              "name": "Your first project",
+              "slug": "your-first-project"
+            },
+            {
+              "name": "Using the code editor",
+              "slug": "code-editor"
+            },
+            {
+              "name": "The @withkoji/core package",
+              "slug": "core-package"
+            },
+            {
+              "name": "Introduction to contexts",
+              "slug": "intro-to-contexts"
+            },
+            {
+              "name": "Creating a remixable project",
+              "slug": "remixable-project"
+            },
+            {
+              "name": "Your first template",
+              "slug": "your-first-template"
+            }
+          ]
+        }
+      ]
     }
   ]
 }
