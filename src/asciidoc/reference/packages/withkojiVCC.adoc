@@ -484,7 +484,7 @@ To use this context:
 ** *Define an admin experience* – Enable the `AdminContext` <<_feedsdk, entitlement>>, and define a view intended for the creator of the Koji.
 For example, enable the creator to respond to questions from users.
 +
-NOTE: When the `AdminContext` entitlement is enabled, the creator can access the admin view by going to *Manage this Koji > Open Admin Tools*.
+NOTE: When the `AdminContext` entitlement is enabled, the creator can access the admin view by going to *Koji > Admin Portal*.
 
 ** *Load the admin experience* – Load the admin experience only when viewed with the URL parameter `context=admin` and when the current user is the creator of the Koji.
 +
