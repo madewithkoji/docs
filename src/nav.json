@@ -6,6 +6,24 @@
       "defaultPath": "/reference/packages/packages-overview",
       "sections": [
         {
+          "name": "@withkoji/core",
+          "root": "/koji-core",
+          "items": [
+            {
+              "name": "Backend/Database",
+              "slug": "backend-database"
+            },
+            {
+              "name": "Backend/Secret",
+              "slug": "backend-secret"
+            },
+            {
+              "name": "Frontend/Remix",
+              "slug": "frontend-remix"
+            }
+          ]
+        },
+        {
           "name": "Packages for Koji features",
           "root": "/packages",
           "items": [

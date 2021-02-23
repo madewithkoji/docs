@@ -1,8 +1,38 @@
+/* eslint-disable max-len */
+/* eslint-disable no-param-reassign */
 /* eslint-disable no-console */
 const { navItems } = require('./src/nav.json');
 const { resolvePathFromSlug } = require('./src/utils/resolvePathFromSlug');
+const core = require('./src/core.json');
 
 exports.sourceNodes = ({ actions, createNodeId, createContentDigest }) => {
+  try {
+    core.children.forEach((child) => {
+      (child.children || []).forEach((grandChild) => {
+        if (grandChild.kindString === 'Class') {
+          grandChild.slug = child.name.replace('/', '-').toLowerCase();
+
+          grandChild.methods = (grandChild.children || []).filter(({ kindString, flags = {} }) => kindString === 'Method' && flags.isPublic);
+
+          grandChild.children = [];
+
+          const node = {
+            ...grandChild,
+            id: createNodeId(`Koji-Core-Package-Item-${grandChild.name}`),
+            internal: {
+              type: 'KojiCorePackageItem',
+              contentDigest: createContentDigest(grandChild),
+            },
+          };
+
+          actions.createNode(node);
+        }
+      });
+    });
+  } catch (err) {
+    console.log('ERR', err);
+  }
+
   navItems.forEach((navItem, idx) => {
     const mappedNavItem = { ...navItem, idx };
 
@@ -116,6 +146,60 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
         },
       });
     }
+  });
+
+  const corePackageData = await graphql(`
+    query {
+      allKojiCorePackageItem {
+        nodes {
+          id
+          name
+          slug
+          methods {
+            id
+            name
+            signatures {
+              comment {
+                returns
+                shortText
+                tags {
+                  tag
+                  text
+                }
+                text
+              }
+              parameters {
+                defaultValue
+                name
+                comment {
+                  text
+                }
+                type {
+                  name
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  `);
+
+  const corePackageTemplate = require.resolve('./src/templates/CorePackage/index.js');
+
+  corePackageData.data.allKojiCorePackageItem.nodes.forEach((node) => {
+    console.log('n', node);
+    createPage({
+      path: `/reference/koji-core/${node.slug}`,
+      component: corePackageTemplate,
+      context: {
+        id: node.id,
+        // additional data can be passed via context
+        slug: node.slug,
+      },
+    });
+
+    slugsInUse.push(node.slug);
   });
 
   knownSlugs.forEach((knownSlug) => {
