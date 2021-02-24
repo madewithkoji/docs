@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import React, { useEffect } from 'react';
 // import PropTypes from 'prop-types';
 import { graphql } from 'gatsby';
@@ -22,39 +23,77 @@ export const query = graphql`
   query($id: String!) {
     kojiCorePackageItem(id: { eq: $id }) {
       id
-      comment {
-        shortText
-        text
-      }
-      kindString
       name
-      slug
-      methods {
-        name
+      Classes {
         id
-        sources {
-          fileName
-          line
+        name
+        comment {
+          shortText
         }
-        signatures {
-          comment {
-            shortText
-            tags {
-              tag
-              text
+        children {
+          id
+          name
+          kindString
+          signatures {
+            id
+            comment {
+              tags {
+                tag
+                text
+              }
+            }
+            parameters {
+              comment {
+                text
+              }
+              flags {
+                isOptional
+              }
+              name
+              type {
+                name
+                type
+                id
+              }
             }
           }
-          parameters {
-            comment {
-              text
-            }
-            flags {
-              isOptional
-            }
-            kind
+          sources {
+            fileName
+            line
+            character
+          }
+          type {
+            type
             name
-            type {
+          }
+        }
+      }
+      Enumerations {
+        id
+        name
+        children {
+          defaultValue
+          id
+          name
+        }
+      }
+      Interfaces {
+        id
+        name
+        children {
+          id
+          flags {
+            isOptional
+          }
+          comment {
+            shortText
+          }
+          name
+          type {
+            type
+            types {
               name
+              type
             }
           }
         }
@@ -187,30 +226,189 @@ const Nav = styled.div`
   }
 `;
 
+function parseClass(c) {
+  let description;
+
+  const { name } = c;
+
+  const { comment } = c;
+
+  if (comment) {
+    if (comment.shortText) description = comment.shortText;
+  }
+
+  return { name, description };
+}
+
+function convertToAsciiDoc(text) {
+  const asciidoc = asciidoctor();
+  return asciidoc.convert(text);
+}
+
+function getMethodTitle(method) {
+  if (method.name.includes('constructor')) return false;
+
+  if (method.signatures && method.signatures[0].parameters) {
+    return `${method.name}(${method.signatures[0].parameters.map((p) => p.name).join(', ')})`;
+  }
+
+  return method.name;
+}
+
+function getMethodDescription(method) {
+  if (!method.signatures[0] || !method.signatures[0].comment || !method.signatures[0].comment.shortText) return false;
+  return method.signatures[0].comment.shortText;
+}
+
+function getMethodParameters(method) {
+  if (!method.signatures || !method.signatures[0].parameters || !method.signatures[0].parameters.length) return false;
+  return method.signatures[0].parameters;
+}
+
+function getMethodExample(method) {
+  if (!method.signatures[0].comment || !method.signatures[0].comment.tags || !method.signatures[0].comment.tags[0] || method.signatures[0].comment.tags[0].tag !== 'example') return false;
+  return method.signatures[0].comment.tags[0].text;
+}
+
+function getMethodSource(method) {
+  if (!method.sources || !method.sources[0] || !method.sources[0].fileName || !method.sources[0].line) return false;
+  return `${method.sources[0].fileName}#L${method.sources[0].line}`;
+}
+
+function renderParameterType(parameter) {
+  if (!parameter.type || !parameter.type.type) return null;
+
+  if (parameter.type.type === 'reference') {
+    return (
+      <a href={`#${parameter.type.name}`}>
+        {parameter.type.name}
+      </a>
+    );
+  }
+
+  return parameter.type.name;
+}
+
+function renderMethod(method) {
+  const methodTitle = getMethodTitle(method);
+  const methodDescription = getMethodDescription(method);
+  const methodParameters = getMethodParameters(method);
+  const methodExample = getMethodExample(method);
+  const methodSource = getMethodSource(method);
+
+  return (
+    <div key={method.id}>
+      {
+        methodTitle &&
+        <h3 id={method.name}>{`.${methodTitle}`}</h3>
+      }
+      {
+        methodDescription &&
+        <p>{methodDescription}</p>
+      }
+      {
+        methodParameters &&
+        <div>
+          <h4>{'Parameters'}</h4>
+          <div className={'ulist'}>
+            <ul>
+              {
+                methodParameters.map((parameter) => (
+                  <li key={parameter.name}>
+                    <p>
+                      <code>{parameter.name}</code>
+                      {' – '}
+                      {parameter.flags && parameter.flags.isOptional && <span>{'(Optional) '}</span>}
+                      <em>{renderParameterType(parameter)}</em>
+                      {parameter.comment && parameter.comment.text ? `, ${parameter.comment.text}` : ''}
+                    </p>
+                  </li>
+                ))
+              }
+            </ul>
+          </div>
+        </div>
+      }
+      {
+        methodExample &&
+        <div>
+          <h4>{'Example'}</h4>
+          <div dangerouslySetInnerHTML={{ __html: convertToAsciiDoc(methodExample) }} />
+        </div>
+      }
+      {
+        methodSource &&
+        <p>
+          {'Source: '}
+          <a
+            href={`https://github.com/madewithkoji/koji-core/tree/main/src/${methodSource}`}
+            rel={'noreferrer noopener'}
+            target={'_blank'}
+          >
+            {methodSource}
+          </a>
+        </p>
+      }
+    </div>
+  );
+}
+
+function renderEnum(e) {
+  return (
+    <div key={e.id}>
+      {
+        e.name &&
+        <h3 id={e.name}>{e.name}</h3>
+      }
+      {
+        (e.children.length && true) &&
+        <>
+          <h4>{'Possible Values'}</h4>
+          <div className={'ulist'}>
+            <ul>
+              {
+                e.children.map((child) => (
+                  <li key={child.defaultValue}>{child.defaultValue}</li>
+                ))
+              }
+            </ul>
+          </div>
+        </>
+      }
+    </div>
+  );
+}
+
 const CorePackage = (props) => {
   const { kojiCorePackageItem } = props.data;
 
   console.log('k', kojiCorePackageItem);
 
-  const {
-    methods,
-    name: pageTitle,
-    name: pageDesc,
-    name: pageBanner,
+  let {
+    Classes,
+    Enumerations,
+    Interfaces,
   } = kojiCorePackageItem;
 
-  const asAsciiDoc = (text) => {
-    const asciidoc = asciidoctor();
-    return asciidoc.convert(text);
-  };
+  if (!Classes) Classes = [];
+  if (!Enumerations) Enumerations = [];
+  if (!Interfaces) Interfaces = [];
 
-  const getTitle = (method) => {
-    if (method.signatures && method.signatures[0].parameters) {
-      return `${method.name}(${method.signatures[0].parameters.map((p) => p.name).join(', ')})`;
-    }
+  const { name, description } = parseClass(Classes[0]);
 
-    return method.name;
-  };
+  let constructor = Classes[0].children.find(({ kindString }) => kindString === 'Constructor');
+
+  if (!constructor.signatures || !constructor.signatures[0] || !constructor.signatures[0].comment) constructor = false;
+  const methods = Classes[0].children.filter(({ kindString }) => kindString === 'Method');
+
+  const referenceIds = methods
+    .map((method) => (method.signatures && method.signatures[0]) || { parameters: [] })
+    .reduce((acc, cur) => [...acc, ...(cur.parameters || [])], [])
+    .filter((param) => param.type && param.type.type && param.type.type === 'reference')
+    .reduce((acc, cur) => acc.includes(cur.type.id) ? acc : [...acc, cur.type.id], []);
+
+  const enums = Enumerations.filter(({ id }) => referenceIds.includes(id));
+  const interfaces = Interfaces.filter(({ id }) => referenceIds.includes(id));
 
   useEffect(() => {
     document.querySelectorAll('pre code').forEach((block) => {
@@ -223,83 +421,98 @@ const CorePackage = (props) => {
 
   return (
     <StyledContainer maxWidth="lg">
-      <SEO title={pageTitle} description={pageDesc} image={pageBanner} article />
+      <SEO title={name} description={description} />
       <Content>
-        <h1>{pageTitle}</h1>
-        <h2 id={'methods'}>{'Methods'}</h2>
+        <h1>{name}</h1>
+        <p>{description}</p>
         {
-          methods.map((method) => (
-            <div key={method.id}>
-              <h3 id={method.name}>{`.${getTitle(method)}`}</h3>
-              {
-                (method.signatures[0] && method.signatures[0].comment && method.signatures[0].comment.shortText && true) &&
-                <p>{method.signatures[0].comment.shortText}</p>
-              }
-              {
-                (method.signatures && method.signatures[0].parameters && method.signatures[0].parameters.length && true) &&
-                <div>
-                  <h4>{'Parameters'}</h4>
-                  <div className={'ulist'}>
-                    <ul>
-                      {
-                        method.signatures[0].parameters.map((parameter) => (
-                          <li key={parameter.name}>
-                            <p>
-                              <code>{parameter.name}</code>
-                              {' – '}
-                              {parameter.flags && parameter.flags.isOptional && <span>{'(Optional) '}</span>}
-                              <em>{parameter.type ? parameter.type.name : ''}</em>
-                              {parameter.comment && parameter.comment.text ? `, ${parameter.comment.text}` : ''}
-                            </p>
-                          </li>
-                        ))
-                      }
-                    </ul>
-                  </div>
-                </div>
-              }
-              {
-                (method.signatures[0].comment && method.signatures[0].comment.tags && method.signatures[0].comment.tags[0] && method.signatures[0].comment.tags[0].tag === 'example' && true) &&
-                <div>
-                  <h4>{'Example'}</h4>
-                  <div dangerouslySetInnerHTML={{ __html: asAsciiDoc(method.signatures[0].comment.tags[0].text) }} />
-                </div>
-              }
-              <p>
-                {'Source: '}
-                <a
-                  href={`https://github.com/madewithkoji/koji-core/tree/main/src/${method.sources[0].fileName}#L${method.sources[0].line}`}
-                >
-                  {`${method.sources[0].fileName}#${method.sources[0].line}`}
-                </a>
-              </p>
-            </div>
-          ))
+          constructor &&
+          <div>
+            <h2 id={'constructor'}>{'Constructor'}</h2>
+            {
+              renderMethod(constructor)
+            }
+          </div>
+        }
+        {
+          methods.length > 0 &&
+          <>
+            <h2 id={'methods'}>{'Methods'}</h2>
+            {
+              methods.map((method) => (
+                renderMethod(method)
+              ))
+            }
+          </>
+        }
+        {
+          enums.length > 0 &&
+          <>
+            <h2 id={'enums'}>{'Enums'}</h2>
+            {
+              enums.map((e) => (
+                renderEnum(e)
+              ))
+            }
+          </>
         }
       </Content>
-      {
-        methods.length > 0 &&
-        <Nav>
-          <TOC>{'Table of Contents'}</TOC>
+      <Nav>
+        <TOC>{'Table of Contents'}</TOC>
+        {
+          constructor &&
           <SectionLink
-            style={{ isActive: 'methods' === props.currentHeader }}
-            href={'#methods'}
+            style={{ isActive: 'constructor' === props.currentHeader }}
+            href={'#constructor'}
           >
-            {'Methods'}
+            {'Constructor'}
           </SectionLink>
-          {
-            methods.map(({ id, name }) => (
-              <SubSectionLink
-                style={{ isActive: name === props.currentHeader }}
-                href={`#${name}`}
-                key={id}
-              >
-                {`.${name}`}
-              </SubSectionLink>
-            ))
-          }
-        </Nav>
-      }
+        }
+        {
+          methods.length > 0 &&
+          <>
+            <SectionLink
+              style={{ isActive: 'methods' === props.currentHeader }}
+              href={'#methods'}
+            >
+              {'Methods'}
+            </SectionLink>
+            {
+              methods.map(({ id, name }) => (
+                <SubSectionLink
+                  style={{ isActive: name === props.currentHeader }}
+                  href={`#${name}`}
+                  key={id}
+                >
+                  {`.${name}`}
+                </SubSectionLink>
+              ))
+            }
+          </>
+        }
+        {
+          enums.length > 0 &&
+          <>
+            <SectionLink
+              style={{ isActive: 'enums' === props.currentHeader }}
+              href={'#enums'}
+            >
+              {'Enums'}
+            </SectionLink>
+            {
+              enums.map(({ id, name }) => (
+                <SubSectionLink
+                  style={{ isActive: name === props.currentHeader }}
+                  href={`#${name}`}
+                  key={id}
+                >
+                  {name}
+                </SubSectionLink>
+              ))
+            }
+          </>
+        }
+      </Nav>
     </StyledContainer>
   );
 };
