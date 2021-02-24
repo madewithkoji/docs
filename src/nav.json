@@ -10,16 +10,60 @@
           "root": "/koji-core",
           "items": [
             {
+              "name": "Backend/Base",
+              "slug": "backend/base"
+            },
+            {
               "name": "Backend/Database",
-              "slug": "backend-database"
+              "slug": "backend/database"
+            },
+            {
+              "name": "Backend/Dispatch",
+              "slug": "backend/dispatch"
+            },
+            {
+              "name": "Backend/IAP",
+              "slug": "backend/iap"
+            },
+            {
+              "name": "Backend/Identity",
+              "slug": "backend/identity"
+            },
+            {
+              "name": "Backend/Middleware",
+              "slug": "backend/middleware"
             },
             {
               "name": "Backend/Secret",
-              "slug": "backend-secret"
+              "slug": "backend/secret"
+            },
+            {
+              "name": "Frontend/Analytics",
+              "slug": "frontend/analytics"
+            },
+            {
+              "name": "Frontend/Dispatch",
+              "slug": "frontend/dispatch"
+            },
+            {
+              "name": "Frontend/IAP",
+              "slug": "frontend/iap"
+            },
+            {
+              "name": "Frontend/identity",
+              "slug": "frontend/identity"
+            },
+            {
+              "name": "Frontend/PlayerState",
+              "slug": "frontend/playerState"
             },
             {
               "name": "Frontend/Remix",
-              "slug": "frontend-remix"
+              "slug": "frontend/remix"
+            },
+            {
+              "name": "Frontend/UI",
+              "slug": "frontend/ui"
             }
           ]
         },
