@@ -7,30 +7,52 @@ const core = require('./src/core.json');
 
 exports.sourceNodes = ({ actions, createNodeId, createContentDigest }) => {
   try {
+    const moduleNames = [
+      'backend/base',
+      'backend/database',
+      'backend/dispatch',
+      'backend/iap',
+      'backend/identity',
+      'backend/middleware',
+      'backend/secret',
+      'frontend/analytics',
+      'frontend/dispatch',
+      'frontend/iap',
+      'frontend/identity',
+      'frontend/playerState',
+      'frontend/remix',
+      'frontend/ui',
+    ];
+
     core.children.forEach((child) => {
-      (child.children || []).forEach((grandChild) => {
-        if (grandChild.kindString === 'Class') {
-          grandChild.slug = child.name.replace('/', '-').toLowerCase();
+      if (moduleNames.includes(child.name)) {
+        const {
+          children,
+          flags,
+          groups,
+          sources,
+          ...newModule
+        } = child;
 
-          grandChild.methods = (grandChild.children || []).filter(({ kindString, flags = {} }) => kindString === 'Method' && flags.isPublic);
+        child.groups.forEach((group) => {
+          newModule[group.title] = child.children.filter(({ id }) => group.children.includes(id));
+        });
 
-          grandChild.children = [];
+        const node = {
+          ...newModule,
+          id: createNodeId(`Koji-Core-Package-Item-${newModule.name}`),
+          internal: {
+            type: 'KojiCorePackageItem',
+            contentDigest: createContentDigest(newModule),
+          },
+          slug: newModule.name,
+        };
 
-          const node = {
-            ...grandChild,
-            id: createNodeId(`Koji-Core-Package-Item-${grandChild.name}`),
-            internal: {
-              type: 'KojiCorePackageItem',
-              contentDigest: createContentDigest(grandChild),
-            },
-          };
-
-          actions.createNode(node);
-        }
-      });
+        actions.createNode(node);
+      }
     });
   } catch (err) {
-    console.log('ERR', err);
+    console.log('err', err);
   }
 
   navItems.forEach((navItem, idx) => {
@@ -155,31 +177,6 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
           id
           name
           slug
-          methods {
-            id
-            name
-            signatures {
-              comment {
-                returns
-                shortText
-                tags {
-                  tag
-                  text
-                }
-                text
-              }
-              parameters {
-                defaultValue
-                name
-                comment {
-                  text
-                }
-                type {
-                  name
-                }
-              }
-            }
-          }
         }
       }
     }
