@@ -21,7 +21,7 @@ exports.sourceNodes = ({ actions, createNodeId, createContentDigest }) => {
       'frontend/identity',
       'frontend/playerState',
       'frontend/remix',
-      'frontend/ui',
+      'frontend/ui/capture',
     ];
 
     core.children.forEach((child) => {

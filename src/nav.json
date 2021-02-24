@@ -10,10 +10,6 @@
           "root": "/koji-core",
           "items": [
             {
-              "name": "Backend/Base",
-              "slug": "backend/base"
-            },
-            {
               "name": "Backend/Database",
               "slug": "backend/database"
             },
@@ -28,10 +24,6 @@
             {
               "name": "Backend/Identity",
               "slug": "backend/identity"
-            },
-            {
-              "name": "Backend/Middleware",
-              "slug": "backend/middleware"
             },
             {
               "name": "Backend/Secret",
@@ -50,7 +42,7 @@
               "slug": "frontend/iap"
             },
             {
-              "name": "Frontend/identity",
+              "name": "Frontend/Identity",
               "slug": "frontend/identity"
             },
             {
@@ -62,8 +54,16 @@
               "slug": "frontend/remix"
             },
             {
-              "name": "Frontend/UI",
-              "slug": "frontend/ui"
+              "name": "Frontend/UI/Capture",
+              "slug": "frontend/ui/capture"
+            },
+            {
+              "name": "Frontend/UI/Navigate",
+              "slug": "frontend/ui/navigate"
+            },
+            {
+              "name": "Frontend/UI/Present",
+              "slug": "frontend/ui/present"
             }
           ]
         },
