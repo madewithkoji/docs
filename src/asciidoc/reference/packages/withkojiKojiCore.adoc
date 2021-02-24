@@ -1,0 +1,104 @@
+= @withkoji/core
+:page-slug: withkoji-koji-core
+:page-description: Package for implementing core features in your Kojis, including remixing, in-app purchases, UI controls, messaging, and identity services.
+
+The @withkoji/core package enables you to
+//tag::description[]
+implement core platform features in your Koji template, including remixing, in-app purchases, UI controls, messaging, and identity services.
+//end::description[]
+
+NOTE: The @withkoji/core package replaces several <<packages-overview#_deprecated_packages,deprecated packages>>.
+If your Koji's code uses any of the deprecated packages, see <<migrate-koji-core#>>.
+
+== Available features
+
+This package provides client-side methods for use on the frontend of the Koji and server-side methods for use in backend services of your Koji.
+For example:
+
+* Dynamically get and set custom remix values.
+* Capture user input and present dialog boxes.
+* Define distinct experiences for different users and views of your Koji.
+* Manage authentication and authorization for users of your Koji.
+* Send push notifications to authorized users.
+* Implement in-app purchase transactions in your Koji.
+* Implement a Koji database for the backend of your Koji.
+* Track custom analytics events in your Koji.
+* Implement real-time communication between connected clients in your Koji.
+
+For a complete list of available methods, see the https://madewithkoji.github.io/koji-core[package reference documentation].
+
+== Installation
+
+Install the package in the frontend and backend services of your Koji project.
+
+[source,bash]
+----
+npm install --save @withkoji/core
+----
+
+== Basic use
+
+=== Frontend
+
+Enable the user to upload an image from the frontend of the Koji.
+
+[source,javascript]
+----
+import Koji from '@withkoji/core';
+
+const captureImage = async () => {
+  const imageURL = await Koji.ui.capture.image();
+
+  console.log(imageURL); // The publicly accessible, CDN-backed path of the user's uploaded image
+}
+----
+
+=== Backend
+
+Use the Koji database on the backend of the Koji, and use middleware to scope operations per remix.
+
+[source,javascript]
+----
+import { KojiBackend } from '@withkoji/core';
+import cors from 'cors';
+import express from 'express';
+import bodyParser from 'body-parser';
+
+const app = express();
+
+// Enable cors for preflight
+app.options('*', cors());
+
+// Whitelist all routes with cors
+app.use(cors());
+
+// Use express json
+app.use(express.json());
+
+// Parse application/json
+app.use(bodyParser.json());
+
+// Use Koji's middleware to handle scoping across your template's remixes
+app.use(KojiBackend.middleware);
+
+app.get('/data', (req, res, next) => {
+  const database = new KojiBackend.Database({ res });
+
+  // Look up an item in the items collection
+  const item = await database.get('items', 'myItemId');
+
+  res.status(200).json({
+    item,
+  });
+});
+
+app.listen(PORT, () => {
+  console.log(`Server is listening on port ${PORT}`);
+});
+----
+
+== Related resources
+
+* https://madewithkoji.github.io/koji-core[Package reference]
+* https://github.com/madewithkoji/koji-core[@withkoji/core on Github]
+* https://www.npmjs.com/package/@withkoji/core[@withkoji/core on npm]

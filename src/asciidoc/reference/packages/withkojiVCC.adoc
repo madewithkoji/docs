@@ -1,6 +1,8 @@
-= @withkoji/vcc
+= @withkoji/vcc (deprecated)
 :page-slug: withkoji-vcc-package
 :page-description: Package for implementing core platform features in your Koji template, including instant remixing, Visual Customization Controls (VCCs), and the Koji feed.
+
+include::../../docs/_includes/deprecatedPackage.adoc[tag=all]
 
 The @withkoji/vcc package enables you to
 //tag::description[]
@@ -169,37 +171,8 @@ instantRemixing.onSetActivePath((path) => {
 [.hcode, id=".onSetCurrentState", reftext="onSetCurrentState"]
 === .onSetCurrentState(handler)
 
-Listens to the changes to the current state.
-If a template has more than one state, the available states are listed when remixing so the user can switch between them.
-
-States are optional and, if used, must be defined in the `.koji/customization/quickstart.json` file.
-
-[source,json]
-----
-{
-   "quickstart": {
-        "states": [
-            { "key": "choice", "label": "Choice scene" },
-            { "key": "result", "label": "Result scene" }
-        ]
-    }
-}
-----
-
-==== Parameters
-
-* `handler` – _Function_, handles changes to the current state.
-Receives the following property as input:
-** `state` – _String_, key of the active state.
-
-==== Example
-
-[source,javascript]
-----
-instantRemixing.onSetCurrentState((state) => {
-  // Change experience per state
-});
-----
+*No longer supported*.
+For the most flexibility and control of the remix experience, implement the <<withkoji-koji-core#, @withkoji/core package>>.
 
 [.hcode, id=".onSetRemixing", reftext="onSetRemixing"]
 === .onSetRemixing(handler)
@@ -511,7 +484,7 @@ To use this context:
 ** *Define an admin experience* – Enable the `AdminContext` <<_feedsdk, entitlement>>, and define a view intended for the creator of the Koji.
 For example, enable the creator to respond to questions from users.
 +
-NOTE: When the `AdminContext` entitlement is enabled, the creator can access the admin view by going to *Manage this Koji > Open Admin Tools*.
+NOTE: When the `AdminContext` entitlement is enabled, the creator can access the admin view by going to *Koji > Admin Portal*.
 
 ** *Load the admin experience* – Load the admin experience only when viewed with the URL parameter `context=admin` and when the current user is the creator of the Koji.
 +

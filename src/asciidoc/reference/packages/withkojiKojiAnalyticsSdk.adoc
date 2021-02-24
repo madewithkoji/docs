@@ -1,6 +1,8 @@
-= @withkoji/analytics
+= @withkoji/analytics (deprecated)
 :page-slug: withkoji-koji-analytics-sdk
 :page-description: Package for tracking custom events in your Koji templates.
+
+include::../../docs/_includes/deprecatedPackage.adoc[tag=all]
 
 The @withkoji/analytics package enables you to
 //tag::description[]
@@ -8,7 +10,7 @@ track custom events in your Koji templates.
 //end::description[]
 For example, track onClick events for the links and buttons in a Koji.
 
-To view the analytics data for your published Koji, go to *Manage this Koji > Open Creator Dashboard > Open Analytics*.
+To view the analytics data for your published Koji, click the *Koji* button and click *Analytics*.
 You will see data for your custom events along with a standard set of built-in metrics, which are calculated from the Koji's access logs.
 
 TIP: Analytics data is processed at frequent intervals throughout the day.
