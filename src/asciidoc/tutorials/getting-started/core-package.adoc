@@ -2,4 +2,193 @@
 :page-slug: core-package
 :figure-caption!:
 
-The @withkoji/core package
+The @withkoji/core Package
+In the second section of the Getting Started guide, we walked through exploring the folders and files in your project, making changes to files, and publishing updates. In this section, we’ll continue using the code editor to install and implement the @withkoji/core package.
+
+By the end of this section, you should feel comfortable:
+Using the terminal feature inside the code editor to make command line changes
+Installing and importing the @withkoji/core package into a project
+Using the @withkoji/core package to capture input from a user
+The Javascript Ecosystem
+If you spend some time looking at the history of the web, you’ll see that the user’s experience has progressed dramatically over the past few decades. For a long time, user interactions were limited to link-style navigation and using forms to capture data.
+
+Javascript was introduced as a way to start building more complex user interactions and experiences, and has become the primary language in which most web applications are built today.
+
+Koji has chosen to embrace Javascript as the way in which we think web applications will continue to be written, and aim to support Javascript (and its surrounding ecosystem) in the features and tools that we provide to developers.
+
+This means that it’s easy to use popular frameworks (React, Vue, Svelte, etc), as well as npm, the world's largest software registry, with over 1.5 million packages ready to install and use in your project.
+
+We’ll be looking at one specific package, @withkoji/core, which takes many of Koji’s powerful platform features and exposes them in an easy to use set of modules and methods.
+
+Let’s start by going back to the code editor for our project. If you’ve closed out of the code editor since the last section, you can visit https://withkoji.com/developer/projects to open a list of your projects. Select the project that we published in the last section, and then choose “Open in Code Editor” to re-open the project.
+Using the Terminal 
+If you’ve ever done software development in the past, you’ve probably already used a Terminal or Command Line Interface. Each operating system will typically have a different “flavor” or style, but in general, you can use these interfaces to send text-based commands to your computer.
+
+Koji’s Code Editor has a built in Terminal that will give us access to the operating system where our project is running. You can open the Terminal by clicking either the up caret on the right hand side of the Terminal bar, or on one of the existing terminal tabs:
+
+
+
+Once you’ve expanded the terminal display, you should see something like this:
+
+
+
+If you’ve worked with React in the past, this output should look familiar. It’s basically letting us know that our project has been compiled successfully and is being served at https://localhost:8080 (Koji is showing that url inside the preview on the right hand side of the code editor).
+
+Installing @withkoji/core from NPM
+
+We’ll have an opportunity to explore the terminal more in subsequent lessons, but for today, we just want to install the @withkoji/core package from npm. To do that, let’s first stop the running process (Cmd/Ctrl + C):
+
+
+
+Let’s install the @withkoji/core package by running the following command: `npm install @withkoji/core`. You will see some output in the terminal as we connect to npm, request the latest package details, and install it into the project. If the installation was successful, you should see a final output similar to the following:
+
+
+
+Now that we’ve installed the @withkoji/core package, we want to restart our development server. The `npm start` command was the one running most recently before we stopped it, so we can run that again to start the development server. After React re-compiles our project, you should see the same output we did when opening the terminal earlier:
+
+
+
+Importing the @withkoji/core Package into a Project
+We’ve successfully installed the @withkoji/core package, and now we’d like to use it in our project. Because we’re using React, we get module importing out of the box, and can add just one line of code to begin using the package in our project.
+
+Let’s start by minimizing the terminal panel by clicking on the current tab or on the down caret:
+
+
+
+Next, let’s open up the `/frontend/src/index.js` file and make the following changes:
+
+import React from 'react';
+import ReactDOM from 'react-dom';
+import Koji from '@withkoji/core';
+ 
+import kojiConfig from '../../koji.json';
+import './index.css';
+import App from './App';
+ 
+Koji.config(kojiConfig, {
+ projectId: process.env.REACT_APP_PROJECT_ID,
+ services: {
+   frontend: process.env.REACT_APP_FRONTEND_URL,
+ },
+});
+ 
+ReactDOM.render(
+ <React.StrictMode>
+   <App />
+ </React.StrictMode>,
+ document.getElementById('root')
+);
+
+There are a few things going on here. At the top of the file we import `Koji`, the default export from the `@withkoji/core` package. We also import the `koji.json` file in our project as `kojiConfig`.
+
+Finally, we call `Koji.config` and pass in the `kojiConfig` object as well as some additional parameters to help the package understand our configuration. There’s a lot going on here, but for now the big takeaway is that we’ve imported the package and called `Koji.config` outside of React’s render loop, which will ensure that it’s only called one time (when the application first loads).
+
+We can now start using the modules and methods from the @withkoji/core package. 
+A Quick Detour: React State
+There are many tools available to help manage the “state” of your application. You can think of “state” as the information needed to help keep your application running and up to date. 
+
+Most web applications use state in some way. A few examples include: tracking whether a user has toggled light/dark mode, whether a particular section of content is expanded/collapsed, or whether a user is logged in or not.
+
+The web application that we’re building is quite simple, but we can still apply a bit of “state” to it by storing the url of the rotating image in a state, instead of using a static image. Let’s see what that looks like in the `frontend/src/App.js` file:
+
+import { useState } from 'react';
+import './App.css';
+ 
+function App() {
+ const [logoSrc, setLogoSrc] = useState('https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg');
+ return (
+   <div className="App">
+     <header className="App-header">
+       <img src={logoSrc} className="App-logo" alt="logo" />
+       <p>Some New Text</p>
+     </header>
+   </div>
+ );
+}
+ 
+export default App;
+
+You can see that a few things have changed. We’ve removed the import statement that brought in the local `logo.svg` file. We’ve also imported `useState` from `react`, which is a React Hook that will allow us to do some easy state management inside of this small component.
+
+If you’ve never used a React Hook before, don’t worry! The syntax for using the `useState` hook is actually quite simple:
+
+`const [myValue, functionToSetMyValue] = useState(initialValue);`
+
+We now have a reactive value (`myValue`) that we can update using `functionToSetMyValue`, and that is initialized with `initialValue`.
+
+In our application, we are using the publicly available React logo from wikimedia commons as the default/initial value.
+
+And you can see that we’ve changed the `src` of the rotating image to `src={logoSrc}`, so the image being displayed will reference the `logoSrc`, even when we make changes to it using `setLogoSrc`.
+
+Let’s do that using a feature from the @withkoji/core package!
+Capturing a User Input with @withkoji/core
+Capturing user input is a fundamental part of the user experience on the internet. Filling out forms, uploading files, and toggling buttons are all ways in which a user can interact with a web application.
+
+One of Koji’s goals is to make capturing a user’s input easy for developers and intuitive for the user. To do that, the platform has exposed a number of methods to capture all sorts of dynamic user inputs.
+
+Let’s take a look at one of those methods in action: `Koji.ui.capture.image`.
+
+As you can probably guess, this is a method that will allow us to capture an image input from a user. You may be wondering how this is different from a traditional `<input type=”file” />` that will allow a user to select an image file from their computer.
+
+Let’s find out. Take a look at the code below:
+
+import Koji from '@withkoji/core';
+import { useState } from 'react';
+import './App.css';
+ 
+function App() {
+ const [logoSrc, setLogoSrc] = useState('https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg');
+  const captureImage = async () => {
+   const src = await Koji.ui.capture.image();
+ 
+   if (src) setLogoSrc(() => src);
+ };
+  return (
+   <div className="App">
+     <header className="App-header">
+       <button onClick={captureImage}>Capture Image</button>
+       <img src={logoSrc} className="App-logo" alt="logo" />
+       <p>Some New Text</p>
+     </header>
+   </div>
+ );
+}
+ 
+export default App;
+
+You’ll notice a few small changes. First, we’re importing `Koji` again at the top of the file. Second, we’ve added a button that will call the `captureImage` function when it’s clicked.
+
+The `captureImage` function will request a user input using the `Koji.ui.capture.image` method. If a value is returned, `setLogoSrc` will be called and the state will be updated with a new value.
+
+Let’s give it a try. First, to make sure you are seeing the most updated version of your application, you can click the refresh button in the device preview window:
+
+
+
+Click on the new Capture Image button inside your application.
+
+Immediately, you’ll see a few things. The first is that in addition to supporting a traditional file upload, a user can also paste an image from a URL, or browse one of Koji’s many image asset packs to find an image. There are options to search the web for an image, or use one of the pre-configured bundles of images.
+
+Feel free to spend some time testing this feature out, and notice that when you upload or choose an image, it is automatically updated in the preview window.
+Under the Hood
+One thing that’s not so obvious is what actually happens when a user chooses an image (either by uploading it, or by using an asset pack). That image is automatically uploaded, hosted and optimized by Koji’s CDN. In addition to being blazing fast and intelligently cached, you also gain access to a ton of interesting configuration options.
+
+Let’s test one out by changing this line in `frontend/src/App.js` (don’t forget to save!):
+
+`const src = await Koji.ui.capture.image();`
+
+to
+
+`const src = await Koji.ui.capture.image({ blur: 10 });`
+
+Now try choosing a new image. You’ll see that the new image has a blur effect applied to it -- this isn’t just a style or css property, the image is actually being transformed automatically and served back with a custom Koji-backed CDN url!
+Republishing
+We’re just starting to scratch the surface of the ways in which Koji can give a traditional web application super powers, but before we move on, let’s make sure to “save our progress” by publishing a new version of our project.
+
+Navigate back to the Publish Settings by clicking on the “Publish Now” button in the upper left side of the Code Editor. Use the blue “Publish New Version” button to publish our latest changes.
+
+After your project has been published, feel free to check out the link to the latest live version and experience your image capture in the wild.
+Wrapping Up
+At this point, you should be familiar with using the terminal to make command line changes to your project, as well as installing and importing the @withkoji/core package. We also learned how to capture an image value from a user and do a little bit of state management in React.
+
+In the next section, we’ll take a step back from the code and start to explore the real power of Koji...
+

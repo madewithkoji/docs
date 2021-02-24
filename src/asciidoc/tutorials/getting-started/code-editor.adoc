@@ -1,5 +1,115 @@
-= Using the code editor
+= Using Koji's code editor
 :page-slug: code-editor
+:page-description: Opening Koji's code editor, and using it to publish the template.
 :figure-caption!:
 
-Using the code editor
+== Using the Code Editor
+
+In the first section of the Getting Started guide, we walked through creating and publishing your first project.
+In this section, we’ll dive a little deeper into the code editor, and start exploring making changes and updates to a project.
+
+By the end of this section, you should feel comfortable:
+
+* Using the code editor to make and save changes to a project.
+* Using the code editor’s preview to see real-time changes to a project.
+* Publishing updates to a project.
+
+== Editing a project
+
+In software, it’s important to be able to separate a development environment from a production environment. As we learned in the last section, Koji makes this easy by allowing you to maintain a “draft” of your project in the code editor, and publishing your project when you’re happy with the changes that you’ve made.
+
+Let’s start by going back to the code editor for your project.
+If you’ve closed out of the code editor since the last section, you go to the https://withkoji.com/developer/projects[Developer Portal] to open a list of your projects.
+Select the project that you published in the last section, and then choose *Open in Code Editor* to re-open the project.
+
+== File and Folder Navigation
+
+On the left hand side of the code editor, you will see some navigation items at the top, and below that, the *Source Code* section provides a file and folder style navigation that will allow you to explore and open files in your project.
+
+image::CE_02_file-and-folder-navigation.png[File and folder navigation]
+
+Let’s start by opening the `frontend/src` folder.
+
+Click the `frontend` folder to show its contents.
+Then click the `src` subfolder to show its contents.
+
+== Opening a File
+
+You can open a file by clicking on it inside the *Source Code* section.
+
+Click `App.js`.
+
+You should see the file contents in the editing pane.
+If you have any other files open, you can close them by clicking the “X” icon in the file tab.
+
+== Editing and Saving a File
+
+Let’s start by making a quick edit.
+In the `App` function, let’s replace the text inside the `<p>` tag with "Some New Text".
+
+[source, javascript]
+----
+function App() {
+ return (
+   <div className="App">
+     <header className="App-header">
+       <img src={logo} className="App-logo" alt="logo" />
+       <p>Some New Text</p>
+     </header>
+   </div>
+ );
+}
+----
+
+Note that when you make a change to a file, a *Save (Ctrl+S)* button appears.
+Click the button to save your changes.
+You can also save by pressing `Ctrl+S` or `Cmd+S`, depending on your operating system.
+
+image::CE_05_save-changes.png[Save changes]
+
+When the file is saved, the notification disappears. 
+
+== Previewing Changes
+
+When you saved your file, you might have noticed that the preview on the right hand side of the screen updated automatically.
+
+image::CE_06_preview-updated.png[Preview updated]
+
+This happens for two reasons.
+First, we bootstrapped this project with Create React App, which gives us a hot-reloading development environment where changes are compiled in real time and modules automatically reload when needed.
+
+Second, Koji maps the development server to a live staging URL and loads the URL into an iframe inside the code editor.
+This is a handy tool for developers because it also allows you to open the URL in a separate tab.
+You can even share the staging link with others so that they can see your work-in-progress.
+
+If you’d like to view your project in a separate tab, you can open it by clicking the *Open in New Tab* button.
+
+image::CE_06_open-in-new-tab.png[Open in new tab]
+
+== Republishing
+
+You’ve only made a minor change, but let’s pretend that you just fixed a bug.
+You want to make sure the bug fix is applied to your project.
+You do that by republishing your project.
+That will ensure that when a user comes back to visit your project’s permalink, they will see the most recently published version.
+
+Navigate back to *Publish Settings* by clicking *Publish Now*.
+The changes you’ve made to the project since your last publish are shown.
+
+image::CE_07_changes-shown.png[Changes since last publish]
+
+If you don't see any changes listed, this could mean that you forgot to save.
+
+To republish, scroll down to the bottom of *Publish Settings*, and click on *Publish New Version*.
+
+After your project has been republished, you will see a success notification with a link to the published project (the same permalink as before).
+You can visit that link to confirm that the live version of the project has been updated.
+
+image::CE_07_live-project-updated.png[Live project updated]
+
+== Wrapping up
+
+You should now be familiar with exploring the folders and files in your project, making changes, and publishing updates.
+
+In the next section, we look at some more Koji’s tools you can use to make your project much more interesting.
+

@@ -1,4 +1,4 @@
-= Your first project
+= Your first Koji project
 :page-slug: your-first-project
 :page-description: Creating a new template by forking from an existing one and publishing it.
 :figure-caption!:
@@ -33,7 +33,7 @@ Scaffolds are bare-bones projects that include things like a basic JavaScript fr
 Start by visiting the https://withkoji.com/templates/9a1dbf27-e1f7-40c6-943e-374e57aa7582[Getting Started Scaffold template page].
 This page shows you some information about the template for the project, including a preview of the published template.
 Take a minute to familiarize yourself with it.
-When you're ready, fork the template by clicking the three dots on the right side of the header and choosing *Fork*:
+When you're ready, fork the template by clicking the three dots on the right side of the header and choosing *Fork*.
 
 image::QS_01_getting-started.png[Getting Started Scaffold]
 
@@ -46,7 +46,7 @@ For now, we want to focus on publishing the project.
 This makes it publicly accessible, so that you can share it with other people.
 You publish your project using Koji's code editor.
 
-Click *Open in Code Editor*:
+Click *Open in Code Editor*.
 
 image::QS_02_open-in-editor.png[Open in Code Editor]
 
