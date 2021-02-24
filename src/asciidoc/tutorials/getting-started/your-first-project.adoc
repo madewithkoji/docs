@@ -2,17 +2,14 @@
 :page-slug: your-first-project
 :figure-caption!:
 
-In the first section of the Quick Start guide, we walk you through creating and publishing your first project.
 Projects are the building blocks you use to create amazing web apps and experiences with Koji.
+In the first section of the Quick Start guide, we walk you through creating and publishing your first project.
 
-By the end of this section, you should feel comfortable:
+By the end of the section, you should feel comfortable:
 
 * Creating a new project by forking an existing one.
 * Opening the code editor to view a project’s code.
 * Publishing a project from the code editor.
-
-[NOTE]
-Koji projects are also called "templates". We use the terms interchangeably in the tutorials.
 
 == Forking an existing project
 
@@ -20,20 +17,20 @@ In software, it’s often the case that someone else has already built a scaffol
 This is a principle that applies to much of what we do as a platform, and Koji is built on the idea that you will always have a pre-existing starting point for any project.
 
 Koji developers do this through a process we call forking.
-If you’re familiar with version control software such as Git, you might already be familiar with the term "forking".
-In fact, Koji is doing something very similar to version control when you fork a project.
+If you’ve used a version control program such as Git, you might already be familiar with the term "forking".
+Koji is doing something very similar to version control when you fork a project.
 
-Forking creates a copy of a project that you now own.
+Forking creates a copy of a project which you now own.
 In the new project, you can make changes to the code, reorganize things, and even remove things that you don’t like.
 
-This is a powerful concept, because it means that, if you see something on Koji you like, you can “fork” it, and use it as a starting point for a new project.
+This is a powerful concept, because it means that, if you see something on Koji you like, you can fork it, and use it as a starting point for a new project.
 You can fork other developers' projects, or even your own.
 
 For now, we’ll start by forking a scaffold.
-Scaffolds are bare-bones projects that include things like a basic JavaScript framework, as well as the instructions that Koji needs to run the template.
+Scaffolds are bare-bones projects that include things like a basic JavaScript framework, as well as the instructions that Koji needs to run the project.
 
 Start by visiting the https://withkoji.com/templates/9a1dbf27-e1f7-40c6-943e-374e57aa7582[Getting Started Scaffold template page].
-This page shows you some information about the template, including a preview of the published template.
+This page shows you some information about the template for the project, including a preview of the published template.
 Take a minute to familiarize yourself with it.
 When you're ready, fork the template by clicking the three dots on the right side of the header and choosing *Fork*:
 
@@ -41,7 +38,7 @@ image::QS_01_getting-started.png[Getting Started Scaffold]
 
 == Viewing project details
 
-After you successfully fork the *Getting Started Scaffold*, the *Project Details* screen opens.
+After you successfully fork the template, the *Project Details* screen opens.
 *Project Details* shows you information about your project, and provides some advanced tools and configuration options.
 
 For now, we want to focus on publishing the project.
@@ -56,12 +53,12 @@ image::QS_02_open-in-editor.png[Open in Code Editor]
 
 If you’ve used code editing tools such as VSCode or Atom, Koji’s code editor should look familiar.
 On the left side is a file explorer.
-In the center, you can open and edit files.
+When you click on a file in the explorer, it opens in the center panel where you can edit it.
 And on the right side is a preview of your project.
 
 image::QS_03_code-editor.png[Code Editor]
 
-In later sections of the Quick Start guide, you'll have plenty of time to continue exploring the code editor.
+In later sections of the Quick Start guide, you'll have plenty of time to explore the code editor.
 For now, let’s move on to publishing your project.
 
 == Publishing the template
@@ -71,7 +68,7 @@ When you open that project in the code editor, you can view and edit the underly
 
 The preview runs in a development or staging environment.
 If you haven’t worked in a staging environment before, you can think of it as a “draft” mode.
-Similar to composing an email, or creating a new article in Medium or WordPress, you need to preview your project and test changes to it before you send it out to the world.
+The staging environment allows you to preview your project and test changes to it before you send it out to the world.
 
 Although you haven’t made any changes to your project yet, you can still publish it.
 This means that the published version of your project will look exactly the same as the project that you forked.
@@ -100,10 +97,10 @@ It's now live for the world to see!
 image::QS_03_code-editor.png[App published]
 +
 [NOTE]
-The link you is a permanent link to your deployed project.
+The link that's created when you first publish your template is a permanent link to your deployed project.
 This means that when you publish updates or changes to your project, the link to the live, published version will always be the same.
 
-One great thing about Koji is that almost all of the requirements to deploy and host a web app are handled by Koji. Out of the box you get:
+One great thing about Koji is that it handles almost all of the requirements to deploy and host your project. Out of the box you get:
 
 * The permalink mentioned in the note above where you can view your published project.
 * Free hosting of your project.
@@ -114,7 +111,7 @@ There are even more great things about building and deploying projects on Koji t
 
 == Wrapping Up
 
-At this point, you have successfully forked and published your own project!
-You’ve also had a chance to see some of the basic parts of the project details page, as well as the code editor.
+Congratulations! You've successfully forked and published your own project!
+You’ve also seen some of the basic parts of the *Project Details* page, as well as the code editor.
 
 In the next section, we look at making some changes to your project’s code and what re-publishing a project looks like.
