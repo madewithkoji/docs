@@ -379,6 +379,46 @@ function renderEnum(e) {
   );
 }
 
+function getInterfaceParameters(i) {
+  return i.children;
+}
+
+function renderInterface(i) {
+  const interfaceParameters = getInterfaceParameters(i);
+
+  return (
+    <div key={i.id}>
+      {
+        i.name &&
+        <h3 id={i.name}>{i.name}</h3>
+      }
+      {
+        interfaceParameters &&
+        <div>
+          <h4>{'Parameters'}</h4>
+          <div className={'ulist'}>
+            <ul>
+              {
+                interfaceParameters.map((parameter) => (
+                  <li key={parameter.name}>
+                    <p>
+                      <code>{parameter.name}</code>
+                      {' – '}
+                      {parameter.flags && parameter.flags.isOptional && <span>{'(Optional) '}</span>}
+                      <em>{renderParameterType(parameter)}</em>
+                      {parameter.comment && parameter.comment.shortText ? `, ${parameter.comment.shortText}` : ''}
+                    </p>
+                  </li>
+                ))
+              }
+            </ul>
+          </div>
+        </div>
+      }
+    </div>
+  );
+}
+
 const CorePackage = (props) => {
   const { kojiCorePackageItem } = props.data;
 
@@ -456,6 +496,17 @@ const CorePackage = (props) => {
             }
           </>
         }
+        {
+          interfaces.length > 0 &&
+          <>
+            <h2 id={'interfaces'}>{'Interfaces'}</h2>
+            {
+              interfaces.map((i) => (
+                renderInterface(i)
+              ))
+            }
+          </>
+        }
       </Content>
       <Nav>
         <TOC>{'Table of Contents'}</TOC>
@@ -501,6 +552,28 @@ const CorePackage = (props) => {
             </SectionLink>
             {
               enums.map(({ id, name }) => (
+                <SubSectionLink
+                  style={{ isActive: name === props.currentHeader }}
+                  href={`#${name}`}
+                  key={id}
+                >
+                  {name}
+                </SubSectionLink>
+              ))
+            }
+          </>
+        }
+        {
+          interfaces.length > 0 &&
+          <>
+            <SectionLink
+              style={{ isActive: 'interfaces' === props.currentHeader }}
+              href={'#interfaces'}
+            >
+              {'Interfaces'}
+            </SectionLink>
+            {
+              interfaces.map(({ id, name }) => (
                 <SubSectionLink
                   style={{ isActive: name === props.currentHeader }}
                   href={`#${name}`}
