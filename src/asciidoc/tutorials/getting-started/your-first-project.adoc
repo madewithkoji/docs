@@ -1,5 +1,6 @@
 = Your first project
 :page-slug: your-first-project
+:page-description: Creating a new template by forking from an existing one and publishing it.
 :figure-caption!:
 
 Projects are the building blocks you use to create amazing web apps and experiences with Koji.
@@ -87,7 +88,7 @@ image::QS_04_publish-now-name.png[Give the published project a name]
 
 . Click *Publish New Version*.
 +
-image::QS_05_publish-new-version.png[Publish New Version]
+image::QS_04_publish-new-version.png[Publish New Version]
 +
 After a few moments, Koji notifies you that your project has been successfully published.
 It's now live for the world to see!
@@ -109,7 +110,7 @@ One great thing about Koji is that it handles almost all of the requirements to 
 
 There are even more great things about building and deploying projects on Koji that we’ll get into as we explore the rest of this guide.
 
-== Wrapping Up
+== Wrapping up
 
 Congratulations! You've successfully forked and published your own project!
 You’ve also seen some of the basic parts of the *Project Details* page, as well as the code editor.
