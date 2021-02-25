@@ -24,10 +24,12 @@ We call these views "contexts".
 Let’s take a look at the two most basic (and important) contexts:
 
 * *Default* - The default context (and experience) for a template.
-The *Default* context is the context you see when you open a published template.
+When you previewed the Bouncy Blast game in the last section, you were seeing the default context for that template.
+After publishing a remix, the “live” version of the remix is also using the default context.
 
 * *Remix* - The context a creator sees then they choose to remix a Koji.
 The *Remix* context allows a developer to present a different UI, one focused on the customization process.
+When you were customizing Bouncy Blast by selecting new images and music, you were seeing the remix context for that template.
 
 Using contexts in our project, we can start to build a remix experience.
 
