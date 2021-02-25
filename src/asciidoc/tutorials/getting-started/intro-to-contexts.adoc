@@ -3,8 +3,8 @@
 :page-description: Learning about contexts and how to use them
 :figure-caption!:
 
-In the previous section of the Quick Start guide, we learned about installing and using the @withkoji/core package.
-In this section, we’ll start exploring “contexts”.
+In the previous section of the Quick Start guide, we learned about remixing and some of the terms that we use to talk about Koji’s ecosystem.
+In this section, we explore “contexts”.
 
 By the end of this section, you should feel comfortable:
 

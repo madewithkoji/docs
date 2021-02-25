@@ -267,6 +267,10 @@
               "slug": "core-package"
             },
             {
+              "name": "Your first remix",
+              "slug": "your-first-remix"
+            },
+            {
               "name": "Introduction to contexts",
               "slug": "intro-to-contexts"
             },

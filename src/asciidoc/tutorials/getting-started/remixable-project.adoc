@@ -8,33 +8,31 @@ In this section, we’ll dive into the specific things we need to do in the code
 
 By the end of this section, you should feel comfortable:
 
-* Using the koji.json file to set your initial remix data
-* Using get, set, and finish methods to manage the remix data and the publish flow
-* Using a subscribe method to determine when the user is toggling a live preview
+* Using the `koji.json` file to set your initial remix data.
+* Using `get`, `set`, and `finish` methods to manage the remix data and the publish flow.
+* Using a `subscribe` method to determine when the user is toggling a live preview.
 
 == Thinking about remixes
 
-As we briefly touched on in the fourth section of this guide, every remix that is created from a template utilizes the same code and loads the same web application.
+As we briefly touched on in the previous section of this guide, every remix that is created from a template utilizes the same code and loads the same web application.
 But, as we also learned, each remix can look and behave in dramatically different ways depending on the customization options exposed by the template.
 
 == How does it work?
 
-If you think about common web applications -- Facebook, GMail, Reddit -- they all load the same basic Javascript code and run it in a browser.
-Those applications rely on user-specific data to deliver a different experience to everyone.
+If you think about common web applications, such as Facebook, GMail, and Reddit, they all load the same basic JavaScript code, and run it in a browser.
+They rely on user-specific data to deliver a different experience to everyone.
 And they typically store that user-specific data in a database, which is separate from the code that runs in the browser.
 
-Koji is actually not much different.
+Koji is not much different.
 When a user creates a remix of a template, the remix will load the same code that the template uses.
 To provide the customized remix experience, Koji relies on remix-specific data, data that is also stored in a database and separate from the code that is run in the browser.
-
-In both scenarios, the underlying code never changes.
 The only difference between a template and all of the different remixes that are created based on that template is the remix-specific data that is stored in Koji’s database.
 
-So, in order to create a remixable template, we’ll need a way to structure our remix-specific data, collect those values from the user, and then store them in Koji’s database.
-Fortunately, the @withkoji/core package will do a lot of the heavy lifting for us.
+So, in order to create a remixable template, you need a way to structure your remix-specific data, collect those values from the user, and store them in Koji’s database.
+Fortunately, the @withkoji/core package does a lot of the heavy lifting for you.
 
-Let’s start by going back to the code editor for our project.
-If you’ve closed out of the code editor since the last section, you can visit https://withkoji.com/developer/projects to open a list of your projects.
+Let’s start by going back to your project in the code editor.
+If you’ve closed out of the code editor since the last section, you can go to the https://withkoji.com/developer/projects[Developer Portal] to open a list of your projects.
 
 == Working with remix data
 
