@@ -32,7 +32,9 @@ Let’s create a new template by clicking *New Template*.
 
 image::YFT_01_new-template.png[New Template]
 
-Give your template a memorable name. Something like “My First Template” will work for now. You’ll have the opportunity to change it later.
+Give your template a memorable name.
+Something like “My First Template” will work for now.
+You’ll have the opportunity to change it later.
 
 After you confirm your template’s name, you’ll be taken to a template details page, where you can provide more details.
 Notice that the template’s status is “Draft”.
@@ -135,4 +137,3 @@ The Koji team hangs out there all the time, and you’ll have a chance to meet o
 If you have any questions or feedback about this guide, please reach out to @diddy on Koji’s Discord server, and…
 
 Welcome to Koji!
-
