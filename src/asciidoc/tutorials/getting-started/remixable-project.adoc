@@ -3,7 +3,7 @@
 :page-description: How to make a project remixable and managing the remixing experience
 :figure-caption!:
 
-In the fifth section of the Getting Started guide, we learned about contexts and how they help deliver the remix experience that makes Koji such a powerful platform.
+In the previous section of the Quick Start guide, we learned about contexts and how they help deliver the remix experience that makes Koji such a powerful platform.
 In this section, we’ll dive into the specific things we need to do in the code to allow users to remix and publish their own customized versions of your project.
 
 By the end of this section, you should feel comfortable:

@@ -3,7 +3,7 @@
 :page-description: Creating a template and linking it to a project
 :figure-caption!:
 
-In the last section of the Quick Start guide, you published your first remixable project.
+In the previous section of the Quick Start guide, you published your first remixable project.
 Congratulations!
 You’re on your way to creating amazing experiences on the Koji platform.
 

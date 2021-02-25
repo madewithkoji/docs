@@ -3,7 +3,7 @@
 :page-description: Learning about contexts and how to use them
 :figure-caption!:
 
-In the last section of the Quick Start guide, we learned about remixing and some of the terms that we use to talk about Koji’s ecosystem.
+In the previous section of the Quick Start guide, we learned about remixing and some of the terms that we use to talk about Koji’s ecosystem.
 In this section, we’ll get back into the code and start exploring “Contexts”.
 
 By the end of this section, you should feel comfortable:
