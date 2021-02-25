@@ -74,7 +74,8 @@ image::CP_03_the-terminal.png[The terminal]
 == Importing the @withkoji/core package into a project
 
 You’ve successfully installed the @withkoji/core package, and now you're almost ready to use it in your project.
-Because you’re using React, you get module importing out of the box, and you need to add just one line of code to begin using the package. Let’s start by minimizing the terminal panel.
+Because you’re using React, you get module importing out of the box, and you need to add just one line of code to begin using the package.
+Let’s start by minimizing the terminal panel.
 
 Click the current tab.
 Alternatively, you can click the down caret.
@@ -153,7 +154,8 @@ export default App;
 ----
 
 Let's go over the changes.
-You removed the import statement that brought in the local `logo.svg` file. You also imported `useState` from `react`, which is a React hook that will allow you to do some state management inside the component.
+You removed the import statement that brought in the local `logo.svg` file.
+You also imported `useState` from `react`, which is a React hook that will allow you to do some state management inside the component.
 
 The syntax for using the `useState` hook is very simple:
 
@@ -182,7 +184,8 @@ Let’s take a look at one of those methods in action: `Koji.ui.capture.image`.
 As you can probably guess, this is a method that allows you to capture an image input from a user.
 You might be wondering how this is different from the traditional `<input type=”file” />`, which allows a user to select an image file from their computer.
 
-Let’s find out. Update the code in `frontend/src/App.js` as follows.
+Let’s find out.
+Update the code in `frontend/src/App.js` as follows.
 
 [source, javascript]
 ----
@@ -218,7 +221,8 @@ Second, you added a button that will call the `captureImage` function when it’
 The `captureImage` function requests user input using the `Koji.ui.capture.image` method.
 If a value is returned, `setLogoSrc` is called and the state is updated with a new value.
 
-Let’s give it a try. To make sure you are seeing the most updated version of your application, click the refresh button in the device preview window.
+Let’s give it a try.
+To make sure you are seeing the most updated version of your application, click the refresh button in the device preview window.
 
 image::CP_06_refresh-button.png[The refresh button]
 
@@ -249,7 +253,8 @@ to
 `const src = await Koji.ui.capture.image({ blur: 10 });`
 
 Now, try choosing a new image.
-You’ll see that the new image has a blur effect applied to it. The blur isn’t just a style or css property.
+You’ll see that the new image has a blur effect applied to it.
+The blur isn’t just a style or css property.
 The image is actually being transformed and served back with a URL for a custom Koji-backed CDN!
 
 == Republishing
