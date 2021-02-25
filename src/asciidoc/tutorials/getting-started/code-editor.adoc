@@ -3,8 +3,6 @@
 :page-description: Opening Koji's code editor, and using it to publish the template.
 :figure-caption!:
 
-== Using the Code Editor
-
 In the first section of the Quick Start guide, we walked through creating and publishing your first project.
 In this section, we’ll dive a little deeper into the code editor, and start exploring making changes and updates to a project.
 

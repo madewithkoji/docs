@@ -1,6 +1,6 @@
 = Introduction to contexts
 :page-slug: intro-to-contexts
-:page-description: Learning about contexts
+:page-description: Learning about contexts and how to use them
 :figure-caption!:
 
 In the last section of the Quick Start guide, we learned about remixing and some of the terms that we use to talk about Koji’s ecosystem.
