@@ -85,83 +85,85 @@
           "items": [
             {
               "name": "Visual Customization Controls",
-              "slug": "vcc-overview"
-            },
-            {
-              "name": "Boolean",
-              "slug": "boolean"
-            },
-            {
-              "name": "Color",
-              "slug": "color"
-            },
-            {
-              "name": "Coordinate",
-              "slug": "coordinate"
-            },
-            {
-              "name": "File",
-              "slug": "file"
-            },
-            {
-              "name": "Image",
-              "slug": "image"
-            },
-            {
-              "name": "Koji",
-              "slug": "koji-vcc"
-            },
-            {
-              "name": "Media",
-              "slug": "media"
-            },
-            {
-              "name": "Obj",
-              "slug": "3d-object"
-            },
-            {
-              "name": "Range",
-              "slug": "range"
-            },
-            {
-              "name": "Secret",
-              "slug": "secret"
-            },
-            {
-              "name": "Select",
-              "slug": "select"
-            },
-            {
-              "name": "Size",
-              "slug": "size"
-            },
-            {
-              "name": "Sound",
-              "slug": "sound"
-            },
-            {
-              "name": "Text, textarea",
-              "slug": "text"
-            },
-            {
-              "name": "Video",
-              "slug": "video"
-            },
-            {
-              "name": "Google Font",
-              "slug": "google-font"
-            },
-            {
-              "name": "Array",
-              "slug": "array"
-            },
-            {
-              "name": "Object",
-              "slug": "object"
-            },
-            {
-              "name": "Building custom VCCs",
-              "slug": "build-custom-vcc"
+              "slug": "vcc-overview",
+              "subItems": [
+                {
+                  "name": "Boolean",
+                  "slug": "boolean"
+                },
+                {
+                  "name": "Color",
+                  "slug": "color"
+                },
+                {
+                  "name": "Coordinate",
+                  "slug": "coordinate"
+                },
+                {
+                  "name": "File",
+                  "slug": "file"
+                },
+                {
+                  "name": "Image",
+                  "slug": "image"
+                },
+                {
+                  "name": "Koji",
+                  "slug": "koji-vcc"
+                },
+                {
+                  "name": "Media",
+                  "slug": "media"
+                },
+                {
+                  "name": "Obj",
+                  "slug": "3d-object"
+                },
+                {
+                  "name": "Range",
+                  "slug": "range"
+                },
+                {
+                  "name": "Secret",
+                  "slug": "secret"
+                },
+                {
+                  "name": "Select",
+                  "slug": "select"
+                },
+                {
+                  "name": "Size",
+                  "slug": "size"
+                },
+                {
+                  "name": "Sound",
+                  "slug": "sound"
+                },
+                {
+                  "name": "Text, textarea",
+                  "slug": "text"
+                },
+                {
+                  "name": "Video",
+                  "slug": "video"
+                },
+                {
+                  "name": "Google Font",
+                  "slug": "google-font"
+                },
+                {
+                  "name": "Array",
+                  "slug": "array"
+                },
+                {
+                  "name": "Object",
+                  "slug": "object"
+                },
+                {
+                  "name": "Building custom VCCs",
+                  "slug": "build-custom-vcc"
+                }
+              ]
             }
           ]
         },
