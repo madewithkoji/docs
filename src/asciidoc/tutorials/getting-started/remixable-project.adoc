@@ -3,8 +3,8 @@
 :page-description: Making a project remixable and managing the remixing experience
 :figure-caption!:
 
-In the previous section of the Quick Start guide, we learned about contexts and how they help deliver the remix experience that makes Koji such a powerful platform.
-In this section, we’ll dive into the specific things we need to do in the code to allow users to remix and publish their own customized versions of your project.
+In the previous section of the Quick Start guide, we learned about contexts and how they help to deliver the remix experience that makes Koji such a powerful platform.
+In this section, we dive into the things you need to do in the code to allow users to remix and publish their own customized versions of your project.
 
 By the end of this section, you should feel comfortable:
 
@@ -14,8 +14,8 @@ By the end of this section, you should feel comfortable:
 
 == Thinking about remixes
 
-As we briefly touched on in the previous section of this guide, every remix that is created from a template utilizes the same code and loads the same web application.
-But, as we also learned, each remix can look and behave in dramatically different ways depending on the customization options exposed by the template.
+As we briefly touched on in <<your-first-remix#,Your first remix>>, every remix that is created from a template utilizes the same code and loads the same web application.
+But, as we also learned, each remix can look and behave in dramatically different ways, depending on the customization options exposed by the template.
 
 == How does it work?
 
@@ -24,11 +24,11 @@ They rely on user-specific data to deliver a different experience to everyone.
 And they typically store that user-specific data in a database, which is separate from the code that runs in the browser.
 
 Koji is not much different.
-When a user creates a remix of a template, the remix will load the same code that the template uses.
+When a user remixes template, the remix will load the same code that the template uses.
 To provide the customized remix experience, Koji relies on remix-specific data, data that is also stored in a database and separate from the code that is run in the browser.
-The only difference between a template and all of the different remixes that are created based on that template is the remix-specific data that is stored in Koji’s database.
+The only difference between a template and all the remixes that are created from it is the remix-specific data that is stored in Koji’s database.
 
-So, in order to create a remixable template, you need a way to structure your remix-specific data, collect those values from the user, and store them in Koji’s database.
+So, in order to create a remixable template, you need a way to specify your remix-specific data, collect the values for the data from the user, and store the data in Koji’s database.
 Fortunately, the @withkoji/core package does a lot of the heavy lifting for you.
 
 Let’s start by going back to your project in the code editor.
@@ -36,18 +36,18 @@ If you’ve closed out of the code editor since the last section, you can go to 
 
 == Working with remix data
 
-If you think back to when we remixed the Bouncy Blast game, you may remember there were a few customizable things in that game -- the player image, the enemy image, the background image, and the background music.
-When a remix is created, those choices are stored in a database, and loaded when someone views that remix.
+If you think back to when we remixed the Bouncy Blast game, there were a few things in that game that the player could customize: the player image, the enemy image, the background image, and the background music.
+When a remix is created, the player's choices are stored in a database, and loaded when someone views the remix.
 
-But if you think back to when we previewed the Bouncy Blast game, the game also worked before we created the remix.
-That’s because there are a default set of values that will be loaded if remix-specific data doesn’t exist.
+But if you think back to when we previewed the game, it also worked before we created the remix.
+That’s because there are a default set of values that are loaded if remix-specific data doesn’t exist.
 You can think about remix-specific data as being a layer of data on top of the default data.
 
 == Adding default remix data to koji.json
 
-The first thing we’ll want to do is to create a default layer of remix data.
-We can do that by adding a `remixData` key to the `koji.json` file in the root of our project, and populating it with the default remix data that we want to use.
-Open up the `/koji.json` file and add a few lines to the end of the file so that it looks like the following.
+Let's create a default layer of remix data.
+You do that by adding a `remixData` key to the `koji.json` file in the root of your project, and populating it with the default remix data that you want to use.
+Open the `/koji.json` file and add a few lines to the end of the file so that it looks like the following.
 
 [source, javascript]
 ----
@@ -81,22 +81,25 @@ Open up the `/koji.json` file and add a few lines to the end of the file so that
 }
 ----
 
-You can see there is quite a lot going on in this file, but for the purposes of this section, we’ll only need to focus on what’s happening in the `remixData` key.
+There is quite a lot going on in this file, but for the purposes of this section, we only need to focus on what’s happening in the `remixData` key.
 
-You’ll see that we’ve added one key/value pair: 
+Notice that we’ve added one key/value pair: 
 
 `"spinningImageSrc": “https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg"`.
 
 If that value looks familiar, good!
 It’s the same value that we were using as the default state value for the spinning image in our project.
-By defining it in the `koji.json` file as a `remixData` property, we’re telling Koji that that’s the default value we want to use for the customizable `spinningImageSrc` property.
+By defining it in the `koji.json` file as a `remixData` property, we’re telling Koji that it’s the default value for the `spinningImageSrc` property.
 
-Make sure you’ve saved the updates to `koji.json` (and that your json is valid!) The next step is to start using that value inside the application.
+Double-check that your JSON is valid, and make sure you save the changes.
 
-== Using `Koji.remix.get` to retrieve remix data
+== Using Koji.remix.get to retrieve remix data
 
-We can use the Remix module from the @withkoji/core package to start using the default remix data we just stored in the `koji.json` file.
-Open up the `/frontend/src/App.js` file and change the following line:
+We can use the remix module from the @withkoji/core package to start using the default remix data we just stored in the `koji.json` file.
+
+Open `/frontend/src/App.js`.
+
+Change
 
 `const [logoSrc, setLogoSrc] = useState('https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg');`
 
@@ -104,16 +107,17 @@ to
 
 `const [logoSrc, setLogoSrc] = useState(Koji.remix.get().spinningImageSrc);`
 
-If you save the file, and refresh the device preview, you should see the same spinning React logo that we did before.
-Except now, instead of passing in an explicit default value, we’re using `Koji.remix.get()` to retrieve the `remixData` object we stored in the `koji.json` file.
+If you save the file and refresh the preview pane, you should see the same spinning React logo that you did before.
+Except now, instead of hard-coding the default value, you’re using `Koji.remix.get()` to retrieve the value  from the `koji.json` file.
 
-[Note]
-By default, `Koji.remix.get()` will return the entire `remixData` object.
-However, if you wanted to target just one property, you can also pass an array of path strings to retrieve one particular value: `Koji.remix.get([‘spinningImageSrc’])`.
+[NOTE]
+By default, `Koji.remix.get()` returns the entire `remixData` object.
+In your project, this contains just one property, but it could contain more than one.
+If you want to target a specific property, you can pass in an array of path strings: `Koji.remix.get([‘spinningImageSrc’])`.
 
-== Using `Koji.remix.set` to set remix data
+== Using Koji.remix.set to set remix data
 
-We’ve been able to use `Koji.remix.get` to retrieve remix data, but what happens when we want to allow a user to “save” a remix-specific value? We can use `Koji.remix.set` for that.
+You used `Koji.remix.get` to retrieve remix data, but what if you want to allow a user to “save” a remix-specific value? We can use `Koji.remix.set` for that.
 Let’s make an update to the `captureImage` function.
 
 [source, javascript]
@@ -128,22 +132,23 @@ const captureImage = async () => {
  };
 ----
 
-Using `Koji.remix.set` will let the platform know that we want to store that remix-specific data in Koji’s database to load when someone views the remix.
-When a user clicks the button, they will be presented with the image picker.
-When the user chooses an image, we’ll `set` that image’s url as a remix-specific `spinningImageSrc` value.
+Using `Koji.remix.set` lets the platform know that we want to store the remix-specific data in Koji’s database, and to load it when someone views the remix.
+When a user clicks the button, they are presented with the image picker.
+When they choose an image, its URL is saved in the `spinningImageSrc` property.
 
-You’ll notice that in addition to using `Koji.remix.set` to store the new value, we’re also updating the `logoSrc` state.
+Notice that, in addition to using `Koji.remix.set` to store the new value, you’re also updating the `logoSrc` state.
 This is a good way to show a visual confirmation to the user, by presenting them with the new image that they’ve just chosen.
 
-== Managing the Remix Experience
+== Managing the remix experience
 
-We learned in the last lesson that you can use `Koji.playerState.context` to determine the initial context (`default` or `remix`).
+We learned in the previous section that you can use `Koji.playerState.context` to determine the initial context, which will be `default` or `remix`.
 But when a user is creating a remix, they can freely move back and forth between the remix and preview modes.
 
-When they are previewing the changes, it would be helpful to show them the same content that is shown in a `default` context, so that the user can see something very similar to what they’ll see after they publish the remix.
+When they preview the changes, it would be helpful to show them the same content that is shown in the default context, so that the user can see something similar to what they’ll see after they publish the remix.
 
-To do that, we can use `Koji.remix.subscribe`, which will allow us to “listen” to the user’s actions when toggling back and forth between the remix and preview modes.
-Let’s update the `/frontend/src/App.js` file to look like the following.
+To do that, we can use `Koji.remix.subscribe`, which allows us to “listen” to the user’s actions when toggling back and forth between the remix and preview modes.
+
+Update `/frontend/src/App.js` to look like the following.
 
 [source, javascript]
 ----
@@ -205,26 +210,27 @@ function App() {
 export default App;
 ----
 
-There are a few changes, so let’s walk through them.
-First, you’ll notice that we’re importing `useEffect` from `react` at the top of the file.
-`useEffect` is a React Hook that helps to manage side effects, like fetching data or registering event listeners.
-You don’t need to worry too much about the hooks syntax; it’s more important to understand what’s being called inside each function.
+There are a few changes here, so let’s walk through them.
+Notice that you’re importing `useEffect` from `react` at the top of the file.
+`useEffect` is a React hook that helps to manage side effects, like fetching data or registering event listeners.
+You don’t need to worry too much about the hooks syntax.
+It’s more important to understand what’s being called inside each function.
 
-In this case, you’ll see that we’re using the first `useEffect` to subscribe to an `isRemixing` listener via `Koji.playerState.subscribe`.
+In this case, you use the first `useEffect` to subscribe to an `isRemixing` listener via `Koji.playerState.subscribe`.
 When the user moves into the preview mode, `isRemixing` will be `false`, and when the user moves back into the remix mode, `isRemixing` will be `true`.
 
-We can use that listener to keep track of a local state: `userIsRemixing`.
-We’ve initialized that state with a value of `context === ‘remix’`, which we know will be true when the user first opens up a remix.
+You can use that listener to keep track of a local state: `userIsRemixing`.
+You initialized the state with a value of `context === ‘remix’`, which we know will be true when the user first opens a remix.
 
-The conditional render logic has also been updated, so that the remix content will be shown based on the value of `userIsRemixing`.
+The conditional render logic has also been updated, so that the remix content will be shown only if `userIsRemixing` is `true`.
 
-You’ll see one more `useEffect`, where we call `Koji.ready()`.
-This lets the platform know that we’re ready to start receiving `isRemixing` events that will trigger the `Koji.playerState.subscribe` listener.
+You use a second `useEffect` to call `Koji.ready()`.
+This lets the platform know that you’re ready to start receiving the `isRemixing` events that will trigger the `Koji.playerState.subscribe` listener.
 
-`useEffect` blocks will run sequentially, so by placing the `Koji.ready()` call in a second `useEffect` block, we can ensure it will be called after we’ve subscribed to the listener.
+`useEffect` blocks run sequentially, so by placing the `Koji.ready()` call in a second `useEffect` block, you ensure it will be called after you’ve subscribed to the listener.
 
 The final piece is to add a way for the user to toggle between the remix and preview modes.
-For that, we can leverage `Koji.remix.finish()`.
+For that, you can leverage `Koji.remix.finish()`.
 Let’s do that by adding an additional button to the remix content.
 
 [source, javascript]
@@ -241,7 +247,7 @@ if (userIsRemixing) {
 }
 ----
 
-We’ll also need to add the `finish` function, right after the `captureImage` definition.
+You also need to add the `finish` function, right after the `captureImage` definition.
 
 [source, javascript]
 ----
@@ -261,45 +267,54 @@ const captureImage = async () => {
 
 == Testing in the Device Preview
 
-At this point, we can start testing the remix experience using the device preview in the code editor.Let’s start by making sure we’re on the “Default” tab, and then clicking the refresh button.This will give us a new starting point (similar to finding the template via the template store and previewing it).
+Now, you can start testing the remix experience using the preview pane in the code editor.
 
-When we click the “Remix” tab, we’re mimicking the user clicking on “Remix” from the template store view.When we do that, we should now see the remix content, which will allow us to either a) choose a new image or b) finish (and preview).
+Make sure you’re on the *Default* tab, and click the refresh button.
+This will give you a new starting point (similar to finding the template via the template store and previewing it).
 
-Let’s start by choosing a new image using the “Capture Image” button.
-You should be prompted with the capture image dialog.
+Click the *Remix* tab.
+
+This mimics the user clicking on *Remix* from the template store view.
+You should now see the remix content, which allows you to either a) choose a new image or b) finish and preview.
+
+Let’s start by choosing a new image by clicking *Capture Image*.
+You should be prompted with the image capture dialog.
 
 image::RP_05_image-capture-dialog.png[The image capture dialog box]
 
-Choose a new image, and then click on the “Finish” button.
-The device preview tab should automatically change back to “Default” and you should see the image you selected spinning in the center.
+Choose a new image, then click *Finish*.
+The preview pane should change back to the *Default* view, and you should see the image you selected spinning in the center.
 
-To mimic the user exiting out of the preview, you can click back to the “Remix” tab inside the device preview.
-At this point you can capture a new image, or click the “Finish” button to move back to the “Default” view without making any changes.
+To mimic the user exiting out of the preview, you can click the *Remix* tab again.
+
+At this point, you can capture a new image, or click *Finish* to move back to the *Default* view without making any changes.
 
 == Republishing
 
-At this point, we’ve set up our base remix data, and we’re using `Koji.remix` to get and set dynamic values.
-We’ve also used the `Koji.playerState` to subscribe to changes when the user toggles between remix and preview modes.
+You've set up your remix data, and you’re using `Koji.remix` to get and set dynamic values.
+You’ve also used `Koji.playerState` to subscribe to changes when the user toggles between remix and preview modes.
 
-The final thing to do is to republish our template and test it in the wild!
+The final thing to do is to republish your template and test it in the wild!
 
-Navigate back to the Publish Settings by clicking on the “Publish Now” button in the upper left side of the Code Editor.
-Publish the new changes by clicking the blue “Publish New Version” button.
+Navigate back to *Publish Settings* by clicking on *Publish Now*.
+
+Clicking *Publish New Version*.
 
 After your project has been published, use the notification link to open your template.
 We haven’t put this template into the template store yet, but you can still test the remix feature.
-In the upper right corner of the app, click on the Koji button, and choose “Remix this Koji”.
+
+Click the Koji button, and choose *Remix this Koji*.
 
 image::RP_06_remix-this-koji.png[Remix this Koji]
 
-You should be able to walk through the same experience we just tested in the device preview inside the code editor.Except this time, when you click on the blue “Publish” button, you’ll have created a live remix from your template!
+You should be able to walk through the same steps you just tested in the preview pane, but this time, when you click *Publish*, you create a live remix from your template!
 
-== Wrapping Up
+== Wrapping up
 
 In this section, you created your first remixable template.
-This is the biggest step you’ve taken so far to unlocking the power of the Koji platform, and is the first of many building blocks that will allow you to create amazing experiences inside of your templates.
+You’ve taken a big step towards unlocking the power of the Koji platform, and it's the first of many building blocks that will allow you to create amazing experiences with your templates.
 
-In the final section, we’ll take a closer look at the template store.
-Koji’s template store is a place where you can market your template, just like other developers do in native app stores.
-It’s a great place to find templates from other developers, and also to showcase all of the amazing templates you’re ready to create!
+In the final section, we take a closer look at Koji’s template store.
+The template store is a place where you can market your templates.
+It’s a great place to find templates from other developers, and to showcase all the amazing templates you create!
 
