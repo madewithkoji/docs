@@ -127,12 +127,39 @@ const StyledLink = styled(Link)`
   }
 `;
 
+function comparePaths(locationPath, path) {
+  if (locationPath === path) return true;
+  if (locationPath.slice(0, -1) === path) return true;
+
+  return false;
+}
+
+function getOpenItemPath(locationPath, sections) {
+  let openItemPath;
+
+  // eslint-disable-next-line consistent-return
+  sections.forEach((section) => {
+    (section.items || []).forEach(({ path, subItems }) => {
+      if (locationPath === path || locationPath.slice(0, -1) === path) openItemPath = path;
+
+      if (subItems) {
+        // eslint-disable-next-line consistent-return
+        subItems.forEach(({ path: subItemPath }) => {
+          if (locationPath === subItemPath || locationPath.slice(0, -1) === subItemPath) openItemPath = path;
+        });
+      }
+    });
+  });
+
+  return openItemPath;
+}
+
 const LeftNav = ({ location, navItems }) => {
   const currentNavItem = navItems.find(({ root }) => location.pathname.includes(root)) || {};
-  const [openItemPath, setOpenItemPath] = useState(location.pathname);
-  const [openSubItemPath, setOpenSubItemPath] = useState(location.pathname);
-
   const { sections = [] } = currentNavItem;
+
+  const [openItemPath, setOpenItemPath] = useState(getOpenItemPath(location.pathname, sections));
+  const [openSubItemPath, setOpenSubItemPath] = useState(location.pathname);
 
   return (
     <Container>
@@ -146,7 +173,7 @@ const LeftNav = ({ location, navItems }) => {
                   (
                     <StyledLink
                       key={path}
-                      style={{ isActive: location.pathname === path }}
+                      style={{ isActive: comparePaths(location.pathname, path) }}
                       to={path}
                     >
                       <SectionItem
@@ -154,7 +181,7 @@ const LeftNav = ({ location, navItems }) => {
                           setOpenItemPath(false);
                           setOpenSubItemPath(false);
                         }}
-                        style={{ isActive: location.pathname === path }}
+                        style={{ isActive: comparePaths(location.pathname, path) }}
                       >
                         {itemName}
                       </SectionItem>
@@ -163,13 +190,13 @@ const LeftNav = ({ location, navItems }) => {
                   (
                     <Fragment key={path}>
                       <StyledLink
-                        style={{ isActive: location.pathname === path }}
+                        style={{ isActive: comparePaths(location.pathname, path) }}
                         to={path}
                       >
                         <ExpandableSectionItem
                           style={{
-                            isActive: location.pathname === path,
-                            anyOpen: subItems.reduce(((acc, { path: subItemPath }) => openSubItemPath === subItemPath || acc), false),
+                            isActive: comparePaths(location.pathname, path),
+                            anyOpen: openItemPath === path,
                             isOpen: openItemPath === path,
                           }}
                           onClick={() => setOpenItemPath(path)}
@@ -192,14 +219,14 @@ const LeftNav = ({ location, navItems }) => {
                             <StyledLink
                               key={subItemName}
                               style={{
-                                isActive: location.pathname === subItemPath,
+                                isActive: comparePaths(location.pathname, subItemPath),
                               }}
                               to={subItemPath}
                             >
                               <SectionItem
                                 onClick={() => setOpenSubItemPath(subItemPath)}
                                 style={{
-                                  isActive: location.pathname === subItemPath,
+                                  isActive: comparePaths(location.pathname, subItemPath),
                                 }}
                               >
                                 {subItemName}
