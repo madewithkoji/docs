@@ -77,16 +77,18 @@
               "slug": "instant-remixing"
             },
             {
-              "name": "What is a template?",
-              "slug": "templates"
-            },
-            {
-              "name": "Developing your first template",
-              "slug": "start-guide-1"
-            },
-            {
-              "name": "Extending your template",
-              "slug": "start-guide-2"
+              "name": "Templates",
+              "slug": "templates",
+              "subItems": [
+                {
+                  "name": "Developing your first template",
+                  "slug": "start-guide-1"
+                },
+                {
+                  "name": "Extending your template",
+                  "slug": "start-guide-2"
+                }
+              ]
             },
             {
               "name": "Migrating to the Koji core package",

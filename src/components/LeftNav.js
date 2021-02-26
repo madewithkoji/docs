@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useState, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { Link } from 'gatsby';
+import KeyboardArrowRightIcon from '@material-ui/icons/KeyboardArrowRight';
 
 import { BLACK, BLUE, LIGHT_GRAY } from '../constants/colors';
 
@@ -68,6 +69,19 @@ const SectionItems = styled.ul`
   padding: 0;
 `;
 
+const ExpandableSectionItems = styled(SectionItems)`
+  height: ${({ style: { isOpen, itemCount } }) => isOpen ? `${itemCount * 28}px` : 0};
+  overflow: hidden;
+  padding-left: 4px;
+  border-left: 3px solid ${BLUE};
+  border-radius: ${({ style: { topOpen, bottomOpen } }) => {
+    if (topOpen) return '2.5px 0 0 0';
+    if (bottomOpen) return '0 0 0 2.5px';
+    return '0';
+  }};
+  margin: ${({ style: { isOpen } }) => isOpen ? '4px 0 4px 4px' : 0};
+`;
+
 const SectionItem = styled.li`
   font-size: 13px;
   padding: 5px 10px;
@@ -85,6 +99,23 @@ const SectionItem = styled.li`
   }
 `;
 
+const ExpandableSectionItem = styled(SectionItem)`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: ${({ style: { anyOpen, isActive } }) => {
+    if (isActive) return BLUE;
+    if (anyOpen) return LIGHT_GRAY;
+    return 'transparent';
+  }};
+
+  svg {
+    font-size: 16px;
+    transform: ${({ style: { isOpen } }) => isOpen ? 'translate(0, 1px) rotate(90deg)' : 'translate(0, 1px) rotate(0)'};
+    transition: all 0.3s;
+  }
+`;
+
 const StyledLink = styled(Link)`
   color: ${({ style: { isActive } }) => isActive ? '#ffffff' : BLACK};
   text-decoration: none;
@@ -98,6 +129,8 @@ const StyledLink = styled(Link)`
 
 const LeftNav = ({ location, navItems }) => {
   const currentNavItem = navItems.find(({ root }) => location.pathname.includes(root)) || {};
+  const [openItemPath, setOpenItemPath] = useState(location.pathname);
+  const [openSubItemPath, setOpenSubItemPath] = useState(location.pathname);
 
   const { sections = [] } = currentNavItem;
 
@@ -109,17 +142,74 @@ const LeftNav = ({ location, navItems }) => {
             <SectionHeader>{name}</SectionHeader>
             <SectionItems>
               {
-                items.sort((a, b) => a.idx - b.idx).map(({ name: itemName, path }) => (
-                  <StyledLink
-                    key={itemName}
-                    style={{ isActive: location.pathname === path }}
-                    to={path}
-                  >
-                    <SectionItem style={{ isActive: location.pathname === path }}>
-                      {itemName}
-                    </SectionItem>
-                  </StyledLink>
-                ))
+                items.sort((a, b) => a.idx - b.idx).map(({ name: itemName, path, subItems }) => !subItems ?
+                  (
+                    <StyledLink
+                      key={path}
+                      style={{ isActive: location.pathname === path }}
+                      to={path}
+                    >
+                      <SectionItem
+                        onClick={() => {
+                          setOpenItemPath(false);
+                          setOpenSubItemPath(false);
+                        }}
+                        style={{ isActive: location.pathname === path }}
+                      >
+                        {itemName}
+                      </SectionItem>
+                    </StyledLink>
+                  ) :
+                  (
+                    <Fragment key={path}>
+                      <StyledLink
+                        style={{ isActive: location.pathname === path }}
+                        to={path}
+                      >
+                        <ExpandableSectionItem
+                          style={{
+                            isActive: location.pathname === path,
+                            anyOpen: subItems.reduce(((acc, { path: subItemPath }) => openSubItemPath === subItemPath || acc), false),
+                            isOpen: openItemPath === path,
+                          }}
+                          onClick={() => setOpenItemPath(path)}
+                        >
+                          <span>{itemName}</span>
+                          <KeyboardArrowRightIcon />
+                        </ExpandableSectionItem>
+                      </StyledLink>
+
+                      <ExpandableSectionItems
+                        style={{
+                          bottomOpen: openSubItemPath === subItems[subItems.length - 1].path,
+                          isOpen: openItemPath === path,
+                          itemCount: subItems.length,
+                          topOpen: openSubItemPath === subItems[0].path,
+                        }}
+                      >
+                        {
+                          subItems.sort((a, b) => a.idx - b.idx).map(({ name: subItemName, path: subItemPath }) => (
+                            <StyledLink
+                              key={subItemName}
+                              style={{
+                                isActive: location.pathname === subItemPath,
+                              }}
+                              to={subItemPath}
+                            >
+                              <SectionItem
+                                onClick={() => setOpenSubItemPath(subItemPath)}
+                                style={{
+                                  isActive: location.pathname === subItemPath,
+                                }}
+                              >
+                                {subItemName}
+                              </SectionItem>
+                            </StyledLink>
+                          ))
+                        }
+                      </ExpandableSectionItems>
+                    </Fragment>
+                  ))
               }
             </SectionItems>
           </Section>
