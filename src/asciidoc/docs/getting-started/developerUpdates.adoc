@@ -8,6 +8,31 @@ include::../_includes/tip-discord-server.adoc[tags=*]
 
 == 2021
 
+=== February 22
+
+* In the https://withkoji.com/create[Template Store], the new *Variants* feature enables better template discovery.
+With this new feature, template developers can curate a list of related templates.
+For example, provide a version that includes email capture alongside a version that does not.
+* The *Template Details* view is now available for community-developed templates.
+** To create a new template, go to the https://withkoji.com/developer[developer portal] and click *My Templates*.
+You can define and manage the details for your templates, including the base Koji, descriptive text, videos, screenshots, and variants.
+** To submit your template for consideration in the Template Store, send it to the Koji team for review.
+Approved templates will be featured in the appropriate category on the store page.
+* A new guide is available to help you upgrade your code to the @withkoji/core package.
+See <<migrate-koji-core#>>.
+* The following features are now available in the <<withkoji-koji-core#, @withkoji/core package>>.
+** You can now use `initialValue` to set a starting value for color, range, and select captures.
+** The new frontend/navigate module provides methods for controlling navigation in your Kojis.
+** The new `custom` method in frontend/capture enables you to capture values with custom VCCs.
+** Fixed various issues.
+
++
+For a comprehensive list of changes and versions, see the https://github.com/madewithkoji/koji-core/releases[package release notes] in Github.
+* The values of the `KOJI_PROJECT_ID` and `KOJI_PROJECT_TOKEN` environment variables are now available from  Project Details, making it easier to set up your <<work-locally#, local development environment>>.
+* The Koji button and user profile menu have been redesigned for clarity and usability.
+New styles and menu options improve the experience of navigating around the Koji platform.
+* Remix states (defined in `quickstart.json`) and the `onSetCurrentState` method are no longer supported on the platform.
+
 === February 1
 
 * The Koji developer community has a new channel.
