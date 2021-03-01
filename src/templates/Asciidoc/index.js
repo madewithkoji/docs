@@ -3,9 +3,10 @@ import PropTypes from 'prop-types';
 import hljs from 'highlight.js';
 import styled from 'styled-components';
 import 'highlight.js/styles/github.css';
-import '../../styles/dark-code.css';
-
 import { graphql } from 'gatsby';
+
+import { decodeHTML } from '../../utils/decodeHTML';
+import '../../styles/dark-code.css';
 
 import { lineNumbers } from './utils/line-numbers';
 import { addCopyCodeButton } from './utils/copy-code';
@@ -188,7 +189,10 @@ const Asciidoc = (props) => {
 
   const resolveTitleFromSlug = (slug) => {
     const match = props.data.allAsciidoc.edges.map(({ node }) => node).find(({ pageAttributes: { slug: s } = {} }) => s === slug);
-    if (match) return match.document.title;
+    if (match) {
+      // Could be html entities in the title
+      return decodeHTML(match.document.title);
+    }
 
     return null;
   };
