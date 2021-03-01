@@ -138,7 +138,13 @@ const AppSubBar = ({ location, navItems, onSearchClick }) => {
   const { sections = [] } = currentNavItem;
   const currentSection = sections.find(({ root }) => location.pathname.includes(root)) || {};
   const { items = [] } = currentSection;
-  const currentItem = items.find(({ path }) => location.pathname.includes(path)) || {};
+
+  const allItems = [
+    ...items,
+    ...items.map(({ subItems }) => subItems || []).reduce((acc, cur) => [...cur, ...acc], []),
+  ];
+
+  const currentItem = allItems.find(({ path }) => location.pathname.includes(path)) || {};
 
   const handleNavItemChange = (e) => {
     navigate(e.currentTarget.value);
