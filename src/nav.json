@@ -252,7 +252,7 @@
     {
       "name": "Tutorials",
       "root": "/tutorials",
-      "defaultPath": "/tutorials/getting-started/your-first-project",
+      "defaultPath": "/tutorials/getting-started/quick-start",
       "sections": [
         {
           "name": "Getting Started Tutorials",
