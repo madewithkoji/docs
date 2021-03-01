@@ -70,7 +70,7 @@ const SectionItems = styled.ul`
 `;
 
 const ExpandableSectionItems = styled(SectionItems)`
-  height: ${({ style: { isOpen, itemCount } }) => isOpen ? `${itemCount * 28}px` : 0};
+  height: ${({ style: { isOpen } }) => isOpen ? 'auto' : 0};
   overflow: hidden;
   padding-left: 4px;
   border-left: 3px solid ${BLUE};
@@ -210,7 +210,6 @@ const LeftNav = ({ location, navItems }) => {
                         style={{
                           bottomOpen: openSubItemPath === subItems[subItems.length - 1].path,
                           isOpen: openItemPath === path,
-                          itemCount: subItems.length,
                           topOpen: openSubItemPath === subItems[0].path,
                         }}
                       >
