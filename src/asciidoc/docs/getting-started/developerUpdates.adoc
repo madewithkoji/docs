@@ -8,6 +8,21 @@ include::../_includes/tip-discord-server.adoc[tags=*]
 
 == 2021
 
+=== March 2
+
+* On the developer site, a new set of <<quick-start#,quick start tutorials>> are available to help developers get started quickly on Koji.
+* The following features are now available in the https://withkoji.com/create[Template Store].
+** Template creators can now see the number of remixes and the revenue for their template.
+** Creator usernames are now visible on templates.
+** New actions are available from the menu on the Template Details page – *Share*, for every template, and *Manage Template*, for your templates.
++
+image::templateDetails-mar2021.png[Template Details page]
+
+* The following features are now available on the Koji platform.
+** The https://withkoji.com/developer/projects[developer portal] now shows projects that have a running editor in a separate section.
+** The color VCC now validates the color string before returning a value.
+** The Koji editor now shows a confirmation prompt before closing the browser tab.
+
 === February 22
 
 * In the https://withkoji.com/create[Template Store], the new *Variants* feature enables better template discovery.

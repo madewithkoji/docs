@@ -1,5 +1,5 @@
-= Quick Start Introduction
+= Tutorial: Learn how Koji works
 :page-slug: quick-start
-:page-description: Placeholder for Quick Start Introduction
+:page-description: Tutorial for learning fundamental concepts and developing your first project on Koji.
 
 Quick Start Information
