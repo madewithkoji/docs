@@ -662,7 +662,7 @@ app.get('/receipts-by-user', async (req, res) => {
   const token = req.headers.authorization;
 
   // Get receipts by user
-  const receipts = await iap.resolveReceiptsByUserToken(token);
+  const receipts = await iap.resolveReceiptsByIAPToken(token);
 
   res.status(200).json({
     receipts,

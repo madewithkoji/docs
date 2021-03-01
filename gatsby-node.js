@@ -65,6 +65,15 @@ exports.sourceNodes = ({ actions, createNodeId, createContentDigest }) => {
         const mappedItem = { ...item, idx: itemIdx };
         mappedItem.path = `${navItem.root}${section.root}/${item.slug}`;
 
+        if (mappedItem.subItems) {
+          mappedItem.subItems = mappedItem.subItems.map((subItem, subItemIdx) => {
+            const mappedSubItem = { ...subItem, idx: subItemIdx };
+            mappedSubItem.path = `${navItem.root}${section.root}/${subItem.slug}`;
+
+            return mappedSubItem;
+          });
+        }
+
         return mappedItem;
       });
 
@@ -122,6 +131,12 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
     navItem.sections.forEach((section) => {
       section.items.forEach((item) => {
         knownSlugs.push(item.slug);
+
+        if (item.subItems) {
+          item.subItems.forEach((subItem) => {
+            knownSlugs.push(subItem.slug);
+          });
+        }
       });
     });
   });
