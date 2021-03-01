@@ -80,8 +80,8 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
       section.items.forEach((item) => {
         knownSlugs.push(item.slug);
 
-        if (section.items.subItems) {
-          section.items.subItems.forEach((subItem) => {
+        if (item.subItems) {
+          item.subItems.forEach((subItem) => {
             knownSlugs.push(subItem.slug);
           });
         }
