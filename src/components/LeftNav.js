@@ -1,4 +1,4 @@
-import React, { useState, Fragment } from 'react';
+import React, { useEffect, useState, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { Link } from 'gatsby';
@@ -160,6 +160,11 @@ const LeftNav = ({ location, navItems }) => {
 
   const [openItemPath, setOpenItemPath] = useState(getOpenItemPath(location.pathname, sections));
   const [openSubItemPath, setOpenSubItemPath] = useState(location.pathname);
+
+  useEffect(() => {
+    setOpenItemPath(() => getOpenItemPath(location.pathname, sections));
+    setOpenSubItemPath(() => location.pathname);
+  }, [location.pathname]);
 
   return (
     <Container>
