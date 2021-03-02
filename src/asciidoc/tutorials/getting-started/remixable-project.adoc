@@ -24,7 +24,7 @@ They rely on user-specific data to deliver a different experience to everyone.
 And they typically store that user-specific data in a database, which is separate from the code that runs in the browser.
 
 Koji is not much different.
-When a user remixes template, the remix will load the same code that the template uses.
+When a user remixes a template, the remix will load the same code that the template uses.
 To provide the customized remix experience, Koji relies on remix-specific data, data that is also stored in a database and separate from the code that is run in the browser.
 The only difference between a template and all the remixes that are created from it is the remix-specific data that is stored in Koji’s database.
 
@@ -37,7 +37,7 @@ If you’ve closed out of the code editor since the last section, you can go to 
 == Working with remix data
 
 If you think back to when we remixed the Bouncy Blast game, there were a few things in that game that the player could customize: the player image, the enemy image, the background image, and the background music.
-When a remix is created, the player's choices are stored in a database, and loaded when someone views the remix.
+When a remix is created, the player's choices are stored in a database. When someone views the remix, those choices are loaded.
 
 But if you think back to when we previewed the game, it also worked before we created the remix.
 That’s because there are a default set of values that are loaded if remix-specific data doesn’t exist.

@@ -46,10 +46,10 @@ As with projects, updates to your template won’t be made until you choose to p
 == Adding template metadata
 
 By adding metadata to your template, you can make it easier for potential users to understand what your template does.
-You can use the name, subtitle, and description to describe key features or to indicate to the user how your template can solve a problem or improve a their life.
+You can use the name, subtitle, and description to describe key features or to indicate to the user how your template can solve a problem or improve their life.
 
 The icon, screenshots, and demo videos are your opportunity to add a visual presence to your template listing.
-They allow you can expand on the text-based metadata to confirm your template’s purpose, or to show off parts of your template that you’re especially proud of.
+They allow you to expand on the text-based metadata to confirm your template’s purpose, or to show off parts of your template that you’re especially proud of.
 
 If you want to see what that could look like, visit the following links to download some sample images, and upload them into the template draft you’re working on:
 
