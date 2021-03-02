@@ -25,7 +25,7 @@ They rely on user-specific data to deliver a different experience to everyone.
 And, they typically store that user-specific data in a database, which is separate from the code that runs in the browser.
 
 Koji remixes work in a very similar way.
-When a user remixes template, the remix loads the same code that the template uses.
+When a user remixes a template, the remix loads the same code that the template uses.
 To provide the customized remix experience, Koji relies on remix-specific data, data that is also stored in a database and separate from the code that is run in the browser.
 The only difference between a template and all the remixes that are created from it is the remix-specific data that is stored in Koji’s database.
 
