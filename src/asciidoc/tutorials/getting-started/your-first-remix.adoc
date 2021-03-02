@@ -4,7 +4,10 @@
 :figure-caption!:
 
 In the previous section of the Quick Start guide, you learned about using the terminal, and installing and using the @withkoji/core package.
-In this section, you’ll take a break from coding, and instead, put yourself into the shoes of a user in order to see what the Koji experience looks like from their perspective.
+In this section, you’ll
+// tag::description[]
+take a break from coding, and instead, put yourself into the shoes of a user to see what the Koji experience looks like from their perspective.
+// end::description[]
 
 By the end of this section, you should feel comfortable:
 

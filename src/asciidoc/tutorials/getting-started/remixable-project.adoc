@@ -3,8 +3,11 @@
 :page-description: Making a project remixable and managing the remixing experience
 :figure-caption!:
 
-In the previous section of the Quick Start guide, we learned about contexts and how they help to deliver the remix experience that makes Koji such a powerful platform.
-In this section, we dive into the things you need to do in the code to allow users to remix and publish their own customized versions of your project.
+In the previous section of the Quick Start guide, you learned about contexts and how they help to deliver the remix experience that makes Koji such a powerful platform.
+In this section, you'll
+// tag::description[]
+dive into what you need to do in the code to allow users to remix and publish their own customized versions of your project.
+// end::description[]
 
 By the end of this section, you should feel comfortable:
 
@@ -83,7 +86,7 @@ Open the `/koji.json` file and add a few lines to the end of the file so that it
 
 There is quite a lot going on in this file, but for the purposes of this section, we only need to focus on what’s happening in the `remixData` key.
 
-Notice that we’ve added one key/value pair: 
+Notice that we’ve added one key/value pair:
 
 `"spinningImageSrc": “https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg"`.
 
@@ -124,7 +127,7 @@ Let’s make an update to the `captureImage` function.
 ----
 const captureImage = async () => {
    const src = await Koji.ui.capture.image();
- 
+
    if (src) {
      setLogoSrc(() => src);
      await Koji.remix.set({ spinningImageSrc: src });
@@ -155,7 +158,7 @@ Update `/frontend/src/App.js` to look like the following.
 import Koji from '@withkoji/core';
 import { useEffect, useState } from 'react';
 import './App.css';
- 
+
 function App() {
   const [logoSrc, setLogoSrc] = useState(Koji.remix.get().spinningImageSrc);
 
@@ -206,7 +209,7 @@ function App() {
     </div>
   );
 }
- 
+
 export default App;
 ----
 
@@ -253,13 +256,13 @@ You also need to add the `finish` function, right after the `captureImage` defin
 ----
 const captureImage = async () => {
    const src = await Koji.ui.capture.image();
- 
+
    if (src) {
      setLogoSrc(() => src);
      await Koji.remix.set({ spinningImageSrc: src });
    }
  };
- 
+
  const finish = () => {
    Koji.remix.finish();
  };
@@ -317,4 +320,3 @@ You’ve taken a big step towards unlocking the power of the Koji platform, and 
 In the final section, we take a closer look at Koji’s template store.
 The template store is a place where you can market your templates.
 It’s a great place to find templates from other developers, and to showcase all the amazing templates you create!
-

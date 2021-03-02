@@ -8,7 +8,11 @@ Congratulations!
 You’re on your way to creating amazing experiences on the Koji platform.
 
 As you build those amazing experiences, we believe you should have a way to showcase them.
-By creating a template and linking it to a project, you’ll create a home for your experience, complete with a landing page where you can tell users about what your project does, and even show screenshots and videos of your experience.
+By creating a template and linking it to a project, you’ll
+// tag::description[]
+create a home for your experience, complete with a landing page where you can tell users about what your project does.
+// end::description[]
+You can even show screenshots and videos of your experience on your template page.
 
 By the end of this section, you should feel comfortable:
 
@@ -17,7 +21,7 @@ By the end of this section, you should feel comfortable:
 * Linking a project to your template.
 * Publishing and updating a template.
 
-== Creating a Template
+== Creating a template
 
 Creating a template is easy.
 Let’s start by navigating to the https://withkoji.com/developer[Developer Portal].

@@ -10,7 +10,11 @@ include::../_includes/tip-discord-server.adoc[tags=*]
 
 === March 2
 
-* On the developer site, a new set of <<quick-start#,quick start tutorials>> are available to help developers get started quickly on Koji.
+* On the developer site, a new set of <<quick-start#,quick start tutorials>> are available to help developers get going quickly on Koji.
+* The https://withkoji.atlassian.net/servicedesk/customer/portal/1[Koji Support] page is now available for logging bugs and requests with the Koji team.
+This short form enables better tracking and quicker resolution of problems.
++
+For the quickest answers to general questions, continue to check out the https://help.withkoji.com/[Help Center] or connect with the https://discord.com/invite/9egkTWf4ec[community on Discord].
 * The following features are now available in the https://withkoji.com/create[Template Store].
 ** Template creators can now see the number of remixes and the revenue for their template.
 ** Creator usernames are now visible on templates.

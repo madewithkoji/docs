@@ -3,8 +3,11 @@
 :page-description: Installing the @withkoji/core package and using it to capture user input.
 :figure-caption!:
 
-In the previous section of the Quick Start guide, we walked through exploring the folders and files in your project, making changes to files, and publishing updates.
-In this section, we’ll continue using the code editor to install and implement the @withkoji/core package.
+In the previous section of the Quick Start guide, you walked through exploring the folders and files in your project, making changes to files, and publishing updates.
+In this section, you’ll
+// tag::description[]
+continue using the code editor to install and implement the @withkoji/core package.
+// end::description[]
 
 By the end of this section, you should feel comfortable:
 
@@ -89,18 +92,18 @@ Next, open up the `/frontend/src/index.js` file, and make the following changes.
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Koji from '@withkoji/core';
- 
+
 import kojiConfig from '../../koji.json';
 import './index.css';
 import App from './App';
- 
+
 Koji.config(kojiConfig, {
   projectId: process.env.REACT_APP_PROJECT_ID,
   services: {
     frontend: process.env.REACT_APP_FRONTEND_URL,
   },
 });
- 
+
 ReactDOM.render(
   <React.StrictMode>
     <App />
@@ -137,7 +140,7 @@ Make the following changes to the `frontend/src/App.js` file.
 ----
 import { useState } from 'react';
 import './App.css';
- 
+
 function App() {
   const [logoSrc, setLogoSrc] = useState('https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg');
   return (
@@ -149,7 +152,7 @@ function App() {
     </div>
   );
 }
- 
+
 export default App;
 ----
 
@@ -192,7 +195,7 @@ Update the code in `frontend/src/App.js` as follows.
 import Koji from '@withkoji/core';
 import { useState } from 'react';
 import './App.css';
- 
+
 function App() {
   const [logoSrc, setLogoSrc] = useState('https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg');
   const captureImage = async () => {
@@ -210,7 +213,7 @@ function App() {
     </div>
   );
 }
- 
+
 export default App;
 ----
 
@@ -234,7 +237,7 @@ There are also options to search the web for an image, or to use one of the pre-
 
 Feel free to spend some time testing this feature out, and notice that when you upload or choose an image, it's automatically updated in the preview window.
 
-== Under the Hood
+== Under the hood
 
 One thing that’s not so obvious is what happens under the hood when a user chooses an image.
 The image is automatically uploaded, hosted, and optimized by Koji’s CDN.
@@ -273,4 +276,3 @@ You should now be familiar with using the terminal to make command line changes 
 You also learned how to capture an image value from a user and how to do a some state management in React.
 
 In the next section, we’ll take a step back from the code and start to explore the real power of Koji.
-

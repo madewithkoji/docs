@@ -3,8 +3,11 @@
 :page-description: Opening Koji's code editor, and using it to publish the template.
 :figure-caption!:
 
-In the first section of the Quick Start guide, we walked through creating and publishing your first project.
-In this section, we’ll dive a little deeper into the code editor, and explore making changes and updates to a project.
+In the first section of the Quick Start guide, you walked through creating and publishing your first project.
+In this section, you'll
+// tag::description[]
+dive a little deeper into the code editor, and explore making changes and updates to a project.
+// end::description[]
 
 By the end of this section, you should feel comfortable:
 
@@ -32,7 +35,7 @@ Let’s start by opening the `frontend/src` folder.
 Click the `frontend` folder to show its contents.
 Then click the `src` subfolder to show its contents.
 
-== Opening a File
+== Opening a file
 
 You open a file by clicking it inside the *Source Code* section.
 
@@ -68,7 +71,7 @@ image::CE_05_save-changes.png[Save changes]
 
 When the file is saved, the *Save (Ctrl+S)* button disappears.
 
-== Previewing Changes
+== Previewing changes
 
 When you save your file, the preview on the right hand side of the screen updates automatically.
 
@@ -113,4 +116,3 @@ image::CE_07_live-project-updated.png[Live project updated]
 You should now be familiar with exploring the folders and files in your project, making changes, and publishing updates.
 
 In the next section, we look at some more Koji tools that you can use to make your project much more interesting.
-

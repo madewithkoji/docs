@@ -4,7 +4,10 @@
 :figure-caption!:
 
 Projects are the building blocks you use to create amazing web apps and experiences with Koji.
-In the first section of the Quick Start guide, we walk you through creating and publishing your first project.
+In the first section of the Quick Start guide, you will
+// tag::description[]
+walk through creating and publishing your first project.
+// end::description[]
 
 By the end of the section, you should feel comfortable:
 

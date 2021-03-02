@@ -3,8 +3,11 @@
 :page-description: Learning about contexts and how to use them
 :figure-caption!:
 
-In the previous section of the Quick Start guide, we learned about remixing and some of the terms that we use to talk about Koji’s ecosystem.
-In this section, we explore “contexts”.
+In the previous section of the Quick Start guide, you learned about remixing and some of the terms that we use to talk about Koji’s ecosystem.
+In this section, you'll
+// tag::description[]
+explore “contexts” and how they enable the remixing experience on Koji.
+// end::description[]
 
 By the end of this section, you should feel comfortable:
 
@@ -49,7 +52,7 @@ Open `frontend/src/App.js` and update it to look like the following.
 import Koji from '@withkoji/core';
 import { useState } from 'react';
 import './App.css';
- 
+
 function App() {
   const [logoSrc, setLogoSrc] = useState('https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg');
 
@@ -80,7 +83,7 @@ function App() {
     </div>
   );
 }
- 
+
 export default App;
 ----
 
