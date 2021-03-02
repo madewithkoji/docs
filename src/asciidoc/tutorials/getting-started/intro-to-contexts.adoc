@@ -3,10 +3,10 @@
 :page-description: Learning about contexts and how to use them
 :figure-caption!:
 
-In the previous section of the Quick Start guide, you learned about remixing and some of the terms that we use to talk about Koji’s ecosystem.
+In the <<your-first-remix#, previous section>> of the quick start tutorial, you learned about remixing and some of the terms that we use to talk about Koji’s ecosystem.
 In this section, you'll
 // tag::description[]
-explore “contexts” and how they enable the remixing experience on Koji.
+explore contexts and how they enable the remixing experience on Koji.
 // end::description[]
 
 By the end of this section, you should feel comfortable:
@@ -25,15 +25,15 @@ The application looks and behaves differently, often with UI and UX patterns tha
 
 Koji does something very similar.
 The platform provides many different views that look and act differently.
-We call these views "contexts".
+We call these views *contexts*.
 
-Let’s take a look at the two most basic (and important) contexts:
+Let’s take a look at the most basic and important contexts:
 
-* *Default* - The default context for a template.
+* *Default* - The default experience for a template.
 When you previewed the Bouncy Blast game in the last section, you experienced the default context for that template.
-When you publish a remix, the “live” version of the remix is also using the default context.
+When you publish a remix, the live version of the remix is also using the default context.
 
-* *Remix* - The context a creator experiences when they are in the process of remixing a Koji.
+* *Remix* - The creator's experience when they are in the process of remixing a Koji.
 When you customized Bouncy Blast by selecting new images and music, you experienced the remix context for that template.
 
 Let's see how we can use contexts to build a remix experience.
@@ -41,7 +41,7 @@ Let's see how we can use contexts to build a remix experience.
 == Determining the initial context
 
 Go back to your project in the code editor.
-If you’ve closed out of the code editor since the last section, remember that you can see and open your projects from the https://withkoji.com/developer/projects[Developer Portal].
+If you’ve closed the code editor since the last section, remember that you can see and open your projects from the https://withkoji.com/developer/projects[Developer Portal].
 
 You can use the @withkoji/core package to determine the initial context that is loaded when your project is viewed by a user.
 
@@ -88,7 +88,7 @@ export default App;
 ----
 
 You've added a number of things here.
-First, you get a value from `Koji.playerState.context` using object destructuring.
+First, you get a value from `Koji.playerState.context` by using object destructuring.
 The variable `context` is set to a string value that represents the initial context.
 In our current project, the value should be `default` or `remix`, depending on whether the user is consuming or remixing the template.
 
@@ -98,12 +98,12 @@ If you're not in a `remix` context, you can assume that you’re in the `default
 
 Make sure to save your updates using `Cmd+S` or `Ctrl+S`, depending on your operating system.
 
-== Using the preview pane to test contexts
+== Using the preview to test contexts
 
 You'll obviously want to test your code before publishing it.
-The preview pane in the code editor makes testing easy.
+The preview in the code editor makes testing easy.
 
-You can toggle back and forth between the default and remix contexts using the tabs at the top of the preview pane.
+You can toggle back and forth between the default and remix contexts by using the tabs at the top of the preview pane.
 
 image::ITC_03_toggling-between-default-and-remix.png[Toggling between Default and Remix]
 
@@ -114,13 +114,13 @@ Clicking the *Default* tab causes `context === 'remix'` to be false, so the cont
 
 == Additional contexts
 
-There are additional contexts for more specific template use cases, including contexts to help with purchase and receipt flows, administrator access, and even a context to help improve the presentation of a rich share preview.
+There are additional contexts for more specific template use cases, including contexts to help with purchase and receipt flows, administrator access, and even a context to help improve the presentation of a rich preview image.
 
 As you explore more of the platform and features that Koji offers, you’ll encounter more of these contexts, as well as some best practices about how to make them an integral part of the user experience.
 
 == Wrapping up
 
 In this section, we explored the idea of contexts, and why they’re so important to delivering a good experience on Koji.
-You should feel comfortable distinguishing between the default and remix contexts, and using the @withkoji/core package, along with a bit of conditional logic, to present different experiences to the user.
+You should feel comfortable distinguishing between the default and remix contexts, and using the @withkoji/core package, with some conditional logic, to present different experiences to the user.
 
-In the next section, you learn about storing, retrieving, and using the customizable data that powers the remix experience.
+In the <<remixable-project#, next section>>, you learn about storing, retrieving, and using the customizable data that powers the remix experience.
