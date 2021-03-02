@@ -83,79 +83,81 @@
           "items": [
             {
               "name": "Visual Customization Controls",
-              "slug": "vcc-overview"
-            },
-            {
-              "name": "Boolean",
-              "slug": "boolean"
-            },
-            {
-              "name": "Color",
-              "slug": "color"
-            },
-            {
-              "name": "Coordinate",
-              "slug": "coordinate"
-            },
-            {
-              "name": "File",
-              "slug": "file"
-            },
-            {
-              "name": "Image",
-              "slug": "image"
-            },
-            {
-              "name": "Koji",
-              "slug": "koji-vcc"
-            },
-            {
-              "name": "Media",
-              "slug": "media"
-            },
-            {
-              "name": "Obj",
-              "slug": "3d-object"
-            },
-            {
-              "name": "Range",
-              "slug": "range"
-            },
-            {
-              "name": "Secret",
-              "slug": "secret"
-            },
-            {
-              "name": "Select",
-              "slug": "select"
-            },
-            {
-              "name": "Size",
-              "slug": "size"
-            },
-            {
-              "name": "Sound",
-              "slug": "sound"
-            },
-            {
-              "name": "Text, textarea",
-              "slug": "text"
-            },
-            {
-              "name": "Video",
-              "slug": "video"
-            },
-            {
-              "name": "Google Font",
-              "slug": "google-font"
-            },
-            {
-              "name": "Array",
-              "slug": "array"
-            },
-            {
-              "name": "Object",
-              "slug": "object"
+              "slug": "vcc-overview",
+              "subItems": [
+                {
+                  "name": "Boolean",
+                  "slug": "boolean"
+                },
+                {
+                  "name": "Color",
+                  "slug": "color"
+                },
+                {
+                  "name": "Coordinate",
+                  "slug": "coordinate"
+                },
+                {
+                  "name": "File",
+                  "slug": "file"
+                },
+                {
+                  "name": "Image",
+                  "slug": "image"
+                },
+                {
+                  "name": "Koji",
+                  "slug": "koji-vcc"
+                },
+                {
+                  "name": "Media",
+                  "slug": "media"
+                },
+                {
+                  "name": "Obj",
+                  "slug": "3d-object"
+                },
+                {
+                  "name": "Range",
+                  "slug": "range"
+                },
+                {
+                  "name": "Secret",
+                  "slug": "secret"
+                },
+                {
+                  "name": "Select",
+                  "slug": "select"
+                },
+                {
+                  "name": "Size",
+                  "slug": "size"
+                },
+                {
+                  "name": "Sound",
+                  "slug": "sound"
+                },
+                {
+                  "name": "Text, textarea",
+                  "slug": "text"
+                },
+                {
+                  "name": "Video",
+                  "slug": "video"
+                },
+                {
+                  "name": "Google Font",
+                  "slug": "google-font"
+                },
+                {
+                  "name": "Array",
+                  "slug": "array"
+                },
+                {
+                  "name": "Object",
+                  "slug": "object"
+                }
+              ]
             },
             {
               "name": "Building custom VCCs",
@@ -248,39 +250,45 @@
     {
       "name": "Tutorials",
       "root": "/tutorials",
-      "defaultPath": "/tutorials/quick-start/your-first-project",
+      "defaultPath": "/tutorials/getting-started/quick-start",
       "sections": [
         {
-          "name": "Quick start",
-          "root": "/quick-start",
+          "name": "Learn Koji",
+          "root": "/getting-started",
           "items": [
             {
-              "name": "Your first project",
-              "slug": "your-first-project"
-            },
-            {
-              "name": "Using the code editor",
-              "slug": "code-editor"
-            },
-            {
-              "name": "The @withkoji/core package",
-              "slug": "core-package"
-            },
-            {
-              "name": "Your first remix",
-              "slug": "your-first-remix"
-            },
-            {
-              "name": "Introduction to contexts",
-              "slug": "intro-to-contexts"
-            },
-            {
-              "name": "Creating a remixable project",
-              "slug": "remixable-project"
-            },
-            {
-              "name": "Your first template",
-              "slug": "your-first-template"
+              "name": "Quick start",
+              "slug": "quick-start",
+              "subItems": [
+                {
+                  "name": "1. Your first project",
+                  "slug": "your-first-project"
+                },
+                {
+                  "name": "2. Using the code editor",
+                  "slug": "code-editor"
+                },
+                {
+                  "name": "3. The @withkoji/core package",
+                  "slug": "core-package"
+                },
+                {
+                  "name": "4. Your first remix",
+                  "slug": "your-first-remix"
+                },
+                {
+                  "name": "5. Introduction to contexts",
+                  "slug": "intro-to-contexts"
+                },
+                {
+                  "name": "6. Creating a remixable project",
+                  "slug": "remixable-project"
+                },
+                {
+                  "name": "7. Your first template",
+                  "slug": "your-first-template"
+                }
+              ]
             }
           ]
         }

@@ -6,6 +6,12 @@ const resolvePathFromSlug = (slug) => {
     navItem.sections.forEach((section) => {
       section.items.forEach((item) => {
         if (item.slug && item.slug === slug) path = `${navItem.root}${section.root}/${item.slug}`;
+
+        if (item.subItems) {
+          item.subItems.forEach((subItem) => {
+            if (subItem.slug && subItem.slug === slug) path = `${navItem.root}${section.root}/${subItem.slug}`;
+          });
+        }
       });
     });
 
@@ -15,6 +21,7 @@ const resolvePathFromSlug = (slug) => {
   return resolvedPath;
 };
 
+// Export for use outside of babel
 module.exports = {
   resolvePathFromSlug,
 };

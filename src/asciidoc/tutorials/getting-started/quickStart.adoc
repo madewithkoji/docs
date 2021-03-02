@@ -1,0 +1,44 @@
+= Tutorial: Koji quick start
+:page-slug: quick-start
+:page-description: Tutorial for learning fundamental concepts and developing your first project on Koji.
+
+Welcome to Koji!
+The goal of this tutorial is to guide you through developing and publishing your first web app on Koji.
+Along the way, you'll learn some general web development topics along with the fundamentals concepts of Koji.
+
+NOTE: This tutorial provides a step-by-step introduction for developers who are new to Koji, with or without web development experience.
+
+////
+If you prefer to jump straight into code, you can head to the <<start-guide-1#,advanced quick start guide>>.
+////
+
+== Learning modules
+
+<<your-first-project#>>  ::
++
+[.init-cap]
+include::your-first-project.adoc[tag=description]
+<<code-editor#>> ::
++
+[.init-cap]
+include::code-editor.adoc[tag=description]
+<<core-package#>> ::
++
+[.init-cap]
+include::core-package.adoc[tag=description]
+<<your-first-remix#>> ::
++
+[.init-cap]
+include::your-first-remix.adoc[tag=description]
+<<intro-to-contexts#>> ::
++
+[.init-cap]
+include::intro-to-contexts.adoc[tag=description]
+<<remixable-project#>> ::
++
+[.init-cap]
+include::remixable-project.adoc[tag=description]
+<<your-first-template#>> ::
++
+[.init-cap]
+include::your-first-template.adoc[tag=description]
