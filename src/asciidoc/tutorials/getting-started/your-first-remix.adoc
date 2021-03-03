@@ -1,0 +1,141 @@
+= Your first remix
+:page-slug: your-first-remix
+:page-description: Creating your first remix
+:figure-caption!:
+
+In the <<core-package#,previous section>> of the quick start tutorial, you learned about using the terminal, and installing and using the @withkoji/core package.
+In this section, you’ll
+// tag::description[]
+take a break from coding, and instead, put yourself into the shoes of a user to see what the Koji experience looks like from their perspective.
+// end::description[]
+
+By the end of this section, you should feel comfortable:
+
+* Understanding the difference between projects, templates, and Kojis.
+
+* Remixing a template.
+
+* Distinguishing between the remix and view modes as a user.
+
+== What is remixing?
+
+Even if you’re not an avid music listener, you’ve probably heard of remixes.
+Borrowing pieces and parts of other songs to create new ones has been around for as long as music has existed.
+
+The concept of remixing applies to other forms of media as well.
+Painters, film makers, writers, and artists routinely borrow from each other.
+If you have some time, https://www.youtube.com/watch?v=nJPERZDfyWc[Everything is a Remix] is a great deep dive into how remixing has become a part of almost every aspect of our culture.
+
+But Koji is a tech startup, right? Why is remixing important to us?
+
+== The subtractive approach
+
+Historically, software has been built by adding things.
+Adding lines of code, features, authentication models, and databases.
+Adding services and APIs.
+Adding servers and scaling infrastructure.
+Adding more and more until, finally, the software does what the user wants.
+
+Instead of starting from scratch, what if we could start from something?
+Maybe even something that's already close to what we want?
+Instead of adding more and more, we could just tweak the things that we don’t like, and still get to the same place.
+
+Internally, we talk about that as the *subtractive approach*, but users see it as *remixing*.
+As you learn more about how we at Koji think about remixing, you’ll see that it’s actually quite close to how we experience remixing as a culture.
+
+== Creating a remix from a template
+
+While, technically, you can remix just about anything in Koji, we have a dedicated space for what we call *templates*.
+Templates are customizable web apps, similar to the one you’ve been working on in the code editor.
+
+You can find a selection of templates in the https://withkoji.com/create[Template Store].
+You’ll see that they are sorted into categories, depending on what they do.
+There are templates focused on social media engagement, memes, and games.
+New templates are being added all the time by developers like you.
+
+Scroll down until you find the Bouncy Blast template.
+
+image::YFR_02_bouncy-blast.png[Bouncy Blast]
+
+Click *View* to show the template details.
+
+image::YFR_02_bouncy-blast-details.png[Bouncy Blast details page]
+
+We’ll explore this page more in later sections.
+For now, let’s see what this template looks like by clicking *Preview*.
+
+Bouncy Blast is an old school arcade-styled shooter game.
+You can click *Preview* to try out the game.
+Spend a little time playing around with it to understand the mechanics of the game and get a sense of the user experience.
+You can close the preview clicking the *X* button in the upper left.
+
+When you’re ready, click *Remix*.
+
+The first thing you’ll notice is that the experience has changed dramatically.
+You're now in a remix view.
+
+image::YFR_02_bouncy-blast-remix.png[Bouncy Blast remix page]
+
+The remix view allows the user to customize certain aspects of the game: Player, Enemy, Background, and Game Music.
+
+Click the player image.
+The following dialog box opens.
+
+image::YFR_02_image-dialog.png[Image dialog box]
+
+You'll see the same UI you saw when you called `Koji.ui.capture.image()` inside your project.
+Try changing the image to see what happens.
+Try the same thing with the other options (Enemy, Background, and Background Music)
+As you make changes, you’ll notice that things are changing in the background, and in real time.
+
+To see what those changes would look like in your remixed version of the template, click *Preview*.
+In preview, you can play a live version of your customized game and, if you're not happy with the way it's working, you can click *Back* to make more changes.
+
+When you’re ready to publish your remix, click *Finish*.
+In just a few seconds, you’re redirected to your remix.
+Similar to a project, each remix has a unique permalink that you can share with your friends and family.
+
+== What just happened?
+
+Something really cool.
+
+You were able to create a customized version of Bouncy Blast, with your own images and music, in just a minute or two.
+That’s the power of the subtractive approach.
+
+If someone wanted to build this game from scratch, they’d need to learn JavaScript, develop game mechanics, process keyboard and touch inputs, track scores, and then figure out how to host and scale the application.
+Instead, someone with no coding experience can find a template and customize it in seconds.
+That’s an amazing accomplishment, and it’s possible when developers like you choose Koji.
+
+There’s a lot to learn about how to deliver a great remix experience, and we’ll start looking at the code that powers those experiences in the next section.
+But first, let’s take a quick look at Koji’s ecosystem.
+
+== Projects, templates, and remixes, oh my!
+
+There’s a lot to Koji.
+That’s a good thing, because it means that for you, as a developer, the opportunities are almost limitless.
+It also means that there’s a lot to talk about.
+And being comfortable with some terminology will make it easier for you to learn about the platform.
+Let’s take a look at a few terms:
+
+* *Project* - A project is a combination of the code and platform-based tools that allow you to create customizable web applications in Koji.
+Your code is stored in Koji’s git-based repository, and your application is hosted by Koji’s cloud-based serverless technology.
+
+* *Template* - A template provides an entry point into remixing a project.
+It can also include marketing and educational materials that Koji can help present.
+A template is often the first generation of a project, before it has been remixed.
+It can also be a remix, where a user has chosen customization options that might provide a good starting point for future remixes.
+
+* *Remix* or *Koji*: A remix (or Koji) is a set of customizations that a user has chosen to publish.
+When someone visits the URL of a remix, the original project’s code is used as a base, and the remix data is loaded and applied dynamically.
+The permalink where the remix lives allows Koji to uniquely identify the customization data and load it appropriately.
+
+As you learn more about templates and Kojis, it might seem like the two terms are used interchangeably, but there is a subtle difference.
+The first time a template is remixed, the remixed version can be referred to as either a remix or a Koji, but the original template is just a template.
+
+A remix can also be a template, however, because a user can use a remix as a template for a new remix.
+Understanding the small differences between templates and remixes will go a long way in helping you to see Koji through the eyes of a developer, as well as the eyes of a non-technical user who enjoys the remix experience.
+
+== Wrapping up
+
+I hope you now understand a bit more about remixing and why it’s such a powerful and integral part of the Koji platform.
+In the <<intro-to-contexts#, next section>>, we head back to the code editor and learn how to turn our project into a remixable template.

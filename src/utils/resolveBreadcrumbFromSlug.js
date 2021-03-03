@@ -21,6 +21,7 @@ const resolveBreadcrumbFromSlug = (slug) => {
   return resolvedBreadcrumb;
 };
 
+// Export for use outside of babel
 module.exports = {
   resolveBreadcrumbFromSlug,
 };

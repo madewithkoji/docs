@@ -1,0 +1,143 @@
+= Your first template
+:page-slug: your-first-template
+:page-description: Creating a template and linking it to a project
+:figure-caption!:
+
+In the <<remixable-project#, previous section>> of the quick start tutorial, you published your first remixable project.
+Congratulations!
+You’re on your way to creating amazing experiences on the Koji platform.
+
+As you build those amazing experiences, we believe you should have a way to showcase them.
+By creating a template and linking it to a project, you’ll
+// tag::description[]
+create a home for your experience, complete with a landing page where you can tell users about what your project does.
+// end::description[]
+You can even show screenshots and videos of your experience on your template page.
+
+By the end of this section, you should feel comfortable:
+
+* Creating a template.
+* Adding metadata, like a description and images.
+* Linking a project to your template.
+* Publishing and updating a template.
+
+== Creating a template
+
+You can create and manage your templates on the Koji platform.
+Start by navigating to the https://withkoji.com/developer[Developer Portal].
+
+Click *My Templates*.
+
+image::YFT_01_my-templates.png[My Templates]
+
+You’ll see a list of your published templates along with tools for managing them.
+
+Let’s create a new template by clicking *New Template*.
+
+image::YFT_01_new-template.png[New Template]
+
+Give your template a memorable name.
+Something like `My First Template` will work for now.
+You’ll have the opportunity to change it later.
+
+After you confirm your template’s name, you’ll be taken to a template details page.
+Notice that the template’s status is *Draft*.
+
+image::YFT_01_draft-version.png[Draft version]
+
+As with projects, your template won’t be updated until you choose to publish it.
+
+== Adding template metadata
+
+By adding metadata to your template, you can make it easier for potential users to understand what your template does.
+You can use the name, subtitle, and description to highlight key features or to explain how your template can solve a problem or improve the user's life.
+
+The icon, screenshots, and demo videos are your opportunity to add a visual presence to your template listing.
+These assets allow you to expand on the text-based metadata to confirm your template’s purpose, or to show off parts of your template that you’re especially proud of.
+
+If you want to see what these assets could look like, visit the following links to download some sample images, and upload them into the template draft you’re working on.
+
+* https://freeicons.io/winning-icons-set/podium-icon-22604[Icon]
+* https://images.koji-cdn.com/9a1dbf27-e1f7-40c6-943e-374e57aa7582/s7v6i-gettingStartedShot.png[Screenshot]
+
+== Linking a project to your template
+
+The final thing you need to do is to link a project to your template.
+This step is important, because it determines what project is loaded when a user chooses to preview or remix your template.
+
+Click *Choose a Koji*.
+
+image::YFT_03_choose-a-koji.png[Choose a Koji]
+
+In the dialog box that appears, paste the link to the live, production version of your project.
+It should look something like the following.
+
+image::YFT_03_choose-bundled-koji.png[Choose Bundled Koji]
+
+If you don't know the link to your project, you can go back to the https://withkoji.com/developer[Developer Portal], open the project, and click *View Published Koji*.
+
+image::YFT_03_view-published-koji.png[View Published Koji]
+
+This will take you to the live version, and you can copy the URL from your browser’s address bar.
+
+== Publishing and versions
+
+The final step is to publish your template.
+
+Click *Save and Publish*.
+
+image::YFT_04_save-and-publish.png[Save and Publish]
+
+If everything went well, your template landing page should open and look something like the following.
+
+image::YFT_04_landing-page.png[Template landing page]
+
+If you click the back button in your browser, you’ll return to the details page for your template.
+It will look a bit different now that you’ve published the first version.
+You’ll see that the status has been updated to *Live*, and there’s a new option to *Create a New Version*.
+
+image::YFT_04_create-new-version.png[Create a New Version]
+
+If you want to change the metadata for your template, you’ll need to create a new version of your template.
+Template versions help you coordinate feature updates and bug fixes with *What’s Changed?* data.
+When you publish updates to your project, this metadata is a good way to keep your users informed about work you’re doing to make your template better over time.
+
+You can also change the linked project in a new version.
+This feature is helpful if you want to build a workflow into your template updates.
+For example, suppose you want to roll out a large change to your project, but you want to do some live testing first.
+You could fork your original project, make the updates in the forked version, publish and test it, and, when you're comfortable with the changes, update your template to point to the new, updated project.
+
+At Koji, we’re constantly working to make your experience as a developer as easy and enjoyable as possible. Be on the lookout for new features that will help you move more quickly, so that you can focus on doing what you love.
+
+== The template store
+
+We envision Koji as a place where developers come to create unique and wonderful experiences on the web.
+We also envision Koji as a place where creators come to inject their own creativity and personality into those experiences through remixes.
+
+Koji’s template store offers a path for developers to list and categorize the templates they build, and for creators to discover templates that are interesting and meaningful.
+You can see the current categories and offerings by visiting the https://withkoji.com/create[Template Store].
+
+We also want to facilitate a dialog between the developers who build the templates and the users who create the remixes.
+Bug reports, feedback, and virtual high fives are all things we’ve already seen communicated through the comments feature that’s available on each template.
+
+image::YFT_05_comments.png[Comments]
+
+We’re currently using a manual process to review submissions to the template store.
+If you have a template you’d like us to feature, please email us at contact@withkoji.com.
+
+== Wrapping up
+
+Well done, Koji Developer!
+
+You now have tools and knowledge to start building your own templates.
+Your mind may already be spinning with ideas.
+If not, that’s okay!
+You can always check out the template store for inspiration.
+And don’t forget, you can fork any of the templates in the store to use as a starting point, or just as a way to learn how other developers are using the platform to create their own templates and experiences.
+
+If you haven’t already done so, please make sure to join https://discord.com/invite/9egkTWf4ec[Koji’s Discord server].
+The Koji team hangs out there all the time, and you’ll have a chance to meet other developers, ask questions, share ideas, and get feedback about the things you’re working on.
+
+If you have any questions or feedback about this tutorial, please reach out to @diddy on Koji’s Discord server.
+
+Welcome to Koji!

@@ -85,6 +85,10 @@ const Layout = (props) => {
               idx
               name
               path
+              subItems {
+                name
+                path
+              }
             }
             name
             root
