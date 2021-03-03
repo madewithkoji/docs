@@ -1,4 +1,4 @@
-import React, { useState, Fragment } from 'react';
+import React, { useEffect, useState, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { Link } from 'gatsby';
@@ -70,7 +70,7 @@ const SectionItems = styled.ul`
 `;
 
 const ExpandableSectionItems = styled(SectionItems)`
-  height: ${({ style: { isOpen, itemCount } }) => isOpen ? `${itemCount * 28}px` : 0};
+  height: ${({ style: { isOpen } }) => isOpen ? 'auto' : 0};
   overflow: hidden;
   padding-left: 4px;
   border-left: 3px solid ${BLUE};
@@ -161,6 +161,11 @@ const LeftNav = ({ location, navItems }) => {
   const [openItemPath, setOpenItemPath] = useState(getOpenItemPath(location.pathname, sections));
   const [openSubItemPath, setOpenSubItemPath] = useState(location.pathname);
 
+  useEffect(() => {
+    setOpenItemPath(() => getOpenItemPath(location.pathname, sections));
+    setOpenSubItemPath(() => location.pathname);
+  }, [location.pathname]);
+
   return (
     <Container>
       {
@@ -210,7 +215,6 @@ const LeftNav = ({ location, navItems }) => {
                         style={{
                           bottomOpen: openSubItemPath === subItems[subItems.length - 1].path,
                           isOpen: openItemPath === path,
-                          itemCount: subItems.length,
                           topOpen: openSubItemPath === subItems[0].path,
                         }}
                       >

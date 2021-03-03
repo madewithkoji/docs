@@ -21,6 +21,7 @@ const resolvePathFromSlug = (slug) => {
   return resolvedPath;
 };
 
+// Export for use outside of babel
 module.exports = {
   resolvePathFromSlug,
 };

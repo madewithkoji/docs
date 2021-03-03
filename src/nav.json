@@ -18,18 +18,16 @@
               "slug": "instant-remixing"
             },
             {
-              "name": "Templates",
-              "slug": "templates",
-              "subItems": [
-                {
-                  "name": "Developing your first template",
-                  "slug": "start-guide-1"
-                },
-                {
-                  "name": "Extending your template",
-                  "slug": "start-guide-2"
-                }
-              ]
+              "name": "What is a template?",
+              "slug": "templates"
+            },
+            {
+              "name": "Developing your first template",
+              "slug": "start-guide-1"
+            },
+            {
+              "name": "Extending your template",
+              "slug": "start-guide-2"
             },
             {
               "name": "Migrating to the Koji core package",
@@ -158,12 +156,12 @@
                 {
                   "name": "Object",
                   "slug": "object"
-                },
-                {
-                  "name": "Building custom VCCs",
-                  "slug": "build-custom-vcc"
                 }
               ]
+            },
+            {
+              "name": "Building custom VCCs",
+              "slug": "build-custom-vcc"
             }
           ]
         },
@@ -255,11 +253,11 @@
       "defaultPath": "/tutorials/getting-started/quick-start",
       "sections": [
         {
-          "name": "Getting Started Tutorials",
+          "name": "Learn Koji",
           "root": "/getting-started",
           "items": [
             {
-              "name": "Quick Start",
+              "name": "Quick start",
               "slug": "quick-start",
               "subItems": [
                 {
