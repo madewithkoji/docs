@@ -4,7 +4,7 @@
 
 Welcome to Koji!
 The goal of this tutorial is to guide you through developing and publishing your first web app on Koji.
-Along the way, you'll learn some general web development topics along with the fundamentals concepts of Koji.
+Along the way, you'll learn some general web development topics along with the fundamental concepts of Koji.
 
 NOTE: This tutorial provides a step-by-step introduction for developers who are new to Koji, with or without web development experience.
 

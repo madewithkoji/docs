@@ -38,7 +38,7 @@ If you’ve closed the code editor since the last section, you can go to the htt
 == Working with remix data
 
 If you think back to when we remixed the Bouncy Blast game, there were a few things in that game that the player could customize: the player image, the enemy image, the background image, and the background music.
-When a remix is created, the player's choices are stored in a database, and loaded when someone views the remix.
+When a remix is created, the player's choices are stored in a database. When someone views the remix, those choices are loaded.
 
 If you think back to when we previewed the game, it also worked before we created the remix.
 That’s because there are a default set of values that are loaded if remix-specific data doesn’t exist.
