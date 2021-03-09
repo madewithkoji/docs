@@ -170,11 +170,15 @@ function App() {
   const [userIsRemixing, setUserIsRemixing] = useState(context === 'remix');
 
   useEffect(() => {
+    // The `Koji.playerState.subscribe` function returns an unsubscribe function to
+    // remove the listener.
     const unsubscribe = Koji.playerState.subscribe((isRemixing) => {
       setUserIsRemixing(() => isRemixing);
     });
 
     return () => {
+      // When this component unmounts, call the unsubscribe function to clean up
+      // the outstanding event listener.
       unsubscribe();
     };
   }, []);
