@@ -21,6 +21,32 @@ import { BLACK, DARK_GRAY } from '../../constants/colors';
 
 export const query = graphql`
   query($id: String!) {
+    allKojiCorePackageItem {
+      nodes {
+        id
+        Interfaces {
+          id
+          name
+          children {
+            id
+            flags {
+              isOptional
+            }
+            comment {
+              shortText
+            }
+            name
+            type {
+              type
+              types {
+                name
+                type
+              }
+            }
+          }
+        }
+      }
+    }
     kojiCorePackageItem(id: { eq: $id }) {
       id
       name
@@ -37,6 +63,7 @@ export const query = graphql`
           signatures {
             id
             comment {
+              shortText
               tags {
                 tag
                 text
@@ -52,6 +79,10 @@ export const query = graphql`
               name
               type {
                 id
+                elementType {
+                  name
+                  type
+                }
                 name
                 type
                 types {
@@ -275,6 +306,7 @@ function getMethodParameters(method) {
 }
 
 function getMethodExample(method) {
+  // eslint-disable-next-line max-len
   if (!method.signatures[0].comment || !method.signatures[0].comment.tags || !method.signatures[0].comment.tags[0] || method.signatures[0].comment.tags[0].tag !== 'example') return false;
   return method.signatures[0].comment.tags[0].text;
 }
@@ -295,7 +327,25 @@ function renderParameterType(parameter) {
     );
   }
 
+  if (parameter.type.type === 'union') {
+    const validTypes = parameter.type.types.filter(({ name }) => !!name).map(({ name }) => name);
+
+    if (validTypes.length === 1) return validTypes[0];
+
+    return validTypes.join(' | ');
+  }
+
+  if (parameter.type.type === 'array') {
+    if (parameter.type.elementType) {
+      return parameter.type.elementType.name;
+    }
+  }
+
   return parameter.type.name;
+}
+
+function parameterIsArray(parameter) {
+  if (parameter.type.type === 'array') return true;
 }
 
 function renderMethod(method) {
@@ -304,8 +354,6 @@ function renderMethod(method) {
   const methodParameters = getMethodParameters(method);
   const methodExample = getMethodExample(method);
   const methodSource = getMethodSource(method);
-
-  console.log('m', methodParameters);
 
   return (
     <div key={method.id}>
@@ -329,8 +377,9 @@ function renderMethod(method) {
                     <p>
                       <code>{parameter.name}</code>
                       {' – '}
-                      {parameter.flags && parameter.flags.isOptional && <span>{'(Optional) '}</span>}
                       <em>{renderParameterType(parameter)}</em>
+                      {parameterIsArray(parameter) && <span>{'[]'}</span>}
+                      {parameter.flags && parameter.flags.isOptional && <span>{' (Optional)'}</span>}
                       {parameter.comment && parameter.comment.text ? `, ${parameter.comment.text}` : ''}
                     </p>
                   </li>
@@ -431,7 +480,7 @@ function renderInterface(i) {
 }
 
 const CorePackage = (props) => {
-  const { kojiCorePackageItem } = props.data;
+  const { allKojiCorePackageItem, kojiCorePackageItem } = props.data;
 
   console.log('k', kojiCorePackageItem);
 
@@ -445,6 +494,8 @@ const CorePackage = (props) => {
   if (!Enumerations) Enumerations = [];
   if (!Interfaces) Interfaces = [];
 
+  const AllInterfaces = allKojiCorePackageItem.nodes.map((node) => node.Interfaces || []).reduce((acc, cur) => [...acc, ...cur], []);
+
   const { name, description } = parseClass(Classes[0]);
 
   let constructor = Classes[0].children.find(({ kindString }) => kindString === 'Constructor');
@@ -452,14 +503,14 @@ const CorePackage = (props) => {
   if (!constructor.signatures || !constructor.signatures[0] || !constructor.signatures[0].comment) constructor = false;
   const methods = Classes[0].children.filter(({ kindString }) => kindString === 'Method');
 
-  const referenceIds = methods
+  const referenceIds = (constructor ? [...methods, constructor] : methods)
     .map((method) => (method.signatures && method.signatures[0]) || { parameters: [] })
     .reduce((acc, cur) => [...acc, ...(cur.parameters || [])], [])
     .filter((param) => param.type && param.type.type && param.type.type === 'reference')
     .reduce((acc, cur) => acc.includes(cur.type.id) ? acc : [...acc, cur.type.id], []);
 
   const enums = Enumerations.filter(({ id }) => referenceIds.includes(id));
-  const interfaces = Interfaces.filter(({ id }) => referenceIds.includes(id));
+  const interfaces = AllInterfaces.filter(({ id }) => referenceIds.includes(id));
 
   useEffect(() => {
     document.querySelectorAll('pre code').forEach((block) => {
@@ -524,7 +575,7 @@ const CorePackage = (props) => {
         {
           constructor &&
           <SectionLink
-            style={{ isActive: 'constructor' === props.currentHeader }}
+            style={{ isActive: props.currentHeader === 'constructor' }}
             href={'#constructor'}
           >
             {'Constructor'}
@@ -534,19 +585,19 @@ const CorePackage = (props) => {
           methods.length > 0 &&
           <>
             <SectionLink
-              style={{ isActive: 'methods' === props.currentHeader }}
+              style={{ isActive: props.currentHeader === 'methods' }}
               href={'#methods'}
             >
               {'Methods'}
             </SectionLink>
             {
-              methods.map(({ id, name }) => (
+              methods.map(({ id, name: methodName }) => (
                 <SubSectionLink
-                  style={{ isActive: name === props.currentHeader }}
-                  href={`#${name}`}
+                  style={{ isActive: methodName === props.currentHeader }}
+                  href={`#${methodName}`}
                   key={id}
                 >
-                  {`.${name}`}
+                  {`.${methodName}`}
                 </SubSectionLink>
               ))
             }
@@ -556,19 +607,19 @@ const CorePackage = (props) => {
           enums.length > 0 &&
           <>
             <SectionLink
-              style={{ isActive: 'enums' === props.currentHeader }}
+              style={{ isActive: props.currentHeader === 'enums' }}
               href={'#enums'}
             >
               {'Enums'}
             </SectionLink>
             {
-              enums.map(({ id, name }) => (
+              enums.map(({ id, name: enumName }) => (
                 <SubSectionLink
-                  style={{ isActive: name === props.currentHeader }}
-                  href={`#${name}`}
+                  style={{ isActive: enumName === props.currentHeader }}
+                  href={`#${enumName}`}
                   key={id}
                 >
-                  {name}
+                  {enumName}
                 </SubSectionLink>
               ))
             }
@@ -578,19 +629,19 @@ const CorePackage = (props) => {
           interfaces.length > 0 &&
           <>
             <SectionLink
-              style={{ isActive: 'interfaces' === props.currentHeader }}
+              style={{ isActive: props.currentHeader === 'interfaces' }}
               href={'#interfaces'}
             >
               {'Interfaces'}
             </SectionLink>
             {
-              interfaces.map(({ id, name }) => (
+              interfaces.map(({ id, name: interfaceName }) => (
                 <SubSectionLink
-                  style={{ isActive: name === props.currentHeader }}
-                  href={`#${name}`}
+                  style={{ isActive: interfaceName === props.currentHeader }}
+                  href={`#${interfaceName}`}
                   key={id}
                 >
-                  {name}
+                  {interfaceName}
                 </SubSectionLink>
               ))
             }
