@@ -45,7 +45,7 @@ exports.sourceNodes = ({ actions, createNodeId, createContentDigest }) => {
             type: 'KojiCorePackageItem',
             contentDigest: createContentDigest(newModule),
           },
-          slug: newModule.name,
+          slug: `core-${newModule.name.replace(/\//g, '-').toLowerCase()}`,
         };
 
         actions.createNode(node);
@@ -202,7 +202,7 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
   corePackageData.data.allKojiCorePackageItem.nodes.forEach((node) => {
     console.log('n', node);
     createPage({
-      path: `/reference/koji-core/${node.slug}`,
+      path: `/reference/packages/core/${node.slug}`,
       component: corePackageTemplate,
       context: {
         id: node.id,

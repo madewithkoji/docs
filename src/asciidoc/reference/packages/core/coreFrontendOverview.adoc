@@ -1,0 +1,5 @@
+= @withkoji/core Frontend
+:page-slug: core-frontend-overview
+:page-description: Overview of the @withkoji/core frontend modules
+
+== Usage

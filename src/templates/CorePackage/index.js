@@ -51,9 +51,13 @@ export const query = graphql`
               }
               name
               type {
+                id
                 name
                 type
-                id
+                types {
+                  name
+                  type
+                }
               }
             }
           }
@@ -63,8 +67,13 @@ export const query = graphql`
             character
           }
           type {
-            type
+            id
             name
+            type
+            types {
+              name
+              type
+            }
           }
         }
       }
@@ -295,6 +304,8 @@ function renderMethod(method) {
   const methodParameters = getMethodParameters(method);
   const methodExample = getMethodExample(method);
   const methodSource = getMethodSource(method);
+
+  console.log('m', methodParameters);
 
   return (
     <div key={method.id}>

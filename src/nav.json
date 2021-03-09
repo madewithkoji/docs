@@ -318,6 +318,80 @@
           ]
         },
         {
+          "name": "@withkoji/core",
+          "root": "/packages/core",
+          "items": [
+            {
+              "name": "Overview",
+              "slug": "core-overview"
+            },
+            {
+              "name": "Backend",
+              "slug": "core-backend-overview",
+              "subItems": [
+                {
+                  "name": "Database",
+                  "slug": "core-backend-database"
+                },
+                {
+                  "name": "Dispatch",
+                  "slug": "core-backend-dispatch"
+                },
+                {
+                  "name": "IAP",
+                  "slug": "core-backend-iap"
+                },
+                {
+                  "name": "Identity",
+                  "slug": "core-backend-identity"
+                },
+                {
+                  "name": "Middleware",
+                  "slug": "core-backend-middleware"
+                },
+                {
+                  "name": "Secret",
+                  "slug": "core-backend-secret"
+                }
+              ]
+            },
+            {
+              "name": "Frontend",
+              "slug": "core-frontend-overview",
+              "subItems": [
+                {
+                  "name": "Analytics",
+                  "slug": "core-frontend-analytics"
+                },
+                {
+                  "name": "Dispatch",
+                  "slug": "core-frontend-dispatch"
+                },
+                {
+                  "name": "IAP",
+                  "slug": "core-frontend-iap"
+                },
+                {
+                  "name": "Identity",
+                  "slug": "core-frontend-identity"
+                },
+                {
+                  "name": "Player State",
+                  "slug": "core-frontend-playerstate"
+                },
+                {
+                  "name": "Remix",
+                  "slug": "core-frontend-remix"
+                },
+                {
+                  "name": "UI/Capture",
+                  "slug": "core-frontend-ui-capture"
+                }
+              ]
+            }
+          ]
+        },
+        {
           "name": "Deprecated packages",
           "root": "/deprecated-packages",
           "items": [
