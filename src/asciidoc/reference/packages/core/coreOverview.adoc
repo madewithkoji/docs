@@ -24,4 +24,4 @@ npm install @withkoji/core
 
 == Usage
 
-The @withkoji/core package provides a set of modules that are specific to client and server behaviors. These are documented as <<core-frontend-overview, Frontend>> and <<core-backend-overview, Backend>> modules.
+The @withkoji/core package provides a set of modules that are specific to client and server behaviors. These are documented as <<core-frontend-overview#, Frontend>> and <<core-backend-overview#, Backend>> modules.

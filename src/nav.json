@@ -346,10 +346,6 @@
                   "slug": "core-backend-identity"
                 },
                 {
-                  "name": "Middleware",
-                  "slug": "core-backend-middleware"
-                },
-                {
                   "name": "Secret",
                   "slug": "core-backend-secret"
                 }
@@ -386,6 +382,14 @@
                 {
                   "name": "UI/Capture",
                   "slug": "core-frontend-ui-capture"
+                },
+                {
+                  "name": "UI/Navigate",
+                  "slug": "core-frontend-ui-navigate"
+                },
+                {
+                  "name": "UI/Present",
+                  "slug": "core-frontend-ui-present"
                 }
               ]
             }
