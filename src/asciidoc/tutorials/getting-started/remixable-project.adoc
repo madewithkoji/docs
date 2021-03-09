@@ -110,10 +110,6 @@ to
 If you save the file and refresh the preview pane, you should see the same spinning React logo that you did before.
 Except now, instead of hard-coding the default value, you’re using `Koji.remix.get()` to retrieve the value  from the `koji.json` file.
 
-NOTE: By default, `Koji.remix.get()` returns the entire `remixData` object.
-In your project, this object contains just one property, but it could contain more than one.
-If you want to target a specific property, you can pass in an array of path strings: `Koji.remix.get([‘spinningImageSrc’])`.
-
 == Using Koji.remix.set to set remix data
 
 You used `Koji.remix.get` to retrieve remix data.
