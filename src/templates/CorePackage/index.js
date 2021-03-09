@@ -328,7 +328,7 @@ function renderParameterType(parameter) {
   }
 
   if (parameter.type.type === 'union') {
-    const validTypes = parameter.type.types.filter(({ name }) => !!name).map(({ name }) => name);
+    const validTypes = parameter.type.types.filter(({ name }) => name && name !== 'undefined').map(({ name }) => name);
 
     if (validTypes.length === 1) return validTypes[0];
 
@@ -345,7 +345,7 @@ function renderParameterType(parameter) {
 }
 
 function parameterIsArray(parameter) {
-  if (parameter.type.type === 'array') return true;
+  return parameter.type && parameter.type.type && parameter.type.type === 'array';
 }
 
 function renderMethod(method) {
