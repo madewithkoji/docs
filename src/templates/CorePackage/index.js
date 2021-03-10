@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 /* eslint-disable react/prop-types */
 import React, { useEffect } from 'react';
 // import PropTypes from 'prop-types';
@@ -5,7 +6,11 @@ import { graphql } from 'gatsby';
 import styled from 'styled-components';
 import hljs from 'highlight.js';
 
-import asciidoctor from 'asciidoctor';
+import { renderEnum } from './utils/enum';
+import { renderInterface } from './utils/interface';
+import { renderMethod } from './utils/method';
+import { renderProperty } from './utils/property';
+import { renderTypeAlias } from './utils/typeAlias';
 
 import 'highlight.js/styles/github.css';
 import '../../styles/dark-code.css';
@@ -26,6 +31,9 @@ export const query = graphql`
         id
         Interfaces {
           id
+          comment {
+            shortText
+          }
           name
           children {
             id
@@ -41,6 +49,33 @@ export const query = graphql`
               types {
                 name
                 type
+              }
+            }
+          }
+        }
+        Type_aliases {
+          name
+          id
+          type {
+            declaration {
+              comment {
+                shortText
+              }
+              name
+              sources {
+                fileName
+                line
+              }
+              signatures {
+                parameters {
+                  kind
+                  type {
+                    type
+                    name
+                    id
+                  }
+                  name
+                }
               }
             }
           }
@@ -119,6 +154,9 @@ export const query = graphql`
       }
       Interfaces {
         id
+        comment {
+          shortText
+        }
         name
         children {
           id
@@ -280,209 +318,10 @@ function parseClass(c) {
   return { name, description };
 }
 
-function convertToAsciiDoc(text) {
-  const asciidoc = asciidoctor();
-  return asciidoc.convert(text);
-}
-
-function getMethodTitle(method) {
-  if (method.name.includes('constructor')) return false;
-
-  if (method.signatures && method.signatures[0].parameters) {
-    return `${method.name}(${method.signatures[0].parameters.map((p) => p.name).join(', ')})`;
-  }
-
-  return method.name;
-}
-
-function getMethodDescription(method) {
-  if (!method.signatures[0] || !method.signatures[0].comment || !method.signatures[0].comment.shortText) return false;
-  return method.signatures[0].comment.shortText;
-}
-
-function getMethodParameters(method) {
-  if (!method.signatures || !method.signatures[0].parameters || !method.signatures[0].parameters.length) return false;
-  return method.signatures[0].parameters;
-}
-
-function getMethodExample(method) {
-  // eslint-disable-next-line max-len
-  if (!method.signatures[0].comment || !method.signatures[0].comment.tags || !method.signatures[0].comment.tags[0] || method.signatures[0].comment.tags[0].tag !== 'example') return false;
-  return method.signatures[0].comment.tags[0].text;
-}
-
-function getMethodSource(method) {
-  if (!method.sources || !method.sources[0] || !method.sources[0].fileName || !method.sources[0].line) return false;
-  return `${method.sources[0].fileName}#L${method.sources[0].line}`;
-}
-
-function renderParameterType(parameter) {
-  if (!parameter.type || !parameter.type.type) return null;
-
-  if (parameter.type.type === 'reference') {
-    return (
-      <a href={`#${parameter.type.name}`}>
-        {parameter.type.name}
-      </a>
-    );
-  }
-
-  if (parameter.type.type === 'union') {
-    const validTypes = parameter.type.types.filter(({ name }) => name && name !== 'undefined').map(({ name }) => name);
-
-    if (validTypes.length === 1) return validTypes[0];
-
-    return validTypes.join(' | ');
-  }
-
-  if (parameter.type.type === 'array') {
-    if (parameter.type.elementType) {
-      return parameter.type.elementType.name;
-    }
-  }
-
-  return parameter.type.name;
-}
-
-function parameterIsArray(parameter) {
-  return parameter.type && parameter.type.type && parameter.type.type === 'array';
-}
-
-function renderMethod(method) {
-  const methodTitle = getMethodTitle(method);
-  const methodDescription = getMethodDescription(method);
-  const methodParameters = getMethodParameters(method);
-  const methodExample = getMethodExample(method);
-  const methodSource = getMethodSource(method);
-
-  return (
-    <div key={method.id}>
-      {
-        methodTitle &&
-        <h3 id={method.name}>{`.${methodTitle}`}</h3>
-      }
-      {
-        methodDescription &&
-        <p>{methodDescription}</p>
-      }
-      {
-        methodParameters &&
-        <div>
-          <h4>{'Parameters'}</h4>
-          <div className={'ulist'}>
-            <ul>
-              {
-                methodParameters.map((parameter) => (
-                  <li key={parameter.name}>
-                    <p>
-                      <code>{parameter.name}</code>
-                      {' – '}
-                      <em>{renderParameterType(parameter)}</em>
-                      {parameterIsArray(parameter) && <span>{'[]'}</span>}
-                      {parameter.flags && parameter.flags.isOptional && <span>{' (Optional)'}</span>}
-                      {parameter.comment && parameter.comment.text ? `, ${parameter.comment.text}` : ''}
-                    </p>
-                  </li>
-                ))
-              }
-            </ul>
-          </div>
-        </div>
-      }
-      {
-        methodExample &&
-        <div>
-          <h4>{'Example'}</h4>
-          <div dangerouslySetInnerHTML={{ __html: convertToAsciiDoc(methodExample) }} />
-        </div>
-      }
-      {
-        methodSource &&
-        <p>
-          {'Source: '}
-          <a
-            href={`https://github.com/madewithkoji/koji-core/tree/main/src/${methodSource}`}
-            rel={'noreferrer noopener'}
-            target={'_blank'}
-          >
-            {methodSource}
-          </a>
-        </p>
-      }
-    </div>
-  );
-}
-
-function renderEnum(e) {
-  return (
-    <div key={e.id}>
-      {
-        e.name &&
-        <h3 id={e.name}>{e.name}</h3>
-      }
-      {
-        (e.children.length && true) &&
-        <>
-          <h4>{'Possible Values'}</h4>
-          <div className={'ulist'}>
-            <ul>
-              {
-                e.children.map((child) => (
-                  <li key={child.defaultValue}>{child.defaultValue}</li>
-                ))
-              }
-            </ul>
-          </div>
-        </>
-      }
-    </div>
-  );
-}
-
-function getInterfaceParameters(i) {
-  return i.children;
-}
-
-function renderInterface(i) {
-  const interfaceParameters = getInterfaceParameters(i);
-
-  return (
-    <div key={i.id}>
-      {
-        i.name &&
-        <h3 id={i.name}>{i.name}</h3>
-      }
-      {
-        interfaceParameters &&
-        <div>
-          <h4>{'Parameters'}</h4>
-          <div className={'ulist'}>
-            <ul>
-              {
-                interfaceParameters.map((parameter) => (
-                  <li key={parameter.name}>
-                    <p>
-                      <code>{parameter.name}</code>
-                      {' – '}
-                      {parameter.flags && parameter.flags.isOptional && <span>{'(Optional) '}</span>}
-                      <em>{renderParameterType(parameter)}</em>
-                      {parameter.comment && parameter.comment.shortText ? `, ${parameter.comment.shortText}` : ''}
-                    </p>
-                  </li>
-                ))
-              }
-            </ul>
-          </div>
-        </div>
-      }
-    </div>
-  );
-}
-
 const CorePackage = (props) => {
   const { allKojiCorePackageItem, kojiCorePackageItem } = props.data;
 
-  console.log('k', kojiCorePackageItem);
+  console.log('k', allKojiCorePackageItem);
 
   let {
     Classes,
@@ -495,6 +334,7 @@ const CorePackage = (props) => {
   if (!Interfaces) Interfaces = [];
 
   const AllInterfaces = allKojiCorePackageItem.nodes.map((node) => node.Interfaces || []).reduce((acc, cur) => [...acc, ...cur], []);
+  const AllTypeAliases = allKojiCorePackageItem.nodes.map((node) => node.Type_aliases || []).reduce((acc, cur) => [...acc, ...cur], []);
 
   const { name, description } = parseClass(Classes[0]);
 
@@ -503,14 +343,27 @@ const CorePackage = (props) => {
   if (!constructor.signatures || !constructor.signatures[0] || !constructor.signatures[0].comment) constructor = false;
   const methods = Classes[0].children.filter(({ kindString }) => kindString === 'Method');
 
-  const referenceIds = (constructor ? [...methods, constructor] : methods)
+  const properties = Classes[0].children.filter(({ kindString }) => kindString === 'Property');
+
+  const methodReferenceIds = (constructor ? [...methods, constructor] : methods)
     .map((method) => (method.signatures && method.signatures[0]) || { parameters: [] })
     .reduce((acc, cur) => [...acc, ...(cur.parameters || [])], [])
     .filter((param) => param.type && param.type.type && param.type.type === 'reference')
     .reduce((acc, cur) => acc.includes(cur.type.id) ? acc : [...acc, cur.type.id], []);
 
+  const propertyReferenceIds = properties
+    .map((property) => property.type || {})
+    .filter((param) => param.type && param.type.type && param.type.type === 'reference')
+    .reduce((acc, cur) => acc.includes(cur.type.id) ? acc : [...acc, cur.type.id], []);
+
+  const referenceIds = [
+    ...methodReferenceIds,
+    ...propertyReferenceIds,
+  ].reduce((acc, cur) => acc.includes(cur) ? acc : [...acc, cur], []);
+
   const enums = Enumerations.filter(({ id }) => referenceIds.includes(id));
   const interfaces = AllInterfaces.filter(({ id }) => referenceIds.includes(id));
+  const typeAliases = AllTypeAliases.filter(({ id }) => referenceIds.includes(id));
 
   useEffect(() => {
     document.querySelectorAll('pre code').forEach((block) => {
@@ -532,7 +385,7 @@ const CorePackage = (props) => {
           <div>
             <h2 id={'constructor'}>{'Constructor'}</h2>
             {
-              renderMethod(constructor)
+              renderMethod(constructor, interfaces)
             }
           </div>
         }
@@ -542,7 +395,18 @@ const CorePackage = (props) => {
             <h2 id={'methods'}>{'Methods'}</h2>
             {
               methods.map((method) => (
-                renderMethod(method)
+                renderMethod(method, interfaces)
+              ))
+            }
+          </>
+        }
+        {
+          properties.length > 0 &&
+          <>
+            <h2 id={'properties'}>{'Properties'}</h2>
+            {
+              properties.map((property) => (
+                renderProperty(property)
               ))
             }
           </>
@@ -565,6 +429,17 @@ const CorePackage = (props) => {
             {
               interfaces.map((i) => (
                 renderInterface(i)
+              ))
+            }
+          </>
+        }
+        {
+          typeAliases.length > 0 &&
+          <>
+            <h2 id={'typeAliases'}>{'Type Aliases'}</h2>
+            {
+              typeAliases.map((typeAlias) => (
+                renderTypeAlias(typeAlias)
               ))
             }
           </>
@@ -598,6 +473,28 @@ const CorePackage = (props) => {
                   key={id}
                 >
                   {`.${methodName}`}
+                </SubSectionLink>
+              ))
+            }
+          </>
+        }
+        {
+          properties.length > 0 &&
+          <>
+            <SectionLink
+              style={{ isActive: props.currentHeader === 'properties' }}
+              href={'#properties'}
+            >
+              {'Properties'}
+            </SectionLink>
+            {
+              properties.map(({ id, name: propertyName }) => (
+                <SubSectionLink
+                  style={{ isActive: propertyName === props.currentHeader }}
+                  href={`#${propertyName}`}
+                  key={id}
+                >
+                  {propertyName}
                 </SubSectionLink>
               ))
             }
@@ -642,6 +539,28 @@ const CorePackage = (props) => {
                   key={id}
                 >
                   {interfaceName}
+                </SubSectionLink>
+              ))
+            }
+          </>
+        }
+        {
+          typeAliases.length > 0 &&
+          <>
+            <SectionLink
+              style={{ isActive: props.currentHeader === 'typeAliases' }}
+              href={'#typeAliases'}
+            >
+              {'Type Aliases'}
+            </SectionLink>
+            {
+              typeAliases.map(({ id, name: typeAliasName }) => (
+                <SubSectionLink
+                  style={{ isActive: typeAliasName === props.currentHeader }}
+                  href={`#${typeAliasName}`}
+                  key={id}
+                >
+                  {typeAliasName}
                 </SubSectionLink>
               ))
             }
