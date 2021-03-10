@@ -85,6 +85,7 @@ export const query = graphql`
     kojiCorePackageItem(id: { eq: $id }) {
       id
       name
+      referenceIds
       Classes {
         id
         name
@@ -321,17 +322,17 @@ function parseClass(c) {
 const CorePackage = (props) => {
   const { allKojiCorePackageItem, kojiCorePackageItem } = props.data;
 
-  console.log('k', allKojiCorePackageItem);
-
   let {
     Classes,
     Enumerations,
     Interfaces,
+    referenceIds,
   } = kojiCorePackageItem;
 
   if (!Classes) Classes = [];
   if (!Enumerations) Enumerations = [];
   if (!Interfaces) Interfaces = [];
+  if (!referenceIds) referenceIds = [];
 
   const AllInterfaces = allKojiCorePackageItem.nodes.map((node) => node.Interfaces || []).reduce((acc, cur) => [...acc, ...cur], []);
   const AllTypeAliases = allKojiCorePackageItem.nodes.map((node) => node.Type_aliases || []).reduce((acc, cur) => [...acc, ...cur], []);
@@ -344,22 +345,6 @@ const CorePackage = (props) => {
   const methods = Classes[0].children.filter(({ kindString }) => kindString === 'Method');
 
   const properties = Classes[0].children.filter(({ kindString }) => kindString === 'Property');
-
-  const methodReferenceIds = (constructor ? [...methods, constructor] : methods)
-    .map((method) => (method.signatures && method.signatures[0]) || { parameters: [] })
-    .reduce((acc, cur) => [...acc, ...(cur.parameters || [])], [])
-    .filter((param) => param.type && param.type.type && param.type.type === 'reference')
-    .reduce((acc, cur) => acc.includes(cur.type.id) ? acc : [...acc, cur.type.id], []);
-
-  const propertyReferenceIds = properties
-    .map((property) => property.type || {})
-    .filter((param) => param.type && param.type.type && param.type.type === 'reference')
-    .reduce((acc, cur) => acc.includes(cur.type.id) ? acc : [...acc, cur.type.id], []);
-
-  const referenceIds = [
-    ...methodReferenceIds,
-    ...propertyReferenceIds,
-  ].reduce((acc, cur) => acc.includes(cur) ? acc : [...acc, cur], []);
 
   const enums = Enumerations.filter(({ id }) => referenceIds.includes(id));
   const interfaces = AllInterfaces.filter(({ id }) => referenceIds.includes(id));
@@ -439,7 +424,7 @@ const CorePackage = (props) => {
             <h2 id={'typeAliases'}>{'Type Aliases'}</h2>
             {
               typeAliases.map((typeAlias) => (
-                renderTypeAlias(typeAlias)
+                renderTypeAlias(typeAlias, interfaces)
               ))
             }
           </>
