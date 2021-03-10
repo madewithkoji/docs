@@ -1032,6 +1032,9 @@
 					"kind": 4,
 					"kindString": "Enumeration",
 					"flags": {},
+					"comment": {
+						"shortText": "API routes for database methods."
+					},
 					"children": [
 						{
 							"id": 31,
@@ -1042,7 +1045,7 @@
 							"sources": [
 								{
 									"fileName": "backend/database/index.ts",
-									"line": 6,
+									"line": 9,
 									"character": 12
 								}
 							],
@@ -1057,7 +1060,7 @@
 							"sources": [
 								{
 									"fileName": "backend/database/index.ts",
-									"line": 7,
+									"line": 10,
 									"character": 14
 								}
 							],
@@ -1072,7 +1075,7 @@
 							"sources": [
 								{
 									"fileName": "backend/database/index.ts",
-									"line": 8,
+									"line": 11,
 									"character": 8
 								}
 							],
@@ -1087,7 +1090,7 @@
 							"sources": [
 								{
 									"fileName": "backend/database/index.ts",
-									"line": 9,
+									"line": 12,
 									"character": 5
 								}
 							],
@@ -1102,7 +1105,7 @@
 							"sources": [
 								{
 									"fileName": "backend/database/index.ts",
-									"line": 10,
+									"line": 13,
 									"character": 9
 								}
 							],
@@ -1117,7 +1120,7 @@
 							"sources": [
 								{
 									"fileName": "backend/database/index.ts",
-									"line": 11,
+									"line": 14,
 									"character": 15
 								}
 							],
@@ -1132,7 +1135,7 @@
 							"sources": [
 								{
 									"fileName": "backend/database/index.ts",
-									"line": 12,
+									"line": 15,
 									"character": 17
 								}
 							],
@@ -1147,7 +1150,7 @@
 							"sources": [
 								{
 									"fileName": "backend/database/index.ts",
-									"line": 13,
+									"line": 16,
 									"character": 8
 								}
 							],
@@ -1162,7 +1165,7 @@
 							"sources": [
 								{
 									"fileName": "backend/database/index.ts",
-									"line": 14,
+									"line": 17,
 									"character": 5
 								}
 							],
@@ -1177,7 +1180,7 @@
 							"sources": [
 								{
 									"fileName": "backend/database/index.ts",
-									"line": 15,
+									"line": 18,
 									"character": 8
 								}
 							],
@@ -1205,7 +1208,7 @@
 					"sources": [
 						{
 							"fileName": "backend/database/index.ts",
-							"line": 5,
+							"line": 8,
 							"character": 26
 						}
 					]
@@ -1216,6 +1219,9 @@
 					"kind": 4,
 					"kindString": "Enumeration",
 					"flags": {},
+					"comment": {
+						"shortText": "Available operator types for database comparisons."
+					},
 					"children": [
 						{
 							"id": 48,
@@ -1226,7 +1232,7 @@
 							"sources": [
 								{
 									"fileName": "backend/database/index.ts",
-									"line": 25,
+									"line": 31,
 									"character": 16
 								}
 							],
@@ -1241,7 +1247,7 @@
 							"sources": [
 								{
 									"fileName": "backend/database/index.ts",
-									"line": 26,
+									"line": 32,
 									"character": 20
 								}
 							],
@@ -1256,7 +1262,7 @@
 							"sources": [
 								{
 									"fileName": "backend/database/index.ts",
-									"line": 21,
+									"line": 27,
 									"character": 10
 								}
 							],
@@ -1271,7 +1277,7 @@
 							"sources": [
 								{
 									"fileName": "backend/database/index.ts",
-									"line": 22,
+									"line": 28,
 									"character": 14
 								}
 							],
@@ -1286,7 +1292,7 @@
 							"sources": [
 								{
 									"fileName": "backend/database/index.ts",
-									"line": 23,
+									"line": 29,
 									"character": 26
 								}
 							],
@@ -1301,7 +1307,7 @@
 							"sources": [
 								{
 									"fileName": "backend/database/index.ts",
-									"line": 27,
+									"line": 33,
 									"character": 4
 								}
 							],
@@ -1316,7 +1322,7 @@
 							"sources": [
 								{
 									"fileName": "backend/database/index.ts",
-									"line": 19,
+									"line": 25,
 									"character": 11
 								}
 							],
@@ -1331,7 +1337,7 @@
 							"sources": [
 								{
 									"fileName": "backend/database/index.ts",
-									"line": 20,
+									"line": 26,
 									"character": 23
 								}
 							],
@@ -1346,7 +1352,7 @@
 							"sources": [
 								{
 									"fileName": "backend/database/index.ts",
-									"line": 24,
+									"line": 30,
 									"character": 14
 								}
 							],
@@ -1361,7 +1367,7 @@
 							"sources": [
 								{
 									"fileName": "backend/database/index.ts",
-									"line": 28,
+									"line": 34,
 									"character": 8
 								}
 							],
@@ -1389,7 +1395,7 @@
 					"sources": [
 						{
 							"fileName": "backend/database/index.ts",
-							"line": 18,
+							"line": 24,
 							"character": 29
 						}
 					]
@@ -1418,11 +1424,10 @@
 									"kindString": "Constructor signature",
 									"flags": {},
 									"comment": {
-										"shortText": "Instantiates [[Database]].",
 										"tags": [
 											{
 												"tag": "example",
-												"text": "\n```javascript\nconst database = new KojiBackend.Database({ config });\n```\n"
+												"text": "\n```javascript\nconst database = new KojiBackend.Database({ res });\n```\n"
 											}
 										]
 									},
@@ -1482,7 +1487,7 @@
 							"sources": [
 								{
 									"fileName": "backend/database/index.ts",
-									"line": 310,
+									"line": 314,
 									"character": 24
 								}
 							],
@@ -1590,7 +1595,7 @@
 							"sources": [
 								{
 									"fileName": "backend/database/index.ts",
-									"line": 338,
+									"line": 342,
 									"character": 26
 								}
 							],
@@ -1698,7 +1703,7 @@
 							"sources": [
 								{
 									"fileName": "backend/database/index.ts",
-									"line": 365,
+									"line": 369,
 									"character": 21
 								}
 							],
@@ -1792,7 +1797,7 @@
 							"sources": [
 								{
 									"fileName": "backend/database/index.ts",
-									"line": 75,
+									"line": 79,
 									"character": 18
 								}
 							],
@@ -1900,7 +1905,7 @@
 							"sources": [
 								{
 									"fileName": "backend/database/index.ts",
-									"line": 190,
+									"line": 194,
 									"character": 21
 								}
 							],
@@ -2003,7 +2008,7 @@
 							"sources": [
 								{
 									"fileName": "backend/database/index.ts",
-									"line": 220,
+									"line": 224,
 									"character": 26
 								}
 							],
@@ -2135,7 +2140,7 @@
 							"sources": [
 								{
 									"fileName": "backend/database/index.ts",
-									"line": 98,
+									"line": 102,
 									"character": 29
 								}
 							],
@@ -2193,7 +2198,7 @@
 							"sources": [
 								{
 									"fileName": "backend/database/index.ts",
-									"line": 154,
+									"line": 158,
 									"character": 23
 								}
 							],
@@ -2319,7 +2324,7 @@
 							"sources": [
 								{
 									"fileName": "backend/database/index.ts",
-									"line": 123,
+									"line": 127,
 									"character": 21
 								}
 							],
@@ -2433,7 +2438,7 @@
 							"sources": [
 								{
 									"fileName": "backend/database/index.ts",
-									"line": 254,
+									"line": 258,
 									"character": 18
 								}
 							],
@@ -2532,7 +2537,7 @@
 							"sources": [
 								{
 									"fileName": "backend/database/index.ts",
-									"line": 282,
+									"line": 286,
 									"character": 21
 								}
 							],
@@ -2649,7 +2654,7 @@
 					"sources": [
 						{
 							"fileName": "backend/database/index.ts",
-							"line": 34,
+							"line": 40,
 							"character": 21
 						}
 					],
@@ -2696,7 +2701,7 @@
 							"sources": [
 								{
 									"fileName": "backend/database/index.ts",
-									"line": 310,
+									"line": 314,
 									"character": 24
 								}
 							],
@@ -2814,7 +2819,7 @@
 							"sources": [
 								{
 									"fileName": "backend/database/index.ts",
-									"line": 338,
+									"line": 342,
 									"character": 26
 								}
 							],
@@ -2932,7 +2937,7 @@
 							"sources": [
 								{
 									"fileName": "backend/database/index.ts",
-									"line": 365,
+									"line": 369,
 									"character": 21
 								}
 							],
@@ -3036,7 +3041,7 @@
 							"sources": [
 								{
 									"fileName": "backend/database/index.ts",
-									"line": 75,
+									"line": 79,
 									"character": 18
 								}
 							],
@@ -3154,7 +3159,7 @@
 							"sources": [
 								{
 									"fileName": "backend/database/index.ts",
-									"line": 190,
+									"line": 194,
 									"character": 21
 								}
 							],
@@ -3267,7 +3272,7 @@
 							"sources": [
 								{
 									"fileName": "backend/database/index.ts",
-									"line": 220,
+									"line": 224,
 									"character": 26
 								}
 							],
@@ -3409,7 +3414,7 @@
 							"sources": [
 								{
 									"fileName": "backend/database/index.ts",
-									"line": 98,
+									"line": 102,
 									"character": 29
 								}
 							],
@@ -3477,7 +3482,7 @@
 							"sources": [
 								{
 									"fileName": "backend/database/index.ts",
-									"line": 154,
+									"line": 158,
 									"character": 23
 								}
 							],
@@ -3613,7 +3618,7 @@
 							"sources": [
 								{
 									"fileName": "backend/database/index.ts",
-									"line": 123,
+									"line": 127,
 									"character": 21
 								}
 							],
@@ -3737,7 +3742,7 @@
 							"sources": [
 								{
 									"fileName": "backend/database/index.ts",
-									"line": 254,
+									"line": 258,
 									"character": 18
 								}
 							],
@@ -3846,7 +3851,7 @@
 							"sources": [
 								{
 									"fileName": "backend/database/index.ts",
-									"line": 282,
+									"line": 286,
 									"character": 21
 								}
 							],
@@ -3966,7 +3971,7 @@
 					"sources": [
 						{
 							"fileName": "backend/database/index.ts",
-							"line": 379,
+							"line": 383,
 							"character": 26
 						}
 					],
@@ -4146,6 +4151,14 @@
 									"kind": 16384,
 									"kindString": "Constructor signature",
 									"flags": {},
+									"comment": {
+										"tags": [
+											{
+												"tag": "example",
+												"text": "\n```javascript\nconst dispatch = new KojiBackend.Dispatch({ res });\n```\n"
+											}
+										]
+									},
 									"parameters": [
 										{
 											"id": 204,
@@ -4153,6 +4166,9 @@
 											"kind": 32768,
 											"kindString": "Parameter",
 											"flags": {},
+											"comment": {
+												"text": "\n"
+											},
 											"type": {
 												"type": "reference",
 												"id": 12,
@@ -4189,7 +4205,7 @@
 							"sources": [
 								{
 									"fileName": "backend/dispatch/index.ts",
-									"line": 338,
+									"line": 350,
 									"character": 19
 								}
 							],
@@ -4227,7 +4243,7 @@
 							"sources": [
 								{
 									"fileName": "backend/dispatch/index.ts",
-									"line": 304,
+									"line": 316,
 									"character": 18
 								}
 							],
@@ -4343,7 +4359,7 @@
 							"sources": [
 								{
 									"fileName": "backend/dispatch/index.ts",
-									"line": 286,
+									"line": 298,
 									"character": 17
 								}
 							],
@@ -4397,7 +4413,7 @@
 							"sources": [
 								{
 									"fileName": "backend/dispatch/index.ts",
-									"line": 92,
+									"line": 104,
 									"character": 19
 								}
 							],
@@ -4446,7 +4462,7 @@
 							"sources": [
 								{
 									"fileName": "backend/dispatch/index.ts",
-									"line": 248,
+									"line": 260,
 									"character": 11
 								}
 							],
@@ -4515,7 +4531,7 @@
 							"sources": [
 								{
 									"fileName": "backend/dispatch/index.ts",
-									"line": 272,
+									"line": 284,
 									"character": 20
 								}
 							],
@@ -5055,6 +5071,9 @@
 					"kind": 4,
 					"kindString": "Enumeration",
 					"flags": {},
+					"comment": {
+						"shortText": "API routes for iap methods."
+					},
 					"children": [
 						{
 							"id": 258,
@@ -5065,7 +5084,7 @@
 							"sources": [
 								{
 									"fileName": "backend/iap/index.ts",
-									"line": 7,
+									"line": 10,
 									"character": 20
 								}
 							],
@@ -5080,7 +5099,7 @@
 							"sources": [
 								{
 									"fileName": "backend/iap/index.ts",
-									"line": 8,
+									"line": 11,
 									"character": 18
 								}
 							],
@@ -5095,7 +5114,7 @@
 							"sources": [
 								{
 									"fileName": "backend/iap/index.ts",
-									"line": 10,
+									"line": 13,
 									"character": 25
 								}
 							],
@@ -5110,7 +5129,7 @@
 							"sources": [
 								{
 									"fileName": "backend/iap/index.ts",
-									"line": 9,
+									"line": 12,
 									"character": 23
 								}
 							],
@@ -5125,7 +5144,7 @@
 							"sources": [
 								{
 									"fileName": "backend/iap/index.ts",
-									"line": 11,
+									"line": 14,
 									"character": 16
 								}
 							],
@@ -5148,7 +5167,7 @@
 					"sources": [
 						{
 							"fileName": "backend/iap/index.ts",
-							"line": 6,
+							"line": 9,
 							"character": 21
 						}
 					]
@@ -5177,7 +5196,6 @@
 									"kindString": "Constructor signature",
 									"flags": {},
 									"comment": {
-										"shortText": "Instantiates [[IAP]].",
 										"tags": [
 											{
 												"tag": "example",
@@ -5192,6 +5210,9 @@
 											"kind": 32768,
 											"kindString": "Parameter",
 											"flags": {},
+											"comment": {
+												"text": "\n"
+											},
 											"type": {
 												"type": "reference",
 												"id": 12,
@@ -5228,7 +5249,7 @@
 							"sources": [
 								{
 									"fileName": "backend/iap/index.ts",
-									"line": 160,
+									"line": 161,
 									"character": 26
 								}
 							],
@@ -5299,7 +5320,7 @@
 							"sources": [
 								{
 									"fileName": "backend/iap/index.ts",
-									"line": 98,
+									"line": 99,
 									"character": 33
 								}
 							],
@@ -5371,7 +5392,7 @@
 							"sources": [
 								{
 									"fileName": "backend/iap/index.ts",
-									"line": 71,
+									"line": 72,
 									"character": 40
 								}
 							],
@@ -5452,7 +5473,7 @@
 							"sources": [
 								{
 									"fileName": "backend/iap/index.ts",
-									"line": 116,
+									"line": 117,
 									"character": 35
 								}
 							],
@@ -5517,7 +5538,7 @@
 							"sources": [
 								{
 									"fileName": "backend/iap/index.ts",
-									"line": 135,
+									"line": 136,
 									"character": 28
 								}
 							],
@@ -5650,7 +5671,7 @@
 					"sources": [
 						{
 							"fileName": "backend/iap/index.ts",
-							"line": 33,
+							"line": 36,
 							"character": 16
 						}
 					],
@@ -5687,7 +5708,7 @@
 							"sources": [
 								{
 									"fileName": "backend/iap/index.ts",
-									"line": 160,
+									"line": 161,
 									"character": 26
 								}
 							],
@@ -5768,7 +5789,7 @@
 							"sources": [
 								{
 									"fileName": "backend/iap/index.ts",
-									"line": 98,
+									"line": 99,
 									"character": 33
 								}
 							],
@@ -5850,7 +5871,7 @@
 							"sources": [
 								{
 									"fileName": "backend/iap/index.ts",
-									"line": 71,
+									"line": 72,
 									"character": 40
 								}
 							],
@@ -5941,7 +5962,7 @@
 							"sources": [
 								{
 									"fileName": "backend/iap/index.ts",
-									"line": 116,
+									"line": 117,
 									"character": 35
 								}
 							],
@@ -6016,7 +6037,7 @@
 							"sources": [
 								{
 									"fileName": "backend/iap/index.ts",
-									"line": 135,
+									"line": 136,
 									"character": 28
 								}
 							],
@@ -6152,7 +6173,7 @@
 					"sources": [
 						{
 							"fileName": "backend/iap/index.ts",
-							"line": 167,
+							"line": 168,
 							"character": 21
 						}
 					],
@@ -6183,7 +6204,7 @@
 							"sources": [
 								{
 									"fileName": "backend/iap/index.ts",
-									"line": 21,
+									"line": 24,
 									"character": 12
 								}
 							],
@@ -6230,7 +6251,7 @@
 							"sources": [
 								{
 									"fileName": "backend/iap/index.ts",
-									"line": 26,
+									"line": 29,
 									"character": 15
 								}
 							],
@@ -6248,7 +6269,7 @@
 							"sources": [
 								{
 									"fileName": "backend/iap/index.ts",
-									"line": 19,
+									"line": 22,
 									"character": 11
 								}
 							],
@@ -6266,7 +6287,7 @@
 							"sources": [
 								{
 									"fileName": "backend/iap/index.ts",
-									"line": 20,
+									"line": 23,
 									"character": 16
 								}
 							],
@@ -6284,7 +6305,7 @@
 							"sources": [
 								{
 									"fileName": "backend/iap/index.ts",
-									"line": 18,
+									"line": 21,
 									"character": 11
 								}
 							],
@@ -6302,7 +6323,7 @@
 							"sources": [
 								{
 									"fileName": "backend/iap/index.ts",
-									"line": 22,
+									"line": 25,
 									"character": 16
 								}
 							],
@@ -6324,7 +6345,7 @@
 											"sources": [
 												{
 													"fileName": "backend/iap/index.ts",
-													"line": 23,
+													"line": 26,
 													"character": 10
 												}
 											],
@@ -6342,7 +6363,7 @@
 											"sources": [
 												{
 													"fileName": "backend/iap/index.ts",
-													"line": 24,
+													"line": 27,
 													"character": 9
 												}
 											],
@@ -6383,7 +6404,7 @@
 					"sources": [
 						{
 							"fileName": "backend/iap/index.ts",
-							"line": 17,
+							"line": 20,
 							"character": 27
 						}
 					]
@@ -6434,6 +6455,9 @@
 					"kind": 4,
 					"kindString": "Enumeration",
 					"flags": {},
+					"comment": {
+						"shortText": "API routes for auth methods."
+					},
 					"children": [
 						{
 							"id": 329,
@@ -6444,7 +6468,7 @@
 							"sources": [
 								{
 									"fileName": "backend/identity/index.ts",
-									"line": 7,
+									"line": 10,
 									"character": 11
 								}
 							],
@@ -6459,7 +6483,7 @@
 							"sources": [
 								{
 									"fileName": "backend/identity/index.ts",
-									"line": 8,
+									"line": 11,
 									"character": 10
 								}
 							],
@@ -6474,7 +6498,7 @@
 							"sources": [
 								{
 									"fileName": "backend/identity/index.ts",
-									"line": 9,
+									"line": 12,
 									"character": 19
 								}
 							],
@@ -6495,7 +6519,7 @@
 					"sources": [
 						{
 							"fileName": "backend/identity/index.ts",
-							"line": 6,
+							"line": 9,
 							"character": 22
 						}
 					]
@@ -6506,6 +6530,9 @@
 					"kind": 4,
 					"kindString": "Enumeration",
 					"flags": {},
+					"comment": {
+						"shortText": "Possible values for a user's role within a Koji."
+					},
 					"children": [
 						{
 							"id": 333,
@@ -6516,7 +6543,7 @@
 							"sources": [
 								{
 									"fileName": "backend/identity/index.ts",
-									"line": 13,
+									"line": 19,
 									"character": 7
 								}
 							],
@@ -6531,7 +6558,7 @@
 							"sources": [
 								{
 									"fileName": "backend/identity/index.ts",
-									"line": 14,
+									"line": 20,
 									"character": 9
 								}
 							],
@@ -6546,7 +6573,7 @@
 							"sources": [
 								{
 									"fileName": "backend/identity/index.ts",
-									"line": 15,
+									"line": 21,
 									"character": 6
 								}
 							],
@@ -6567,7 +6594,7 @@
 					"sources": [
 						{
 							"fileName": "backend/identity/index.ts",
-							"line": 12,
+							"line": 18,
 							"character": 20
 						}
 					]
@@ -6596,11 +6623,10 @@
 									"kindString": "Constructor signature",
 									"flags": {},
 									"comment": {
-										"shortText": "Instantiates [[Identity]].",
 										"tags": [
 											{
 												"tag": "example",
-												"text": "\n```javascript\nconst identity = new KojiBackend.Identity({ config });\n```\n"
+												"text": "\n```javascript\nconst identity = new KojiBackend.Identity({ res });\n```\n"
 											}
 										]
 									},
@@ -6660,7 +6686,7 @@
 							"sources": [
 								{
 									"fileName": "backend/identity/index.ts",
-									"line": 112,
+									"line": 116,
 									"character": 38
 								}
 							],
@@ -6732,7 +6758,7 @@
 							"sources": [
 								{
 									"fileName": "backend/identity/index.ts",
-									"line": 87,
+									"line": 91,
 									"character": 37
 								}
 							],
@@ -6818,7 +6844,7 @@
 							"sources": [
 								{
 									"fileName": "backend/identity/index.ts",
-									"line": 137,
+									"line": 141,
 									"character": 35
 								}
 							],
@@ -6900,7 +6926,7 @@
 					"sources": [
 						{
 							"fileName": "backend/identity/index.ts",
-							"line": 48,
+							"line": 54,
 							"character": 21
 						}
 					],
@@ -6934,7 +6960,7 @@
 							"sources": [
 								{
 									"fileName": "backend/identity/index.ts",
-									"line": 36,
+									"line": 42,
 									"character": 9
 								}
 							],
@@ -6955,7 +6981,7 @@
 							"sources": [
 								{
 									"fileName": "backend/identity/index.ts",
-									"line": 38,
+									"line": 44,
 									"character": 6
 								}
 							],
@@ -6976,7 +7002,7 @@
 							"sources": [
 								{
 									"fileName": "backend/identity/index.ts",
-									"line": 40,
+									"line": 46,
 									"character": 9
 								}
 							],
@@ -6999,7 +7025,7 @@
 							"sources": [
 								{
 									"fileName": "backend/identity/index.ts",
-									"line": 42,
+									"line": 48,
 									"character": 5
 								}
 							],
@@ -7033,7 +7059,7 @@
 					"sources": [
 						{
 							"fileName": "backend/identity/index.ts",
-							"line": 34,
+							"line": 40,
 							"character": 33
 						}
 					]
@@ -7057,7 +7083,7 @@
 							"sources": [
 								{
 									"fileName": "backend/identity/index.ts",
-									"line": 23,
+									"line": 29,
 									"character": 12
 								}
 							],
@@ -7113,7 +7139,7 @@
 							"sources": [
 								{
 									"fileName": "backend/identity/index.ts",
-									"line": 24,
+									"line": 30,
 									"character": 13
 								}
 							],
@@ -7140,7 +7166,7 @@
 							"sources": [
 								{
 									"fileName": "backend/identity/index.ts",
-									"line": 25,
+									"line": 31,
 									"character": 8
 								}
 							],
@@ -7169,7 +7195,7 @@
 													"sources": [
 														{
 															"fileName": "backend/identity/index.ts",
-															"line": 26,
+															"line": 32,
 															"character": 28
 														}
 													],
@@ -7202,7 +7228,7 @@
 							"sources": [
 								{
 									"fileName": "backend/identity/index.ts",
-									"line": 22,
+									"line": 28,
 									"character": 4
 								}
 							],
@@ -7229,7 +7255,7 @@
 							"sources": [
 								{
 									"fileName": "backend/identity/index.ts",
-									"line": 28,
+									"line": 34,
 									"character": 6
 								}
 							],
@@ -7275,7 +7301,7 @@
 					"sources": [
 						{
 							"fileName": "backend/identity/index.ts",
-							"line": 21,
+							"line": 27,
 							"character": 21
 						}
 					]
@@ -7656,6 +7682,14 @@
 									"kind": 16384,
 									"kindString": "Constructor signature",
 									"flags": {},
+									"comment": {
+										"tags": [
+											{
+												"tag": "example",
+												"text": "\n```javascript\nconst secret = new KojiBackend.Secret({ res });\n```\n"
+											}
+										]
+									},
 									"parameters": [
 										{
 											"id": 405,
@@ -7663,6 +7697,9 @@
 											"kind": 32768,
 											"kindString": "Parameter",
 											"flags": {},
+											"comment": {
+												"text": "\n"
+											},
 											"type": {
 												"type": "reference",
 												"id": 12,
@@ -7709,7 +7746,7 @@
 							"sources": [
 								{
 									"fileName": "backend/secret/index.ts",
-									"line": 70,
+									"line": 81,
 									"character": 32
 								}
 							],
@@ -7796,7 +7833,7 @@
 							"sources": [
 								{
 									"fileName": "backend/secret/index.ts",
-									"line": 41,
+									"line": 52,
 									"character": 27
 								}
 							],
@@ -7876,7 +7913,7 @@
 					"sources": [
 						{
 							"fileName": "backend/secret/index.ts",
-							"line": 13,
+							"line": 16,
 							"character": 19
 						}
 					],
@@ -7949,12 +7986,14 @@
 							"name": "analytics",
 							"kind": 1024,
 							"kindString": "Property",
-							"flags": {},
+							"flags": {
+								"isPublic": true
+							},
 							"sources": [
 								{
 									"fileName": "frontend/index.ts",
-									"line": 49,
-									"character": 11
+									"line": 53,
+									"character": 18
 								}
 							],
 							"type": {
@@ -7969,12 +8008,17 @@
 							"name": "configInitialized",
 							"kind": 1024,
 							"kindString": "Property",
-							"flags": {},
+							"flags": {
+								"isPublic": true
+							},
+							"comment": {
+								"shortText": "Indicates that the Koji.config() call has been made."
+							},
 							"sources": [
 								{
 									"fileName": "frontend/index.ts",
-									"line": 45,
-									"character": 19
+									"line": 47,
+									"character": 26
 								}
 							],
 							"type": {
@@ -7988,12 +8032,14 @@
 							"name": "dispatch",
 							"kind": 1024,
 							"kindString": "Property",
-							"flags": {},
+							"flags": {
+								"isPublic": true
+							},
 							"sources": [
 								{
 									"fileName": "frontend/index.ts",
-									"line": 50,
-									"character": 10
+									"line": 54,
+									"character": 17
 								}
 							],
 							"type": {
@@ -8008,12 +8054,14 @@
 							"name": "iap",
 							"kind": 1024,
 							"kindString": "Property",
-							"flags": {},
+							"flags": {
+								"isPublic": true
+							},
 							"sources": [
 								{
 									"fileName": "frontend/index.ts",
-									"line": 51,
-									"character": 5
+									"line": 55,
+									"character": 12
 								}
 							],
 							"type": {
@@ -8028,12 +8076,14 @@
 							"name": "identity",
 							"kind": 1024,
 							"kindString": "Property",
-							"flags": {},
+							"flags": {
+								"isPublic": true
+							},
 							"sources": [
 								{
 									"fileName": "frontend/index.ts",
-									"line": 52,
-									"character": 10
+									"line": 56,
+									"character": 17
 								}
 							],
 							"type": {
@@ -8048,12 +8098,17 @@
 							"name": "isReady",
 							"kind": 1024,
 							"kindString": "Property",
-							"flags": {},
+							"flags": {
+								"isPublic": true
+							},
+							"comment": {
+								"shortText": "Indicates that the Koji.ready() call has been made."
+							},
 							"sources": [
 								{
 									"fileName": "frontend/index.ts",
-									"line": 44,
-									"character": 9
+									"line": 45,
+									"character": 16
 								}
 							],
 							"type": {
@@ -8066,12 +8121,14 @@
 							"name": "playerState",
 							"kind": 1024,
 							"kindString": "Property",
-							"flags": {},
+							"flags": {
+								"isPublic": true
+							},
 							"sources": [
 								{
 									"fileName": "frontend/index.ts",
-									"line": 53,
-									"character": 13
+									"line": 57,
+									"character": 20
 								}
 							],
 							"type": {
@@ -8087,13 +8144,17 @@
 							"kind": 1024,
 							"kindString": "Property",
 							"flags": {
+								"isPublic": true,
 								"isOptional": true
+							},
+							"comment": {
+								"shortText": "The project's id."
 							},
 							"sources": [
 								{
 									"fileName": "frontend/index.ts",
-									"line": 47,
-									"character": 11
+									"line": 51,
+									"character": 18
 								}
 							],
 							"type": {
@@ -8115,12 +8176,14 @@
 							"name": "remix",
 							"kind": 1024,
 							"kindString": "Property",
-							"flags": {},
+							"flags": {
+								"isPublic": true
+							},
 							"sources": [
 								{
 									"fileName": "frontend/index.ts",
-									"line": 54,
-									"character": 7
+									"line": 58,
+									"character": 14
 								}
 							],
 							"type": {
@@ -8135,12 +8198,17 @@
 							"name": "services",
 							"kind": 1024,
 							"kindString": "Property",
-							"flags": {},
+							"flags": {
+								"isPublic": true
+							},
+							"comment": {
+								"shortText": "The configured service endpoints."
+							},
 							"sources": [
 								{
 									"fileName": "frontend/index.ts",
-									"line": 46,
-									"character": 10
+									"line": 49,
+									"character": 17
 								}
 							],
 							"type": {
@@ -8155,12 +8223,14 @@
 							"name": "ui",
 							"kind": 1024,
 							"kindString": "Property",
-							"flags": {},
+							"flags": {
+								"isPublic": true
+							},
 							"sources": [
 								{
 									"fileName": "frontend/index.ts",
-									"line": 55,
-									"character": 4
+									"line": 59,
+									"character": 11
 								}
 							],
 							"type": {
@@ -8181,7 +8251,7 @@
 							"sources": [
 								{
 									"fileName": "frontend/index.ts",
-									"line": 71,
+									"line": 75,
 									"character": 15
 								}
 							],
@@ -8244,7 +8314,9 @@
 							"name": "ready",
 							"kind": 2048,
 							"kindString": "Method",
-							"flags": {},
+							"flags": {
+								"isPublic": true
+							},
 							"decorators": [
 								{
 									"name": "client",
@@ -8258,8 +8330,8 @@
 							"sources": [
 								{
 									"fileName": "frontend/index.ts",
-									"line": 241,
-									"character": 7
+									"line": 245,
+									"character": 14
 								}
 							],
 							"signatures": [
@@ -8893,7 +8965,9 @@
 							"name": "track",
 							"kind": 2048,
 							"kindString": "Method",
-							"flags": {},
+							"flags": {
+								"isPublic": true
+							},
 							"decorators": [
 								{
 									"name": "client",
@@ -8908,7 +8982,7 @@
 								{
 									"fileName": "frontend/analytics/index.ts",
 									"line": 28,
-									"character": 7
+									"character": 14
 								}
 							],
 							"signatures": [
@@ -9252,7 +9326,7 @@
 							"sources": [
 								{
 									"fileName": "frontend/dispatch/index.ts",
-									"line": 196,
+									"line": 195,
 									"character": 19
 								}
 							],
@@ -9281,7 +9355,7 @@
 							"sources": [
 								{
 									"fileName": "frontend/dispatch/index.ts",
-									"line": 170,
+									"line": 169,
 									"character": 18
 								}
 							],
@@ -9379,7 +9453,7 @@
 							"sources": [
 								{
 									"fileName": "frontend/dispatch/index.ts",
-									"line": 164,
+									"line": 163,
 									"character": 17
 								}
 							],
@@ -9460,7 +9534,7 @@
 							"sources": [
 								{
 									"fileName": "frontend/dispatch/index.ts",
-									"line": 146,
+									"line": 145,
 									"character": 11
 								}
 							],
@@ -9556,7 +9630,7 @@
 							"sources": [
 								{
 									"fileName": "frontend/dispatch/index.ts",
-									"line": 160,
+									"line": 159,
 									"character": 20
 								}
 							],
@@ -10024,7 +10098,7 @@
 					"sources": [
 						{
 							"fileName": "frontend/dispatch/index.ts",
-							"line": 202,
+							"line": 201,
 							"character": 21
 						}
 					],
@@ -10136,7 +10210,9 @@
 							"name": "getToken",
 							"kind": 2048,
 							"kindString": "Method",
-							"flags": {},
+							"flags": {
+								"isPublic": true
+							},
 							"decorators": [
 								{
 									"name": "client",
@@ -10151,7 +10227,7 @@
 								{
 									"fileName": "frontend/iap/index.ts",
 									"line": 35,
-									"character": 16
+									"character": 23
 								}
 							],
 							"signatures": [
@@ -10197,7 +10273,9 @@
 							"name": "startPurchase",
 							"kind": 2048,
 							"kindString": "Method",
-							"flags": {},
+							"flags": {
+								"isPublic": true
+							},
 							"decorators": [
 								{
 									"name": "client",
@@ -10212,7 +10290,7 @@
 								{
 									"fileName": "frontend/iap/index.ts",
 									"line": 58,
-									"character": 21
+									"character": 28
 								}
 							],
 							"signatures": [
@@ -10621,12 +10699,14 @@
 							"name": "checkGrants",
 							"kind": 2048,
 							"kindString": "Method",
-							"flags": {},
+							"flags": {
+								"isPublic": true
+							},
 							"sources": [
 								{
 									"fileName": "frontend/identity/index.ts",
 									"line": 50,
-									"character": 19
+									"character": 26
 								}
 							],
 							"signatures": [
@@ -10685,7 +10765,9 @@
 							"name": "getToken",
 							"kind": 2048,
 							"kindString": "Method",
-							"flags": {},
+							"flags": {
+								"isPublic": true
+							},
 							"decorators": [
 								{
 									"name": "client",
@@ -10700,7 +10782,7 @@
 								{
 									"fileName": "frontend/identity/index.ts",
 									"line": 27,
-									"character": 16
+									"character": 23
 								}
 							],
 							"signatures": [
@@ -10746,12 +10828,14 @@
 							"name": "requestGrants",
 							"kind": 2048,
 							"kindString": "Method",
-							"flags": {},
+							"flags": {
+								"isPublic": true
+							},
 							"sources": [
 								{
 									"fileName": "frontend/identity/index.ts",
 									"line": 73,
-									"character": 21
+									"character": 28
 								}
 							],
 							"signatures": [
@@ -11131,12 +11215,17 @@
 							"name": "context",
 							"kind": 1024,
 							"kindString": "Property",
-							"flags": {},
+							"flags": {
+								"isPublic": true
+							},
+							"comment": {
+								"shortText": "The initial context of the Koji."
+							},
 							"sources": [
 								{
 									"fileName": "frontend/playerState/index.ts",
-									"line": 59,
-									"character": 9
+									"line": 60,
+									"character": 16
 								}
 							],
 							"type": {
@@ -11152,13 +11241,17 @@
 							"kind": 1024,
 							"kindString": "Property",
 							"flags": {
+								"isPublic": true,
 								"isOptional": true
+							},
+							"comment": {
+								"shortText": "The type of receipt."
 							},
 							"sources": [
 								{
 									"fileName": "frontend/playerState/index.ts",
-									"line": 60,
-									"character": 13
+									"line": 62,
+									"character": 20
 								}
 							],
 							"type": {
@@ -11184,7 +11277,9 @@
 							"name": "subscribe",
 							"kind": 2048,
 							"kindString": "Method",
-							"flags": {},
+							"flags": {
+								"isPublic": true
+							},
 							"decorators": [
 								{
 									"name": "client",
@@ -11198,8 +11293,8 @@
 							"sources": [
 								{
 									"fileName": "frontend/playerState/index.ts",
-									"line": 94,
-									"character": 11
+									"line": 96,
+									"character": 18
 								}
 							],
 							"signatures": [
@@ -11754,7 +11849,7 @@
 					"sources": [
 						{
 							"fileName": "frontend/playerState/index.ts",
-							"line": 104,
+							"line": 106,
 							"character": 24
 						}
 					],
@@ -12149,7 +12244,9 @@
 							"name": "init",
 							"kind": 2048,
 							"kindString": "Method",
-							"flags": {},
+							"flags": {
+								"isPublic": true
+							},
 							"decorators": [
 								{
 									"name": "client",
@@ -12164,7 +12261,7 @@
 								{
 									"fileName": "frontend/remix/index.ts",
 									"line": 54,
-									"character": 6
+									"character": 13
 								}
 							],
 							"signatures": [
@@ -17755,7 +17852,9 @@
 							"name": "createRemix",
 							"kind": 2048,
 							"kindString": "Method",
-							"flags": {},
+							"flags": {
+								"isPublic": true
+							},
 							"decorators": [
 								{
 									"name": "client",
@@ -17770,7 +17869,7 @@
 								{
 									"fileName": "frontend/ui/navigate/index.ts",
 									"line": 48,
-									"character": 13
+									"character": 20
 								}
 							],
 							"signatures": [
@@ -17813,7 +17912,9 @@
 							"name": "openShareDialog",
 							"kind": 2048,
 							"kindString": "Method",
-							"flags": {},
+							"flags": {
+								"isPublic": true
+							},
 							"decorators": [
 								{
 									"name": "client",
@@ -17828,7 +17929,7 @@
 								{
 									"fileName": "frontend/ui/navigate/index.ts",
 									"line": 63,
-									"character": 17
+									"character": 24
 								}
 							],
 							"signatures": [
@@ -17853,7 +17954,9 @@
 							"name": "presentInModal",
 							"kind": 2048,
 							"kindString": "Method",
-							"flags": {},
+							"flags": {
+								"isPublic": true
+							},
 							"decorators": [
 								{
 									"name": "client",
@@ -17868,7 +17971,7 @@
 								{
 									"fileName": "frontend/ui/navigate/index.ts",
 									"line": 32,
-									"character": 16
+									"character": 23
 								}
 							],
 							"signatures": [
@@ -17909,7 +18012,9 @@
 							"name": "to",
 							"kind": 2048,
 							"kindString": "Method",
-							"flags": {},
+							"flags": {
+								"isPublic": true
+							},
 							"decorators": [
 								{
 									"name": "client",
@@ -17924,7 +18029,7 @@
 								{
 									"fileName": "frontend/ui/navigate/index.ts",
 									"line": 14,
-									"character": 4
+									"character": 11
 								}
 							],
 							"signatures": [
@@ -18095,7 +18200,9 @@
 							"name": "alert",
 							"kind": 2048,
 							"kindString": "Method",
-							"flags": {},
+							"flags": {
+								"isPublic": true
+							},
 							"decorators": [
 								{
 									"name": "client",
@@ -18110,7 +18217,7 @@
 								{
 									"fileName": "frontend/ui/present/index.ts",
 									"line": 79,
-									"character": 7
+									"character": 14
 								}
 							],
 							"signatures": [
@@ -18158,7 +18265,9 @@
 							"name": "confirmation",
 							"kind": 2048,
 							"kindString": "Method",
-							"flags": {},
+							"flags": {
+								"isPublic": true
+							},
 							"decorators": [
 								{
 									"name": "client",
@@ -18173,7 +18282,7 @@
 								{
 									"fileName": "frontend/ui/present/index.ts",
 									"line": 49,
-									"character": 20
+									"character": 27
 								}
 							],
 							"signatures": [
