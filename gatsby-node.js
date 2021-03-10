@@ -7,6 +7,7 @@ const core = require('./src/core.json');
 
 exports.sourceNodes = ({ actions, createNodeId, createContentDigest }) => {
   try {
+    // Restrict the graphql data to only modules we want to display
     const moduleNames = [
       'backend/base',
       'backend/database',
@@ -35,9 +36,21 @@ exports.sourceNodes = ({ actions, createNodeId, createContentDigest }) => {
           ...newModule
         } = child;
 
+        // Create a list of referenceIds for each module
+        const referenceIds = [];
+
+        // For each group, look for Classes, Enumerations, Functions, Interfaces, TypeAliases and Variables
+        // and make them top level properties.
+        //
+        // Also, make sure to build out the referenceIds so they're easily available
         child.groups.forEach((group) => {
           newModule[group.title] = child.children.filter(({ id }) => group.children.includes(id));
+          group.children.forEach((childId) => {
+            if (!referenceIds.includes(childId)) referenceIds.push(childId);
+          });
         });
+
+        newModule.referenceIds = referenceIds;
 
         const node = {
           ...newModule,
@@ -200,8 +213,8 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
 
   const corePackageTemplate = require.resolve('./src/templates/CorePackage/index.js');
 
+  // For each node, create a page and use the updated corePackageTemplate
   corePackageData.data.allKojiCorePackageItem.nodes.forEach((node) => {
-    console.log('n', node);
     createPage({
       path: `/reference/packages/core/${node.slug}`,
       component: corePackageTemplate,
