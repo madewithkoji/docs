@@ -2,14 +2,16 @@
 :page-slug: core-frontend-overview
 :page-description: Overview of the @withkoji/core frontend module.
 
-Exposes the Koji class, which provides frontend methods for your Koji.
+Exposes the Koji class, which provides client-side methods for use on the frontend of your Koji.
+
+[NOTE]
+====
+* All methods in the frontend module are scoped for use only in frontend services of Kojis.
+If a method is invoked in a node/backend environment, it returns an error message.
+* Frontend modules do not require a constructor.
+====
 
 == Basic use
-
-All methods in the frontend module are scoped for use only in frontend services of Kojis.
-If a method is invoked in a node/backend environment, it returns an error message.
-
-Frontend modules do not require a constructor.
 
 To use frontend methods, install the <<withkoji-koji-core#, @withkoji/core package>> in the frontend of your project.
 
@@ -19,8 +21,6 @@ Import the package in your frontend code.
 import Koji from '@withkoji/core';
 
 Initialize the package with your configuration data.
-
-TIP: Ideally, your code will initialize the package one time, before any data in the application is rendered.
 
 [source,javascript]
 ----
@@ -59,7 +59,7 @@ _<<core-frontend-analytics#,Analytics>>_, Class that enables you to track custom
 [id=".configInitialized", reftext="configInitialized"]
 === .configInitialized
 
-_Boolean_, Indicates whether the package has been <<.config#, initialized with configuration data>>.
+_Boolean_, Indicates whether the package has been <<.config, initialized with configuration data>>.
 Defaults to `false`.
 
 [id=".dispatch", reftext="dispatch"]
@@ -80,7 +80,7 @@ _<<core-frontend-identity#,Identity>>_, Class that manages authentication and au
 [id=".isReady", reftext="isReady"]
 === .isReady
 
-_Boolean_, Indicates whether the Koji is <<.ready#, ready to start receiving events>>.
+_Boolean_, Indicates whether the Koji is <<.ready, ready to start receiving events>>.
 
 [id=".playerState", reftext="playerState"]
 === .playerState
@@ -124,8 +124,10 @@ Exposes the following classes:
 === .config(kojiConfig, kojiConfigOptions)
 
 Initializes this package for use with configuration data from the `koji.json` file.
-This method sets up the services, remix values, development environment, and deployment instructions for your Koji.
+This method sets up the services, remix values, development environment, and deployment instructions for your Koji template.
 It also performs some basic structural checks.
+
+NOTE: A template should initialize the package one time, before any data in the application is rendered.
 
 ==== Parameters
 
@@ -143,7 +145,7 @@ Koji.config(require('././koji.json'));
 
 Indicates that the Koji is ready to start receiving events.
 
-NOTE: You must call this function after initializing the package and subscribing to remix state changes, but before advancing to the preview with Koji.remix.finish.
+NOTE: You must call this function after initializing the package and subscribing to remix state changes, but before advancing to the preview with `Koji.remix.finish`.
 
 ==== Example
 
@@ -170,8 +172,7 @@ Configuration options for the Koji.
 ==== Properties
 
 * `projectId` – _String_, (Optional) Unique identifier for the Koji.
-* `services` – _Services_, (Optional) Defines services for the Koji.
-Accepts key-value pairs of services and endpoints.
+* `services` – _<<Services>>_, (Optional) Defines services for the Koji.
 
 == Type aliases
 

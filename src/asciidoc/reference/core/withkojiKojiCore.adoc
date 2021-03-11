@@ -12,7 +12,7 @@ If your Koji's code uses any of the deprecated packages, see <<migrate-koji-core
 
 == Available features
 
-This package provides client-side methods for use on the frontend of the Koji and server-side methods for use in backend services of your Koji.
+This package provides client-side methods for use on the frontend of your Koji and server-side methods for use in backend services of your Koji.
 For example:
 
 * Dynamically get and set custom remix values.
@@ -24,8 +24,6 @@ For example:
 * Implement a Koji database for the backend of your Koji.
 * Track custom analytics events in your Koji.
 * Implement real-time communication between connected clients in your Koji.
-
-For a complete list of available methods, see the https://madewithkoji.github.io/koji-core[package reference documentation].
 
 == Installation
 
