@@ -300,20 +300,12 @@
       "defaultPath": "/reference/packages/packages-overview",
       "sections": [
         {
-          "name": "Packages for Koji features",
+          "name": "Koji developer packages",
           "root": "/packages",
           "items": [
             {
-              "name": "Available packages",
+              "name": "Overview",
               "slug": "packages-overview"
-            },
-            {
-              "name": "@withkoji/core",
-              "slug": "withkoji-koji-core"
-            },
-            {
-              "name": "@withkoji/custom-vcc-sdk",
-              "slug": "withkoji-custom-vcc-sdk"
             }
           ]
         },
@@ -323,7 +315,7 @@
           "items": [
             {
               "name": "Overview",
-              "slug": "core-overview"
+              "slug": "withkoji-koji-core"
             },
             {
               "name": "Backend",
@@ -392,6 +384,20 @@
                   "slug": "core-frontend-ui-present"
                 }
               ]
+            }
+          ]
+        },
+        {
+          "name": "@withkoji/custom-vcc-sdk",
+          "root": "/packages/customvcc",
+          "items": [
+            {
+              "name": "Overview",
+              "slug": "withkoji-custom-vcc-sdk"
+            },
+            {
+              "name": "CustomVcc",
+              "slug": "customvcc-reference"
             }
           ]
         },

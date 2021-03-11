@@ -38,6 +38,9 @@ npm install --save @withkoji/core
 
 == Basic use
 
+The @withkoji/core package provides a set of modules that are specific to client and server behaviors.
+For a reference of all available functionality in these modules, see the <<core-frontend-overview#, Frontend>> and <<core-backend-overview#, Backend>> modules.
+
 === Frontend
 
 Enable the user to upload an image from the frontend of the Koji.
@@ -99,6 +102,6 @@ app.listen(PORT, () => {
 
 == Related resources
 
-* https://madewithkoji.github.io/koji-core[Package reference]
 * https://github.com/madewithkoji/koji-core[@withkoji/core on Github]
 * https://www.npmjs.com/package/@withkoji/core[@withkoji/core on npm]
+* <<quick-start#>>

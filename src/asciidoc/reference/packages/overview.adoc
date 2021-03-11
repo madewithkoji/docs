@@ -1,4 +1,4 @@
-= Available packages for Koji features
+= Available packages for Koji developers
 :page-slug: packages-overview
 :page-description: List of available npm packages that provide features and functionality for use in Koji templates.
 
@@ -8,11 +8,11 @@ The following packages provide features and functionality for use in Koji templa
 <<withkoji-koji-core#>>  ::
 +
 [.init-cap]
-include::withkojiKojiCore.adoc[tag=description]
+include::../core/withkojiKojiCore.adoc[tag=description]
 <<withkoji-custom-vcc-sdk#>>  ::
 +
 [.init-cap]
-include::withkojiCustomVccSdk.adoc[tag=description]
+include::../customVcc/withkojiCustomVccSdk.adoc[tag=description]
 
 == Deprecated packages
 
@@ -22,28 +22,28 @@ They should not be used in future templates.
 <<withkoji-koji-analytics-sdk#>>  ::
 +
 [.init-cap]
-include::withkojiKojiAnalyticsSdk.adoc[tag=description]
+include::../deprecated/withkojiKojiAnalyticsSdk.adoc[tag=description]
 <<withkoji-koji-auth-sdk#>>  ::
 +
 [.init-cap]
-include::withkojiKojiAuthSdk.adoc[tag=description]
+include::../deprecated/withkojiKojiAuthSdk.adoc[tag=description]
 <<withkoji-database-package#>> ::
 +
 [.init-cap]
-include::withkojiDatabase.adoc[tag=description]
+include::../deprecated/withkojiDatabase.adoc[tag=description]
 <<withkoji-dispatch-package#>>  ::
 +
 [.init-cap]
-include::withkojiDispatch.adoc[tag=description]
+include::../deprecated/withkojiDispatch.adoc[tag=description]
 <<withkoji-koji-iap-package#>>  ::
 +
 [.init-cap]
-include::withkojiIAP.adoc[tag=description]
+include::../deprecated/withkojiIAP.adoc[tag=description]
 <<withkoji-user-defaults-package#>>  ::
 +
 [.init-cap]
-include::withkojiUserDefaults.adoc[tag=description]
+include::../deprecated/withkojiUserDefaults.adoc[tag=description]
 <<withkoji-vcc-package#>>  ::
 +
 [.init-cap]
-include::withkojiVCC.adoc[tag=description]
+include::../deprecated/withkojiVCC.adoc[tag=description]

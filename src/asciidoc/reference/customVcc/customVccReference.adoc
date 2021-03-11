@@ -1,27 +1,10 @@
-= @withkoji/custom-vcc-sdk
-:page-slug: withkoji-custom-vcc-sdk
-:page-description: Package for implementing custom Visual Customization Controls (VCCs) for your template.
+= CustomVcc
+:page-slug: customvcc-reference
+:page-description: Class for implementing a custom control to use in Koji templates.
 
-The @withkoji/custom-vcc-sdk package enables you to
-//tag::description[]
-implement custom Visual Customization Controls (VCCs) for your template.
-//end::description[]
+Implements a custom control for capturing user input in Koji templates.
 
-The Koji platform includes VCCs for standard elements, such as images, text, and sounds.
-In addition, you can build custom VCCs to provide new types of customizations that match closely with the application you are developing.
-For example, some Koji templates provide tile map editors, sound enhancers, or custom avatar creators to enhance the interactivity for remixers.
-
-== Install
-
-Install the package in your Koji project.
-
-[source,bash]
-npm install --save @withkoji/custom-vcc-sdk
-
-== CustomVcc
-
-[.hcode, id="new CustomVcc", reftext="new CustomVcc"]
-=== new CustomVcc()
+== Constructor
 
 Instantiates `CustomVcc`.
 
@@ -33,16 +16,16 @@ import CustomVcc from '@withkoji/custom-vcc-sdk';
 const customVcc = new CustomVcc();
 ----
 
-== CustomVcc methods
+== Methods
 
 [.hcode, id=".change", reftext="change"]
 === .change(newValue)
 
-Updates the VCC value with the user-entered value.
+Updates the value with the user-entered value.
 
 ==== Parameters
 
-* `newValue` – _Any_, current value of the VCC.
+* `newValue` – _Any_, current value of the custom control.
 
 ==== Example
 
@@ -55,13 +38,13 @@ customVcc.change(newValue);
 === .onTheme(handler)
 
 Listens to changes to the theme value, to retrieve values relating to the Koji display theme.
-The theme returned in the listener allows you to style the VCC to match the user’s current theme on Koji (dark or light).
+The theme returned in the listener allows you to style the control to match the user’s current theme on Koji (dark or light).
 
 ==== Parameters
 
 * `handler` – _Function_, called when theme is available.
 Receives the following property as input:
-** `theme` – _Object_, represents the theme as an object. See <<Theme>>.
+** `theme` – _<<Theme>>_, represents the theme as an object.
 
 ==== Example
 
@@ -69,7 +52,7 @@ Receives the following property as input:
 ----
 customVcc.onTheme((theme) => {
 	// theme is a Koji editor theme
- 	// save this value in order to style your VCC to match the user's current theme
+ 	// save this value in order to style your control to match the user's current theme
 });
 ----
 
@@ -85,26 +68,26 @@ Calling `change` immediately fires an `onUpdate`.
 
 * `handler` – _Function_, handle changes to the custom value.
 Receives the following property as input:
-** `props` – _Object_, contains the properties of the VCC. See <<Props>>.
+** `props` – _<<Props>>_, contains the properties of the custom control.
 
 ==== Example
 
 [source,javascript]
 ----
 customVcc.onUpdate((props) => {
-	// props is an object containing the VCC's current state.
+	// props is an object containing the control's current state.
 });
 ----
 
 [.hcode, id=".register", reftext="register"]
 === .register(width, height)
 
-Indicates that the custom VCC has loaded and registers it to trigger the on events from the parent editor.
+Indicates that the custom control has loaded and registers it to trigger the on events from the parent editor.
 
 ==== Parameters
 
-* `width` – (Optional) _Any_, width of the custom VCC.
-* `height` – (Optional) _Any_, height of the custom VCC.
+* `width` – (Optional) _Any_, width of the custom control.
+* `height` – (Optional) _Any_, height of the custom control.
 
 ==== Example
 
@@ -147,14 +130,14 @@ customVcc.uploadFile(myBlob, myFileName, (url) => {
 });
 ----
 
-== CustomVcc objects
+== Interfaces
 
 === Props
 
-A `props` object represents the current state of a custom VCC.
+Represents the current state of a custom control.
 It is returned to the handler listening to <<onUpdate>>.
 
-The `props` object includes the following properties.
+==== Properties
 
 [source,javascript]
 ----
@@ -170,8 +153,8 @@ The `props` object includes the following properties.
 };
 ----
 <1> `type` – Type signature for this VCC.
-<2> `name` – Name of the VCC.
-<3> `value` – Current value of the VCC.
+<2> `name` – Name of the control.
+<3> `value` – Current value of the control.
 <4> `scope` – Name of the section where this VCC appears in the consumer application.
 <5> `variableName` – Resolved variable name of this VCC (`scope.key`).
 <6> `options` – An object containing any options passed in `typeOptions`.
@@ -182,10 +165,10 @@ However, this object can be useful when creating more complex custom controls, l
 
 === Theme
 
-A `theme` object allows you to use styles that match the colors and styles of the remixer's active theme.
+Allows you to use styles that match the colors and styles of the remixer's active theme.
 It is returned to the handler listening to <<onTheme>>.
 
-The `theme` object includes the following properties.
+==== Properties
 
 [source,javascript]
 ----
@@ -200,6 +183,8 @@ The `theme` object includes the following properties.
 <2> `breakpoints` – An object containing responsive style breakpoints of the theme.
 <3> `colors` – An object of key-value pairs representing the theme's named colors.
 <4> `mixins` – An object containing CSS mixins to style specific elements.
+
+==== Example
 
 Here is an example of some of the properties of the `theme` object.
 
@@ -226,10 +211,3 @@ Here is an example of some of the properties of the `theme` object.
 	}
 }
 ----
-
-
-== Related resources
-
-* https://github.com/madewithkoji/koji-custom-vcc-sdk[@withkoji/custom-vcc-sdk on Github]
-* <<build-custom-vcc#>>
-* <<cat-selector-blueprint#, Blueprint: Custom VCC>>
