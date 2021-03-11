@@ -12,7 +12,7 @@ If your Koji's code uses any of the deprecated packages, see <<migrate-koji-core
 
 == Available features
 
-This package provides client-side methods for use on the frontend of the Koji and server-side methods for use in backend services of your Koji.
+This package provides client-side methods for use on the frontend of your Koji and server-side methods for use in backend services of your Koji.
 For example:
 
 * Dynamically get and set custom remix values.
@@ -25,8 +25,6 @@ For example:
 * Track custom analytics events in your Koji.
 * Implement real-time communication between connected clients in your Koji.
 
-For a complete list of available methods, see the https://madewithkoji.github.io/koji-core[package reference documentation].
-
 == Installation
 
 Install the package in the frontend and backend services of your Koji project.
@@ -37,6 +35,9 @@ npm install --save @withkoji/core
 ----
 
 == Basic use
+
+The @withkoji/core package provides a set of modules that are specific to client and server behaviors.
+For a reference of all available functionality in these modules, see the <<core-frontend-overview#, Frontend>> and <<core-backend-overview#, Backend>> modules.
 
 === Frontend
 
@@ -99,6 +100,6 @@ app.listen(PORT, () => {
 
 == Related resources
 
-* https://madewithkoji.github.io/koji-core[Package reference]
 * https://github.com/madewithkoji/koji-core[@withkoji/core on Github]
 * https://www.npmjs.com/package/@withkoji/core[@withkoji/core on npm]
+* <<quick-start#>>
