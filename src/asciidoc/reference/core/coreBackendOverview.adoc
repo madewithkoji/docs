@@ -1,6 +1,73 @@
 = @withkoji/core Backend
 :page-slug: core-backend-overview
-:page-description: Overview of the @withkoji/core backend modules
+:page-description: Overview of the @withkoji/core backend module.
 
-== Usage
+Exposes the KojiBackend variable, which provides server-side methods for use on the backend of your Koji.
 
+[NOTE]
+====
+* All methods in the backend module are scoped for use only in backend services of Kojis.
+If a method is invoked in a frontend environment, it returns an error message.
+* All backend modules follow the same constructor pattern.
+====
+
+== Basic use
+
+To use backend methods, install the <<withkoji-koji-core#, @withkoji/core package>> in the backend of your project.
+
+include::../../docs/_includes/backend-basic-use.adoc[tag=all]
+
+== Types
+
+=== Database
+
+_<<core-backend-database#, Database>>_, Class that implements a Koji database on the backend of your Koji template.
+
+=== Dispatch
+
+_<<core-backend-dispatch#, Dispatch>>_, Class that implements a dispatch system for real-time communication on the backend of your Koji template.
+
+=== IAP
+_<<core-backend-iap#, IAP>>_, Class that manages in-app purchases on the backend of your Koji template.
+
+=== Identity
+
+_<<core-backend-identity#, Identity>>_, Class that manages authentication and authorization on the backend of your Koji template.
+
+=== Secret
+
+_<<core-backend-secret#, Secret>>_, Class that securely resolves sensitive data used in your Koji template.
+
+=== Middleware
+
+Executes an http://expressjs.com/en/guide/using-middleware.html[Express middleware], making Koji-specific data available on the `res.locals` property.
+
+The middleware manages the scope for backend functionality, so that your code can support your initial Koji along with all of its remixes.
+It works by parsing the request headers that the Koji platform uses to pass remix-specific data to the backend.
+
+You must apply this middleware before handling any routes.
+The middleware will transform `res.locals`, and then modules in KojiBackend will accept `res` as a configuration parameter.
+
+==== Parameters
+
+* `kojiConfig` – _<<KojiConfig>>_, (Optional) Configuration data for the Koji.
+
+==== Example
+
+[source,javascript]
+----
+const app = express();
+app.use(Koji.middleware(require('koji.json'));
+
+app.get('/data', (req, res, next) => {
+  // Backend constructor
+  const database = new KojiBackend.Database({ res });
+  ...
+};
+----
+
+== Interfaces
+
+=== KojiConfig
+
+include::../../docs/_includes/interface-KojiConfig.adoc[tag=all]
