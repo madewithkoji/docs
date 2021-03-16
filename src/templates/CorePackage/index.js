@@ -45,6 +45,7 @@ export const query = graphql`
             }
             name
             type {
+              name
               type
               types {
                 name
@@ -172,6 +173,7 @@ export const query = graphql`
           }
           name
           type {
+            name
             type
             types {
               name
@@ -332,6 +334,7 @@ const CorePackage = (props) => {
     referenceIds,
   } = kojiCorePackageItem;
 
+
   if (!Classes) Classes = [];
   if (!Enumerations) Enumerations = [];
   if (!Interfaces) Interfaces = [];
@@ -360,14 +363,29 @@ const CorePackage = (props) => {
     .filter((param) => param.type && param.type.type && param.type.type === 'reference')
     .reduce((acc, cur) => acc.includes(cur.type.id) ? acc : [...acc, cur.type.id], []);
 
-  const allReferenceIds = [
+  let allReferenceIds = [
     ...methodReferenceIds,
     ...propertyReferenceIds,
   ].reduce((acc, cur) => acc.includes(cur) ? acc : [...acc, cur], []);
 
   const enums = Enumerations.filter(({ id }) => allReferenceIds.includes(id));
-  const interfaces = AllInterfaces.filter(({ id }) => allReferenceIds.includes(id));
   const typeAliases = AllTypeAliases.filter(({ id }) => allReferenceIds.includes(id));
+
+  // One more pass for the typeAlias interface references
+  const typeAliasReferenceIds = typeAliases
+    // eslint-disable-next-line max-len
+    .map((typeAlias) => (typeAlias.type && typeAlias.type.declaration && typeAlias.type.declaration.signatures && typeAlias.type.declaration.signatures[0].parameters) || [])
+    .filter((arr) => arr.length)
+    .reduce((acc, cur) => [...acc, ...cur], [])
+    .filter((par) => par.type && par.type.type && par.type.type === 'reference')
+    .reduce((acc, cur) => [...acc, cur.type.id], []);
+
+  allReferenceIds = [
+    ...allReferenceIds,
+    ...typeAliasReferenceIds,
+  ];
+
+  const interfaces = AllInterfaces.filter(({ id }) => allReferenceIds.includes(id));
 
   useEffect(() => {
     document.querySelectorAll('pre code').forEach((block) => {
