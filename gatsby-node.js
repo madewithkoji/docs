@@ -1,109 +1,122 @@
 /* eslint-disable max-len */
 /* eslint-disable no-param-reassign */
 /* eslint-disable no-console */
-const { navItems } = require('./src/nav.json');
+const fetch = require('node-fetch');
+const { navItems } = require('./src/data/nav.json');
 const { resolvePathFromSlug } = require('./src/utils/resolvePathFromSlug');
-const core = require('./src/core.json');
 
 exports.sourceNodes = ({ actions, createNodeId, createContentDigest }) => {
-  try {
-    // Restrict the graphql data to only modules we want to display
-    const moduleNames = [
-      'backend/base',
-      'backend/database',
-      'backend/dispatch',
-      'backend/iap',
-      'backend/identity',
-      'backend/secret',
-      'frontend/analytics',
-      'frontend/dispatch',
-      'frontend/iap',
-      'frontend/identity',
-      'frontend/playerState',
-      'frontend/remix',
-      'frontend/ui/capture',
-      'frontend/ui/navigate',
-      'frontend/ui/present',
-    ];
+  function buildSourceNodes(kojiCoreDocs, res, rej) {
+    try {
+      // Restrict the graphql data to only modules we want to display
+      const moduleNames = [
+        'backend/base',
+        'backend/database',
+        'backend/dispatch',
+        'backend/iap',
+        'backend/identity',
+        'backend/secret',
+        'frontend/analytics',
+        'frontend/dispatch',
+        'frontend/iap',
+        'frontend/identity',
+        'frontend/playerState',
+        'frontend/remix',
+        'frontend/ui/capture',
+        'frontend/ui/navigate',
+        'frontend/ui/present',
+      ];
 
-    core.children.forEach((child) => {
-      if (moduleNames.includes(child.name)) {
-        const {
-          children,
-          flags,
-          groups,
-          sources,
-          ...newModule
-        } = child;
+      for (let x = 0; x < kojiCoreDocs.children.length; x += 1) {
+        const child = kojiCoreDocs.children[x];
 
-        // Create a list of referenceIds for each module
-        const referenceIds = [];
+        if (moduleNames.includes(child.name)) {
+          const {
+            children,
+            flags,
+            groups,
+            sources,
+            ...newModule
+          } = child;
 
-        // For each group, look for Classes, Enumerations, Functions, Interfaces, TypeAliases and Variables
-        // and make them top level properties.
-        //
-        // Also, make sure to build out the referenceIds so they're easily available
-        child.groups.forEach((group) => {
-          newModule[group.title] = child.children.filter(({ id }) => group.children.includes(id));
-          group.children.forEach((childId) => {
-            if (!referenceIds.includes(childId)) referenceIds.push(childId);
+          // Create a list of referenceIds for each module
+          const referenceIds = [];
+
+          // For each group, look for Classes, Enumerations, Functions, Interfaces, TypeAliases and Variables
+          // and make them top level properties.
+          //
+          // Also, make sure to build out the referenceIds so they're easily available
+          child.groups.forEach((group) => {
+            newModule[group.title] = child.children.filter(({ id }) => group.children.includes(id));
+            group.children.forEach((childId) => {
+              if (!referenceIds.includes(childId)) referenceIds.push(childId);
+            });
           });
+
+          newModule.referenceIds = referenceIds;
+
+          const node = {
+            ...newModule,
+            id: createNodeId(`Koji-Core-Package-Item-${newModule.name}`),
+            internal: {
+              type: 'KojiCorePackageItem',
+              contentDigest: createContentDigest(newModule),
+            },
+            slug: `core-${newModule.name.replace(/\//g, '-').toLowerCase()}`,
+          };
+
+          actions.createNode(node);
+        }
+      }
+    } catch (err) {
+      console.log('err', err);
+      rej(err);
+    }
+
+    for (let idx = 0; idx < navItems.length; idx += 1) {
+      const mappedNavItem = { ...navItems[idx], idx };
+
+      mappedNavItem.sections = mappedNavItem.sections.map((section, sectionIdx) => {
+        const mappedSection = { ...section, idx: sectionIdx };
+
+        mappedSection.items = mappedSection.items.map((item, itemIdx) => {
+          const mappedItem = { ...item, idx: itemIdx };
+          mappedItem.path = `${mappedNavItem.root}${section.root}/${item.slug}`;
+
+          if (mappedItem.subItems) {
+            mappedItem.subItems = mappedItem.subItems.map((subItem, subItemIdx) => {
+              const mappedSubItem = { ...subItem, idx: subItemIdx };
+              mappedSubItem.path = `${mappedNavItem.root}${section.root}/${subItem.slug}`;
+
+              return mappedSubItem;
+            });
+          }
+
+          return mappedItem;
         });
 
-        newModule.referenceIds = referenceIds;
-
-        const node = {
-          ...newModule,
-          id: createNodeId(`Koji-Core-Package-Item-${newModule.name}`),
-          internal: {
-            type: 'KojiCorePackageItem',
-            contentDigest: createContentDigest(newModule),
-          },
-          slug: `core-${newModule.name.replace(/\//g, '-').toLowerCase()}`,
-        };
-
-        actions.createNode(node);
-      }
-    });
-  } catch (err) {
-    console.log('err', err);
-  }
-
-  navItems.forEach((navItem, idx) => {
-    const mappedNavItem = { ...navItem, idx };
-
-    mappedNavItem.sections = mappedNavItem.sections.map((section, sectionIdx) => {
-      const mappedSection = { ...section, idx: sectionIdx };
-
-      mappedSection.items = mappedSection.items.map((item, itemIdx) => {
-        const mappedItem = { ...item, idx: itemIdx };
-        mappedItem.path = `${navItem.root}${section.root}/${item.slug}`;
-
-        if (mappedItem.subItems) {
-          mappedItem.subItems = mappedItem.subItems.map((subItem, subItemIdx) => {
-            const mappedSubItem = { ...subItem, idx: subItemIdx };
-            mappedSubItem.path = `${navItem.root}${section.root}/${subItem.slug}`;
-
-            return mappedSubItem;
-          });
-        }
-
-        return mappedItem;
+        return mappedSection;
       });
 
-      return mappedSection;
-    });
+      const node = {
+        ...mappedNavItem,
+        id: createNodeId(`Nav-Item-${mappedNavItem.name}`),
+        internal: {
+          type: 'NavItem',
+          contentDigest: createContentDigest(mappedNavItem),
+        },
+      };
 
-    const node = {
-      ...mappedNavItem,
-      id: createNodeId(`Nav-Item-${mappedNavItem.name}`),
-      internal: {
-        type: 'NavItem',
-        contentDigest: createContentDigest(mappedNavItem),
-      },
-    };
+      actions.createNode(node);
+    }
 
-    actions.createNode(node);
+    res();
+  }
+
+  return new Promise((res, rej) => {
+    fetch('https://raw.githubusercontent.com/madewithkoji/koji-core/mar-11-updates/koji-core-docs.json')
+      .then((response) => response.json())
+      .then((json) => buildSourceNodes(json, res, rej));
   });
 };
 
