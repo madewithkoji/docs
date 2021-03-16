@@ -15,39 +15,7 @@ If a method is invoked in a node/backend environment, it returns an error messag
 
 To use frontend methods, install the <<withkoji-koji-core#, @withkoji/core package>> in the frontend of your project.
 
-Import the package in your frontend code.
-
-[source,javascript]
-import Koji from '@withkoji/core';
-
-Initialize the package with your configuration data.
-
-[source,javascript]
-----
-// Initialize
-Koji.config(require('././koji.json'));
-
-// render
-render();
-----
-
-Indicate that the application is ready to start receiving events.
-
-[source,javascript]
-Koji.ready();
-
-Enable the user to upload an image from the frontend of the Koji.
-
-[source,javascript]
-----
-import Koji from '@withkoji/core';
-
-const captureImage = async () => {
-  const imageURL = await Koji.ui.capture.image();
-
-  console.log(imageURL); // The publicly accessible, CDN-backed path of the user's uploaded image
-}
-----
+include::../../docs/_includes/frontend-basic-use.adoc[tag=all]
 
 == Properties
 
@@ -156,14 +124,7 @@ Koji.ready();
 
 === KojiConfig
 
-Configuration data for the Koji.
-
-==== Properties
-
-* `@@initialTransform` – _Any_, (Optional) Placeholder values for new remixes.
-* `deploy` – _Any_, (Optional) Instructions for deploying the services to production.
-* `develop` – _Any_, (Optional) Instructions for setting up the services in a development/editor environment.
-* `remixData` – _Any_, (Optional) Default values for the customizable remix data.
+include::../../docs/_includes/interface-KojiConfig.adoc[tag=all]
 
 === KojiConfigOptions
 

@@ -1,0 +1,12 @@
+= KojiConfig interface
+
+// tag::all[]
+Configuration data for the Koji.
+
+==== Properties
+
+* `@@initialTransform` – _Any_, (Optional) Placeholder values for new remixes.
+* `deploy` – _Any_, (Optional) Instructions for deploying the services to production.
+* `develop` – _Any_, (Optional) Instructions for setting up the services in a development/editor environment.
+* `remixData` – _Any_, (Optional) Default values for the customizable remix data.
+// end::[]

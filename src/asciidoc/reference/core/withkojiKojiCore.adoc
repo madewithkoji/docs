@@ -41,62 +41,11 @@ For a reference of all available functionality in these modules, see the <<core-
 
 === Frontend
 
-Enable the user to upload an image from the frontend of the Koji.
-
-[source,javascript]
-----
-import Koji from '@withkoji/core';
-
-const captureImage = async () => {
-  const imageURL = await Koji.ui.capture.image();
-
-  console.log(imageURL); // The publicly accessible, CDN-backed path of the user's uploaded image
-}
-----
+include::../../docs/_includes/frontend-basic-use.adoc[tag=all]
 
 === Backend
 
-Use the Koji database on the backend of the Koji, and use middleware to scope operations per remix.
-
-[source,javascript]
-----
-import { KojiBackend } from '@withkoji/core';
-import cors from 'cors';
-import express from 'express';
-import bodyParser from 'body-parser';
-
-const app = express();
-
-// Enable cors for preflight
-app.options('*', cors());
-
-// Whitelist all routes with cors
-app.use(cors());
-
-// Use express json
-app.use(express.json());
-
-// Parse application/json
-app.use(bodyParser.json());
-
-// Use Koji's middleware to handle scoping across your template's remixes
-app.use(KojiBackend.middleware);
-
-app.get('/data', (req, res, next) => {
-  const database = new KojiBackend.Database({ res });
-
-  // Look up an item in the items collection
-  const item = await database.get('items', 'myItemId');
-
-  res.status(200).json({
-    item,
-  });
-});
-
-app.listen(PORT, () => {
-  console.log(`Server is listening on port ${PORT}`);
-});
-----
+include::../../docs/_includes/backend-basic-use.adoc[tag=all]
 
 == Related resources
 
