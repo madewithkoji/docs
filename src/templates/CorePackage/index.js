@@ -378,12 +378,19 @@ const CorePackage = (props) => {
     });
   }, []);
 
+  // Replace inline links
   useEffect(() => {
     document.querySelectorAll('p').forEach((paragraph) => {
       // eslint-disable-next-line no-param-reassign
       paragraph.innerHTML = paragraph.innerHTML.replace(new RegExp(/\[\[.*\s\|\s.*\]\]/g), (match) => {
         const [href, link] = match.slice(2, -2).split('|').map((t) => t.trim());
         return `<a href="${href}" target="_blank">${link}</a>`;
+      });
+
+      // eslint-disable-next-line no-param-reassign
+      paragraph.innerHTML = paragraph.innerHTML.replace(new RegExp(/\[\[\S*]]/g), (match) => {
+        const [href] = match.slice(2, -2).split('|').map((t) => t.trim());
+        return `<a href="#${href}">${href}</a>`;
       });
     });
   }, []);
