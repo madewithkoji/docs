@@ -1,12 +1,25 @@
 import React from 'react';
 
+function getEnumDescription(e) {
+  console.log('e', e);
+  if (e.comment && e.comment.shortText) return e.comment.shortText;
+
+  return false;
+}
+
 // eslint-disable-next-line import/prefer-default-export
 export function renderEnum(e) {
+  const description = getEnumDescription(e);
+
   return (
     <div key={e.id}>
       {
         e.name &&
         <h3 id={e.name}>{e.name}</h3>
+      }
+      {
+        description &&
+        <p>{description}</p>
       }
       {
         (e.children.length && true) &&
@@ -16,7 +29,9 @@ export function renderEnum(e) {
             <ul>
               {
                 e.children.map((child) => (
-                  <li key={child.defaultValue}>{child.defaultValue.slice(0, -1).slice(1)}</li>
+                  <li key={child.defaultValue}>
+                    {`${child.name}: = '${child.defaultValue.slice(0, -1).slice(1)}'`}
+                  </li>
                 ))
               }
             </ul>
