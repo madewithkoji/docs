@@ -41,7 +41,6 @@ function getMethodSource(method) {
 
 // eslint-disable-next-line import/prefer-default-export
 export function renderMethod(method, interfaces) {
-  console.log('m', method);
   const methodTitle = getMethodTitle(method);
   const methodDescription = getMethodDescription(method);
   const methodParameters = getMethodParameters(method);

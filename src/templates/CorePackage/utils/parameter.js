@@ -3,6 +3,11 @@ import React from 'react';
 export function renderParameterType(parameter) {
   if (!parameter.type || !parameter.type.type) return null;
 
+  // If it's an index signature
+  if (parameter.type.declaration && parameter.type.declaration.indexSignature) {
+    return `[index: ${parameter.type.declaration.indexSignature.parameters[0].type.name}]: any`;
+  }
+
   // T is a stand-in for any
   if (parameter.type.name && parameter.type.name === 'T') return 'any';
 

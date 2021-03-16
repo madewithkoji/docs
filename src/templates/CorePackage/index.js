@@ -1,7 +1,6 @@
 /* eslint-disable camelcase */
 /* eslint-disable react/prop-types */
 import React, { useEffect } from 'react';
-// import PropTypes from 'prop-types';
 import { graphql } from 'gatsby';
 import styled from 'styled-components';
 import hljs from 'highlight.js';
@@ -55,6 +54,9 @@ export const query = graphql`
           }
         }
         Type_aliases {
+          comment {
+            shortText
+          }
           name
           id
           type {
@@ -77,7 +79,16 @@ export const query = graphql`
                   }
                   name
                 }
+                type {
+                  name
+                  type
+                }
               }
+            }
+            type 
+            types {
+              type
+              value
             }
           }
         }
@@ -116,6 +127,22 @@ export const query = graphql`
               name
               type {
                 id
+                declaration {
+                  indexSignature {
+                    parameters {
+                      name
+                      kind
+                      type {
+                        name
+                        type
+                      }
+                    }
+                    type {
+                      name
+                      type
+                    }
+                  }
+                }
                 elementType {
                   name
                   type
@@ -334,7 +361,6 @@ const CorePackage = (props) => {
     referenceIds,
   } = kojiCorePackageItem;
 
-
   if (!Classes) Classes = [];
   if (!Enumerations) Enumerations = [];
   if (!Interfaces) Interfaces = [];
@@ -369,7 +395,9 @@ const CorePackage = (props) => {
   ].reduce((acc, cur) => acc.includes(cur) ? acc : [...acc, cur], []);
 
   const enums = Enumerations.filter(({ id }) => allReferenceIds.includes(id));
-  const typeAliases = AllTypeAliases.filter(({ id }) => allReferenceIds.includes(id));
+
+  // Type aliases include the generic reference ids
+  const typeAliases = AllTypeAliases.filter(({ id }) => [...referenceIds, ...allReferenceIds].includes(id));
 
   // One more pass for the typeAlias interface references
   const typeAliasReferenceIds = typeAliases
@@ -410,6 +438,9 @@ const CorePackage = (props) => {
         const [href] = match.slice(2, -2).split('|').map((t) => t.trim());
         return `<a href="#${href}">${href}</a>`;
       });
+
+      // eslint-disable-next-line no-param-reassign
+      paragraph.innerHTML = paragraph.innerHTML.replace(new RegExp(/`.*?`/g), (match) => `<code>${match.slice(1, -1)}</code>`);
     });
   }, []);
 

@@ -1,13 +1,23 @@
 import React from 'react';
 import { renderParameterDescription, renderParameterType, parameterIsArray } from './parameter';
 
-function parseTypeAliasType(declaration) {
-  if (declaration.signatures && declaration.signatures[0]) return 'function';
-  return declaration.type || false;
+function getTypeAliasUnionOptions(typeAlias) {
+  const unionOptions = (typeAlias.type.types || []).map((t) => t.value);
+
+  return unionOptions.length ? unionOptions.map((o) => `"${o}"`).join(' | ') : false;
 }
 
-function getTypeAliasDescription(declaration) {
+function parseTypeAliasType(typeAlias, declaration) {
+  if (declaration.signatures && declaration.signatures[0]) return 'function';
+
+  return typeAlias.type.type;
+}
+
+function getTypeAliasDescription(typeAlias, declaration) {
+  if (typeAlias.comment && typeAlias.comment.shortText) return typeAlias.comment.shortText;
+
   if (!declaration.comment || !declaration.comment.shortText) return false;
+
   return declaration.comment.shortText;
 }
 
@@ -15,6 +25,12 @@ function getTypeAliasParameters(declaration) {
   if (!declaration.signatures || !declaration.signatures[0]) return false;
 
   return declaration.signatures[0].parameters;
+}
+
+function getTypeAliasReturn(declaration) {
+  if (!declaration.signatures || !declaration.signatures[0]) return false;
+
+  return declaration.signatures[0].type && declaration.signatures[0].type.name;
 }
 
 function renderTypeAliasFunction() {
@@ -27,6 +43,7 @@ function renderTypeAliasUnion() {
 
 // eslint-disable-next-line import/prefer-default-export
 export function renderTypeAlias(typeAlias, interfaces) {
+  console.log('t', typeAlias);
   const {
     name,
     type,
@@ -35,9 +52,11 @@ export function renderTypeAlias(typeAlias, interfaces) {
   let { declaration } = type;
   if (!declaration) declaration = {};
 
-  const typeAliasType = parseTypeAliasType(declaration);
-  const typeAliasDescription = getTypeAliasDescription(declaration);
+  const typeAliasType = parseTypeAliasType(typeAlias, declaration);
+  const typeAliasDescription = getTypeAliasDescription(typeAlias, declaration);
   const typeAliasParameters = getTypeAliasParameters(declaration);
+  const typeAliasReturn = getTypeAliasReturn(declaration);
+  const unionOptions = getTypeAliasUnionOptions(typeAlias);
 
   return (
     <div key={typeAlias.id}>
@@ -51,10 +70,29 @@ export function renderTypeAlias(typeAlias, interfaces) {
               {`(${typeAliasParameters.map(({ name: parameterName }) => parameterName).join(', ')})`}
             </>
           }
+          {
+            !typeAliasParameters &&
+            <>
+              {'()'}
+            </>
+          }
+          {
+            typeAliasReturn &&
+            <>
+              {' => '}
+              <em>{typeAliasReturn}</em>
+            </>
+          }
         </h3>
       }
       {
-        (name && typeAliasType !== 'function') &&
+        (name && typeAliasType === 'union' && unionOptions) &&
+        <h3 id={typeAlias.name}>
+          {`${typeAlias.name}: ${unionOptions}`}
+        </h3>
+      }
+      {
+        (name && !['function', 'union'].includes(typeAliasType)) &&
         <h3 id={typeAlias.name}>
           {typeAlias.name}
         </h3>
