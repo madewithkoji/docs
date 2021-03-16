@@ -346,9 +346,26 @@ const CorePackage = (props) => {
 
   const properties = Classes[0].children.filter(({ kindString }) => kindString === 'Property');
 
-  const enums = Enumerations.filter(({ id }) => referenceIds.includes(id));
-  const interfaces = AllInterfaces.filter(({ id }) => referenceIds.includes(id));
-  const typeAliases = AllTypeAliases.filter(({ id }) => referenceIds.includes(id));
+  const methodReferenceIds = (constructor ? [...methods, constructor] : methods)
+    .map((method) => (method.signatures && method.signatures[0]) || { parameters: [] })
+    .reduce((acc, cur) => [...acc, ...(cur.parameters || [])], [])
+    .filter((param) => param.type && param.type.type && param.type.type === 'reference')
+    .reduce((acc, cur) => acc.includes(cur.type.id) ? acc : [...acc, cur.type.id], []);
+
+  const propertyReferenceIds = properties
+    .map((property) => property.type || {})
+    .filter((param) => param.type && param.type.type && param.type.type === 'reference')
+    .reduce((acc, cur) => acc.includes(cur.type.id) ? acc : [...acc, cur.type.id], []);
+
+  const allReferenceIds = [
+    ...referenceIds,
+    ...methodReferenceIds,
+    ...propertyReferenceIds,
+  ].reduce((acc, cur) => acc.includes(cur) ? acc : [...acc, cur], []);
+
+  const enums = Enumerations.filter(({ id }) => allReferenceIds.includes(id));
+  const interfaces = AllInterfaces.filter(({ id }) => allReferenceIds.includes(id));
+  const typeAliases = AllTypeAliases.filter(({ id }) => allReferenceIds.includes(id));
 
   useEffect(() => {
     document.querySelectorAll('pre code').forEach((block) => {
