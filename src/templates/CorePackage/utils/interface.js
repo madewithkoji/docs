@@ -1,5 +1,5 @@
 import React from 'react';
-import { renderParameterType } from './parameter';
+import { parameterIsArray, renderParameterType } from './parameter';
 
 function getInterfaceParameters(i) {
   return i.children;
@@ -38,8 +38,9 @@ export function renderInterface(i) {
                     <p>
                       <code>{parameter.name}</code>
                       {' – '}
-                      {parameter.flags && parameter.flags.isOptional && <span>{'(Optional) '}</span>}
-                      <em>{renderParameterType(parameter)}</em>
+                      <em style={{ textTransform: 'capitalize' }}>{renderParameterType(parameter)}</em>
+                      {parameterIsArray(parameter) && <span>{'[]'}</span>}
+                      {parameter.flags && parameter.flags.isOptional && <span>{' (Optional)'}</span>}
                       {parameter.comment && parameter.comment.shortText ? `, ${parameter.comment.shortText}` : ''}
                     </p>
                   </li>

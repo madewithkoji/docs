@@ -19,7 +19,13 @@ function getMethodDescription(method) {
 
 function getMethodParameters(method) {
   if (!method.signatures || !method.signatures[0].parameters || !method.signatures[0].parameters.length) return false;
-  return method.signatures[0].parameters;
+
+  // Some methods have multiple signatures. The first signature will have the description,
+  // the last signature will have the correct types.
+  return method.signatures[method.signatures.length - 1].parameters.map((parameter, parameterIdx) => ({
+    ...parameter,
+    comment: method.signatures[0].parameters[parameterIdx].comment,
+  }));
 }
 
 function getMethodExample(method) {
@@ -35,6 +41,7 @@ function getMethodSource(method) {
 
 // eslint-disable-next-line import/prefer-default-export
 export function renderMethod(method, interfaces) {
+  console.log('m', method);
   const methodTitle = getMethodTitle(method);
   const methodDescription = getMethodDescription(method);
   const methodParameters = getMethodParameters(method);

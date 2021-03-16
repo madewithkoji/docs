@@ -3,6 +3,9 @@ import React from 'react';
 export function renderParameterType(parameter) {
   if (!parameter.type || !parameter.type.type) return null;
 
+  // T is a stand-in for any
+  if (parameter.type.name && parameter.type.name === 'T') return 'any';
+
   if (parameter.type.type === 'reference') {
     return (
       <a href={`#${parameter.type.name}`}>

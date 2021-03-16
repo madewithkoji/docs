@@ -17,11 +17,11 @@ function getTypeAliasParameters(declaration) {
   return declaration.signatures[0].parameters;
 }
 
-function renderTypeAliasFunction(declaration) {
+function renderTypeAliasFunction() {
   return '';
 }
 
-function renderTypeAliasUnion(declaration) {
+function renderTypeAliasUnion() {
   return '';
 }
 
@@ -75,7 +75,7 @@ export function renderTypeAlias(typeAlias, interfaces) {
                     <p>
                       <code>{parameter.name}</code>
                       {' – '}
-                      <em>{renderParameterType(parameter)}</em>
+                      <em style={{ textTransform: 'capitalize' }}>{renderParameterType(parameter)}</em>
                       {parameterIsArray(parameter) && <span>{'[]'}</span>}
                       {parameter.flags && parameter.flags.isOptional && <span>{' (Optional)'}</span>}
                       {renderParameterDescription(parameter, interfaces)}
