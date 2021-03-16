@@ -146,6 +146,9 @@ export const query = graphql`
       }
       Enumerations {
         id
+        comment {
+          shortText
+        }
         name
         children {
           defaultValue
@@ -358,7 +361,6 @@ const CorePackage = (props) => {
     .reduce((acc, cur) => acc.includes(cur.type.id) ? acc : [...acc, cur.type.id], []);
 
   const allReferenceIds = [
-    ...referenceIds,
     ...methodReferenceIds,
     ...propertyReferenceIds,
   ].reduce((acc, cur) => acc.includes(cur) ? acc : [...acc, cur], []);
