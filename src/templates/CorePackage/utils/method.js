@@ -9,7 +9,7 @@ function getMethodTitle(method) {
     return `${method.name}(${method.signatures[0].parameters.map((p) => p.name).join(', ')})`;
   }
 
-  return method.name;
+  return `${method.name}()`;
 }
 
 function getMethodDescription(method) {
@@ -63,7 +63,7 @@ export function renderMethod(method, interfaces) {
                     <p>
                       <code>{parameter.name}</code>
                       {' – '}
-                      <em>{renderParameterType(parameter)}</em>
+                      <em style={{ textTransform: 'capitalize' }}>{renderParameterType(parameter)}</em>
                       {parameterIsArray(parameter) && <span>{'[]'}</span>}
                       {parameter.flags && parameter.flags.isOptional && <span>{' (Optional)'}</span>}
                       {renderParameterDescription(parameter, interfaces)}
