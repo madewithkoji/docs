@@ -43,7 +43,6 @@ function renderTypeAliasUnion() {
 
 // eslint-disable-next-line import/prefer-default-export
 export function renderTypeAlias(typeAlias, interfaces) {
-  console.log('t', typeAlias);
   const {
     name,
     type,

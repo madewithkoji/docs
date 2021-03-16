@@ -1,7 +1,6 @@
 import React from 'react';
 
 function getEnumDescription(e) {
-  console.log('e', e);
   if (e.comment && e.comment.shortText) return e.comment.shortText;
 
   return false;
