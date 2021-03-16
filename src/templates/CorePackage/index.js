@@ -14,9 +14,9 @@ import { renderTypeAlias } from './utils/typeAlias';
 import 'highlight.js/styles/github.css';
 import '../../styles/dark-code.css';
 
-import { lineNumbers } from '../Asciidoc/utils/line-numbers';
-import { addCopyCodeButton } from '../Asciidoc/utils/copy-code';
-import { addLanguageIndicator } from '../Asciidoc/utils/lang-indicator';
+import { lineNumbers } from '../utils/line-numbers';
+import { addCopyCodeButton } from '../utils/copy-code';
+import { addLanguageIndicator } from '../utils/lang-indicator';
 
 import Content from '../Asciidoc/components/Content';
 import SEO from '../../components/Seo';

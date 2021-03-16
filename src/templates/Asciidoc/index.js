@@ -8,9 +8,9 @@ import { graphql } from 'gatsby';
 import { decodeHTML } from '../../utils/decodeHTML';
 import '../../styles/dark-code.css';
 
-import { lineNumbers } from './utils/line-numbers';
-import { addCopyCodeButton } from './utils/copy-code';
-import { addLanguageIndicator } from './utils/lang-indicator';
+import { lineNumbers } from '../utils/line-numbers';
+import { addCopyCodeButton } from '../utils/copy-code';
+import { addLanguageIndicator } from '../utils/lang-indicator';
 
 import { BLACK, DARK_GRAY } from '../../constants/colors';
 import Content from './components/Content';
