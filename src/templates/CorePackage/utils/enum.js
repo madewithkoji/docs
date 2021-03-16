@@ -16,7 +16,7 @@ export function renderEnum(e) {
             <ul>
               {
                 e.children.map((child) => (
-                  <li key={child.defaultValue}>{child.defaultValue}</li>
+                  <li key={child.defaultValue}>{child.defaultValue.slice(0, -1).slice(1)}</li>
                 ))
               }
             </ul>
