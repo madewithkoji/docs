@@ -74,13 +74,13 @@ class TemplateConverter {
       }
     }
     if (node.hasRole('tabs')) {
-      const scope = node.getAttribute("scope");
+      const scope = node.getAttribute('scope');
       const blocks = node.getBlocks();
       let tabOutput = '';
-      for (var i = 0; i < blocks.length; i++) {
+      for (let i = 0; i < blocks.length; i += 1) {
         let scopeAttrs = '';
         const blockTitle = blocks[i].getTitle();
-        if (scope) scopeAttrs = `data-scope="${scope}" data-scopevalue="${blockTitle}"`
+        if (scope) scopeAttrs = `data-scope="${scope}" data-scopevalue="${blockTitle}"`;
         tabOutput += `<div ${scopeAttrs} class="tabbed__toggle${i === 0 ? ' tabbed__toggle_active' : ''}">
             ${blockTitle}
           </div>`;
@@ -94,9 +94,9 @@ class TemplateConverter {
 
     if (node.getNodeName() === 'document') {
       if (!node.hasAttribute('page-banner')) {
-        let images = node.getImages();
-        for (var i = 0; i < images.length; i++) {
-          let target = images[i].getTarget();
+        const images = node.getImages();
+        for (let i = 0; i < images.length; i += 1) {
+          const target = images[i].getTarget();
           if (target.slice(-4) !== '.svg') {
             node.setAttribute('page-banner', `${images[i].getImagesDirectory()}/${images[i].getTarget()}`);
             break;
@@ -114,10 +114,11 @@ module.exports = {
   siteMetadata: {
     title: 'Koji for Developers',
     titleTemplate: '%s | Koji for Developers',
+    // eslint-disable-next-line max-len
     description: 'Develop the future of social with remixable applications. Kojis are mini web applications that can be shared anywhere across the web.',
     url: 'https://developer.withkoji.com',
     image: '/images/og-banner.png',
-    twitterUsername: "@madewithkoji",
+    twitterUsername: '@madewithkoji',
   },
 
   plugins: [
