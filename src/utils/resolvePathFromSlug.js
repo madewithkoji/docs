@@ -1,4 +1,4 @@
-const { navItems } = require('../nav.json');
+const { navItems } = require('../data/nav.json');
 
 const resolvePathFromSlug = (slug) => {
   const resolvedPath = navItems.map((navItem) => {
