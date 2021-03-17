@@ -51,8 +51,8 @@ image::publishSubscription-dec2020.png[Publish premium content, 400px]
 // tag::highlights[]
 ** The creator dashboard now shows consolidated analytics for all of your Kojis.
 The overview includes standard, built-in metrics that are calculated from access logs as well as transaction and revenue data.
-** You now have more options for customizing your Koji profile page.
 // end::highlights[]
+** You now have more options for customizing your Koji profile page.
 ** Transaction receipts on the Koji platform have been redesigned for enhanced usability.
 * The following features are now available in the <<withkoji-vcc-package#>> package.
 ** You can now generate a signed URL for any objects stored on the Koji CDN, enabling Kojis to serve them without exposing a permanent URI.
@@ -172,9 +172,7 @@ image::database-views-oct2020.png[Manage content]
 ** To customize the data presentation for remixers, configure a <<koji-database#, database view>> when developing the template.
 You can specify user-friendly collection and column names, define the data types for rich data display, exclude unnecessary columns, and control the column order and default sort.
 ** To access the data for a Koji you created, use the *Koji button* in the top right, and then go to *More > Manage this Koji > View database*.
-// tag::highlights[]
 * The new *Magic Link* enables you to register a custom `koji.to` link that points any Koji.
-// end::highlights[]
 For example, you could point to a Koji "bio", and then share or post the link everywhere.
 If you ever want to update your bio or use a different Koji, you can change the link target in one place.
 +
