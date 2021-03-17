@@ -22,10 +22,10 @@ System alerts and the loading spinner have also been updated.
 ** The Koji theme is no longer available as an account setting.
 All accounts now default to the dark theme preference.
 ** A custom magic link is no longer available as an account setting.
-Instead, your new Koji profile is available the from the automatic links at `\https://koji.to/~name` and `\https://koji.to/@name`.
+Instead, your new Koji profile is available the from an automatic link at `\https://koji.to/name`.
 Existing magic links will continue to work; however, they cannot be updated.
 // tag::highlights[]
-* The koji VCC type has been renamed to the link VCC type.
+* The koji VCC type has been renamed to the <<link-vcc#, link>> VCC type.
 The link type now supports an extended result format, which returns the page title, description, and a thumbnail URL that is hosted on the Koji CDN.
 * You can now hide the default action for cancelling a remix, enabling the template to implement its own navigation controls.
 // end::highlights[]
