@@ -14,6 +14,9 @@ include::../../_includes/tip-discord-server.adoc[tags=*]
 When an upgrade is available, the creater can tap *Upgrade this Koji* on the Koji's analytics page.
 ** Your Koji profile page has been updated to a new link-in-bio profile that is powered by a Koji template.
 The new profile builder features fully customizable backgrounds, buttons, and fonts and provides the same powerful analytics that are built into your Kojis.
++
+image::profileMar2021.png[]
+
 ** The navigation experience in Kojis has been improved with updates to the modal windows for embedded Kojis, removal of the confirmation prompt when linking to another website, and support for `koji.to` links.
 ** The onboarding flow for new users has been redesigned for a better welcome experience to Koji.
 // end::highlights[]
@@ -25,6 +28,8 @@ All accounts now default to the dark theme preference.
 Instead, your new Koji profile is available the from an automatic link at `\https://koji.to/name`.
 Existing magic links will continue to work; however, they cannot be updated.
 // tag::highlights[]
+* Paid remixes are a new way for developers to monetize their work through Koji.
+You can set the remix price when you publish a template in the store, and then earn when someone remixes your template. 
 * The koji VCC type has been renamed to the <<link-vcc#, link>> VCC type.
 The link type now supports an extended result format, which returns the page title, description, and a thumbnail URL that is hosted on the Koji CDN.
 * You can now hide the default action for cancelling a remix, enabling the template to implement its own navigation controls.
