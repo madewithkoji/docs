@@ -1,0 +1,5 @@
+= Core release notes
+
+// tag::all[]
+For a comprehensive list of changes and versions, see the https://github.com/madewithkoji/koji-core/releases[package release notes] in Github.
+// end::all[]

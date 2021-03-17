@@ -35,7 +35,25 @@
             },
             {
               "name": "News for Koji developers",
-              "slug": "developer-updates"
+              "slug": "developer-updates",
+              "subItems": [
+                {
+                  "name": "March 2021",
+                  "slug": "2021-mar-updates"
+                },
+                {
+                  "name": "February 2021",
+                  "slug": "2021-feb-updates"
+                },
+                {
+                  "name": "January 2021",
+                  "slug": "2021-jan-updates"
+                },
+                {
+                  "name": "2020",
+                  "slug": "2020-updates"
+                }
+              ]
             }
           ]
         },
