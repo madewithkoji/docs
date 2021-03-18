@@ -104,10 +104,10 @@ include::file.adoc[tag=description]
 +
 [.init-cap]
 include::image.adoc[tag=description]
-<<koji-vcc#>> ::
+<<link-vcc#>> ::
 +
 [.init-cap]
-include::koji.adoc[tag=description]
+include::link.adoc[tag=description]
 <<media#>> ::
 +
 [.init-cap]
