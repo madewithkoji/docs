@@ -1,6 +1,6 @@
 /* eslint-disable camelcase */
 /* eslint-disable react/prop-types */
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { graphql } from 'gatsby';
 import styled from 'styled-components';
 import hljs from 'highlight.js';
@@ -144,6 +144,7 @@ export const query = graphql`
                   }
                 }
                 elementType {
+                  id
                   name
                   type
                 }
@@ -219,6 +220,7 @@ const Container = styled.div`
 
 const StyledContainer = styled(Container)`
   display: flex;
+  opacity: ${({ style: { isReady } }) => isReady ? 1 : 0};
 `;
 
 const TOC = styled.div`
@@ -352,6 +354,8 @@ function parseClass(c) {
 }
 
 const CorePackage = (props) => {
+  const [isReady, setIsReady] = useState(false);
+
   const { allKojiCorePackageItem, kojiCorePackageItem } = props.data;
 
   let {
@@ -416,36 +420,38 @@ const CorePackage = (props) => {
   const interfaces = AllInterfaces.filter(({ id }) => allReferenceIds.includes(id));
 
   useEffect(() => {
-    document.querySelectorAll('pre code').forEach((block) => {
+    // Note: need to do async for loops here so we can call setIsReady after processing
+
+    const codeBlocks = document.querySelectorAll('pre code');
+    for (let idx = 0; idx < codeBlocks.length; idx += 1) {
+      const block = codeBlocks[idx];
       hljs.highlightBlock(block);
       lineNumbers(block);
       addCopyCodeButton(block);
       addLanguageIndicator(block);
-    });
-  }, []);
+    }
 
-  // Replace inline links
-  useEffect(() => {
-    document.querySelectorAll('p').forEach((paragraph) => {
-      // eslint-disable-next-line no-param-reassign
+    const paragraphs = document.querySelectorAll('p');
+    for (let idx = 0; idx < paragraphs.length; idx += 1) {
+      const paragraph = paragraphs[idx];
       paragraph.innerHTML = paragraph.innerHTML.replace(new RegExp(/\[\[.*\s\|\s.*\]\]/g), (match) => {
         const [href, link] = match.slice(2, -2).split('|').map((t) => t.trim());
         return `<a href="${href}" target="_blank">${link}</a>`;
       });
 
-      // eslint-disable-next-line no-param-reassign
       paragraph.innerHTML = paragraph.innerHTML.replace(new RegExp(/\[\[\S*]]/g), (match) => {
         const [href] = match.slice(2, -2).split('|').map((t) => t.trim());
         return `<a href="#${href}">${href}</a>`;
       });
 
-      // eslint-disable-next-line no-param-reassign
       paragraph.innerHTML = paragraph.innerHTML.replace(new RegExp(/`.*?`/g), (match) => `<code>${match.slice(1, -1)}</code>`);
-    });
+    }
+
+    setIsReady(() => true);
   }, []);
 
   return (
-    <StyledContainer maxWidth="lg">
+    <StyledContainer maxWidth="lg" style={{ isReady }}>
       <SEO title={name} description={description} />
       <Content>
         <h1>{name}</h1>

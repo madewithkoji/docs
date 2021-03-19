@@ -11,7 +11,7 @@ export function renderParameterType(parameter) {
   // T is a stand-in for any
   if (parameter.type.name && parameter.type.name === 'T') return 'any';
 
-  if (parameter.type.type === 'reference') {
+  if (parameter.type.type === 'reference' && parameter.type.id) {
     return (
       <a href={`#${parameter.type.name}`}>
         {parameter.type.name}
@@ -29,6 +29,14 @@ export function renderParameterType(parameter) {
 
   if (parameter.type.type === 'array') {
     if (parameter.type.elementType) {
+      if (parameter.type.elementType.type === 'reference' && parameter.type.elementType.id) {
+        return (
+          <a href={`#${parameter.type.elementType.name}`}>
+            {parameter.type.elementType.name}
+          </a>
+        );
+      }
+
       return parameter.type.elementType.name;
     }
   }
