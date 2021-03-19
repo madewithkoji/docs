@@ -2,7 +2,7 @@
 /* eslint-disable no-param-reassign */
 /* eslint-disable no-console */
 const fetch = require('node-fetch');
-const { navItems } = require('./src/data/nav.json');
+const { navItems } = require('./src/nav.json');
 const { resolvePathFromSlug } = require('./src/utils/resolvePathFromSlug');
 
 exports.sourceNodes = ({ actions, createNodeId, createContentDigest }) => {

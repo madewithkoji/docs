@@ -1,4 +1,4 @@
-const { navItems } = require('../data/nav.json');
+const { navItems } = require('../nav.json');
 
 const resolveBreadcrumbFromSlug = (slug) => {
   const resolvedBreadcrumb = navItems.map((navItem) => {
