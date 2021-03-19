@@ -1,0 +1,75 @@
+= March 2021 updates
+:page-slug: 2021-mar-updates
+:page-description: Brief digest of updates in March 2021 to the Koji platform and developer site.
+
+This digest summarizes updates to the Koji platform, packages, and developer site in March 2021.
+
+include::../../_includes/tip-discord-server.adoc[tags=*]
+
+// tag::highlights[]
+== March 17
+
+* The following usability improvements are now available on the Koji platform.
+** Creators can now automatically upgrade their Kojis to the latest version of your code.
+When an upgrade is available, the creater can tap *Upgrade this Koji* on the Koji's analytics page.
+** Your Koji profile page has been updated to a new link-in-bio profile that is powered by a Koji template.
+The new profile builder features fully customizable backgrounds, buttons, and fonts and provides the same powerful analytics that are built into your Kojis.
++
+image::profileMar2021.png[]
+
+** The navigation experience in Kojis has been improved with updates to the modal windows for embedded Kojis, removal of the confirmation prompt when linking to another website, and support for `koji.to` links.
+** The onboarding flow for new users has been redesigned for a better welcome experience to Koji.
+// end::highlights[]
+** The experiences for publishing a remix, using asset packs and associated editing tools, and selecting a color have been redesigned for better usability.
+System alerts and the loading spinner have also been updated.
+** The Koji theme is no longer available as an account setting.
+If your device is set to dark mode, Koji displays in dark theme mode.
+Otherwise, Koji displays in light theme mode.
+** A custom magic link is no longer available as an account setting.
+Instead, your new Koji profile is available the from an automatic link at `\https://koji.to/name`.
+Existing magic links will continue to work; however, they cannot be updated.
+// tag::highlights[]
+* Paid remixes are a new way for developers to monetize their work through Koji.
+You can set the remix price when you publish a template in the store, and then earn when someone remixes your template.
+* The koji VCC type has been renamed to the <<link-vcc#, link>> VCC type.
+The link type now supports an extended result format, which returns the page title, description, and a thumbnail URL that is hosted on the Koji CDN.
+* You can now hide the default action for cancelling a remix, enabling the template to implement its own navigation controls.
+// end::highlights[]
+To hide the default action, enable the new `InstantRemixingNativeCancel` entitlement.
+To implement a custom cancel action, use the new `remix.cancel` method in the @withkoji/core package.
+// tag::highlights[]
+* The following features are now available in the <<withkoji-koji-core#, @withkoji/core package>>.
+** The new `ui.navigate.edit` method enables a template to programmatically enter an edit experience.
+** In PlayerState, two new methods (`onFocus` and `onBlur`) and one new property (`hasFocus`) enable templates to respond to the focus state of the Koji.
+** In Database, for any method that updates a database entry, an optional `returnDoc` parameter returns the updated entry.
+// end::highlights[]
+** `Koji.ui.capture.sound` has been replaced with `Koji.ui.capture.audio`.
+`Koji.ui.capture.koji` has been replaced with `Koji.ui.capture.link`.
+** The `identity.getToken` method now returns a `presumedRole` that can be used in frontend services to provide owner or admin actions in a Koji.
+Admin actions must still be secured on the backend by resolving the user's role.
+** The `secret.generateSignedUrl` method now supports securing URLs with query string parameters.
+
++
+include::../../_includes/coreReleaseNotes.adoc[tag=all]
+// tag::highlights[]
+
+== March 2
+
+* On the developer site, a new set of <<quick-start#,quick start tutorials>> are available to help developers get going quickly on Koji.
+* The https://withkoji.atlassian.net/servicedesk/customer/portal/1[Koji Support] page is now available for logging bugs and requests with the Koji team.
+This short form enables better tracking and quicker resolution of problems.
+// end::highlights[]
++
+For the quickest answers to general questions, continue to check out the https://help.withkoji.com/[Help Center] or connect with the https://discord.com/invite/9egkTWf4ec[community on Discord].
+// tag::highlights[]
+* The following features are now available in the https://withkoji.com/create[Template Store].
+** Template creators can now see the number of remixes and the revenue for their template.
+** Creator usernames are now visible on templates.
+** New actions are available from the menu on the Template Details page – *Share*, for every template, and *Manage Template*, for your templates.
++
+image::templateDetails-mar2021.png[Template Details page]
+// end::highlights[]
+* The following features are now available on the Koji platform.
+** The https://withkoji.com/developer/projects[developer portal] now shows projects that have a running editor in a separate section.
+** The color VCC now validates the color string before returning a value.
+** The Koji editor now shows a confirmation prompt before closing the browser tab.
