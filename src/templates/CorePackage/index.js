@@ -85,7 +85,7 @@ export const query = graphql`
                 }
               }
             }
-            type 
+            type
             types {
               type
               value
@@ -512,7 +512,7 @@ const CorePackage = (props) => {
         {
           typeAliases.length > 0 &&
           <>
-            <h2 id={'typeAliases'}>{'Type Aliases'}</h2>
+            <h2 id={'typeAliases'}>{'Type aliases'}</h2>
             {
               typeAliases.map((typeAlias) => (
                 renderTypeAlias(typeAlias, interfaces)
@@ -627,7 +627,7 @@ const CorePackage = (props) => {
               style={{ isActive: props.currentHeader === 'typeAliases' }}
               href={'#typeAliases'}
             >
-              {'Type Aliases'}
+              {'Type aliases'}
             </SectionLink>
             {
               typeAliases.map(({ id, name: typeAliasName }) => (
