@@ -1,0 +1,39 @@
+:toc: right
+
+= Intro
+
+In this tutorial, we will go through the process of creating a remixable https://withkoji.com/~Svarog1389/rxkd[Falling Objects^] game with an existing https://withkoji.com/~Svarog1389/game-template-1[p5.js Game Template^] as our starting point.
+
+This tutorial assumes you've already gone through the https://developer.withkoji.com/tutorials/getting-started/your-first-project[Getting Started Tutorial^] and are familiar with the basics of Koji.
+
+If you get stuck at any point, feel free to ask for help in our https://discord.gg/kMkjJQ6Phb[Discord Server], or e-mail me at *marko@withkoji.com*
+
+== About the Starting Template
+
+We are using https://withkoji.com/~Svarog1389/game-template-1[Game Template] as our starting point because it was made specifically for these types of hyper-casual games, and has a lot of stuff handled for us which saves us quite a bit of time, such as:
+
+- Automatic sound loading
+- Improved image loading with optimization
+- Integrated live leaderboard without needing to modify any of the backend files
+- Easily configurable Remix menu
+- One liner calls for spawning special effects like particles and animated text
+
+Check out the template https://withkoji.com/~Svarog1389/game-template-1/details/code#README.md[README] for more information!
+
+== Game Overview
+
+Falling Objects is a simple game where the player tries to collect as many falling objects as they can without them falling off the screen.
+
+Player loses a life if an object falls down, and the game is over when there are no lives left.
+
+Player moves the character horizontally on the bottom by touching or clicking anywhere on the screen.
+
+== Forking the Game Template
+
+Let's get started by cloning the https://withkoji.com/~Svarog1389/game-template-1[Game Template]. You can do that by clicking on the *Koji logo* on the upper right corner, then *Advanced*, then find the *Fork* button.
+
+Koji web editor is recommended for this tutorial, but you are free to http://developer.withkoji.com/docs/develop/use-git[clone the newly created project to your local environment] if you wish.
+
+== Wrapping up
+
+In the next section, we will start by defining some of the game settings and loading some images and sounds.

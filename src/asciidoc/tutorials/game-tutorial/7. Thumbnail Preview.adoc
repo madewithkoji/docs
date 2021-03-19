@@ -1,0 +1,95 @@
+:toc: right
+
+= Thumbnail Preview
+
+The very last thing we need to do before releasing our new game into the wild, is to customize the thumbnail preview, so when users share their remixes, they get nice little previews that people will click on!
+
+During this section, we will edit the existing `Screenshot` component to include our collectibles and create a "fake" screenshot using our assets.
+
+== How it works
+
+Basically, whatever we render inside of `frontend/src/Components/Screenshot/index.js` will be rendered in the thumbnail preview that people see when this game is shared on socials.
+
+[NOTE]
+You can see what your thumbnail preview currently looks like in the `Thumbnail` tab of the http://developer.withkoji.com/docs/develop/testing-templates#_using_the_koji_debugger[Debugger], or inside the Live Preview from your web editor
+
+== Editing the Screenshot component
+
+By default, this component already shows `imgPlayer` in the center.
+
+It looks something like this:
+
+[source,javascript]
+-------------------
+<FeaturedImage
+    src={optimizeImage(remixValues.imgPlayer, 150, 150)}
+    rotation={randomRange(-30, 30)}
+    style={{
+        left: '50%',
+        top: '50%'
+    }}
+/>
+-------------------
+
+=== Moving the player down
+
+Let's move the player down a bit. To do that, just change the `top` value to something like `80%`:
+
+[source,javascript]
+-------------------
+<FeaturedImage
+    src={optimizeImage(remixValues.imgPlayer, 150, 150)}
+    rotation={randomRange(-30, 30)}
+    style={{
+        left: '50%',
+        top: '80%'
+    }}
+/>
+-------------------
+
+=== Adding Collectible images
+
+Now, let's add some `Collectible` images by duplicating the player's `FeaturedImage` below, and changing their positions around. They don't have to be exactly the same, you can play around and see what you like best. You can even randomize their positions if you want!
+
+[source,javascript]
+-------------------
+<FeaturedImage
+    src={optimizeImage(remixValues.imgCollectible, 150, 150)}
+    rotation={randomRange(-30, 30)}
+    style={{
+        left: '35%',
+        top: '25%'
+    }}
+/>
+
+<FeaturedImage
+    src={optimizeImage(remixValues.imgCollectible, 150, 150)}
+    rotation={randomRange(-30, 30)}
+    style={{
+        left: '75%',
+        top: '35%'
+    }}
+/>
+
+<FeaturedImage
+    src={optimizeImage(remixValues.imgCollectible, 150, 150)}
+    rotation={randomRange(-30, 30)}
+    style={{
+        left: '45%',
+        top: '50%'
+    }}
+/>
+-------------------
+
+Once done, your thumbnail preview should look something like this: 
+
+image:https://i.imgur.com/rsElqqp.png[alt="screenshot player",width=256,height=256]
+
+
+== Wrapping up
+
+*Congratulations!*
+
+You've reached the end of this tutorial!
+
+In the final section, we talk about Publishing your game and some additional suggestions going forward.
