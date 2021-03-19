@@ -1,6 +1,7 @@
-:toc: right
-
 = Remix
+:page-slug: remix
+:page-description: Modifying the Remix menu
+:figure-caption!:
 
 We've finished the main part of our game. But this is Koji! We don't stop here. 
 
@@ -188,4 +189,4 @@ image:https://i.imgur.com/F5BamYt.png[alt="screenshot player",width=256,height=2
 
 That's our `Remix` mode finished! We've just added the ability for users to change the `Collectible` image!
 
-In the next section, we will customize our thumbnail preview.
+In the <<thumbnail-preview#,next section>>, we will customize our thumbnail preview.

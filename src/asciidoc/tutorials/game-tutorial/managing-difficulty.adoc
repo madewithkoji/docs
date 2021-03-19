@@ -1,6 +1,7 @@
-:toc: right
-
 = Managing difficulty
+:page-slug: managing-difficulty
+:page-description: Managing difficulty
+:figure-caption!:
 
 At this stage, our game is finally playable!
 
@@ -79,4 +80,4 @@ We've actually finished developing the main part of our game!
 
 Of course, you can go back and try modifying something, or adding a new feature. Everything's a bonus from now on!
 
-In the next section, we'll take a look at the `Remix` menu and allow our assets to be customizable when this game is remixed.
+In the <<remix#,next section>>, we'll take a look at the `Remix` menu and allow our assets to be customizable when this game is remixed.

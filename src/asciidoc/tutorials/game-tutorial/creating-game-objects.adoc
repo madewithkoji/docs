@@ -1,6 +1,7 @@
-:toc: right
-
 = Creating game objects
+:page-slug: creating-game-objects
+:page-description: Creating game objects
+:figure-caption!:
 
 During this section, we will:
 
@@ -287,4 +288,4 @@ image:https://i.imgur.com/mtzJFG2.gif[alt="screenshot player",width=160,height=1
 
 Now that we've created the `Player` and `Collectible` objects and spawned them, we need to have them interact.
 
-In the next section, we'll check for some collision between them in order to add some score, and also have the player lose a life in case a Collectible falls to the bottom without getting caught.
+In the <<scoring-and-losing#,next section>>, we'll check for some collision between them in order to add some score, and also have the player lose a life in case a Collectible falls to the bottom without getting caught.

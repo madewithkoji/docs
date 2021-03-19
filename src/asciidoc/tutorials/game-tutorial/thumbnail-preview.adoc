@@ -1,6 +1,7 @@
-:toc: right
-
 = Thumbnail Preview
+:page-slug: thumbnail-preview
+:page-description: Modifying the thumbnail preview when the game is shared on socials
+:figure-caption!:
 
 The very last thing we need to do before releasing our new game into the wild, is to customize the thumbnail preview, so when users share their remixes, they get nice little previews that people will click on!
 
@@ -92,4 +93,4 @@ image:https://i.imgur.com/rsElqqp.png[alt="screenshot player",width=256,height=2
 
 You've reached the end of this tutorial!
 
-In the final section, we talk about Publishing your game and some additional suggestions going forward.
+In the <<finishing-up#,final section>>, we talk about Publishing your game and some additional suggestions going forward.

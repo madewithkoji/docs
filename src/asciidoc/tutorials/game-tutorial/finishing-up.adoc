@@ -1,4 +1,7 @@
 = Finishing Up
+:page-slug: finishing-up
+:page-description: Finishing up
+:figure-caption!:
 
 That's it, we just created a *fun and remixable Koji game*!
 

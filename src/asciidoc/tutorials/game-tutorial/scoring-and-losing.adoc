@@ -1,6 +1,7 @@
-:toc: right
-
 = Scoring and losing
+:page-slug: scoring-and-losing
+:page-description: Adding collision checks and lose conditions
+:figure-caption!:
 
 During this section, we will:
 
@@ -272,4 +273,4 @@ Deleting unused objects from memory is an especially important step in every gam
 
 At this point, our game is playable!
 
-In the next section, we'll add some difficulty management and have the game progressively get harder.
+In the <<managing-difficulty#,next section>>, we'll add some difficulty management and have the game progressively get harder.

@@ -1,6 +1,7 @@
-:toc: right
-
 = Intro
+:page-slug: intro
+:page-description: Tutorial for creating a remixable Koji game
+:figure-caption!:
 
 In this tutorial, we will go through the process of creating a remixable https://withkoji.com/~Svarog1389/rxkd[Falling Objects^] game with an existing https://withkoji.com/~Svarog1389/game-template-1[p5.js Game Template^] as our starting point.
 
@@ -32,8 +33,36 @@ Player moves the character horizontally on the bottom by touching or clicking an
 
 Let's get started by cloning the https://withkoji.com/~Svarog1389/game-template-1[Game Template]. You can do that by clicking on the *Koji logo* on the upper right corner, then *Advanced*, then find the *Fork* button.
 
+[NOTE]
 Koji web editor is recommended for this tutorial, but you are free to http://developer.withkoji.com/docs/develop/use-git[clone the newly created project to your local environment] if you wish.
 
-== Wrapping up
+== Sections
 
-In the next section, we will start by defining some of the game settings and loading some images and sounds.
+<<setting-up-assets#>>  ::
++
+[.init-cap]
+include::setting-up-assets.adoc[tag=description]
+<<creating-game-objects#>>  ::
++
+[.init-cap]
+include::creating-game-objects.adoc[tag=description]
+<<scoring-and-losing#>>  ::
++
+[.init-cap]
+include::scoring-and-losing.adoc[tag=description]
+<<managing-difficulty#>>  ::
++
+[.init-cap]
+include::managing-difficulty.adoc[tag=description]
+<<remix#>>  ::
++
+[.init-cap]
+include::remix.adoc[tag=description]
+<<thumbnail-preview#>>  ::
++
+[.init-cap]
+include::thumbnail-preview.adoc[tag=description]
+<<finishing-up#>>  ::
++
+[.init-cap]
+include::finishing-up.adoc[tag=description]
