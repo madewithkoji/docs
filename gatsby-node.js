@@ -114,7 +114,7 @@ exports.sourceNodes = ({ actions, createNodeId, createContentDigest }) => {
   }
 
   return new Promise((res, rej) => {
-    fetch('https://raw.githubusercontent.com/madewithkoji/koji-core/mar-11-updates/koji-core-docs.json')
+    fetch('https://raw.githubusercontent.com/madewithkoji/koji-core/main/koji-core-docs.json')
       .then((response) => response.json())
       .then((json) => buildSourceNodes(json, res, rej));
   });
