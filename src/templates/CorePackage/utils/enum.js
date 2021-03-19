@@ -23,7 +23,7 @@ export function renderEnum(e) {
       {
         (e.children.length && true) &&
         <>
-          <h4>{'Possible Values'}</h4>
+          <h4>{'Possible values'}</h4>
           <div className={'ulist'}>
             <ul>
               {
