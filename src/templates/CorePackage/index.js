@@ -144,6 +144,7 @@ export const query = graphql`
                   }
                 }
                 elementType {
+                  id
                   name
                   type
                 }
