@@ -382,7 +382,7 @@
                   "slug": "core-frontend-identity"
                 },
                 {
-                  "name": "Player State",
+                  "name": "PlayerState",
                   "slug": "core-frontend-playerstate"
                 },
                 {
