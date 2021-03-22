@@ -1,0 +1,97 @@
+= Setting up koji.json
+:page-slug: game-iap-setting-up-koji-json
+:page-description: Setting up koji.json and our remix values
+:figure-caption!:
+
+During this section, we will:
+
+- Add the `In-App Purchase` entitlement, so Koji can register our product
+- Define the `price` value that can be customized during Remix
+
+== Entitlements
+
+First, we should let Koji know that our new game template will contain `In-App Purchases`.
+
+For that, we need to add an `entitlement`.
+
+If you look inside `koji.json` located in the root of your project, you'll see an object called `entitlements` that looks like this:
+
+[source,json]
+-------------
+"entitlements": {
+    "InstantRemixing": true,
+    "InstantRemixingNativeNavigation": true,
+    "FeedEvents": true,
+    "CustomMetadata": {
+        "enabled": true,
+        "metadata": {
+        "title": "{{remixData.title}}",
+        "description": "How high can you stack them?"
+        }
+    }
+}
+-------------
+
+Let's add a new property called `InAppPurchases`, so your `entitlements` should now look like this:
+
+[source,json]
+-------------
+"entitlements": {
+    "InstantRemixing": true,
+    "InstantRemixingNativeNavigation": true,
+    "FeedEvents": true,
+    "CustomMetadata": {
+        "enabled": true,
+        "metadata": {
+        "title": "{{remixData.title}}",
+        "description": "How high can you stack them?"
+        }
+    },
+    "InAppPurchases": {
+        "enabled": true,
+        "products": [
+            {
+                "sku": "extraLives",
+                "name": "Extra Lives",
+                "price": "{{remixData.price}}",
+                "isConsumable": true
+            }
+        ]
+    }
+}
+-------------
+
+We've just added a product to our template:
+
+* `sku` - this is the string we will use later to look up our product when doing the actual purchase
+* `name` - This will be shown on the receipt when users make a purchase
+* `price` - Price of our product in USD. We set this to `{{remixData.price}}` which means it will use our custom value. We will define this in the next step.
+* `isConsumable` - We set this to `true` to allow this product to be purchased multiple times
+
+== Remix Data
+
+Still inside `koji.json`, scroll down to the `remixData` object. This is where we can define our customizable values that users can modify while remixing our template.
+
+Let's add a `price` property and set it to `0.1` for now:
+
+[source,json]
+-------------
+"remixData": {
+    ...
+    "price": 0.1
+  },
+-------------
+
+
+[NOTE]
+In order for our product to be registered, we need to *publish from the web editor*. This will allow us to test our purchases from the http://developer.withkoji.com/docs/develop/testing-templates#_debugging_in_app_purchases[Debugger]. *The price value also needs to be greater than 0*.
+
+
+[IMPORTANT]
+If working *locally*, you need to push your changes and pull them into the web editor, then publish. More info https://developer.withkoji.com/docs/publish/publish-locally-developed[here]
+
+== Wrapping up
+
+We now have our product and price set up.
+
+In the <<game-iap-payment-menu#,next section>>, we will create our Payment Menu UI component.

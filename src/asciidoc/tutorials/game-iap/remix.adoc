@@ -1,0 +1,141 @@
+= Updating game behavior
+:page-slug: game-iap-remix
+:page-description: Making the price customizable during Remix
+:figure-caption!:
+
+The last thing we need to do is make our price customizable when people remix this game.
+
+During this section, we will:
+
+- Install a new package which handles our price input format
+- Set up the price input field
+- Make sure our price value is updated
+
+== Installing the new Package
+
+For our price input field, we'll use a premade component that already handles all the proper formatting for us, so we don't have to worry about the user entering characters, incorrect price formats etc.
+
+For that, we are using `@anderjason/koji-react-frontend-tools` npm package, which is installed in this template because we're already using some of those components.
+
+Another package we will use is `@anderjason/money`, which is *not* installed, so let's go ahead and do it.
+
+On the bottom of your web editor, you'll see a black panel that looks like this:
+
+image:https://i.imgur.com/VSABST5.png[alt="terminal"]
+
+- Click on `frontend` to expand it
+- Inside of it, press `Ctrl+C` on your keyboard to stop the frontend server
+- Type `npm install @anderjason/money`, wait for it to finish
+- When it's done, type `npm start` to restart the frontend server
+
+== Price input field
+
+Inside `frontend/src/Components/Remix/index.js`:
+
+Let's add a state hook for our `price`, initialize its value and also set a `maxPrice` constant just to make sure users can't abuse anything.
+
+[source,javascript]
+------------------
+// Don't forget the imports!
+import { Money, Currency } from "@anderjason/money";
+
+...
+
+const maxPrice = new Money(100000, Currency.ofUSD());
+
+const Component = () => {
+    ...
+    const [price, setPrice] = useState(new Money(1, Currency.ofUSD()));
+
+    ...
+
+    useEffect(() => {
+        const remixValues = Koji.remix.get();
+        ...
+
+        // Make sure we get a number
+        // Multiplied by 100 because Currency uses that format
+        const remixPrice = Number(remixValues.price) * 100;
+        setPrice(new Money(remixPrice, Currency.ofUSD()));
+
+        ...
+    }, [])
+}
+------------------
+
+Then we want to render the `<MoneyInput>` inside `<Card>`, just below the `<Section>` component that contains the block image.
+
+[source,javascript]
+------------------
+// Don't forget the imports!
+import { MoneyInput } from "@anderjason/koji-react-frontend-tools";
+
+...
+<Card>
+    ...
+    <MoneyInput
+        placeholderLabel="Price To Refill Lives"
+        persistentLabel="Price To Refill Lives"
+        defaultValue={price}
+        maxValue={maxPrice}
+        onChange={(price) => setPrice(price)}
+        allowEmpty
+        supportLabel={price && price.rawValue > 0 ? "Set price to 0 to disable In-Game Purchases." : `In-Game Purchases disabled.`}
+    />
+    ...
+</Card>
+------------------
+
+We can set its props like in the example above.
+For additional clarity, we're setting the `supportLabel` prop of the component to say `In-Game Purchases disabled.` in case the price is empty or `0`, otherwise it will provide instructions on how to do that: `Set price to 0 to disable In-Game Purchases.`
+
+=== Updating the price value
+
+Lastly, we need to update the changed `price` in `koji.json`. To do that, find the `onFinish()` function, still inside the same file, and inside `await Koji.remix.set({...})`, add the following property:
+
+`price: price ? price.rawValue / 100 : 0`
+
+Here, we are just running a check to make sure we don't write a `null` value into `koji.json`, in which case we turn it to `0`.
+
+The resulting `onFinish()` function should now look like this:
+
+[source,javascript]
+------------------
+const onFinish = async () => {
+    if (block === "") {
+        setError("Complete the required selections to continue.");
+
+        if (block === "") {
+            setIsBlockInvalid(true);
+        }
+
+        return;
+    }
+
+    await Koji.remix.set({
+        backgroundImage,
+        music,
+        title,
+        collectEmails,
+        imgBlock: block,
+        price: price ? price.rawValue / 100 : 0,
+    })
+
+    Koji.remix.finish();
+}
+------------------
+
+We make sure to set the price to `0` in case it's `null`, to prevent future inconsistencies.
+
+And this is what your resulting remix menu should look like:
+
+image:https://i.imgur.com/gngIOR7.png[alt="remix menu"]
+
+
+== Wrapping up
+
+All that's left to do is to publish it from the *Publish Now* menu, and share it everywhere online!
+
+Of course, the project is now your playground. You can go back to modify or add new features, make improvements, anything you can imagine!
+
+You can also post your new game to our https://discord.gg/kMkjJQ6Phb[Discord Server], along with any suggestions and thoughts on how you think we can make this tutorial even better!

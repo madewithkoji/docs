@@ -1,0 +1,145 @@
+= Updating game behavior
+:page-slug: game-iap-updating-game
+:page-description: Updating our game to respond to payment
+:figure-caption!:
+
+During this section, we will:
+
+- Add a listener to the game for the `resetLives` event
+- Modify game behavior to reflect the new flow
+- Test the game to make sure everything works correctly
+
+== Adding a listener for `resetLives` event
+
+This template uses CustomEvents to communicate between the game instance and the main component, so we'll respect that in our workflow.
+
+We've already added the `emitEvent(resetLives);` call inside our `onPurchase()` function, so let's add a listener for it!
+
+If you go to `frontend/src/Components/Game/index.js`, you'll find that there are already some listeners defined in the first `useEffect` hook. This is where we'll define our new one:
+
+`window.addEventListener('resetLives', resetLives);`
+
+And make sure to also remove it inside of the `return` function, so it gets deleted when the game component unmounts, to prevent any unwanted leaks:
+
+`window.removeEventListener('resetLives', resetLives);`
+
+We also need to define the callback function that we passed to that listener:
+
+[source,javascript]
+------------------
+const resetLives = () => {
+    game.lives = game.startingLives;
+    game.gameOver = false;
+
+    spawnFloatingText("EXTRA LIVES", game.width / 2, game.height / 2, {
+        duration: 1,
+        maxSize: 45
+    });
+}
+------------------
+
+Here, we do the actual reset of lives.
+Additionally, we make sure to reset the `game.gameOver` property to `false`, and also spawn some floating text in the middle of the screen to celebrate this wholesome event. 
+
+If you've done my <<game-tutorial-intro#,Creating a remixable game>> tutorial or are already familiar with this game template, you could get even more creative here and spawn some *exploding particles* too! The player just spent some cash on this game, it should be rewarded.
+
+== Modifying Block.js
+
+In the original game, once all lives have been lost, the game "camera" will return to the bottom. We don't need this feature, so let's disable it!
+
+Inside `frontend/src/Components/Game/Entities/Block.js`, find the `handleMiss()` function. It looks like this:
+
+[source,javascript]
+------------------
+handleMiss() {
+    this.hasMissed = true;
+    playSound(game.sounds.loselife);
+
+    const distanceFromPreviousBlock = Math.abs(this.pos.x - game.blockDesiredX);
+    if (distanceFromPreviousBlock < this.size) {
+        this.rotDir = Math.sign(this.pos.x - game.blockDesiredX);
+        this.isRotating = true;
+    }
+
+    setTimeout(game.loseLife, 400);
+    setTimeout(() => {
+        if (game.gameOver) {
+            moveToStart();
+        }
+    }, 500);
+}
+------------------
+
+We want to remove the last part that gets it back to the start, so the final result should look like the following:
+
+[source,javascript]
+------------------
+handleMiss() {
+    this.hasMissed = true;
+    playSound(game.sounds.loselife);
+
+    const distanceFromPreviousBlock = Math.abs(this.pos.x - game.blockDesiredX);
+    if (distanceFromPreviousBlock < this.size) {
+        this.rotDir = Math.sign(this.pos.x - game.blockDesiredX);
+        this.isRotating = true;
+    }
+
+    setTimeout(game.loseLife, 400);
+}
+------------------
+
+=== Removing the original game over Text
+
+Since our new `Game Over` text shows up in a new menu, we don't need the original one where the label would slide from the top.
+
+We can disable it by going into `frontend/src/Components/setup.js` and inside `game.loseGame()` function, and removing these two lines:
+
+[source,javascript]
+game.ui.instructionsAnimTimer = 0;
+game.ui.instructionsFadeOutTimer = game.instructionsFadeOutDuration;
+
+So the whole function should look like this:
+
+[source,javascript]
+game.loseGame = () => {
+    game.lives = 0;
+    game.gameOver = true;
+    game.ui.instructionsAnimTimer = 0;
+    game.ui.instructionsFadeOutTimer = game.instructionsFadeOutDuration;
+    emitEvent('gameOver', { score: game.score });
+}
+
+That was all we needed to do acommodate our game to the new way of doing things!
+
+== Testing The Game
+
+To test the new `In-App Purchase` feature we just added, you can use http://developer.withkoji.com/docs/develop/testing-templates#_debugging_in_app_purchases[Koji Debugger] (you need to have some balance in your Koji Wallet for this), or you can temporarily disable the payment process and just emit the `resetLives` event directly, something like the following:
+
+[source,javascript]
+-------------------
+const onPurchase = async () => {
+    // Comment this for testing, skip the check
+    //const purchase = await Koji.iap.startPurchase('extraLives');
+
+    //if (purchase.receiptId) {
+        setShowPaymentDialog(false);
+        emitEvent('resumeGame');
+        emitEvent('resetLives');
+
+        // Submit the score just to have some backup in case
+        // the player closes the game before submitting later
+        if (dataManager.name !== "") {
+            await dataManager.submitScore(score);
+        }
+    //}
+}
+-------------------
+
+[NOTE]
+Make sure to *uncomment* those lines before publishing.
+
+== Wrapping up
+
+We've finished the main part of our game and set up the In-App Purchase system.
+
+In the <<game-iap-updating-game#,last section>>, we'll make the price customizable during Remix.

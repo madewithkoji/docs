@@ -1,0 +1,203 @@
+= Payment menu
+:page-slug: game-iap-payment-menu
+:page-description: Creating our Payment Menu UI component
+:figure-caption!:
+
+During this section, we will create our Payment Menu UI component.
+
+== Component
+Let's make some UI that will enable our players to make purchases.
+
+Go to `frontend/src/Components/View/` and make a new file called `PaymentDialog.js`.
+
+Feel free to copy the whole component into your file: 
+
+[source,javascript]
+-------------------
+import React from 'react';
+import styled from 'styled-components';
+import Koji from '@withkoji/core'
+import NavigateNextIcon from '@material-ui/icons/NavigateNext'
+import optimizeImage from '../../Utils/optimizeImage';
+
+const Container = styled.div`
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    left: 0;
+    top: 0;
+    background-color: rgba(0,0,0,0.35);
+    opacity: 0;
+    overflow: hidden;
+    z-index: 3;
+    color: #FFFFFF;
+    animation: fade-in 0.5s ease both;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+`;
+
+const Wrapper = styled.div`
+    position: relative;
+    min-width: 350px;
+
+    background-color: #007AFF;
+    background-size: cover;
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    box-shadow: 0px 15px 30px rgba(0, 0, 0, 0.2);
+    padding: 30px;
+    padding-top: 16px;
+    border-radius: 35px 35px;
+
+    animation: fade-in-slide-bottom 0.5s 0.25s ease both;
+`;
+
+const Title = styled.div`
+    margin-bottom: 20px;
+    font-size: 32px;
+    font-weight: 800;
+    text-align: center;
+    user-select: none;
+    white-space: pre-wrap;
+`;
+
+const Button = styled.button`
+    position: relative;
+    width: 100%;
+    height: 64px;
+    max-width: 500px;
+    min-height: 64px;
+    background-color: #FFFFFF;
+    color: #007AFF;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 24px;
+    font-size: 18px;
+    font-weight: bold;
+    border: 0;
+    border-radius: 20px;
+    outline: none;
+    transition: all 0.1s ease;
+    font-family: inherit;
+    box-shadow: 0px 12px 20px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    margin: 15px auto;
+    user-select: none;
+
+    &:active{
+        transform: translateY(4px);
+    }
+
+    svg{
+        font-size: 28px;
+    }
+
+    &:hover{
+        background-color: rgba(240, 240, 255, 1);
+    }
+
+`;
+
+const LifeLabel = styled.div`
+    display: flex;
+    align-items: center;
+`;
+
+const LifeIcon = styled.img`
+    width: 24px;
+    height: 24px;
+    object-fit: contain;
+    margin-right: 4px;
+`;
+
+const PaymentDialog = (props) => {
+    const {
+        onPurchase,
+        onPurchaseCancel
+    } = props;
+
+    const remixValues = Koji.remix.get();
+    const price = Number(remixValues.price).toFixed(2);
+    const lifeIcon = optimizeImage(remixValues.imgLife, 64, 64);
+
+    return (
+        <Container >
+            <Wrapper>
+                <Title>
+                    {`GAME OVER`}
+                </Title>
+                <Button
+                    onClick={onPurchase}
+                >
+                    <LifeLabel>
+                        <LifeIcon src={lifeIcon} />
+                        {"Get Extra Lives"}
+                    </LifeLabel>
+                    <div>{`$${price}`}</div>
+                </Button>
+
+                <Button
+                    style={{ marginBottom: `0` }}
+                    onClick={onPurchaseCancel}
+                >
+                    <div>{"View Leaderboard"}</div>
+                    <NavigateNextIcon />
+                </Button>
+            </Wrapper>
+        </Container>
+    )
+}
+
+export default PaymentDialog;
+-------------------
+
+It's a simple menu with two buttons that looks like this:
+
+image:https://i.imgur.com/Ct0KPcV.png[alt="screenshot payment component",width=256,height=256]
+
+As you can see from the above code, this component will receive `onPurchase` and `onPurchaseCancel` function props, which will correspond with the two buttons. We'll write these in the next section of this tutorial.
+
+One more important thing to notice is that it reads the price from `koji.json` remix values and displays it on the top button.
+
+== Rendering our component
+
+Let's render our component!
+
+Inside `frontend/src/Components/View/index.js`, let's create a state hook that controls when we should display our `PaymentDialog`, and then render the component itself:
+
+[source,javascript]
+------------------
+...
+import PaymentDialog from './PaymentDialog'
+
+...
+
+const Component = (props) => {
+    ...
+
+    // Create a state hook to let us control 
+    // when we should display our PaymentDialog
+    const [showPaymentDialog, setShowPaymentDialog] = useState(false);
+
+    ...
+
+    return(
+        <Container>
+            ...
+
+             {showPaymentDialog &&
+                <PaymentDialog />
+            }
+        </Container>
+    )
+
+}
+------------------
+
+== Wrapping up
+
+We've created our Payment Menu and put it inside of our main component.
+
+In the <<game-iap-start-purchase#,next section>>, we'll write some functions to handle our payment logic.
