@@ -142,4 +142,4 @@ Make sure to *uncomment* those lines before publishing.
 
 We've finished the main part of our game and set up the In-App Purchase system.
 
-In the <<game-iap-updating-game#,last section>>, we'll make the price customizable during Remix.
+In the <<game-iap-remix#,last section>>, we'll make the price customizable during Remix.

@@ -1,0 +1,37 @@
+= Finishing up
+:page-slug: game-tutorial-finishing-up
+:page-description: Finishing up
+:figure-caption!:
+
+That's it, we just created a *fun and remixable Koji game*!
+
+=== Publishing your game
+
+All that's left to do is to publish it from the *Publish Now* menu, and share it with your friends so they can compete for the top leaderboard spot!
+
+=== Feature suggestions
+
+Of course, the project is now your playground. You can go back to modify or add new features, make improvements, anything you can imagine!
+
+Here are some features you can try adding:
+
+* Add horizontal speed to Collectibles
+* Multiple Collectible images
+* Flip the rules so that you have to avoid everything
+* Add more animations to collectibles
+* Have the player be able to move in all directions, not just horizontally
+* Add keyboard controls
+* Add projectiles so you can shoot the falling objects
+* Make an MMORPG out of this! [small]#(just kidding)#
+
+=== Sharing your game
+
+Go ahead and share your new game everywhere, let the world know about it!
+
+You can also post your new game to our https://discord.gg/kMkjJQ6Phb[Discord Server], along with any suggestions and thoughts on how you think we can make this tutorial even better!
+
+Here's the finished game created using this tutorial:
+
++++
+<iframe src="https://withkoji.com/~Svarog1389/ekpy" width="400" height="600"> </iframe>
++++

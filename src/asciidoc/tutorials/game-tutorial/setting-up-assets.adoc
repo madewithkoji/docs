@@ -1,0 +1,116 @@
+= Setting up assets
+:page-slug: game-tutorial-setting-up-assets
+:page-description: Setting up settings and loading assets for our game
+:figure-caption!:
+
+During this section, we will:
+
+- Set up our `koji.json` file
+- Define and loaded our game assets
+- Define some of our game settings
+
+== koji.json
+
+First, let's define our game assets. 
+
+Inside of `koji.json`, you will find the `remixData` object.
+Let's add some entries to it.
+
+We will need images for our Player and Collectible objects:
+
+
+`"imgPlayer": "https://images.koji-cdn.com/814f445d-4e8d-40cb-83fe-04d120cc1889/userData/x0kfr-player.png"`
+
+`"imgCollectible": "https://images.koji-cdn.com/5f618aa2-e515-49a1-adb2-42dfb88a6f59/userData/1d6jr-donut.png"`
+
+image:https://images.koji-cdn.com/814f445d-4e8d-40cb-83fe-04d120cc1889/userData/x0kfr-player.png[alt="player cat",width=128,height=128]
+image:https://images.koji-cdn.com/5f618aa2-e515-49a1-adb2-42dfb88a6f59/userData/1d6jr-donut.png[alt="collectible donut",width=128,height=128]
+
+As well as sounds for when the player collects or misses anything:
+
+`"sndCollect": "https://objects.koji-cdn.com/814f445d-4e8d-40cb-83fe-04d120cc1889/userData/ydx3v-collect01onlineaudioconverter.com.mp3.mp3",`
+
+
+`"sndLoseLife": "https://objects.koji-cdn.com/814f445d-4e8d-40cb-83fe-04d120cc1889/userData/vqnq8-loseLife.mp3.mp3",`
+
+[NOTE]
+It's preferrable that our sound assets are prefixed with `snd`. That way, they'll be loaded automatically during `preload`, as this game template has code that automatically handles that for us.
+
+You will also notice that there are already some other entries in our `remixData` by default.
+
+Let's also modify the `title` and `backgroundImage` entries to give our game a more distinct look:
+
+`"title": "Catch The Donuts"`
+
+`"backgroundImage": "https://images.koji-cdn.com/377f7596-8edf-44b1-994d-f9926b3aa641/userData/682dt-G68b11.png"`
+
+Our `remixData` object should now look something like this:
+
+[source,json]
+--------------
+"remixData": {
+    "music": "https://objects.koji-cdn.com/45cdb5ca-8318-4318-8271-d0e422e790e0/hjdo0-music.mp3",
+    "musicVolume": 0.25,
+    "title": "Catch The Donuts",
+    "backgroundImage": "https://images.koji-cdn.com/377f7596-8edf-44b1-994d-f9926b3aa641/userData/682dt-G68b11.png",
+    "imgParticles": [
+      "https://images.koji-cdn.com/d4d2aab7-1847-481d-8aa6-6866d81d5e0f/6ik7b-star1.png",
+      "https://images.koji-cdn.com/d4d2aab7-1847-481d-8aa6-6866d81d5e0f/xvpr0-star3.png",
+      "https://images.koji-cdn.com/d4d2aab7-1847-481d-8aa6-6866d81d5e0f/0pfca-start2.png",
+      "https://images.koji-cdn.com/d4d2aab7-1847-481d-8aa6-6866d81d5e0f/mwf5o-star5.png"
+    ],
+    "particle": "https://images.koji-cdn.com/d4d2aab7-1847-481d-8aa6-6866d81d5e0f/zfnue-particle2.png",
+    "imgLife": "https://images.koji-cdn.com/c166301e-e9be-4a9c-8d08-aaffe23d82bb/userData/3z6gw-life.png",
+    "imgPlayer": "https://images.koji-cdn.com/814f445d-4e8d-40cb-83fe-04d120cc1889/userData/x0kfr-player.png",
+    "imgCollectible": "https://images.koji-cdn.com/5f618aa2-e515-49a1-adb2-42dfb88a6f59/userData/1d6jr-donut.png",
+    "sndCollect": "https://objects.koji-cdn.com/814f445d-4e8d-40cb-83fe-04d120cc1889/userData/ydx3v-collect01onlineaudioconverter.com.mp3.mp3",
+    "sndLoseLife": "https://objects.koji-cdn.com/814f445d-4e8d-40cb-83fe-04d120cc1889/userData/vqnq8-loseLife.mp3.mp3"
+  },
+--------------
+
+[NOTE]
+Don't forget to save your changes and reload the live preview after editing `koji.json`
+
+If you have a Live Preview running (right side of your screen in the Web Editor), you'll notice that the background image has already changed, as well as the player image in the main menu!
+
+== Loading assets
+
+Now that we've added our assets to `remixData`, we need to load them inside our game so we can use them later.
+
+We will do all of our loading in `frontend/src/Components/Game/preload.js`
+
+We do not have to do anything to load our sounds, since they will be loaded automatically as their keys are prefixed with `snd`.
+
+To load images, we can use `addImage()`:
+
+[source,javascript]
+const preload = () => {
+    const remixValues = Koji.remix.get();
+    ...
+    addImage('player', remixValues.imgPlayer, game.playerSize);
+    addImage('collectible', remixValues.imgCollectible, 100);
+    ...
+}
+
+Note that we've used `game.playerSize` as player size. We need to define that as well. We will define all of our game settings in `initializeValues()`:
+[source,javascript]
+import isMobile from '../../Utils/isMobile'
+...
+const initializeValues = () => {
+    ...
+    game.playerSize = isMobile() ? 90 : 110;
+}
+
+Since there's a considerable difference in mobile and desktop display sizes, we can change our `playerSize` according to the device using the `isMobile()` function provided by the template.
+
+We can also change game instructions here by modifying `game.instructions` property.
+
+Change it to something like: 
+
+`game.instructions = "Touch to move around!";`
+
+== Wrapping up
+
+We have now set up some starting settings and loaded our images and sounds into the game.
+
+In the <<game-tutorial-creating-game-objects#,next section>>, we'll add the `Player` and `Collectible` classes.

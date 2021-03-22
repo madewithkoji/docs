@@ -1,4 +1,4 @@
-= Updating game behavior
+= Remix
 :page-slug: game-iap-remix
 :page-description: Making the price customizable during Remix
 :figure-caption!:

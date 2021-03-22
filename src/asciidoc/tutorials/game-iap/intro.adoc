@@ -51,24 +51,17 @@ To break it down into steps, we need to:
 
 == Sections
 
-<<game-tutorial-setting-up-assets#>>  ::
+<<game-iap-setting-up-koji-json#>>  ::
 +
 [.init-cap]
-<<game-tutorial-creating-game-objects#>>  ::
+<<game-iap-payment-menu#>>  ::
 +
 [.init-cap]
-<<game-tutorial-scoring-and-losing#>>  ::
+<<game-iap-start-purchase#>>  ::
 +
 [.init-cap]
-<<game-tutorial-managing-difficulty#>>  ::
+<<game-iap-updating-game#>>  ::
 +
 [.init-cap]
-<<game-tutorial-remix#>>  ::
+<<game-iap-remix#>>  ::
 +
-[.init-cap]
-<<game-tutorial-thumbnail-preview#>>  ::
-+
-[.init-cap]
-<<game-tutorial-finishing-up#>>  ::
-+
-[.init-cap]

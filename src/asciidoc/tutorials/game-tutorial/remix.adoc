@@ -1,0 +1,192 @@
+= Remix
+:page-slug: game-tutorial-remix
+:page-description: Modifying the Remix menu
+:figure-caption!:
+
+We've finished the main part of our game. But this is Koji! We don't stop here. 
+
+We want this game to be easily remixable by other people and shared everywhere online!
+
+During this section, we will:
+
+- Edit the existing Remix menu
+- Learn how to add a customizable image to the Remix menu
+
+== Overview
+
+Let's explore a new section of the game template.
+
+If you open `frontend/src/Components/Remix/index.js`, you'll find some workflow already set up.
+
+[NOTE]
+You can see what your Remix menu currently looks like in the `Remix` tab of the http://developer.withkoji.com/docs/develop/testing-templates#_using_the_koji_debugger[Debugger], or inside the Live Preview from your web editor
+
+*Background Image* and *Music* customization are already handled by the template, so we can just leave them as they are.
+
+Luckily, since we've already made a generic `Player` class that uses `imgPlayer` for its image, we can take advantage of the template once more because it already has everything set up for our player to be customizable.
+
+image:https://i.imgur.com/PvpEy66.png[alt="screenshot player",width=256,height=256]
+
+To test it out, try changing the `Player` image and going into preview mode. Our player is different now!
+
+== Adding the Collectible image to Remix menu
+
+But what about our `Collectible` image? Let's make that customizable too, using a similar workflow as `Player`.
+
+=== Setting up state hooks
+
+First, let's make a State Hook that will represent our `Collectible` image, and assign the initial values:
+
+[source,javascript]
+-------------------
+...
+const Component = () => {
+    ...
+    const [imgCollectible, setImgCollectible] = useState("");
+    const [isCollectibleInvalid, setIsCollectibleInvalid] = useState("");
+    ...
+
+    const assignInitialValues = () => {
+        const remixValues = Koji.remix.get();
+        ...
+
+        setImgCollectible(remixValues.imgCollectible);
+
+        ...
+
+    })
+}
+-------------------
+
+Notice that we also created an `isCollectibleInvalid` state hook. We will need this to make sure the user has actually uploaded an image. We don't want them to publish the game without one.
+
+Then in `assignInitialValues()`, which is inside our useEffect Hook when the Remix components mounts, we assign the initial value from `koji.json`:
+
+=== Defining functions that let us change the image
+
+We also need to define some functions that will let us change or delete our collectible image:
+
+[source,javascript]
+-------------------
+...
+const Component = () => {
+    ...
+
+    const changeCollectible = async () => {
+        const imageUrl = await Koji.ui.capture.image();
+        if (!imageUrl || imageUrl === "") return;
+
+        setImgCollectible(imageUrl);
+        setIsCollectibleInvalid(false);
+        await Koji.remix.set({ imgCollectible: imageUrl })
+        updateGame();
+    }
+
+    const deleteCollectible = async () => {
+        setImgCollectible("");
+        await Koji.remix.set({ imgCollectible: "" })
+        updateGame();
+    }
+
+}
+-------------------
+
+To capture our image, we're using `@withkoji/core` package that lets us easily upload an image, paste one from a link or choose from one of the asset packs.
+
+`Koji.ui.capture.image()` will return `null` in case the user has cancelled image selection, so we also include a simple check to make sure that's not the case.
+
+Then we:
+
+* Update our `imgCollectible` *state hook* with the resulting image
+* Reset the `isCollectibleInvalid` state hook
+* Update our `imgCollectible` *remix value* with the resulting image
+* Update the game
+
+We want to update our game here because we have a running game preview behind our Remix panel. If we change something that wouldn't be instantly previewable inside the game, this step can be skipped.
+
+Inside `deleteCollectible()`, we do the same thing, except we just set our `imgCollectible` to an empty string instead of capturing an image.
+
+
+=== Rendering the image component
+
+Next, let's render the component which represents a collectible image and lets us customize it. We can once again use the existing structure from `Player`.
+
+Find the component that looks like this:
+
+[source,javascript]
+-------------------
+<div>
+    <Label>
+        <b>{"Player"}</b>
+    </Label>
+    <ImageButton
+        src={optimizeImage(imgPlayer, 120, 120)}
+        canDelete={canUpdateImages}
+        onClick={changeImgPlayer}
+        onDelete={deletePlayer}
+        isInvalid={isPlayerInvalid}
+    />
+</div>
+-------------------
+
+Make a copy just below it, still inside the `<Section>` component, and modify it to look like this:
+
+[source,javascript]
+-------------------
+<div>
+    <Label>
+        <b>{"Collectible"}</b>
+    </Label>
+    <ImageButton
+        src={optimizeImage(imgCollectible, 120, 120)}
+        canDelete={canUpdateImages}
+        onClick={changeCollectible}
+        onDelete={deleteCollectible}
+        isInvalid={isCollectibleInvalid}
+    />
+</div>
+-------------------
+
+=== Updating the `finish()` function
+
+Lastly, we want to modify the `finish()` function to prevent the user from publishing if they haven't uploaded an image.
+
+It already has that logic handled for `imgPlayer`, so we can just modify it to include `imgCollectible` as well:
+
+[source,javascript]
+-------------------
+const finish = async () => {
+    if (imgPlayer === "" || imgCollectible === "") {
+        setErrorLabel("Complete the required selections to continue.");
+
+        if (imgPlayer === "") {
+            setIsPlayerInvalid(true);
+        }
+
+        if (imgCollectible === "") {
+            setIsCollectibleInvalid(true);
+        }
+
+        return;
+    }
+
+    await Koji.remix.set({
+        backgroundImage,
+        music,
+        title,
+    })
+    Koji.remix.finish();
+}
+-------------------
+
+[NOTE]
+We don't need to explicity set `imgPlayer` and `imgCollectible` inside the `Koji.remix.set()` function, because we've already done it with our `onChange` handlers. Setting them here as well won't make any difference in the final result.
+
+image:https://i.imgur.com/F5BamYt.png[alt="screenshot player",width=256,height=256]
+
+
+== Wrapping up
+
+That's our `Remix` mode finished! We've just added the ability for users to change the `Collectible` image!
+
+In the <<game-tutorial-thumbnail-preview#,next section>>, we will customize our thumbnail preview.

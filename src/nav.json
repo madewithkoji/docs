@@ -309,6 +309,78 @@
               ]
             }
           ]
+        },
+        {
+          "name": "Creating a remixable game",
+          "root": "/game-tutorial",
+          "items": [
+            {
+              "name": "Overview",
+              "slug": "game-tutorial-intro",
+              "subItems": [
+                {
+                  "name": "1. Setting up assets",
+                  "slug": "game-tutorial-setting-up-assets"
+                },
+                {
+                  "name": "2. Creating game objects",
+                  "slug": "game-tutorial-creating-game-objects"
+                },
+                {
+                  "name": "3. Scoring and losing",
+                  "slug": "game-tutorial-scoring-and-losing"
+                },
+                {
+                  "name": "4. Managing difficulty",
+                  "slug": "game-tutorial-managing-difficulty"
+                },
+                {
+                  "name": "5. Remix",
+                  "slug": "game-tutorial-remix"
+                },
+                {
+                  "name": "6. Thumbnail preview",
+                  "slug": "game-tutorial-thumbnail-preview"
+                },
+                {
+                  "name": "7. Finishing up",
+                  "slug": "game-tutorial-finishing-up"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Adding In-App Purchases to a game",
+          "root": "/game-iap",
+          "items": [
+            {
+              "name": "Overview",
+              "slug": "game-iap-intro",
+              "subItems": [
+                {
+                  "name": "1. Setting up koji.json",
+                  "slug": "game-iap-setting-up-koji-json"
+                },
+                {
+                  "name": "2. Payment menu",
+                  "slug": "game-iap-payment-menu"
+                },
+                {
+                  "name": "3. Payment logic",
+                  "slug": "game-iap-start-purchase"
+                },
+                {
+                  "name": "4. Updating game behavior",
+                  "slug": "game-iap-updating-game"
+                },
+                {
+                  "name": "5. Remix",
+                  "slug": "game-iap-remix"
+                }
+              ]
+            }
+          ]
         }
       ]
     },
