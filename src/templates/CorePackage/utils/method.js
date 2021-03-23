@@ -48,7 +48,7 @@ export function renderMethod(method, interfaces) {
   const methodSource = getMethodSource(method);
 
   return (
-    <div key={method.id}>
+    <div key={method.id} className={'sect2 hcode'}>
       {
         methodTitle &&
         <h3 id={method.name}>{`.${methodTitle}`}</h3>
