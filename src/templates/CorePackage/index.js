@@ -41,6 +41,7 @@ export const query = graphql`
             }
             comment {
               shortText
+              text
             }
             name
             type {
@@ -218,6 +219,7 @@ export const query = graphql`
           }
           comment {
             shortText
+            text
           }
           name
           type {

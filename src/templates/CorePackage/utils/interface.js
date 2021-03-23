@@ -43,6 +43,10 @@ export function renderInterface(i) {
                       {property.flags && property.flags.isOptional && <span>{' (Optional)'}</span>}
                       {property.comment && property.comment.shortText ? `, ${property.comment.shortText}` : ''}
                     </p>
+                    {
+                      (property.comment && property.comment.text) &&
+                      <p>{property.comment.text}</p>
+                    }
                   </li>
                 ))
               }
