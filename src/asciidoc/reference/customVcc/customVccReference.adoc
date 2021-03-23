@@ -25,7 +25,7 @@ Updates the value with the user-entered value.
 
 ==== Parameters
 
-* `newValue` – _Any_, current value of the custom control.
+* `newValue` – _Any_, Current value of the custom control.
 
 ==== Example
 
@@ -42,9 +42,9 @@ The theme returned in the listener allows you to style the control to match the 
 
 ==== Parameters
 
-* `handler` – _Function_, called when theme is available.
+* `handler` – _Function_, Called when theme is available.
 Receives the following property as input:
-** `theme` – _<<Theme>>_, represents the theme as an object.
+** `theme` – _<<Theme>>_, Represents the theme as an object.
 
 ==== Example
 
@@ -66,9 +66,9 @@ Calling `change` immediately fires an `onUpdate`.
 
 ==== Parameters
 
-* `handler` – _Function_, handle changes to the custom value.
+* `handler` – _Function_, Handles changes to the custom value.
 Receives the following property as input:
-** `props` – _<<Props>>_, contains the properties of the custom control.
+** `props` – _<<Props>>_, Properties of the custom control.
 
 ==== Example
 
@@ -86,8 +86,8 @@ Indicates that the custom control has loaded and registers it to trigger the on 
 
 ==== Parameters
 
-* `width` – (Optional) _Any_, width of the custom control.
-* `height` – (Optional) _Any_, height of the custom control.
+* `width` – (Optional) _Any_, Width of the custom control.
+* `height` – (Optional) _Any_, Height of the custom control.
 
 ==== Example
 
@@ -115,9 +115,9 @@ Uploads a file blob to the Koji CDN.
 
 ==== Parameters
 
-* `file` – _Blob_, file blob data to be uploaded.
-* `fileName` – _String_, name of the file to be uploaded.
-* `onComplete` – _Function_, called when upload has completed.
+* `file` – _Blob_, File blob data to be uploaded.
+* `fileName` – _String_, Name of the file to be uploaded.
+* `onComplete` – _Function_, Called when upload has completed.
 Receives the following property as input:
 ** `url`  – _String_, URL of the uploaded file.
 
@@ -139,27 +139,14 @@ It is returned to the handler listening to <<onUpdate>>.
 
 ==== Properties
 
-[source,javascript]
-----
-{
-	type: string;<1>
-	name: string;<2>
-	value: any;<3>
-	scope: string;<4>
-	variableName: string;<5>
-	options: object;<6>
-	collaborationDecoration: object;<7>
-	_config: object;<8>
-};
-----
-<1> `type` – Type signature for this VCC.
-<2> `name` – Name of the control.
-<3> `value` – Current value of the control.
-<4> `scope` – Name of the section where this VCC appears in the consumer application.
-<5> `variableName` – Resolved variable name of this VCC (`scope.key`).
-<6> `options` – An object containing any options passed in `typeOptions`.
-<7> `collaborationDecoration` – An object containing any collaborators currently focused on this control.
-<8> `_config` – The full VCC configuration file.
+* `type` – _String_, Type signature for this VCC.
+* `name` – _String_, Name of the control.
+* `value` – _Any_, Current value of the control.
+* `scope` – _String_, Name of the section where this VCC appears in the consumer application.
+* `variableName` – _String_, Resolved variable name of this VCC (`scope.key`).
+* `options` – _Object_, Any options passed in `typeOptions`.
+* `collaborationDecoration` – _Object_, Any collaborators currently focused on this control.
+* `_config` – _Object_, The full VCC configuration file.
 Most controls are isolated to a single value.
 However, this object can be useful when creating more complex custom controls, like map builders.
 
@@ -170,25 +157,14 @@ It is returned to the handler listening to <<onTheme>>.
 
 ==== Properties
 
-[source,javascript]
-----
-{
-	name: string;<1>
-	breakpoints: object;<2>
-	colors: object;<3>
-	mixins: object;<4>
-};
-----
-<1> `name` – Name of the theme.
-<2> `breakpoints` – An object containing responsive style breakpoints of the theme.
-<3> `colors` – An object of key-value pairs representing the theme's named colors.
-<4> `mixins` – An object containing CSS mixins to style specific elements.
+* `name` – _String_, Name of the theme.
+* `breakpoints` – _Object_, Responsive style breakpoints of the theme.
+* `colors` – _Object_, Key-value pairs representing the theme's named colors.
+* `mixins` – _Object_, CSS mixins to style specific elements.
 
 ==== Example
 
-Here is an example of some of the properties of the `theme` object.
-
-[source,javascript]
+[source,JSON]
 ----
 {
 	"name": "aspergillus",
