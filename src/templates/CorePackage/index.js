@@ -339,18 +339,23 @@ const Nav = styled.div`
   }
 `;
 
-function parseClass(c) {
+function getClassDescription(c) {
   let description;
 
-  const { name } = c;
-
-  const { comment } = c;
-
-  if (comment) {
-    if (comment.shortText) description = comment.shortText;
+  if (c.comment) {
+    if (c.comment.shortText) description = c.comment.shortText;
   }
 
-  return { name, description };
+  return description;
+}
+
+function getClassName(name) {
+  const pieces = name.split('/');
+
+  if (pieces.length === 2) return pieces[1];
+
+  // Support ui-prefixed names
+  return `${pieces[1].toUpperCase()} ${pieces[2]}`;
 }
 
 const CorePackage = (props) => {
@@ -373,7 +378,8 @@ const CorePackage = (props) => {
   const AllInterfaces = allKojiCorePackageItem.nodes.map((node) => node.Interfaces || []).reduce((acc, cur) => [...acc, ...cur], []);
   const AllTypeAliases = allKojiCorePackageItem.nodes.map((node) => node.Type_aliases || []).reduce((acc, cur) => [...acc, ...cur], []);
 
-  const { name, description } = parseClass(Classes[0]);
+  const description = getClassDescription(Classes[0]);
+  const name = getClassName(kojiCorePackageItem.name);
 
   let constructor = Classes[0].children.find(({ kindString }) => kindString === 'Constructor');
 
@@ -454,7 +460,7 @@ const CorePackage = (props) => {
     <StyledContainer maxWidth="lg" style={{ isReady }}>
       <SEO title={name} description={description} />
       <Content>
-        <h1>{name}</h1>
+        <h1 style={{ textTransform: 'capitalize' }}>{name}</h1>
         <p>{description}</p>
         {
           constructor &&
