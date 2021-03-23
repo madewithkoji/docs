@@ -88,6 +88,8 @@ export const query = graphql`
             }
             type
             types {
+              id
+              name
               type
               value
             }
@@ -112,6 +114,7 @@ export const query = graphql`
           signatures {
             id
             comment {
+              returns
               shortText
               tags {
                 tag
@@ -156,6 +159,20 @@ export const query = graphql`
                   name
                   type
                 }
+              }
+            }
+            type {
+              id
+              type
+              name
+              typeArguments {
+                id
+                types {
+                  name
+                  type
+                }
+                name
+                type
               }
             }
           }
@@ -204,6 +221,7 @@ export const query = graphql`
           }
           name
           type {
+            id
             name
             type
             types {

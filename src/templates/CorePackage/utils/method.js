@@ -39,6 +39,35 @@ function getMethodExample(method) {
   return method.signatures[0].comment.tags[0].text;
 }
 
+function getMethodReturn(method) {
+  // Some methods have multiple signatures. The last signature will have the correct return type.
+  const returnType = method.signatures[method.signatures.length - 1].type;
+
+  if (returnType.name && returnType.name === 'Promise') {
+    const { typeArguments } = returnType;
+
+    console.log('t', typeArguments);
+
+    const mappedTypeArguments = typeArguments.map((typeArgument) => renderParameterType({ type: typeArgument }));
+
+    return (
+      <>
+        {'Promise<'}
+        {mappedTypeArguments.map((mta) => mta)}
+        {'>'}
+      </>
+    );
+  }
+
+  return false;
+}
+
+function getMethodReturnDescription(method) {
+  // eslint-disable-next-line max-len
+  if (!method.signatures[0].comment || !method.signatures[0].comment.returns) return false;
+  return method.signatures[0].comment.returns;
+}
+
 function getMethodSource(method) {
   if (!method.sources || !method.sources[0] || !method.sources[0].fileName || !method.sources[0].line) return false;
   return `${method.sources[0].fileName}#L${method.sources[0].line}`;
@@ -52,6 +81,8 @@ export function renderMethod(method, interfaces) {
   const methodParameters = getMethodParameters(method);
   const methodExample = getMethodExample(method);
   const methodSource = getMethodSource(method);
+  const methodReturn = getMethodReturn(method);
+  const methodReturnDescription = getMethodReturnDescription(method);
 
   return (
     <div key={method.id} className={'sect2 hcode'}>
@@ -89,6 +120,17 @@ export function renderMethod(method, interfaces) {
               }
             </ul>
           </div>
+        </div>
+      }
+      {
+        methodReturn &&
+        <div>
+          <h4>{'Returns'}</h4>
+          <em>{methodReturn}</em>
+          {
+            methodReturnDescription &&
+            <p>{methodReturnDescription}</p>
+          }
         </div>
       }
       {
