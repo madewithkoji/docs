@@ -17,6 +17,11 @@ function getMethodDescription(method) {
   return method.signatures[0].comment.shortText;
 }
 
+function getMethodExtendedDescription(method) {
+  if (!method.signatures[0] || !method.signatures[0].comment || !method.signatures[0].comment.text) return false;
+  return method.signatures[0].comment.text;
+}
+
 function getMethodParameters(method) {
   if (!method.signatures || !method.signatures[0].parameters || !method.signatures[0].parameters.length) return false;
 
@@ -43,6 +48,7 @@ function getMethodSource(method) {
 export function renderMethod(method, interfaces) {
   const methodTitle = getMethodTitle(method);
   const methodDescription = getMethodDescription(method);
+  const methodExtendedDescription = getMethodExtendedDescription(method);
   const methodParameters = getMethodParameters(method);
   const methodExample = getMethodExample(method);
   const methodSource = getMethodSource(method);
@@ -56,6 +62,10 @@ export function renderMethod(method, interfaces) {
       {
         methodDescription &&
         <p>{methodDescription}</p>
+      }
+      {
+        methodExtendedDescription &&
+        <p>{methodExtendedDescription}</p>
       }
       {
         methodParameters &&

@@ -117,6 +117,7 @@ export const query = graphql`
                 tag
                 text
               }
+              text
             }
             parameters {
               comment {
