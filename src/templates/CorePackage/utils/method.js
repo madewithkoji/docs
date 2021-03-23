@@ -46,8 +46,6 @@ function getMethodReturn(method) {
   if (returnType.name && returnType.name === 'Promise') {
     const { typeArguments } = returnType;
 
-    console.log('t', typeArguments);
-
     const mappedTypeArguments = typeArguments.map((typeArgument) => renderParameterType({ type: typeArgument }));
 
     return (
@@ -126,11 +124,13 @@ export function renderMethod(method, interfaces) {
         methodReturn &&
         <div>
           <h4>{'Returns'}</h4>
-          <em>{methodReturn}</em>
-          {
-            methodReturnDescription &&
-            <p>{methodReturnDescription}</p>
-          }
+          <p>
+            <em>{methodReturn}</em>
+            {
+              methodReturnDescription &&
+              <>{`, ${methodReturnDescription} `}</>
+            }
+          </p>
         </div>
       }
       {
