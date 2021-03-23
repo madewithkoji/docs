@@ -85,29 +85,11 @@ export function renderTypeAlias(typeAlias, interfaces) {
         </h3>
       }
       {
-        (name && typeAliasType === 'union' && unionOptions) &&
+        (name && typeAliasType === 'union') &&
         <div>
           <h3 id={typeAlias.name}>
             {typeAlias.name}
           </h3>
-          {
-            (unionOptions.length && true) &&
-            <>
-              <h4>{'Possible values'}</h4>
-              <div className={'ulist'}>
-                <ul>
-                  {
-                    unionOptions.map((unionOption, idx) => (
-                      // eslint-disable-next-line react/no-array-index-key
-                      <li key={`${unionOption}-${idx}`}>
-                        {`'${unionOption}'`}
-                      </li>
-                    ))
-                  }
-                </ul>
-              </div>
-            </>
-          }
         </div>
       }
       {
@@ -143,6 +125,24 @@ export function renderTypeAlias(typeAlias, interfaces) {
             </ul>
           </div>
         </div>
+      }
+      {
+        (unionOptions.length && true) &&
+        <>
+          <h4>{'Possible values'}</h4>
+          <div className={'ulist'}>
+            <ul>
+              {
+                unionOptions.map((unionOption, idx) => (
+                  // eslint-disable-next-line react/no-array-index-key
+                  <li key={`${unionOption}-${idx}`}>
+                    {`'${unionOption}'`}
+                  </li>
+                ))
+              }
+            </ul>
+          </div>
+        </>
       }
       {
         typeAliasType === 'function' &&
