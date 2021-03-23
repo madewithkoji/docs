@@ -4,7 +4,7 @@ import { renderParameterDescription, renderParameterType, parameterIsArray } fro
 function getTypeAliasUnionOptions(typeAlias) {
   const unionOptions = (typeAlias.type.types || []).map((t) => t.value);
 
-  return unionOptions.length ? unionOptions.map((o) => `"${o}"`).join(' | ') : false;
+  return unionOptions.length ? unionOptions : false;
 }
 
 function parseTypeAliasType(typeAlias, declaration) {
@@ -86,9 +86,29 @@ export function renderTypeAlias(typeAlias, interfaces) {
       }
       {
         (name && typeAliasType === 'union' && unionOptions) &&
-        <h3 id={typeAlias.name}>
-          {`${typeAlias.name}: ${unionOptions}`}
-        </h3>
+        <div>
+          <h3 id={typeAlias.name}>
+            {typeAlias.name}
+          </h3>
+          {
+            (unionOptions.length && true) &&
+            <>
+              <h4>{'Possible values'}</h4>
+              <div className={'ulist'}>
+                <ul>
+                  {
+                    unionOptions.map((unionOption, idx) => (
+                      // eslint-disable-next-line react/no-array-index-key
+                      <li key={`${unionOption}-${idx}`}>
+                        {`'${unionOption}'`}
+                      </li>
+                    ))
+                  }
+                </ul>
+              </div>
+            </>
+          }
+        </div>
       }
       {
         (name && !['function', 'union'].includes(typeAliasType)) &&
