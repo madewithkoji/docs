@@ -1,7 +1,7 @@
 import React from 'react';
 import { parameterIsArray, renderParameterType } from './parameter';
 
-function getInterfaceParameters(i) {
+function getInterfaceProperties(i) {
   return i.children;
 }
 
@@ -14,7 +14,7 @@ function getInterfaceDescription(i) {
 // eslint-disable-next-line import/prefer-default-export
 export function renderInterface(i) {
   const interfaceDescription = getInterfaceDescription(i);
-  const interfaceParameters = getInterfaceParameters(i);
+  const interfaceProperties = getInterfaceProperties(i);
 
   return (
     <div key={i.id}>
@@ -27,21 +27,21 @@ export function renderInterface(i) {
         <p>{interfaceDescription}</p>
       }
       {
-        interfaceParameters &&
+        interfaceProperties &&
         <div>
-          <h4>{'Parameters'}</h4>
+          <h4>{'Properties'}</h4>
           <div className={'ulist'}>
             <ul>
               {
-                interfaceParameters.map((parameter) => (
-                  <li key={parameter.name}>
+                interfaceProperties.map((property) => (
+                  <li key={property.name}>
                     <p>
-                      <code>{parameter.name}</code>
+                      <code>{property.name}</code>
                       {' – '}
-                      <em style={{ textTransform: 'capitalize' }}>{renderParameterType(parameter)}</em>
-                      {parameterIsArray(parameter) && <span>{'[]'}</span>}
-                      {parameter.flags && parameter.flags.isOptional && <span>{' (Optional)'}</span>}
-                      {parameter.comment && parameter.comment.shortText ? `, ${parameter.comment.shortText}` : ''}
+                      <em style={{ textTransform: 'capitalize' }}>{renderParameterType(property)}</em>
+                      {parameterIsArray(property) && <span>{'[]'}</span>}
+                      {property.flags && property.flags.isOptional && <span>{' (Optional)'}</span>}
+                      {property.comment && property.comment.shortText ? `, ${property.comment.shortText}` : ''}
                     </p>
                   </li>
                 ))
