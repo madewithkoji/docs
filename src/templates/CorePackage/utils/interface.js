@@ -38,7 +38,7 @@ export function renderInterface(i) {
                     <p>
                       <code>{property.name}</code>
                       {' – '}
-                      <em style={{ textTransform: 'capitalize' }}>{renderParameterType(property)}</em>
+                      <em>{renderParameterType(property)}</em>
                       {parameterIsArray(property) && <span>{'[]'}</span>}
                       {property.flags && property.flags.isOptional && <span>{' (Optional)'}</span>}
                       {property.comment && property.comment.shortText ? `, ${property.comment.shortText}` : ''}

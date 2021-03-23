@@ -1,4 +1,5 @@
 import React from 'react';
+import { capitalize } from './common';
 
 export function renderParameterType(parameter) {
   if (!parameter.type || !parameter.type.type) return null;
@@ -9,22 +10,23 @@ export function renderParameterType(parameter) {
   }
 
   // T is a stand-in for any
-  if (parameter.type.name && parameter.type.name === 'T') return 'any';
+  if (parameter.type.name && parameter.type.name === 'T') return 'Any';
 
   if (parameter.type.type === 'reference' && parameter.type.id) {
     return (
       <a href={`#${parameter.type.name}`}>
-        {parameter.type.name}
+        {capitalize(parameter.type.name)}
       </a>
     );
   }
 
   if (parameter.type.type === 'union') {
-    const validTypes = parameter.type.types.filter(({ name }) => name && name !== 'undefined').map(({ name }) => name);
+    const validTypes = parameter.type.types.filter(({ name }) => name && name !== 'undefined').map(({ name }) => capitalize(name));
+    const validValues = parameter.type.types.filter(({ type }) => type && type === 'literal').map(({ value }) => `'${value}'`);
 
     if (validTypes.length === 1) return validTypes[0];
 
-    return validTypes.join(' | ');
+    return [...validTypes, ...validValues].join(' | ');
   }
 
   if (parameter.type.type === 'array') {
@@ -32,20 +34,20 @@ export function renderParameterType(parameter) {
       if (parameter.type.elementType.type === 'reference' && parameter.type.elementType.id) {
         return (
           <a href={`#${parameter.type.elementType.name}`}>
-            {parameter.type.elementType.name}
+            {capitalize(parameter.type.elementType.name)}
           </a>
         );
       }
 
-      return parameter.type.elementType.name;
+      return capitalize(parameter.type.elementType.name);
     }
   }
 
-  return parameter.type.name;
+  return capitalize(parameter.type.name);
 }
 
 export function parameterIsArray(parameter) {
-  return parameter.type && parameter.type.type && parameter.type.type === 'array';
+  return parameter.type && parameter.type.type && parameter.type.type === 'Array';
 }
 
 export function renderParameterDescription(parameter, interfaces) {

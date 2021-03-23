@@ -69,7 +69,7 @@ export function renderMethod(method, interfaces) {
                     <p>
                       <code>{parameter.name}</code>
                       {' – '}
-                      <em style={{ textTransform: 'capitalize' }}>{renderParameterType(parameter)}</em>
+                      <em>{renderParameterType(parameter)}</em>
                       {parameterIsArray(parameter) && <span>{'[]'}</span>}
                       {parameter.flags && parameter.flags.isOptional && <span>{' (Optional)'}</span>}
                       {renderParameterDescription(parameter, interfaces)}

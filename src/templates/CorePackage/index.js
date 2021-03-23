@@ -49,6 +49,7 @@ export const query = graphql`
               types {
                 name
                 type
+                value
               }
             }
           }
@@ -73,9 +74,9 @@ export const query = graphql`
                 parameters {
                   kind
                   type {
-                    type
-                    name
                     id
+                    name
+                    type
                   }
                   name
                 }
@@ -169,6 +170,7 @@ export const query = graphql`
             types {
               name
               type
+              value
             }
           }
         }
