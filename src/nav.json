@@ -390,15 +390,15 @@
                   "slug": "core-frontend-remix"
                 },
                 {
-                  "name": "UI/Capture",
+                  "name": "UI / Capture",
                   "slug": "core-frontend-ui-capture"
                 },
                 {
-                  "name": "UI/Navigate",
+                  "name": "UI / Navigate",
                   "slug": "core-frontend-ui-navigate"
                 },
                 {
-                  "name": "UI/Present",
+                  "name": "UI / Present",
                   "slug": "core-frontend-ui-present"
                 }
               ]

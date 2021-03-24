@@ -378,7 +378,7 @@ function getClassName(name) {
   if (pieces.length === 2) return pieces[1];
 
   // Support ui-prefixed names
-  return `${pieces[1].toUpperCase()} ${pieces[2]}`;
+  return `${pieces[1].toUpperCase()} / ${pieces[2]}`;
 }
 
 const CorePackage = (props) => {
