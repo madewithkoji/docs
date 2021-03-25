@@ -53,7 +53,7 @@ _Boolean_, Indicates whether the Koji is <<.ready, ready to start receiving even
 [id=".playerState", reftext="playerState"]
 === .playerState
 
-_<<core-frontend-playerstate#,PlayerState>>_, Class that manages the context of the Koji to enable distinct experiences for different users and views.
+_<<core-frontend-playerstate#,PlayerState>>_, Class that manages the state of the Koji player to enable distinct experiences for different users and views.
 
 [id=".projectId", reftext="projectId"]
 === .projectId
