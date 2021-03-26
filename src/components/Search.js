@@ -254,12 +254,12 @@ const Search = ({ isSearching }) => {
       <GroupsWrapper>
         {
           groups.map((group) => (
-            <Group>
+            <Group key={group.name}>
               <GroupHeader>{group.name}</GroupHeader>
               <Divider />
               {
                 group.items.map((item) => (
-                  <Item>
+                  <Item key={item.link}>
                     <ItemSection>{item.breadcrumb[1].name}</ItemSection>
                     <Divider orientation={'vertical'} flexItem />
                     <Link to={item.link}>
