@@ -418,12 +418,20 @@ const CorePackage = (props) => {
     .filter((param) => param.type && param.type.type && param.type.type === 'reference')
     .reduce((acc, cur) => acc.includes(cur.type.id) ? acc : [...acc, cur.type.id], []);
 
+  const methodReturnReferenceIds = methods
+    // eslint-disable-next-line max-len
+    .map((method) => (method.signatures && method.signatures[0] && method.signatures[0].type && method.signatures[0].type) || { typeArguments: [] })
+    .reduce((acc, cur) => [...acc, ...(cur.typeArguments || [])], [])
+    .filter((typeArgument) => typeArgument.type && typeArgument.type === 'reference')
+    .reduce((acc, cur) => acc.includes(cur.id) ? acc : [...acc, cur.id], []);
+
   const propertyReferenceIds = properties
     .map((property) => property.type || {})
     .filter((param) => param.type && param.type.type && param.type.type === 'reference')
     .reduce((acc, cur) => acc.includes(cur.type.id) ? acc : [...acc, cur.type.id], []);
 
   let allReferenceIds = [
+    ...methodReturnReferenceIds,
     ...methodReferenceIds,
     ...propertyReferenceIds,
   ].reduce((acc, cur) => acc.includes(cur) ? acc : [...acc, cur], []);
