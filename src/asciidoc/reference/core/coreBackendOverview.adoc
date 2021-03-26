@@ -38,7 +38,11 @@ _<<core-backend-identity#, Identity>>_, Class that manages authentication and au
 
 _<<core-backend-secret#, Secret>>_, Class that handles sensitive data used in your Koji template.
 
-=== Middleware
+=== Utilities
+
+_<<core-backend-utilities#, Utilities>>_, Class that provides utility methods for improving the performance and functionality of your Koji template.
+
+=== middleware
 
 Executes an http://expressjs.com/en/guide/using-middleware.html[Express middleware], making Koji-specific data available on the `res.locals` property.
 

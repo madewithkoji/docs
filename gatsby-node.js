@@ -16,6 +16,7 @@ exports.sourceNodes = ({ actions, createNodeId, createContentDigest }) => {
         'backend/iap',
         'backend/identity',
         'backend/secret',
+        'backend/utilities'
         'frontend/analytics',
         'frontend/dispatch',
         'frontend/iap',
