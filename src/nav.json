@@ -358,6 +358,10 @@
                 {
                   "name": "Secret",
                   "slug": "core-backend-secret"
+                },
+                {
+                  "name": "Utilities",
+                  "slug": "core-backend-utilities"
                 }
               ]
             },
