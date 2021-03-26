@@ -22,6 +22,7 @@ import Content from '../Asciidoc/components/Content';
 import SEO from '../../components/Seo';
 
 import { BLACK, DARK_GRAY } from '../../constants/colors';
+import { convertToAsciiDoc } from './utils/common';
 
 export const query = graphql`
   query($id: String!) {
@@ -461,19 +462,26 @@ const CorePackage = (props) => {
     }
 
     const paragraphs = document.querySelectorAll('p');
+
     for (let idx = 0; idx < paragraphs.length; idx += 1) {
       const paragraph = paragraphs[idx];
-      paragraph.innerHTML = paragraph.innerHTML.replace(new RegExp(/\[\[.*\s\|\s.*\]\]/g), (match) => {
-        const [href, link] = match.slice(2, -2).split('|').map((t) => t.trim());
-        return `<a href="${href}" target="_blank">${link}</a>`;
-      });
+      paragraph.innerHTML = paragraph.innerHTML.replace(new RegExp(/\[\[([^\]\]]*)\]\]/g), (match) => {
+        const [href, linkText] = match.slice(2, -2).split('|').map((t) => t && t.trim());
 
-      paragraph.innerHTML = paragraph.innerHTML.replace(new RegExp(/\[\[\S*]]/g), (match) => {
-        const [href] = match.slice(2, -2).split('|').map((t) => t.trim());
-        return `<a href="#${href}">${href}</a>`;
+        if (href.includes('http')) return `<a href="${href}" ${href.includes('http') ? 'target="_blank"' : ''}>${linkText || href}</a>`;
+
+        return `<a href="#${href}">${linkText || href}</a>`;
       });
 
       paragraph.innerHTML = paragraph.innerHTML.replace(new RegExp(/`.*?`/g), (match) => `<code>${match.slice(1, -1)}</code>`);
+    }
+
+    const admonitions = document.querySelectorAll('p.note');
+
+    for (let idx = 0; idx < admonitions.length; idx += 1) {
+      const admonition = admonitions[idx];
+
+      admonition.innerHTML = convertToAsciiDoc(`NOTE: ${admonition.innerText}`);
     }
 
     setIsReady(() => true);

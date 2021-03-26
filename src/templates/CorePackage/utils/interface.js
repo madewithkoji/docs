@@ -45,7 +45,7 @@ export function renderInterface(i) {
                     </p>
                     {
                       (property.comment && property.comment.text) &&
-                      <p>{property.comment.text}</p>
+                      <div dangerouslySetInnerHTML={{ __html: property.comment.text }} />
                     }
                   </li>
                 ))

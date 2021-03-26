@@ -94,7 +94,7 @@ export function renderMethod(method, interfaces) {
       }
       {
         methodExtendedDescription &&
-        <p>{methodExtendedDescription}</p>
+        <div dangerouslySetInnerHTML={{ __html: methodExtendedDescription }} />
       }
       {
         methodParameters &&

@@ -4,6 +4,8 @@ import { capitalize } from './common';
 export function renderParameterType(parameter) {
   if (!parameter.type || !parameter.type.type) return null;
 
+  if (parameter.type.type === 'literal' && parameter.type.value) return `'${parameter.type.value}'`;
+
   // If it's an index signature
   if (parameter.type.declaration && parameter.type.declaration.indexSignature) {
     return `[index: ${parameter.type.declaration.indexSignature.parameters[0].type.name}]: any`;

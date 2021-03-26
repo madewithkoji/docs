@@ -2,9 +2,7 @@ import React from 'react';
 import { renderParameterDescription, renderParameterType, parameterIsArray } from './parameter';
 
 function getTypeAliasUnionOptions(typeAlias) {
-  const unionOptions = (typeAlias.type.types || []).map((t) => t.value);
-
-  return unionOptions.length ? unionOptions : false;
+  return typeAlias.type.types ? typeAlias.type.types : false;
 }
 
 function parseTypeAliasType(typeAlias, declaration) {
@@ -133,10 +131,10 @@ export function renderTypeAlias(typeAlias, interfaces) {
           <div className={'ulist'}>
             <ul>
               {
-                unionOptions.map((unionOption, idx) => (
+                unionOptions.filter((u) => u !== null).map((unionOption, idx) => (
                   // eslint-disable-next-line react/no-array-index-key
                   <li key={`${unionOption}-${idx}`}>
-                    {`'${unionOption}'`}
+                    {renderParameterType({ type: unionOption })}
                   </li>
                 ))
               }
