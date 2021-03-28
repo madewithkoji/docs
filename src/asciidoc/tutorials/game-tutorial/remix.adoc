@@ -3,14 +3,15 @@
 :page-description: Modifying the Remix menu
 :figure-caption!:
 
-We've finished the main part of our game. But this is Koji! We don't stop here. 
+We've finished the main part of our game.
+But this is Koji! We don't stop there.
 
-We want this game to be easily remixable by other people and shared everywhere online!
+We want this game to be easily remixable by other people so it can be shared everywhere online!
 
-During this section, we will:
+In this section, we will:
 
-- Edit the existing Remix menu
-- Learn how to add a customizable image to the Remix menu
+- Edit the existing Remix menu.
+- Learn how to add a customizable image to the Remix menu.
 
 == Overview
 
@@ -19,23 +20,26 @@ Let's explore a new section of the game template.
 If you open `frontend/src/Components/Remix/index.js`, you'll find some workflow already set up.
 
 [NOTE]
-You can see what your Remix menu currently looks like in the `Remix` tab of the http://developer.withkoji.com/docs/develop/testing-templates#_using_the_koji_debugger[Debugger], or inside the Live Preview from your web editor
+You can see what your Remix menu currently looks like in the `Remix` tab of the http://developer.withkoji.com/docs/develop/testing-templates#_using_the_koji_debugger[Debugger], or inside the Live Preview from your web editor.
 
 *Background Image* and *Music* customization are already handled by the template, so we can just leave them as they are.
 
-Luckily, since we've already made a generic `Player` class that uses `imgPlayer` for its image, we can take advantage of the template once more because it already has everything set up for our player to be customizable.
+Luckily, since we've already made a generic `Player` class that uses `imgPlayer` for its image, everything is already set up for our player to be customizable.
 
 image:https://i.imgur.com/PvpEy66.png[alt="screenshot player",width=256,height=256]
 
-To test it out, try changing the `Player` image and going into preview mode. Our player is different now!
+To test it out, try changing the `Player` image.
+If necessary, refresh the preview.
+Our player is different now!
 
 == Adding the Collectible image to Remix menu
 
-But what about our `Collectible` image? Let's make that customizable too, using a similar workflow as `Player`.
+Let's make our `Collectible` image customizable, as well.
 
 === Setting up state hooks
 
-First, let's make a State Hook that will represent our `Collectible` image, and assign the initial values:
+First, let's make a State Hook that will represent our `Collectible` image, and assign the initial values.
+Modify `index.js` as follows.
 
 [source,javascript]
 -------------------
@@ -53,18 +57,21 @@ const Component = () => {
         setImgCollectible(remixValues.imgCollectible);
 
         ...
-
     })
 }
 -------------------
 
-Notice that we also created an `isCollectibleInvalid` state hook. We will need this to make sure the user has actually uploaded an image. We don't want them to publish the game without one.
+Notice that we also created an `isCollectibleInvalid` state hook.
+We'll use it to make sure the user has actually uploaded an image.
+We don't want them to publish the game without one.
 
-Then in `assignInitialValues()`, which is inside our useEffect Hook when the Remix components mounts, we assign the initial value from `koji.json`:
+Then, in `assignInitialValues()`, which is inside our useEffect Hook when the Remix component mounts, we assign the initial value from `koji.json`:
+
+`setImgCollectible(remixValues.imgCollectible);`
 
 === Defining functions that let us change the image
 
-We also need to define some functions that will let us change or delete our collectible image:
+We also need to define some functions that will let us change or delete our collectible image.
 
 [source,javascript]
 -------------------
@@ -88,30 +95,32 @@ const Component = () => {
         updateGame();
     }
 
+    ...
 }
 -------------------
 
-To capture our image, we're using `@withkoji/core` package that lets us easily upload an image, paste one from a link or choose from one of the asset packs.
+To capture our image, we use the `@withkoji/core` package, which lets us upload an image, paste one from a link, or choose one from one of the asset packs.
 
-`Koji.ui.capture.image()` will return `null` in case the user has cancelled image selection, so we also include a simple check to make sure that's not the case.
+`Koji.ui.capture.image()` will return `null` if the user cancels image selection, so we also include a simple check to make sure that's not the case.
 
 Then we:
 
-* Update our `imgCollectible` *state hook* with the resulting image
-* Reset the `isCollectibleInvalid` state hook
-* Update our `imgCollectible` *remix value* with the resulting image
-* Update the game
+* Update our `imgCollectible` *state hook* with the resulting image.
+* Reset the `isCollectibleInvalid` state hook.
+* Update our `imgCollectible` *remix value* with the resulting image.
+* Update the game.
 
-We want to update our game here because we have a running game preview behind our Remix panel. If we change something that wouldn't be instantly previewable inside the game, this step can be skipped.
+We want to update our game here because we have a running game preview behind our Remix panel.
+If you change something isn't instantly previewable inside the game, this step can be skipped.
 
-Inside `deleteCollectible()`, we do the same thing, except we just set our `imgCollectible` to an empty string instead of capturing an image.
-
+Inside `deleteCollectible()`, we do the same thing, except we set `imgCollectible` to an empty string, instead of capturing an image.
 
 === Rendering the image component
 
-Next, let's render the component which represents a collectible image and lets us customize it. We can once again use the existing structure from `Player`.
+Next, let's render the component that represents a collectible image and lets us customize it.
+We can once again use the existing structure from `Player`.
 
-Find the component that looks like this:
+Find the component that looks like the following.
 
 [source,javascript]
 -------------------
@@ -129,7 +138,7 @@ Find the component that looks like this:
 </div>
 -------------------
 
-Make a copy just below it, still inside the `<Section>` component, and modify it to look like this:
+Make a copy just below it, still inside the `<Section>` component, and modify it as follows.
 
 [source,javascript]
 -------------------
@@ -151,7 +160,7 @@ Make a copy just below it, still inside the `<Section>` component, and modify it
 
 Lastly, we want to modify the `finish()` function to prevent the user from publishing if they haven't uploaded an image.
 
-It already has that logic handled for `imgPlayer`, so we can just modify it to include `imgCollectible` as well:
+That logic is already in place for `imgPlayer`, so we can just modify it to include `imgCollectible`.
 
 [source,javascript]
 -------------------
@@ -180,10 +189,9 @@ const finish = async () => {
 -------------------
 
 [NOTE]
-We don't need to explicity set `imgPlayer` and `imgCollectible` inside the `Koji.remix.set()` function, because we've already done it with our `onChange` handlers. Setting them here as well won't make any difference in the final result.
+We don't need to explicitly set `imgPlayer` and `imgCollectible` inside the `Koji.remix.set()` function, because we've already done it in our `onChange` handlers.
 
 image:https://i.imgur.com/F5BamYt.png[alt="screenshot player",width=256,height=256]
-
 
 == Wrapping up
 

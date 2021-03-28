@@ -3,23 +3,24 @@
 :page-description: Managing difficulty
 :figure-caption!:
 
-At this stage, our game is finally playable!
+Our game is finally playable!
+But it might be a little too repetitive and easy.
+We want it to get progressively more difficult over time, so that our players have more incentive to compete on the leaderboard.
 
-But right now, it might be a little too repetitive and easy. We want to progressively more difficult as time passes, so our players have more incentive to compete on the leaderboard.
+In this section, we will:
 
-During this section, we will:
+- Define values that can be changed to increase the game difficulty.
+- Define a function that handles that change at a set interval.
 
-- Define values that can be changed to increase the game difficulty
-- Define a function that handles that change at a set interval
-
-Remember how we had a function that handled our spawn logic? We can do something similar this time.
+Remember how we had a function that handled our spawn logic?
+We can do something similar this time.
 
 == Defining starting values
 
-Let's define some settings in `frontend/src/Components/Game/preload.js` first:
+Let's define some more settings in `frontend/src/Components/Game/preload.js`.
 
 [source,javascript]
--------------------
+----
 ...
 const initializeValues = () => {
     ...
@@ -29,14 +30,14 @@ const initializeValues = () => {
     game.speedLimit = 12;
     game.speedIncrease = 0.1;
 }
--------------------
+----
 
 == Defining the function to handle difficulty
 
-Then we can create our handler function in `frontend/src/Components/Game/draw.js`:
+Now we can create our handler function in `frontend/src/Components/Game/draw.js`:
 
 [source,javascript]
--------------------
+----
 ...
 const draw = () => {
     ...
@@ -63,21 +64,23 @@ const increaseDifficulty = () => {
         game.speedMin += game.speedIncrease;
     }
 }
--------------------
+----
 
-So, using our timer we periodically increase our difficulty by changing some game values, up to a point. It's important to set a limit to prevent the game getting totally unplayable after some time, which most players don't really consider a fun experience.
+So, using our timer, we periodically increase the difficulty by changing some game values, up to a point.
+It's important to set a limit to prevent the game from eventually getting totally unplayable, which most players don't really consider a fun experience.
 
 Every time the difficulty increases, we:
 
-* Slightly decrease the period at which Collectibles spawn
-* Slightly increase the falling speed of Collectibles
+* Slightly decrease the period between the spawning of Collectibles.
+* Slightly increase the falling speed of Collectibles.
 
 == Wrapping up
 
 *Congratulations!*
 
-We've actually finished developing the main part of our game!
+We've finished developing the main part of our game!
 
-Of course, you can go back and try modifying something, or adding a new feature. Everything's a bonus from now on!
+Of course, you can go back and modify things, or add new features.
+Everything's a bonus from now on!
 
-In the <<game-tutorial-remix#,next section>>, we'll take a look at the `Remix` menu and allow our assets to be customizable when this game is remixed.
+In the <<game-tutorial-remix#,next section>>, we'll take a look at the `Remix` menu and make our assets customizable when the game is remixed.

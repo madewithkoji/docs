@@ -3,11 +3,11 @@
 :page-description: Updating our game to respond to payment
 :figure-caption!:
 
-During this section, we will:
+In this section, we will:
 
-- Add a listener to the game for the `resetLives` event
-- Modify game behavior to reflect the new flow
-- Test the game to make sure everything works correctly
+- Add a listener to the game for the `resetLives` event.
+- Modify game behavior to reflect the new flow.
+- Test the game to make sure everything works correctly.
 
 == Adding a listener for `resetLives` event
 
@@ -15,18 +15,39 @@ This template uses CustomEvents to communicate between the game instance and the
 
 We've already added the `emitEvent(resetLives);` call inside our `onPurchase()` function, so let's add a listener for it!
 
-If you go to `frontend/src/Components/Game/index.js`, you'll find that there are already some listeners defined in the first `useEffect` hook. This is where we'll define our new one:
+If you go to `frontend/src/Components/Game/index.js`, you'll find that there are already some listeners defined in the first `useEffect` hook.
+This is where we'll define our new one.
 
 `window.addEventListener('resetLives', resetLives);`
 
-And make sure to also remove it inside of the `return` function, so it gets deleted when the game component unmounts, to prevent any unwanted leaks:
+And make sure to also remove it inside of the `return` function, so that it gets deleted when the game component unmounts. This is important for preventing memory leaks.
 
 `window.removeEventListener('resetLives', resetLives);`
+
+[source,javascript]
+------------------
+useEffect(() => {
+    if(game){
+        game.players = props.players;
+    }
+}, [props.players])
+
+return (
+    <Container>
+        <div id={'p5game'} />
+        <Loader id={"p5_loading"}><Spinner /> </Loader>
+    </Container>
+)
+------------------
 
 We also need to define the callback function that we passed to that listener:
 
 [source,javascript]
 ------------------
+...
+import { spawnFloatingText } from './Effects/FloatingText';
+...
+
 const resetLives = () => {
     game.lives = game.startingLives;
     game.gameOver = false;
@@ -41,7 +62,8 @@ const resetLives = () => {
 Here, we do the actual reset of lives.
 Additionally, we make sure to reset the `game.gameOver` property to `false`, and also spawn some floating text in the middle of the screen to celebrate this wholesome event. 
 
-If you've done my <<game-tutorial-intro#,Creating a remixable game>> tutorial or are already familiar with this game template, you could get even more creative here and spawn some *exploding particles* too! The player just spent some cash on this game, it should be rewarded.
+If you've done my <<game-tutorial-intro#,Creating a remixable game>> tutorial or are already familiar with this game template, you could get even more creative here and spawn some *exploding particles*, too!
+The player just spent some cash on this game -- they should be rewarded.
 
 == Modifying Block.js
 

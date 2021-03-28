@@ -3,22 +3,22 @@
 :page-description: Modifying the thumbnail preview when the game is shared on socials
 :figure-caption!:
 
-The very last thing we need to do before releasing our new game into the wild, is to customize the thumbnail preview, so when users share their remixes, they get nice little previews that people will click on!
+The last thing we need to do before releasing our new game into the wild, is to customize the thumbnail preview, so that when users share their remixes, they get nice little previews that people will be drawn to click on!
 
-During this section, we will edit the existing `Screenshot` component to include our collectibles and create a "fake" screenshot using our assets.
+In this section, we'll edit the existing `Screenshot` component to include our collectibles, and create a "fake" screenshot using our assets.
 
 == How it works
 
-Basically, whatever we render inside of `frontend/src/Components/Screenshot/index.js` will be rendered in the thumbnail preview that people see when this game is shared on socials.
+Basically, whatever we render inside of `frontend/src/Components/Screenshot/index.js` will be rendered in the thumbnail preview that people see when the game is shared on socials.
 
 [NOTE]
-You can see what your thumbnail preview currently looks like in the `Thumbnail` tab of the http://developer.withkoji.com/docs/develop/testing-templates#_using_the_koji_debugger[Debugger], or inside the Live Preview from your web editor
+You can see what your thumbnail preview currently looks like in the `Thumbnail` tab of the http://developer.withkoji.com/docs/develop/testing-templates#_using_the_koji_debugger[Debugger], or inside the Live Preview from your web editor.
 
-== Editing the Screenshot component
+== Editing the `Screenshot` component
 
 By default, this component already shows `imgPlayer` in the center.
 
-It looks something like this:
+It looks something like the following.
 
 [source,javascript]
 -------------------
@@ -34,7 +34,8 @@ It looks something like this:
 
 === Moving the player down
 
-Let's move the player down a bit. To do that, just change the `top` value to something like `80%`:
+Let's move the player down a bit.
+Change the `top` value to something like `80%`.
 
 [source,javascript]
 -------------------
@@ -50,10 +51,35 @@ Let's move the player down a bit. To do that, just change the `top` value to som
 
 === Adding Collectible images
 
-Now, let's add some `Collectible` images by duplicating the player's `FeaturedImage` below, and changing their positions around. They don't have to be exactly the same, you can play around and see what you like best. You can even randomize their positions if you want!
+Now, let's add some `Collectible` images by copying the player's `FeaturedImage` and pasting it several times below the original.
+Then, in each copy (but not in the original), change `remixValues.imgPlayer` to `remixValues.imgCollectible`.
+Finally, change the values for `left` and `top` in each copy.
+They don't have to be exactly the same as the ones in our example.
+You can play around and see what you like best.
+You can even randomize their positions if you want!
 
 [source,javascript]
 -------------------
+<FeaturedImage
+    src={optimizeImage(<FeaturedImage
+    src={optimizeImage(remixValues.imgPlayer, 150, 150)}
+    rotation={randomRange(-30, 30)}
+    style={{
+        left: '50%',
+        top: '80%'
+    }}
+/>
+
+<FeaturedImage
+    src={optimizeImage(<FeaturedImage
+    src={optimizeImage(remixValues.imgCollectible, 150, 150)}
+    rotation={randomRange(-30, 30)}
+    style={{
+        left: '50%',
+        top: '50%'
+    }}
+/>
+
 <FeaturedImage
     src={optimizeImage(remixValues.imgCollectible, 150, 150)}
     rotation={randomRange(-30, 30)}
@@ -86,11 +112,10 @@ Once done, your thumbnail preview should look something like this:
 
 image:https://i.imgur.com/rsElqqp.png[alt="screenshot player",width=256,height=256]
 
-
 == Wrapping up
 
 *Congratulations!*
 
-You've reached the end of this tutorial!
+You've reached the end of the tutorial!
 
-In the <<game-tutorial-finishing-up#,final section>>, we talk about Publishing your game and some additional suggestions going forward.
+In the <<game-tutorial-finishing-up#,final section>>, we talk about Publishing your game and make some suggestions for going forward.

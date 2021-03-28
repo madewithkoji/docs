@@ -3,17 +3,17 @@
 :page-description: Adding collision checks and lose conditions
 :figure-caption!:
 
-During this section, we will:
+In this section, we will:
 
-- Check for collision between the `Player` and `Collectible` and add to game score
-- Add simple animations to make the game more fun
-- Check if a `Collectible` has been missed and have the player lose a life
+- Check for collision between the `Player` and `Collectible` and add to game score.
+- Add simple animations to make the game more fun.
+- Check if a `Collectible` has been missed and have the player lose a life.
 
 == Collision checking
 
-To check for collisions between Player and Collectibles, we'll modify `frontend/src/Components/Game/Entities/Player.js` again.
+We handle collisions in `frontend/src/Components/Game/Entities/Player.js`.
 
-Let's add a new function to do that, and put it in `update()`!
+Let's add a new function to check for collisions, and call it from `update()`!
 
 [source,javascript]
 -------------------
@@ -40,7 +40,7 @@ export default class Player extends Entity {
 }
 -------------------
 
-And we need to define the `onCollect()` function inside `Collectible` in `frontend/src/Components/Game/Entities/Collectible.js`:
+We also need to define the `onCollect()` function inside the `Collectible` class in `frontend/src/Components/Game/Entities/Collectible.js`.
 
 [source,javascript]
 -------------------
@@ -56,24 +56,23 @@ export default class Collectible extends Entity {
 }
 -------------------
 
-First, we use `game.findByTag('collectible')` to get all our `Collectible` objects, then run through each one checking if they are colliding with the `Player`.
+First, we use `game.findByTag('collectible')` to get all our `Collectible` objects, then we run through each one checking if it's colliding with the `Player`.
 
 [NOTE]
-`game.findByTag(tag: string)` works by filtering the game instance's `entities` array and returns a new array containing all entities with the given tag
+`game.findByTag(tag: string)` works by filtering the game instance's `entities` array and returns a new array containing all entities with the given tag.
 
-For that, we're using `CollisionCircle()`, provided by the game template (from `frontend/src/Components/Game/Utils/Collision`), which takes two `Entities` as arguments.
+To check for a collision, we use `CollisionCircle()`, which is located in `frontend/src/Components/Game/Utils/Collision.js`.
+The function takes two `Entities` as arguments and returns `true` if they are close enough together to collide (based on the size of the entities and their distance apart).
 
-So if we are colliding, and the target `Collectible` hasn't already been collected, we trigger the `onCollect()` handler on the target `Collectible`.
-
-This just sets the `isCollected` flag to true.
+So, if Player is colliding with a Collectible and the target Collectible hasn't already been collected, we trigger the `onCollect()` handler in `Collectible`, which just sets the `isCollected` flag to true.
 
 === Animated collecting
 
-Now, we could just remove our Collectible object now and be done with it, but we don't want this to be like any other tutorial. Let's spice things up a bit!
+We could remove our Collectible object now and be done with it, but we don't want this to be just your "run of the mill" tutorial, so let's spice things up a bit!
 
-Instead of the Collectible just disappearing upon contact, let's have the Player attract it like a magnet and make it explode into particles! That sounds more fun!
+Instead of the Collectible simply disappearing upon contact, let's have the Player attract it like a magnet and make it explode into particles! That sounds more fun!
 
-So let's override Collectible's `update()` function, but also keep the original behavior:
+Override the `update()` function in `Collectible.js`, but also keep the original behavior, which is defined in the parent Entity class.
 
 [source,javascript]
 -------------------
@@ -91,6 +90,10 @@ export default class Collectible extends Entity {
         ...
 
         this.animTimer = 0;
+    }
+
+    onCollect() {
+        this.isCollected = true;
     }
 
     update(){
@@ -136,46 +139,51 @@ export default class Collectible extends Entity {
 }
 -------------------
 
-Note that we haven't yet defined Player's `pulse()` function, so the game will crash upon a collision. We'll do that next, but first, let's break down this code: 
+Note that we haven't yet defined Player's `pulse()` function, so the game will crash when there's a collision
+We'll do that next, but first, let's break down this code: 
 
-So, once we set our `isCollected` value to true, things start to happen.
+Once we set our `isCollected` value to true, things start to happen.
 
 In `handleAnimation()`, we:
 
-* Advance the `animTimer` property by `game.delta() * 4`
-** Using `game.delta() * 4` basically means we want our `animTimer` to be incremented by `1` in `0.25` seconds. The higher the multiplier, the faster we increment it.
+* Advance the `animTimer` property by `game.delta() * 4`.
+** Using `game.delta() * 4` means that we want `animTimer` to be incremented by `1` every `0.25` seconds.
+The higher the multiplier, the faster we increment it.
 * Use that `animTimer` value to do some `EasingFunctions` and shrink the scale from 1 to 0.05.
-** We're not going all the way to `0` because it might create minor glitches, but either way, it does not make any difference visually, so just a tiny value is fine.
+** We're not going all the way down to `0` because it might create some minor glitches, but it doesn't make any difference visually, so a tiny value is fine.
 
-At the same time, in `moveTowardsPlayer()`, we're doing several things at once:
+At the same time, in `moveTowardsPlayer()`, we do several things at once:
 
-* `this.velocity.y = Smooth(this.velocity.y, 0, 8)` - Gradually disable the existing vertical velocity
-* `this.rotSpeed = Smooth(this.rotSpeed, 0, 8)` - Start spinning wildly
-* `this.pos.x = Smooth(this.pos.x, game.player.pos.x, 12)`
-* `this.pos.y = Smooth(this.pos.y, game.player.pos.y, 12)` - Quickly move towards the player location
+* `this.velocity.y = Smooth(this.velocity.y, 0, 8)` - Gradually disable the existing vertical velocity.
+* `this.rotSpeed = Smooth(this.rotSpeed, 0, 8)` - Start spinning wildly.
+* `this.pos.x = Smooth(this.pos.x, game.player.pos.x, 12)`.
+* `this.pos.y = Smooth(this.pos.y, game.player.pos.y, 12)` - Quickly move towards the player location.
 
-Once `animTimer` has gone up to `1` (in about `0.25` seconds, since we're multiplying the delta by `4`), Easing animation will be over and that's when the actual collecting happens with `getCollected()`.
+Once `animTimer` reaches `1` (in about `0.25` seconds, since we're multiplying the delta by `4`), Easing animation will be over and that's when the actual collecting happens with `getCollected()`.
 
-Then, finally, in `getCollected()`, we:
+Finally, in `getCollected()`, we:
 
-* Set the `shouldBeRemoved` flag to `true`
-** This game template already has code that handles removal of entities which have `shouldBeRemoved` flag set, so that's all we need to do to make it happen.
+* Set the `shouldBeRemoved` flag to `true`.
+** This game template already has code that handles removal of entities which have the `shouldBeRemoved` flag set, so that's all we need to do to make it happen.
 * Spawn `10` particles at Player's position and give them the same image as the `Collectible`.
-* Spawn a `+1` floating text a little above the player
-* Add `1` to game score
+* Spawn a `+1` floating text a little above the player.
+* Add `1` to the game score.
 * Play the `collect` sound.
-* Call `game.player.pulse()`, which resets Player's "pulse" animation. We don't have that animation yet, so let's set it up!
+* Call `game.player.pulse()`, which resets Player's "pulse" animation.
+We don't have that animation yet, so let's set it up!
 
 [NOTE] 
-Remember when we assigned `game.player` property to the `gameInstance`? We finally made use of it here. Another way to find the player object among all entities would be to set the `"player"` tag inside of `Player`, then do something like `const player = game.findByTag('player')[0];`.  
+Remember when we assigned `game.player` property to the `gameInstance`? We finally make use of it here.Another way to find the player object would be to set the `"player"` tag inside of `Player`, then do something like `const player = game.findByTag('player')[0];`.
 
-Back to `frontend/src/Components/Game/Entities/Player.js`:
+Now let's go back to `frontend/src/Components/Game/Entities/Player.js`.
 
 [source,javascript]
 -------------------
+// Don't forget to import `Ease` and `EasingFunctions`.
 import { game } from '..'
 import Entity from './Entity'
 import { Smooth, Ease, EasingFunctions } from '../Utils/EasingFunctions'
+import { CollisionCircle } from '../Utils/Collision'
 
 export default class Player extends Entity {
     constructor(x, y, options){
@@ -206,13 +214,13 @@ export default class Player extends Entity {
 }
 -------------------
 
-As you can see, it's a similar animation setup as in `Collectible`.
+As you can see, it's similar to the animation setup in `Collectible`.
 
-We're incrementing the `animTimer` property as long as it's below `1`, because our `EasingFunctions` only work for values between `0` and `1`.
+We increment the `animTimer` property as long as it's below `1`, because our `EasingFunctions` only work for values between `0` and `1`.
 
 Then we modify the scale again, but this time we're using the `easeOutElastic` function, which gives us a nice bouncy effect.
 
-`pulse()` function just resets the `animTimer` to `0`, which restarts the animation.
+The `pulse()` function just resets the `animTimer` to `0`, which restarts the animation.
 
 image:https://i.imgur.com/EcVO5ZU.gif[alt="screenshot player"]
 
@@ -220,17 +228,16 @@ Now it's looking better!
 
 == Checking for missed collectibles
 
-We need a way to lose the game somehow, too!
+We need a way to lose the game, too!
 
-To do that, we'll have to check if any of the collectibles went past the player and off the screen.
+To do that, we have to check if any of the collectibles went past the player and off the screen.
 
 Let's go back to `frontend/src/Components/Game/Entities/Collectible.js` and add that check:
 
 [source,javascript]
 -------------------
 import { game } from '..'
-import Entity from './Entity'
-import playSound from '../Utils/playSound'
+...
 
 export default class Collectible extends Entity {
     ...
@@ -260,17 +267,17 @@ First, we check the Collectible's `pos.y` coordinate, and if it's higher than th
 
 * Trigger a `game.loseLife` function.
 ** The template makes sure that the game automatically ends when there are no lives left.
-* Play a `loselife` sound
-* Shake the camera a bit to amplify that negative effect
-* Set the `shouldBeRemoved` flag to `true`, to make sure our object will be deleted from memory in the next frame.
+* Play a `loselife` sound.
+* Shake the camera a bit to amplify that negative effect.
+* Set the `shouldBeRemoved` flag to `true` so that our object will be deleted from memory in the next frame.
 
 image:https://i.imgur.com/ptLizkT.gif[alt="screenshot player"]
 
 [NOTE]
-Deleting unused objects from memory is an especially important step in every game in order to prevent memory leaks from prolonged gameplay sessions which can result in performance slowdown and eventually a crash
+Deleting unused objects from memory is an especially important step in every game in order to prevent memory leaks, which can result in performance slowdown and eventually a crash.
 
 == Wrapping up
 
-At this point, our game is playable!
+Our game is now playable!
 
-In the <<game-tutorial-managing-difficulty#,next section>>, we'll add some difficulty management and have the game progressively get harder.
+In the <<game-tutorial-managing-difficulty#,next section>>, we'll add some difficulty management to make the game get progressively harder.

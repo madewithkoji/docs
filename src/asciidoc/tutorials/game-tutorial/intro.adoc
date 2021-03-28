@@ -3,38 +3,47 @@
 :page-description: Tutorial for creating a remixable Koji game
 :figure-caption!:
 
-In this tutorial, we will go through the process of creating a remixable https://withkoji.com/~Svarog1389/rxkd[Falling Objects^] game with an existing https://withkoji.com/~Svarog1389/game-template-1[p5.js Game Template^] as our starting point.
+In this tutorial, we step through the process of creating a remixable https://withkoji.com/~Svarog1389/rxkd[Falling Objects^] game, using an existing https://withkoji.com/~Svarog1389/game-template-1[p5.js Game Template^] as our starting point.
 
 This tutorial assumes you've already gone through the https://developer.withkoji.com/tutorials/getting-started/your-first-project[Getting Started Tutorial^] and are familiar with the basics of Koji.
 
-If you get stuck at any point, feel free to ask for help in our https://discord.gg/kMkjJQ6Phb[Discord Server], or e-mail me at *marko@withkoji.com*
+If you get stuck at any point, feel free to ask for help on our https://discord.gg/kMkjJQ6Phb[Discord Server], or e-mail me at *marko@withkoji.com*.
 
 == About the starting template
 
-We are using https://withkoji.com/~Svarog1389/game-template-1[Game Template] as our starting point because it was made specifically for these types of hyper-casual games, and has a lot of stuff handled for us which saves us quite a bit of time, such as:
+We use https://withkoji.com/~Svarog1389/game-template-1[Game Template] as our starting point because it was created specifically for these types of hyper-casual games, and it handles a lot of stuff for us, which saves us quite a bit of time. Here are some of the things that are already handled in the template.
 
-- Automatic sound loading
-- Improved image loading with optimization
-- Integrated live leaderboard without needing to modify any of the backend files
-- Easily configurable Remix menu
-- One liner calls for spawning special effects like particles and animated text
+* Automatic sound loading.
+* Improved image loading with optimization.
+* Integrated live leaderboard without the need to modify any of the backend files.
+* Easily configurable Remix menu.
+* One line calls for spawning special effects like particles and animated text.
 
 Check out the template https://withkoji.com/~Svarog1389/game-template-1/details/code#README.md[README] for more information!
 
 == Game overview
 
-Falling Objects is a simple game where the player tries to collect as many falling objects as they can without them falling off the screen.
+Falling Objects is a simple game where the player tries to collect as many falling objects as they can before they fall off the screen.
 
-Player loses a life if an object falls down, and the game is over when there are no lives left.
+The player loses a life when an object falls off the screen, and the game is over when the player runs out of lives.
 
-Player moves the character horizontally on the bottom by touching or clicking anywhere on the screen.
+The player moves their character left or right by clicking anywhere on the screen.
 
 == Forking the game template
 
-Let's get started by cloning the https://withkoji.com/~Svarog1389/game-template-1[Game Template]. You can do that by clicking on the *Koji logo* on the upper right corner, then *Advanced*, then find the *Fork* button.
+Let's get started by cloning the https://withkoji.com/~Svarog1389/game-template-1[Game Template].
+
+1. Click the Koji icon.
+2. Go to *Advanced > Fork*.
+A copy of the project is created in your Koji repository, and the project opens in *Project Details*.
+
+== Opening the game in Koji editor
+
+From *Project Details*, click *Open in Code Editor*.
+The Koji editor opens with the game code loaded.
 
 [NOTE]
-Koji web editor is recommended for this tutorial, but you are free to http://developer.withkoji.com/docs/develop/use-git[clone the newly created project to your local environment] if you wish.
+Koji editor is recommended for this tutorial, but you're free to http://developer.withkoji.com/docs/develop/use-git[clone the newly created project to your local environment] if you prefer.
 
 == Sections
 
