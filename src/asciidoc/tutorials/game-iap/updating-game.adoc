@@ -6,7 +6,9 @@
 In this section, we will:
 
 - Add a listener to the game for the `resetLives` event.
+
 - Modify game behavior to reflect the new flow.
+
 - Test the game to make sure everything works correctly.
 
 == Adding a listener for `resetLives` event

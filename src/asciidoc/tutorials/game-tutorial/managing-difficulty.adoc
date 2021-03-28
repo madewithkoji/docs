@@ -10,10 +10,11 @@ We want it to get progressively more difficult over time, so that our players ha
 In this section, we will:
 
 - Define values that can be changed to increase the game difficulty.
+
 - Define a function that handles that change at a set interval.
 
 Remember how we had a function that handled our spawn logic?
-We can do something similar this time.
+We'll do something similar this time.
 
 == Defining starting values
 
@@ -34,7 +35,7 @@ const initializeValues = () => {
 
 == Defining the function to handle difficulty
 
-Now we can create our handler function in `frontend/src/Components/Game/draw.js`:
+Now we can create our handler function in `frontend/src/Components/Game/draw.js`.
 
 [source,javascript]
 ----
@@ -66,21 +67,20 @@ const increaseDifficulty = () => {
 }
 ----
 
-So, using our timer, we periodically increase the difficulty by changing some game values, up to a point.
-It's important to set a limit to prevent the game from eventually getting totally unplayable, which most players don't really consider a fun experience.
+So, using our timer, we periodically increase the difficulty by changing some game values -- up to a point.
+It's important to set a limit to prevent the game from eventually becoming totally unplayable, which most players don't really consider a fun experience.
 
 Every time the difficulty increases, we:
 
 * Slightly decrease the period between the spawning of Collectibles.
+
 * Slightly increase the falling speed of Collectibles.
 
 == Wrapping up
 
-*Congratulations!*
-
-We've finished developing the main part of our game!
+*Congratulations!* We've finished developing the main part of our game!
 
 Of course, you can go back and modify things, or add new features.
 Everything's a bonus from now on!
 
-In the <<game-tutorial-remix#,next section>>, we'll take a look at the `Remix` menu and make our assets customizable when the game is remixed.
+In the <<game-tutorial-remix#,next section>>, we'll take a look at the `Remix` menu and make our assets customizable.

@@ -8,7 +8,9 @@ The last thing we need to do is make our price customizable when people remix th
 In this section, we will:
 
 - Install a new package which handles our price input format.
+
 - Set up the price input field.
+
 - Make sure our price value is updated.
 
 == Installing the new package
@@ -25,9 +27,13 @@ It looks like this.
 image:https://i.imgur.com/VSABST5.png[alt="terminal"]
 
 - Click `frontend` to expand the tab.
+
 You'll see a terminal window running the frontend server.
+
 - Inside the terminal, press `Ctrl+C` on your keyboard to stop the server.
+
 - Type `npm install @anderjason/money` and wait for it to finish running.
+
 - When it's done, type `npm start` to restart the frontend server.
 
 == Price input field

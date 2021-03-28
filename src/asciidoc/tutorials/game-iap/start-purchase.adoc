@@ -6,7 +6,9 @@
 In this section, we will:
 
 - Define the `onPurchase()` function.
+
 - Define the `onPurchaseCancel()` function.
+
 - Modify the template's original game over behavior.
 
 == Defining the functions

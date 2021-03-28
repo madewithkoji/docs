@@ -44,11 +44,17 @@ The *best part* is that whoever remixes the game gets to choose how much the new
 To break it down into steps, we need to:
 
 * Add the `InAppPurchases` entitlement to `koji.json`.
+
 * Define a customizable price value in `remixData` inside `koji.json`.
+
 * Show a menu when the player runs out of lives that lets the user choose what they want to do.
+
 * Modify game behavior to suit our new feature.
+
 * Use `Koji.iap` from the `@withkoji/core` package to handle purchases.
+
 * Notify the game instance that a purchase has been made, and reset the lives.
+
 * Make price customizable in the `Remix` menu.
 
 == Forking the game template

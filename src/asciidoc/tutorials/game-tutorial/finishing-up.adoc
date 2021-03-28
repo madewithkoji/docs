@@ -17,12 +17,19 @@ You can modify features or add new ones, make improvements, anything you can ima
 Here are some features you can try adding:
 
 * Add horizontal speed to Collectibles.
+
 * Add multiple Collectible images -- For example, falling donuts and falling cupcakes.
+
 * Flip the rules so that you have to avoid everything.
+
 * Add more animations to collectibles.
+
 * Have the player be able to move in all directions, not just horizontally.
+
 * Add keyboard controls.
+
 * Add projectiles so you can shoot the falling objects.
+
 * Make an MMORPG out of this! [small]#(just kidding)#
 
 === Sharing your game

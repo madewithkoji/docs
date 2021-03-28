@@ -6,12 +6,13 @@
 We've finished the main part of our game.
 But this is Koji! We don't stop there.
 
-We want this game to be easily remixable by other people so it can be shared everywhere online!
+We want our game to be easily remixable by other people so it can be shared everywhere online!
 
 In this section, we will:
 
 - Edit the existing Remix menu.
-- Learn how to add a customizable image to the Remix menu.
+
+- Learn how to add a customizable image to the menu.
 
 == Overview
 
@@ -38,7 +39,7 @@ Let's make our `Collectible` image customizable, as well.
 
 === Setting up state hooks
 
-First, let's make a State Hook that will represent our `Collectible` image, and assign the initial values.
+First, let's make a State Hook that will represent our `Collectible` image, and assign some initial values.
 Modify `index.js` as follows.
 
 [source,javascript]
@@ -65,13 +66,13 @@ Notice that we also created an `isCollectibleInvalid` state hook.
 We'll use it to make sure the user has actually uploaded an image.
 We don't want them to publish the game without one.
 
-Then, in `assignInitialValues()`, which is inside our useEffect Hook when the Remix component mounts, we assign the initial value from `koji.json`:
+Then, in `assignInitialValues()`, which is inside our useEffect Hook when the Remix component mounts, we assign the initial value from `koji.json`.
 
 `setImgCollectible(remixValues.imgCollectible);`
 
 === Defining functions that let us change the image
 
-We also need to define some functions that will let us change or delete our collectible image.
+We also need to define some functions that will let us change or delete the collectible image.
 
 [source,javascript]
 -------------------
@@ -105,9 +106,12 @@ To capture our image, we use the `@withkoji/core` package, which lets us upload 
 
 Then we:
 
-* Update our `imgCollectible` *state hook* with the resulting image.
+* Update our `imgCollectible` state hook with the resulting image.
+
 * Reset the `isCollectibleInvalid` state hook.
-* Update our `imgCollectible` *remix value* with the resulting image.
+
+* Update our `imgCollectible` remix value with the resulting image.
+
 * Update the game.
 
 We want to update our game here because we have a running game preview behind our Remix panel.
@@ -156,7 +160,7 @@ Make a copy just below it, still inside the `<Section>` component, and modify it
 </div>
 -------------------
 
-=== Updating the `finish()` function
+=== Updating the finish() function
 
 Lastly, we want to modify the `finish()` function to prevent the user from publishing if they haven't uploaded an image.
 

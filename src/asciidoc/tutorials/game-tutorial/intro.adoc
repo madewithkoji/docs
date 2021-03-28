@@ -11,7 +11,8 @@ If you get stuck at any point, feel free to ask for help on our https://discord.
 
 == About the starting template
 
-We use https://withkoji.com/~Svarog1389/game-template-1[Game Template] as our starting point because it was created specifically for these types of hyper-casual games, and it handles a lot of stuff for us, which saves us quite a bit of time. Here are some of the things that are already handled in the template.
+We use https://withkoji.com/~Svarog1389/game-template-1[Game Template] as our starting point because it was created specifically for these types of hyper-casual games, and it handles a lot of stuff for us, which saves us quite a bit of time.
+Here are some of the things that are already handled in the template.
 
 * Automatic sound loading.
 * Improved image loading with optimization.

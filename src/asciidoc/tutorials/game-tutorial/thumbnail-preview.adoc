@@ -3,7 +3,7 @@
 :page-description: Modifying the thumbnail preview when the game is shared on socials
 :figure-caption!:
 
-The last thing we need to do before releasing our new game into the wild, is to customize the thumbnail preview, so that when users share their remixes, they get nice little previews that people will be drawn to click on!
+The last thing we need to do before releasing our new game into the wild is to customize the thumbnail preview, so that when users share their remixes, they get nice little previews that people will be drawn to click on!
 
 In this section, we'll edit the existing `Screenshot` component to include our collectibles, and create a "fake" screenshot using our assets.
 

@@ -6,7 +6,9 @@
 In this section, we will:
 
 - Set up our `koji.json` file.
+
 - Define and load our game assets.
+
 - Define some of our game settings.
 
 == koji.json
@@ -87,7 +89,7 @@ If you have a Live Preview running, notice that the background image has already
 
 == Loading assets
 
-Now that we've added our assets to `remixData`, we need to load them inside our game, so we can use them later.
+Now that we've added our assets to `remixData`, we need to load them inside our game.
 
 We do all of our loading in `frontend/src/Components/Game/preload.js`
 
@@ -117,9 +119,9 @@ const initializeValues = () => {
     game.playerSize = isMobile() ? 90 : 110;
 }
 
-Since there's considerable difference between mobile and desktop display sizes, we use the `isMobile()` function to set the `playerSize` according to the device.
+Since there's a considerable difference between mobile and desktop display sizes, we use the `isMobile()` function to set the `playerSize` according to the device.
 
-We can also change game instructions here by modifying the `game.instructions` property.
+We can also change the game instructions by modifying the `game.instructions` property.
 Change it to something like: 
 
 `game.instructions = "Touch to move around!";`

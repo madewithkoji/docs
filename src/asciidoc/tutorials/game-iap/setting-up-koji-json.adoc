@@ -6,6 +6,7 @@
 In this section, we will:
 
 - Add the `In-App Purchase` entitlement, so Koji can register our product.
+
 - Define a `price` value that can be customized during Remix.
 
 == Entitlements
@@ -83,10 +84,13 @@ It's defined as follows.
 Here's a breakdown of the properties in the product:
 
 * *sku* - the identifier we use to look up our product when the user makes a purchase.
+
 * *name* - the product name that appears on the user's receipt.
+
 * *price* - the price of our product in USD.
 We set this to `{{remixData.price}}`, which means it will use our custom value.
 We define this in the next step.
+
 * *isConsumable* - a flag that is set to `true` to indicate that the user can purchase the product multiple times.
 
 == Remix Data
