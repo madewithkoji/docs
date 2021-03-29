@@ -329,7 +329,7 @@
         },
         {
           "name": "@withkoji/core",
-          "root": "/packages/core",
+          "root": "/core",
           "items": [
             {
               "name": "Overview",
@@ -411,7 +411,7 @@
         },
         {
           "name": "@withkoji/custom-vcc-sdk",
-          "root": "/packages/customvcc",
+          "root": "/customvcc",
           "items": [
             {
               "name": "Overview",

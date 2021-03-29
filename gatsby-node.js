@@ -230,7 +230,7 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
   // For each node, create a page and use the updated corePackageTemplate
   corePackageData.data.allKojiCorePackageItem.nodes.forEach((node) => {
     createPage({
-      path: `/reference/packages/core/${node.slug}`,
+      path: `/reference/core/${node.slug}`,
       component: corePackageTemplate,
       context: {
         id: node.id,
