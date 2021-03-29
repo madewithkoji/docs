@@ -29,10 +29,26 @@ For example:
 
 Install the package in the frontend and backend services of your Koji project.
 
-[source,bash]
+[source,shell]
 ----
 npm install --save @withkoji/core
 ----
+
+== Updates
+
+Before updating to a newer version of this package, run the following utility in the root of your Koji project to identify deprecated functionality and breaking changes in your code.
+
+[source,shell]
+----
+npx @arist0tl3/koji-core-project-scan -i node_modules dist
+----
+
+The utility will log any uses of deprecated functionality and provide a link to the relevant release documentation.
+The output will look something like this example.
+
+image::corePackageVersionUtility.png[Core package versioning utility]
+
+include::../../docs/_includes/coreReleaseNotes.adoc[tag=all]
 
 == Basic use
 
@@ -52,3 +68,5 @@ include::../../docs/_includes/backend-basic-use.adoc[tag=all]
 * https://github.com/madewithkoji/koji-core[@withkoji/core on Github]
 * https://www.npmjs.com/package/@withkoji/core[@withkoji/core on npm]
 * <<quick-start#>>
+* <<migrate-koji-core#>>
+* https://github.com/madewithkoji/koji-core/releases[Package release notes]
