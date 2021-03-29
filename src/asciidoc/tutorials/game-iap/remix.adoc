@@ -3,7 +3,7 @@
 :page-description: Making the price customizable during Remix
 :figure-caption!:
 
-The last thing we need to do is make our price customizable when people remix this game.
+The last thing we want to do is to make our price customizable when people remix the game.
 
 In this section, we will:
 
@@ -15,30 +15,30 @@ In this section, we will:
 
 == Installing the new package
 
-For our price input field, we'll use a premade component that already handles all the proper formatting for us, so we don't have to worry about the user entering invalid characters, incorrect price formats etc.
+For our price input field, we'll use a premade component that already handles all the proper formatting for us, so we don't have to worry about the user entering invalid characters, incorrect price formats, etc.
 
-For that, we are using `@anderjason/koji-react-frontend-tools` npm package, which is already installed in this template.
+That component is included in the `@anderjason/koji-react-frontend-tools` npm package, which is already installed in the template.
 
-Another package we'll use is `@anderjason/money`, which is *not* installed, so let's go ahead and install it.
+Another package we'll need is `@anderjason/money`, which is *not* installed, so let's go ahead and install it.
 
 On the bottom of your web editor, you'll see a black panel with several tabs.
 It looks like this.
 
 image:https://i.imgur.com/VSABST5.png[alt="terminal"]
 
-- Click `frontend` to expand the tab.
+- Click `frontend` to expand the fontend tab.
 
 You'll see a terminal window running the frontend server.
 
 - Inside the terminal, press `Ctrl+C` on your keyboard to stop the server.
 
-- Type `npm install @anderjason/money` and wait for it to finish running.
+- Type `npm install @anderjason/money` and press *Enter*.
 
-- When it's done, type `npm start` to restart the frontend server.
+- When it's finished installing, type `npm start` to restart the frontend server.
 
 == Price input field
 
-Inside `frontend/src/Components/Remix/index.js`, lLet's add a state hook for our `price`, initialize its value, and also set a `maxPrice` constant just to make sure users can't abuse anything.
+Inside `frontend/src/Components/Remix/index.js`, let's add a state hook for our `price`, initialize its value, and also set a `maxPrice` constant (just to make sure users can't abuse anything).
 
 [source,javascript]
 ------------------
@@ -69,7 +69,7 @@ const Component = () => {
 }
 ------------------
 
-We want to render `<MoneyInput>` inside `<Card>`, just below the `<Section>` component that contains the block image.
+We'll render `MoneyInput` inside the `Card` component, just below the `Section` that contains the block image.
 
 [source,javascript]
 ------------------
@@ -101,20 +101,19 @@ import { MoneyInput } from "@anderjason/koji-react-frontend-tools";
 </Card>
 ------------------
 
-We can set its props like in the example above.
-If `price` is empty or `0`, we set `supportLabel` to `"In-Game Purchases disabled."`
+Note that if `price` is empty or `0`, we set `supportLabel` to `"In-Game Purchases disabled."`
 Otherwise, we set it to `"Set price to 0 to disable In-Game Purchases."`
 
 === Updating the price value
 
 Finally, we need to update the changed `price` in `koji.json`.
-Find the `onFinish()` function, and add the following property inside `await Koji.remix.set({...})`.
+Find the `onFinish()` function and add the following property inside `await Koji.remix.set({...})`.
 
 `price: price ? price.rawValue / 100 : 0`
 
 Here, we're running a check to make sure we don't write a `null` value into `koji.json`, in which case we substitute `0`.
 
-The resulting `onFinish()` function should look like this:
+The resulting `onFinish()` function should look like this.
 
 [source,javascript]
 ------------------
@@ -150,7 +149,7 @@ Go ahead and give it a spin!
 
 == Wrapping up
 
-All that's left to do is to publish it from the *Publish Now* menu, and share it everywhere online!
+All that's left to do is to publish the game from the *Publish Now* menu and share it everywhere online!
 
 Of course, the project is now your playground.
 You can go back to modify or add new features, make improvements, anything you can imagine!

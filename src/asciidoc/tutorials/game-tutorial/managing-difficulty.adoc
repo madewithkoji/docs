@@ -67,8 +67,8 @@ const increaseDifficulty = () => {
 }
 ----
 
-So, using our timer, we periodically increase the difficulty by changing some game values -- up to a point.
-It's important to set a limit to prevent the game from eventually becoming totally unplayable, which most players don't really consider a fun experience.
+Using our timer, we periodically increase the difficulty by changing some game values -- up to a point.
+It's important to set a limit to prevent the game from eventually becoming totally unplayable, which most players wouldn't consider a fun experience.
 
 Every time the difficulty increases, we:
 
@@ -80,7 +80,7 @@ Every time the difficulty increases, we:
 
 *Congratulations!* We've finished developing the main part of our game!
 
-Of course, you can go back and modify things, or add new features.
+Of course, you can go back and modify things or add new features.
 Everything's a bonus from now on!
 
 In the <<game-tutorial-remix#,next section>>, we'll take a look at the `Remix` menu and make our assets customizable.

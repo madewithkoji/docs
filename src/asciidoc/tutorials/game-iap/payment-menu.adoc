@@ -152,7 +152,8 @@ const PaymentDialog = (props) => {
 export default PaymentDialog;
 -------------------
 
-It's a simple menu with two buttons. It looks like this.
+It's a simple menu with two buttons.
+It looks like this.
 
 image:https://i.imgur.com/Ct0KPcV.png[alt="screenshot payment component",width=256,height=256]
 

@@ -15,7 +15,7 @@ In this section, we will:
 
 First, let's define our game assets.
 
-Inside of `koji.json`, you'll find the `remixData` object.
+Open the `koji.json` file, which is located in the project root, and find the `remixData` object.
 Let's make some changes to it.
 
 We need images for our Player and Collectible objects:
@@ -23,7 +23,8 @@ We need images for our Player and Collectible objects:
 image:https://images.koji-cdn.com/814f445d-4e8d-40cb-83fe-04d120cc1889/userData/x0kfr-player.png[alt="player cat",width=128,height=128]
 image:https://images.koji-cdn.com/5f618aa2-e515-49a1-adb2-42dfb88a6f59/userData/1d6jr-donut.png[alt="collectible donut",width=128,height=128]
 
-As well as sounds for when the player collects or misses anything.
+We also need sounds for when the player collects or misses something.
+
 Update `koji.json` as follows.
 
 [source, json]
@@ -41,7 +42,7 @@ Update `koji.json` as follows.
 ----
 
 [NOTE]
-The game template has code that automatically loads any sound file whose name begins with `snd`,
+The game template contains code that automatically loads any sound file whose name begins with `snd`,
 so you can save yourself some trouble if you follow that naming convention.
 
 There are some other entries included in `remixData`.
@@ -83,7 +84,7 @@ The `remixData` object should now look something like this:
 ----
 
 [NOTE]
-Don't forget to save your changes and reload the live preview after editing `koji.json`.
+Don't forget to save your changes.
 
 If you have a Live Preview running, notice that the background image has already changed, as well as the player image in the main menu!
 
@@ -91,11 +92,11 @@ If you have a Live Preview running, notice that the background image has already
 
 Now that we've added our assets to `remixData`, we need to load them inside our game.
 
-We do all of our loading in `frontend/src/Components/Game/preload.js`
+We do all our loading in `frontend/src/Components/Game/preload.js`
 
 We don't have to do anything to load our sounds, since we've set them up to load automatically.
 
-To load images, we use `addImage()`:
+To load images, we use `addImage()`.
 
 [source,javascript]
 const preload = () => {
@@ -107,7 +108,7 @@ const preload = () => {
   ...
 }
 
-Note that we use `game.playerSize` as player size.
+Note that we use `game.playerSize` for the player size.
 We need to define that as well.
 We define all of our game settings in `initializeValues()`.
 

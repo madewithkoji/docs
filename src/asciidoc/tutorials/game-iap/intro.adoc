@@ -24,7 +24,7 @@ Koji web editor is recommended for this tutorial, but you're free to http://deve
 
 Tower Stack is a hyper-casual game where your goal is to stack blocks as high as you can without missing any.
 
-Each new block swings from the top of the screen, and tapping releases it.
+Each new block swings from the top of the screen and tapping releases it.
 If you successfully land it on top of a previous block, you get a point.
 If you miss it, you lose a life.
 
@@ -53,7 +53,7 @@ To break it down into steps, we need to:
 
 * Use `Koji.iap` from the `@withkoji/core` package to handle purchases.
 
-* Notify the game instance that a purchase has been made, and reset the lives.
+* Notify the game instance that a purchase has been made and reset the lives.
 
 * Make price customizable in the `Remix` menu.
 
@@ -63,11 +63,11 @@ Let's get started by cloning the https://withkoji.com/~Svarog1389/3ej3[Tower Sta
 
 1. Click the Koji icon.
 2. Go to *Advanced > Fork*.
-A copy of the project is created in your Koji repository, and the project opens in *Project Details*.
+A copy of the project is created in your Koji repository and the project opens in *Project Details*.
 
 == Opening the game in Koji editor
 
-From *Project Details*, click *Open in Code Editor*.
+In *Project Details*, click *Open in Code Editor*.
 The Koji editor opens with the game code loaded.
 
 [NOTE]

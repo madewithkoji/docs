@@ -5,16 +5,16 @@
 
 The last thing we need to do before releasing our new game into the wild is to customize the thumbnail preview, so that when users share their remixes, they get nice little previews that people will be drawn to click on!
 
-In this section, we'll edit the existing `Screenshot` component to include our collectibles, and create a "fake" screenshot using our assets.
+In this section, we'll edit the existing `Screenshot` component to include our collectibles and create a "fake" screenshot using our assets.
 
 == How it works
 
-Basically, whatever we render inside of `frontend/src/Components/Screenshot/index.js` will be rendered in the thumbnail preview that people see when the game is shared on socials.
+Whatever we render inside of `frontend/src/Components/Screenshot/index.js` will be rendered in the thumbnail preview that people see when the game is shared on socials.
 
 [NOTE]
-You can see what your thumbnail preview currently looks like in the `Thumbnail` tab of the http://developer.withkoji.com/docs/develop/testing-templates#_using_the_koji_debugger[Debugger], or inside the Live Preview from your web editor.
+You can see what your thumbnail preview currently looks like in the `Thumbnail` tab of the http://developer.withkoji.com/docs/develop/testing-templates#_using_the_koji_debugger[Debugger] or inside the Live Preview from your web editor.
 
-== Editing the `Screenshot` component
+== Editing the Screenshot component
 
 By default, this component already shows `imgPlayer` in the center.
 
@@ -51,9 +51,13 @@ Change the `top` value to something like `80%`.
 
 === Adding Collectible images
 
-Now, let's add some `Collectible` images by copying the player's `FeaturedImage` and pasting it several times below the original.
-Then, in each copy (but not in the original), change `remixValues.imgPlayer` to `remixValues.imgCollectible`.
-Finally, change the values for `left` and `top` in each copy.
+Now let's add some `Collectible` images.
+
+1. Copy and paste the player's `FeaturedImage` several times below the original.
+
+2. In each copy (but not in the original), change `remixValues.imgPlayer` to `remixValues.imgCollectible`.
+
+3. Change the values for `left` and `top` in each copy.
 They don't have to be exactly the same as the ones in our example.
 You can play around and see what you like best.
 You can even randomize their positions if you want!

@@ -7,12 +7,12 @@ In this tutorial, we step through the process of creating a remixable https://wi
 
 This tutorial assumes you've already gone through the https://developer.withkoji.com/tutorials/getting-started/your-first-project[Getting Started Tutorial^] and are familiar with the basics of Koji.
 
-If you get stuck at any point, feel free to ask for help on our https://discord.gg/kMkjJQ6Phb[Discord Server], or e-mail me at *marko@withkoji.com*.
+If you get stuck at any point, feel free to ask for help on our https://discord.gg/kMkjJQ6Phb[Discord Server] or e-mail me at *marko@withkoji.com*.
 
 == About the starting template
 
-We use https://withkoji.com/~Svarog1389/game-template-1[Game Template] as our starting point because it was created specifically for these types of hyper-casual games, and it handles a lot of stuff for us, which saves us quite a bit of time.
-Here are some of the things that are already handled in the template.
+We use https://withkoji.com/~Svarog1389/game-template-1[Game Template] as our starting point, because it was created specifically for these types of hyper-casual games, and because it handles a lot of stuff for us, which saves us quite a bit of time.
+Here are some of the things that are handled in the template.
 
 * Automatic sound loading.
 * Improved image loading with optimization.
@@ -40,11 +40,11 @@ A copy of the project is created in your Koji repository, and the project opens 
 
 == Opening the game in Koji editor
 
-From *Project Details*, click *Open in Code Editor*.
+Click *Open in Code Editor*.
 The Koji editor opens with the game code loaded.
 
 [NOTE]
-Koji editor is recommended for this tutorial, but you're free to http://developer.withkoji.com/docs/develop/use-git[clone the newly created project to your local environment] if you prefer.
+The Koji editor is recommended for this tutorial, but you're free to http://developer.withkoji.com/docs/develop/use-git[clone the newly created project to your local environment] if you prefer.
 
 == Sections
 

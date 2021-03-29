@@ -7,11 +7,11 @@ That's it, we just created a *fun and remixable Koji game*!
 
 === Publishing your game
 
-All that's left to do is to publish it from the *Publish Now* menu, and share it with your friends so they can compete for the top leaderboard spot!
+All that's left to do is to publish it from the *Publish Now* menu and share it with your friends, so they can compete for the top leaderboard spot!
 
 === Feature suggestions
 
-The project is now your playground.
+The project is now your playground!
 You can modify features or add new ones, make improvements, anything you can imagine!
 
 Here are some features you can try adding:

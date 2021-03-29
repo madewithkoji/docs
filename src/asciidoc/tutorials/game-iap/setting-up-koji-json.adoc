@@ -13,7 +13,7 @@ In this section, we will:
 
 First, we need to let Koji know that our new game template is going to use `In-App Purchases`.
 
-Open the file `koji.json`, located in the root of the project, and find the following section of code.
+Open the file `koji.json`, which is located in the root of the project, and find the following section of code.
 
 [source,json]
 -------------
@@ -68,7 +68,7 @@ Modify `entitlements` as follows.
 -------------
 
 `InAppPurchases` is defined as an object, and it contains an array of products.
-We're only selling one product -- extra lives -- so we have only one product in the array.
+We're only selling one product -- extra lives -- so we only have one product in the array.
 It's defined as follows.
 
 [source,json]
@@ -109,14 +109,14 @@ Let's add a `price` property and set it to `0.1` for now:
 -------------
 
 [NOTE]
-In order for our product to be registered, we need to *publish from the web editor*
+In order for our product to be registered, we need to *publish from the web editor*.
 This will allow us to test our purchases from the http://developer.withkoji.com/docs/develop/testing-templates#_debugging_in_app_purchases[Debugger].
 *The price value also needs to be greater than 0*.
 
 
 [IMPORTANT]
 If working *locally*, you need to push your changes and pull them into the web editor, then publish.
-More info https://developer.withkoji.com/docs/publish/publish-locally-developed[here]
+Click https://developer.withkoji.com/docs/publish/publish-locally-developed[here] for more info.
 
 == Wrapping up
 

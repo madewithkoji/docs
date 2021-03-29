@@ -21,7 +21,7 @@ Let's explore a new section of the game template.
 If you open `frontend/src/Components/Remix/index.js`, you'll find some workflow already set up.
 
 [NOTE]
-You can see what your Remix menu currently looks like in the `Remix` tab of the http://developer.withkoji.com/docs/develop/testing-templates#_using_the_koji_debugger[Debugger], or inside the Live Preview from your web editor.
+You can see what your Remix menu currently looks like in the `Remix` tab of the http://developer.withkoji.com/docs/develop/testing-templates#_using_the_koji_debugger[Debugger] or inside the Live Preview from your web editor.
 
 *Background Image* and *Music* customization are already handled by the template, so we can just leave them as they are.
 
@@ -39,7 +39,7 @@ Let's make our `Collectible` image customizable, as well.
 
 === Setting up state hooks
 
-First, let's make a State Hook that will represent our `Collectible` image, and assign some initial values.
+First, let's make a State Hook that will represent our `Collectible` image and assign some initial values.
 Modify `index.js` as follows.
 
 [source,javascript]
@@ -142,7 +142,7 @@ Find the component that looks like the following.
 </div>
 -------------------
 
-Make a copy just below it, still inside the `<Section>` component, and modify it as follows.
+Make a copy just below it, still inside the `<Section>` component and modify it as follows.
 
 [source,javascript]
 -------------------
