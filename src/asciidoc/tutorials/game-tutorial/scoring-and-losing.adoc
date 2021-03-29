@@ -153,6 +153,10 @@ In `handleAnimation()`, we:
 
 ** Using `game.delta() * 4` means that we want `animTimer` to be incremented by `1` every `0.25` seconds.
 The higher the multiplier, the faster we increment it.
+[NOTE]
+If you're confused by that last statement, here's a more detailed explanation.
+Multiplying the delta by a number increments `animTimer` faster according to the multiplier, so game.delta() * 2  increases `animTimer` by 1 in half a second, game.delta() * 4  increases it by 1 in a quarter of a second, and so on.
+Internally, `delta()` calls 1 / game.frameRate(), which gives us the time passed since the last frame was rendered. So if you're running at 60 frames per second, 60 * (1 / frameRate()) = 1.
 
 * Use the `animTimer` value to do some `EasingFunctions` and shrink the scale from 1 to 0.05.
 
