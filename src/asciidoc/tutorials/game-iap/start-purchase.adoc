@@ -3,16 +3,19 @@
 :page-description: Writing functions to handle our payment logic
 :figure-caption!:
 
-During this section, we will:
+In this section, we will:
 
-- Define the `onPurchase()` function
-- Define the `onPurchaseCancel()` function
-- Modify the template's original game over behavior
+- Define the `onPurchase()` function.
+
+- Define the `onPurchaseCancel()` function.
+
+- Modify the template's original game over behavior.
 
 == Defining the functions
 
-Remember when we said that `PaymentDialog` component will have `onPurchase` and `onPurchaseCancel` function props? Let's define those functions and pass them:
-
+Remember when we said that the `PaymentDialog` component would receive `onPurchase` and `onPurchaseCancel` function props?
+Let's define those functions and pass them in.
+Update `frontend/src/Components/View/index.js` as follows.
 
 [source,javascript]
 ------------------
@@ -30,6 +33,12 @@ const Component = (props) => {
 
     ...
 
+    // In case the user proceeds to the leaderboard
+    const onPurchaseCancel = () => {
+        setShowPaymentDialog(false);
+        startScoreSubmission();
+    }
+
     const onPurchase = async () => {
         // Initiating a purchase of "extraLives" product that we defined in koji.json entitlements
         const purchase = await Koji.iap.startPurchase('extraLives');
@@ -40,7 +49,7 @@ const Component = (props) => {
             setShowPaymentDialog(false);
             emitEvent('resumeGame');
             emitEvent('resetLives');
-            
+
 
             // Submit the score just to have some backup in case
             // the player closes the game before submitting later
@@ -48,12 +57,6 @@ const Component = (props) => {
                 await dataManager.submitScore(score);
             }
         }
-    }
-
-    // In case the user proceeds to the leaderboard
-    const onPurchaseCancel = () => {
-        setShowPaymentDialog(false);
-        startScoreSubmission();
     }
 
     return(
@@ -71,28 +74,42 @@ const Component = (props) => {
 }
 ------------------
 
-==== `onPurchaseCancel()`
-* Simply close the menu and proceed to the score submission process.
+The `onPurchaseCancel()` function simply closes the menu and proceeds to the score submission process.
 
-==== `onPurchase()`:
-* `Koji.iap.startPurchase('extraLives')` initializes the purchase process handled by Koji, which opens up the payment modal for our product. 
-** `extraLives` is the `sku` value we set in the `InAppPurchase` entitlement in the beginning of this tutorial.
-* The returned `purchase` object should contain a `receiptId` property if the transaction was successful, and then we can proceed with our flow:
-** Disable `PaymentDialog` by setting the state hook to false
-** Emit the `resumeGame` event which the game already has defined
-** Emit the `resetLives` event which we'll have to define later, since it wasn't included in this template
-** Submit the score if the player has already submitted their name. This is optional but a good thing to have in case they close the tab later while playing, so we'll have at least the latest score saved
+The `onPurchase()` function does a couple of things.
+
+* First, it calls `Koji.iap.startPurchase('extraLives')`.
+This initializes the purchase process and opens the payment dialog for our product.
+
+** `extraLives` is the `sku` value we set in the `InAppPurchase` entitlement object at the beginning of this tutorial.
+
+* If the transaction is successful, the returned `purchase` object will contain a `receiptId` property, and `onPurchase()` proceeds to:
+
+** Disable `PaymentDialog` by setting the state hook to false.
+
+** Emit the `resumeGame` event, which is already defined.
+
+** Emit the `resetLives` event, which we'll have to define later, since it wasn't included with the template.
+
+** Submit the score if the player has already submitted their name.
+This is optional, but a good thing to have if they happen to close the tab while playing.
+In that case, we'll at least have the latest score saved.
 
 [NOTE]
-This use case does not require any backend validation, we simply proceed with the flow if the purchase was successful. If you wanted to save some data and later check if the user has already purchased something, you would need to check for receipts on the backend. But let's leave that for another tutorial.
+This use case does not require any backend validation.
+We simply proceed with the flow if the purchase was successful.
+If you wanted to save some data and later check if the user has already purchased something, you would need to check for receipts on the backend.
+But we'll leave that for another tutorial.
 
-Don't save the file just yet, or you might get a crash because we're missing the `startScoreSubmission()` function!
+If you've already saved the file, then you probably got a crash, because we're missing the `startScoreSubmission()` function.
+Let's fix that.
 
-== Modifying the `onGameOver()` function
+== Modifying the onGameOver function
 
-In the same file, let's extract a piece of `onGameOver()` (which is already defined by this template and triggers automatically when the game ends) into a separate `startScoreSubmission()` function.
+The `onGameOver()` function is already defined in `frontend/src/Components/View/index.js`.
+It triggers automatically when the game ends.
 
-Find `onGameOver()` which looks like this:
+Locate the function, which looks like this.
 
 [source,javascript]
 ------------------
@@ -114,7 +131,7 @@ const onGameOver = async (data) => {
 }
 ------------------
 
-And extract the conditional part to a separate function, so it will look like the following:
+Extract the conditional part of `onGameOver()` into a separate `startScoreSubmission()` function, and then modify the results to match the following.
 
 [source,javascript]
 ------------------
@@ -136,9 +153,16 @@ const startScoreSubmission = async () => {
 }
 ------------------
 
-Notice that we also removed both `setTimeout` handlers, since we no longer need a delay before displaying the game over screen and moving to score submission, as that transition is now triggered by user action.
+There are two *important things* to notice about the new `startScoreSubmission()` function.
 
-And lastly, let's update `onGameOver()` to behave appropriately based on whether we have the price or not:
+1. The `setTimeout` handlers have been removed.
+We no longer need a delay before displaying the game over screen and moving to score submission, because that transition is now triggered by user action.
+
+2. The argument we're passing to `submitScore()` has changed from `data.detail.score` to just `score`.
+Originally, `submitScore()` was called inside `onGameOver()`, so it could get the score from the data object that was passed as an argument to `onGameOver()`.
+But since `startScoreSubmission()` doesn't accept any arguments, `submitScore()` now has to get the score from the variable that's set by the state hook.
+
+Lastly, let's update `onGameOver()` to behave appropriately based on whether or not we have the price.
 
 [source,javascript]
 ------------------
@@ -158,12 +182,14 @@ const onGameOver = async (data) => {
 
 First, we get the price from `remixData` and make sure it's a number.
 
-If there is a price, we show `PaymentDialog`, otherwise we go straight to score submission and leaderboard.
+If there is a price, we show `PaymentDialog`.
+Otherwise, we go straight to score submission and leaderboard.
 
 == Wrapping up
 
 *Congratulations, that was the hardest part!*
 
-We've created our Payment flow that can be tested with the http://developer.withkoji.com/docs/develop/testing-templates#_debugging_in_app_purchases[Debugger], but nothing happens in the game itself just yet.
+We've created a Payment flow, which can be tested with the http://developer.withkoji.com/docs/develop/testing-templates#_debugging_in_app_purchases[Debugger].
+Nothing happens in the game itself just yet, though.
 
-In the <<game-iap-updating-game#,next section>>, we'll dig into the game code and make it respond to our payment.
+In the <<game-iap-updating-game#,next section>>, we'll dig into the game code and make it respond to our purchase.

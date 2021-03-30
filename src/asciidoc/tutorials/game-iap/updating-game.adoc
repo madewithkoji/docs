@@ -3,30 +3,54 @@
 :page-description: Updating our game to respond to payment
 :figure-caption!:
 
-During this section, we will:
+In this section, we will:
 
-- Add a listener to the game for the `resetLives` event
-- Modify game behavior to reflect the new flow
-- Test the game to make sure everything works correctly
+- Add a listener for the `resetLives` event.
 
-== Adding a listener for `resetLives` event
+- Modify game behavior to reflect the new flow.
+
+- Test the game to make sure everything works correctly.
+
+== Adding a listener for the resetLives event
 
 This template uses CustomEvents to communicate between the game instance and the main component, so we'll respect that in our workflow.
 
 We've already added the `emitEvent(resetLives);` call inside our `onPurchase()` function, so let's add a listener for it!
 
-If you go to `frontend/src/Components/Game/index.js`, you'll find that there are already some listeners defined in the first `useEffect` hook. This is where we'll define our new one:
+If you go to `frontend/src/Components/Game/index.js`, you'll find that there are already some listeners defined in the first `useEffect` hook.
+This is where we'll define our new one.
 
 `window.addEventListener('resetLives', resetLives);`
 
-And make sure to also remove it inside of the `return` function, so it gets deleted when the game component unmounts, to prevent any unwanted leaks:
+Also make sure to remove it inside the `return` function, so that it gets deleted when the game component unmounts.
+This is important for preventing memory leaks.
 
 `window.removeEventListener('resetLives', resetLives);`
 
-We also need to define the callback function that we passed to that listener:
+[source,javascript]
+------------------
+useEffect(() => {
+    if(game){
+        game.players = props.players;
+    }
+}, [props.players])
+
+return (
+    <Container>
+        <div id={'p5game'} />
+        <Loader id={"p5_loading"}><Spinner /> </Loader>
+    </Container>
+)
+------------------
+
+We also need to define the callback function that we're passing to the listener.
 
 [source,javascript]
 ------------------
+...
+import { spawnFloatingText } from './Effects/FloatingText';
+...
+
 const resetLives = () => {
     game.lives = game.startingLives;
     game.gameOver = false;
@@ -39,15 +63,19 @@ const resetLives = () => {
 ------------------
 
 Here, we do the actual reset of lives.
-Additionally, we make sure to reset the `game.gameOver` property to `false`, and also spawn some floating text in the middle of the screen to celebrate this wholesome event. 
+Additionally, we make sure to reset the `game.gameOver` property to `false` and also spawn some floating text in the middle of the screen to celebrate this wholesome event.
 
-If you've done my <<game-tutorial-intro#,Creating a remixable game>> tutorial or are already familiar with this game template, you could get even more creative here and spawn some *exploding particles* too! The player just spent some cash on this game, it should be rewarded.
+If you've gone through my <<game-tutorial-intro#,Creating a remixable game>> tutorial or are already familiar with this game template, you could get even more creative and spawn some *exploding particles*!
+
+The player just spent some cash on the game -- they should be rewarded.
 
 == Modifying Block.js
 
-In the original game, once all lives have been lost, the game "camera" will return to the bottom. We don't need this feature, so let's disable it!
+In the original game, once all lives are lost, the game "camera" returns to the bottom.
+We don't need this feature, so let's disable it!
 
-Inside `frontend/src/Components/Game/Entities/Block.js`, find the `handleMiss()` function. It looks like this:
+Inside `frontend/src/Components/Game/Entities/Block.js`, find the `handleMiss()` function.
+It looks like this.
 
 [source,javascript]
 ------------------
@@ -70,7 +98,7 @@ handleMiss() {
 }
 ------------------
 
-We want to remove the last part that gets it back to the start, so the final result should look like the following:
+We want to remove the last part that gets it back to the start, so the final result should look as follows.
 
 [source,javascript]
 ------------------
@@ -88,17 +116,17 @@ handleMiss() {
 }
 ------------------
 
-=== Removing the original game over Text
+=== Removing the original Game Over text
 
-Since our new `Game Over` text shows up in a new menu, we don't need the original one where the label would slide from the top.
+Since our new `Game Over` text shows up in a new menu, we don't need the original one where the label would slide down from the top.
 
-We can disable it by going into `frontend/src/Components/setup.js` and inside `game.loseGame()` function, and removing these two lines:
+We can disable it by going into `frontend/src/Components/setup.js` and, inside the `game.loseGame()` function, removing these two lines.
 
 [source,javascript]
 game.ui.instructionsAnimTimer = 0;
 game.ui.instructionsFadeOutTimer = game.instructionsFadeOutDuration;
 
-So the whole function should look like this:
+So the whole function should look like this.
 
 [source,javascript]
 game.loseGame = () => {
@@ -113,7 +141,7 @@ That was all we needed to do acommodate our game to the new way of doing things!
 
 == Testing The Game
 
-To test the new `In-App Purchase` feature we just added, you can use http://developer.withkoji.com/docs/develop/testing-templates#_debugging_in_app_purchases[Koji Debugger] (you need to have some balance in your Koji Wallet for this), or you can temporarily disable the payment process and just emit the `resetLives` event directly, something like the following:
+To test the new `In-App Purchase` feature, you can use http://developer.withkoji.com/docs/develop/testing-templates#_debugging_in_app_purchases[Koji Debugger] (you'll need to have some balance in your Koji Wallet for this), or you can temporarily disable the payment process and just emit the `resetLives` event directly, as follows.
 
 [source,javascript]
 -------------------

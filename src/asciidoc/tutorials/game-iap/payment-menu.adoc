@@ -3,14 +3,14 @@
 :page-description: Creating our Payment Menu UI component
 :figure-caption!:
 
-During this section, we will create our Payment Menu UI component.
+In this section, we create our Payment Menu UI component.
 
 == Component
-Let's make some UI that will enable our players to make purchases.
+Let's design a UI that allows a player to make purchases.
 
-Go to `frontend/src/Components/View/` and make a new file called `PaymentDialog.js`.
+Go to `frontend/src/Components/View/` and create a new file called `PaymentDialog.js`.
 
-Feel free to copy the whole component into your file: 
+Feel free to copy and paste the following code into your file.
 
 [source,javascript]
 -------------------
@@ -97,7 +97,6 @@ const Button = styled.button`
     &:hover{
         background-color: rgba(240, 240, 255, 1);
     }
-
 `;
 
 const LifeLabel = styled.div`
@@ -153,19 +152,20 @@ const PaymentDialog = (props) => {
 export default PaymentDialog;
 -------------------
 
-It's a simple menu with two buttons that looks like this:
+It's a simple menu with two buttons.
+It looks like this.
 
 image:https://i.imgur.com/Ct0KPcV.png[alt="screenshot payment component",width=256,height=256]
 
-As you can see from the above code, this component will receive `onPurchase` and `onPurchaseCancel` function props, which will correspond with the two buttons. We'll write these in the next section of this tutorial.
+As you can see from the above code, we'll be passing two functions into the `PaymentDialog` component -- `onPurchase` and `onPurchaseCancel`.
+These are called when the user clicks the corresponding buttons on the form.
+We'll write these functions in the next section.
 
-One more important thing to notice is that it reads the price from `koji.json` remix values and displays it on the top button.
+Notice that the code retrieves the price from the remix values in `koji.json` and displays it on the top button.
 
 == Rendering our component
 
-Let's render our component!
-
-Inside `frontend/src/Components/View/index.js`, let's create a state hook that controls when we should display our `PaymentDialog`, and then render the component itself:
+Inside `frontend/src/Components/View/index.js`, let's create a state hook that controls when we display the `PaymentDialog` component, and add the component to the `Container` object.
 
 [source,javascript]
 ------------------
@@ -187,7 +187,7 @@ const Component = (props) => {
         <Container>
             ...
 
-             {showPaymentDialog &&
+            {showPaymentDialog &&
                 <PaymentDialog />
             }
         </Container>

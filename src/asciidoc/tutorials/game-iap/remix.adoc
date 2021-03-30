@@ -3,36 +3,42 @@
 :page-description: Making the price customizable during Remix
 :figure-caption!:
 
-The last thing we need to do is make our price customizable when people remix this game.
+The last thing we want to do is to make our price customizable when people remix the game.
 
-During this section, we will:
+In this section, we will:
 
-- Install a new package which handles our price input format
-- Set up the price input field
-- Make sure our price value is updated
+- Install a new package which handles our price input format.
 
-== Installing the new Package
+- Set up the price input field.
 
-For our price input field, we'll use a premade component that already handles all the proper formatting for us, so we don't have to worry about the user entering characters, incorrect price formats etc.
+- Make sure our price value is updated.
 
-For that, we are using `@anderjason/koji-react-frontend-tools` npm package, which is installed in this template because we're already using some of those components.
+== Installing the new package
 
-Another package we will use is `@anderjason/money`, which is *not* installed, so let's go ahead and do it.
+For our price input field, we'll use a premade component that already handles all the proper formatting for us, so we don't have to worry about the user entering invalid characters, incorrect price formats, etc.
 
-On the bottom of your web editor, you'll see a black panel that looks like this:
+That component is included in the `@anderjason/koji-react-frontend-tools` npm package, which is already installed in the template.
+
+Another package we'll need is `@anderjason/money`, which is *not* installed, so let's go ahead and install it.
+
+On the bottom of your web editor, you'll see a black panel with several tabs.
+It looks like this.
 
 image:https://i.imgur.com/VSABST5.png[alt="terminal"]
 
-- Click on `frontend` to expand it
-- Inside of it, press `Ctrl+C` on your keyboard to stop the frontend server
-- Type `npm install @anderjason/money`, wait for it to finish
-- When it's done, type `npm start` to restart the frontend server
+- Click `frontend` to expand the fontend tab.
+
+You'll see a terminal window running the frontend server.
+
+- Inside the terminal, press `Ctrl+C` on your keyboard to stop the server.
+
+- Type `npm install @anderjason/money` and press *Enter*.
+
+- When it's finished installing, type `npm start` to restart the frontend server.
 
 == Price input field
 
-Inside `frontend/src/Components/Remix/index.js`:
-
-Let's add a state hook for our `price`, initialize its value and also set a `maxPrice` constant just to make sure users can't abuse anything.
+Inside `frontend/src/Components/Remix/index.js`, let's add a state hook for our `price`, initialize its value, and also set a `maxPrice` constant (just to make sure users can't abuse anything).
 
 [source,javascript]
 ------------------
@@ -63,7 +69,7 @@ const Component = () => {
 }
 ------------------
 
-Then we want to render the `<MoneyInput>` inside `<Card>`, just below the `<Section>` component that contains the block image.
+We'll render `MoneyInput` inside the `Card` component, just below the `Section` that contains the block image.
 
 [source,javascript]
 ------------------
@@ -73,6 +79,14 @@ import { MoneyInput } from "@anderjason/koji-react-frontend-tools";
 ...
 <Card>
     ...
+
+    <ImageButton
+        onClick={() => changeBlock()}
+        onDelete={() => deleteBlock()}
+        canDelete={canUpdateImages}
+        src={block}
+        isInvalid={isBlockInvalid}
+    />
     <MoneyInput
         placeholderLabel="Price To Refill Lives"
         persistentLabel="Price To Refill Lives"
@@ -82,22 +96,24 @@ import { MoneyInput } from "@anderjason/koji-react-frontend-tools";
         allowEmpty
         supportLabel={price && price.rawValue > 0 ? "Set price to 0 to disable In-Game Purchases." : `In-Game Purchases disabled.`}
     />
+
     ...
 </Card>
 ------------------
 
-We can set its props like in the example above.
-For additional clarity, we're setting the `supportLabel` prop of the component to say `In-Game Purchases disabled.` in case the price is empty or `0`, otherwise it will provide instructions on how to do that: `Set price to 0 to disable In-Game Purchases.`
+Note that if `price` is empty or `0`, we set `supportLabel` to `"In-Game Purchases disabled."`
+Otherwise, we set it to `"Set price to 0 to disable In-Game Purchases."`
 
 === Updating the price value
 
-Lastly, we need to update the changed `price` in `koji.json`. To do that, find the `onFinish()` function, still inside the same file, and inside `await Koji.remix.set({...})`, add the following property:
+Finally, we need to update the changed `price` in `koji.json`.
+Find the `onFinish()` function and add the following property inside `await Koji.remix.set({...})`.
 
 `price: price ? price.rawValue / 100 : 0`
 
-Here, we are just running a check to make sure we don't write a `null` value into `koji.json`, in which case we turn it to `0`.
+Here, we're running a check to make sure we don't write a `null` value into `koji.json`, in which case we substitute `0`.
 
-The resulting `onFinish()` function should now look like this:
+The resulting `onFinish()` function should look like this.
 
 [source,javascript]
 ------------------
@@ -125,17 +141,17 @@ const onFinish = async () => {
 }
 ------------------
 
-We make sure to set the price to `0` in case it's `null`, to prevent future inconsistencies.
-
-And this is what your resulting remix menu should look like:
+And this is what your resulting remix menu should look like.
 
 image:https://i.imgur.com/gngIOR7.png[alt="remix menu"]
 
+Go ahead and give it a spin!
 
 == Wrapping up
 
-All that's left to do is to publish it from the *Publish Now* menu, and share it everywhere online!
+All that's left to do is to publish the game from the *Publish Now* menu and share it everywhere online!
 
-Of course, the project is now your playground. You can go back to modify or add new features, make improvements, anything you can imagine!
+Of course, the project is now your playground.
+You can go back to modify or add new features, make improvements, anything you can imagine!
 
-You can also post your new game to our https://discord.gg/kMkjJQ6Phb[Discord Server], along with any suggestions and thoughts on how you think we can make this tutorial even better!
+You can also post your new game to our https://discord.gg/kMkjJQ6Phb[Discord Server], along with any suggestions or thoughts on how we can make this tutorial even better!
