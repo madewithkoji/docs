@@ -1,7 +1,15 @@
 = Managing difficulty
-:page-slug: game-tutorial-managing-difficulty
+:page-slug: game-managing-difficulty
 :page-description: Managing difficulty
 :figure-caption!:
+
+In the <<game-assets#,previous section>> of the remixable game tutorial, you DID SOMETHING.
+In this section, you’ll
+// tag::description[]
+DO SOMETHING ELSE.
+// end::description[]
+
+By the end of this section, you should feel comfortable:
 
 Our game is finally playable!
 But it might be a little too repetitive and easy.
@@ -83,4 +91,4 @@ Every time the difficulty increases, we:
 Of course, you can go back and modify things or add new features.
 Everything's a bonus from now on!
 
-In the <<game-tutorial-remix#,next section>>, we'll take a look at the `Remix` menu and make our assets customizable.
+In the <<game-remix#,next section>>, we'll take a look at the `Remix` menu and make our assets customizable.

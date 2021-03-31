@@ -1,6 +1,6 @@
-= Overview
+= Tutorial: Adding in-app purchases to Koji games
 :page-slug: game-iap-intro
-:page-description: Tutorial for adding In-App Purchases to an existing Koji game
+:page-description: Tutorial for adding in-app purchases to an existing Koji game.
 :figure-caption!:
 
 In this tutorial, we show you how to add an In-Game Purchase feature to an existing game on Koji.
@@ -11,7 +11,7 @@ If you're new to Koji, here are some tutorials that you might want to check out 
 
 * <<quick-start#,Getting started>>
 
-* <<game-tutorial-intro#,Creating a remixable game>>
+* <<game--intro#,Creating a remixable game>>
 
 If you get stuck at any point, feel free to ask for help in our https://discord.gg/kMkjJQ6Phb[Discord Server], or e-mail me at *marko@withkoji.com*.
 

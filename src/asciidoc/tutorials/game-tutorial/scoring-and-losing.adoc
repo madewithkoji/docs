@@ -1,7 +1,15 @@
 = Scoring and losing
-:page-slug: game-tutorial-scoring-and-losing
+:page-slug: game-scoring-and-losing
 :page-description: Adding collision checks and lose conditions
 :figure-caption!:
+
+In the <<game-assets#,previous section>> of the remixable game tutorial, you DID SOMETHING.
+In this section, you’ll
+// tag::description[]
+DO SOMETHING ELSE.
+// end::description[]
+
+By the end of this section, you should feel comfortable:
 
 In this section, we will:
 
@@ -51,7 +59,7 @@ We also need to define the `onCollect()` function inside `frontend/src/Component
 export default class Collectible extends Entity {
     ...
 
-    
+
     onCollect() {
         this.isCollected = true;
     }
@@ -111,7 +119,7 @@ export default class Collectible extends Entity {
 
         this.scale.x = Ease(EasingFunctions.easeInCubic, this.animTimer, 1, -0.95);
         this.scale.y = Ease(EasingFunctions.easeInCubic, this.animTimer, 1, -0.95);
-        
+
         this.moveTowardsPlayer();
 
         if (this.animTimer >= 1) this.getCollected();
@@ -192,7 +200,7 @@ Finally, in `getCollected()`, we:
 
 We don't have that animation yet, so let's set it up!
 
-[NOTE] 
+[NOTE]
 Remember when we assigned the `game.player` property to the `gameInstance`? We finally make use of it here. Another way to find the player object would be to set the `"player"` tag inside of `Player`, then do something like `const player = game.findByTag('player')[0];`.
 
 Now let's make some more changes to `frontend/src/Components/Game/Entities/Player.js`.
@@ -304,4 +312,4 @@ Deleting unused objects from memory is an especially important step in every gam
 
 Our game is now playable!
 
-In the <<game-tutorial-managing-difficulty#,next section>>, we'll add some difficulty management, so that the game gets progressively harder as it's played.
+In the <<game-managing-difficulty#,next section>>, we'll add some difficulty management, so that the game gets progressively harder as it's played.

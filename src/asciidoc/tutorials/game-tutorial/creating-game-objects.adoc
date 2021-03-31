@@ -1,24 +1,26 @@
 = Creating game objects
-:page-slug: game-tutorial-creating-game-objects
+:page-slug: game-creating-game-objects
 :page-description: Creating game objects
 :figure-caption!:
 
-In this section, we will:
+In the <<game-assets#,previous section>> of the remixable game tutorial, you DID SOMETHING.
+In this section, you’ll
+// tag::description[]
+DO SOMETHING ELSE.
+// end::description[]
 
-- Define our `Player` and `Collectible` classes.
+By the end of this section, you should feel comfortable:
 
-- Create controls for the `Player`.
-
-- Spawn `Player` into the game.
-
-- Create a spawning system for Collectibles.
+* Define our `Player` and `Collectible` classes.
+* Create controls for the `Player`.
+* Spawn `Player` into the game.
+* Create a spawning system for Collectibles.
 
 == Player
 
 This template uses an https://en.wikipedia.org/wiki/Entity_component_system[Entity] system, so we can extend the base `Entity` class to define the game objects.
 
-[NOTE]
-This template already has an example `Player` class defined, so there's no need to create a new file.
+NOTE: This template already has an example `Player` class defined, so there's no need to create a new file.
 We can use that!
 
 Let's go to `Player.js` inside the `frontend/src/Components/Game/Entities` folder.
@@ -33,7 +35,7 @@ import Entity from './Entity'
 export default class Player extends Entity {
     constructor(x, y, options) {
         super(x, y, options);
-        
+
         this.img = game.images.player;
         this.size = game.playerSize;
     }
@@ -195,7 +197,7 @@ import Entity from './Entity'
 export default class Collectible extends Entity {
     constructor(x, y, options) {
         super(x, y, options);
-        
+
         this.img = game.images.collectible;
         this.size = game.random(game.collectibleSizeMin, game.collectibleSizeMax);
         this.tag = "collectible";
@@ -310,6 +312,6 @@ image:https://i.imgur.com/mtzJFG2.gif[]
 
 Now that we've created the `Player` and `Collectible` objects and spawned them, we need to give them the ability to interact.
 
-In the <<game-tutorial-scoring-and-losing#,next section>>, we check for collisions between the Player and Collectibles and add to the score every time a collision happens.
+In the <<game-scoring-and-losing#, next section>>, we check for collisions between the Player and Collectibles and add to the score every time a collision happens.
 If a Collectible falls to the bottom without getting caught, we take a life away from the Player.
 When the Player loses three lives, the game ends.

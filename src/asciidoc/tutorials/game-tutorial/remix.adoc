@@ -1,7 +1,15 @@
 = Remix
-:page-slug: game-tutorial-remix
+:page-slug: game-remix
 :page-description: Modifying the Remix menu
 :figure-caption!:
+
+In the <<game-assets#,previous section>> of the remixable game tutorial, you DID SOMETHING.
+In this section, you’ll
+// tag::description[]
+DO SOMETHING ELSE.
+// end::description[]
+
+By the end of this section, you should feel comfortable:
 
 We've finished the main part of our game.
 But this is Koji! We don't stop there.
@@ -201,4 +209,4 @@ image:https://i.imgur.com/F5BamYt.png[alt="screenshot player",width=256,height=2
 
 That's our `Remix` mode finished! We've just added the ability for users to change the `Collectible` image!
 
-In the <<game-tutorial-thumbnail-preview#,next section>>, we will customize our thumbnail preview.
+In the <<game-thumbnail-preview#,next section>>, we will customize our thumbnail preview.

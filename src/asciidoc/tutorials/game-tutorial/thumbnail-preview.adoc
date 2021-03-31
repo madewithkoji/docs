@@ -1,7 +1,15 @@
 = Thumbnail preview
-:page-slug: game-tutorial-thumbnail-preview
+:page-slug: game-thumbnail-preview
 :page-description: Modifying the thumbnail preview when the game is shared on socials
 :figure-caption!:
+
+In the <<game-assets#,previous section>> of the remixable game tutorial, you DID SOMETHING.
+In this section, you’ll
+// tag::description[]
+DO SOMETHING ELSE.
+// end::description[]
+
+By the end of this section, you should feel comfortable:
 
 The last thing we need to do before releasing our new game into the wild is to customize the thumbnail preview, so that when users share their remixes, they get nice little previews that people will be drawn to click on!
 
@@ -112,7 +120,7 @@ You can even randomize their positions if you want!
 />
 -------------------
 
-Once done, your thumbnail preview should look something like this: 
+Once done, your thumbnail preview should look something like this:
 
 image:https://i.imgur.com/rsElqqp.png[alt="screenshot player",width=256,height=256]
 
@@ -122,4 +130,4 @@ image:https://i.imgur.com/rsElqqp.png[alt="screenshot player",width=256,height=2
 
 You've reached the end of the tutorial!
 
-In the <<game-tutorial-finishing-up#,final section>>, we talk about Publishing your game and make some suggestions for going forward.
+In the <<game-finishing-up#,final section>>, we talk about Publishing your game and make some suggestions for going forward.

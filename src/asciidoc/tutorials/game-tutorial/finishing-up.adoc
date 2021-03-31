@@ -1,7 +1,15 @@
 = Finishing up
-:page-slug: game-tutorial-finishing-up
+:page-slug: game-finishing-up
 :page-description: Finishing up
 :figure-caption!:
+
+In the <<game-assets#,previous section>> of the remixable game tutorial, you DID SOMETHING.
+In this section, you’ll
+// tag::description[]
+DO SOMETHING ELSE.
+// end::description[]
+
+By the end of this section, you should feel comfortable:
 
 That's it, we just created a *fun and remixable Koji game*!
 

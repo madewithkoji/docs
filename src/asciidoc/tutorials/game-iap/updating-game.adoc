@@ -65,7 +65,7 @@ const resetLives = () => {
 Here, we do the actual reset of lives.
 Additionally, we make sure to reset the `game.gameOver` property to `false` and also spawn some floating text in the middle of the screen to celebrate this wholesome event.
 
-If you've gone through my <<game-tutorial-intro#,Creating a remixable game>> tutorial or are already familiar with this game template, you could get even more creative and spawn some *exploding particles*!
+If you've gone through my <<game-intro#,Creating a remixable game>> tutorial or are already familiar with this game template, you could get even more creative and spawn some *exploding particles*!
 
 The player just spent some cash on the game -- they should be rewarded.
 
