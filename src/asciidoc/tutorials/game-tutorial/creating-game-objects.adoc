@@ -1,34 +1,34 @@
 = Creating game objects
 :page-slug: game-creating-game-objects
-:page-description: Creating game objects
+:page-description: Creating classes for the player and collectibles in a falling objects game.
 :figure-caption!:
 
-In the <<game-assets#,previous section>> of the remixable game tutorial, you DID SOMETHING.
+In the <<game-assets#,previous section>> of the remixable game tutorial, you configured the settings, images, and sounds for the Falling Objects game.
 In this section, you’ll
 // tag::description[]
-DO SOMETHING ELSE.
+define the `Player` and `Collectible` classes and spawn them in the game.
 // end::description[]
 
 By the end of this section, you should feel comfortable:
 
-* Define our `Player` and `Collectible` classes.
-* Create controls for the `Player`.
-* Spawn `Player` into the game.
-* Create a spawning system for Collectibles.
+* Using the `Player` and `Collectible` classes.
+* Defining movement and position settings for the player.
+* Spawning a player into the game.
+* Defining the spawning logic and settings for collectibles.
 
 == Player
 
-This template uses an https://en.wikipedia.org/wiki/Entity_component_system[Entity] system, so we can extend the base `Entity` class to define the game objects.
+The game template uses an https://en.wikipedia.org/wiki/Entity_component_system[Entity system], which enables you to extend the base `Entity` class to define the game objects.
 
-NOTE: This template already has an example `Player` class defined, so there's no need to create a new file.
-We can use that!
+NOTE: The template already has an example `Player` class defined, so there's no need to create a new file.
+You can start with that!
 
-Let's go to `Player.js` inside the `frontend/src/Components/Game/Entities` folder.
+In the `frontend/src/Components/Game/Entities` folder, open `Player.js`.
 
-Modify the constructor to use the image and size that we defined in the previous section.
+Modify the constructor to use the image and size that you defined in the previous section of the tutorial.
 
 [source,javascript]
--------------------
+----
 import { game } from '..'
 import Entity from './Entity'
 
@@ -44,21 +44,21 @@ export default class Player extends Entity {
 
     }
 }
--------------------
+----
 
 [NOTE]
-Make sure you clear the `update()` function in case there's any example code in it.
-We'll modify it later.
+Make sure to remove any example code from the `update()` function.
+You will modify this function later in the tutorial.
 
-That's all we need to do to make our `Player` object ready to be drawn on the screen! Now we just need to instantiate it.
+The `Player` object is now ready to be drawn on the screen! Next, you need to instantiate it.
 
-=== Adding Player to the game
+=== Adding a player to the game
 
-Head over to `frontend/src/Components/Game/setup.js`, where you'll find the `init()` function.
+To add the player to the game, open `frontend/src/Components/Game/setup.js`, and find the `init()` function.
 Update it as follows.
 
 [source,javascript]
--------------------
+----
 import { game } from "."
 import Player from './Entities/Player'
 
@@ -71,32 +71,27 @@ const init = () => {
     game.addEntity(player);
     game.player = player;
 }
--------------------
+----
 
-Here, we:
+This code does the following:
 
-- Instantiate a new `Player` object, positioning it at the center-bottom of the screen.
+* Instantiates a new `Player` object, positioning it at the center-bottom of the screen.
+* Adds it to the game.
+* Assigns it directly to the `game` instance, so you access it later by calling `game.player`.
+This will make your code a bit cleaner.
 
-- Add it to the game.
-
-- Assign it directly to the `game` instance, so we can easily access it later by calling `game.player`.
-
-This will make our code a bit cleaner.
-
-If you take a look at the game preview and click the *Play* button, you'll see our player near the bottom of the screen.
-
-image:https://i.imgur.com/jynK73v.png[]
-
+If you look at the game preview and click the *Play* button, you'll now see the player near the bottom of the screen.
 Awesome!
 
-=== Adding movement to Player
+image::game-tutorial-overview.png[Player in game]
 
-At the moment, our player is static.
+=== Adding movement to the player
+
+At the moment, the player is static.
 Let's change that!
 
-Go back to `frontend/src/Components/Game/Entities/Player.js`.
-
-We'll define a new function called `handleControls()` to handle player movement and put it inside `update()`, which runs every frame.
+In `frontend/src/Components/Game/Entities/Player.js`, define a new function called `handleControls()` to handle player movement.
+Then, call the function from `update()`, which runs every frame.
 
 [source,javascript]
 ----
@@ -116,21 +111,21 @@ handleControls(){
 }
 ----
 
-We use the `Smooth` function from `Game/Utils/EasingFunctions.js` to move the player smoothly to its goal, which is our `game.mouseX` touch coordinate.
-The number parameter at the end determines how quickly it moves.
+This code uses the `Smooth` function from `Game/Utils/EasingFunctions.js` to move the player smoothly to its goal, which is the `game.mouseX` touch coordinate.
+The number parameter at the end determines how quickly the player moves.
 The higher the number, the slower the player moves.
-Feel free to experiment with different numbers.
+Feel free to experiment with different numbers to get the effect you like best.
 
 If you try the game now, the player should move left or right when you touch or click the screen.
 
-It works, but let's make it prettier!
+Now, let's make it prettier!
+For example, what if the player tilted slightly in the direction it's moving?
+And, how can we make sure the player won't be able to move off the screen?
 
-What if the player tilted slightly in the direction it's moving? We also don't want the player to be able to move off the screen.
-
-Let's add those features to our `Player` class.
+You can add these features to the `Player` class as follows.
 
 [source,javascript]
--------------------
+----
 import { game } from '..';
 import Entity from './Entity'
 import { Smooth } from '../Utils/EasingFunctions'
@@ -171,26 +166,26 @@ keepInsideScreen() {
     const limitRight = game.width - this.size / 2;
     this.pos.x = game.constrain(this.pos.x, limitLeft, limitRight);
 }
--------------------
+----
 
-With `keepInsideScreen()`, we constrain the player's `x` coordinate, so it doesn't overlap or go outside the screen boundaries.
+In the `keepInsideScreen()` function, you are constraining the player's `x` coordinate, so it doesn't overlap or go outside the screen boundaries.
 
-Next we check to see if we're touching outside of the player, in which case we set `goalRotation` slightly to that side.
+In `handleControls()`, you are checking whether the user is touching the screen outside of the player object.
+If so, you are setting `goalRotation` slightly to that side.
 
-image:https://i.imgur.com/ELLEfka.gif[]
+image::game-playerMovement.gif[Player movement]
 
 Looking good so far!
 
-
 == Collectible
 
-We have the player.
-Now we need something to collect!
+Now that you've added the player, you need to add the falling objects to collect.
 
-Create a `Collectible.js` file in `frontend/src/Components/Game/Entities` and add the following contents.
+In `frontend/src/Components/Game/Entities`, create a `Collectible.js` file.
+Add the following contents to the new file.
 
 [source,javascript]
--------------------
+----
 import { game } from '..'
 import Entity from './Entity'
 
@@ -206,13 +201,27 @@ export default class Collectible extends Entity {
         this.isCollected = false;
     }
 }
--------------------
+----
 
-Notice we're using some properties that haven't been defined yet.
-Head back to `frontend/src/Components/Game/preload.js` and add the properties to `initializeValues()`.
+This constructor defines the following properties for the `Collectible` class.
+
+* `this.img = game.images.collectible` – Sets the image for the object to the previously loaded `Collectible` image.
+
+* `this.size = game.random(game.collectibleSizeMin, game.collectibleSizeMax)` – Sets the size of the image to a random value between `game.collectibleSizeMin` and `game.collectibleSizeMax`.
+
+* `this.tag = "collectible"`` – Sets an identifying tag, so you can locate it by using `game.findByTag()`.
+
+* `this.velocity.y = game.random(game.speedMin, game.speedMax)` – Sets the vertical velocity to a random value between `game.speedMin` and `game.speedMax`.
+
+* `this.rotSpeed = game.random(-0.03, 0.03)` – Sets the rotation speed to a random value between `-0.03` and `0.03`.
+
+* `this.isCollected = false` – Defines a Boolean property to track whether the object has been collected and sets the property to false.
+
+This code uses some properties that haven't been defined yet.
+Open `frontend/src/Components/Game/preload.js`, and add these properties to `initializeValues()`.
 
 [source,javascript]
--------------------
+----
 ...
 const initializeValues = () => {
     ...
@@ -221,35 +230,21 @@ const initializeValues = () => {
     game.collectibleSizeMin = isMobile() ? 55 : 85;
     game.collectibleSizeMax = isMobile() ? 75 : 105;
 }
--------------------
+----
 
-Let's break down what we're doing in that constructor.
-
-* `this.img = game.images.collectible` - Sets the image for the object to the previously loaded `Collectible` image.
-
-* `this.size = game.random(game.collectibleSizeMin, game.collectibleSizeMax)` - Sets the size of the image to a random value between `game.collectibleSizeMin` and `game.collectibleSizeMax`.
-
-* `this.tag = "collectible"`` - Sets the tag, so we can find it later using `game.findByTag()`.
-
-* `this.velocity.y = game.random(game.speedMin, game.speedMax)` - Sets the vertical velocity to a random value between `game.speedMin` and `game.speedMax`.
-
-* `this.rotSpeed = game.random(-0.03, 0.03)` - Sets the rotation speed to a random value between `-0.03` and `0.03`.
-
-* `this.isCollected = false` - Defines a boolean property to track whether or not the object has been collected and sets the property to false.
 
 The `Entity` class handles the movement of objects based on their `velocity` property.
-Since we already set the velocity in the `Collectible` constructor, that's all we need to do to make our Collectibles fall down indefinitely.
+Since we already set the velocity in the `Collectible` constructor, that's all we need to do to make our collectibles fall down indefinitely.
 
-Now let's try spawning some!
+Now, let's try spawning some!
 
-=== Spawning Collectibles
+=== Spawning collectibles
 
-Collectibles need to spawn throughout the game, not just in the beginning like the Player does.
-We handle that inside `frontend/src/Components/Game/draw.js`.
-Every function placed in `draw.js` will run with each game frame.
+Collectibles need to spawn throughout the game, not just in the beginning like the player does.
+You handle the collectibles logic in `frontend/src/Components/Game/draw.js`, because every function in this file will run with each game frame.
 
-Add a `manageSpawn()` function to handle the spawning logic and call it inside `draw()`.
-We also need a spawnCollectible() function to add new Collectibles to the game.
+Add a `manageSpawn()` function to handle the spawning logic and call it from `draw()`.
+Add a `spawnCollectible()` function to add new collectibles to the game.
 
 [source,javascript]
 ----
@@ -277,9 +272,18 @@ const spawnCollectible = () => {
 }
 ----
 
-If we save our changes now, we won't see any falling objects and the program might crash, because we haven't properly initialized `spawnPeriodMin`, `spawnPeriodMax` and `spawnTimer`.
+This code spawns collectibles according to the following logic.
 
-So go back to `frontend/src/Components/Game/preload.js` and add the following lines to `initializeValues()`.
+* Every frame, `game.spawnTimer` is decreased by `game.delta()`.
++
+`game.delta()` is a helper function that's basically a shortcut for calling `1.0 / game.frameRate()`, which represents the time since the last frame was rendered.
+It allows you to calculate time-based increments.
+
+* When the timer reaches `0`, a new collectible is spawned at a random point above the screen and the timer is reset to a random value between `game.spawnPeriodMin` and `game.spawnPeriodMin`.
+
+If you save the changes now, the game won't generate any falling objects and it might crash because `spawnPeriodMin`, `spawnPeriodMax`, and `spawnTimer` must still be initialized.
+
+Open `frontend/src/Components/Game/preload.js` and add the following lines to `initializeValues()`.
 
 [source,javascript]
 ----
@@ -295,23 +299,12 @@ const initializeValues = () => {
 [NOTE]
 Sometimes, after compile errors have been resolved, you might need to reload your live preview manually for everything to work correctly again.
 
-Let's break down that spawn function.
-
-* Every frame, we decrease `game.spawnTimer` by `game.delta()`.
-
-** `game.delta()` is a helper function that's basically a shortcut for calling `1.0 / game.frameRate()`, which represents the time since the last frame was rendered.
-It allows us to do time-based increments.
-
-* When the timer reaches `0`, we spawn a new collectible at a random point above the screen and reset the timer to a random value between `game.spawnPeriodMin` and `game.spawnPeriodMin`.
-
 If you start the game now, you'll see a bunch of donuts appearing every `1.5` to `2` seconds and falling to the bottom.
 
-image:https://i.imgur.com/mtzJFG2.gif[]
+image::game-spawn-collectibles.gif[Spawning collectibles]
 
 == Wrapping up
 
-Now that we've created the `Player` and `Collectible` objects and spawned them, we need to give them the ability to interact.
+In this section, you created the `Player` and `Collectible` classes, and then spawned them in the game.
 
-In the <<game-scoring-and-losing#, next section>>, we check for collisions between the Player and Collectibles and add to the score every time a collision happens.
-If a Collectible falls to the bottom without getting caught, we take a life away from the Player.
-When the Player loses three lives, the game ends.
+In the <<game-scoring-and-losing#, next section>>, you need to give them the ability to interact – that is, for the player to catch (or miss) a falling collectible.

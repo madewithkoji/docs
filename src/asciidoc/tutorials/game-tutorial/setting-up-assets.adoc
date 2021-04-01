@@ -161,6 +161,6 @@ For example:
 == Wrapping up
 
 In this section, you made your own copy of the game template.
-Then, you customized the starting values for game settings and loaded the image and sound assets into the game.
+Then, you configured the starting values for game settings and loaded the image and sound assets into the game.
 
 In the <<game-creating-game-objects#,next section>>, you'll add the `Player` and `Collectible` classes.
