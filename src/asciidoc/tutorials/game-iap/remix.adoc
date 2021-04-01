@@ -3,6 +3,14 @@
 :page-description: Making the price customizable during Remix
 :figure-caption!:
 
+In the <<game-assets#,previous section>> of the remixable game tutorial, you DID SOMETHING.
+In this section, you’ll
+// tag::description[]
+DO SOMETHING ELSE.
+// end::description[]
+
+By the end of this section, you should feel comfortable:
+
 The last thing we want to do is to make our price customizable when people remix the game.
 
 In this section, we will:

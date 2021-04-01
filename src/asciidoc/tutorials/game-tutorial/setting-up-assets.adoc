@@ -40,8 +40,7 @@ A copy of the project is created in your Koji account, and the *Project Details*
 +
 The Koji editor opens with the game code loaded.
 
-[NOTE]
-The Koji editor is recommended for this tutorial, but you're free to <<use-git#, clone the newly created project to your local environment>> if you prefer.
+include::../../docs/_includes/tutorialEditorNote.adoc[tag=all]
 
 == Configuring koji.json
 

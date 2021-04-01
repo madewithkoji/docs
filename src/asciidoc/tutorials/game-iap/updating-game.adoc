@@ -3,6 +3,14 @@
 :page-description: Updating our game to respond to payment
 :figure-caption!:
 
+In the <<game-assets#,previous section>> of the remixable game tutorial, you DID SOMETHING.
+In this section, you’ll
+// tag::description[]
+DO SOMETHING ELSE.
+// end::description[]
+
+By the end of this section, you should feel comfortable:
+
 In this section, we will:
 
 - Add a listener for the `resetLives` event.

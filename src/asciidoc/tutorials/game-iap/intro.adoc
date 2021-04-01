@@ -17,8 +17,7 @@ If you get stuck at any point, feel free to ask for help in our https://discord.
 
 You can check out the finished game https://withkoji.com/~Svarog1389/2d69[here].
 
-[NOTE]
-Koji web editor is recommended for this tutorial, but you're free to http://developer.withkoji.com/docs/develop/use-git[clone the newly created project to your local environment] if you prefer.
+include::../../docs/_includes/tutorialEditorNote.adoc[tag=all]
 
 == Game Overview
 
@@ -57,35 +56,29 @@ To break it down into steps, we need to:
 
 * Make price customizable in the `Remix` menu.
 
-== Forking the game template
-
-Let's get started by cloning the https://withkoji.com/~Svarog1389/3ej3[Tower Stack] game.
-
-1. Click the Koji icon.
-2. Go to *Advanced > Fork*.
-A copy of the project is created in your Koji repository and the project opens in *Project Details*.
-
-== Opening the game in Koji editor
-
-In *Project Details*, click *Open in Code Editor*.
-The Koji editor opens with the game code loaded.
-
-[NOTE]
-Koji editor is recommended for this tutorial, but you're free to http://developer.withkoji.com/docs/develop/use-git[clone the newly created project to your local environment] if you prefer.
-
 == Sections
 
 <<game-iap-setting-up-koji-json#>>  ::
 +
 [.init-cap]
+include::setting-up-koji-json.adoc[tag=description]
 <<game-iap-payment-menu#>>  ::
 +
 [.init-cap]
+include::payment-menu.adoc[tag=description]
 <<game-iap-start-purchase#>>  ::
 +
 [.init-cap]
+include::start-purchase.adoc[tag=description]
 <<game-iap-updating-game#>>  ::
 +
 [.init-cap]
+include::updating-game.adoc[tag=description]
 <<game-iap-remix#>>  ::
 +
+[.init-cap]
+include::remix.adoc[tag=description]
+
+== Getting help
+
+If you have any questions or feedback about this tutorial, please reach out to *@Marko(Svarog)* and the Koji community on https://discord.gg/kMkjJQ6Phb[Koji's Discord server].
