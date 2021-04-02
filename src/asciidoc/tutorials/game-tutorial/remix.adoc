@@ -1,37 +1,31 @@
-= Remix
+= Adding remix options
 :page-slug: game-remix
-:page-description: Modifying the Remix menu
+:page-description: Modifying the Remix menu for a Falling Objects game so that anyone can customize it.
 :figure-caption!:
 
-In the <<game-assets#,previous section>> of the remixable game tutorial, you DID SOMETHING.
+In the <<game-managing-difficulty#, previous section>> of the remixable game tutorial, you finished adding the main functionality for a Falling Objects game.
+But, there's more to do to get the full value of Koji.
+
 In this section, you’ll
 // tag::description[]
-DO SOMETHING ELSE.
+make the game easily remixable by other people so it can be shared everywhere online.
 // end::description[]
 
 By the end of this section, you should feel comfortable:
 
-We've finished the main part of our game.
-But this is Koji! We don't stop there.
+* Editing the remix menu in the game template.
+* Adding a customizable image to the menu.
 
-We want our game to be easily remixable by other people so it can be shared everywhere online!
+== Exploring the remix menu
 
-In this section, we will:
+The game template provides a configurable remix menu to speed up game development on Koji.
 
-- Edit the existing Remix menu.
-
-- Learn how to add a customizable image to the menu.
-
-== Overview
-
-Let's explore a new section of the game template.
-
-If you open `frontend/src/Components/Remix/index.js`, you'll find some workflow already set up.
+If you open `frontend/src/Components/Remix/index.js`, you'll see that some of the workflow you need for your game is already set up.
 
 [NOTE]
-You can see what your Remix menu currently looks like in the `Remix` tab of the http://developer.withkoji.com/docs/develop/testing-templates#_using_the_koji_debugger[Debugger] or inside the Live Preview from your web editor.
+To see what the Remix menu currently looks like, use the `Remix` tab of the <<testing-templates#_using_the_koji_debugger, Debugger>> or the Live Preview in the Koji editor.
 
-*Background Image* and *Music* customization are already handled by the template, so we can just leave them as they are.
+The *Background Image* and *Music* customizations are already handled by the template, so you can just leave them as they are.
 
 Luckily, since we've already made a generic `Player` class that uses `imgPlayer` for its image, everything is already set up for our player to be customizable.
 

@@ -1,6 +1,6 @@
 = Scoring and losing
 :page-slug: game-scoring-and-losing
-:page-description: Adding collision checks for scoring and conditions for losing a falling objects game.
+:page-description: Adding collision checks for scoring and conditions for losing a Falling Objects game.
 :figure-caption!:
 
 In the <<game-creating-game-objects#,previous section>> of the remixable game tutorial, you added the player and the collectibles to the Falling Objects game.
@@ -8,12 +8,6 @@ In this section, you’ll
 // tag::description[]
 enable the player to catch a falling collectible and add the logic for scoring and losing the game.
 // end::description[]
-
-////
-check for collisions between the player and collectibles and add to the score every time a collision happens.
-If a collectible falls to the bottom without getting caught, we take a life away from the player.
-When the player loses three lives, the game ends.
-////
 
 By the end of this section, you should feel comfortable:
 
@@ -323,5 +317,8 @@ image::game-collectible-missed.gif[Animations when collectibles are missed]
 == Wrapping up
 
 Your game is now playable!
+
+In this section, you enabled the player to catch objects, which increases the game score.
+You also removed a life when the player misses an object, which eventually leads to losing the game.
 
 In the <<game-managing-difficulty#,next section>>, you'll add some difficulty management, so that the game gets progressively harder as it's played.
