@@ -3,7 +3,7 @@
 :page-description: Creating classes for the player and collectibles in a falling objects game.
 :figure-caption!:
 
-In the <<game-assets#,previous section>> of the remixable game tutorial, you configured the settings, images, and sounds for the Falling Objects game.
+In the <<game-assets#,previous section>> of the remixable game tutorial, you configured the settings, images, and sounds for the falling objects game.
 In this section, you’ll
 // tag::description[]
 define the `Player` and `Collectible` classes and spawn them in the game.
@@ -20,11 +20,10 @@ By the end of this section, you should feel comfortable:
 
 The game template uses an https://en.wikipedia.org/wiki/Entity_component_system[Entity system], which enables you to extend the base `Entity` class to define the game objects.
 
-NOTE: The template already has an example `Player` class defined, so there's no need to create a new file.
+The template already has an example `Player` class defined, so there's no need to create a new file.
 You can start with that!
 
 In the `frontend/src/Components/Game/Entities` folder, open `Player.js`.
-
 Modify the constructor to use the image and size that you defined in the previous section of the tutorial.
 
 [source,javascript]
@@ -50,7 +49,8 @@ export default class Player extends Entity {
 Make sure to remove any example code from the `update()` function.
 You will modify this function later in the tutorial.
 
-The `Player` object is now ready to be drawn on the screen! Next, you need to instantiate it.
+The `Player` object is now ready to be drawn on the screen.
+Next, you need to instantiate it.
 
 === Adding a player to the game
 
@@ -120,7 +120,7 @@ If you try the game now, the player should move left or right when you touch or 
 
 Now, let's make it prettier!
 For example, what if the player tilted slightly in the direction it's moving?
-And, how can we make sure the player won't be able to move off the screen?
+And, how do you make sure the player won't be able to move off the screen?
 
 You can add these features to the `Player` class as follows.
 
@@ -232,9 +232,8 @@ const initializeValues = () => {
 }
 ----
 
-
 The `Entity` class handles the movement of objects based on their `velocity` property.
-Since we already set the velocity in the `Collectible` constructor, that's all we need to do to make our collectibles fall down indefinitely.
+Since you already set the velocity in the `Collectible` constructor, that's all you need to do to make the collectibles fall down indefinitely.
 
 Now, let's try spawning some!
 
@@ -296,8 +295,7 @@ const initializeValues = () => {
 }
 ----
 
-[NOTE]
-Sometimes, after compile errors have been resolved, you might need to reload your live preview manually for everything to work correctly again.
+NOTE: After compile errors have been resolved, you might need to reload your live preview manually for everything to work correctly again.
 
 If you start the game now, you'll see a bunch of donuts appearing every `1.5` to `2` seconds and falling to the bottom.
 
@@ -307,4 +305,4 @@ image::game-spawn-collectibles.gif[Spawning collectibles]
 
 In this section, you created the `Player` and `Collectible` classes, and then spawned them in the game.
 
-In the <<game-scoring-and-losing#, next section>>, you need to give them the ability to interact – that is, for the player to catch (or miss) a falling collectible.
+In the <<game-scoring-and-losing#, next section>>, you'll give them the ability to interact – that is, for the player to catch (or miss) a falling collectible.

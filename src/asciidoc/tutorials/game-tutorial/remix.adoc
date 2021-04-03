@@ -1,10 +1,10 @@
 = Adding remix options
 :page-slug: game-remix
-:page-description: Modifying the Remix menu for a Falling Objects game so that anyone can customize it.
+:page-description: Modifying the remix menu for a falling objects game so that anyone can customize it.
 :figure-caption!:
 
-In the <<game-managing-difficulty#, previous section>> of the remixable game tutorial, you finished adding the main functionality for a Falling Objects game.
-But, there's more to do to get the most on Koji.
+In the <<game-managing-difficulty#, previous section>> of the remixable game tutorial, you finished adding the main functionality for a falling objects game.
+But, there's more to do to get the most from Koji.
 
 In this section, you’ll
 // tag::description[]
@@ -66,7 +66,7 @@ const Component = () => {
 Notice that you also created an `isCollectibleInvalid` state hook.
 You'll use this hook to make sure the user has actually uploaded an image, so the game won't be published without one.
 
-Also notice the change to the `assignInitialValues()` function, which is in the useEffect Hook that runs when the `Remix` component mounts.
+Also notice the change to the `assignInitialValues()` function, which is in the useEffect hook that runs when the `Remix` component mounts.
 Here, you assigned the initial value from `koji.json`.
 
 === Changing the image
@@ -117,7 +117,7 @@ In `deleteCollectible()`, the code works similarly, except it sets `imgCollectib
 
 === Rendering the image component
 
-Next, you need to render the component that represents a collectible image and lets users customize the image.
+Next, you need to render the component that represents a collectible image in the remix menu to enable users customize the image.
 You can once again use the existing structure from `Player`.
 
 Find the component that looks like the following.
@@ -138,7 +138,7 @@ Find the component that looks like the following.
 </div>
 ----
 
-Make a copy just below it, still in the `<Section>` component.
+Make a copy just below it, in the same `<Section>` component.
 Modify the copy as follows.
 
 [source,javascript]
@@ -198,4 +198,4 @@ image::game-remix-collectible.png[Remix menu with collectible image]
 You've just added the ability for users to change the collectible image.
 The remix menu is complete!
 
-In the <<game-thumbnail-preview#, next section>>, you will customize the thumbnail preview.
+In the <<game-thumbnail-preview#, next section>>, you will customize the preview image that is displayed when sharing the game.

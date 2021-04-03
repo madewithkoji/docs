@@ -1,6 +1,6 @@
 = Managing difficulty
 :page-slug: game-managing-difficulty
-:page-description: Making a Falling Objects game get progressively more difficult over time.
+:page-description: Making a falling objects game get progressively more difficult over time.
 :figure-caption!:
 
 In the <<game-scoring-and-losing#, previous section>> of the remixable game tutorial, you made the game playable by adding ways to score and to lose.

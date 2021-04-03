@@ -1,9 +1,9 @@
 = Scoring and losing
 :page-slug: game-scoring-and-losing
-:page-description: Adding collision checks for scoring and conditions for losing a Falling Objects game.
+:page-description: Adding collision checks for scoring and conditions for losing a falling objects game.
 :figure-caption!:
 
-In the <<game-creating-game-objects#,previous section>> of the remixable game tutorial, you added the player and the collectibles to the Falling Objects game.
+In the <<game-creating-game-objects#,previous section>> of the remixable game tutorial, you added the player and the collectibles to the falling objects game.
 In this section, you’ll
 // tag::description[]
 enable the player to catch a falling collectible and add the logic for scoring and losing the game.
@@ -18,7 +18,7 @@ By the end of this section, you should feel comfortable:
 == Checking for collisions
 
 To determine when the player has caught a falling object, you can check for collisions between the player and the collectibles.
-Then, you add to the score every time a collision happens.
+Then, add to the score every time a collision happens.
 
 In `frontend/src/Components/Game/Entities/Player.js`, add a new function to check for collisions.
 Then, call the function from `update()`.
@@ -49,15 +49,15 @@ export default class Player extends Entity {
 ----
 
 This code uses `game.findByTag('collectible')` to get all of the `Collectible` objects.
-Then, it checks each collectible to see whether it's colliding with `Player`.
+Then, the code checks each collectible to see whether it's colliding with the `Player`.
 
 NOTE: The `game.findByTag(tag: string)` function works by filtering the game instance's `entities` array, and then returning an array that contains all entities with the given tag.
 
 To check for a collision, the code uses the `CollisionCircle()` function from `frontend/src/Components/Game/Utils/Collision.js`.
-The function takes two `Entities` as arguments and returns `true` if they are close enough together to collide (based on the size of the entities and their distance apart).
+This function takes two `Entities` as arguments and returns `true` if they are close enough together to collide (based on the size of the entities and their distance apart).
 
 If the player is colliding with a collectible and the collectible in question hasn't already been collected, the code triggers the `onCollect()` handler.
-You define the `onCollect()` handler in `frontend/src/Components/Game/Entities/Collectible.js`.
+You need to define the `onCollect()` handler in `frontend/src/Components/Game/Entities/Collectible.js`.
 This function sets the `isCollected` flag to `true`.
 
 [source,javascript]
@@ -174,7 +174,7 @@ Instead, use a tiny value, which doesn't make any difference visually.
 
 At the same time, the `moveTowardsPlayer()` function does several things at once.
 
-* `this.velocity.y = Smooth(this.velocity.y, 0, 8)` – Gradually disables the existing vertical velocity.
+* `this.velocity.y = Smooth(this.velocity.y, 0, 8)` – Gradually decreases the existing vertical velocity.
 
 * `this.rotSpeed = Smooth(this.rotSpeed, 0, 8)` – Starts spinning wildly.
 
@@ -245,7 +245,6 @@ Another way to find the player object would be to set the `"player"` tag inside 
 As you can see, this code is similar to the animation setup in `Collectible`.
 
 You increment the `animTimer` property as long as it's below `1`, because the `EasingFunctions` only work for values between `0` and `1`.
-
 Then, you modify the scale again.
 In this case, you're using the `easeOutElastic` function, which generates a nice bouncy effect.
 
@@ -257,8 +256,8 @@ Now it's looking better!
 
 == Checking for missed collectibles
 
-You need a way to lose the game, too!
-If a collectible falls to the bottom without getting caught, you can take a life away from the player.
+You need to add a way to lose the game, too!
+If a collectible falls to the bottom without getting caught, you can take away a life from the player.
 When the player loses all its lives, the game ends.
 
 To implement this logic for losing the game, you first have to check if any of the collectibles went past the player and off the screen.
@@ -310,7 +309,7 @@ The template automatically ends the game when there are no lives left.
 * Sets the `shouldBeRemoved` flag to `true`, so that the object will be deleted from memory in the next frame.
 +
 [IMPORTANT]
-Deleting unused objects from memory is an especially important step in every game to prevent memory leaks, which can result in performance slowdown and, eventually, a crash.
+Deleting unused objects from memory is an especially important step in every game to prevent memory leaks, which can result in a performance slowdown and, eventually, a crash.
 
 image::game-collectible-missed.gif[Animations when collectibles are missed]
 

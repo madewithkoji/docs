@@ -3,7 +3,7 @@
 :page-description: Updating our game to respond to payment
 :figure-caption!:
 
-In the <<game-assets#,previous section>> of the remixable game tutorial, you DID SOMETHING.
+In the <<game-assets#,previous section>> of the in-app purchases game tutorial, you DID SOMETHING.
 In this section, you’ll
 // tag::description[]
 DO SOMETHING ELSE.

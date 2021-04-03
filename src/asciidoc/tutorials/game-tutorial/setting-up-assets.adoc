@@ -1,11 +1,11 @@
 = Defining game assets
 :page-slug: game-assets
-:page-description: Setting up settings and loading assets for our game
+:page-description: Configuring the settings and loading assets for a falling objects game.
 :figure-caption!:
 
 In the first section of this tutorial, you will
 // tag::description[]
-fork the game template and modify it to load the images and sounds used in the Falling Objects game.
+fork the game template and modify it to load the images and sounds used in the falling objects game.
 // end::description[]
 
 By the end of the section, you should feel comfortable:
@@ -22,7 +22,7 @@ For example, the template provides:
 * Automatic sound loading.
 * Improved image loading with optimization.
 * Integrated live leaderboard without the need to modify any of the backend files.
-* Easily configurable Remix menu.
+* Easily configurable remix menu.
 * One-line calls for spawning special effects, like particles and animated text.
 
 For more information, check out the https://withkoji.com/~Svarog1389/game-template-1/details/code#README.md[template README].
@@ -44,19 +44,18 @@ include::../../docs/_includes/tutorialEditorNote.adoc[tag=all]
 
 == Configuring koji.json
 
-The Falling Objects game needs images to represent the Player (character) and Collectible (falling) objects.
+The falling objects game needs images to represent the player (character) and collectible (falling) objects.
 
 image:https://images.koji-cdn.com/814f445d-4e8d-40cb-83fe-04d120cc1889/userData/x0kfr-player.png[title="Player", alt="player cat",width=128,height=128]
 image:https://images.koji-cdn.com/5f618aa2-e515-49a1-adb2-42dfb88a6f59/userData/1d6jr-donut.png[title="Collectible", alt="collectible donut",width=128,height=128]
 
-The game also need sounds to play when the player collects or misses a falling object.
+The game also needs sounds to play when the player collects or misses a falling object.
 
 To define these assets and other game-specific data, you can modify the `koji.json` file.
 
 Open the `koji.json` file, which is located in the project root.
 Then, find the `remixData` object.
-
-Update `koji.json` to add the URL paths for the images and sounds as follows.
+Update it to add the URL paths for the images and sounds as follows.
 
 [source, json]
 ----
@@ -80,8 +79,8 @@ To give the game a more distinctive look, modify the `title` and `backgroundImag
 [source, json]
 ----
 "remixData": {
+  ...
   "music": "https://objects.koji-cdn.com/45cdb5ca-8318-4318-8271-d0e422e790e0/hjdo0-music.mp3",
-  "musicVolume": 0.25,
   "title": "Catch The Donuts",
   "backgroundImage": "https://images.koji-cdn.com/377f7596-8edf-44b1-994d-f9926b3aa641/userData/682dt-G68b11.png",
   ...
@@ -124,7 +123,8 @@ The game template loads all of these assets in the `frontend/src/Components/Game
 You don't have to do anything to load the sounds.
 Because you used the `snd` naming convention, the template will load them automatically.
 
-To load images, use the `addImage()` function from the template.
+To load images, you use the `addImage()` function from the template.
+Update `preload` as follows.
 
 [source,javascript]
 ----
@@ -163,4 +163,4 @@ For example:
 In this section, you made your own copy of the game template.
 Then, you configured the starting values for game settings and loaded the image and sound assets into the game.
 
-In the <<game-creating-game-objects#,next section>>, you'll add the `Player` and `Collectible` classes.
+In the <<game-creating-game-objects#,next section>>, you'll add the `Player` and `Collectible` classes and use them to represent the character and falling objects in the game.

@@ -1,6 +1,6 @@
 = Finishing up
 :page-slug: game-finishing-up
-:page-description: Publishing, sharing, and adding more features to a Falling Objects game.
+:page-description: Publishing, sharing, and adding more features to a falling objects game.
 :figure-caption!:
 
 In the <<game-thumbnail-preview#, previous section>> of the remixable game tutorial, you customized the preview image for sharing on social media.
