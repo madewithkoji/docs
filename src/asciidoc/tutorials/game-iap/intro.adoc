@@ -1,6 +1,6 @@
-= Overview
+= Tutorial: Adding in-app purchases to Koji games
 :page-slug: game-iap-intro
-:page-description: Tutorial for adding In-App Purchases to an existing Koji game
+:page-description: Tutorial for adding in-app purchases to an existing Koji game.
 :figure-caption!:
 
 In this tutorial, we show you how to add an In-Game Purchase feature to an existing game on Koji.
@@ -11,14 +11,13 @@ If you're new to Koji, here are some tutorials that you might want to check out 
 
 * <<quick-start#,Getting started>>
 
-* <<game-tutorial-intro#,Creating a remixable game>>
+* <<game-intro#,Creating a remixable game>>
 
 If you get stuck at any point, feel free to ask for help in our https://discord.gg/kMkjJQ6Phb[Discord Server], or e-mail me at *marko@withkoji.com*.
 
 You can check out the finished game https://withkoji.com/~Svarog1389/2d69[here].
 
-[NOTE]
-Koji web editor is recommended for this tutorial, but you're free to http://developer.withkoji.com/docs/develop/use-git[clone the newly created project to your local environment] if you prefer.
+include::../../docs/_includes/tutorialEditorNote.adoc[tag=all]
 
 == Game Overview
 
@@ -57,35 +56,29 @@ To break it down into steps, we need to:
 
 * Make price customizable in the `Remix` menu.
 
-== Forking the game template
-
-Let's get started by cloning the https://withkoji.com/~Svarog1389/3ej3[Tower Stack] game.
-
-1. Click the Koji icon.
-2. Go to *Advanced > Fork*.
-A copy of the project is created in your Koji repository and the project opens in *Project Details*.
-
-== Opening the game in Koji editor
-
-In *Project Details*, click *Open in Code Editor*.
-The Koji editor opens with the game code loaded.
-
-[NOTE]
-Koji editor is recommended for this tutorial, but you're free to http://developer.withkoji.com/docs/develop/use-git[clone the newly created project to your local environment] if you prefer.
-
 == Sections
 
 <<game-iap-setting-up-koji-json#>>  ::
 +
 [.init-cap]
+include::setting-up-koji-json.adoc[tag=description]
 <<game-iap-payment-menu#>>  ::
 +
 [.init-cap]
+include::payment-menu.adoc[tag=description]
 <<game-iap-start-purchase#>>  ::
 +
 [.init-cap]
+include::start-purchase.adoc[tag=description]
 <<game-iap-updating-game#>>  ::
 +
 [.init-cap]
+include::updating-game.adoc[tag=description]
 <<game-iap-remix#>>  ::
 +
+[.init-cap]
+include::remix.adoc[tag=description]
+
+== Getting help
+
+include::../../docs/_includes/tutorialHelpMarko.adoc[tag=all]

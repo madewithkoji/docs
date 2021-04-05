@@ -3,6 +3,14 @@
 :page-description: Writing functions to handle our payment logic
 :figure-caption!:
 
+In the <<game-assets#,previous section>> of the in-app purchases game tutorial, you DID SOMETHING.
+In this section, you’ll
+// tag::description[]
+DO SOMETHING ELSE.
+// end::description[]
+
+By the end of this section, you should feel comfortable:
+
 In this section, we will:
 
 - Define the `onPurchase()` function.
@@ -27,7 +35,7 @@ import PaymentDialog from './PaymentDialog'
 const Component = (props) => {
     ...
 
-    // Create a state hook to let us control 
+    // Create a state hook to let us control
     // when we should display our PaymentDialog
     const [showPaymentDialog, setShowPaymentDialog] = useState(false);
 
@@ -64,7 +72,7 @@ const Component = (props) => {
             ...
 
              {showPaymentDialog &&
-                <PaymentDialog 
+                <PaymentDialog
                     onPurchase={onPurchase}
                     onPurchaseCancel={onPurchaseCancel}
                 />

@@ -12,7 +12,7 @@ NOTE: This tutorial provides a step-by-step introduction for developers who are 
 If you prefer to jump straight into code, you can head to the <<start-guide-1#,advanced quick start guide>>.
 ////
 
-== Learning modules
+== Sections
 
 <<your-first-project#>>  ::
 +
@@ -42,3 +42,7 @@ include::remixable-project.adoc[tag=description]
 +
 [.init-cap]
 include::your-first-template.adoc[tag=description]
+
+== Getting help
+
+include::../../docs/_includes/tutorialHelpDiddy.adoc[tag=all]

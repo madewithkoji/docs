@@ -271,7 +271,7 @@
       "defaultPath": "/tutorials/getting-started/quick-start",
       "sections": [
         {
-          "name": "Learn Koji",
+          "name": "Learning Koji",
           "root": "/getting-started",
           "items": [
             {
@@ -311,51 +311,45 @@
           ]
         },
         {
-          "name": "Creating a remixable game",
-          "root": "/game-tutorial",
+          "name": "Creating games on Koji",
+          "root": "/game-tutorials",
           "items": [
             {
-              "name": "Overview",
-              "slug": "game-tutorial-intro",
+              "name": "Creating remixable games",
+              "slug": "game-intro",
               "subItems": [
                 {
-                  "name": "1. Setting up assets",
-                  "slug": "game-tutorial-setting-up-assets"
+                  "name": "1. Defining assets",
+                  "slug": "game-assets"
                 },
                 {
                   "name": "2. Creating game objects",
-                  "slug": "game-tutorial-creating-game-objects"
+                  "slug": "game-creating-game-objects"
                 },
                 {
                   "name": "3. Scoring and losing",
-                  "slug": "game-tutorial-scoring-and-losing"
+                  "slug": "game-scoring-and-losing"
                 },
                 {
                   "name": "4. Managing difficulty",
-                  "slug": "game-tutorial-managing-difficulty"
+                  "slug": "game-managing-difficulty"
                 },
                 {
-                  "name": "5. Remix",
-                  "slug": "game-tutorial-remix"
+                  "name": "5. Adding remix options",
+                  "slug": "game-remix"
                 },
                 {
-                  "name": "6. Thumbnail preview",
-                  "slug": "game-tutorial-thumbnail-preview"
+                  "name": "6. Customizing the preview",
+                  "slug": "game-thumbnail-preview"
                 },
                 {
                   "name": "7. Finishing up",
-                  "slug": "game-tutorial-finishing-up"
+                  "slug": "game-finishing-up"
                 }
               ]
-            }
-          ]
-        },
-        {
-          "name": "Adding In-App Purchases to a game",
-          "root": "/game-iap",
-          "items": [
+            },
             {
-              "name": "Overview",
+              "name": "Adding in-app purchases",
               "slug": "game-iap-intro",
               "subItems": [
                 {

@@ -1,24 +1,28 @@
 = Managing difficulty
-:page-slug: game-tutorial-managing-difficulty
-:page-description: Managing difficulty
+:page-slug: game-managing-difficulty
+:page-description: Making a falling objects game get progressively more difficult over time.
 :figure-caption!:
 
-Our game is finally playable!
-But it might be a little too repetitive and easy.
-We want it to get progressively more difficult over time, so that our players have more incentive to compete on the leaderboard.
+In the <<game-scoring-and-losing#, previous section>> of the remixable game tutorial, you made the game playable by adding ways to score and to lose.
+But, it still might be a little too repetitive and easy.
 
-In this section, we will:
+In this section, you’ll
+// tag::description[]
+make the game progressively more difficult over time, so that users have more incentive to compete on the leaderboard.
+// end::description[]
 
-- Define values that can be changed to increase the game difficulty.
+By the end of this section, you should feel comfortable:
 
-- Define a function that handles that change at a set interval.
-
-Remember how we had a function that handled our spawn logic?
-We'll do something similar this time.
+* Defining values that control the difficulty of the game.
+* Increasing the difficulty values at a set interval.
 
 == Defining starting values
 
-Let's define some more settings in `frontend/src/Components/Game/preload.js`.
+Remember the function for handling the spawn logic?
+You'll use something similar to handle the difficulty.
+
+Start by defining the game settings that control the difficulty.
+In `frontend/src/Components/Game/preload.js`, add the following properties.
 
 [source,javascript]
 ----
@@ -33,9 +37,10 @@ const initializeValues = () => {
 }
 ----
 
-== Defining the function to handle difficulty
+== Increasing difficulty during game play
 
-Now we can create our handler function in `frontend/src/Components/Game/draw.js`.
+Next, define a function to increase the difficulty as the game progresses.
+In `frontend/src/Components/Game/draw.js`, add the following code.
 
 [source,javascript]
 ----
@@ -67,20 +72,18 @@ const increaseDifficulty = () => {
 }
 ----
 
-Using our timer, we periodically increase the difficulty by changing some game values -- up to a point.
-It's important to set a limit to prevent the game from eventually becoming totally unplayable, which most players wouldn't consider a fun experience.
+Using a timer, you periodically increase the difficulty by changing some game values – up to a point.
+It's important to set a limit to prevent the game from becoming totally unplayable, which most users wouldn't consider a fun experience.
 
-Every time the difficulty increases, we:
+Every time the difficulty increases, this function will:
 
-* Slightly decrease the period between the spawning of Collectibles.
-
-* Slightly increase the falling speed of Collectibles.
+* Slightly decrease the period between the spawning of collectibles.
+* Slightly increase the falling speed of collectibles.
 
 == Wrapping up
 
-*Congratulations!* We've finished developing the main part of our game!
-
+*Congratulations!* You've finished developing the main part of your game.
 Of course, you can go back and modify things or add new features.
 Everything's a bonus from now on!
 
-In the <<game-tutorial-remix#,next section>>, we'll take a look at the `Remix` menu and make our assets customizable.
+In the <<game-remix#,next section>>, you'll take a look at the remix menu in the game template and make the game assets customizable.

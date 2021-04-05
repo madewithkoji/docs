@@ -1,27 +1,37 @@
-= Thumbnail preview
-:page-slug: game-tutorial-thumbnail-preview
-:page-description: Modifying the thumbnail preview when the game is shared on socials
+= Customizing the preview image
+:page-slug: game-thumbnail-preview
+:page-description: Modifying the preview image when the falling objects game is shared on social media.
 :figure-caption!:
 
-The last thing we need to do before releasing our new game into the wild is to customize the thumbnail preview, so that when users share their remixes, they get nice little previews that people will be drawn to click on!
+In the <<game-remix#, previous section>> of the remixable game tutorial, you added an option for users to customize the collectible image.
+There's one more thing to take care of before releasing your new game into the wild.
 
-In this section, we'll edit the existing `Screenshot` component to include our collectibles and create a "fake" screenshot using our assets.
+In this section, you’ll
+// tag::description[]
+customize the preview image that is displayed when users share their remixes on social media.
+// end::description[]
+
+By the end of this section, you should feel comfortable:
+
+* Adding collectibles to the `Screenshot` component.
+* Testing a custom preview image.
 
 == How it works
 
-Whatever we render inside of `frontend/src/Components/Screenshot/index.js` will be rendered in the thumbnail preview that people see when the game is shared on socials.
+When users share their remixes on social media, the preview (Open Graph) image is based on a screenshot of the Koji.
+A fun, custom preview image helps make sure that people are drawn to click on it.
 
-[NOTE]
-You can see what your thumbnail preview currently looks like in the `Thumbnail` tab of the http://developer.withkoji.com/docs/develop/testing-templates#_using_the_koji_debugger[Debugger] or inside the Live Preview from your web editor.
+In the game template, `frontend/src/Components/Screenshot/index.js` is already set up to render a custom view for the preview screenshot.
+
+NOTE: To see what the preview image currently looks like, use the *Thumbnail* tab of the <<testing-templates#_using_the_koji_debugger, Debugger>> or the Live Preview in the Koji editor.
 
 == Editing the Screenshot component
 
-By default, this component already shows `imgPlayer` in the center.
-
+By default, the `Screenshot` component already shows `imgPlayer` in the center.
 It looks something like the following.
 
-[source,javascript]
--------------------
+[source,html]
+----
 <FeaturedImage
     src={optimizeImage(remixValues.imgPlayer, 150, 150)}
     rotation={randomRange(-30, 30)}
@@ -30,15 +40,12 @@ It looks something like the following.
         top: '50%'
     }}
 />
--------------------
+----
 
-=== Moving the player down
-
-Let's move the player down a bit.
-Change the `top` value to something like `80%`.
+To move the player down a bit, change the `top` value to something like `80%`.
 
 [source,javascript]
--------------------
+----
 <FeaturedImage
     src={optimizeImage(remixValues.imgPlayer, 150, 150)}
     rotation={randomRange(-30, 30)}
@@ -47,23 +54,19 @@ Change the `top` value to something like `80%`.
         top: '80%'
     }}
 />
--------------------
+----
 
-=== Adding Collectible images
+Next, add some collectible images.
 
-Now let's add some `Collectible` images.
-
-1. Copy and paste the player's `FeaturedImage` several times below the original.
-
-2. In each copy (but not in the original), change `remixValues.imgPlayer` to `remixValues.imgCollectible`.
-
-3. Change the values for `left` and `top` in each copy.
-They don't have to be exactly the same as the ones in our example.
+. Copy and paste the `FeaturedImage` code several times below the original.
+. In each copy (but not in the original), change `remixValues.imgPlayer` to `remixValues.imgCollectible`.
+. Change the values for `left` and `top` in each copy.
+They don't have to be exactly the same as the examples.
 You can play around and see what you like best.
 You can even randomize their positions if you want!
 
-[source,javascript]
--------------------
+[source,html]
+----
 <FeaturedImage
     src={optimizeImage(<FeaturedImage
     src={optimizeImage(remixValues.imgPlayer, 150, 150)}
@@ -110,16 +113,15 @@ You can even randomize their positions if you want!
         top: '50%'
     }}
 />
--------------------
+----
 
-Once done, your thumbnail preview should look something like this: 
+After you are done, the preview image should look something like this example.
 
-image:https://i.imgur.com/rsElqqp.png[alt="screenshot player",width=256,height=256]
+image::game-preview-image.png[New preview image]
 
 == Wrapping up
 
 *Congratulations!*
-
 You've reached the end of the tutorial!
 
-In the <<game-tutorial-finishing-up#,final section>>, we talk about Publishing your game and make some suggestions for going forward.
+In the <<game-finishing-up#, final section>>, you'll publish your game and see some suggestions for going forward.

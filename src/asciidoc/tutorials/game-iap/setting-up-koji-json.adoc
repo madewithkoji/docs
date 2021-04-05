@@ -3,11 +3,34 @@
 :page-description: Setting up koji.json and our remix values
 :figure-caption!:
 
+In the <<game-assets#,previous section>> of the in-app purchases game tutorial, you DID SOMETHING.
+In this section, you’ll
+// tag::description[]
+DO SOMETHING ELSE.
+// end::description[]
+
+By the end of this section, you should feel comfortable:
+
 In this section, we will:
 
 - Add the `In-App Purchase` entitlement, so Koji can register our product.
 
 - Define a `price` value that can be customized during Remix.
+
+== Forking the game template
+
+Get started by cloning the Tower Stack game to your own project.
+
+. Open the https://withkoji.com/~Svarog1389/3ej3[Tower Stack] game.
+. {blank}
+include::../../docs/_includes/remixNav.adoc[tag=all]
++
+A copy of the project is created in your Koji account, and the *Project Details* page for your new project is displayed.
+. Click *Open in Code Editor*.
++
+The Koji editor opens with the game code loaded.
+
+include::../../docs/_includes/tutorialEditorNote.adoc[tag=all]
 
 == Entitlements
 
