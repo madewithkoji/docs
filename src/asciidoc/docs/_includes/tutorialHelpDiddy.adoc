@@ -1,0 +1,5 @@
+== Getting help for a Diddy tutorial
+
+// tag::all[]
+If you have any questions or feedback about this tutorial, please reach out to *@diddy* and the Koji community on the https://discord.gg/kMkjJQ6Phb[Koji Discord server].
+// end::all[]

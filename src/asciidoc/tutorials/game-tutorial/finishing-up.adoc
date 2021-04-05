@@ -4,7 +4,7 @@
 :figure-caption!:
 
 In the <<game-thumbnail-preview#, previous section>> of the remixable game tutorial, you customized the preview image for sharing on social media.
-That's it, you just created a *fun and remixable Koji game*!
+That's it, you've just created a *fun and remixable Koji game*!
 
 In this section, you’ll
 // tag::description[]
@@ -26,14 +26,14 @@ Go ahead and post your new game everywhere.
 Let the world know about it!
 
 You can also post your new game to the https://discord.gg/kMkjJQ6Phb[Koji Discord server].
-While you're at it, post any suggestions and thoughts on how you think we can make this tutorial even better!
+While you're at it, post any suggestions and thoughts on how you think we can make this tutorial even better.
 
 == Adding new features
 
 The project is now your playground!
 You can modify features or add new ones, make improvements, or anything else you can imagine.
 
-Here are some suggestions for features you can try adding:
+Here are some suggestions for features you can try adding to your game:
 
 * Add horizontal speed to collectibles.
 * Add multiple collectible images.

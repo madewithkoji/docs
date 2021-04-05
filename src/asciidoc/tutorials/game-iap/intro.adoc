@@ -81,4 +81,4 @@ include::remix.adoc[tag=description]
 
 == Getting help
 
-If you have any questions or feedback about this tutorial, please reach out to *@Marko(Svarog)* and the Koji community on the https://discord.gg/kMkjJQ6Phb[Koji Discord server].
+include::../../docs/_includes/tutorialHelpMarko.adoc[tag=all]
