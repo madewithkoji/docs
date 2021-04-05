@@ -11,7 +11,7 @@ If you're new to Koji, here are some tutorials that you might want to check out 
 
 * <<quick-start#,Getting started>>
 
-* <<game--intro#,Creating a remixable game>>
+* <<game-intro#,Creating a remixable game>>
 
 If you get stuck at any point, feel free to ask for help in our https://discord.gg/kMkjJQ6Phb[Discord Server], or e-mail me at *marko@withkoji.com*.
 
