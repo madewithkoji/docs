@@ -1,27 +1,29 @@
 = Payment menu
 :page-slug: game-iap-payment-menu
-:page-description: Creating our Payment Menu UI component
+:page-description: Creating the Payment Menu UI component
 :figure-caption!:
 
-In the <<game-assets#,previous section>> of the in-app purchases game tutorial, you DID SOMETHING.
+In the <<game-iap-setting-up-koji-json#,previous section>> of the in-app purchases game tutorial, you set up the product and price.
 In this section, you’ll
 // tag::description[]
-DO SOMETHING ELSE.
+create the Payment Menu UI component.
 // end::description[]
 
 By the end of this section, you should feel comfortable:
 
-In this section, we create our Payment Menu UI component.
+* Defining a new UI component
+
+* Rendering the new component
 
 == Component
-Let's design a UI that allows a player to make purchases.
+You need a UI that allows a player to make purchases.
 
 Go to `frontend/src/Components/View/` and create a new file called `PaymentDialog.js`.
 
 Feel free to copy and paste the following code into your file.
 
 [source,javascript]
--------------------
+----
 import React from 'react';
 import styled from 'styled-components';
 import Koji from '@withkoji/core'
@@ -158,25 +160,25 @@ const PaymentDialog = (props) => {
 }
 
 export default PaymentDialog;
--------------------
+----
 
 It's a simple menu with two buttons.
 It looks like this.
 
-image:https://i.imgur.com/Ct0KPcV.png[alt="screenshot payment component",width=256,height=256]
+image::game-iap-payment-menu-ui.png[Payment Component]
 
-As you can see from the above code, we'll be passing two functions into the `PaymentDialog` component -- `onPurchase` and `onPurchaseCancel`.
+As you can see from the above code, you'll be passing two functions into the `PaymentDialog` component -- `onPurchase` and `onPurchaseCancel`.
 These are called when the user clicks the corresponding buttons on the form.
-We'll write these functions in the next section.
+You'll write these functions in the next section.
 
 Notice that the code retrieves the price from the remix values in `koji.json` and displays it on the top button.
 
 == Rendering our component
 
-Inside `frontend/src/Components/View/index.js`, let's create a state hook that controls when we display the `PaymentDialog` component, and add the component to the `Container` object.
+Inside `frontend/src/Components/View/index.js`, create a state hook that controls when we display the `PaymentDialog` component, and add the component to the `Container` object.
 
 [source,javascript]
-------------------
+----
 ...
 import PaymentDialog from './PaymentDialog'
 
@@ -202,10 +204,10 @@ const Component = (props) => {
     )
 
 }
-------------------
+----
 
 == Wrapping up
 
-We've created our Payment Menu and put it inside of our main component.
+In this section, you've created the Payment Menu and put it inside of your main component.
 
-In the <<game-iap-start-purchase#,next section>>, we'll write some functions to handle our payment logic.
+In the <<game-iap-start-purchase#,next section>>, you'll write some functions to handle the payment logic.
