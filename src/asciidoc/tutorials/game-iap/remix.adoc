@@ -3,53 +3,49 @@
 :page-description: Making the price customizable during Remix
 :figure-caption!:
 
-In the <<game-assets#,previous section>> of the in-app purchases game tutorial, you DID SOMETHING.
+In the <<game-iap-updating-game#,previous section>> of the in-app purchases game tutorial, you've modified the template's original behavior to reflect the new flow.
 In this section, you’ll
 // tag::description[]
-DO SOMETHING ELSE.
+make the price customizable when people remix the game.
 // end::description[]
 
 By the end of this section, you should feel comfortable:
 
-The last thing we want to do is to make our price customizable when people remix the game.
+* Modifying the Remix component
 
-In this section, we will:
+* Setting up the price input field
 
-- Install a new package which handles our price input format.
-
-- Set up the price input field.
-
-- Make sure our price value is updated.
+* Making sure the price value is updated correctly
 
 == Installing the new package
 
-For our price input field, we'll use a premade component that already handles all the proper formatting for us, so we don't have to worry about the user entering invalid characters, incorrect price formats, etc.
+For the price input field, you'll use a premade component that already handles all the proper formatting for us, so you don't have to worry about the user entering invalid characters, incorrect price formats, etc.
 
 That component is included in the `@anderjason/koji-react-frontend-tools` npm package, which is already installed in the template.
 
-Another package we'll need is `@anderjason/money`, which is *not* installed, so let's go ahead and install it.
+Another package we'll need is `@anderjason/money`, which is *not* installed, so go ahead and install it.
 
 On the bottom of your web editor, you'll see a black panel with several tabs.
 It looks like this.
 
-image:https://i.imgur.com/VSABST5.png[alt="terminal"]
+image::game-iap-terminal.png[Terminal]
 
-- Click `frontend` to expand the fontend tab.
+* Click `frontend` to expand the fontend tab.
 
 You'll see a terminal window running the frontend server.
 
-- Inside the terminal, press `Ctrl+C` on your keyboard to stop the server.
+* Inside the terminal, press `Ctrl+C` on your keyboard to stop the server.
 
-- Type `npm install @anderjason/money` and press *Enter*.
+* Type `npm install @anderjason/money` and press *Enter*.
 
-- When it's finished installing, type `npm start` to restart the frontend server.
+* When it's finished installing, type `npm start` to restart the frontend server.
 
 == Price input field
 
-Inside `frontend/src/Components/Remix/index.js`, let's add a state hook for our `price`, initialize its value, and also set a `maxPrice` constant (just to make sure users can't abuse anything).
+Inside `frontend/src/Components/Remix/index.js`, add a state hook for the `price`, initialize its value, and also set a `maxPrice` constant (just to make sure users can't abuse anything).
 
 [source,javascript]
-------------------
+----
 // Don't forget the imports!
 import { Money, Currency } from "@anderjason/money";
 
@@ -75,12 +71,12 @@ const Component = () => {
         ...
     }, [])
 }
-------------------
+----
 
 We'll render `MoneyInput` inside the `Card` component, just below the `Section` that contains the block image.
 
 [source,javascript]
-------------------
+----
 // Don't forget the imports!
 import { MoneyInput } from "@anderjason/koji-react-frontend-tools";
 
@@ -107,24 +103,24 @@ import { MoneyInput } from "@anderjason/koji-react-frontend-tools";
 
     ...
 </Card>
-------------------
+----
 
-Note that if `price` is empty or `0`, we set `supportLabel` to `"In-Game Purchases disabled."`
-Otherwise, we set it to `"Set price to 0 to disable In-Game Purchases."`
+Note that if `price` is empty or `0`, `supportLabel` is set to `"In-Game Purchases disabled."`
+Otherwise, it's set to `"Set price to 0 to disable In-Game Purchases."`
 
 === Updating the price value
 
-Finally, we need to update the changed `price` in `koji.json`.
+Finally, you need to update the changed `price` in `koji.json`.
 Find the `onFinish()` function and add the following property inside `await Koji.remix.set({...})`.
 
 `price: price ? price.rawValue / 100 : 0`
 
-Here, we're running a check to make sure we don't write a `null` value into `koji.json`, in which case we substitute `0`.
+Here, you're running a check to make sure you don't write a `null` value into `koji.json`, in which case you substitute `0`.
 
 The resulting `onFinish()` function should look like this.
 
 [source,javascript]
-------------------
+----
 const onFinish = async () => {
     if (block === "") {
         setError("Complete the required selections to continue.");
@@ -147,19 +143,21 @@ const onFinish = async () => {
 
     Koji.remix.finish();
 }
-------------------
+----
 
 And this is what your resulting remix menu should look like.
 
-image:https://i.imgur.com/gngIOR7.png[alt="remix menu"]
+image::game-iap-remix-menu.png[Remix Menu]
 
 Go ahead and give it a spin!
 
 == Wrapping up
+
+In this section, you've made the price customizable, and with that, concluded this tutorial.
 
 All that's left to do is to publish the game from the *Publish Now* menu and share it everywhere online!
 
 Of course, the project is now your playground.
 You can go back to modify or add new features, make improvements, anything you can imagine!
 
-You can also post your new game to our https://discord.gg/kMkjJQ6Phb[Discord Server], along with any suggestions or thoughts on how we can make this tutorial even better!
+include::../../docs/_includes/tutorialHelpMarko.adoc[tag=all]
