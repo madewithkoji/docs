@@ -589,8 +589,8 @@ backend/iap
 See <<_iap_on_the_backend>>.
 
 | getToken
-| frontend/identity
-See <<_identity_on_the_frontend>>.
+| frontend/iap
+See <<_iap_on_the_frontend>>.
 
 | loadProduct
 | backend/iap
@@ -701,7 +701,7 @@ include::../_includes/deprecationQR.adoc[tag=all]
 | @withkoji/core
 
 | constructor
-| frontend/identity
+| Not needed
 
 | onConnect
 | frontend/identity

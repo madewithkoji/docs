@@ -329,4 +329,6 @@ Utils.filterProfanity('sanitize this string');
 == Related resources
 
 * https://github.com/madewithkoji/koji-dispatch[@withkoji/dispatch on Github]
+* Core package replacement modules: <<core-backend-dispatch#, Dispatch (backend)>>, <<core-frontend-dispatch#, Dispatch (frontend)>>
+* <<migrate-koji-core#>>
 * <<vote-counter-blueprint#>>

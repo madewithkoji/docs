@@ -57,3 +57,5 @@ Analytics.track('Won game', { score: 120 });
 == Related resources
 
 * https://github.com/madewithkoji/koji-analytics-sdk[@withkoji/analytics on Github]
+* Core package replacement modules: <<core-frontend-analytics#, Analytics (frontend)>>
+* <<migrate-koji-core#>>
