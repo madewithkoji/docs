@@ -1,16 +1,16 @@
 = Setting up koji.json
 :page-slug: game-iap-setting-up-koji-json
-:page-description: Setting up koji.json and our remix values
+:page-description: Configuring entitlements and remix data in koji.json to support in-game purchases.
 :figure-caption!:
 
 In the first section of this tutorial, you will
 // tag::description[]
-add the In-App Purchase entitlement and define a `price` value that can be customized during Remix.
+add the in-app purchase entitlement and define a price value that can be customized when someone remixes your game.
 // end::description[]
 
 By the end of this section, you should feel comfortable:
 
-* Adding and modifying entitlements and remix values inside `koji.json`
+* Defining entitlements and remix values in `koji.json`.
 
 == Forking the game template
 
@@ -27,11 +27,12 @@ The Koji editor opens with the game code loaded.
 
 include::../../docs/_includes/tutorialEditorNote.adoc[tag=all]
 
-== Entitlements
+== Defining entitlements
 
-First, you need to let Koji know that your new game template is going to use `In-App Purchases`.
+First, you need to enable Koji's in-app purchases feature for your new game template.
 
-Open the file `koji.json`, which is located in the root of the project, and find the following section of code.
+Open the file `koji.json`, which is located in the root of the project.
+Find the following section of code.
 
 [source,json]
 ----
@@ -53,10 +54,9 @@ Open the file `koji.json`, which is located in the root of the project, and find
 ...
 ----
 
-The code defines an `entitlements` object, containing a number of properties.
+This code defines an `entitlements` object, which contains a number of properties that define how the application works on the Koji platform.
 
-Add a new property called `InAppPurchases`.
-Modify `entitlements` as follows.
+Add a new property called `InAppPurchases`, as follows.
 
 [source,json]
 ----
@@ -87,7 +87,7 @@ Modify `entitlements` as follows.
 
 `InAppPurchases` is defined as an object, and it contains an array of products.
 You're only selling one product -- extra lives -- so you only have one product in the array.
-It's defined as follows.
+The product is defined as follows.
 
 [source,json]
 ----
@@ -99,24 +99,25 @@ It's defined as follows.
 }
 ----
 
-Here's a breakdown of the properties in the product:
+Here's a breakdown of the properties:
 
-* *sku* - the identifier used to look up the product when the user makes a purchase.
+* *sku* – Identifier used to look up the product when the user makes a purchase.
 
-* *name* - the product name that appears on the user's receipt.
+* *name* – Product name that appears on the user's receipt.
 
-* *price* - the price of the product in USD.
-This is set to `{{remixData.price}}`, which means it will use a custom value.
-This will be defined in the next step.
+* *price* – Price of the product in USD.
+This value is set to `{{remixData.price}}`, which means the price will use a custom value.
+You will define the custom value in the next step.
 
-* *isConsumable* - a flag that is set to `true` to indicate that the user can purchase the product multiple times.
+* *isConsumable* – Feature that determines whether the product can be purchased more than once.
+This value is set to `true`, which allows the user to purchase the product multiple times.
 
-== Remix Data
+== Defining remix data
 
-Still inside `koji.json`, scroll down to the `remixData` object.
-This is where you define your customizable values that users can modify when remixing the template.
+Remaining in `koji.json`, scroll down to the `remixData` object.
+This is where you define the customizable values that users can modify when remixing the template.
 
-Add a `price` property and set it to `0.1` for now:
+Add a `price` property and set it to `0.1` for now.
 
 [source,json]
 ----
@@ -126,18 +127,14 @@ Add a `price` property and set it to `0.1` for now:
   },
 ----
 
-[NOTE]
-In order for the product to be registered, you need to *publish from the web editor*.
-This will allow you to test your purchases from the <<testing-templates#_using_the_koji_debugger, Debugger>>.
-*The price value also needs to be greater than 0*.
+To register the product, the price value must be greater than `0` and you must publish your game from the Koji editor.
+Registering the product will enable you to test purchases in <<testing-templates#_using_the_koji_debugger, the debugger>>.
 
-
-[IMPORTANT]
-If working *locally*, you need to push your changes and pull them into the web editor, then publish.
-Click <<publish-locally-developed, here>> for more info.
+NOTE: If you are working locally, you will need to push your changes and pull them into the Koji editor before publishing.
+For more information, see <<publish-locally-developed#>>.
 
 == Wrapping up
 
-In this section, you have set up the product and price.
+In this section, you set up the product and price information for extra lives in your game.
 
-In the <<game-iap-payment-menu#,next section>>, you'll create the Payment Menu UI component.
+In the <<game-iap-payment-menu#, next section>>, you'll create the menu that enables players to purchase more lives when they run out.

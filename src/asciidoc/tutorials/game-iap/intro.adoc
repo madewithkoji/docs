@@ -5,56 +5,26 @@
 
 In this tutorial, you will add an In-Game Purchase feature to an existing game on Koji.
 
-As the starting point, you're going to fork https://withkoji.com/~Svarog1389/3ej3[Tower Stack], which was built on top of my https://withkoji.com/~Svarog1389/game-template-1[p5.js Game Template^].
-
 If you're new to Koji, here are some tutorials that you might want to check out before continuing.
 
-* <<quick-start#,Getting started>>
+* <<quick-start#>>
+* <<game-intro#>>
 
-* <<game-intro#,Creating a remixable game>>
+== Objective
 
-You can check out the finished game https://withkoji.com/~Svarog1389/2d69[here].
+The starting point for this tutorial is the https://withkoji.com/~Svarog1389/3ej3[Tower Stack] game, which was built on top of the https://withkoji.com/~Svarog1389/game-template-1[p5.js game template].
 
-include::../../docs/_includes/tutorialEditorNote.adoc[tag=all]
-
-== Game Overview
-
-Tower Stack is a hyper-casual game where your goal is to stack blocks as high as you can without missing any.
-
+Tower Stack is a hyper-casual game where the goal is to stack blocks as high as you can without missing any.
 Each new block swings from the top of the screen and tapping releases it.
 If you successfully land it on top of a previous block, you get a point.
 If you miss it, you lose a life.
 
-Naturally, the game ends when you run out of lives.
-
-== Objective
-
-You already have a working game, so you just need to add a feature that lets players buy more lives.
-You'll do that by modifying the endgame behavior.
-
-Currently, once you run out of lives, you automatically go to the leaderboard or score submission screen.
-You're going to insert a menu that gives you the option of buying a new set of lives so that you can continue playing.
-If you don't want to buy more lives, you can choose to end the game and continue on to the leaderboard.
-
+In the original game, the game ends when the player runs out of lives.
+In this tutorial, you will add a feature that lets players buy more lives, if they choose to.
 The *best part* is that whoever remixes the game gets to choose how much the new lives will cost!
 
-To break it down into steps, you will:
-
-* Add the `InAppPurchases` entitlement to `koji.json`.
-
-* Define a customizable price value in `remixData` inside `koji.json`.
-
-* Show a menu when the player runs out of lives that lets the user choose what they want to do.
-
-* Modify game behavior to suit the new feature.
-
-* Use `Koji.iap` from the `@withkoji/core` package to handle purchases.
-
-* Notify the game instance that a purchase has been made and reset the lives.
-
-* Make price customizable in the `Remix` menu.
-
 Here's an example of the game that you will build in this tutorial.
+You can check out the finished game https://withkoji.com/~Svarog1389/2d69[here].
 
 +++
 <iframe src="https://withkoji.com/~Svarog1389/2d69" width="400" height="600"> </iframe>
