@@ -25,8 +25,8 @@ So, it's a good idea to follow this pattern in the new workflow.
 You've already added the `emitEvent(resetLives)` call in the `onPurchase()` function.
 Now, you need to add a listener for it.
 
-If you go to `frontend/src/Components/Game/index.js`, you'll find that there are already some listeners defined in the first `useEffect` hook.
-You'll define your new listener here, as follows.
+If you go to `frontend/src/Components/Game/index.js`, you'll find that there are already listeners defined in the first `useEffect` hook.
+Define your new listener here, as follows.
 
 `window.addEventListener('resetLives', resetLives);`
 
@@ -127,7 +127,7 @@ handleMiss() {
 In the original game, the `Game Over` text was displayed in label that would slide down from the top.
 Since the text is now displayed in your new payment menu, you don't need the original label.
 
-Disable it by opening `frontend/src/Components/setup.js`.
+Disable it by opening `frontend/src/Components/Game/setup.js`.
 In the `game.loseGame()` function, remove these two lines.
 
 [source,javascript]
@@ -143,8 +143,6 @@ The modified function should look like this.
 game.loseGame = () => {
     game.lives = 0;
     game.gameOver = true;
-    game.ui.instructionsAnimTimer = 0;
-    game.ui.instructionsFadeOutTimer = game.instructionsFadeOutDuration;
     emitEvent('gameOver', { score: game.score });
 }
 ----
@@ -154,8 +152,8 @@ That's all you need to do accommodate the new flow in your game!
 == Testing the game
 
 To test the new in-app purchase feature, you can use the <<testing-templates#_debugging_in_app_purchases, Koji debugger>>.
-To test the purchases as is, you'll need to have a balance in your Koji Wallet.
-Otherwise, you can temporarily disable the payment process and just emit the `resetLives` event directly, as follows.
+To test the purchases as is, you'll need to have a balance in your Koji wallet.
+Otherwise, you can temporarily disable the payment process and just emit the `resetLives` event directly by modifying `frontend/src/Components/View/index.js` as follows.
 
 [source,javascript]
 ----

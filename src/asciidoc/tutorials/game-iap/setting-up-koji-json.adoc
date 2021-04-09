@@ -82,7 +82,7 @@ Add a new property called `InAppPurchases`, as follows.
             }
         ]
     }
-}
+},
 ----
 
 `InAppPurchases` is defined as an object, and it contains an array of products.
@@ -114,7 +114,7 @@ This value is set to `true`, which allows the user to purchase the product multi
 
 == Defining remix data
 
-Remaining in `koji.json`, scroll down to the `remixData` object.
+In `koji.json`, scroll down to the `remixData` object.
 This is where you define the customizable values that users can modify when remixing the template.
 
 Add a `price` property and set it to `0.1` for now.

@@ -156,11 +156,11 @@ const startScoreSubmission = async () => {
 Notice these important differences in the new `startScoreSubmission()` function.
 
 * The `setTimeout` handlers have been removed.
-You no longer need a delay before displaying the game over screen and moving to score submission.
+You no longer need a delay before displaying the Game Over screen and moving to score submission.
 That transition is now triggered by user action.
 
 * The argument you're passing to `submitScore()` has changed from `data.detail.score` to just `score`.
-Originally, `submitScore()` was called inside `onGameOver()`, so it could get the score from the data object that was passed as an argument to `onGameOver()`.
+Originally, `submitScore()` was called in `onGameOver()`, so it could get the score from the data object that was passed as an argument to `onGameOver()`.
 But since `startScoreSubmission()` doesn't accept any arguments, `submitScore()` now gets the score from the variable that's set by the state hook.
 
 Lastly, update `onGameOver()` to behave appropriately based on whether there's a price.

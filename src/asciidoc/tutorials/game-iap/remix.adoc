@@ -104,7 +104,7 @@ Otherwise, it's set to `Set price to 0 to disable In-Game Purchases.`
 
 == Updating the price value
 
-Finally, you need to update the changed `price` in `koji.json`.
+Finally, you need to update the changed `price` in the remix data.
 Find the `onFinish()` function and add the following property in `await Koji.remix.set({...})`.
 
 `price: price ? price.rawValue / 100 : 0`
