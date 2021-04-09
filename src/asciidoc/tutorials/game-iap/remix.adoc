@@ -19,11 +19,11 @@ By the end of this section, you should feel comfortable:
 
 == Installing npm packages
 
-For the price input field, this tutorial uses a pre-made component that is included in the @anderjason/koji-react-frontend-tools package.
-The component works well for this game because it already handles the proper formatting and validation, so you don't have to worry about the user entering invalid characters, incorrect price formats, or other invalid data.
-And, the package is already installed in the base game template.
+For the price input field, this tutorial uses a pre-made component in the @anderjason/koji-react-frontend-tools package along with functions in the @anderjason/money package.
+Together, they handle the proper formatting and validation for price inputs, so you don't have to worry about the user entering invalid characters, incorrect price formats, or other invalid data.
 
-This tutorial also uses the @anderjason/money package, which you need to install in the frontend of your game.
+The @anderjason/koji-react-frontend-tools package is already installed in the base game template.
+You will need to install the @anderjason/money package in the frontend of your game.
 
 At the bottom of the Koji editor, open the *frontend* terminal.
 

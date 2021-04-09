@@ -27,7 +27,7 @@ Here's an example of the game that you will build in this tutorial.
 You can check out the finished game https://withkoji.com/~Svarog1389/2d69[here].
 
 +++
-<iframe src="https://withkoji.com/~Svarog1389/2d69" width="400" height="600"> </iframe>
+<iframe src="https://withkoji.com/@RachelSienko06/kw83" width="400" height="600"> </iframe>
 +++
 
 == Sections

@@ -127,11 +127,8 @@ Add a `price` property and set it to `0.1` for now.
   },
 ----
 
-To register the product, the price value must be greater than `0` and you must publish your game from the Koji editor.
-Registering the product will enable you to test purchases in <<testing-templates#_using_the_koji_debugger, the debugger>>.
-
-NOTE: If you are working locally, you will need to push your changes and pull them into the Koji editor before publishing.
-For more information, see <<publish-locally-developed#>>.
+NOTE: To register the product, the price value must be greater than `0` and you must publish your game from the Koji editor.
+Registering the product will enable you to test purchases in the debugger, which you will do later in the tutorial.
 
 == Wrapping up
 

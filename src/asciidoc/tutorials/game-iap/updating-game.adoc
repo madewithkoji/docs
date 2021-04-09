@@ -36,22 +36,6 @@ This step is important for preventing memory leaks.
 
 `window.removeEventListener('resetLives', resetLives);`
 
-[source,javascript]
-----
-useEffect(() => {
-    if(game){
-        game.players = props.players;
-    }
-}, [props.players])
-
-return (
-    <Container>
-        <div id={'p5game'} />
-        <Loader id={"p5_loading"}><Spinner /> </Loader>
-    </Container>
-)
-----
-
 You also need to define the callback function that is passed to the listener.
 
 [source,javascript]
@@ -151,9 +135,7 @@ That's all you need to do accommodate the new flow in your game!
 
 == Testing the game
 
-To test the new in-app purchase feature, you can use the <<testing-templates#_debugging_in_app_purchases, Koji debugger>>.
-To test the purchases as is, you'll need to have a balance in your Koji wallet.
-Otherwise, you can temporarily disable the payment process and just emit the `resetLives` event directly by modifying `frontend/src/Components/View/index.js` as follows.
+To test the new flow before you publish the game, you can temporarily disable the payment process and just emit the `resetLives` event directly by modifying `frontend/src/Components/View/index.js` as follows.
 
 [source,javascript]
 ----
@@ -177,6 +159,12 @@ const onPurchase = async () => {
 
 [NOTE]
 Make sure to *uncomment* those lines before publishing your game.
+
+After you publish the game, you can use the <<testing-templates#_debugging_in_app_purchases, Koji debugger>> to test the new in-app purchase feature.
+You'll need to have a balance in your Koji wallet.
+
+NOTE: If you are working locally, you will need to push your changes and pull them into the Koji editor before publishing.
+For more information, see <<publish-locally-developed#>>.
 
 == Wrapping up
 
