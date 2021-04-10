@@ -357,11 +357,11 @@
                   "slug": "game-iap-setting-up-koji-json"
                 },
                 {
-                  "name": "2. Payment menu",
+                  "name": "2. Creating a payment menu",
                   "slug": "game-iap-payment-menu"
                 },
                 {
-                  "name": "3. Payment logic",
+                  "name": "3. Adding the payment logic",
                   "slug": "game-iap-start-purchase"
                 },
                 {
@@ -369,7 +369,7 @@
                   "slug": "game-iap-updating-game"
                 },
                 {
-                  "name": "5. Remix",
+                  "name": "5. Adding remix options",
                   "slug": "game-iap-remix"
                 }
               ]

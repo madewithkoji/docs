@@ -44,3 +44,5 @@ For example, falling donuts and falling cupcakes.
 * Add keyboard controls.
 * Add projectiles so you can shoot the falling objects.
 * Make an MMORPG out of this! [small]#(just kidding)#
+
+include::../../docs/_includes/tutorialHelpMarko.adoc[tag=all]
