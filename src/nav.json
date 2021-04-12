@@ -271,7 +271,7 @@
       "defaultPath": "/tutorials/getting-started/quick-start",
       "sections": [
         {
-          "name": "Learn Koji",
+          "name": "Learning Koji",
           "root": "/getting-started",
           "items": [
             {
@@ -305,6 +305,72 @@
                 {
                   "name": "7. Your first template",
                   "slug": "your-first-template"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Creating games on Koji",
+          "root": "/game-tutorials",
+          "items": [
+            {
+              "name": "Creating remixable games",
+              "slug": "game-intro",
+              "subItems": [
+                {
+                  "name": "1. Defining assets",
+                  "slug": "game-assets"
+                },
+                {
+                  "name": "2. Creating game objects",
+                  "slug": "game-creating-game-objects"
+                },
+                {
+                  "name": "3. Scoring and losing",
+                  "slug": "game-scoring-and-losing"
+                },
+                {
+                  "name": "4. Managing difficulty",
+                  "slug": "game-managing-difficulty"
+                },
+                {
+                  "name": "5. Adding remix options",
+                  "slug": "game-remix"
+                },
+                {
+                  "name": "6. Customizing the preview",
+                  "slug": "game-thumbnail-preview"
+                },
+                {
+                  "name": "7. Finishing up",
+                  "slug": "game-finishing-up"
+                }
+              ]
+            },
+            {
+              "name": "Adding in-app purchases",
+              "slug": "game-iap-intro",
+              "subItems": [
+                {
+                  "name": "1. Setting up koji.json",
+                  "slug": "game-iap-setting-up-koji-json"
+                },
+                {
+                  "name": "2. Creating a payment menu",
+                  "slug": "game-iap-payment-menu"
+                },
+                {
+                  "name": "3. Adding the payment logic",
+                  "slug": "game-iap-start-purchase"
+                },
+                {
+                  "name": "4. Updating game behavior",
+                  "slug": "game-iap-updating-game"
+                },
+                {
+                  "name": "5. Adding remix options",
+                  "slug": "game-iap-remix"
                 }
               ]
             }
