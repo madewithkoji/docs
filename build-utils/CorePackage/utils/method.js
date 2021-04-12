@@ -1,6 +1,10 @@
-import React from 'react';
-import { convertToAsciiDoc } from './common';
-import { renderParameterDescription, renderParameterType, parameterIsArray } from './parameter';
+/* eslint-disable max-len */
+/* eslint-disable indent */
+
+const { convertToAsciiDoc } = require('./common');
+const { renderParameterDescription, renderParameterType, parameterIsArray } = require('./parameter');
+
+const { conditionallyRender } = require('./common');
 
 function getMethodTitle(method) {
   if (method.name.includes('constructor')) return false;
@@ -48,13 +52,7 @@ function getMethodReturn(method) {
 
     const mappedTypeArguments = typeArguments.map((typeArgument) => renderParameterType({ type: typeArgument }));
 
-    return (
-      <>
-        {'Promise<'}
-        {mappedTypeArguments.map((mta) => mta)}
-        {'>'}
-      </>
-    );
+    return `Promise<${mappedTypeArguments.map((mta) => mta)}>`;
   }
 
   return false;
@@ -71,8 +69,7 @@ function getMethodSource(method) {
   return `${method.sources[0].fileName}#L${method.sources[0].line}`;
 }
 
-// eslint-disable-next-line import/prefer-default-export
-export function renderMethod(method, interfaces) {
+function renderMethod(method, interfaces) {
   const methodTitle = getMethodTitle(method);
   const methodDescription = getMethodDescription(method);
   const methodExtendedDescription = getMethodExtendedDescription(method);
@@ -82,77 +79,49 @@ export function renderMethod(method, interfaces) {
   const methodReturn = getMethodReturn(method);
   const methodReturnDescription = getMethodReturnDescription(method);
 
-  return (
-    <div key={method.id} className={'sect2 hcode'}>
-      {
-        methodTitle &&
-        <h3 id={method.name}>{`.${methodTitle}`}</h3>
-      }
-      {
-        methodDescription &&
-        <p>{methodDescription}</p>
-      }
-      {
-        methodExtendedDescription &&
-        <div dangerouslySetInnerHTML={{ __html: methodExtendedDescription }} />
-      }
-      {
-        methodParameters &&
+  return `
+    <div class="sect2 hcode">
+      ${conditionallyRender(methodTitle, `<h3 id="${method.name}">${methodTitle}</h3>`)}
+      ${conditionallyRender(methodDescription, `<p>${methodDescription}</p>`)}
+      ${conditionallyRender(methodExtendedDescription, `<p>${methodExtendedDescription}</p>`)}
+      ${methodParameters ? `
         <div>
-          <h4>{'Parameters'}</h4>
-          <div className={'ulist'}>
+          <h4>Parameters</h4>
+          <div class="ulist">
             <ul>
-              {
-                methodParameters.map((parameter) => (
-                  <li key={parameter.name}>
-                    <p>
-                      <code>{parameter.name}</code>
-                      {' – '}
-                      <em>{renderParameterType(parameter)}</em>
-                      {parameterIsArray(parameter) && <span>{'[]'}</span>}
-                      {parameter.flags && parameter.flags.isOptional && <span>{' (Optional)'}</span>}
-                      {renderParameterDescription(parameter, interfaces)}
-                    </p>
-                  </li>
-                ))
-              }
+              ${methodParameters.map((parameter) => (
+                `<li>
+                  <p>
+                    <code>${parameter.name}</code>&nbsp;-&nbsp;<em>${renderParameterType(parameter)}</em>${conditionallyRender(parameterIsArray(parameter), '<span>{\'[]\'}</span>')}${conditionallyRender(parameter.flags && parameter.flags.isOptional, ' (Optional)')}${renderParameterDescription(parameter, interfaces)}
+                  </p>
+                </li>
+                `)).join('')
+            }
             </ul>
           </div>
         </div>
-      }
-      {
-        methodReturn &&
+      ` : ''}
+      ${methodReturn ? `
         <div>
-          <h4>{'Returns'}</h4>
+          <h4>Returns</h4>
           <p>
-            <em>{methodReturn}</em>
-            {
-              methodReturnDescription &&
-              <>{`, ${methodReturnDescription} `}</>
-            }
+            <em>${methodReturn}</em>${conditionallyRender(methodReturnDescription, `, ${methodReturnDescription} `)}
           </p>
         </div>
-      }
-      {
-        methodExample &&
+      ` : ''}
+      ${methodExample ? `
         <div>
-          <h4>{'Example'}</h4>
-          <div dangerouslySetInnerHTML={{ __html: convertToAsciiDoc(methodExample) }} />
+          <h4>Example</h4>
+          <div>${convertToAsciiDoc(methodExample)}</div>
         </div>
-      }
-      {
-        methodSource &&
-        <p>
-          {'Source: '}
-          <a
-            href={`https://github.com/madewithkoji/koji-core/tree/main/src/${methodSource}`}
-            rel={'noreferrer noopener'}
-            target={'_blank'}
-          >
-            {methodSource}
-          </a>
-        </p>
-      }
+      ` : ''}
+      ${methodSource ? `
+        <p>Source: <a href="https://github.com/madewithkoji/koji-core/tree/main/src/${methodSource}" rel="noreferrer noopener" target="_blank">${methodSource}</a></p>
+      ` : ''}
     </div>
-  );
+  `;
 }
+
+module.exports = {
+  renderMethod,
+};

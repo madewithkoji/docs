@@ -153,6 +153,20 @@ const Search = ({ isSearching }) => {
           }
         }
       }
+      allKojiCorePackageItem {
+        edges {
+          node {
+            id
+            html
+            document {
+              title
+            }
+            pageAttributes {
+              slug
+            }
+          }
+        }
+      }
       allNavItem {
         nodes {
           id
@@ -177,7 +191,10 @@ const Search = ({ isSearching }) => {
     s.addIndex('html');
     s.addIndex(['document', 'title']);
 
-    const docs = data.allAsciidoc.edges.map(({ node }) => node);
+    const docs = [
+      ...data.allAsciidoc.edges.map(({ node }) => node),
+      ...data.allKojiCorePackageItem.edges.map(({ node }) => node),
+    ];
 
     s.addDocuments(docs);
 
