@@ -1,7 +1,6 @@
-import React from 'react';
-import { capitalize } from './common';
+const { capitalize } = require('./common');
 
-export function renderParameterType(parameter) {
+function renderParameterType(parameter) {
   if (!parameter.type || !parameter.type.type) return null;
 
   if (parameter.type.type === 'literal' && parameter.type.value) return `'${parameter.type.value}'`;
@@ -15,11 +14,7 @@ export function renderParameterType(parameter) {
   if (parameter.type.name && parameter.type.name === 'T') return 'Any';
 
   if (parameter.type.type === 'reference' && parameter.type.id) {
-    return (
-      <a href={`#${parameter.type.name}`}>
-        {capitalize(parameter.type.name)}
-      </a>
-    );
+    return `<a href="#${parameter.type.name}">${capitalize(parameter.type.name)}</a>`;
   }
 
   if (parameter.type.type === 'union') {
@@ -34,11 +29,7 @@ export function renderParameterType(parameter) {
   if (parameter.type.type === 'array') {
     if (parameter.type.elementType) {
       if (parameter.type.elementType.type === 'reference' && parameter.type.elementType.id) {
-        return (
-          <a href={`#${parameter.type.elementType.name}`}>
-            {capitalize(parameter.type.elementType.name)}
-          </a>
-        );
+        return `<a href="#${parameter.type.elementType.name}">${capitalize(parameter.type.elementType.name)}</a>`;
       }
 
       return capitalize(parameter.type.elementType.name);
@@ -48,11 +39,11 @@ export function renderParameterType(parameter) {
   return capitalize(parameter.type.name);
 }
 
-export function parameterIsArray(parameter) {
+function parameterIsArray(parameter) {
   return parameter.type && parameter.type.type && parameter.type.type === 'Array';
 }
 
-export function renderParameterDescription(parameter, interfaces) {
+function renderParameterDescription(parameter, interfaces) {
   if (parameter.type.type === 'reference') {
     const { id } = parameter.type;
     const i = interfaces.find(({ id: interfaceId }) => interfaceId === id);
@@ -63,3 +54,9 @@ export function renderParameterDescription(parameter, interfaces) {
 
   return '';
 }
+
+module.exports = {
+  parameterIsArray,
+  renderParameterDescription,
+  renderParameterType,
+};
