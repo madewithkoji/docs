@@ -19,12 +19,13 @@ function renderParameterType(parameter) {
   }
 
   if (parameter.type.type === 'union') {
+    const validArrays = parameter.type.types.filter(({ type }) => type && type === 'array').map(({ name, elementType }) => (elementType.type && elementType.type === 'reference') ? `<a href="#${elementType.name}">${capitalize(elementType.name)}</a>[]` : `${capitalize(elementType.name)}[]`);
     const validTypes = parameter.type.types.filter(({ name }) => name && name !== 'undefined').map(({ name, type }) => (type && type === 'reference') ? `<a href="#${name}">${capitalize(name)}</a>` : capitalize(name));
     const validValues = parameter.type.types.filter(({ type }) => type && type === 'literal').map(({ value }) => `'${value}'`);
 
     if (validTypes.length === 1) return validTypes[0];
 
-    return [...validTypes, ...validValues].join(' | ');
+    return [...validArrays, ...validTypes, ...validValues].join(' | ');
   }
 
   if (parameter.type.type === 'array') {

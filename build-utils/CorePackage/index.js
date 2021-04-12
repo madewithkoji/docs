@@ -46,7 +46,16 @@ function generateModuleHTML(m, AllInterfaces, AllTypeAliases) {
     .reduce((acc, cur) => [...acc, ...(cur.children || [])], [])
     .filter((property) => property.type && property.type.type && (property.type.type === 'reference' || property.type.type === 'union'))
     .reduce((acc, cur) => (cur.type.types || []).length ? [...acc, ...cur.type.types] : [...acc, cur.type], [])
-    .reduce((acc, cur) => acc.includes(cur.id) ? acc : [...acc, cur.id], []);
+    .reduce((acc, cur) => {
+      let id;
+
+      console.log('c', cur);
+
+      if (cur.elementType) id = cur.elementType.id;
+      if (cur.id) id = cur.id;
+
+      return (!id || acc.includes(id)) ? acc : [...acc, id];
+    }, []);
 
   const methodReferenceIds = (constructor ? [...methods, constructor] : methods)
     .map((method) => (method.signatures && method.signatures[0]) || { parameters: [] })
