@@ -49,8 +49,6 @@ function generateModuleHTML(m, AllInterfaces, AllTypeAliases) {
     .reduce((acc, cur) => {
       let id;
 
-      console.log('c', cur);
-
       if (cur.elementType) id = cur.elementType.id;
       if (cur.id) id = cur.id;
 
