@@ -85,6 +85,7 @@ Exposes the following classes:
 * _<<core-frontend-ui-capture#,Capture>>_, Class that captures user input on the frontend of your Koji template.
 * _<<core-frontend-ui-navigate#,Navigate>>_, Class that provides methods for controlling navigation within your Koji template.
 * _<<core-frontend-ui-present#,Present>>_, Class that presents dialog boxes to users on the frontend of your Koji.
+* _<<core-frontend-ui-upload#,Upload>>_, Class that uploads files from the frontend of your Koji directly to your project's CDN.
 
 == Methods
 

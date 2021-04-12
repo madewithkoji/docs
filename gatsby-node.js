@@ -26,6 +26,7 @@ exports.sourceNodes = ({ actions, createNodeId, createContentDigest }) => {
         'frontend/ui/capture',
         'frontend/ui/navigate',
         'frontend/ui/present',
+        'frontend/ui/upload',
       ];
 
       for (let x = 0; x < kojiCoreDocs.children.length; x += 1) {

@@ -138,6 +138,6 @@ And don’t forget, you can fork any of the templates in the store to use as a s
 If you haven’t already done so, please make sure to join https://discord.com/invite/9egkTWf4ec[Koji’s Discord server].
 The Koji team hangs out there all the time, and you’ll have a chance to meet other developers, ask questions, share ideas, and get feedback about the things you’re working on.
 
-If you have any questions or feedback about this tutorial, please reach out to @diddy on Koji’s Discord server.
+include::../../docs/_includes/tutorialHelpDiddy.adoc[tag=all]
 
 Welcome to Koji!

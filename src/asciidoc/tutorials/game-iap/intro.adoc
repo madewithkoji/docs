@@ -1,6 +1,7 @@
 = Tutorial: Adding in-app purchases to Koji games
 :page-slug: game-iap-intro
 :page-description: Tutorial for adding in-app purchases to an existing Koji game.
+:page-banner: {imagesDir}/game-iap-payment-menu-ui.png
 :figure-caption!:
 
 In this tutorial, you will add an In-Game Purchase feature to an existing game on Koji.

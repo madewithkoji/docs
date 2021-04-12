@@ -470,6 +470,10 @@
                 {
                   "name": "UI / Present",
                   "slug": "core-frontend-ui-present"
+                },
+                {
+                  "name": "UI / Upload",
+                  "slug": "core-frontend-ui-upload"
                 }
               ]
             }
