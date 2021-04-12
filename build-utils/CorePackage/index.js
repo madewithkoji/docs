@@ -28,7 +28,7 @@ function generateModuleHTML(m, AllInterfaces, AllTypeAliases) {
   const {
     Classes = [],
     Enumerations = [],
-    // Interfaces = [],
+    Interfaces = [],
     referenceIds = [],
   } = m;
 
@@ -41,6 +41,12 @@ function generateModuleHTML(m, AllInterfaces, AllTypeAliases) {
   const methods = Classes[0].children.filter(({ kindString }) => kindString === 'Method');
 
   const properties = Classes[0].children.filter(({ kindString }) => kindString === 'Property');
+
+  const interfaceReferenceIds = Interfaces
+    .reduce((acc, cur) => [...acc, ...(cur.children || [])], [])
+    .filter((property) => property.type && property.type.type && (property.type.type === 'reference' || property.type.type === 'union'))
+    .reduce((acc, cur) => (cur.type.types || []).length ? [...acc, ...cur.type.types] : [...acc, cur.type], [])
+    .reduce((acc, cur) => acc.includes(cur.id) ? acc : [...acc, cur.id], []);
 
   const methodReferenceIds = (constructor ? [...methods, constructor] : methods)
     .map((method) => (method.signatures && method.signatures[0]) || { parameters: [] })
@@ -61,6 +67,7 @@ function generateModuleHTML(m, AllInterfaces, AllTypeAliases) {
     .reduce((acc, cur) => acc.includes(cur.type.id) ? acc : [...acc, cur.type.id], []);
 
   let allReferenceIds = [
+    ...interfaceReferenceIds,
     ...methodReturnReferenceIds,
     ...methodReferenceIds,
     ...propertyReferenceIds,

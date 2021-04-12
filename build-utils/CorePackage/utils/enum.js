@@ -9,8 +9,6 @@ function getEnumDescription(e) {
 function renderEnum(e) {
   const description = getEnumDescription(e);
 
-  console.log('e', e.children);
-
   return `
     <div>
       ${conditionallyRender(e.name, `<h3 id="${e.name}">${e.name}</h3>`)}

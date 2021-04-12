@@ -163,7 +163,6 @@ export const query = graphql`
 `;
 
 const CorePackage = (props) => {
-  console.log('p', props);
   const [sections, setSections] = useState([]);
   const [isReady, setIsReady] = useState(false);
 
