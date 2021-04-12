@@ -9,6 +9,8 @@ function getEnumDescription(e) {
 function renderEnum(e) {
   const description = getEnumDescription(e);
 
+  console.log('e', e.children);
+
   return `
     <div>
       ${conditionallyRender(e.name, `<h3 id="${e.name}">${e.name}</h3>`)}
@@ -18,7 +20,7 @@ function renderEnum(e) {
           <h4>Possible values</h4>
           <div class="ulist">
             <ul>
-              ${e.children.map((child) => `<li>${child.name}: = '${child.defaultValue.slice(0, -1).slice(1)}'</li>`).join('')}
+              ${e.children.map((child) => `<li>${child.name}: = '${child.defaultValue.includes('"') ? child.defaultValue.slice(0, -1).slice(1) : child.defaultValue}'</li>`).join('')}
             </ul>
           </div>
         </div>

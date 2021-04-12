@@ -69,7 +69,6 @@ exports.sourceNodes = ({ actions, createNodeId, createContentDigest }) => {
       modules.forEach((m) => {
         const { html, name } = generateModuleHTML(m, AllInterfaces, AllTypeAliases);
         const slug = `core-${m.name.replace(/\//g, '-').toLowerCase()}`;
-        console.log('html', html);
 
         const node = {
           id: createNodeId(`Koji-Core-Package-Item-${m.name}`),
@@ -86,8 +85,6 @@ exports.sourceNodes = ({ actions, createNodeId, createContentDigest }) => {
           },
           slug,
         };
-
-        console.log('n', node);
 
         actions.createNode(node);
       });

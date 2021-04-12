@@ -4,8 +4,8 @@ import hljs from 'highlight.js';
 import styled from 'styled-components';
 import 'highlight.js/styles/github.css';
 import { graphql } from 'gatsby';
+import asciidoctor from 'asciidoctor';
 
-import { decodeHTML } from '../../utils/decodeHTML';
 import '../../styles/dark-code.css';
 
 import { lineNumbers } from '../utils/line-numbers';
@@ -15,6 +15,11 @@ import { addLanguageIndicator } from '../utils/lang-indicator';
 import { BLACK, DARK_GRAY } from '../../constants/colors';
 import Content from '../Asciidoc/components/Content';
 import SEO from '../../components/Seo';
+
+function convertToAsciiDoc(text) {
+  const asciidoc = asciidoctor();
+  return asciidoc.convert(text);
+}
 
 // Load future-tabs conditionally for gatsby static rendering
 let Tabs = null;
@@ -162,18 +167,8 @@ const CorePackage = (props) => {
   const [sections, setSections] = useState([]);
   const [isReady, setIsReady] = useState(false);
 
-  const resolveTitleFromSlug = (slug) => {
-    const match = props.data.allAsciidoc.edges.map(({ node }) => node).find(({ pageAttributes: { slug: s } = {} }) => s === slug);
-    if (match) {
-      // Could be html entities in the title
-      return decodeHTML(match.document.title);
-    }
-
-    return null;
-  };
-
   useEffect(() => {
-    // Note: need to do sync for loops here so we can call setIsReady after processing
+    // Note: need to do async for loops here so we can call setIsReady after processing
 
     const codeBlocks = document.querySelectorAll('pre code');
     for (let idx = 0; idx < codeBlocks.length; idx += 1) {
@@ -184,26 +179,27 @@ const CorePackage = (props) => {
       addLanguageIndicator(block);
     }
 
-    const dataSlugLinks = document.querySelectorAll('a[data-slug]');
-    for (let idx = 0; idx < dataSlugLinks.length; idx += 1) {
-      const dataSlugLink = dataSlugLinks[idx];
-      const { slug } = dataSlugLink.dataset;
-      // eslint-disable-next-line no-param-reassign
-      if (slug) dataSlugLink.innerText = resolveTitleFromSlug(slug) || dataSlugLink.innerText;
+    const paragraphs = document.querySelectorAll('p');
+
+    for (let idx = 0; idx < paragraphs.length; idx += 1) {
+      const paragraph = paragraphs[idx];
+      paragraph.innerHTML = paragraph.innerHTML.replace(new RegExp(/\[\[([^\]\]]*)\]\]/g), (match) => {
+        const [href, linkText] = match.slice(2, -2).split('|').map((t) => t && t.trim());
+
+        if (href.includes('http')) return `<a href="${href}" ${href.includes('http') ? 'target="_blank"' : ''}>${linkText || href}</a>`;
+
+        return `<a href="#${href}">${linkText || href}</a>`;
+      });
+
+      paragraph.innerHTML = paragraph.innerHTML.replace(new RegExp(/`.*?`/g), (match) => `<code>${match.slice(1, -1)}</code>`);
     }
 
-    const tabs = document.querySelectorAll('.tabbed__toggle[data-scope]');
-    for (let idx = 0; idx < tabs.length; idx += 1) {
-      const tab = tabs[idx];
-      const { scope, scopevalue } = tab.dataset;
-      tab.addEventListener('click', (e) => {
-        const self = e.target;
-        if (e.isTrusted) {
-          document.querySelectorAll(`.tabbed__toggle[data-scope="${scope}"][data-scopevalue="${scopevalue}"]`).forEach((target) => {
-            if (target !== self) target.click();
-          });
-        }
-      });
+    const admonitions = document.querySelectorAll('p.note');
+
+    for (let idx = 0; idx < admonitions.length; idx += 1) {
+      const admonition = admonitions[idx];
+
+      admonition.innerHTML = convertToAsciiDoc(`NOTE: ${admonition.innerText}`);
     }
 
     setIsReady(() => true);
