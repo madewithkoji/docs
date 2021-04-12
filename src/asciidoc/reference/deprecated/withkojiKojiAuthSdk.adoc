@@ -302,3 +302,5 @@ For example, load the admin experience or a dynamic receipt from the notificatio
 == Related resources
 
 * https://github.com/madewithkoji/koji-auth-sdk[@withkoji/auth on Github]
+* Core package replacement modules: <<core-backend-identity#, Identity (backend)>>, <<core-frontend-identity#, Identity (frontend)>>
+* <<migrate-koji-core#>>

@@ -1,0 +1,195 @@
+= Adding the payment logic
+:page-slug: game-iap-start-purchase
+:page-description: Adding functions to handle the payment logic for purchases in a Koji game.
+:figure-caption!:
+
+In the <<game-iap-payment-menu#,previous section>> of the in-game purchases tutorial, you created and rendered the Payment Menu UI component.
+In this section, you’ll
+// tag::description[]
+use `Koji.iap` from the @withkoji/core package to handle the payment logic.
+// end::description[]
+
+By the end of this section, you should feel comfortable:
+
+* Handling payment logic with Koji's built-in functionality.
+
+== Defining the payment functions
+
+Remember how the `PaymentDialog` component needs to call the `onPurchase` and `onPurchaseCancel` functions?
+Here, you'll define those functions and pass them into the component.
+Update `frontend/src/Components/View/index.js` as follows.
+
+[source,javascript]
+----
+...
+import PaymentDialog from './PaymentDialog'
+
+...
+
+const Component = (props) => {
+    ...
+
+    // Create a state hook to control display of PaymentDialog
+    const [showPaymentDialog, setShowPaymentDialog] = useState(false);
+
+    ...
+
+    // In case the user proceeds to the leaderboard
+    const onPurchaseCancel = () => {
+        setShowPaymentDialog(false);
+        startScoreSubmission();
+    }
+
+    const onPurchase = async () => {
+        // Initiating a purchase of "extraLives" product that are defined in koji.json entitlements
+        const purchase = await Koji.iap.startPurchase('extraLives');
+
+        // If the purchase object contains a receiptId
+        // it means that the purchase was successful
+        if (purchase.receiptId) {
+            setShowPaymentDialog(false);
+            emitEvent('resumeGame');
+            emitEvent('resetLives');
+
+
+            // Submit the score now as backup in case
+            // the player closes the game before submitting it later
+            if (dataManager.name !== "") {
+                await dataManager.submitScore(score);
+            }
+        }
+    }
+
+    return(
+        <Container>
+            ...
+
+             {showPaymentDialog &&
+                <PaymentDialog
+                    onPurchase={onPurchase}
+                    onPurchaseCancel={onPurchaseCancel}
+                />
+            }
+        </Container>
+    )
+}
+----
+
+The `onPurchaseCancel()` function simply closes the menu and proceeds to the score submission process.
+
+The `onPurchase()` function does a couple of things.
+
+* First, it calls `Koji.iap.startPurchase('extraLives')`.
+This initializes the purchase process and opens the payment dialog for the product.
+
+** `extraLives` is the `sku` value you set in the `InAppPurchase` entitlement object earlier in this tutorial.
+
+* If the transaction is successful, the returned `purchase` object will contain a `receiptId` property.
+In this case, `onPurchase()` proceeds to:
+
+** Disable the `PaymentDialog` by setting the state hook to false.
+
+** Emit the `resumeGame` event, which is already defined.
+
+** Emit the `resetLives` event.
+You'll have to define this event later, since it wasn't part of the original game.
+
+** Submit the score if the player has already submitted their name.
+This part is optional, but a good thing to add in case the player happens to close the tab.
+That way, at least the latest score will be saved.
+
+[NOTE]
+This use case does not require any backend validation.
+You simply proceed with the flow if the purchase was successful.
+If you wanted to save some data and later check if the user has already purchased something, you would need to check for receipts on the backend.
+
+If you've already saved the file, the game probably crashed because you still need to add the `startScoreSubmission()` function.
+
+== Modifying the onGameOver function
+
+The `onGameOver()` function is already defined in `frontend/src/Components/View/index.js`.
+This function is triggered automatically when the game ends.
+
+Locate the function, which looks like this.
+
+[source,javascript]
+----
+const onGameOver = async (data) => {
+    setScore(data.detail.score);
+    if (dataManager.name === "") {
+        setTimeout(() => {
+            setShowNameDialog(true);
+            setGameView(GAME_VIEW.MAIN_MENU);
+        }, 3000);
+    } else {
+        await dataManager.submitScore(data.detail.score);
+
+        setTimeout(() => {
+            setGameView(GAME_VIEW.MAIN_MENU);
+            setShowLeaderboard(true);
+        }, 3000);
+    }
+}
+----
+
+Extract the conditional part of `onGameOver()` into a separate `startScoreSubmission()` function, and then modify the results to match the following.
+
+[source,javascript]
+----
+const onGameOver = async (data) => {
+    setScore(data.detail.score);
+}
+
+const startScoreSubmission = async () => {
+    if (dataManager.name === "") {
+        setShowNameDialog(true);
+        setGameView(GAME_VIEW.MAIN_MENU);
+    } else {
+        await dataManager.submitScore(score);
+
+        setGameView(GAME_VIEW.MAIN_MENU);
+        setShowLeaderboard(true);
+    }
+}
+----
+
+Notice these important differences in the new `startScoreSubmission()` function.
+
+* The `setTimeout` handlers have been removed.
+You no longer need a delay before displaying the Game Over screen and moving to score submission.
+That transition is now triggered by user action.
+
+* The argument you're passing to `submitScore()` has changed from `data.detail.score` to just `score`.
+Originally, `submitScore()` was called in `onGameOver()`, so it could get the score from the data object that was passed as an argument to `onGameOver()`.
+But since `startScoreSubmission()` doesn't accept any arguments, `submitScore()` now gets the score from the variable that's set by the state hook.
+
+Lastly, update `onGameOver()` to behave appropriately based on whether there's a price.
+
+[source,javascript]
+----
+const onGameOver = async (data) => {
+    setScore(data.detail.score);
+
+    const price = Number(Koji.remix.get().price);
+
+    if (price > 0) {
+        setShowPaymentDialog(true);
+        emitEvent('pauseGame');
+    } else {
+        startScoreSubmission();
+    }
+}
+----
+
+This code first gets the price from `remixData` and makes sure it's a number.
+If there is a price, it shows `PaymentDialog`.
+Otherwise, it goes straight to score submission and the leaderboard.
+
+== Wrapping up
+
+*Congratulations, that was the hardest part!*
+
+In this section, you created a payment flow, which you can test in the <<testing-templates#_using_the_koji_debugger, debugger>>.
+Nothing happens in the game itself just yet, though.
+
+In the <<game-iap-updating-game#, next section>>, you'll dig into the game code and make it respond to purchases.
