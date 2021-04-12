@@ -290,7 +290,7 @@ For example:
 ----
 // Retrieve a short-lived user token to exchange on the backend
 const getToken = async () => {
-  const { userToken, presumedRole } = await Koji.identity.getToken();
+  const { userToken, presumedRole, presumedAttributes } = await Koji.identity.getToken();
 };
 
 // Silently request whether a user has already granted a set of permissions
