@@ -1,0 +1,13 @@
+= April 2021 updates
+:page-slug: 2021-apr-updates
+:page-description: Brief digest of updates in April 2021 to the Koji platform, packages, and developer site.
+
+This digest summarizes updates to the Koji platform, packages, and developer site in April 2021.
+
+include::../../_includes/tip-discord-server.adoc[tags=*]
+
+// tag::highlights[]
+== New developer tutorials
+// end::highlights[]
+
+== Bug fixes
