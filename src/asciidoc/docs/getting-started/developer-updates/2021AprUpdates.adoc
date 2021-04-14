@@ -7,7 +7,76 @@ This digest summarizes updates to the Koji platform, packages, and developer sit
 include::../../_includes/tip-discord-server.adoc[tags=*]
 
 // tag::highlights[]
-== New developer tutorials
+== New developer game tutorials
+
+On the developer site, a new set of tutorials are available to help developers quickly learn how to build games on Koji.
+
+* <<game-intro#>>
+* <<game-iap-intro#>>
++
+image::game-preview-image.png[Falling objects game, width=50%]
+
+== Integrated Core reference docs
+
+The reference documentation for the <<withkoji-koji-core#, @withkoji/core package>> is now integrated into the Koji developer site.
+
+* All of Koji's developer documentation in one place – search everything to find what you need.
+* Deep links from the reference documentation to the related package code on Github.
+* Organized by class for easier navigation with less clicking.
+* Updated code examples for all methods.
+
+== Core package updates
+
+The following features are now available in the @withkoji/core package.
+
+[NOTE]
+include::../../_includes/coreReleaseNotes.adoc[tag=all]
+
+=== Freeze Keys for data caching
+
+Freeze Keys enable you to cache and purge content in Koji's CDN, dramatically improving the speed and reliability of backend data requests in your Kojis.
+
+* Make a request directly to the Koji CDN and receive a cached response, instead of waiting for the backend to warm up and serve the request.
+* Use the `x-koji-freeze-key` header to instruct the CDN to serve a cached response and `KojiBackend.Utilities.unfreeze` to reset the cache.
+* Manage multiple routes and cache endpoints.
+* The platform automatically handles remix scoping, so you can maintain one set of logic in your templates.
+
+=== File uploads from Koji frontends
+
+The new `Koji.ui.upload` class enables file uploads from the frontend of your Koji directly to your project's CDN.
+You can use this method to upload media created or captured by the user as part of the template experience.
+For example, recording a video or drawing on a canvas.
+
+== Koji platform updates
+
+The following analytics and usability improvements are now available on the Koji platform.
+
+* Live analytics are now available for your Kojis.
+To see a live count of users (accurate to within 20 seconds), simply tap the *Koji* button on any of your Kojis.
++
+image::live-analytics-apr2021.png[Live analytics]
+
+* The main menu, which appears when you tap your profile picture, now shows lifetime views and revenue for your Kojis, as well as more clearly calls out your pending balance.
+
+* On the *Your Kojis* page, the *Revenue* chart now provides the same interactive controls as the *Views* chart.
 // end::highlights[]
 
-== Bug fixes
+* The color picker control now saves your three most recently used colors.
+
+* Tapping *Cancel* or *Back* when editing a Koji now returns to the Koji instead of the home page.
+
+* Performance and functional improvements in the Koji editor.
+
+The following bug fixes are now available on the Koji platform.
+
+* Changing your username from account settings now correctly regenerates your profile.
+
+* Editing a Koji now correctly updates its thumbnail or sharing image.
+Sharing images that were previously cached by other services, such as iMessage or Facebook, still might not update.
+
+* In the *Project Details* page, builds now show when they are completed without the need to refresh the page.
+Also, build logs now live stream correctly.
+
+* Links to pages on the `withkoji.com` that are not Kojis no longer open in popover views.
+
+* Various layout and styling fixes.

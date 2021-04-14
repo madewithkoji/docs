@@ -8,12 +8,19 @@ include::../../_includes/tip-discord-server.adoc[tags=*]
 
 == Recent highlights
 
+We are pleased to highlight the following updates for Koji developers in April 2021.
+For the complete digest of updates, see the <<2021-apr-updates#>>.
+
+include::2021AprUpdates.adoc[tag=highlights,leveloffset=+1]
+
+== Highlights from earlier updates
+
+=== March 2021
+
 We are pleased to highlight the following updates for Koji developers in March 2021.
 For the complete digest of updates, see the <<2021-mar-updates#>>.
 
-include::2021MarUpdates.adoc[tag=highlights,leveloffset=+1]
-
-== Highlights from earlier updates
+include::2021MarUpdates.adoc[tag=highlights,leveloffset=+2]
 
 === February 2021
 
