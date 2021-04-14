@@ -65,7 +65,7 @@ image::live-analytics-apr2021.png[Live analytics]
 
 * Tapping *Cancel* or *Back* when editing a Koji now returns to the Koji instead of the home page.
 
-* Performance and functional improvements in the Koji editor.
+* The Koji editor has improved performance for a better experience when editing your code.
 
 The following bug fixes are now available on the Koji platform.
 
