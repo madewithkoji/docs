@@ -5,7 +5,7 @@ import { BLUE } from '../../../constants/colors';
 
 const Content = styled.div`
   width: 100%;
-  max-width: 660px;
+  max-width: 720px;
   
   @media screen and (max-width: 1023px) {
     width: 100%;
