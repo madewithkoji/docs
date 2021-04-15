@@ -47,6 +47,9 @@ function getMethodReturn(method) {
   // Some methods have multiple signatures. The last signature will have the correct return type.
   const returnType = method.signatures[method.signatures.length - 1].type;
 
+  // If there isn't a return type, or the return type is simply "void", prevent display
+  if (!returnType || returnType.name === 'void') return false;
+
   if (returnType.name && returnType.name === 'Promise') {
     const { typeArguments } = returnType;
 
@@ -55,7 +58,7 @@ function getMethodReturn(method) {
     return `Promise&lt;${mappedTypeArguments.map((mta) => mta).join('')}&gt;`;
   }
 
-  return false;
+  return renderParameterType({ type: returnType });
 }
 
 function getMethodReturnDescription(method) {
