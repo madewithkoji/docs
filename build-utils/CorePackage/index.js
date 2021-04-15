@@ -19,10 +19,11 @@ const { renderProperty } = require('./utils/property');
 const { renderTypeAlias } = require('./utils/typeAlias');
 
 function getClassDescription(c) {
-  let description;
+  let description = '';
 
   if (c.comment) {
-    if (c.comment.shortText) description = c.comment.shortText;
+    if (c.comment.shortText) description = `<p>${c.comment.shortText}</p>`;
+    if (c.comment.text) description += `<p>${c.comment.text}</p>`;
   }
 
   return description;
@@ -132,7 +133,7 @@ function generateModuleHTML(m, AllInterfaces, AllTypeAliases) {
     html: `
       <div>
         <h1 style="text-transform: capitalize">${name}</h1>
-        <p>${description}</p>
+        ${description}
         ${constructor ? `
           <div>
             <h2 id="Constructor">Constructor</h2>
