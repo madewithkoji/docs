@@ -165,7 +165,7 @@ function generateModuleHTML(m, AllInterfaces, AllTypeAliases) {
         ` : ''}
         ${typeAliases.length > 0 ? `
           <div>
-            <h2 id="TypeAliases">Type aliases</h2>
+            <h2 id="Type aliases">Type aliases</h2>
             ${typeAliases.map((typeAlias) => renderTypeAlias(typeAlias, interfaces)).join('')}
           </div>
         ` : ''}

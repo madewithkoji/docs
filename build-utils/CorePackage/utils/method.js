@@ -81,7 +81,7 @@ function renderMethod(method, interfaces) {
 
   return `
     <div class="sect2 hcode">
-      ${conditionallyRender(methodTitle, `<h3 id="${method.name}">.${methodTitle}</h3>`)}
+      ${conditionallyRender(methodTitle, `<h3 id=".${method.name}">.${methodTitle}</h3>`)}
       ${conditionallyRender(methodDescription, `<p>${methodDescription}</p>`)}
       ${conditionallyRender(methodExtendedDescription, `<p>${methodExtendedDescription}</p>`)}
       ${methodParameters ? `
