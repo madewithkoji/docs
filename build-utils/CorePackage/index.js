@@ -12,6 +12,7 @@
  */
 
 /* eslint-disable indent */
+const { convertToAsciiDoc } = require('./utils/common');
 const { renderEnum } = require('./utils/enum');
 const { renderInterface } = require('./utils/interface');
 const { renderMethod } = require('./utils/method');
@@ -22,8 +23,8 @@ function getClassDescription(c) {
   let description = '';
 
   if (c.comment) {
-    if (c.comment.shortText) description = `<p>${c.comment.shortText}</p>`;
-    if (c.comment.text) description += `<p>${c.comment.text}</p>`;
+    if (c.comment.shortText) description = convertToAsciiDoc(c.comment.shortText);
+    if (c.comment.text) description += convertToAsciiDoc(c.comment.text);
   }
 
   return description;
