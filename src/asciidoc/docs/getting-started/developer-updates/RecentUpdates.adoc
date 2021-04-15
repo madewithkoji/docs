@@ -50,7 +50,7 @@ For example, recording a video or drawing on a canvas.
 
 === Koji platform updates
 
-The following analytics and usability improvements are now available on the Koji platform.
+==== Analytics and usability improvements
 
 * Live analytics are now available for your Kojis.
 To see a live count of users (accurate to within 20 seconds), simply tap the *Koji* button on any of your Kojis.
@@ -64,13 +64,15 @@ image::live-analytics-apr2021.png[Live analytics]
 * Tapping *Cancel* or *Back* when editing a Koji now returns to the Koji instead of the home page.
 * The Koji editor has improved performance for a better experience when editing your code.
 
-The following features have changed.
+==== Additional changes
 
-* Paid subscriptions are no longer available.
+* Automatic withdrawals are now available for some countries outside the US.
+If automatic withdrawals are not supported for your country, you can https://withkoji.atlassian.net/servicedesk/customer/portal/1[contact the Koji team] and we can process your withdrawal manually.
 * The fee schedule for in-app purchases has been updated to a fixed rate of 15%.
 The template developer now receives 60% of the fees collected, and evolution/lineage payments are no longer applied.
+* Paid subscriptions are no longer available.
 
-The following bug fixes are now available on the Koji platform.
+==== Bug fixes
 
 * Changing your username from account settings now correctly regenerates your profile.
 * Editing a Koji now correctly updates its thumbnail or sharing image.
