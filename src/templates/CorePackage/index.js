@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import hljs from 'highlight.js';
 import styled from 'styled-components';
 import 'highlight.js/styles/github.css';
-import { graphql } from 'gatsby';
 import asciidoctor from 'asciidoctor';
+import { graphql } from 'gatsby';
 
 import '../../styles/dark-code.css';
 
@@ -156,7 +156,19 @@ const Nav = styled.div`
 
 export const query = graphql`
   query($id: String!) {
+    allSitePage {
+      nodes {
+        context {
+          slug
+        }
+        path
+      }
+    }
     kojiCorePackageItem(id: { eq: $id }) {
+      document {
+        description
+        title
+      }
       html
     }
   }
@@ -178,10 +190,15 @@ const CorePackage = (props) => {
       addLanguageIndicator(block);
     }
 
+    // Because all of the output of concern is wrapped in paragraph tags,
+    // we can use that as a way to target match/replace when looking at the innerHTML
     const paragraphs = document.querySelectorAll('p');
 
     for (let idx = 0; idx < paragraphs.length; idx += 1) {
       const paragraph = paragraphs[idx];
+
+      // Replace TypeDoc in-module reference urls (e.g., [[local-link | related method]])
+      // as well as any external links (e.g., [[https://withkoji.com | Koji homepage]])
       paragraph.innerHTML = paragraph.innerHTML.replace(new RegExp(/\[\[([^\]\]]*)\]\]/g), (match) => {
         const [href, linkText] = match.slice(2, -2).split('|').map((t) => t && t.trim());
 
@@ -190,9 +207,45 @@ const CorePackage = (props) => {
         return `<a href="#${href}">${linkText || href}</a>`;
       });
 
+      // When there are cross-module links, we expect them to be in the typedoc with a special format:
+      // {@doclink slug | linkText}
+      //
+      // This allows the documentation to link to other modules, and relies on the allSitePage data
+      // to derive the path from a slug
+      //
+      // When writing documentation in the koji-core package that uses cross-module reference links,
+      // you can refer to nav.json inside this repo to know which slugs to use for which modules
+      paragraph.innerHTML = paragraph.innerHTML.replace(new RegExp(/\{@doclink([^}]*)}/g), (match) => {
+        const [docLink, linkText] = match.slice(1, -1).split('|').map((t) => t && t.trim());
+
+        const target = docLink.split('@doclink').map((t) => t && t.trim())[1];
+
+        // If we aren't able to derive a target, the link may be malformed
+        if (!target) return '';
+
+        // Account for a possible hash
+        const [slug, hash] = target.split('#');
+
+        if (slug) {
+          const page = props.data.allSitePage.nodes.find(({ context }) => context.slug && context.slug === slug);
+
+          if (page) {
+            let href = page.path;
+            if (hash) href += `#${hash}`;
+            return `<a href="${href}">${linkText}</a>`;
+          }
+        }
+
+        // Return an empty string to prevent bad html renders
+        return '';
+      });
+
+      // Wrap back-ticked content with a <code> block
       paragraph.innerHTML = paragraph.innerHTML.replace(new RegExp(/`.*?`/g), (match) => `<code>${match.slice(1, -1)}</code>`);
     }
 
+    // Map note content into asciidoc form and then use a converter
+    // to turn it into admonition presentation
     const admonitions = document.querySelectorAll('p.note');
 
     for (let idx = 0; idx < admonitions.length; idx += 1) {
@@ -205,6 +258,7 @@ const CorePackage = (props) => {
   }, []);
 
   useEffect(() => {
+    // Map headers/sections so that we can leverage them to build a TOC
     const elem = document.createElement('html');
     elem.innerHTML = props.data.kojiCorePackageItem.html;
 
@@ -236,13 +290,12 @@ const CorePackage = (props) => {
     return href;
   };
 
-  // const pageTitle = props.data.asciidoc.document.title;
-  // const pageDesc = props.data.asciidoc.pageAttributes.description ? props.data.asciidoc.pageAttributes.description : '';
-  // const pageBanner = props.data.asciidoc.pageAttributes.banner ? props.data.asciidoc.pageAttributes.banner : '';
+  const pageTitle = props.data.kojiCorePackageItem.document.title;
+  const pageDesc = props.data.kojiCorePackageItem.document.description;
 
   return (
     <StyledContainer maxWidth="lg" style={{ isReady }}>
-      <SEO title={''} description={''} image={''} article />
+      <SEO title={pageTitle} description={pageDesc} article />
       <Content
         dangerouslySetInnerHTML={{ __html: props.data.kojiCorePackageItem.html }}
       />

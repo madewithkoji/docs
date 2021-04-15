@@ -4,6 +4,7 @@
 const fetch = require('node-fetch');
 const { navItems } = require('./src/nav.json');
 const { resolvePathFromSlug } = require('./src/utils/resolvePathFromSlug');
+const { capitalize } = require('./build-utils/CorePackage/utils/common');
 const { generateModuleHTML } = require('./build-utils/CorePackage');
 
 exports.sourceNodes = ({ actions, createNodeId, createContentDigest }) => {
@@ -65,16 +66,16 @@ exports.sourceNodes = ({ actions, createNodeId, createContentDigest }) => {
       }
 
       const AllInterfaces = modules.map((m) => m.Interfaces || []).reduce((acc, cur) => [...acc, ...cur], []);
-      const AllTypeAliases = modules.map((m) => m.Type_aliases || []).reduce((acc, cur) => [...acc, ...cur], []);
-
+      const AllTypeAliases = modules.map((m) => m['Type aliases'] || []).reduce((acc, cur) => [...acc, ...cur], []);
       modules.forEach((m) => {
-        const { html, name } = generateModuleHTML(m, AllInterfaces, AllTypeAliases);
+        const { description, html, name = '' } = generateModuleHTML(m, AllInterfaces, AllTypeAliases);
         const slug = `core-${m.name.replace(/\//g, '-').toLowerCase()}`;
 
         const node = {
           id: createNodeId(`Koji-Core-Package-Item-${m.name}`),
           document: {
-            title: name,
+            description,
+            title: `Koji Core Package: ${capitalize(name)}`,
           },
           internal: {
             type: 'kojiCorePackageItem',

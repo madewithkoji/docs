@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 const { conditionallyRender } = require('./common');
 
 function getEnumDescription(e) {

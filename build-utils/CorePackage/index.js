@@ -1,3 +1,16 @@
+/**
+ * This file serves as the root for building the html for a particular module.
+ *
+ * Functions are largely broken down by section and brought in as utilities. Some utils
+ * (esp. parameter) are used more broadly and also work to parse things like properties.
+ *
+ * There is a healthy amount of parsing to do, and also a lot of conditional logic to support
+ * one set of functions that work across all of the modules.
+ *
+ * One more thing that will be helpful to note is attention to how `map` is treated conditionally
+ * and also w/regards to the output (e.g., using `.join('')` to prevent commas flowing into the html)
+ */
+
 /* eslint-disable indent */
 const { renderEnum } = require('./utils/enum');
 const { renderInterface } = require('./utils/interface');
@@ -32,16 +45,27 @@ function generateModuleHTML(m, AllInterfaces, AllTypeAliases) {
     referenceIds = [],
   } = m;
 
+  // Pull basic data about the class
   const description = getClassDescription(Classes[0]);
   const name = getClassName(m.name);
 
+  // Look for a Constructor-specific method
   let constructor = Classes[0].children.find(({ kindString }) => kindString === 'Constructor');
 
+  // If the constructor is missing key information, we don't display it
   if (!constructor.signatures || !constructor.signatures[0] || !constructor.signatures[0].comment) constructor = false;
-  const methods = Classes[0].children.filter(({ kindString }) => kindString === 'Method');
 
+  // Pull off methods and properties based on the `kindString` identifier
+  const methods = Classes[0].children.filter(({ kindString }) => kindString === 'Method');
   const properties = Classes[0].children.filter(({ kindString }) => kindString === 'Property');
 
+  // Begin building a set of reference ids. When interfaces, methods, or type aliases
+  // reference each other within the scope of the module, we'll want to include them and
+  // be able to link to them from within the module's generated html
+  //
+  // In general, it could be helpful to refactor this into logic that is more recursive
+  // but in general, the nested references only go 1-2 levels deep, and the following code
+  // supports that level of nesting
   const interfaceReferenceIds = Interfaces
     .reduce((acc, cur) => [...acc, ...(cur.children || [])], [])
     .filter((property) => property.type && property.type.type && (property.type.type === 'reference' || property.type.type === 'union'))
@@ -80,6 +104,7 @@ function generateModuleHTML(m, AllInterfaces, AllTypeAliases) {
     ...propertyReferenceIds,
   ].reduce((acc, cur) => acc.includes(cur) ? acc : [...acc, cur], []);
 
+  // Include any enums that are identified as a reference
   const enums = Enumerations.filter(({ id }) => allReferenceIds.includes(id));
 
   // Type aliases include the generic reference ids
@@ -99,9 +124,11 @@ function generateModuleHTML(m, AllInterfaces, AllTypeAliases) {
     ...typeAliasReferenceIds,
   ];
 
+  // Identify all interfaces across all potential references
   const interfaces = AllInterfaces.filter(({ id }) => allReferenceIds.includes(id));
 
   return {
+    description,
     html: `
       <div>
         <h1 style="text-transform: capitalize">${name}</h1>
@@ -138,8 +165,8 @@ function generateModuleHTML(m, AllInterfaces, AllTypeAliases) {
         ` : ''}
         ${typeAliases.length > 0 ? `
           <div>
-            <h2 id="TypeAliases">Type aliases<h2>
-            ${typeAliases.map((typeAlias) => renderTypeAlias(typeAlias)).join('')}
+            <h2 id="TypeAliases">Type aliases</h2>
+            ${typeAliases.map((typeAlias) => renderTypeAlias(typeAlias, interfaces)).join('')}
           </div>
         ` : ''}
       </div>

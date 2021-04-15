@@ -33,10 +33,12 @@ function getTypeAliasReturn(declaration) {
 }
 
 function renderTypeAliasFunction() {
+  // Placeholder for alternative render presentations
   return '';
 }
 
 function renderTypeAliasUnion() {
+  // Placeholder for alternative render presentations
   return '';
 }
 
@@ -55,10 +57,16 @@ function renderTypeAlias(typeAlias, interfaces) {
   const typeAliasReturn = getTypeAliasReturn(declaration);
   const unionOptions = getTypeAliasUnionOptions(typeAlias);
 
+  // There is some additional logic here to make the typeAlias name look semi-analogous to TypeDoc output
+  let typeAliasName = `${typeAlias.name}:`;
+  if (typeAliasParameters) typeAliasName += `(${typeAliasParameters.map(({ name: parameterName }) => parameterName).join(', ')})`;
+  if (!typeAliasParameters) typeAliasName += '()';
+  if (typeAliasReturn) typeAliasName += `&nbsp;=>&nbsp;<em>${typeAliasReturn}</em>`;
+
   return `
     <div>
       ${conditionallyRender((name && typeAliasType === 'function'), `
-        <h3 id="${typeAlias.name}">${typeAlias.name}: ${conditionallyRender(typeAliasParameters, `(${typeAliasParameters.map(({ name: parameterName }) => parameterName).join(', ')})`)}${conditionallyRender(!typeAliasParameters, '()')}${conditionallyRender(typeAliasReturn, `&nbsp;=>&nbsp;<em>${typeAliasReturn}</em>`)}</h3>
+        <h3 id="${typeAlias.name}">${typeAliasName}</h3>
       `)}
       ${conditionallyRender((name && typeAliasType === 'union'), `
         <div>
@@ -68,8 +76,8 @@ function renderTypeAlias(typeAlias, interfaces) {
       ${conditionallyRender((name && !['function', 'union'].includes(typeAliasType)), `
         <h3 id="${typeAlias.name}">${typeAlias.name}</h3>
       `)}
-      ${conditionallyRender((typeAliasDescription, `<p>${typeAliasDescription}</p>`))}
-      ${typeAliasParameters.length > 0 ? `
+      ${conditionallyRender(typeAliasDescription, `<p>${typeAliasDescription}</p>`)}
+      ${(typeAliasParameters && typeAliasParameters.length > 0) ? `
         <div>
           <h4>Parameters</h4>
           <div class="ulist">
@@ -78,7 +86,7 @@ function renderTypeAlias(typeAlias, interfaces) {
                 <li>
                   <p><code>${parameter.name}</code>&nbsp;-&nbsp;<em>${renderParameterType(parameter)}</em>${conditionallyRender(parameterIsArray(parameter), '<span>[]</span>')}${conditionallyRender((parameter.flags && parameter.flags.isOptional), '<span>(Optional)</span>')}${renderParameterDescription(parameter, interfaces)}</p>
                 </li>
-              `)}
+              `).join('')}
             </ul>
           </div>
         </div>
@@ -88,7 +96,7 @@ function renderTypeAlias(typeAlias, interfaces) {
           <h4>Possible values</h4>
           <div class="ulist">
             <ul>
-              ${unionOptions.filter((u) => u !== null).map((unionOption) => `<li>${renderParameterType({ type: unionOption })}</li>`)}
+              ${unionOptions.filter((u) => u !== null).map((unionOption) => `<li>${renderParameterType({ type: unionOption })}</li>`).join('')}
             </ul>
           </div>
         </div>
