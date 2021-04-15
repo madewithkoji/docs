@@ -10,7 +10,6 @@ When you develop a template, you define which values are customizable and levera
 
 After you publish a template on Koji, creators can easily find and remix it, adding their own images, text, sounds, and more, to create their own version that they can share anywhere on the web.
 Additionally, other developers can fork your project and add their own code.
-Every evolution of your template adds to its overall value.
 
 == Koji templates under the hood
 
@@ -92,5 +91,3 @@ After you publish the template, the Koji profiler checks for errors, generates m
 image:publishNetwork.png[width=50%]
 
 Your template is now available to be remixed and shared anywhere on the internet.
-With each remix, the value of your template grows, and you retain a stake in the value of this "evolution pool" over time.
-For more information about how this value accrues, see <<instant-remixing#_lineage_and_evolution, Lineage and evolution>>.
