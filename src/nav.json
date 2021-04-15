@@ -38,20 +38,12 @@
               "slug": "developer-updates",
               "subItems": [
                 {
-                  "name": "April 2021",
-                  "slug": "2021-apr-updates"
+                  "name": "Recent updates",
+                  "slug": "recent-updates"
                 },
                 {
-                  "name": "March 2021",
-                  "slug": "2021-mar-updates"
-                },
-                {
-                  "name": "February 2021",
-                  "slug": "2021-feb-updates"
-                },
-                {
-                  "name": "January 2021",
-                  "slug": "2021-jan-updates"
+                  "name": "Earlier in 2021",
+                  "slug": "2021-updates"
                 },
                 {
                   "name": "2020",
