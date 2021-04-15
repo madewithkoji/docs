@@ -276,11 +276,25 @@ const CorePackage = (props) => {
     elem.innerHTML = props.data.kojiCorePackageItem.html;
 
     const headers = elem.querySelectorAll('h2,h3');
-    const mappedSections = Array.from(headers).map((header) => ({
-      href: header.id,
-      text: header.innerText,
-      type: header.localName,
-    }));
+    const mappedSections = Array.from(headers).map((header) => {
+      console.log('h', header.innerText, header.id);
+      // Check specifically for dot-prefixed titles so that reference links can
+      // link to them using bare method/property names
+      if (header.innerText[0] === '.') {
+        return {
+          altText: `.${header.id}`,
+          href: header.id,
+          text: header.innerText,
+          type: header.localName,
+        };
+      }
+
+      return {
+        href: header.id,
+        text: header.innerText,
+        type: header.localName,
+      };
+    });
 
     elem.remove();
 
@@ -295,7 +309,9 @@ const CorePackage = (props) => {
     }
   }, []);
 
-  const renderTextFromHref = (href, text) => {
+  const renderTextFromHref = (altText, href, text) => {
+    if (altText) return altText;
+
     if (href[0] === '_') {
       return text;
     }
@@ -317,7 +333,7 @@ const CorePackage = (props) => {
         <Nav>
           <TOC>{'Table of Contents'}</TOC>
           {
-            sections.map(({ href, text, type }) => {
+            sections.map(({ altText, href, text, type }) => {
               if (type === 'h2') {
                 return (
                   <SectionLink
@@ -325,7 +341,7 @@ const CorePackage = (props) => {
                     href={`#${href}`}
                     key={href}
                   >
-                    {renderTextFromHref(href, text)}
+                    {renderTextFromHref(altText, href, text)}
                   </SectionLink>
                 );
               }
@@ -335,7 +351,7 @@ const CorePackage = (props) => {
                   href={`#${href}`}
                   key={href}
                 >
-                  {renderTextFromHref(href, text)}
+                  {renderTextFromHref(altText, href, text)}
                 </SubSectionLink>
               );
             })
