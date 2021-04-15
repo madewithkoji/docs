@@ -53,7 +53,7 @@ const SectionLink = styled.a`
     top: 0;
     left: 0;
     z-index: 10000;
-    transform: translate(-16px, 4px);
+    transform: translate(-16px, 6px);
     border-radius: 50%;
     opacity: ${({ style: { isActive } }) => isActive ? 1 : 0};
     transition: all 0.2s ease-in-out;
@@ -81,7 +81,7 @@ const SubSectionLink = styled.a`
     top: 0;
     left: 0;
     z-index: 10000;
-    transform: translate(-16px, 4px);
+    transform: translate(-16px, 6px);
     border-radius: 50%;
     opacity: ${({ style: { isActive } }) => isActive ? 1 : 0};
     transition: all 0.2s ease-in-out;
