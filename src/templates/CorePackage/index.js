@@ -202,6 +202,13 @@ const CorePackage = (props) => {
       paragraph.innerHTML = paragraph.innerHTML.replace(new RegExp(/\[\[([^\]\]]*)\]\]/g), (match) => {
         const [href, linkText] = match.slice(2, -2).split('|').map((t) => t && t.trim());
 
+        // Note: In some instances, this content has been passed through convertToAsciiDoc to preserve
+        // formatting. This will mean we have to de-structure the link that was automatically built
+        if (href.includes('class="bare"')) {
+          const parsedURL = href.split('href="')[1]?.split('" class="')[0];
+          if (parsedURL) return `<a href="#${parsedURL}">${linkText || parsedURL}</a>`;
+        }
+
         if (href.includes('http')) return `<a href="${href}" ${href.includes('http') ? 'target="_blank"' : ''}>${linkText || href}</a>`;
 
         return `<a href="#${href}">${linkText || href}</a>`;
@@ -246,12 +253,18 @@ const CorePackage = (props) => {
 
     // Map note content into asciidoc form and then use a converter
     // to turn it into admonition presentation
-    const admonitions = document.querySelectorAll('p.note');
+    const notes = document.querySelectorAll('p.note');
+    for (let idx = 0; idx < notes.length; idx += 1) {
+      const note = notes[idx];
 
-    for (let idx = 0; idx < admonitions.length; idx += 1) {
-      const admonition = admonitions[idx];
+      note.innerHTML = convertToAsciiDoc(`NOTE: ${note.innerText}`);
+    }
 
-      admonition.innerHTML = convertToAsciiDoc(`NOTE: ${admonition.innerText}`);
+    const tips = document.querySelectorAll('p.tip');
+    for (let idx = 0; idx < tips.length; idx += 1) {
+      const tip = tips[idx];
+
+      tip.innerHTML = convertToAsciiDoc(`NOTE: ${tip.innerText}`);
     }
 
     setIsReady(() => true);
