@@ -1,5 +1,5 @@
 /* eslint-disable max-len */
-const { conditionallyRender } = require('./common');
+const { conditionallyRender, convertToAsciiDoc } = require('./common');
 const { parameterIsArray, renderParameterType } = require('./parameter');
 
 function getInterfaceProperties(i) {
@@ -28,7 +28,7 @@ function renderInterface(i) {
               ${interfaceProperties.map((property) => `
                 <li>
                   <p><code>${property.name}</code>&nbsp;-&nbsp;<em>${renderParameterType(property)}</em>${conditionallyRender(parameterIsArray(property), '<span>[]</span>')}${conditionallyRender((property.flags && property.flags.isOptional), ' (Optional)')}${(property.comment && property.comment.shortText) ? `, ${property.comment.shortText}` : ''}</p>
-                  ${(property.comment && property.comment.text) ? `<div>${property.comment.text}</div>` : ''}
+                  ${(property.comment && property.comment.text) ? convertToAsciiDoc(property.comment.text) : ''}
                 </li>
               `).join('')}
             </ul>
