@@ -265,7 +265,7 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
 
   knownSlugs.forEach((knownSlug) => {
     if (!slugsInUse.includes(knownSlug)) {
-      throw new Error(`A nav item has been created, but there is no corresponding asciidoc. [Slug]: ${knownSlug}`);
+      throw new Error(`A nav item has been created, but there is no corresponding page. [Slug]: ${knownSlug}`);
     }
   });
 };
