@@ -25,8 +25,16 @@ class TemplateConverter {
       const target = node.getTarget();
       const text = node.getText();
 
+      let typeDocLink = false;
+      if (target) {
+        const { lines = [] } = node.getParent();
+        lines.forEach((line) => {
+          if (line.includes('[[')) typeDocLink = true;
+        });
+      }
+
       // Handle xrefs
-      if (target && target[0] && target[0] === '#') {
+      if (target && target[0] && target[0] === '#' && !typeDocLink) {
         // Grab the refid
         const { refid } = node.attributes.$$smap;
 
@@ -50,7 +58,7 @@ class TemplateConverter {
         }
       }
 
-      if (target && !target.includes('/') && target.includes('.html')) {
+      if (target && !target.includes('/') && target.includes('.html') && !typeDocLink) {
         // Remove the automatically appended .html
         const newTarget = target.replace('.html', '');
 
@@ -75,7 +83,7 @@ class TemplateConverter {
       }
 
       // If the target includes the http protocol, automatically open in a new tab/window
-      if (target && target.includes('http')) {
+      if (target && target.includes('http') && !typeDocLink) {
         return `<a href="${target}" target="_blank" rel="noopener noreferrer">${text}</a>`;
       }
     }
