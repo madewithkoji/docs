@@ -46,7 +46,6 @@ const Main = styled.div`
 const MainWrapper = styled.div`
   display: flex;
   width: calc(100% - 60px);
-  max-width: 1100px;
   margin: 16px auto 0 auto;
   min-height: calc(100% - 114px);
 `;
