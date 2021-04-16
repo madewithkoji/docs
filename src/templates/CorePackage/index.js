@@ -178,8 +178,11 @@ const CorePackage = (props) => {
   const [sections, setSections] = useState([]);
   const [isReady, setIsReady] = useState(false);
 
-  // Strip any html from the incoming description in a useEffect (bc we can't use document in the build)
+  // If a good description came through on the document prop, use that; otherwise fall back to the default
   let pageDesc = '';
+  if (props.data.kojiCorePackageItem.document.description) {
+    pageDesc = props.data.kojiCorePackageItem.document.description;
+  }
   const pageTitle = props.data.kojiCorePackageItem.document.title;
 
   useEffect(() => {
@@ -269,15 +272,6 @@ const CorePackage = (props) => {
       const tip = tips[idx];
 
       tip.innerHTML = convertToAsciiDoc(`NOTE: ${tip.innerText}`);
-    }
-
-    if (props.data.kojiCorePackageItem.document.description) {
-      const elem = document.createElement('html');
-      elem.innerHTML = props.data.kojiCorePackageItem.document.description;
-
-      pageDesc = elem.innerText;
-
-      elem.remove();
     }
 
     setIsReady(() => true);
