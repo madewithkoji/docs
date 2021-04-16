@@ -1,0 +1,189 @@
+= CustomVcc
+:page-slug: customvcc-reference
+:page-description: Class for implementing a custom control to use in Koji templates.
+
+Implements a custom control for capturing user input in Koji templates.
+
+== Constructor
+
+Instantiates `CustomVcc`.
+
+==== Example
+
+[source,javascript]
+----
+import CustomVcc from '@withkoji/custom-vcc-sdk';
+const customVcc = new CustomVcc();
+----
+
+== Methods
+
+[.hcode, id=".change", reftext="change"]
+=== .change(newValue)
+
+Updates the value with the user-entered value.
+
+==== Parameters
+
+* `newValue` – _Any_, Current value of the custom control.
+
+==== Example
+
+[source,javascript]
+----
+customVcc.change(newValue);
+----
+
+[.hcode, id=".onTheme", reftext="onTheme"]
+=== .onTheme(handler)
+
+Listens to changes to the theme value, to retrieve values relating to the Koji display theme.
+The theme returned in the listener allows you to style the control to match the user’s current theme on Koji (dark or light).
+
+==== Parameters
+
+* `handler` – _Function_, Called when theme is available.
+Receives the following property as input:
+** `theme` – _<<Theme>>_, Represents the theme as an object.
+
+==== Example
+
+[source,javascript]
+----
+customVcc.onTheme((theme) => {
+	// theme is a Koji editor theme
+ 	// save this value in order to style your control to match the user's current theme
+});
+----
+
+[.hcode, id=".onUpdate", reftext="onUpdate"]
+=== .onUpdate(handler)
+
+Listens to changes in the custom value from the consumer application to enable updates to rendered values.
+
+TIP: It is prefereable to update the rendered value only in response to `onUpdate` events.
+Calling `change` immediately fires an `onUpdate`.
+
+==== Parameters
+
+* `handler` – _Function_, Handles changes to the custom value.
+Receives the following property as input:
+** `props` – _<<Props>>_, Properties of the custom control.
+
+==== Example
+
+[source,javascript]
+----
+customVcc.onUpdate((props) => {
+	// props is an object containing the control's current state.
+});
+----
+
+[.hcode, id=".register", reftext="register"]
+=== .register(width, height)
+
+Indicates that the custom control has loaded and registers it to trigger the on events from the parent editor.
+
+==== Parameters
+
+* `width` – (Optional) _Any_, Width of the custom control.
+* `height` – (Optional) _Any_, Height of the custom control.
+
+==== Example
+
+[source,javascript]
+----
+customVcc.register('300', '300');
+----
+
+[.hcode, id=".save", reftext="save"]
+=== .save()
+
+Saves the JSON customization file in the consumer application.
+
+==== Example
+
+[source,javascript]
+----
+customVcc.save();
+----
+
+[.hcode, id=".uploadFile", reftext="uploadFile"]
+=== .uploadFile(file, fileName, onComplete)
+
+Uploads a file blob to the Koji CDN.
+
+==== Parameters
+
+* `file` – _Blob_, File blob data to be uploaded.
+* `fileName` – _String_, Name of the file to be uploaded.
+* `onComplete` – _Function_, Called when upload has completed.
+Receives the following property as input:
+** `url`  – _String_, URL of the uploaded file.
+
+==== Example
+
+[source,javascript]
+----
+customVcc.uploadFile(myBlob, myFileName, (url) => {
+  // url of the uploaded file
+});
+----
+
+== Interfaces
+
+=== Props
+
+Represents the current state of a custom control.
+It is returned to the handler listening to <<onUpdate>>.
+
+==== Properties
+
+* `type` – _String_, Type signature for this VCC.
+* `name` – _String_, Name of the control.
+* `value` – _Any_, Current value of the control.
+* `scope` – _String_, Name of the section where this VCC appears in the consumer application.
+* `variableName` – _String_, Resolved variable name of this VCC (`scope.key`).
+* `options` – _Object_, Any options passed in `typeOptions`.
+* `collaborationDecoration` – _Object_, Any collaborators currently focused on this control.
+* `_config` – _Object_, The full VCC configuration file.
+Most controls are isolated to a single value.
+However, this object can be useful when creating more complex custom controls, like map builders.
+
+=== Theme
+
+Allows you to use styles that match the colors and styles of the remixer's active theme.
+It is returned to the handler listening to <<onTheme>>.
+
+==== Properties
+
+* `name` – _String_, Name of the theme.
+* `breakpoints` – _Object_, Responsive style breakpoints of the theme.
+* `colors` – _Object_, Key-value pairs representing the theme's named colors.
+* `mixins` – _Object_, CSS mixins to style specific elements.
+
+==== Example
+
+[source,JSON]
+----
+{
+	"name": "aspergillus",
+	"breakpoints": {
+		"default": "(min-width: 1025px)",
+		"phone": "(max-width: 767px)",
+		"tablet": "(max-width: 1024px)"
+	},
+	"colors": {
+		"background.default": "#ffffff",
+		"foreground.default": "#111111",
+		"input.background": "#ffffff",
+		"input.foreground": "#111111"
+		...
+	},
+	"mixins": {
+		"card.default": "box-shadow: 0 6px 24px 0 rgba(0,0,0,0.05); background-color: #fff;",
+		"clickable": "cursor: pointer; user-select: none;",
+		...
+	}
+}
+----

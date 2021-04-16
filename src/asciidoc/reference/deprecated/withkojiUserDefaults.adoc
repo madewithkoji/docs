@@ -120,3 +120,5 @@ For example, you could request a key in your template called `user.favoriteColor
 == Related resources
 
 * https://github.com/madewithkoji/koji-user-defaults-sdk[@withkoji/user-defaults on Github]
+* Core package replacement modules: <<core-frontend-identity#, Identity (frontend)>>
+* <<migrate-koji-core#>>

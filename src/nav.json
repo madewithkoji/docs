@@ -380,20 +380,112 @@
       "defaultPath": "/reference/packages/packages-overview",
       "sections": [
         {
-          "name": "Packages for Koji features",
+          "name": "Koji developer packages",
           "root": "/packages",
           "items": [
             {
-              "name": "Available packages",
+              "name": "Overview",
               "slug": "packages-overview"
-            },
+            }
+          ]
+        },
+        {
+          "name": "@withkoji/core",
+          "root": "/core",
+          "items": [
             {
-              "name": "@withkoji/core",
+              "name": "Overview",
               "slug": "withkoji-koji-core"
             },
             {
-              "name": "@withkoji/custom-vcc-sdk",
+              "name": "Backend",
+              "slug": "core-backend-overview",
+              "subItems": [
+                {
+                  "name": "Database",
+                  "slug": "core-backend-database"
+                },
+                {
+                  "name": "Dispatch",
+                  "slug": "core-backend-dispatch"
+                },
+                {
+                  "name": "IAP",
+                  "slug": "core-backend-iap"
+                },
+                {
+                  "name": "Identity",
+                  "slug": "core-backend-identity"
+                },
+                {
+                  "name": "Secret",
+                  "slug": "core-backend-secret"
+                },
+                {
+                  "name": "Utilities",
+                  "slug": "core-backend-utilities"
+                }
+              ]
+            },
+            {
+              "name": "Frontend",
+              "slug": "core-frontend-overview",
+              "subItems": [
+                {
+                  "name": "Analytics",
+                  "slug": "core-frontend-analytics"
+                },
+                {
+                  "name": "Dispatch",
+                  "slug": "core-frontend-dispatch"
+                },
+                {
+                  "name": "IAP",
+                  "slug": "core-frontend-iap"
+                },
+                {
+                  "name": "Identity",
+                  "slug": "core-frontend-identity"
+                },
+                {
+                  "name": "PlayerState",
+                  "slug": "core-frontend-playerstate"
+                },
+                {
+                  "name": "Remix",
+                  "slug": "core-frontend-remix"
+                },
+                {
+                  "name": "UI / Capture",
+                  "slug": "core-frontend-ui-capture"
+                },
+                {
+                  "name": "UI / Navigate",
+                  "slug": "core-frontend-ui-navigate"
+                },
+                {
+                  "name": "UI / Present",
+                  "slug": "core-frontend-ui-present"
+                },
+                {
+                  "name": "UI / Upload",
+                  "slug": "core-frontend-ui-upload"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "@withkoji/custom-vcc-sdk",
+          "root": "/customvcc",
+          "items": [
+            {
+              "name": "Overview",
               "slug": "withkoji-custom-vcc-sdk"
+            },
+            {
+              "name": "CustomVcc",
+              "slug": "customvcc-reference"
             }
           ]
         },

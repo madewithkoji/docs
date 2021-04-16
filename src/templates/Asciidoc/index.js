@@ -8,9 +8,9 @@ import { graphql } from 'gatsby';
 import { decodeHTML } from '../../utils/decodeHTML';
 import '../../styles/dark-code.css';
 
-import { lineNumbers } from './utils/line-numbers';
-import { addCopyCodeButton } from './utils/copy-code';
-import { addLanguageIndicator } from './utils/lang-indicator';
+import { lineNumbers } from '../utils/line-numbers';
+import { addCopyCodeButton } from '../utils/copy-code';
+import { addLanguageIndicator } from '../utils/lang-indicator';
 
 import { BLACK, DARK_GRAY } from '../../constants/colors';
 import Content from './components/Content';
@@ -48,7 +48,7 @@ const SectionLink = styled.a`
     top: 0;
     left: 0;
     z-index: 10000;
-    transform: translate(-16px, 4px);
+    transform: translate(-16px, 6px);
     border-radius: 50%;
     opacity: ${({ style: { isActive } }) => isActive ? 1 : 0};
     transition: all 0.2s ease-in-out;
@@ -76,7 +76,7 @@ const SubSectionLink = styled.a`
     top: 0;
     left: 0;
     z-index: 10000;
-    transform: translate(-16px, 4px);
+    transform: translate(-16px, 6px);
     border-radius: 50%;
     opacity: ${({ style: { isActive } }) => isActive ? 1 : 0};
     transition: all 0.2s ease-in-out;
@@ -85,6 +85,7 @@ const SubSectionLink = styled.a`
 
 const StyledContainer = styled(Container)`
   display: flex;
+  opacity: ${({ style: { isReady } }) => isReady ? 1 : 0};
 `;
 
 const TOC = styled.div`
@@ -186,6 +187,7 @@ export const query = graphql`
 
 const Asciidoc = (props) => {
   const [sections, setSections] = useState([]);
+  const [isReady, setIsReady] = useState(false);
 
   const resolveTitleFromSlug = (slug) => {
     const match = props.data.allAsciidoc.edges.map(({ node }) => node).find(({ pageAttributes: { slug: s } = {} }) => s === slug);
@@ -198,20 +200,28 @@ const Asciidoc = (props) => {
   };
 
   useEffect(() => {
-    document.querySelectorAll('pre code').forEach((block) => {
+    // Note: need to do sync for loops here so we can call setIsReady after processing
+
+    const codeBlocks = document.querySelectorAll('pre code');
+    for (let idx = 0; idx < codeBlocks.length; idx += 1) {
+      const block = codeBlocks[idx];
       hljs.highlightBlock(block);
       lineNumbers(block);
       addCopyCodeButton(block);
       addLanguageIndicator(block);
-    });
+    }
 
-    document.querySelectorAll('a[data-slug]').forEach((elem) => {
-      const { slug } = elem.dataset;
+    const dataSlugLinks = document.querySelectorAll('a[data-slug]');
+    for (let idx = 0; idx < dataSlugLinks.length; idx += 1) {
+      const dataSlugLink = dataSlugLinks[idx];
+      const { slug } = dataSlugLink.dataset;
       // eslint-disable-next-line no-param-reassign
-      if (slug) elem.innerText = resolveTitleFromSlug(slug) || elem.innerText;
-    });
+      if (slug) dataSlugLink.innerText = resolveTitleFromSlug(slug) || dataSlugLink.innerText;
+    }
 
-    document.querySelectorAll('.tabbed__toggle[data-scope]').forEach((tab) => {
+    const tabs = document.querySelectorAll('.tabbed__toggle[data-scope]');
+    for (let idx = 0; idx < tabs.length; idx += 1) {
+      const tab = tabs[idx];
       const { scope, scopevalue } = tab.dataset;
       tab.addEventListener('click', (e) => {
         const self = e.target;
@@ -221,7 +231,9 @@ const Asciidoc = (props) => {
           });
         }
       });
-    });
+    }
+
+    setIsReady(() => true);
   }, []);
 
   useEffect(() => {
@@ -261,7 +273,7 @@ const Asciidoc = (props) => {
   const pageBanner = props.data.asciidoc.pageAttributes.banner ? props.data.asciidoc.pageAttributes.banner : '';
 
   return (
-    <StyledContainer maxWidth="lg">
+    <StyledContainer maxWidth="lg" style={{ isReady }}>
       <SEO title={pageTitle} description={pageDesc} image={pageBanner} article />
       <Content
         dangerouslySetInnerHTML={{ __html: props.data.asciidoc.html }}
