@@ -68,18 +68,21 @@ function generateModuleHTML(m, AllInterfaces, AllTypeAliases) {
   // In general, it could be helpful to refactor this into logic that is more recursive
   // but in general, the nested references only go 1-2 levels deep, and the following code
   // supports that level of nesting
-  const interfaceReferenceIds = Interfaces
-    .reduce((acc, cur) => [...acc, ...(cur.children || [])], [])
-    .filter((property) => property.type && property.type.type && (property.type.type === 'reference' || property.type.type === 'union'))
-    .reduce((acc, cur) => (cur.type.types || []).length ? [...acc, ...cur.type.types] : [...acc, cur.type], [])
-    .reduce((acc, cur) => {
-      let id;
+  function getInterfaceReferenceIds(interfaces) {
+    return interfaces
+      .reduce((acc, cur) => [...acc, ...(cur.children || [])], [])
+      .filter((property) => property.type && property.type.type && (property.type.type === 'reference' || property.type.type === 'union'))
+      .reduce((acc, cur) => (cur.type.types || []).length ? [...acc, ...cur.type.types] : [...acc, cur.type], [])
+      .reduce((acc, cur) => {
+        let id;
 
-      if (cur.elementType) id = cur.elementType.id;
-      if (cur.id) id = cur.id;
+        if (cur.elementType) id = cur.elementType.id;
+        if (cur.id) id = cur.id;
 
-      return (!id || acc.includes(id)) ? acc : [...acc, id];
-    }, []);
+        return (!id || acc.includes(id)) ? acc : [...acc, id];
+      }, []);
+  }
+  const interfaceReferenceIds = getInterfaceReferenceIds(Interfaces);
 
   const methodReferenceIds = (constructor ? [...methods, constructor] : methods)
     .map((method) => (method.signatures && method.signatures[0]) || { parameters: [] })
@@ -127,7 +130,10 @@ function generateModuleHTML(m, AllInterfaces, AllTypeAliases) {
   ];
 
   // Identify all interfaces across all potential references
-  const interfaces = AllInterfaces.filter(({ id }) => allReferenceIds.includes(id));
+  let interfaces = AllInterfaces.filter(({ id }) => allReferenceIds.includes(id));
+
+  const nestedIds = getInterfaceReferenceIds(interfaces);
+  interfaces = [...interfaces, AllInterfaces.filter(({ id }) => nestedIds.includes(id))];
 
   return {
     description,
