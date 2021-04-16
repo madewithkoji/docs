@@ -4,7 +4,7 @@
 
 Blueprints are a quick way to build something cool on Koji. Each blueprint includes a simple, block-by-block guide and “as-built” code samples for a fun Koji application.
 
-Blueprints are intended for developers who prefer to jump straight to code. For a step-by-step introduction to Koji, go through <<quick-start, the Koji quick-start tutorial>>.
+Blueprints are intended for developers who prefer to jump straight to code. For a step-by-step introduction to Koji, go through <<quick-start#, the Koji quick-start tutorial>>.
 
 == Build your template
 

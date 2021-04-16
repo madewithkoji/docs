@@ -12,7 +12,7 @@
 
 // tag::tonewtutorial[]
 ====
-This tutorial is out-of-date. To learn about the newest features, go through <<quick-start, the latest Koji quick-start tutorial>>.
+This tutorial is out-of-date. To learn about the newest features, go through <<quick-start#, the latest Koji quick-start tutorial>>.
 ====
 // end::tonewtutorial[]
 
