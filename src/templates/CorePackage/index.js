@@ -178,6 +178,10 @@ const CorePackage = (props) => {
   const [sections, setSections] = useState([]);
   const [isReady, setIsReady] = useState(false);
 
+  // Strip any html from the incoming description in a useEffect (bc we can't use document in the build)
+  let pageDesc = '';
+  const pageTitle = props.data.kojiCorePackageItem.document.title;
+
   useEffect(() => {
     // Note: need to do async for loops here so we can call setIsReady after processing
 
@@ -267,6 +271,15 @@ const CorePackage = (props) => {
       tip.innerHTML = convertToAsciiDoc(`NOTE: ${tip.innerText}`);
     }
 
+    if (props.data.kojiCorePackageItem.document.description) {
+      const elem = document.createElement('html');
+      elem.innerHTML = props.data.kojiCorePackageItem.document.description;
+
+      pageDesc = elem.innerText;
+
+      elem.remove();
+    }
+
     setIsReady(() => true);
   }, []);
 
@@ -317,19 +330,6 @@ const CorePackage = (props) => {
 
     return href;
   };
-
-  const pageTitle = props.data.kojiCorePackageItem.document.title;
-
-  // Strip any html from the incoming description
-  let pageDesc = '';
-  if (props.data.kojiCorePackageItem.document.description) {
-    const elem = document.createElement('html');
-    elem.innerHTML = props.data.kojiCorePackageItem.document.description;
-
-    pageDesc = elem.innerText;
-
-    elem.remove();
-  }
 
   return (
     <StyledContainer maxWidth="lg" style={{ isReady }}>
