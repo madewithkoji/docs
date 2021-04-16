@@ -1,3 +1,4 @@
+/* eslint-disable max-classes-per-file */
 /**
  * Configure your Gatsby site with this file.
  *
@@ -6,6 +7,23 @@
 
 const asciidoc = require('asciidoctor')();
 const { resolvePathFromSlug } = require('./src/utils/resolvePathFromSlug');
+
+class BaseConverter {
+  constructor() {
+    // Use default html5 converter
+    this.baseConverter = asciidoc.Html5Converter.$new();
+  }
+
+  convert(node, transform) {
+    if (node.getNodeName() === 'inline_anchor') {
+      return `[[${node.id}]]`;
+    }
+
+    return this.baseConverter.convert(node, transform);
+  }
+}
+
+asciidoc.ConverterFactory.register(new BaseConverter(), ['base']);
 
 /**
  * This class will alter the way that asciidoctor works **globally**.

@@ -6,7 +6,7 @@ function conditionallyRender(condition, html) {
 }
 
 function convertToAsciiDoc(text) {
-  return asciidoc.convert(text);
+  return asciidoc.convert(text, { backend: 'base' });
 }
 
 function capitalize(s) {
