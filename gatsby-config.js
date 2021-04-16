@@ -15,8 +15,14 @@ class BaseConverter {
   }
 
   convert(node, transform) {
+    // Pass TypeDoc style links through to be handled inside the template
     if (node.getNodeName() === 'inline_anchor') {
-      return `[[${node.id}]]`;
+      const target = node.getTarget();
+      const text = node.getText();
+
+      if (target && text) return target;
+
+      if (node.id) return `[[${node.id}]]`;
     }
 
     return this.baseConverter.convert(node, transform);
