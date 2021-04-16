@@ -208,7 +208,7 @@ Retrieves all receipts for a specified product, which can be used to aggregate s
 ==== Parameters
 
 * `sku` – _String_, identifier for the product.
-Products are defined in the <<#_iap,entitlements file>> and registered or updated when the template is published.
+Products are defined in the <<#_iap,entitlements file>> and registered or updated when the project is deployed.
 
 ==== Returns
 
@@ -229,7 +229,7 @@ Prompts the user to purchase a product, and invokes a callback function to handl
 ==== Parameters
 
 * `sku` – _String_, identifier for the product to purchase.
-Products are defined in the <<#_iap,entitlements file>> and registered or updated when the template is published.
+Products are defined in the <<#_iap,entitlements file>> and registered or updated when the project is deployed.
 * `handler` – _Function_, handles the results of the purchase.
 Receives the following properties as input:
 ** `success` – _Boolean_, indicates whether the purchase was successful.
@@ -322,7 +322,7 @@ To link to the transaction receipt in the user's Koji wallet, use the format `\h
 === IapProduct
 
 An `IapProduct` object represents a specific product for purchase.
-Products are defined in the <<#_iap,entitlements file>> and registered or updated when the template is published.
+Products are defined in the <<#_iap,entitlements file>> and registered or updated when the project is deployed.
 You can use <<.loadProduct>> to retrieve the properties associated with the product's SKU.
 
 The `IapProduct` object includes the following properties.
@@ -348,8 +348,8 @@ The `IapProduct` object includes the following properties.
 }
 ----
 <1> `id` – Unique identifier for this version of the product.
-<2> `appId` – Name of the Koji template from which the product was purchased.
-<3> `ownerUserId` – Koji user name of the template publisher.
+<2> `appId` – Name of the Koji from which the product was purchased.
+<3> `ownerUserId` – Koji user name of the creator.
 <4> `price` – Purchase price of the product.
 Defined in the  <<#_iap,entitlements file>> of the template.
 <5> `priceIsUnset` – Indicator of whether a purchase price is defined for the product.
@@ -360,7 +360,7 @@ Defined in the entitlements file of the template.
 Defined in the entitlements file of the template.
 <8> `sku` – Identifier of the purchased product.
 Defined in the entitlements file of the template.
-<9> `dateCreated` – Date the product was registered or updated, which happens when the template is published.
+<9> `dateCreated` – Date the product was registered or updated, which happens when the project is deployed.
 <10> `isActive` – Indicator of whether the product is still available for purchase.
 <11> `fulfillment` – Type of user information collected for order fulfillment.
 Defined in the entitlements file of the template.

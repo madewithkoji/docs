@@ -50,6 +50,12 @@ For example, recording a video or drawing on a canvas.
 
 === Koji platform updates
 
+==== Developer experience enhancements for in-app purchases
+
+* In-app purchase products are now registered or updated on any deploy, instead of only when you publish the template from the Koji editor.
+* In the debugger, you can now drill into the details of in-app purchase products and receipts.
+This feature improves debugging for product definition updates, as well as for the use of custom attributes on receipts.
+
 ==== Analytics and usability improvements
 
 * Live analytics are now available for your Kojis.
