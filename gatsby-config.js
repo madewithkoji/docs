@@ -7,6 +7,12 @@
 const asciidoc = require('asciidoctor')();
 const { resolvePathFromSlug } = require('./src/utils/resolvePathFromSlug');
 
+/**
+ * This class will alter the way that asciidoctor works **globally**.
+ *
+ * This means that leveraging the `convertToAsciiDoc` utility inside of build-utils/CorePackage/utils/common.js
+ * will use this same conversion. So there are a few checks that are included to help that perform correctly.
+ */
 class TemplateConverter {
   constructor() {
     // Use default html5 converter
@@ -20,7 +26,7 @@ class TemplateConverter {
       const text = node.getText();
 
       // Handle xrefs
-      if (target[0] && target[0] === '#') {
+      if (target && target[0] && target[0] === '#') {
         // Grab the refid
         const { refid } = node.attributes.$$smap;
 
@@ -44,7 +50,7 @@ class TemplateConverter {
         }
       }
 
-      if (!target.includes('/') && target.includes('.html')) {
+      if (target && !target.includes('/') && target.includes('.html')) {
         // Remove the automatically appended .html
         const newTarget = target.replace('.html', '');
 
@@ -69,7 +75,7 @@ class TemplateConverter {
       }
 
       // If the target includes the http protocol, automatically open in a new tab/window
-      if (target.includes('http')) {
+      if (target && target.includes('http')) {
         return `<a href="${target}" target="_blank" rel="noopener noreferrer">${text}</a>`;
       }
     }
@@ -142,6 +148,7 @@ module.exports = {
         },
         catalog_assets: true,
         converterFactory: TemplateConverter,
+        fileExtensions: ['adoc'],
       },
     },
 

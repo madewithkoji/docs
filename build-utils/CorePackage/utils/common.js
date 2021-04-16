@@ -1,4 +1,4 @@
-const asciidoctor = require('asciidoctor');
+const asciidoc = require('asciidoctor')();
 
 function conditionallyRender(condition, html) {
   if (condition) return html;
@@ -6,7 +6,6 @@ function conditionallyRender(condition, html) {
 }
 
 function convertToAsciiDoc(text) {
-  const asciidoc = asciidoctor();
   return asciidoc.convert(text);
 }
 
