@@ -277,7 +277,6 @@ const CorePackage = (props) => {
 
     const headers = elem.querySelectorAll('h2,h3');
     const mappedSections = Array.from(headers).map((header) => {
-      console.log('h', header.innerText, header.id);
       // Check specifically for dot-prefixed titles so that reference links can
       // link to them using bare method/property names
       if (header.innerText[0] === '.') {
@@ -320,7 +319,17 @@ const CorePackage = (props) => {
   };
 
   const pageTitle = props.data.kojiCorePackageItem.document.title;
-  const pageDesc = props.data.kojiCorePackageItem.document.description;
+
+  // Strip any html from the incoming description
+  let pageDesc = '';
+  if (props.data.kojiCorePackageItem.document.description) {
+    const elem = document.createElement('html');
+    elem.innerHTML = props.data.kojiCorePackageItem.document.description;
+
+    pageDesc = elem.innerText;
+
+    elem.remove();
+  }
 
   return (
     <StyledContainer maxWidth="lg" style={{ isReady }}>
