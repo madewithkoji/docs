@@ -44,6 +44,8 @@ function getMethodExample(method) {
 }
 
 function getMethodReturn(method) {
+  if (method.name.includes('constructor')) return false;
+
   // Some methods have multiple signatures. The last signature will have the correct return type.
   const returnType = method.signatures[method.signatures.length - 1].type;
 
