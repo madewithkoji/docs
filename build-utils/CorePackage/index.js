@@ -23,8 +23,14 @@ function getClassDescription(c, short = false) {
   let description = '';
 
   if (c.comment) {
+    if (short) {
+      if (c.comment.shortText) return c.comment.shortText;
+
+      return '';
+    }
+
     if (c.comment.shortText) description = convertToAsciiDoc(c.comment.shortText);
-    if (c.comment.text && !short) description += convertToAsciiDoc(c.comment.text);
+    if (c.comment.text) description += convertToAsciiDoc(c.comment.text);
   }
 
   return description;
