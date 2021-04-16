@@ -32,41 +32,45 @@ exports.sourceNodes = ({ actions, createNodeId, createContentDigest }) => {
       ];
 
       const modules = [];
+      const excludedModules = [];
 
       for (let x = 0; x < kojiCoreDocs.children.length; x += 1) {
         const child = kojiCoreDocs.children[x];
 
-        if (moduleNames.includes(child.name)) {
-          const {
-            children,
-            flags,
-            groups,
-            sources,
-            ...newModule
-          } = child;
+        const {
+          children,
+          flags,
+          groups,
+          sources,
+          ...newModule
+        } = child;
 
-          // Create a list of referenceIds for each module
-          const referenceIds = [];
+        // Create a list of referenceIds for each module
+        const referenceIds = [];
 
-          // For each group, look for Classes, Enumerations, Functions, Interfaces, TypeAliases and Variables
-          // and make them top level properties.
-          //
-          // Also, make sure to build out the referenceIds so they're easily available
-          child.groups.forEach((group) => {
-            newModule[group.title] = child.children.filter(({ id }) => group.children.includes(id));
-            group.children.forEach((childId) => {
-              if (!referenceIds.includes(childId)) referenceIds.push(childId);
-            });
+        // For each group, look for Classes, Enumerations, Functions, Interfaces, TypeAliases and Variables
+        // and make them top level properties.
+        //
+        // Also, make sure to build out the referenceIds so they're easily available
+        (child.groups || []).forEach((group) => {
+          newModule[group.title] = child.children.filter(({ id }) => group.children.includes(id));
+          group.children.forEach((childId) => {
+            if (!referenceIds.includes(childId)) referenceIds.push(childId);
           });
+        });
 
-          newModule.referenceIds = referenceIds;
+        newModule.referenceIds = referenceIds;
 
+        if (moduleNames.includes(child.name)) {
           modules.push(newModule);
+        } else {
+          excludedModules.push(newModule);
         }
       }
 
-      const AllInterfaces = modules.map((m) => m.Interfaces || []).reduce((acc, cur) => [...acc, ...cur], []);
-      const AllTypeAliases = modules.map((m) => m['Type aliases'] || []).reduce((acc, cur) => [...acc, ...cur], []);
+      const AllInterfaces = [...modules, ...excludedModules].map((m) => m.Interfaces || []).reduce((acc, cur) => [...acc, ...cur], []);
+      const AllTypeAliases = [...modules, ...excludedModules].map((m) => m['Type aliases'] || []).reduce((acc, cur) => [...acc, ...cur], []);
+
       modules.forEach((m) => {
         const { html, name = '', shortDescription } = generateModuleHTML(m, AllInterfaces, AllTypeAliases);
         const slug = `core-${m.name.replace(/\//g, '-').toLowerCase()}`;
@@ -136,7 +140,7 @@ exports.sourceNodes = ({ actions, createNodeId, createContentDigest }) => {
   }
 
   return new Promise((res, rej) => {
-    fetch('http://localhost:1234/koji-core-docs.json') // fetch('https://raw.githubusercontent.com/madewithkoji/koji-core/main/koji-core-docs.json')
+    fetch('https://raw.githubusercontent.com/madewithkoji/koji-core/main/koji-core-docs.json')
       .then((response) => response.json())
       .then((json) => buildSourceNodes(json, res, rej));
   });
