@@ -1,6 +1,9 @@
 = Extending your first Koji template
 :page-slug: start-guide-2
 :page-description: Step-by-step instructions for adding more features your first Koji template.
+:includespath: ../_includes
+
+include::{includespath}/redirects.adoc[tag=tonewtutorial]
 
 In the first starter guide, you learned how to add basic customizable elements to a web application on Koji and then publish it as a Koji template.
 In this starter guide, part 2, you will continue working on the project that you created in the previous guide, and learn how to add the features required for a complete and compelling Koji template.

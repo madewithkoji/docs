@@ -1,6 +1,7 @@
 = Adding a service to your project
 :page-slug: add-service
 :page-description: How to add a backend service to a Koji template.
+:includespath: ../_includes
 
 As you develop and extend templates on Koji, you will likely run into issues where your `serviceMap` doesn't look the way you think it should.
 Or, you have remixed a project with a frontend, but you need to add a backend.
@@ -11,8 +12,9 @@ In this tutorial, you will add a backend service to an existing project, and con
 
 == Prerequisites
 
-* Familiarity with the Koji editor, remix process, and the @withkoji/vcc package is required.
-* Familiarity with React and ES6 basics are a plus.
+include::{includespath}/prereqs.adoc[tag=webdev]
+include::{includespath}/prereqs.adoc[tag=remixproc]
+include::{includespath}/prereqs.adoc[tag=customvcc]
 
 == Setting up the template
 

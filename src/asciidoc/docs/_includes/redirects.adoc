@@ -1,0 +1,20 @@
+= Redirects
+
+////
+  Usage:
+    :includespath: ../_includes
+
+    include::{includespath}/redirects.adoc[tag=tonewtutorial]
+////
+
+
+// tag::all[]
+
+// tag::tonewtutorial[]
+====
+This tutorial is out-of-date. To learn about the newest features, go through <<quick-start, the latest Koji quick-start tutorial>>.
+====
+// end::tonewtutorial[]
+
+
+// end::all[]

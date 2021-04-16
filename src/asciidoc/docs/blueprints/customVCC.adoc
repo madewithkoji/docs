@@ -1,6 +1,7 @@
 = Cat selector VCC
 :page-slug: cat-selector-blueprint
 :page-description: Blueprint for a custom Koji VCC that lets remixers choose from a list of cat breeds retrieved from a third-party API.
+:includespath: ../_includes
 
 Follow this blueprint to build a custom VCC that allows remixers to select from a drop-down list of cat breeds.
 
@@ -10,13 +11,10 @@ image::cat-selector.png[Make a custom VCC on Koji,role="img-overview"]
 
 === Prerequisites
 
-* Familiarity with web development.
-React and ES6 basics are a plus.
-* Understanding of third-party API use is a plus.
-* Familiarity with the Koji remix process.
-For an overview, see the <<start-guide-1#, starter guide>>.
-* Familiarity with Koji custom VCCs is a bonus.
-For an overview, see <<build-custom-vcc#>>.
+include::{includespath}/prereqs.adoc[tag=webdev]
+include::{includespath}/prereqs.adoc[tag=3papi]
+include::{includespath}/prereqs.adoc[tag=remixproc]
+include::{includespath}/prereqs.adoc[tag=customvccopt]
 
 === Level
 

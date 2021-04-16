@@ -1,6 +1,7 @@
 = Building your first custom VCC
 :page-slug: build-custom-vcc
 :page-description: How to build a custom control for remixing specialized elements in a Koji template.
+:includespath: ../_includes
 
 Visual Customization Controls (VCCs) enable users to quickly edit elements of your application on Koji.
 The Koji platform includes VCCs for standard elements, such as images, text, and sounds.
@@ -12,9 +13,8 @@ After completing the tutorial, you will be able to use your custom VCC interchan
 
 == Prerequisites
 
-* Familiarity with the Koji editor and remix process.
-For an overview, see the <<start-guide-1#, starter guide>>.
-* Familiarity with React and ES6 basics are a plus.
+include::{includespath}/prereqs.adoc[tag=webdev]
+include::{includespath}/prereqs.adoc[tag=remixproc]
 
 == Setting up the consumer application
 

@@ -1,6 +1,7 @@
 = Porting existing code to Koji
 :page-slug: port-existing-code
 :page-description: How to import code from an existing repository and make it remixable on Koji.
+:includespath: ../_includes
 
 In this tutorial, you will port an existing game to Koji.
 You will make some updates to the game to make it customizable, and then you will build and deploy the game to the Koji platform.
@@ -9,7 +10,9 @@ You will make some updates to the game to make it customizable, and then you wil
 
 == Prerequisites
 
-Familiarity with the Koji editor, remix process, @withkoji/vcc package, and basic Git commands.
+include::{includespath}/prereqs.adoc[tag=gitbasic]
+include::{includespath}/prereqs.adoc[tag=remixproc]
+include::{includespath}/prereqs.adoc[tag=customvcc]
 
 == Starting from a scaffold
 

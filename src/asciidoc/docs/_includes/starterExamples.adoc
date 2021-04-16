@@ -3,9 +3,6 @@
 // tag::all[]
 [TIP]
 ====
-To build a simple template with these features, you can follow these starter guides:
-
-* <<start-guide-1#>>
-* <<start-guide-2#>>
+To build a simple template with these features, go through <<quick-start, the Koji quick-start tutorial>>.
 ====
 // end::all[]

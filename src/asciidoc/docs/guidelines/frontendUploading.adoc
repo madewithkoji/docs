@@ -1,6 +1,7 @@
 = Uploading files from the frontend
 :page-slug: frontend-uploading
 :page-description: How to enable users to upload files to the CDN from a Koji's frontend.
+:includespath: ../_includes
 
 Some templates provide users with the ability to upload files from a Koji’s frontend.
 For example, a public image board.
@@ -15,10 +16,12 @@ Then, you configure the frontend to retrieve a presigned URL from the backend an
 This guide covers advanced topics.
 It is suggested that you are familiar with the following topics before proceeding.
 
-* React and ES6 basics.
-* The Koji editor, <<instant-remixing#, remix process>>, and the <<withkoji-vcc-package,@withkoji/vcc>> package.
-* https://expressjs.com/[Express.js] web framework.
-* Backend communication and the <<withkoji-database-package,@withkoji/database>> package.
+include::{includespath}/prereqs.adoc[tag=webdev]
+include::{includespath}/prereqs.adoc[tag=expressjs]
+include::{includespath}/prereqs.adoc[tag=remixproc]
+include::{includespath}/prereqs.adoc[tag=customvcc]
+include::{includespath}/prereqs.adoc[tag=backend]
+include::{includespath}/prereqs.adoc[tag=kojidb]
 * Performing HTTP requests (this example uses https://github.com/axios/axios[axios]).
 
 == Configuring the backend
