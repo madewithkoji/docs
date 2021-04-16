@@ -68,13 +68,13 @@ exports.sourceNodes = ({ actions, createNodeId, createContentDigest }) => {
       const AllInterfaces = modules.map((m) => m.Interfaces || []).reduce((acc, cur) => [...acc, ...cur], []);
       const AllTypeAliases = modules.map((m) => m['Type aliases'] || []).reduce((acc, cur) => [...acc, ...cur], []);
       modules.forEach((m) => {
-        const { description, html, name = '' } = generateModuleHTML(m, AllInterfaces, AllTypeAliases);
+        const { description, html, name = '', shortDescription } = generateModuleHTML(m, AllInterfaces, AllTypeAliases);
         const slug = `core-${m.name.replace(/\//g, '-').toLowerCase()}`;
 
         const node = {
           id: createNodeId(`Koji-Core-Package-Item-${m.name}`),
           document: {
-            description,
+            description: shortDescription,
             title: `Koji Core Package: ${capitalize(name)}`,
           },
           internal: {
@@ -136,7 +136,7 @@ exports.sourceNodes = ({ actions, createNodeId, createContentDigest }) => {
   }
 
   return new Promise((res, rej) => {
-    fetch('https://raw.githubusercontent.com/madewithkoji/koji-core/main/koji-core-docs.json')
+    fetch('http://localhost:1234/koji-core-docs.json') // fetch('https://raw.githubusercontent.com/madewithkoji/koji-core/main/koji-core-docs.json')
       .then((response) => response.json())
       .then((json) => buildSourceNodes(json, res, rej));
   });

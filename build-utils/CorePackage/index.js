@@ -19,12 +19,12 @@ const { renderMethod } = require('./utils/method');
 const { renderProperty } = require('./utils/property');
 const { renderTypeAlias } = require('./utils/typeAlias');
 
-function getClassDescription(c) {
+function getClassDescription(c, short = false) {
   let description = '';
 
   if (c.comment) {
     if (c.comment.shortText) description = convertToAsciiDoc(c.comment.shortText);
-    if (c.comment.text) description += convertToAsciiDoc(c.comment.text);
+    if (c.comment.text && !short) description += convertToAsciiDoc(c.comment.text);
   }
 
   return description;
@@ -54,6 +54,7 @@ function generateModuleHTML(m, AllInterfaces, AllTypeAliases) {
 
   // Pull basic data about the class
   const description = getClassDescription(Classes[0]);
+  const shortDescription = getClassDescription(Classes[0], true);
   const name = getClassName(m.name, (Classes[0].name));
 
   // Look for a Constructor-specific method
@@ -185,6 +186,7 @@ function generateModuleHTML(m, AllInterfaces, AllTypeAliases) {
       </div>
     `,
     name,
+    shortDescription,
   };
 }
 
