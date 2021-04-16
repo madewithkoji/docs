@@ -206,6 +206,7 @@ const CorePackage = (props) => {
         // formatting. This will mean we have to de-structure the link that was automatically built
         if (href.includes('class="bare"')) {
           const parsedURL = href.split('href="')[1]?.split('" class="')[0];
+          if (parsedURL && parsedURL.startsWith('http')) return `<a href="${parsedURL}" target="_blank">${linkText || parsedURL}</a>`;
           if (parsedURL) return `<a href="#${parsedURL}">${linkText || parsedURL}</a>`;
         }
 
@@ -277,7 +278,6 @@ const CorePackage = (props) => {
 
     const headers = elem.querySelectorAll('h2,h3');
     const mappedSections = Array.from(headers).map((header) => {
-      console.log('h', header.innerText, header.id);
       // Check specifically for dot-prefixed titles so that reference links can
       // link to them using bare method/property names
       if (header.innerText[0] === '.') {
