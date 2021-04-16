@@ -142,7 +142,6 @@ function generateModuleHTML(m, AllInterfaces, AllTypeAliases) {
   interfaces = [...interfaces, AllInterfaces.filter(({ id }) => nestedIds.includes(id))];
 
   return {
-    description,
     html: `
       <div>
         <h1 style="text-transform: capitalize">${name}</h1>

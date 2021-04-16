@@ -68,7 +68,7 @@ exports.sourceNodes = ({ actions, createNodeId, createContentDigest }) => {
       const AllInterfaces = modules.map((m) => m.Interfaces || []).reduce((acc, cur) => [...acc, ...cur], []);
       const AllTypeAliases = modules.map((m) => m['Type aliases'] || []).reduce((acc, cur) => [...acc, ...cur], []);
       modules.forEach((m) => {
-        const { description, html, name = '', shortDescription } = generateModuleHTML(m, AllInterfaces, AllTypeAliases);
+        const { html, name = '', shortDescription } = generateModuleHTML(m, AllInterfaces, AllTypeAliases);
         const slug = `core-${m.name.replace(/\//g, '-').toLowerCase()}`;
 
         const node = {
