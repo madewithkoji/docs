@@ -493,6 +493,7 @@ const uploadedUrl = database.uploadFile(path, filename, mimetype);
 == Related resources
 
 * https://github.com/madewithkoji/koji-database-sdk[@withkoji/database on Github]
-* https://www.npmjs.com/package/@withkoji/database[@withkoji/database on npm]
+* Core package replacement modules: <<core-backend-database#, Database (backend)>>
+* <<migrate-koji-core#>>
 * <<vote-counter-blueprint#>>
 * <<koji-database#>>

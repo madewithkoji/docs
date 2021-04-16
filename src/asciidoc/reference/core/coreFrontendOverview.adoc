@@ -1,0 +1,143 @@
+= @withkoji/core Frontend
+:page-slug: core-frontend-overview
+:page-description: Overview of the @withkoji/core frontend module.
+
+Exposes the Koji class, which provides client-side methods for use on the frontend of your Koji.
+
+[NOTE]
+====
+* All methods in the frontend module are scoped for use only in frontend services of Kojis.
+If a method is invoked in a node/backend environment, it returns an error message.
+* Frontend modules do not require a constructor.
+====
+
+== Basic use
+
+To use frontend methods, install the <<withkoji-koji-core#, @withkoji/core package>> in the frontend of your project.
+
+include::../../docs/_includes/frontend-basic-use.adoc[tag=all]
+
+== Properties
+
+[.hcode, id=".analytics", reftext="analytics"]
+=== .analytics
+
+_<<core-frontend-analytics#,Analytics>>_, Class that enables you to track custom events in your Koji template.
+
+[.hcode, id=".configInitialized", reftext="configInitialized"]
+=== .configInitialized
+
+_Boolean_, Indicates whether the package has been <<.config, initialized with configuration data>>.
+Defaults to `false`.
+
+[.hcode, id=".dispatch", reftext="dispatch"]
+=== .dispatch
+
+_<<core-frontend-dispatch#,Dispatch>>_, Class that implements a dispatch system for real-time communication on the frontend of your Koji template.
+
+[.hcode, id=".iap", reftext="iap"]
+=== .iap
+
+_<<core-frontend-iap#,IAP>>_, Class that manages in-app purchase transactions on the frontend of your Koji template.
+
+[.hcode, id=".identity", reftext="identity"]
+=== .identity
+
+_<<core-frontend-identity#,Identity>>_, Class that manages authentication and authorization on the frontend of your Koji template.
+
+[.hcode, id=".isReady", reftext="isReady"]
+=== .isReady
+
+_Boolean_, Indicates whether the Koji is <<.ready, ready to start receiving events>>.
+
+[.hcode, id=".playerState", reftext="playerState"]
+=== .playerState
+
+_<<core-frontend-playerstate#,PlayerState>>_, Class that manages the state of the Koji player to enable distinct experiences for different users and views.
+
+[.hcode, id=".projectId", reftext="projectId"]
+=== .projectId
+
+_String_, (Optional) Unique identifier for the Koji.
+
+[.hcode, id=".remix", reftext="remix"]
+=== .remix
+
+_<<core-frontend-remix#,Remix>>_, Class that manages the remixing experience for your Koji template.
+
+[.hcode, id=".services", reftext="services"]
+=== .services
+
+_<<Services>>_, Object that provides access to service endpoints in the Koji.
+For example, you can use this property to route a request to a backend service.
+
+==== Example
+
+[source,javascript]
+const backendURL = Koji.services.backend
+
+[.hcode, id=".ui", reftext="ui"]
+=== .ui
+
+_UI_, Class that provides common user interface elements for use in your Koji template.
+Exposes the following classes:
+
+* _<<core-frontend-ui-capture#,Capture>>_, Class that captures user input on the frontend of your Koji template.
+* _<<core-frontend-ui-navigate#,Navigate>>_, Class that provides methods for controlling navigation within your Koji template.
+* _<<core-frontend-ui-present#,Present>>_, Class that presents dialog boxes to users on the frontend of your Koji.
+* _<<core-frontend-ui-upload#,Upload>>_, Class that uploads files from the frontend of your Koji directly to your project's CDN.
+
+== Methods
+
+[.hcode, id=".config", reftext="config"]
+=== .config(kojiConfig, kojiConfigOptions)
+
+Initializes this package for use with configuration data from the `koji.json` file.
+This method sets up the services, remix values, development environment, and deployment instructions for your Koji template.
+It also performs some basic structural checks.
+
+NOTE: A template should initialize the package one time, before any data in the application is rendered.
+
+==== Parameters
+
+* `kojiConfig` – _<<KojiConfig>>_, (Optional) Configuration data for the Koji.
+* `kojiConfigOptions` – _<<KojiConfigOptions>>_, (Optional) Configuration options for the Koji.
+
+==== Example
+
+[source,javascript]
+Koji.config(require('././koji.json'));
+
+
+[.hcode, id=".ready", reftext="ready"]
+=== .ready()
+
+Indicates that the Koji is ready to start receiving events.
+
+NOTE: You must call this function after initializing the package and subscribing to remix state changes, but before advancing to the preview with `Koji.remix.finish`.
+
+==== Example
+
+[source,javascript]
+Koji.ready();
+
+== Interfaces
+
+=== KojiConfig
+
+include::../../docs/_includes/interface-KojiConfig.adoc[tag=all]
+
+=== KojiConfigOptions
+
+Configuration options for the Koji.
+
+==== Properties
+
+* `projectId` – _String_, (Optional) Unique identifier for the Koji.
+* `services` – _<<Services>>_, (Optional) Defines services for the Koji.
+
+== Type aliases
+
+=== Services
+
+_Object_, Key-value pairs of services and endpoints.

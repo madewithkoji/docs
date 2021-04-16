@@ -4,7 +4,7 @@
  */
 
 body.darkCode .hljs {
-  background: #f4f4f4;
+  background: #fafafa;
   color: #111111;
 }
 
@@ -116,9 +116,9 @@ body.darkCode .hljs-deletion {
 /* Koji doc specific changes */
 
 body.darkCode code {
-  background-color: #f4f4f4;
+  background-color: #fafafa;
   color: #111111;
-  border-color: #f4f4f4;
+  border-color: #fafafa;
   border-radius: 2.5px;
 }
 
@@ -134,6 +134,13 @@ body.darkCode .listingblock pre button:after {
   color: #AAA;
 }
 
+body.darkCode .listingblock {
+  border-color: #d6d6d6;
+  border-radius: 4px;
+  border-style: solid;
+  border-width: 1px;
+}
+
 body.darkCode .tabbed .tabbed__toggle {
   color: #666666;
   background-color: rgba(0, 0, 0, 0.05);
@@ -141,13 +148,13 @@ body.darkCode .tabbed .tabbed__toggle {
 }
 
 body.darkCode .tabbed .tabbed__toggle.tabbed__toggle_active, body.darkCode .tabbed .tabbed__toggle.tabbed__toggle_active:after {
-  background-color: #f4f4f4;
+  background-color: #fafafa;
   color: #111111;
   opacity: 1;
 }
 
 body.darkCode .tabbed .tabs .tabbed__tab {
-  background-color: #f4f4f4;
+  background-color: #fafafa;
   color: #666666;
 }
 
@@ -156,7 +163,7 @@ body.darkCode .tabbed .tabs .tabbed__tab a {
 }
 
 body.darkCode .tabbed .tabs .tabbed__tab .admonitionblock .content code {
-  background-color: #f4f4f4;
+  background-color: #fafafa;
   color: #666666;
   overflow: hidden;
 }
