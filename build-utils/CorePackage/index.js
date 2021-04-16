@@ -30,10 +30,15 @@ function getClassDescription(c) {
   return description;
 }
 
-function getClassName(name) {
-  const pieces = name.split('/');
+function getClassName(moduleName, className) {
+  const pieces = moduleName.split('/');
 
-  if (pieces.length === 2) return pieces[1];
+  if (pieces.length === 2) {
+    // Support type-sensitive names
+    if (className) return className;
+
+    return pieces[1];
+  }
 
   // Support ui-prefixed names
   return `${pieces[1].toUpperCase()} / ${pieces[2]}`;
@@ -49,7 +54,7 @@ function generateModuleHTML(m, AllInterfaces, AllTypeAliases) {
 
   // Pull basic data about the class
   const description = getClassDescription(Classes[0]);
-  const name = getClassName(m.name);
+  const name = getClassName(m.name, (Classes[0].name));
 
   // Look for a Constructor-specific method
   let constructor = Classes[0].children.find(({ kindString }) => kindString === 'Constructor');
