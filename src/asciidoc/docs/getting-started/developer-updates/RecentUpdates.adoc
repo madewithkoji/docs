@@ -48,6 +48,12 @@ The new `Koji.ui.upload` class enables file uploads from the frontend of your Ko
 You can use this method to upload media created or captured by the user as part of the template experience.
 For example, recording a video or drawing on a canvas.
 
+==== Additional changes
+
+* Define products that hold transactions in a pending state until you manually capture them.
+* Add watermarks or specify cropping constraints for uploaded videos.
+* Various fixes and features to improve the usability and functionality of the Core package methods.
+
 === Koji platform updates
 
 ==== Developer experience enhancements for in-app purchases
@@ -69,13 +75,17 @@ image::live-analytics-apr2021.png[Live analytics]
 * The color picker control now saves your three most recently used colors.
 * Tapping *Cancel* or *Back* when editing a Koji now returns to the Koji instead of the home page.
 * The Koji editor has improved performance for a better experience when editing your code.
+// tag::highlights[]
 
-==== Additional changes
+==== Changes to withdrawals, refunds, and fees
 
+* Template developers can now determine the fee percentage for in-app purchases in their templates.
+The developer receives 60% of the fees collected for all of these transactions.
 * Automatic withdrawals are now available for some countries outside the US.
+// end::highlights[]
 If automatic withdrawals are not supported for your country, you can https://withkoji.atlassian.net/servicedesk/customer/portal/1[contact the Koji team] and we can process your withdrawal manually.
-* The fee schedule for in-app purchases has been updated to a fixed rate of 15%.
-The template developer now receives 60% of the fees collected, and evolution/lineage payments are no longer applied.
+* For refunds of purchases made with a credit or debit card, the balance is now refunded to that debit or credit card, instead of your Koji wallet.
+* Evolution/lineage payments are no longer applied.
 * Paid subscriptions are no longer available.
 
 ==== Bug fixes
