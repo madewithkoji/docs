@@ -234,7 +234,7 @@ const CorePackage = (props) => {
         const [slug, hash] = target.split('#');
 
         if (slug) {
-          const page = props.data.allSitePage.nodes.find(({ context }) => context.slug && context.slug === slug);
+          const page = props.data.allSitePage.nodes.find(({ context }) => context && context.slug && context.slug === slug);
 
           if (page) {
             let href = page.path;
