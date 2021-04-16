@@ -19,53 +19,53 @@ include::../../docs/_includes/frontend-basic-use.adoc[tag=all]
 
 == Properties
 
-[id=".analytics", reftext="analytics"]
+[.hcode, id=".analytics", reftext="analytics"]
 === .analytics
 
 _<<core-frontend-analytics#,Analytics>>_, Class that enables you to track custom events in your Koji template.
 
-[id=".configInitialized", reftext="configInitialized"]
+[.hcode, id=".configInitialized", reftext="configInitialized"]
 === .configInitialized
 
 _Boolean_, Indicates whether the package has been <<.config, initialized with configuration data>>.
 Defaults to `false`.
 
-[id=".dispatch", reftext="dispatch"]
+[.hcode, id=".dispatch", reftext="dispatch"]
 === .dispatch
 
 _<<core-frontend-dispatch#,Dispatch>>_, Class that implements a dispatch system for real-time communication on the frontend of your Koji template.
 
-[id=".iap", reftext="iap"]
+[.hcode, id=".iap", reftext="iap"]
 === .iap
 
 _<<core-frontend-iap#,IAP>>_, Class that manages in-app purchase transactions on the frontend of your Koji template.
 
-[id=".identity", reftext="identity"]
+[.hcode, id=".identity", reftext="identity"]
 === .identity
 
 _<<core-frontend-identity#,Identity>>_, Class that manages authentication and authorization on the frontend of your Koji template.
 
-[id=".isReady", reftext="isReady"]
+[.hcode, id=".isReady", reftext="isReady"]
 === .isReady
 
 _Boolean_, Indicates whether the Koji is <<.ready, ready to start receiving events>>.
 
-[id=".playerState", reftext="playerState"]
+[.hcode, id=".playerState", reftext="playerState"]
 === .playerState
 
 _<<core-frontend-playerstate#,PlayerState>>_, Class that manages the state of the Koji player to enable distinct experiences for different users and views.
 
-[id=".projectId", reftext="projectId"]
+[.hcode, id=".projectId", reftext="projectId"]
 === .projectId
 
 _String_, (Optional) Unique identifier for the Koji.
 
-[id=".remix", reftext="remix"]
+[.hcode, id=".remix", reftext="remix"]
 === .remix
 
 _<<core-frontend-remix#,Remix>>_, Class that manages the remixing experience for your Koji template.
 
-[id=".services", reftext="services"]
+[.hcode, id=".services", reftext="services"]
 === .services
 
 _<<Services>>_, Object that provides access to service endpoints in the Koji.
@@ -76,7 +76,7 @@ For example, you can use this property to route a request to a backend service.
 [source,javascript]
 const backendURL = Koji.services.backend
 
-[id=".ui", reftext="ui"]
+[.hcode, id=".ui", reftext="ui"]
 === .ui
 
 _UI_, Class that provides common user interface elements for use in your Koji template.
@@ -89,7 +89,7 @@ Exposes the following classes:
 
 == Methods
 
-[id=".config", reftext="config"]
+[.hcode, id=".config", reftext="config"]
 === .config(kojiConfig, kojiConfigOptions)
 
 Initializes this package for use with configuration data from the `koji.json` file.
@@ -109,7 +109,7 @@ NOTE: A template should initialize the package one time, before any data in the 
 Koji.config(require('././koji.json'));
 
 
-[id=".ready", reftext="ready"]
+[.hcode, id=".ready", reftext="ready"]
 === .ready()
 
 Indicates that the Koji is ready to start receiving events.
