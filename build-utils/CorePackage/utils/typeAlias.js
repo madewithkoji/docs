@@ -96,7 +96,7 @@ function renderTypeAlias(typeAlias, interfaces) {
           <h4>Possible values</h4>
           <div class="ulist">
             <ul>
-              ${unionOptions.filter((u) => u !== null).map((unionOption) => `<li>${renderParameterType({ type: unionOption })}</li>`).join('')}
+              ${unionOptions.filter((u) => u !== null && u.value !== null).map((unionOption) => `<li>${renderParameterType({ type: unionOption })}</li>`).join('')}
             </ul>
           </div>
         </div>
