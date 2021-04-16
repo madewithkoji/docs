@@ -22,10 +22,11 @@ function renderParameterType(parameter) {
     const validArrays = parameter.type.types.filter(({ type }) => type && type === 'array').map(({ elementType }) => (elementType.type && elementType.type === 'reference' && elementType.id) ? `<a href="#${elementType.name}">${capitalize(elementType.name)}</a>[]` : `${capitalize(elementType.name)}[]`);
     const validTypes = parameter.type.types.filter(({ name }) => name && name !== 'undefined').map(({ id, name, type }) => (type && type === 'reference' && id) ? `<a href="#${name}">${capitalize(name)}</a>` : capitalize(name));
     const validValues = parameter.type.types.filter(({ type }) => type && type === 'literal').map(({ value }) => value === null ? 'null' : `'${value}'`);
+    const validIndexSignatures = parameter.type.types.filter(({ declaration }) => declaration && declaration.indexSignature).map(({ declaration }) => `[index: ${declaration.indexSignature.parameters[0].type.name}]: any`);
 
     if (validTypes.length === 1) return validTypes[0];
 
-    return [...validArrays, ...validTypes, ...validValues].join(' | ');
+    return [...validIndexSignatures, ...validArrays, ...validTypes, ...validValues].join(' | ');
   }
 
   if (parameter.type.type === 'array') {
