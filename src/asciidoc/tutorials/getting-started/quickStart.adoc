@@ -9,7 +9,7 @@ Along the way, you'll learn some general web development topics along with the f
 NOTE: This tutorial provides a step-by-step introduction for developers who are new to Koji, with or without web development experience.
 
 ////
-If you prefer to jump straight into code, go through <<quick-start#, the Koji quick-start tutorial>>.
+If you prefer to jump straight into code, go through <<adv-quick-start#, the Koji Advanced Quick Start>>.
 ////
 
 == Sections

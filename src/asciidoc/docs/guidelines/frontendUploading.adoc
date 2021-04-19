@@ -16,7 +16,7 @@ Then, you configure the frontend to retrieve a presigned URL from the backend an
 This guide covers advanced topics.
 It is suggested that you are familiar with the following topics before proceeding.
 
-include::{includespath}/prereqs.adoc[tag=webdev;expressjs;remixproc;customvcc;backend;kojidb]
+include::{includespath}/prereqs.adoc[tags=webdev;expressjs;remixproc;customvcc;backend;kojidb]
 * Performing HTTP requests (this example uses https://github.com/axios/axios[axios]).
 
 == Configuring the backend

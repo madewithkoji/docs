@@ -10,7 +10,7 @@ image::magazine-cover.png[Make a magazine cover template on Koji,role="img-overv
 
 === Prerequisites
 
-include::{includespath}/prereqs.adoc[tag=webdev;remixproc]
+include::{includespath}/prereqs.adoc[tags=webdev;remixproc]
 
 === Level
 

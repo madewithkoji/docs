@@ -11,7 +11,7 @@ image::cat-selector.png[Make a custom VCC on Koji,role="img-overview"]
 
 === Prerequisites
 
-include::{includespath}/prereqs.adoc[tag=webdev;3papi;remixproc;customvccopt]
+include::{includespath}/prereqs.adoc[tags=webdev;3papi;remixproc;customvccopt]
 
 === Level
 
