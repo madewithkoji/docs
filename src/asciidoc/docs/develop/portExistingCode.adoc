@@ -10,9 +10,7 @@ You will make some updates to the game to make it customizable, and then you wil
 
 == Prerequisites
 
-include::{includespath}/prereqs.adoc[tag=gitbasic]
-include::{includespath}/prereqs.adoc[tag=remixproc]
-include::{includespath}/prereqs.adoc[tag=customvcc]
+include::{includespath}/prereqs.adoc[tag=gitbasic;remixproc;customvcc]
 
 == Starting from a scaffold
 

@@ -11,11 +11,7 @@ image::vote-counter.png[Make a vote counter template on Koji,role="img-overview"
 
 === Prerequisites
 
-include::{includespath}/prereqs.adoc[tag=webdev]
-include::{includespath}/prereqs.adoc[tag=remixproc]
-include::{includespath}/prereqs.adoc[tag=backend]
-include::{includespath}/prereqs.adoc[tag=svcmap]
-include::{includespath}/prereqs.adoc[tag=kojidb]
+include::{includespath}/prereqs.adoc[tag=webdev;remixproc;backend;svcmap;kojidb]
 
 === Level
 

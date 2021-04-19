@@ -1,8 +1,0 @@
-= Example based on the starter guides
-
-// tag::all[]
-[TIP]
-====
-To build a simple template with these features, go through <<quick-start#, the Koji quick-start tutorial>>.
-====
-// end::all[]

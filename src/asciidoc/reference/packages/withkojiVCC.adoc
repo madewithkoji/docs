@@ -599,4 +599,3 @@ const password = await keystore.resolveValue(res.locals.koji.images.premium_imag
 
 * https://github.com/madewithkoji/koji-vcc[@withkoji/vcc on Github]
 * <<instant-remixing#>>
-* <<start-guide-1#>>

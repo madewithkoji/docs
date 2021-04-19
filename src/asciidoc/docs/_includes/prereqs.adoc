@@ -62,7 +62,7 @@ For an overview, see <<add-service#>>.
 
 // tag::kojidb[]
 * Basic understanding of the Koji database.
-See the <<withkoji-database-package#>> package reference.
+See <<koji-database#>>.
 // end::kojidb[]
 
 // end::all[]

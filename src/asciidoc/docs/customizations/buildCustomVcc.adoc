@@ -13,8 +13,7 @@ After completing the tutorial, you will be able to use your custom VCC interchan
 
 == Prerequisites
 
-include::{includespath}/prereqs.adoc[tag=webdev]
-include::{includespath}/prereqs.adoc[tag=remixproc]
+include::{includespath}/prereqs.adoc[tag=webdev;remixproc]
 
 == Setting up the consumer application
 

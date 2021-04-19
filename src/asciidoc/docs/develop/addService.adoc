@@ -12,9 +12,7 @@ In this tutorial, you will add a backend service to an existing project, and con
 
 == Prerequisites
 
-include::{includespath}/prereqs.adoc[tag=webdev]
-include::{includespath}/prereqs.adoc[tag=remixproc]
-include::{includespath}/prereqs.adoc[tag=customvcc]
+include::{includespath}/prereqs.adoc[tag=webdev;remixproc;customvcc]
 
 == Setting up the template
 
