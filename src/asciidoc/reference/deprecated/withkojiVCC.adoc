@@ -598,4 +598,5 @@ const password = await keystore.resolveValue(res.locals.koji.images.premium_imag
 == Related resources
 
 * https://github.com/madewithkoji/koji-vcc[@withkoji/vcc on Github]
-* <<instant-remixing#>>
+* Core package replacement modules: <<core-frontend-remix#, Remix (frontend)>>, <<core-frontend-playerstate#, PlayerState (frontend)>>, <<core-frontend-ui-capture#, Capture>>, <<core-frontend-ui-navigate#, Navigate>>, <<core-frontend-ui-present#, Present>>, <<core-backend-secret#, Secret>>, <<core-backend-overview#_middleware, middleware>>
+* <<migrate-koji-core#>>

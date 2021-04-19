@@ -2,13 +2,13 @@
 :page-slug: 2020-updates
 :page-description: Brief digest of updates in 2020 to the Koji platform and developer site.
 
-This digest summarizes updates to the Koji platform, packages, and developer site that occurred during 2020.
+This digest summarizes updates to the Koji platform, packages, and developer site from 2020.
 For the latest updates, see <<developer-updates#>>.
 
-== 2020
+include::../../_includes/tip-discord-server.adoc[tags=*]
 
 // tag::highlights[]
-=== December 23
+== December 23
 
 * The Koji debugger is now available to enable live <<testing-templates#,testing and debugging>> in a production environment.
 // end::highlights[]
@@ -35,15 +35,13 @@ To use this feature in your templates, enable the `hideExtensions` type option.
 ** Fixed a bug that incorrectly prompted anonymous users to log in when remixing templates with secure content, such as premium images.
 // tag::highlights[]
 
-=== December 15
+== December 15
 
 * The following features are now available on the Koji platform.
 ** The <<video#,video VCC>> can now support HTTP Live Streaming (HLS) for delivery of longer content, such as courses and short films.
 // end::highlights[]
 To use this feature in your templates, enable the `hls` type option.
-// tag::highlights[]
 ** Creators can now publish subscription-only Kojis and charge a fee for their premium content, without additional template development or configuration.
-// end::highlights[]
 To offer premium content, configure a subscription from your https://withkoji.com/creator[creator dashboard].
 Then, when publishing a remix, set the *Subscriber only* option to designate the Koji as part of your subscription offering.
 +
@@ -66,7 +64,7 @@ To advance to a preview, use the new `finish` method.
 ** New content is available to help Koji developers get the most value from their templates, including <<template-versions#>>, <<testing-templates#>>, and <<plugins#>>.
 ** The site design and navigation have been updated.
 
-=== November 24
+== November 24
 
 // end::highlights[]
 * The following features are now available in the <<withkoji-koji-auth-sdk#>> package.
@@ -103,7 +101,7 @@ Plugins are available to add common functionality, such as Google Analytics and 
 * On the Koji platform, your new https://withkoji.com/creator[creator dashboard] replaces your evolution dashboard.
 * On the developer site, new resources are available to help Koji developers solve common problems, including <<frontend-uploading#>> and <<persist-session-data#>>.
 
-=== November 13
+== November 13
 
 * The new <<koji-vcc#, koji VCC>> enables remixers to create a new Koji or select an existing Koji, either from their profile or from a URL.
 The VCC stores the URL as the value.
@@ -116,7 +114,7 @@ The VCC stores the URL as the value.
 image::imageVCC-nov2020.png[Image VCC]
 // tag::highlights[]
 
-=== November 5
+== November 5
 
 * It's now easier to withdraw funds from your Koji wallet.
 Simply tap your profile picture, and then tap *Wallet > Withdraw*.
@@ -131,7 +129,7 @@ The callback function now receives the receipt ID on successful purchases.
 * The `showmodal` method has been removed from the @withkoji/custom-vcc-sdk package.
 // tag::highlights[]
 
-=== October 29
+== October 29
 
 * The Koji platform now allows you to edit a Koji you created and republish it to the same URL.
 // end::highlights[]
@@ -160,7 +158,7 @@ For updated documentation, see <<rich-preview-image#>>.
 * On the developer site, updated content is available to help new Koji developers onboard more quickly, including <<instant-remixing#>> (new), <<templates#>> (updated), and <<introduction#>> (updated).
 // tag::highlights[]
 
-=== October 19
+== October 19
 
 // end::highlights[]
 .Koji platform updates
@@ -187,7 +185,7 @@ Then, go to *More > Manage this Koji > Use as Magic Link*.
 * Several pages have been updated with new code samples, including <<add-service#>> and <<port-existing-code#>>.
 * The site design and navigation have been updated.
 
-=== October 12
+== October 12
 
 * Dynamic receipts are now available for handling fulfillment of <<withkoji-koji-iap-package#, in-app purchases>>.
 Dynamic receipts enable you to display a route in a Koji from a transaction receipt.
@@ -201,7 +199,7 @@ For example, `dynamic-receipt=buyer` or `dynamic-receipt=seller`.
 * Step-by-step instructions for extending your first template are now available in four “flavors” – React, Vanilla JS, Angular, and Svelte.
 * Several pages were updated based on your feedback, including <<vcc-overview#>> and <<magazine-cover-blueprint#, Magazine cover blueprint>>.
 
-=== October 5
+== October 5
 
 * Updated reference docs are now available for the <<withkoji-database-package#,Database>>, <<withkoji-dispatch-package#,Dispatch>>, and <<withkoji-custom-vcc-sdk#,Custom VCC>> packages.
 * Step-by-step instructions for developing your first template are now available in *four* “flavors” – React, Vanilla JS, Angular, and Svelte.
@@ -211,7 +209,7 @@ To open a list of starter scaffolds, you can click *New repository*.
 image::my-repositories-oct2020.png[My repositories]
 * Instructions were added to support <<work-locally#, working locally on Windows>>.
 
-=== September 28
+== September 28
 
 * Enhanced in-app purchases with the following new features:
 ** Users now receive email and SMS receipts when they send or receive money via in-app purchases.
@@ -224,7 +222,7 @@ For updated developer documentation, see the <<withkoji-koji-iap-package#,packag
 * Added a footer on the developer site with convenient links to key Koji features and resources.
 * Fixed intermittent layout and link errors on the developer site.
 
-=== September 15
+== September 15
 
 * Updated the *Remix* button on the Koji platform.
 To improve the usability and enhance functionality, the button now appears in the top right and allows remixers to access additional controls.
@@ -233,14 +231,14 @@ image::remix-button-sept2020.png[Remix button]
 * Published the <<withkoji-koji-iap-package#,package reference for Koji in-app purchases>>.
 * Updated the developer site navigation.
 
-=== September 9
+== September 9
 
 * Released a new https://developer.withkoji.com[developer homepage].
 * Published guidelines and instructions for <<contribute-koji-developers#,contributing to the Koji developer site>>.
 * Added this changelog.
 * Updated styling and added support for Font Awesome icons.
 
-=== August 31
+== August 31
 
 * Released a major upgrade to code blocks on the developer site.
 +
@@ -256,13 +254,13 @@ This option is useful for preventing unnecessary round trip notifications in cas
 For updated documentation, see the <<withkoji-vcc-package#.onSetValue>> reference.
 * Enhanced metadata on the developer site.
 
-=== August 24
+== August 24
 
 * Added the <<withkoji-user-defaults-package#,User Defaults package>> for accessing user data and preferences across Koji templates.
 * Added new videos on the  https://www.youtube.com/channel/UCc5jM6NwVNQc7b5APigEsMw[Koji YouTube channel] to help inspire users to remix and share templates.
 * Updated the code samples for starting the watcher, and fixed bugs for the developer site, based on your feedback.
 
-=== August 17
+== August 17
 
 * Added a Vanilla JS version of the <<magazine-cover-blueprint#,magazine cover blueprint>> on the developer site.
 * Changed the Koji screenshot feature for rich preview (Open Graph) images.
@@ -270,7 +268,7 @@ For the current guidelines and requirements, see <<rich-preview-image#>>.
 * Removed the `dismissOnCommit` type option for VCCs from the documentation because it is no longer supported on the platform.
 * Made additional bug fixes and responses to your feedback.
 
-=== August 11
+== August 11
 
 Added the <<cat-selector-blueprint#, cat selector blueprint>> as a new resource on the developer site.
 
@@ -278,7 +276,7 @@ Added the <<cat-selector-blueprint#, cat selector blueprint>> as a new resource 
 * Integrates with a third-party API to retrieve a list of options.
 * Demonstrates how to style elements based on the remixer’s Koji theme.
 
-=== August 5
+== August 5
 
 Added the <<vote-counter-blueprint#, vote counter blueprint>> as a new resource on the developer site.
 
@@ -286,7 +284,7 @@ Added the <<vote-counter-blueprint#, vote counter blueprint>> as a new resource 
 * Demonstrates Koji database and dispatch packages in action.
 * Includes code snippets in React and in Vanilla JS - pick your favorite!
 
-=== August 4
+== August 4
 
 Launched the new <<introduction#,home for Koji developer resources>>.
 
