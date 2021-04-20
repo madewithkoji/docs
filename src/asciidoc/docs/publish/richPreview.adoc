@@ -26,8 +26,6 @@ image::Koji-screenshot=1.svg[Render a view for the rich preview image]
 
 For the following example, assume the template supports remixes of the title, font size, and logo.
 
-include::../_includes/starterExamples.adoc[tag=all]
-
 . In your application code, add a conditional statement to display a different image for social shares.
 For example:
 +

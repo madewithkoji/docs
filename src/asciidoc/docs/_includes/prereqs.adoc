@@ -1,0 +1,68 @@
+= Prerequisites
+
+////
+  Usage:
+    :includespath: ../_includes
+
+    include::{includespath}/prereqs.adoc[tag=webdev]
+    include::{includespath}/prereqs.adoc[tag=expressjs]
+    include::{includespath}/prereqs.adoc[tag=gitbasic]
+    include::{includespath}/prereqs.adoc[tag=3papi]
+    include::{includespath}/prereqs.adoc[tag=remixproc]
+    include::{includespath}/prereqs.adoc[tag=customvcc]
+    include::{includespath}/prereqs.adoc[tag=customvccopt]
+    include::{includespath}/prereqs.adoc[tag=backend]
+    include::{includespath}/prereqs.adoc[tag=svcmap]
+    include::{includespath}/prereqs.adoc[tag=kojidb]
+////
+
+
+// tag::all[]
+
+// tag::webdev[]
+* Familiarity with web development.
+React and ES6 basics are a plus.
+// end::webdev[]
+
+// tag::expressjs[]
+* Familiarity with the Express.js web framework.
+// end::expressjs[]
+
+// tag::gitbasic[]
+* Familiarity with basic Git commands.
+// end::gitbasic[]
+
+// tag::3papi[]
+* Understanding of third-party API use is a plus.
+// end::3papi[]
+
+// tag::remixproc[]
+* Familiarity with the Koji editor and remix process.
+For an overview, go through <<quick-start#, the Koji quick-start tutorial>>.
+// end::remixproc[]
+
+// tag::customvcc[]
+* Familiarity with the Koji VCC package.
+For an overview, see <<build-custom-vcc#>>.
+// end::customvcc[]
+
+// tag::customvccopt[]
+* (Optional) Familiarity with Koji custom VCCs.
+For an overview, see <<build-custom-vcc#>>.
+// end::customvccopt[]
+
+// tag::backend[]
+* Basic understanding of backend communication.
+// end::backend[]
+
+// tag::svcmap[]
+* Basic understanding of the Koji service map.
+For an overview, see <<add-service#>>.
+// end::svcmap[]
+
+// tag::kojidb[]
+* Basic understanding of the Koji database.
+See <<koji-database#>>.
+// end::kojidb[]
+
+// end::all[]
