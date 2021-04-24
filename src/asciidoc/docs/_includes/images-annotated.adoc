@@ -1,0 +1,25 @@
+= Annotated images
+
+////
+  Usage:
+    :includespath: ../_includes
+
+    include::{includespath}/images-annotated.adoc[tag=editorsections]
+////
+
+
+// tag::all[]
+
+// tag::editorsections[]
+The Koji Code Editor space is divided into these sections.
+
+image::code-editor-sections-expanded.png[Layout of the Code Editor,100%,link={imagesDir}/code-editor-sections-expanded.png]
+
+[.size150pc]#&#x2460;# *Navigation pane* – Lists menu items and source code. +
+[.size150pc]#&#x2461;# *Editing pane* – Displays open files. Supports multiple tabs. +
+[.size150pc]#&#x2462;# *Preview pane* – Displays a live preview of the template and provides other testing and debugging tools. +
+[.size150pc]#&#x2463;# *Terminal pane* – Provides command-line access to the project's services. Supports multiple tabs and can be collapsed.
+// end::editorsections[]
+
+
+// end::all[]

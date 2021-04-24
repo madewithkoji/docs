@@ -317,3 +317,9 @@ ol > li p, ul > li p, ul dd, ol dd, .olist .olist, .ulist .olist, .olist .ulist 
 
 .clearfix:before, .clearfix:after, .float-group:before, .float-group:after { content: ""; display: table; }
 .clearfix:after, .float-group:after { clear: both; }
+
+.size150pc { font-size: 150%; }
+
+.singlespaced ul li p { margin: 0 !important; padding: 0 !important; }
+
+details summary { font-weight: normal !important; font-style: italic; font-size: 100% !important; }

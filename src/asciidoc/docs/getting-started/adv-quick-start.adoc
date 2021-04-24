@@ -1,0 +1,109 @@
+= Quick Start
+Eleanor Tesoro <eleanor@withkoji.org>
+:page-slug: adv-quick-start
+:page-description: Instructions to quickly start coding your first template.
+:experimental:
+:includespath: ../_includes
+
+
+Welcome to Koji!
+
+This quick start topic guides you through creating your first project in the Koji IDE and developing your first Koji template.
+You must be comfortable with developing web applications.
+
+* If you are new to Koji and have minimal or no web development experience, go through <<quick-start#, the Koji quick-start tutorial for beginners>> instead.
+* If you prefer to work locally, follow the <<work-locally,Working locally>> instructions instead.
+
+
+== Prerequisites
+
+[.singlespaced]
+* https://withkoji.com/[A Koji account]
+* Some understanding of the Koji concepts:
+** <<projects#,projects>>
+** <<templates#,templates>>
+** <<instant-remixing#,remixing>>
+
+
+== Getting started with Koji
+
+. Create a project.
+.. Go to the https://withkoji.com/create/for-developers[For Developers] page.
+.. Choose a scaffold and click its btn:[VIEW] button.
++
+.Image ...
+[%collapsible]
+====
+image::web-dev-scaffold-list.png[List of scaffolds,50%,link={imagesDir}/web-dev-scaffold-list.png]
+====
+.. In the scaffold's detail page, click the ellipses icon ( btn:[...] ) and choose menu:Fork[].
++
+.Image ...
+[%collapsible]
+====
+image::web-react-scaffold-ellipses-fork.png[Ellipses menu then fork,50%,link={imagesDir}/web-react-scaffold-ellipses-fork.png]
+====
+
+. Develop your project.
+.. In the Project Details page, rename your new project, then open it in the Code Editor.
++
+.Image: Project Details ...
+[%collapsible]
+====
+image::project-details-postfork-rename-open.png[Project details page: Rename Project button and Open in Code Editor button,50%,link={imagesDir}/project-details-postfork-rename-open.png]
+====
++
+.Image: Code Editor ...
+[%collapsible]
+====
+include::{includespath}/images-annotated.adoc[tag=editorsections]
+====
+.. Edit your source files.
++
+TIP: You can find your source files in the navigation pane under *Source Code*.
++
+... Migrate your project to the `@withkoji/core` package if needed. +
+Learn more: <<migrate-koji-core#_do_i_need_to_migrate,Do I need to migrate?>>
+... Install the `@withkoji/core` package.
++
+TIP: To install packages or to perform tasks on a command line, expand the terminal pane at the bottom.
++
+Learn more: <<withkoji-koji-core#>>
+... Develop the front end of your template. +
+Learn more: <<intro-to-contexts#>>
+... (Optional) Develop the back end of your template. +
+Learn more: <<add-service#>>, <<koji-database#>>
+
+. Publish your template.
++
+.Step details ...
+[%collapsible]
+====
+image::code-editor-publish-now.png[Publish Now,50%,link={imagesDir}/code-editor-publish-now.png]
+.. In the leftmost panel under *Project*, click the *Publish Now* link.
+.. Enter a name for the template.
+.. (Optional) Configure other settings.
+.. Click btn:[Publish New Version].
+.. After it is published, click the link in the success message to view your new template.
+====
+
+. Test your template. +
+Learn more: <<testing-templates#>>, <<template-checklist#>>
+
+
+// == Next steps
+
+[.sidebarblock]
+--
+You can later return to your list of projects and templates by going to https://withkoji.com/developer/projects[your developer portal page].
+--
+
+
+== Related topics
+
+[.singlespaced]
+* <<design-guidelines#>>
+* <<blueprints-overview#>>
+
+
+// DC-584

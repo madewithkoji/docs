@@ -22,6 +22,10 @@
               "slug": "templates"
             },
             {
+              "name": "Quick start",
+              "slug": "adv-quick-start"
+            },
+            {
               "name": "Migrating to the Koji core package",
               "slug": "migrate-koji-core"
             },

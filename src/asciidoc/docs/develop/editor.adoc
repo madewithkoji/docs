@@ -1,6 +1,8 @@
 = The Koji editor
 :page-slug: editor
 :page-description: Guide for the Koji editor, a browser-based IDE for developing and testing Koji templates.
+:includespath: ../_includes
+
 
 The Koji editor is a browser-based integrated development environment (IDE).
 You can use the Koji editor to create application and game templates.
@@ -8,16 +10,7 @@ The editor contains all of your project's code, Visual Customization Controls (V
 
 == Overview
 
-The Koji editor is divided into these sections:
-
-* *Navigation pane* – Lists menu items and source code.
-* *Editing pane* – Displays open files.
-Supports multiple tabs.
-* *Preview pane* – Displays a live preview of the template and provides other testing and debugging tools.
-* *Terminal pane* – Provides command line access to the project's services.
-Supports multiple tabs and can be collapsed.
-
-image::Koji-editor.png[Screenshot of the Koji editor process]
+include::{includespath}/images-annotated.adoc[tag=editorsections]
 
 == Koji editor code hosting and source control
 
