@@ -1,5 +1,14 @@
+/* Variables */
+:root {
+  /* colors */
+  --bg-blue-40:   rgba(224, 239, 255, 0.4); /* #E0EFFF; */
+  --bg-green-40:  rgba(217, 245, 233, 0.4); /* #D9F5E9; */
+  --bg-red-40:    rgba(253, 217, 215, 0.4); /* #FDD9D7; */
+  --bg-yellow-40: rgba(255, 249, 201, 0.4); /* #FFF9C9; */
+}
+
 /* Admonitions */
-.admonitionblock > table { padding: 8px 0; background: none; width: 100%; border-left: 4px solid #bfbfbf;background-color: #f7f7f7; }
+.admonitionblock > table { padding: 8px 0; background: none; width: 100%; border-left: 4px solid #bfbfbf; }  /* old: background-color: #f7f7f7; */
 .admonitionblock > table td.icon {
     text-align: center;
     width: 12px;
@@ -17,6 +26,11 @@
 .admonitionblock > table td.content { padding-left: 4px; padding-right: 40px; color: #404040; line-height: 1.5; font-size: 15px; }
 .admonitionblock > table td.content > :last-child > :last-child { margin-bottom: 0; }
 .admonitionblock > table p:first-child { margin-top: 0 !important; }
+.note { background-color: var(--bg-blue-40); }
+.tip { background-color: var(--bg-green-40); }
+.warning { background-color: var(--bg-red-40); }
+.important { background-color: var(--bg-yellow-40); }
+
 
 .listingblock + .admonitionblock, .admonitionblock + .listingblock, .admonitionblock + .admonitionblock { margin-top: 20px; }
 
