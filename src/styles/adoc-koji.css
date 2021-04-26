@@ -323,3 +323,5 @@ ol > li p, ul > li p, ul dd, ol dd, .olist .olist, .ulist .olist, .olist .ulist 
 .singlespaced ul li p { margin: 0 !important; padding: 0 !important; }
 
 details summary { font-weight: normal !important; font-style: italic; font-size: 100% !important; }
+
+.init-cap p:first-letter { text-transform: uppercase; }
