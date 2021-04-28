@@ -8,10 +8,15 @@
 
 
 koji::
-A mini web application that can be shared on all social platforms, embedded in any website, and sent via messengers and email. Internally, a koji is comprised of the core template and the custom remix settings.
+A mini web application that can be shared on all social platforms, embedded in any website, and sent via messengers and email.
+Internally, a koji is comprised of an associated template and the custom remix settings.
+Learn more: <<introduction#>>
 
 remix::
-The process of customizing a koji or a template. Or the custom koji resulting from a remix process.
+The process of customizing a koji or template.
+Or the custom koji resulting from a remix process.
+Learn more: <<instant-remixing#>>
 
 template::
-The code that runs a koji and its remixes.
+The underlying web application that powers a koji and its remixes.
+Learn more: <<templates#>>

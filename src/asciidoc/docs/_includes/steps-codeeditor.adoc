@@ -1,0 +1,23 @@
+= Steps for the Code Editor
+
+////
+  Usage:
+    :includespath: ../_includes
+
+    include::{includespath}/steps-codeeditor.adoc[tag=openproject-template2edit]
+    include::{includespath}/steps-codeeditor.adoc[tag=expand-terminal]
+////
+
+
+// tag::all[]
+
+// tag::openproject-template2edit[]
+. In https://withkoji.com/developer/projects[your developer portal page], open the project associated with the template to edit.
+// end::openproject-template2edit[]
+
+// tag::expand-terminal[]
+. Expand the terminal pane of the Code Editor.
+// end::expand-terminal[]
+
+
+// end::all[]
