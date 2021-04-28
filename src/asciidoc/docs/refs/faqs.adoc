@@ -1,0 +1,13 @@
+= FAQs
+:page-slug: faqs
+:page-description: Frequently asked questions
+// Settings:
+:experimental:
+// Refs:
+:includespath: ../_includes
+
+
+== General
+
+[[faq-nodejsnpmver]]What versions of Node.js and npm do kojis run on? ::
+include::{includespath}/misc.adoc[tag=nodejsnpmver]

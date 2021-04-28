@@ -28,23 +28,20 @@ You must be comfortable with developing web applications.
 == Getting started with Koji
 
 . Create a project.
++
+.Step details ...
+[%collapsible]
+====
 .. Go to the https://withkoji.com/create/for-developers[For Developers] page.
 .. Choose a scaffold and click its btn:[VIEW] button.
 +
-.Image ...
-[%collapsible]
-====
 image::web-dev-scaffold-list.png[List of scaffolds,50%,link={imagesDir}/web-dev-scaffold-list.png]
-====
 .. In the scaffold's detail page, click the ellipses icon ( btn:[...] ) and choose menu:Fork[].
 +
-.Image ...
-[%collapsible]
-====
 image::web-react-scaffold-ellipses-fork.png[Ellipses menu then fork,50%,link={imagesDir}/web-react-scaffold-ellipses-fork.png]
 ====
 
-. Develop your project.
+. Build your template.
 .. In the Project Details page, rename your new project, then open it in the Code Editor.
 +
 .Image: Project Details ...
@@ -93,10 +90,7 @@ Learn more: <<testing-templates#>>, <<template-checklist#>>
 
 // == Next steps
 
-[.sidebarblock]
---
-You can later return to your list of projects and templates by going to https://withkoji.com/developer/projects[your developer portal page].
---
+TIP: You can later return to your list of projects and templates by going to https://withkoji.com/developer/projects[your developer portal page].
 
 
 == Related topics
