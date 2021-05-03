@@ -6,17 +6,22 @@
 // Refs:
 :includespath: ../_includes
 
+In-app purchase (IAP)::
+A financial transaction made within a Koji.
 
-koji::
+Koji::
 A mini web application that can be shared on all social platforms, embedded in any website, and sent via messengers and email.
-Internally, a koji is comprised of an associated template and the custom remix settings.
+Internally, a Koji is comprised of the associated template and the custom remix settings.
 Learn more: <<introduction#>>
 
+player chrome::
+The Koji button on a user's window.
+
 remix::
-The process of customizing a koji or template.
-Or the custom koji resulting from a remix process.
+The process of customizing a Koji or template.
+Or the custom Koji resulting from a remix process.
 Learn more: <<instant-remixing#>>
 
 template::
-The underlying web application that powers a koji and its remixes.
+The underlying web application that powers a Koji and its remixes.
 Learn more: <<templates#>>

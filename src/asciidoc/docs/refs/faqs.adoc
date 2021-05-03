@@ -1,4 +1,4 @@
-= FAQs
+= Frequently Asked Questions (FAQs)
 :page-slug: faqs
 :page-description: Frequently asked questions
 // Settings:

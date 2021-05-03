@@ -24,6 +24,8 @@ For optimal rich preview support, design this view with the following considerat
 
 image::Koji-screenshot=1.svg[Render a view for the rich preview image]
 
+TIP: To improve the performance of your template, optimize your sharing image. For example, reduce the image size to 400x400 pixels, or load only the first frame of a gif.
+
 For the following example, assume the template supports remixes of the title, font size, and logo.
 
 . In your application code, add a conditional statement to display a different image for social shares.
