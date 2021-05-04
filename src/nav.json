@@ -242,6 +242,16 @@
           ]
         },
         {
+          "name": "References",
+          "root": "/refs",
+          "items": [
+            {
+              "name": "Glossary",
+              "slug": "glossary"
+            }
+          ]
+        },
+        {
           "name": "About Koji for developers",
           "root": "/about",
           "items": [
