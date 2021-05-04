@@ -1,6 +1,8 @@
 = The Koji editor
 :page-slug: editor
 :page-description: Guide for the Koji editor, a browser-based IDE for developing and testing Koji templates.
+:includespath: ../_includes
+
 
 The Koji editor is a browser-based integrated development environment (IDE).
 You can use the Koji editor to create application and game templates.
@@ -78,3 +80,51 @@ You can scan this code to preview the template on your mobile device.
 === Launching the debugger
 
 *Launch Debugger* opens the debugger in a new browser tab.
+
+
+[.faq]
+== Tips
+[id="faq-nodejsnpmver"]
+.What versions of Node.js and npm do Kojis run on?
+[%collapsible]
+====
+include::{includespath}/misc.adoc[tag=nodejsnpmver]
+====
+
+[id="faq-revert-kojiversion"]
+.How do I revert to an old version of my template?
+[%collapsible]
+====
+To revert to a previous commit,
+
+include::{includespath}/steps-codeeditor.adoc[tag=openproject-template2edit]
+
+include::{includespath}/steps-codeeditor.adoc[tag=expand-terminal]
+
+. Run `git log` and copy the hash code of the commit you want to restore.
+
+. In the terminal panel, enter `git reset --hard <commit-hash>`.
++
+WARNING: You will lose all the changes you made after the commit you restore.
+
+TIP: Publish more frequently for a more detailed commit history.
+====
+
+[id="faq-reopen-frontend-terminal"]
+.How do I reopen the frontend terminal?
+[%collapsible]
+====
+To re-open the frontend terminal:
+
+. Click on the [.tabname]`New` tab.
+
+. Run:
++
+....
+cd frontend
+npm start
+....
+====
+
+
+// DC-483 DC-485

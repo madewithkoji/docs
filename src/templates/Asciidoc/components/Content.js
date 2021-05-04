@@ -6,7 +6,7 @@ import { BLUE } from '../../../constants/colors';
 const Content = styled.div`
   width: 100%;
   max-width: 720px;
-  
+
   @media screen and (max-width: 1023px) {
     width: 100%;
   }
@@ -363,6 +363,18 @@ const Content = styled.div`
         background-color: #FFF;
         border-radius: 1px;
       }
+    }
+  }
+
+  .faq details {
+    summary {
+      font-weight: bold !important;
+      font-style: normal !important;
+      font-size: 120% !important;
+      padding-top: 15px;
+    }
+    .content {
+      padding: 0px 20px;
     }
   }
 
