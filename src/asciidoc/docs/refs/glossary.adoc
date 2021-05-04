@@ -6,6 +6,9 @@
 // Refs:
 :includespath: ../_includes
 
+Entitlement::
+Configuration settings that allow the template or Koji to use certain platform features, such as enabling remixing or defining product information for in-app purchases.
+
 In-app purchase (IAP)::
 A financial transaction made within a Koji.
 
@@ -25,3 +28,6 @@ Learn more: <<instant-remixing#>>
 template::
 The underlying web application that powers a Koji and its remixes.
 Learn more: <<templates#>>
+
+
+// DC-599

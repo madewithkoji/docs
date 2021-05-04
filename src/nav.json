@@ -250,10 +250,6 @@
           "root": "/refs",
           "items": [
             {
-              "name": "FAQs",
-              "slug": "faqs"
-            },
-            {
               "name": "Glossary",
               "slug": "glossary"
             }

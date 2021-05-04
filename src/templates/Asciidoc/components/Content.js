@@ -6,7 +6,7 @@ import { BLUE } from '../../../constants/colors';
 const Content = styled.div`
   width: 100%;
   max-width: 720px;
-  
+
   @media screen and (max-width: 1023px) {
     width: 100%;
   }
@@ -225,7 +225,7 @@ const Content = styled.div`
     }
   }
 
-  .init-cap::first-letter {
+  .init-cap p::first-letter {
     text-transform: capitalize;
   }
   .title, .tableblock > caption {
@@ -365,6 +365,17 @@ const Content = styled.div`
       }
     }
   }
+
+  .tabname { font-weight: bold; }
+
+  .size150pc { font-size: 150%; }
+
+  .singlespaced ul li p { margin: 0 !important; padding: 0 !important; }
+
+  .faq details summary { font-weight: bold !important; font-style: normal !important; font-size: 120% !important; padding-top: 15px; }
+  .faq details .content { padding: 0px 20px; }
+
+  details summary { font-weight: normal !important; font-style: italic; font-size: 100% !important; }
 
 `;
 

@@ -331,16 +331,3 @@ ol > li p, ul > li p, ul dd, ol dd, .olist .olist, .ulist .olist, .olist .ulist 
 
 .clearfix:before, .clearfix:after, .float-group:before, .float-group:after { content: ""; display: table; }
 .clearfix:after, .float-group:after { clear: both; }
-
-.size150pc { font-size: 150%; }
-
-.singlespaced ul li p { margin: 0 !important; padding: 0 !important; }
-
-.faq details summary { font-weight: bold !important; font-style: normal !important; font-size: 120% !important; padding-top: 15px; }
-.faq details .content { padding: 0px 20px; }
-
-details summary { font-weight: normal !important; font-style: italic; font-size: 100% !important; }
-
-.init-cap p:first-letter { text-transform: uppercase; }
-
-.tabname { font-weight: bold; }
