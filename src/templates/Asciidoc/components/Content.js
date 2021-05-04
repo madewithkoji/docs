@@ -6,7 +6,7 @@ import { BLUE } from '../../../constants/colors';
 const Content = styled.div`
   width: 100%;
   max-width: 720px;
-  
+
   @media screen and (max-width: 1023px) {
     width: 100%;
   }
@@ -225,7 +225,7 @@ const Content = styled.div`
     }
   }
 
-  .init-cap::first-letter {
+  .init-cap p::first-letter {
     text-transform: capitalize;
   }
   .title, .tableblock > caption {
