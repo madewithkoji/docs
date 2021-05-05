@@ -95,15 +95,17 @@ include::{includespath}/misc.adoc[tag=nodejsnpmver]
 .How do I revert to an old version of my template?
 [%collapsible]
 ====
-To revert to a previous commit,
+To revert your source code to a previous commit:
 
 include::{includespath}/steps-codeeditor.adoc[tag=openproject-template2edit]
 
-include::{includespath}/steps-codeeditor.adoc[tag=expand-terminal]
+include::{includespath}/steps-codeeditor.adoc[tag=open-in-code-editor]
+
+. Expand the terminal pane.
 
 . Run `git log` and copy the hash code of the commit you want to restore.
 
-. In the terminal panel, enter `git reset --hard <commit-hash>`.
+. In the terminal pane, enter `git reset --hard <commit-hash>`.
 +
 WARNING: You will lose all the changes you made after the commit you restore.
 
@@ -116,7 +118,7 @@ TIP: Publish more frequently for a more detailed commit history.
 ====
 To re-open the frontend terminal:
 
-. Click on the [.tabname]`New` tab.
+. Click the *New* tab.
 
 . Run:
 +
@@ -125,6 +127,3 @@ cd frontend
 npm start
 ....
 ====
-
-
-// DC-483 DC-485
