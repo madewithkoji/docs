@@ -18,14 +18,12 @@ You can also customize the sharing metadata by configuring an entitlement.
 To customize the sharing image for your template, render a custom view when the URL contains the `koji-screenshot=1` query parameter.
 For optimal rich preview support, design this view with the following considerations in mind.
 
-* Responsiveness.
-* Looks good with a square aspect ratio.
-* Includes customizable elements to generate unique previews of each remix.
+* The image is responsive.
+* The image looks good with a square aspect ratio.
+* The image is optimized. For example, you can use a third-party tool to reduce the image size to 400x400 pixels or load only the first frame of a gif.
+* The image includes customizable elements to generate unique previews of each remix.
 
 image::Koji-screenshot=1.svg[Render a view for the rich preview image]
-
-TIP: To improve the performance of your template, optimize your sharing image.
-For example, reduce the image size to 400x400 pixels, or load only the first frame of a gif.
 
 For the following example, assume the template supports remixes of the title, font size, and logo.
 
