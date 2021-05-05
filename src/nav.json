@@ -242,19 +242,13 @@
           ]
         },
         {
-          "name": "References",
-          "root": "/refs",
+          "name": "About Koji for developers",
+          "root": "/about",
           "items": [
             {
               "name": "Glossary",
               "slug": "glossary"
-            }
-          ]
-        },
-        {
-          "name": "About Koji for developers",
-          "root": "/about",
-          "items": [
+            },
             {
               "name": "Contributing to the developer site",
               "slug": "contribute-koji-developers"

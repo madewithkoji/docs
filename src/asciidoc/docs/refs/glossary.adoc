@@ -1,6 +1,6 @@
 = Glossary
 :page-slug: glossary
-:page-description: Definition of terms
+:page-description: Definitions of Koji-related terms.
 // Settings:
 :experimental:
 // Refs:
@@ -18,7 +18,7 @@ Internally, a Koji is comprised of the associated template and the custom remix 
 Learn more: <<introduction#>>
 
 player chrome::
-The Koji button on a user's window.
+The round Koji button in the Koji player, typically displaying the user's profile picture. When clicked, the button opens the user menu.
 
 remix::
 The process of customizing a Koji or template.
