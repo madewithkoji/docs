@@ -50,6 +50,11 @@ _<<core-frontend-identity#,Identity>>_, Class that manages authentication and au
 
 _Boolean_, Indicates whether the Koji is <<.ready, ready to start receiving events>>.
 
+[.hcode, id=".metadata", reftext="metadata"]
+=== .metadata
+
+_<<KojiMetadata>>_, Metadata about the project and creator.
+
 [.hcode, id=".playerState", reftext="playerState"]
 === .playerState
 
@@ -84,7 +89,7 @@ Exposes the following classes:
 
 * _<<core-frontend-ui-capture#,Capture>>_, Class that captures user input on the frontend of your Koji template.
 * _<<core-frontend-ui-navigate#,Navigate>>_, Class that provides methods for controlling navigation within your Koji template.
-* _<<core-frontend-ui-present#,Present>>_, Class that presents dialog boxes to users on the frontend of your Koji.
+* _<<core-frontend-ui-present#,Present>>_, Class that presents dialog boxes and system alerts to users on the frontend of your Koji.
 * _<<core-frontend-ui-upload#,Upload>>_, Class that uploads files from the frontend of your Koji directly to your project's CDN.
 
 == Methods
@@ -133,8 +138,20 @@ Configuration options for the Koji.
 
 ==== Properties
 
+* `metadata` – _<<KojiMetadata>>_, (Optional) Overrides for the platform-provided metadata.
 * `projectId` – _String_, (Optional) Unique identifier for the Koji.
 * `services` – _<<Services>>_, (Optional) Defines services for the Koji.
+
+=== KojiMetadata
+
+Metadata about the project and creator.
+This information is provided by the platform but can be overridden when the Koji is initialized.
+
+==== Properties
+
+* `projectId` – _String_, Unique identifier for the Koji.
+* `creatorUsername` – _String_, Creator's username.
+* `creatorProfilePicture` – _String_, URL reference to the creator's current profile picture.
 
 == Type aliases
 
