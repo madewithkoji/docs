@@ -70,8 +70,8 @@ To clone your Koji repository locally, you need these strings:
 * The *username* that you created when you registered with Koji.
 * An *access token*, which you must generate and store securely.
 +
-You should know your username by heart, and the access token is a 32-character, randomly-generated hexadecimal number, which you need to note in a safe place.
-* If the project has a backend, you need the values of the `KOJI_PROJECT_ID` and `KOJI_PROJECT_TOKEN` environment variables.
+The access token is a 32-character randomly-generated hexadecimal number, which you can use instead of a password when cloning your repositories.
+* The values of the `KOJI_PROJECT_ID` and `KOJI_PROJECT_TOKEN` environment variables, if the project has a backend component.
 
 === Obtaining an access key
 
