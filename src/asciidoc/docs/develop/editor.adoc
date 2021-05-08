@@ -1,20 +1,19 @@
-= The Koji Code Editor
+= The Koji code editor
 :page-slug: editor
-:page-description: Guide for the Koji Code Editor, a browser-based IDE for developing and testing a first-generation Koji.
+:page-description: Guide for the Koji code editor, a browser-based IDE for developing and testing your Koji.
 :includespath: ../_includes
 
-The Koji Code Editor is a browser-based integrated development environment (IDE) that you can use to develop and test a first-generation Koji.
-The Code Editor provides easy access to the following:
+The Koji code editor is a browser-based integrated development environment (IDE) that you can use to develop and test your Koji.
+The code editor provides easy access to the following:
 [.singlespaced]
-* All of your project's code
-* Visual Customization Controls (VCCs) generated from the project's code
-* Production tools and assets, such as the Koji database
-* Tools to publish and deploy your Koji
+* All of your project's code.
+* Tools to preview and test your Koji.
+* Tools to publish and deploy your Koji.
 
 
-== Overview
+== Opening a project in the Koji code editor
 
-To create a new Koji, you must set up a project and open it in the Koji Code Editor.
+To create a new Koji, you must set up a project and open it in the Koji code editor.
 [.singlespaced]
 . Create a project.
 +
@@ -23,7 +22,7 @@ include::{includespath}/steps-codeeditor.adoc[tag=createproject-details-collapsi
 +
 include::{includespath}/steps-codeeditor.adoc[tag=open-in-code-editor]
 
-To update an existing Koji, simply open the associated project in the Koji Code Editor.
+To update an existing Koji, open the associated project in the Koji code editor.
 [.singlespaced]
 . {blank}
 +
@@ -41,43 +40,29 @@ include::{includespath}/images-annotated.adoc[tag=editorsections]
 
 Each Koji project is stored in a Git repository in the cloud.
 
-When you fork an existing project or scaffold:
-[.singlespaced]
-* The Git repository of that project/scaffold is copied to your account.
-* A new project is created and opened in the Code Editor.
+When you fork an existing project or scaffold, the Git repository of that project/scaffold is copied to your account.
 
-When you use the Code Editor to publish your Koji, the Code Editor commits your changes and pushes the updated files to the `master` branch.
+When you use the code editor to publish your Koji, the code editor commits your changes and pushes the updated files to the `master` branch.
 This push triggers the deployment process.
 
 
-.Using other editors
-****
-You can use other editors instead of the Koji Code Editor and still access your Git repository.
-
-To determine the URL of your project's Git repository:
-[.singlespaced]
-. Open your project in the Code Editor.
-. Navigate to *Advanced > Repository Info*.
-
-Learn more: <<use-git#_cloning_the_git_repository>>
-****
-
-{blank}
-
 [IMPORTANT]
 ====
-If you made changes to your project files xref:work-locally.adoc[outside the Koji editor], you must update the project files before editing them in the Code Editor again.
+If you made changes to your project files xref:work-locally.adoc[outside the Koji editor], you must update the project files before editing them in the code editor again.
 [.singlespaced]
-. In the Koji Code Editor, expand the terminal pane.
+. In the Koji code editor, expand the terminal pane.
 . Run `git pull`.
 ====
 
 
 == Previewing your Koji
 
-You can select what is displayed in the preview pane.
+=== Previews in the code editor
+
+If your template includes different contexts or modes, you can select which context is displayed in the preview pane.
 
 * *Default* - Displays a fully functional preview of your Koji.
+The *Default* context is always enabled.
 
 * *Remix* - Displays what remixers see when customizing your Koji.
 
@@ -97,12 +82,10 @@ image::more.png[More menu]
 
 ** *Thumbnail* - Displays how your Koji will look if it's shared on social media.
 
-To learn more about using previews, see <<testing-templates#_testing_in_the_koji_editor,Testing in the Koji editor>>.
 
+=== Previews outside the code editor
 
-=== Previews outside the Code Editor
-
-You can also preview a Koji outside the Code Editor.
+You can also preview a Koji outside the code editor.
 
 * The QR code button image:{imagesDir}/QRcode.svg[QR code button] displays a QR code for your Koji.
 Scan this code to preview the Koji on your mobile device.
@@ -110,36 +93,36 @@ Scan this code to preview the Koji on your mobile device.
 * The remote staging button image:{imagesDir}/remote-staging.svg[Remote staging button] opens a preview of your Koji in a new browser tab.
 
 
-== Debugging
+=== Debugging
 
 To open the debugger in a new browser tab, click *Launch Debugger*.
 
 
 == Tips
 
-* While editing a plain text file, such as .html or .json, you can open menus with additional editing options.
+* While editing a plain text file, such as .js, .html, or .json, you can open menus with additional editing options.
 +
 .Learn how...
 [%collapsible]
 ====
 [.singlespaced]
-. In the Code Editor, move the focus to the editing pane where the contents of the text file is displayed.
-. Right-click anywhere in the editing pane for the contextual menu.
-. Press *F1* for the Command Palette menu.
+* To open a contextual menu, right-click anywhere in the editing pane.
+* To open the Command Palette, move your cursor focus inside the editing pane and press *F1*.
+
 ====
 
-* You can revert to an old version of your project.
+* You can revert to a previous version of your project.
 +
 .Learn how...
 [%collapsible]
 ====
+WARNING: You will lose all commmits that were done after the commit you intend to restore.
 [.singlespaced]
-. Open your project in the Code Editor.
+. Open your project in the code editor.
 . Expand the terminal pane.
 . Run `git log` and copy the hash code of the commit you want to restore.
 . In the terminal pane, enter `git reset --hard <commit-hash>`.
 +
-WARNING: You will lose all the changes you made after the commit you restore.
 ====
 
 * Publish more frequently for a more detailed commit history.
@@ -150,13 +133,14 @@ WARNING: You will lose all the changes you made after the commit you restore.
 [%collapsible]
 ====
 [.singlespaced]
-. In the Code Editor, click *+ New tab*.
+. In the code editor, expand the terminal pane.
+. Click *New tab*.
 . Run:
 +
-....
+----
 cd frontend
 npm start
-....
+----
 ====
 
 
