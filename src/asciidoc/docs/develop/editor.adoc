@@ -13,24 +13,8 @@ The code editor provides easy access to the following:
 
 == Opening a project in the Koji code editor
 
-Opening the code editor is different, depending on whether you're creating a new project or opening an existing one.
-
-
-If you're creating a new project, you must set up a project and open it in the Koji code editor.
-
-. Fork an existing project.
-+
-You can start from a https://withkoji.com/create/for-developers[developer scaffold] or from any Koji project that allows other developers to fork it.
-
+include::{includespath}/steps-codeeditor.adoc[tag=go-to-project-details]
 include::{includespath}/steps-codeeditor.adoc[tag=open-in-code-editor]
-
-
-If you're editing an existing project, open the associated project in the Koji code editor.
-
-include::{includespath}/steps-codeeditor.adoc[tag=openproject]
-
-include::{includespath}/steps-codeeditor.adoc[tag=open-in-code-editor]
-
 
 include::{includespath}/images-annotated.adoc[tag=editorsections]
 
@@ -95,8 +79,6 @@ Scan this code to preview the Koji on your mobile device.
 
 To open the debugger in a new browser tab, click *Launch Debugger*.
 
-Learn more: <<testingTemplates.adoc#, Testing templates>>
-
 
 == Tips
 
@@ -148,3 +130,8 @@ npm start
 ====
 include::{includespath}/misc.adoc[tag=nodejsnpmver]
 ====
+
+
+== Related resources
+
+* <<testing-templates#>>

@@ -4,43 +4,22 @@
   Usage:
     :includespath: ../_includes
 
-    include::{includespath}/steps-codeeditor.adoc[tag=createproject-details-collapsible]
-    include::{includespath}/steps-codeeditor.adoc[tag=openproject]
-    include::{includespath}/steps-codeeditor.adoc[tag=openproject-koji2edit]
+    include::{includespath}/steps-codeeditor.adoc[tag=go-to-project-details]
     include::{includespath}/steps-codeeditor.adoc[tag=open-in-code-editor]
 ////
 
 
 // tag::all[]
 
-
-// tag::createproject-details-collapsible[]
-.Step details ...
-[%collapsible]
-====
-.. Go to the https://withkoji.com/create/for-developers[For Developers] page.
-.. Choose a scaffold and click its *VIEW* button.
-+
-image::web-dev-scaffold-list.png[List of scaffolds,50%,link={imagesDir}/web-dev-scaffold-list.png]
-.. In the scaffold's detail page, expand the ellipses menu ( *...* ) and choose *Fork*.
-+
-image::web-react-scaffold-ellipses-fork.png[Choose Fork in the ellipses menu,50%,link={imagesDir}/web-react-scaffold-ellipses-fork.png]
-====
-// end::createproject-details-collapsible[]
-
-
-// tag::openproject[]
-. In https://withkoji.com/developer/projects[your Developer Portal page], select the project to edit.
-// end::openproject[]
-
-// tag::openproject-koji2edit[]
-. In https://withkoji.com/developer/projects[your Developer Portal page], open the project associated with the template to edit.
-// end::openproject-koji2edit[]
+// tag::go-to-project-details[]
+. Go to the *Project Details* page.
+* If you're creating a new project, you can fork https://withkoji.com/create/for-developers[any scaffold] or any Koji project that allows forking.
+* If you're editing an existing project, go to https://withkoji.com/developer/projects[your Developer Portal page] and click the project to edit.
+// end::go-to-project-details[]
 
 
 // tag::open-in-code-editor[]
 . In the *Project Details* page, click *Open in Code Editor*.
 // end::open-in-code-editor[]
-
 
 // end::all[]
