@@ -1,0 +1,306 @@
+= @withkoji/auth (deprecated)
+:page-slug: withkoji-koji-auth-sdk
+:page-description: Package that provides user authentication for Koji templates.
+
+include::../../docs/_includes/deprecatedPackage.adoc[tag=all]
+
+The @withkoji/auth package enables you to
+//tag::description[]
+authenticate users in Koji templates.
+//end::description[]
+
+This package provides methods for determining the current user's role (whether or not the user created the Koji).
+This information can be used to tailor the experience based on who is viewing the Koji.
+For example, you can design a protected "admin" experience that is accessible only to the creator of the Koji.
+It also enables the template to send notifications to the creator's Koji account.
+
+== Install
+
+Install the package in the frontend and backend services of your Koji project.
+
+[source,bash]
+----
+npm install --save @withkoji/auth
+----
+
+IMPORTANT: To support instant remixes of your template, you must also install the <<withkoji-vcc-package#>> package and implement the `VccMiddleware` on your backend server.
+This middleware maintains the environment variables for instant remixes, ensuring that user authentication applies to the correct remix version.
+
+== Auth
+
+[.hcode, id="new Auth", reftext="new Auth"]
+=== new Auth(projectID, projectToken)
+
+Instantiates `Auth`.
+
+==== Parameters
+
+* `projectID` – (Backend only) _String_, unique identifier for the Koji.
+* `projectToken` – (Backend only) _String_, secret key for the Koji.
+
+TIP: When instantiating `Auth` on the backend, you must provide these parameters, which are available as environment variables at runtime.
+For instant remixes, you must implement `VccMiddleware` to manage these variables.
+See <<withkoji-vcc-package#>>.
+
+==== Example
+
+[source,javascript]
+----
+import Auth from '@withkoji/auth';
+
+// Frontend
+const auth = new Auth();
+
+// Backend
+const auth = new Auth(
+  res.locals.KOJI_PROJECT_ID,
+  res.locals.KOJI_PROJECT_TOKEN,
+);
+----
+
+== Auth methods
+
+[.hcode, id=".checkGrant", reftext="checkGrant"]
+=== .checkGrant(grants)
+
+Checks whether the current user has granted authorizations to the current Koji.
+Use this method on the frontend to determine whether to request authorization for certain capabilities.
+
+==== Parameters
+
+* `grants` – _Array_, list of authorization grants to check for the user.
+See <<_authgrantcapability>>.
+
+==== Returns
+
+(Async) _Boolean_, indicates whether the user has already granted authorization for the capabilities.
+
+==== Example
+
+[source,javascript]
+----
+const hasGrant = await auth.checkGrant(['username', 'push_notifications']);
+----
+
+[.hcode, id=".getGrant", reftext="getGrant"]
+=== .getGrant(userToken)
+
+Gets the user's authorization grants for the current Koji.
+Use this method on the backend to validate the user's grants and use the information for authorized capabilities.
+See <<_authgrantcapability>>.
+
+==== Parameters
+
+* `userToken` – _String_, temporary token for the current user’s session.
+See <<.getToken>> and <<.getTokenWithCallback>>.
+
+==== Returns
+
+(Async) <<_authgrant>> object for the current user.
+
+==== Example
+
+[source,javascript]
+----
+const grant = await auth.getGrant(token);
+----
+
+[.hcode, id=".getRole", reftext="getRole"]
+=== .getRole(userToken)
+
+Gets the user's role for the current Koji, which can be used to enable a different experience for the creator.
+
+==== Parameters
+
+* `userToken` – _String_, temporary token for the current user’s session.
+See <<.getToken>> and <<.getTokenWithCallback>>.
++
+NOTE: To resolve the role for a given user, both the user token, obtained on the frontend, and the project token, obtained from environment variables on the backend, are necessary.
+
+==== Returns
+
+(Async) _String_, one of the following values:
+
+* `admin` – User is the "owner" (creator) of this Koji.
+* `user` – User is not the owner of this Koji.
+* `unknown` – User is not logged in.
+
+==== Example
+
+[source,javascript]
+----
+const token = await auth.getToken();
+----
+
+[.hcode, id=".getToken", reftext="getToken"]
+=== .getToken(grants, allowAnonymous, usageDescription)
+
+Gets a token identifying the current user, and requests the specified authorization grants for the current Koji.
+
+[NOTE]
+include::../../docs/_includes/userTokenNote.adoc[tag=all]
+
+==== Parameters
+
+* `grants` – _Array_, list of authorization grants to request from the user.
+See <<_authgrantcapability>>.
+* `allowAnonymous` – _Boolean_, (Optional) determines how to proceed for a user who is not logged in to Koji.
+If set to `true`, the returned token will be `null`.
+If set to `false` or undefined, the user is prompted to log in before a token is generated.
+* `usageDescription` – _String_, (Optional) custom message to display when requesting the grant.
+
+==== Returns
+
+(Async) _String_, temporary token for the current user's session, or `null` if the user is not logged in.
+
+==== Example
+
+[source,javascript]
+----
+const token = await auth.getToken(
+  ['username', 'push_notifications']
+);
+----
+
+[.hcode, id=".getTokenWithCallback", reftext="getTokenWithCallback"]
+=== .getTokenWithCallback(handler, grants, allowAnonymous)
+
+Gets a token identifying the current user, and requests the specified authorization grants for the current Koji.
+Then, invokes a callback function to handle backend requests for the user's role and grant information.
+
+[NOTE]
+include::../../docs/_includes/userTokenNote.adoc[tag=all]
+
+==== Parameters
+
+* `handler` – _Function_, handles backend requests for the user's role and authorization grants.
+Receives the following property as input:
+** `userToken` – _String_, temporary token for the current user's session.
+* `grants` – _Array_, list of authorization grants to request from the user.
+See <<_authgrantcapability>>.
+* `allowAnonymous` – _Boolean_, (Optional) determines how to proceed for a user who is not logged in to Koji.
+If set to `true`, the returned token will be `null`.
+If set to `false` or undefined, the user is prompted to log in before a token is generated.
+
+==== Example
+
+[source,javascript]
+----
+auth.getTokenWithCallback((token) => {
+  // Handle on the backend, for example:
+  // Request user's role and update template based on it
+  // Request user's unique ID for this Koji
+}, ['username', 'push_notifications']);
+----
+
+[.hcode, id=".pushNotification", reftext="pushNotification"]
+=== .pushNotification(userId, notification)
+
+(Async) Sends a notification to the Koji account of a user who interacted with a Koji.
+
+NOTE: You must obtain the user's authorization before you can send push notifications from a Koji.
+On the frontend, use <<.checkGrant>> determine whether the user has already granted authorization, and use <<.getToken>> or <<.getTokenWithCallback>> to request authorization, if needed.
+
+==== Parameters
+
+* `userId` – _String_, user's unique ID for this Koji.
+See <<.getGrant>>.
+* `notification` – <<_pushnotification>> object, details of the desired notification.
+
+==== Example
+
+[source,javascript]
+----
+await auth.pushNotification({
+  icon: '❓',
+  appName: 'Ask me anything',
+  message: 'Your custom video is ready! View now',
+  ref: '?dynamic-receipt=buyer',
+});
+----
+
+[.hcode, id=".pushNotificationToOwner", reftext="pushNotificationToOwner"]
+=== .pushNotificationToOwner(notification)
+
+(Async) Sends a notification to the Koji account of the user who created the Koji.
+
+==== Parameters
+
+* `notification` – <<_pushnotification>> object, details of the desired notification.
+
+==== Example
+
+[source,javascript]
+----
+await auth.pushNotificationToOwner({
+  icon: '❓',
+  appName: 'Ask me anything',
+  message: 'Someone asked you a question! Respond now',
+  ref: '?context=admin',
+});
+----
+
+== Auth constants
+
+=== AuthGrantCapability
+
+Array of capabilities that a user can grant the current Koji authorization to use.
+To request authorization grants from a user, use <<.getToken>> or <<.getTokenWithCallback>> in your frontend service.
+To validate the current user's authorization grants, use <<.checkGrant>> in your frontend service.
+To use the information for authorized capabilities, use <<.getGrant>> in your backend service.
+
+The following authorization grants are available:
+
+* `push_notifications` – Allows the current Koji to send push notifications to the user.
+* `username` – Creates a unique ID for the user on the current Koji, and allows the Koji to map the user's token to a persistent user ID in storage, such as a backend database.
+
+== Auth objects
+
+=== AuthGrant
+
+An `AuthGrant` object contains information about capabilities that the current user has authorized the current Koji to use.
+You can use <<.getGrant>> to retrieve the `AuthGrant` object associated with the user’s token.
+
+The `AuthGrant` object includes the following properties.
+
+[source,javascript]
+----
+{
+  userId: string; <1>
+  dateCreated: string; <2>
+  pushNotificationsEnabled: boolean; <3>
+  attributes: {[index: string]: any}; <4>
+}
+----
+<1> `userId` – User's unique ID for this Koji.
+<2> `dateCreated` – Date the authorization grants were requested or updated.
+<3> `pushNotificationsEnabled` – Indicator of whether the user has authorized the Koji to send push notifications.
+<4> `attributes` – Object that contains authorization information for the user.
+
+=== PushNotification
+
+A `PushNotification` object defines a notification to send to a user's Koji account.
+To send a push notification to the user who created a Koji, use <<.pushNotificationToOwner>>.
+To send a push notification to a user who interacts with a Koji, obtain or verify the user's authorization, and then use <<.pushNotification>>.
+
+[source,javascript]
+----
+{
+  icon: string; <1>
+  appName: string; <2>
+  message: string; <3>
+  ref?: string; <4>
+}
+----
+<1> `icon` – Icon to display next to the message, either the URL of an image or an emoji character.
+<2> `appName` – Headline for the message.
+For example, the name of the Koji that generated the notification.
+<3> `message` – Content of the message.
+<4> `ref` – (Optional) Query parameters to append to the Koji URL when the notification is tapped.
+For example, load the admin experience or a dynamic receipt from the notification.
+
+== Related resources
+
+* https://github.com/madewithkoji/koji-auth-sdk[@withkoji/auth on Github]
+* Core package replacement modules: <<core-backend-identity#, Identity (backend)>>, <<core-frontend-identity#, Identity (frontend)>>
+* <<migrate-koji-core#>>

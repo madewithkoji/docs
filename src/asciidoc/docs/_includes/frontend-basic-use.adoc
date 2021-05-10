@@ -1,0 +1,37 @@
+= Frontend basic use
+
+// tag::all[]
+Import the package in your frontend code.
+
+[source,javascript]
+import Koji from '@withkoji/core';
+
+Initialize the package with your configuration data.
+
+[source,javascript]
+----
+// Initialize
+Koji.config(require('././koji.json'));
+
+// render
+render();
+----
+
+Indicate that the application is ready to start receiving events.
+
+[source,javascript]
+Koji.ready();
+
+Enable the user to upload an image from the frontend of the Koji.
+
+[source,javascript]
+----
+import Koji from '@withkoji/core';
+
+const captureImage = async () => {
+  const imageURL = await Koji.ui.capture.image();
+
+  console.log(imageURL); // The publicly accessible, CDN-backed path of the user's uploaded image
+}
+----
+// end::all[]

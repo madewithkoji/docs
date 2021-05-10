@@ -7,9 +7,8 @@ Everyday users can create Kojis in minutes by “remixing” other Kojis and cus
 
 As a developer, you can build the underlying "template" applications that power Kojis, and your software will be remixed into custom Kojis and shared by millions of people across the world.
 As your template is remixed, and its remixes are remixed, your software can evolve and expand into new expressions and applications.
-Koji tracks this lineage, and you retain a stake in the value of this "evolution pool" over time.
 
-<<instant-remixing#, Learn more about remixing and evolution>>
+<<instant-remixing#, Learn more about remixing>>
 
 Koji templates are full-stack, modern JavaScript applications that can embed multimedia, leverage web AR/VR support, facilitate e-commerce transactions, and more.
 When you develop a template, you define customizable elements and leverage Koji platform technology to make it easy for non-technical users to remix those elements, without coding.
@@ -23,19 +22,19 @@ We can’t wait to see what YOU make!
 
 == What's new
 
-For a summary of the latest updates to the Koji platform and developer site, check out the <<developer-updates#>>.
+For a summary of the latest updates to the Koji platform, packages, and developer site, check out the <<developer-updates#>>.
 
 == Getting started
 
 For some great resources to help you start developing templates on Koji, see:
 
-* <<start-guide-1#>> – Step-by-step instructions on how to create a remixable web application and publish it as a template on Koji.
-* <<blueprints-overview#>> – Block-by-block code samples for building cool things on Koji.
-Blueprints are intended for developers who prefer to jump straight to code.
+* <<quick-start#>> – Step-by-step tutorial for learning fundamental concepts and developing your first project on Koji.
+* https://withkoji.com/create/for-developers[Developer scaffolds in the Template Store] – Great starting points for an entirely new web app on Koji.
 
 == Staying in touch
 
 * Join the https://discord.com/invite/9egkTWf4ec[Koji community] on Discord to connect with other developers, creators, and the Koji team.
 The community is the best place to share tips and tricks, provide peer feedback, and get support.
+* Check out the https://help.withkoji.com/[Koji Help Center] for answers to general questions about Koji or visit the https://withkoji.atlassian.net/servicedesk/customer/portal/1[Koji Support] page to log an issue or request.
 * <<contribute-koji-developers#,Contribute to the developer site>> by coding, writing new articles, or suggesting edits to existing documentation.
 * Subscribe to the http://eepurl.com/g5odab[developer email list] to keep up with the latest announcements, featured content, events, and developer programs.

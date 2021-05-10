@@ -1,3 +1,4 @@
+/* eslint-disable max-classes-per-file */
 /**
  * Configure your Gatsby site with this file.
  *
@@ -7,6 +8,35 @@
 const asciidoc = require('asciidoctor')();
 const { resolvePathFromSlug } = require('./src/utils/resolvePathFromSlug');
 
+class BaseConverter {
+  constructor() {
+    // Use default html5 converter
+    this.baseConverter = asciidoc.Html5Converter.$new();
+  }
+
+  convert(node, transform) {
+    // Pass TypeDoc style links through to be handled inside the template
+    if (node.getNodeName() === 'inline_anchor') {
+      const target = node.getTarget();
+      const text = node.getText();
+
+      if (target && text) return target;
+
+      if (node.id) return `[[${node.id}]]`;
+    }
+
+    return this.baseConverter.convert(node, transform);
+  }
+}
+
+asciidoc.ConverterFactory.register(new BaseConverter(), ['base']);
+
+/**
+ * This class will alter the way that asciidoctor works **globally**.
+ *
+ * This means that leveraging the `convertToAsciiDoc` utility inside of build-utils/CorePackage/utils/common.js
+ * will use this same conversion. So there are a few checks that are included to help that perform correctly.
+ */
 class TemplateConverter {
   constructor() {
     // Use default html5 converter
@@ -20,7 +50,7 @@ class TemplateConverter {
       const text = node.getText();
 
       // Handle xrefs
-      if (target[0] && target[0] === '#') {
+      if (target && target[0] && target[0] === '#') {
         // Grab the refid
         const { refid } = node.attributes.$$smap;
 
@@ -44,7 +74,7 @@ class TemplateConverter {
         }
       }
 
-      if (!target.includes('/') && target.includes('.html')) {
+      if (target && !target.includes('/') && target.includes('.html')) {
         // Remove the automatically appended .html
         const newTarget = target.replace('.html', '');
 
@@ -69,18 +99,18 @@ class TemplateConverter {
       }
 
       // If the target includes the http protocol, automatically open in a new tab/window
-      if (target.includes('http')) {
+      if (target && target.includes('http')) {
         return `<a href="${target}" target="_blank" rel="noopener noreferrer">${text}</a>`;
       }
     }
     if (node.hasRole('tabs')) {
-      const scope = node.getAttribute("scope");
+      const scope = node.getAttribute('scope');
       const blocks = node.getBlocks();
       let tabOutput = '';
-      for (var i = 0; i < blocks.length; i++) {
+      for (let i = 0; i < blocks.length; i += 1) {
         let scopeAttrs = '';
         const blockTitle = blocks[i].getTitle();
-        if (scope) scopeAttrs = `data-scope="${scope}" data-scopevalue="${blockTitle}"`
+        if (scope) scopeAttrs = `data-scope="${scope}" data-scopevalue="${blockTitle}"`;
         tabOutput += `<div ${scopeAttrs} class="tabbed__toggle${i === 0 ? ' tabbed__toggle_active' : ''}">
             ${blockTitle}
           </div>`;
@@ -94,9 +124,9 @@ class TemplateConverter {
 
     if (node.getNodeName() === 'document') {
       if (!node.hasAttribute('page-banner')) {
-        let images = node.getImages();
-        for (var i = 0; i < images.length; i++) {
-          let target = images[i].getTarget();
+        const images = node.getImages();
+        for (let i = 0; i < images.length; i += 1) {
+          const target = images[i].getTarget();
           if (target.slice(-4) !== '.svg') {
             node.setAttribute('page-banner', `${images[i].getImagesDirectory()}/${images[i].getTarget()}`);
             break;
@@ -114,10 +144,11 @@ module.exports = {
   siteMetadata: {
     title: 'Koji for Developers',
     titleTemplate: '%s | Koji for Developers',
+    // eslint-disable-next-line max-len
     description: 'Develop the future of social with remixable applications. Kojis are mini web applications that can be shared anywhere across the web.',
     url: 'https://developer.withkoji.com',
     image: '/images/og-banner.png',
-    twitterUsername: "@madewithkoji",
+    twitterUsername: '@madewithkoji',
   },
 
   plugins: [
@@ -141,6 +172,7 @@ module.exports = {
         },
         catalog_assets: true,
         converterFactory: TemplateConverter,
+        fileExtensions: ['adoc'],
       },
     },
 

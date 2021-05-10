@@ -1,6 +1,7 @@
 = Vote counter template
 :page-slug: vote-counter-blueprint
 :page-description: Blueprint for a template that counts votes from multiple users in real-time.
+:includespath: ../_includes
 
 Follow this blueprint to build a template that counts votes from multiple users in real-time.
 You will implement a database to record the users and votes and real-time dispatch to provide users with an immediate, multi-user experience.
@@ -10,14 +11,7 @@ image::vote-counter.png[Make a vote counter template on Koji,role="img-overview"
 
 === Prerequisites
 
-* Familiarity with web development.
-React and ES6 basics are a plus.
-* Familiarity with the Koji remix process.
-For an overview, see the <<start-guide-1#, starter guide>>.
-* Basic understanding of backend communication and the Koji service map.
-For an overview, see <<add-service#>>.
-* Basic understanding of the Koji database.
-See the <<withkoji-database-package#>> package reference.
+include::{includespath}/prereqs.adoc[tags=webdev;remixproc;backend;svcmap;kojidb]
 
 === Level
 

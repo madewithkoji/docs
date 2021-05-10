@@ -1,65 +1,6 @@
 {
   "navItems": [
     {
-      "name": "Reference",
-      "root": "/reference",
-      "defaultPath": "/reference/packages/packages-overview",
-      "sections": [
-        {
-          "name": "Packages for Koji features",
-          "root": "/packages",
-          "items": [
-            {
-              "name": "Available packages",
-              "slug": "packages-overview"
-            },
-            {
-              "name": "@withkoji/core",
-              "slug": "withkoji-koji-core"
-            },
-            {
-              "name": "@withkoji/custom-vcc-sdk",
-              "slug": "withkoji-custom-vcc-sdk"
-            }
-          ]
-        },
-        {
-          "name": "Deprecated packages",
-          "root": "/deprecated-packages",
-          "items": [
-            {
-              "name": "@withkoji/analytics",
-              "slug": "withkoji-koji-analytics-sdk"
-            },
-            {
-              "name": "@withkoji/auth",
-              "slug": "withkoji-koji-auth-sdk"
-            },
-            {
-              "name": "@withkoji/database",
-              "slug": "withkoji-database-package"
-            },
-            {
-              "name": "@withkoji/dispatch",
-              "slug": "withkoji-dispatch-package"
-            },
-            {
-              "name": "@withkoji/iap",
-              "slug": "withkoji-koji-iap-package"
-            },
-            {
-              "name": "@withkoji/user-defaults",
-              "slug": "withkoji-user-defaults-package"
-            },
-            {
-              "name": "@withkoji/vcc",
-              "slug": "withkoji-vcc-package"
-            }
-          ]
-        }
-      ]
-    },
-    {
       "name": "Docs",
       "root": "/docs",
       "defaultPath": "/docs/getting-started/introduction",
@@ -81,20 +22,26 @@
               "slug": "templates"
             },
             {
-              "name": "Developing your first template",
-              "slug": "start-guide-1"
-            },
-            {
-              "name": "Extending your template",
-              "slug": "start-guide-2"
-            },
-            {
               "name": "Migrating to the Koji core package",
               "slug": "migrate-koji-core"
             },
             {
               "name": "News for Koji developers",
-              "slug": "developer-updates"
+              "slug": "developer-updates",
+              "subItems": [
+                {
+                  "name": "Recent updates",
+                  "slug": "recent-updates"
+                },
+                {
+                  "name": "Earlier in 2021",
+                  "slug": "2021-updates"
+                },
+                {
+                  "name": "2020",
+                  "slug": "2020-updates"
+                }
+              ]
             }
           ]
         },
@@ -107,7 +54,7 @@
               "slug": "projects"
             },
             {
-              "name": "Koji editor",
+              "name": "Koji code editor",
               "slug": "editor"
             },
             {
@@ -142,79 +89,81 @@
           "items": [
             {
               "name": "Visual Customization Controls",
-              "slug": "vcc-overview"
-            },
-            {
-              "name": "Boolean",
-              "slug": "boolean"
-            },
-            {
-              "name": "Color",
-              "slug": "color"
-            },
-            {
-              "name": "Coordinate",
-              "slug": "coordinate"
-            },
-            {
-              "name": "File",
-              "slug": "file"
-            },
-            {
-              "name": "Image",
-              "slug": "image"
-            },
-            {
-              "name": "Koji",
-              "slug": "koji-vcc"
-            },
-            {
-              "name": "Media",
-              "slug": "media"
-            },
-            {
-              "name": "Obj",
-              "slug": "3d-object"
-            },
-            {
-              "name": "Range",
-              "slug": "range"
-            },
-            {
-              "name": "Secret",
-              "slug": "secret"
-            },
-            {
-              "name": "Select",
-              "slug": "select"
-            },
-            {
-              "name": "Size",
-              "slug": "size"
-            },
-            {
-              "name": "Sound",
-              "slug": "sound"
-            },
-            {
-              "name": "Text, textarea",
-              "slug": "text"
-            },
-            {
-              "name": "Video",
-              "slug": "video"
-            },
-            {
-              "name": "Google Font",
-              "slug": "google-font"
-            },
-            {
-              "name": "Array",
-              "slug": "array"
-            },
-            {
-              "name": "Object",
-              "slug": "object"
+              "slug": "vcc-overview",
+              "subItems": [
+                {
+                  "name": "Boolean",
+                  "slug": "boolean"
+                },
+                {
+                  "name": "Color",
+                  "slug": "color"
+                },
+                {
+                  "name": "Coordinate",
+                  "slug": "coordinate"
+                },
+                {
+                  "name": "File",
+                  "slug": "file"
+                },
+                {
+                  "name": "Image",
+                  "slug": "image"
+                },
+                {
+                  "name": "Link",
+                  "slug": "link-vcc"
+                },
+                {
+                  "name": "Media",
+                  "slug": "media"
+                },
+                {
+                  "name": "Obj",
+                  "slug": "3d-object"
+                },
+                {
+                  "name": "Range",
+                  "slug": "range"
+                },
+                {
+                  "name": "Secret",
+                  "slug": "secret"
+                },
+                {
+                  "name": "Select",
+                  "slug": "select"
+                },
+                {
+                  "name": "Size",
+                  "slug": "size"
+                },
+                {
+                  "name": "Sound",
+                  "slug": "sound"
+                },
+                {
+                  "name": "Text, textarea",
+                  "slug": "text"
+                },
+                {
+                  "name": "Video",
+                  "slug": "video"
+                },
+                {
+                  "name": "Google Font",
+                  "slug": "google-font"
+                },
+                {
+                  "name": "Array",
+                  "slug": "array"
+                },
+                {
+                  "name": "Object",
+                  "slug": "object"
+                }
+              ]
             },
             {
               "name": "Building custom VCCs",
@@ -299,6 +248,270 @@
             {
               "name": "Contributing to the developer site",
               "slug": "contribute-koji-developers"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Tutorials",
+      "root": "/tutorials",
+      "defaultPath": "/tutorials/getting-started/quick-start",
+      "sections": [
+        {
+          "name": "Learning Koji",
+          "root": "/getting-started",
+          "items": [
+            {
+              "name": "Quick start",
+              "slug": "quick-start",
+              "subItems": [
+                {
+                  "name": "1. Your first project",
+                  "slug": "your-first-project"
+                },
+                {
+                  "name": "2. Using the code editor",
+                  "slug": "code-editor"
+                },
+                {
+                  "name": "3. The @withkoji/core package",
+                  "slug": "core-package"
+                },
+                {
+                  "name": "4. Your first remix",
+                  "slug": "your-first-remix"
+                },
+                {
+                  "name": "5. Introduction to contexts",
+                  "slug": "intro-to-contexts"
+                },
+                {
+                  "name": "6. Creating a remixable project",
+                  "slug": "remixable-project"
+                },
+                {
+                  "name": "7. Your first template",
+                  "slug": "your-first-template"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Creating games on Koji",
+          "root": "/game-tutorials",
+          "items": [
+            {
+              "name": "Creating remixable games",
+              "slug": "game-intro",
+              "subItems": [
+                {
+                  "name": "1. Defining assets",
+                  "slug": "game-assets"
+                },
+                {
+                  "name": "2. Creating game objects",
+                  "slug": "game-creating-game-objects"
+                },
+                {
+                  "name": "3. Scoring and losing",
+                  "slug": "game-scoring-and-losing"
+                },
+                {
+                  "name": "4. Managing difficulty",
+                  "slug": "game-managing-difficulty"
+                },
+                {
+                  "name": "5. Adding remix options",
+                  "slug": "game-remix"
+                },
+                {
+                  "name": "6. Customizing the preview",
+                  "slug": "game-thumbnail-preview"
+                },
+                {
+                  "name": "7. Finishing up",
+                  "slug": "game-finishing-up"
+                }
+              ]
+            },
+            {
+              "name": "Adding in-app purchases",
+              "slug": "game-iap-intro",
+              "subItems": [
+                {
+                  "name": "1. Setting up koji.json",
+                  "slug": "game-iap-setting-up-koji-json"
+                },
+                {
+                  "name": "2. Creating a payment menu",
+                  "slug": "game-iap-payment-menu"
+                },
+                {
+                  "name": "3. Adding the payment logic",
+                  "slug": "game-iap-start-purchase"
+                },
+                {
+                  "name": "4. Updating game behavior",
+                  "slug": "game-iap-updating-game"
+                },
+                {
+                  "name": "5. Adding remix options",
+                  "slug": "game-iap-remix"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Reference",
+      "root": "/reference",
+      "defaultPath": "/reference/packages/packages-overview",
+      "sections": [
+        {
+          "name": "Koji developer packages",
+          "root": "/packages",
+          "items": [
+            {
+              "name": "Overview",
+              "slug": "packages-overview"
+            }
+          ]
+        },
+        {
+          "name": "@withkoji/core",
+          "root": "/core",
+          "items": [
+            {
+              "name": "Overview",
+              "slug": "withkoji-koji-core"
+            },
+            {
+              "name": "Backend",
+              "slug": "core-backend-overview",
+              "subItems": [
+                {
+                  "name": "Database",
+                  "slug": "core-backend-database"
+                },
+                {
+                  "name": "Dispatch",
+                  "slug": "core-backend-dispatch"
+                },
+                {
+                  "name": "IAP",
+                  "slug": "core-backend-iap"
+                },
+                {
+                  "name": "Identity",
+                  "slug": "core-backend-identity"
+                },
+                {
+                  "name": "Secret",
+                  "slug": "core-backend-secret"
+                },
+                {
+                  "name": "Utilities",
+                  "slug": "core-backend-utilities"
+                }
+              ]
+            },
+            {
+              "name": "Frontend",
+              "slug": "core-frontend-overview",
+              "subItems": [
+                {
+                  "name": "Analytics",
+                  "slug": "core-frontend-analytics"
+                },
+                {
+                  "name": "Dispatch",
+                  "slug": "core-frontend-dispatch"
+                },
+                {
+                  "name": "IAP",
+                  "slug": "core-frontend-iap"
+                },
+                {
+                  "name": "Identity",
+                  "slug": "core-frontend-identity"
+                },
+                {
+                  "name": "PlayerState",
+                  "slug": "core-frontend-playerstate"
+                },
+                {
+                  "name": "Remix",
+                  "slug": "core-frontend-remix"
+                },
+                {
+                  "name": "UI / Capture",
+                  "slug": "core-frontend-ui-capture"
+                },
+                {
+                  "name": "UI / Navigate",
+                  "slug": "core-frontend-ui-navigate"
+                },
+                {
+                  "name": "UI / Present",
+                  "slug": "core-frontend-ui-present"
+                },
+                {
+                  "name": "UI / Upload",
+                  "slug": "core-frontend-ui-upload"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "@withkoji/custom-vcc-sdk",
+          "root": "/customvcc",
+          "items": [
+            {
+              "name": "Overview",
+              "slug": "withkoji-custom-vcc-sdk"
+            },
+            {
+              "name": "CustomVcc",
+              "slug": "customvcc-reference"
+            }
+          ]
+        },
+        {
+          "name": "Deprecated packages",
+          "root": "/deprecated-packages",
+          "items": [
+            {
+              "name": "@withkoji/analytics",
+              "slug": "withkoji-koji-analytics-sdk"
+            },
+            {
+              "name": "@withkoji/auth",
+              "slug": "withkoji-koji-auth-sdk"
+            },
+            {
+              "name": "@withkoji/database",
+              "slug": "withkoji-database-package"
+            },
+            {
+              "name": "@withkoji/dispatch",
+              "slug": "withkoji-dispatch-package"
+            },
+            {
+              "name": "@withkoji/iap",
+              "slug": "withkoji-koji-iap-package"
+            },
+            {
+              "name": "@withkoji/user-defaults",
+              "slug": "withkoji-user-defaults-package"
+            },
+            {
+              "name": "@withkoji/vcc",
+              "slug": "withkoji-vcc-package"
             }
           ]
         }

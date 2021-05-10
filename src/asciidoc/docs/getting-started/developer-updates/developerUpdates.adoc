@@ -1,0 +1,28 @@
+= News updates for Koji developers
+:page-slug: developer-updates
+:page-description: Brief digest of relevant updates to the Koji platform, packages, and developer site.
+
+To help developers stay up to date, this digest summarizes relevant updates to the Koji platform, packages, and developer site.
+
+include::../../_includes/tip-discord-server.adoc[tags=*]
+
+== Recent highlights
+
+We are pleased to highlight the following recent updates for Koji developers.
+For the complete digest, see <<recent-updates#>>.
+
+include::RecentUpdates.adoc[tag=highlights]
+
+== Highlights earlier in 2021
+
+We are pleased to highlight the following updates for Koji developers from earlier in 2021.
+For the complete digest, see <<2021-updates#>>.
+
+include::2021Updates.adoc[tag=highlights,leveloffset=+1]
+
+== Highlights in 2020
+
+We are pleased to highlight the following updates for Koji developers in 2020.
+For the complete digest, see <<2020-updates#>>.
+
+include::2020Updates.adoc[tag=highlights,leveloffset=+2]
