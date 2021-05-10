@@ -396,11 +396,6 @@ const Content = styled.div`
     font-size: 100% !important;
   }
 
-  .singlespaced li p {
-    margin: 0 !important;
-    padding: 0 !important;
-  }
-
   .callout1:before { content: "\\2460\\00a0"; font-size: 150%; }
   .callout2:before { content: "\\2461\\00a0"; font-size: 150%; }
   .callout3:before { content: "\\2462\\00a0"; font-size: 150%; }

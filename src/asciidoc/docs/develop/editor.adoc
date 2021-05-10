@@ -5,7 +5,7 @@
 
 The Koji code editor is a browser-based integrated development environment (IDE) that you can use to develop and test your Koji.
 The code editor provides easy access to the following:
-[.singlespaced]
+
 * All of your project's code.
 * Tools to preview and test your Koji.
 * Tools to publish and deploy your Koji.
@@ -13,23 +13,22 @@ The code editor provides easy access to the following:
 
 == Opening a project in the Koji code editor
 
-To create a new Koji, you must set up a project and open it in the Koji code editor.
-[.singlespaced]
-. Create a project.
+Opening the code editor is different, depending on whether you're creating a new project or opening an existing one.
+
+
+If you're creating a new project, you must set up a project and open it in the Koji code editor.
+
+. Fork an existing project.
 +
-include::{includespath}/steps-codeeditor.adoc[tag=createproject-details-collapsible]
-. {blank}
-+
+You can start from a https://withkoji.com/create/for-developers[developer scaffold] or from any Koji project that allows other developers to fork it.
+
 include::{includespath}/steps-codeeditor.adoc[tag=open-in-code-editor]
 
-To update an existing Koji, open the associated project in the Koji code editor.
-[.singlespaced]
-. {blank}
-+
+
+If you're editing an existing project, open the associated project in the Koji code editor.
+
 include::{includespath}/steps-codeeditor.adoc[tag=openproject]
 
-. {blank}
-+
 include::{includespath}/steps-codeeditor.adoc[tag=open-in-code-editor]
 
 
@@ -49,7 +48,6 @@ This push triggers the deployment process.
 [IMPORTANT]
 ====
 If you made changes to your project files xref:work-locally.adoc[outside the Koji editor], you must update the project files before editing them in the code editor again.
-[.singlespaced]
 . In the Koji code editor, expand the terminal pane.
 . Run `git pull`.
 ====
@@ -97,6 +95,8 @@ Scan this code to preview the Koji on your mobile device.
 
 To open the debugger in a new browser tab, click *Launch Debugger*.
 
+Learn more: <<testingTemplates.adoc#, Testing templates>>
+
 
 == Tips
 
@@ -105,7 +105,6 @@ To open the debugger in a new browser tab, click *Launch Debugger*.
 .Learn how...
 [%collapsible]
 ====
-[.singlespaced]
 * To open a contextual menu, right-click anywhere in the editing pane.
 * To open the Command Palette, move your cursor focus inside the editing pane and press *F1*.
 
@@ -117,7 +116,6 @@ To open the debugger in a new browser tab, click *Launch Debugger*.
 [%collapsible]
 ====
 WARNING: You will lose all commmits that were done after the commit you intend to restore.
-[.singlespaced]
 . Open your project in the code editor.
 . Expand the terminal pane.
 . Run `git log` and copy the hash code of the commit you want to restore.
@@ -132,16 +130,18 @@ WARNING: You will lose all commmits that were done after the commit you intend t
 .Learn how...
 [%collapsible]
 ====
-[.singlespaced]
 . In the code editor, expand the terminal pane.
 . Click *New tab*.
 . Run:
 +
+[source, console]
 ----
 cd frontend
 npm start
 ----
 ====
+
+* Save frequently. If your network connection is interrupted or switched, the latest changes you made in the code editor might not be saved.
 
 
 [NOTE]

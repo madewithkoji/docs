@@ -30,16 +30,16 @@ image::web-react-scaffold-ellipses-fork.png[Choose Fork in the ellipses menu,50%
 
 
 // tag::openproject[]
-In https://withkoji.com/developer/projects[your Developer Portal page], select the project to edit.
+. In https://withkoji.com/developer/projects[your Developer Portal page], select the project to edit.
 // end::openproject[]
 
 // tag::openproject-koji2edit[]
-In https://withkoji.com/developer/projects[your Developer Portal page], open the project associated with the template to edit.
+. In https://withkoji.com/developer/projects[your Developer Portal page], open the project associated with the template to edit.
 // end::openproject-koji2edit[]
 
 
 // tag::open-in-code-editor[]
-In the *Project Details* page, click *Open in Code Editor*.
+. In the *Project Details* page, click *Open in Code Editor*.
 // end::open-in-code-editor[]
 
 
