@@ -10,14 +10,12 @@ The code editor provides easy access to the following:
 * Tools to preview and test your Koji.
 * Tools to publish and deploy your Koji.
 
-
 == Opening a project in the Koji code editor
 
 include::{includespath}/steps-codeeditor.adoc[tag=go-to-project-details]
 include::{includespath}/steps-codeeditor.adoc[tag=open-in-code-editor]
 
 include::{includespath}/images-annotated.adoc[tag=editorsections]
-
 
 == Koji source control
 
@@ -28,14 +26,13 @@ When you fork an existing project or scaffold, the Git repository of that projec
 When you use the code editor to publish your Koji, the code editor commits your changes and pushes the updated files to the `master` branch.
 This push triggers the deployment process.
 
-
 [IMPORTANT]
 ====
 If you made changes to your project files xref:work-locally.adoc[outside the Koji editor], you must update the project files before editing them in the code editor again.
+
 . In the Koji code editor, expand the terminal pane.
 . Run `git pull`.
 ====
-
 
 == Previewing your Koji
 
@@ -78,7 +75,7 @@ Scan this code to preview the Koji on your mobile device.
 === Debugging
 
 To open the debugger in a new browser tab, click *Launch Debugger*.
-
+For more information, go to <<testing-templates##_using_the_koji_debugger, Using the Koji debugger>>.
 
 == Tips
 
@@ -89,7 +86,6 @@ To open the debugger in a new browser tab, click *Launch Debugger*.
 ====
 * To open a contextual menu, right-click anywhere in the editing pane.
 * To open the Command Palette, move your cursor focus inside the editing pane and press *F1*.
-
 ====
 
 * You can revert to a previous version of your project.
@@ -98,11 +94,11 @@ To open the debugger in a new browser tab, click *Launch Debugger*.
 [%collapsible]
 ====
 WARNING: You will lose all commmits that were done after the commit you intend to restore.
+
 . Open your project in the code editor.
 . Expand the terminal pane.
 . Run `git log` and copy the hash code of the commit you want to restore.
 . In the terminal pane, enter `git reset --hard <commit-hash>`.
-+
 ====
 
 * Publish more frequently for a more detailed commit history.
@@ -125,12 +121,10 @@ npm start
 
 * Save frequently. If your network connection is interrupted or switched, the latest changes you made in the code editor might not be saved.
 
-
 [NOTE]
 ====
 include::{includespath}/misc.adoc[tag=nodejsnpmver]
 ====
-
 
 == Related resources
 

@@ -11,7 +11,7 @@
 // tag::all[]
 
 // tag::editorsections[]
-The Koji Code Editor space is divided into these sections.
+The Koji code editor space is divided into these sections.
 
 image::code-editor-sections-expanded.png[Layout of the Code Editor,100%,link={imagesDir}/code-editor-sections-expanded.png]
 
