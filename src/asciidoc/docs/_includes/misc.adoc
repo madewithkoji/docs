@@ -1,0 +1,17 @@
+= Miscellaneous
+
+////
+  Usage:
+    :includespath: ../_includes
+
+    include::{includespath}/misc.adoc[tag=nodejsnpmver]
+////
+
+
+// tag::all[]
+
+// tag::nodejsnpmver[]
+Kojis run on Node.js 14.15.5 and npm 6.14.11.
+// end::nodejsnpmver[]
+
+// end::all[]

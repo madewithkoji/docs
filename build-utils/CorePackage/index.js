@@ -145,7 +145,7 @@ function generateModuleHTML(m, AllInterfaces, AllTypeAliases) {
   let interfaces = AllInterfaces.filter(({ id }) => allReferenceIds.includes(id));
 
   const nestedIds = getInterfaceReferenceIds(interfaces);
-  interfaces = [...interfaces, AllInterfaces.filter(({ id }) => nestedIds.includes(id))];
+  interfaces = [...interfaces, ...AllInterfaces.filter(({ id }) => nestedIds.includes(id))];
 
   return {
     html: `

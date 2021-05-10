@@ -366,6 +366,46 @@ const Content = styled.div`
     }
   }
 
+  .faq details {
+    summary {
+      font-weight: bold !important;
+      font-style: normal !important;
+      font-size: 120% !important;
+      padding-top: 15px;
+    }
+    .content {
+      padding: 0px 20px;
+    }
+  }
+
+  .faq details {
+    summary {
+      font-weight: bold !important;
+      font-style: normal !important;
+      font-size: 120% !important;
+      padding-top: 15px;
+    }
+    .content {
+      padding: 0px 20px;
+    }
+  }
+
+  li details summary {
+    font-weight: normal !important;
+    font-style: italic;
+    font-size: 100% !important;
+  }
+
+  .callout1:before { content: "\\2460\\00a0"; font-size: 150%; }
+  .callout2:before { content: "\\2461\\00a0"; font-size: 150%; }
+  .callout3:before { content: "\\2462\\00a0"; font-size: 150%; }
+  .callout4:before { content: "\\2463\\00a0"; font-size: 150%; }
+  .callout5:before { content: "\\2464\\00a0"; font-size: 150%; }
+  .callout6:before { content: "\\2465\\00a0"; font-size: 150%; }
+  .callout7:before { content: "\\2466\\00a0"; font-size: 150%; }
+  .callout8:before { content: "\\2467\\00a0"; font-size: 150%; }
+  .callout9:before { content: "\\2468\\00a0"; font-size: 150%; }
+
 `;
 
 export default Content;
