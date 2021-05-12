@@ -21,7 +21,7 @@ For optimal rich preview support, design this view with the following considerat
 * The image is responsive.
 * The image looks good with a square aspect ratio.
 * The image is optimized for faster loading.
-For example, to reduce the image size to 400x400 pixels and load only the first frame of a gif, you can add query parameters at the end of your image's URL: `https://images.koji-cdn.com/path/to/myimage.gif?fit=bounds&width=400&height=400&frame=1`
+For example, to reduce the image size to 400x400 pixels and load only the first frame of a gif, you can add query parameters at the end of your image's URL: `\https://images.koji-cdn.com/path/to/myimage.gif?fit=bounds&width=400&height=400&frame=1`
 * The image includes customizable elements to generate unique previews of each remix.
 
 image::Koji-screenshot=1.svg[Render a view for the rich preview image]
