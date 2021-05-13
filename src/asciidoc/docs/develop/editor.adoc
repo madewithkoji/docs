@@ -75,7 +75,7 @@ Scan this code to preview the Koji on your mobile device.
 === Debugging
 
 To open the debugger in a new browser tab, click *Launch Debugger*.
-For more information, go to <<testing-templates##_using_the_koji_debugger, Using the Koji debugger>>.
+For more information, go to <<testing-templates#_using_the_koji_debugger, Using the Koji debugger>>.
 
 == Tips
 

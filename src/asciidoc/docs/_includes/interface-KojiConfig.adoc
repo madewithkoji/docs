@@ -1,6 +1,9 @@
-= KojiConfig interface
+= KojiConfig interfaces
 
 // tag::all[]
+=== KojiConfig
+
+// tag::KojiConfig[]
 Configuration data for the Koji.
 
 ==== Properties
@@ -8,5 +11,21 @@ Configuration data for the Koji.
 * `@@initialTransform` – _Any_, (Optional) Placeholder values for new remixes.
 * `deploy` – _Any_, (Optional) Instructions for deploying the services to production.
 * `develop` – _Any_, (Optional) Instructions for setting up the services in a development/editor environment.
+* `metadata` – _<<KojiMetadata>>_, (Optional) Metadata about the project and creator.
 * `remixData` – _Any_, (Optional) Default values for the customizable remix data.
+// end::KojiConfig[]
+
+=== KojiMetadata
+
+// tag::KojiMetadata[]
+Metadata about the project and creator.
+This information is provided by the platform but can be overridden when the Koji is initialized.
+
+==== Properties
+
+* `projectId` – _String_, Unique identifier for the Koji.
+* `creatorUsername` – _String_, Creator's username.
+* `creatorProfilePicture` – _String_, URL reference to the creator's current profile picture.
+// end::KojiMetadata[]
+
 // end::all[]
