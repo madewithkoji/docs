@@ -130,7 +130,7 @@ Koji.ready();
 
 === KojiConfig
 
-include::../../docs/_includes/interface-KojiConfig.adoc[tag=all]
+include::../../docs/_includes/interface-KojiConfig.adoc[tag=KojiConfig]
 
 === KojiConfigOptions
 
@@ -144,14 +144,7 @@ Configuration options for the Koji.
 
 === KojiMetadata
 
-Metadata about the project and creator.
-This information is provided by the platform but can be overridden when the Koji is initialized.
-
-==== Properties
-
-* `projectId` – _String_, Unique identifier for the Koji.
-* `creatorUsername` – _String_, Creator's username.
-* `creatorProfilePicture` – _String_, URL reference to the creator's current profile picture.
+include::../../docs/_includes/interface-KojiConfig.adoc[tag=KojiMetadata]
 
 == Type aliases
 
