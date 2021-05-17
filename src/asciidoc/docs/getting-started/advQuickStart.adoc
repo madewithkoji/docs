@@ -1,4 +1,4 @@
-= Quick Start
+= Quick start
 :page-slug: adv-quick-start
 :page-description: Instructions to quickly start coding your first project.
 :includespath: ../_includes
@@ -10,7 +10,7 @@ This quick start topic guides you through creating your first project in the Koj
 You must be comfortable with developing web applications.
 
 * If you are new to Koji and have minimal or no web development experience, go through <<quick-start#, the Koji quick-start tutorial for beginners>> instead.
-* If you prefer to work locally, follow the <<work-locally,Working locally>> instructions.
+* If you prefer to work locally, follow the <<work-locally#,Working locally>> instructions.
 
 
 == Prerequisites
@@ -20,7 +20,7 @@ You must be comfortable with developing web applications.
 
 == Getting started with Koji
 
-. To create a project, fork an existing scaffold.
+. To create a project, fork an existing scaffold or any project that allows forking.
 +
 .Step details ...
 [%collapsible]
@@ -59,11 +59,11 @@ Learn more: <<migrate-koji-core#_do_i_need_to_migrate,Do I need to migrate?>>
 TIP: To use the command line to install packages or to perform tasks, expand the terminal pane at the bottom.
 +
 Learn more: <<withkoji-koji-core#>>
-... Develop the front end of your app. +
-Learn more: <<intro-to-contexts#>>
+... Develop the front end of your app.
 ... (Optional) Develop the back end of your app. +
 Learn more: <<add-service#>>, <<koji-database#>>
-... (Optional) Develop other contexts that your app needs.
+... (Optional) Develop other contexts that your app needs. +
+For example, if you allow users to configure your app, develop the *Remix* context for it.
 
 
 . Deploy your app to staging.
@@ -81,7 +81,7 @@ You can share this link with collaborators and testers.
 ====
 
 . Test your app. +
-Learn more: <<testing-projects#>>, <<project-checklist#>>
+Learn more: <<testing-templates#>>, <<template-checklist#>>
 
 
 // == Next steps
