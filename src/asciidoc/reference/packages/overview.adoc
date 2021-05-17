@@ -16,34 +16,4 @@ include::../customVcc/withkojiCustomVccSdk.adoc[tag=description]
 
 == Deprecated packages
 
-The following packages are now incorporated into *@withkoji/koji-core*.
-They should not be used in future templates.
-
-<<withkoji-koji-analytics-sdk#>>  ::
-+
-[.init-cap]
-include::../deprecated/withkojiKojiAnalyticsSdk.adoc[tag=description]
-<<withkoji-koji-auth-sdk#>>  ::
-+
-[.init-cap]
-include::../deprecated/withkojiKojiAuthSdk.adoc[tag=description]
-<<withkoji-database-package#>> ::
-+
-[.init-cap]
-include::../deprecated/withkojiDatabase.adoc[tag=description]
-<<withkoji-dispatch-package#>>  ::
-+
-[.init-cap]
-include::../deprecated/withkojiDispatch.adoc[tag=description]
-<<withkoji-koji-iap-package#>>  ::
-+
-[.init-cap]
-include::../deprecated/withkojiIAP.adoc[tag=description]
-<<withkoji-user-defaults-package#>>  ::
-+
-[.init-cap]
-include::../deprecated/withkojiUserDefaults.adoc[tag=description]
-<<withkoji-vcc-package#>>  ::
-+
-[.init-cap]
-include::../deprecated/withkojiVCC.adoc[tag=description]
+For a list of packages that are deprecated and are included only for backwards compatibility, see <<deprecated-packages-overview#>>.
