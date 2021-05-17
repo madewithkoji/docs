@@ -1,0 +1,43 @@
+= Deprecated packages for Koji developers
+:page-slug: deprecated-packages-overview
+:page-description: List of deprecated npm packages for backwards compatibility with older Koji templates.
+
+The following npm packages are deprecated and are included only for backwards compatibility.
+
+For a list of current packages that you can use in your Koji projects, see <<packages-overview#>>.
+
+== Deprecated core packages
+
+The following packages are now incorporated into *@withkoji/koji-core*.
+They should not be used in future templates.
+
+If your Koji’s code uses any of these deprecated packages, see <<migrate-koji-core#>> to upgrade it.
+
+<<withkoji-koji-analytics-sdk#>>  ::
++
+[.init-cap]
+include::withkojiKojiAnalyticsSdk.adoc[tag=description]
+<<withkoji-koji-auth-sdk#>>  ::
++
+[.init-cap]
+include::withkojiKojiAuthSdk.adoc[tag=description]
+<<withkoji-database-package#>> ::
++
+[.init-cap]
+include::withkojiDatabase.adoc[tag=description]
+<<withkoji-dispatch-package#>>  ::
++
+[.init-cap]
+include::withkojiDispatch.adoc[tag=description]
+<<withkoji-koji-iap-package#>>  ::
++
+[.init-cap]
+include::withkojiIAP.adoc[tag=description]
+<<withkoji-user-defaults-package#>>  ::
++
+[.init-cap]
+include::withkojiUserDefaults.adoc[tag=description]
+<<withkoji-vcc-package#>>  ::
++
+[.init-cap]
+include::withkojiVCC.adoc[tag=description]
