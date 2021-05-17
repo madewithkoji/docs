@@ -1,0 +1,95 @@
+= Quick Start
+:page-slug: adv-quick-start
+:page-description: Instructions to quickly start coding your first project.
+:includespath: ../_includes
+
+
+Welcome to Koji!
+
+This quick start topic guides you through creating your first project in the Koji IDE and developing your first Koji app.
+You must be comfortable with developing web applications.
+
+* If you are new to Koji and have minimal or no web development experience, go through <<quick-start#, the Koji quick-start tutorial for beginners>> instead.
+* If you prefer to work locally, follow the <<work-locally,Working locally>> instructions.
+
+
+== Prerequisites
+
+* https://withkoji.com/[A Koji account]
+
+
+== Getting started with Koji
+
+. To create a project, fork an existing scaffold.
++
+.Step details ...
+[%collapsible]
+====
+.. Go to the https://withkoji.com/create/for-developers[For Developers] page.
+.. Choose a scaffold and click its *VIEW* button.
++
+image::web-dev-scaffold-list.png[List of scaffolds,50%,link={imagesDir}/web-dev-scaffold-list.png]
+.. In the scaffold's detail page, click the ellipses icon ( *...* ) and choose *Fork*.
++
+image::web-react-scaffold-ellipses-fork.png[Ellipses menu then fork,50%,link={imagesDir}/web-react-scaffold-ellipses-fork.png]
+====
+
+. Develop your app.
+.. In the Project Details page, rename your new project, then open it in the Code Editor.
++
+.Image: Project Details ...
+[%collapsible]
+====
+image::project-details-postfork-rename-open.png[Project details page: Rename Project button and Open in Code Editor button,50%,link={imagesDir}/project-details-postfork-rename-open.png]
+====
++
+.Image: Code Editor ...
+[%collapsible]
+====
+include::{includespath}/images-annotated.adoc[tag=editorsections]
+====
+.. Edit your source files.
++
+TIP: You can find your source files in the navigation pane under *Source Code*.
++
+... (Optional) If you chose a scaffold that still uses deprecated packages, migrate your project to use the `@withkoji/core` package. +
+Learn more: <<migrate-koji-core#_do_i_need_to_migrate,Do I need to migrate?>>
+... Install the `@withkoji/core` package.
++
+TIP: To use the command line to install packages or to perform tasks, expand the terminal pane at the bottom.
++
+Learn more: <<withkoji-koji-core#>>
+... Develop the front end of your app. +
+Learn more: <<intro-to-contexts#>>
+... (Optional) Develop the back end of your app. +
+Learn more: <<add-service#>>, <<koji-database#>>
+... (Optional) Develop other contexts that your app needs.
+
+
+. Deploy your app to staging.
++
+.Step details ...
+[%collapsible]
+====
+image::code-editor-publish-now.png[Publish Now,50%,link={imagesDir}/code-editor-publish-now.png]
+.. In the leftmost panel under *Project*, click the *Publish Now* link.
+.. Enter a name for the project.
+.. (Optional) Configure other settings.
+.. Click *Publish New Version*.
+.. After your app is deployed to staging, click the link in the success message to view it. +
+You can share this link with collaborators and testers.
+====
+
+. Test your app. +
+Learn more: <<testing-projects#>>, <<project-checklist#>>
+
+
+// == Next steps
+
+TIP: You can later return to your list of projects by going to https://withkoji.com/developer/projects[your developer portal page].
+
+
+== Related topics
+
+* <<design-guidelines#>>
+* <<blueprints-overview#>>
