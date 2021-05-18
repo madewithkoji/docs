@@ -3,7 +3,7 @@
 :page-description: Opening Koji's code editor, and using it to publish the template.
 :figure-caption!:
 
-In the <<your-first-project#,first section>> of the quick start tutorial, you walked through creating and publishing your first project.
+In the <<your-first-project#,first section>> of this tutorial, you walked through creating and publishing your first project.
 In this section, you'll
 // tag::description[]
 dive a little deeper into the code editor, and explore making changes and updates to a project.

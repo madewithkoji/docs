@@ -3,7 +3,7 @@
 :page-description: Learning about contexts and how to use them
 :figure-caption!:
 
-In the <<your-first-remix#, previous section>> of the quick start tutorial, you learned about remixing and some of the terms that we use to talk about Koji’s ecosystem.
+In the <<your-first-remix#, previous section>> of this tutorial, you learned about remixing and some of the terms that we use to talk about Koji’s ecosystem.
 In this section, you'll
 // tag::description[]
 explore contexts and how they enable the remixing experience on Koji.

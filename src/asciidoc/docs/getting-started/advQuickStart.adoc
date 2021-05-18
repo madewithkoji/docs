@@ -9,7 +9,7 @@ Welcome to Koji!
 This quick start topic guides you through creating your first project in the Koji IDE and developing your first Koji app.
 You must be comfortable with developing web applications.
 
-* If you are new to Koji and have minimal or no web development experience, go through <<quick-start#, the Koji quick-start tutorial for beginners>> instead.
+* If you are new to Koji and have minimal or no web development experience, go through <<quick-start#, the Getting Started tutorial>> instead.
 * If you prefer to work locally, follow the <<work-locally#,Working locally>> instructions.
 
 
@@ -26,65 +26,52 @@ You must be comfortable with developing web applications.
 [%collapsible]
 ====
 .. Go to the https://withkoji.com/create/for-developers[For Developers] page.
-.. Choose a scaffold and click its *VIEW* button.
-+
-image::web-dev-scaffold-list.png[List of scaffolds,50%,link={imagesDir}/web-dev-scaffold-list.png]
+.. Choose a scaffold and click *View*.
 .. In the scaffold's detail page, click the ellipses icon ( *...* ) and choose *Fork*.
-+
-image::web-react-scaffold-ellipses-fork.png[Ellipses menu then fork,50%,link={imagesDir}/web-react-scaffold-ellipses-fork.png]
 ====
 
 . Develop your app.
-.. In the Project Details page, rename your new project, then open it in the Code Editor.
-+
-.Image: Project Details ...
-[%collapsible]
-====
-image::project-details-postfork-rename-open.png[Project details page: Rename Project button and Open in Code Editor button,50%,link={imagesDir}/project-details-postfork-rename-open.png]
-====
-+
-.Image: Code Editor ...
-[%collapsible]
-====
-include::{includespath}/images-annotated.adoc[tag=editorsections]
-====
+.. In the Project Details page, rename your new project, then open it in the Koji code editor. +
+Learn more: <<editor#_opening_a_project_in_the_koji_code_editor,Opening a project>>
 .. Edit your source files.
 +
 TIP: You can find your source files in the navigation pane under *Source Code*.
 +
-... (Optional) If you chose a scaffold that still uses deprecated packages, migrate your project to use the `@withkoji/core` package. +
+... (Optional) If you chose a scaffold that still uses deprecated packages, migrate your project to use the @withkoji/core package. +
 Learn more: <<migrate-koji-core#_do_i_need_to_migrate,Do I need to migrate?>>
-... Install the `@withkoji/core` package.
+... Install the @withkoji/core package.
 +
 TIP: To use the command line to install packages or to perform tasks, expand the terminal pane at the bottom.
 +
 Learn more: <<withkoji-koji-core#>>
-... Develop the front end of your app.
-... (Optional) Develop the back end of your app. +
+... Update `koji.json` with your app's configuration settings.
+... Develop the *Default* context of your app. +
+This is the primary page that your users would see and interact with.
+* Develop the front end of the context.
+* (Optional) Develop the back end of the context. +
 Learn more: <<add-service#>>, <<koji-database#>>
-... (Optional) Develop other contexts that your app needs. +
-For example, if you allow users to configure your app, develop the *Remix* context for it.
-
-
-. Deploy your app to staging.
-+
-.Step details ...
-[%collapsible]
-====
-image::code-editor-publish-now.png[Publish Now,50%,link={imagesDir}/code-editor-publish-now.png]
-.. In the leftmost panel under *Project*, click the *Publish Now* link.
-.. Enter a name for the project.
-.. (Optional) Configure other settings.
-.. Click *Publish New Version*.
-.. After your app is deployed to staging, click the link in the success message to view it. +
-You can share this link with collaborators and testers.
-====
+... (Optional) Develop other contexts or modes that your app needs. +
+The following are the optional contexts in Koji:
+* {blank}
+include::{includespath}/contexts-modes.adoc[tag=context-type-remix]
+* {blank}
+include::{includespath}/contexts-modes.adoc[tag=context-type-about]
+* {blank}
+include::{includespath}/contexts-modes.adoc[tag=context-type-admin]
+* {blank}
+include::{includespath}/contexts-modes.adoc[tag=context-type-receipt-seller]
+* {blank}
+include::{includespath}/contexts-modes.adoc[tag=context-type-receipt-buyer]
+* {blank}
+include::{includespath}/contexts-modes.adoc[tag=context-type-sticker]
+* {blank}
+include::{includespath}/contexts-modes.adoc[tag=context-type-thumbnail]
 
 . Test your app. +
 Learn more: <<testing-templates#>>, <<template-checklist#>>
 
-
-// == Next steps
+. Deploy your app. +
+Learn more: <<editor#_publishing_your_koji,Publishing your Koji>>
 
 TIP: You can later return to your list of projects by going to https://withkoji.com/developer/projects[your developer portal page].
 
@@ -92,4 +79,3 @@ TIP: You can later return to your list of projects by going to https://withkoji.
 == Related topics
 
 * <<design-guidelines#>>
-* <<blueprints-overview#>>

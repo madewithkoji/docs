@@ -4,7 +4,7 @@
 :figure-caption!:
 
 Projects are the building blocks you use to create amazing web apps and experiences with Koji.
-In the first section of the quick start tutorial, you will
+In the first section of this tutorial, you will
 // tag::description[]
 walk through creating and publishing your first project.
 // end::description[]
@@ -62,7 +62,7 @@ On the right side is a preview of your project.
 
 image::QS_03_code-editor.png[Code Editor]
 
-In later sections of the quick start tutorial, you'll have plenty of time to explore the code editor.
+In later sections of this tutorial, you'll have plenty of time to explore the code editor.
 For now, let’s move on to publishing your project.
 
 == Publishing your project

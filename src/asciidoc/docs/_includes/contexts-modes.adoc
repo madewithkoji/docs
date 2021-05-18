@@ -1,0 +1,53 @@
+= Reusable content about contexts/modes
+
+////
+  Usage:
+    :includespath: ../_includes
+
+    include::{includespath}/contexts-modes.adoc[tag=context-type-default]
+    include::{includespath}/contexts-modes.adoc[tag=context-type-remix]
+    include::{includespath}/contexts-modes.adoc[tag=context-type-about]
+    include::{includespath}/contexts-modes.adoc[tag=context-type-admin]
+    include::{includespath}/contexts-modes.adoc[tag=context-type-receipt-seller]
+    include::{includespath}/contexts-modes.adoc[tag=context-type-receipt-buyer]
+    include::{includespath}/contexts-modes.adoc[tag=context-type-sticker]
+    include::{includespath}/contexts-modes.adoc[tag=context-type-thumbnail]
+////
+
+
+// tag::all[]
+
+// tag::context-type-default[]
+*Default* - Displays your app's primary page, which users interact with.
+The *Default* context is always enabled.
+// end::context-type-default[]
+
+// tag::context-type-remix[]
+*Remix* - Displays the page that allows creators to customize your app.
+// end::context-type-remix[]
+
+// tag::context-type-about[]
+*About* - Displays an About page, if you enabled the associated entitlement.
+// end::context-type-about[]
+
+// tag::context-type-admin[]
+*Admin* - Displays an Admin page, if you enabled the associated entitlement.
+// end::context-type-admin[]
+
+// tag::context-type-receipt-seller[]
+*Receipt (seller)* - Displays the transaction receipt for the seller, if you implemented in-app purchases and enabled the dynamic receipts entitlement.
+// end::context-type-receipt-seller[]
+
+// tag::context-type-receipt-buyer[]
+*Receipt (buyer)* - Displays the transaction receipt for the buyer, if you implemented in-app purchases and enabled the dynamic receipts entitlement.
+// end::context-type-receipt-buyer[]
+
+// tag::context-type-sticker[]
+*Sticker* - Displays how your app looks if embedded in another app.
+// end::context-type-sticker[]
+
+// tag::context-type-thumbnail[]
+*Thumbnail* - Displays your app's preview or teaser ad if shared on social media.
+// end::context-type-thumbnail[]
+
+// end::all[]

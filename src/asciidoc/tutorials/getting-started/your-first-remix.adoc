@@ -3,7 +3,7 @@
 :page-description: Creating your first remix
 :figure-caption!:
 
-In the <<core-package#,previous section>> of the quick start tutorial, you learned about using the terminal, and installing and using the @withkoji/core package.
+In the <<core-package#,previous section>> of this tutorial, you learned about using the terminal, and installing and using the @withkoji/core package.
 In this section, you’ll
 // tag::description[]
 take a break from coding, and instead, put yourself into the shoes of a user to see what the Koji experience looks like from their perspective.

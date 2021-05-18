@@ -20,6 +20,12 @@
 
 // tag::open-in-code-editor[]
 . In the *Project Details* page, click *Open in Code Editor*.
++
+.Image: Project Details ...
+[%collapsible]
+====
+image::project-details-open-code-editor.png[Project details page: Open in Code Editor button,50%,link={imagesDir}/project-details-open-code-editor.png]
+====
 // end::open-in-code-editor[]
 
 // end::all[]

@@ -3,7 +3,7 @@
 :page-description: Making a project remixable and managing the remixing experience
 :figure-caption!:
 
-In the <<intro-to-contexts#, previous section>> of the quick start tutorial, you learned about contexts and how they help to deliver the remix experience that makes Koji such a powerful platform.
+In the <<intro-to-contexts#, previous section>> of this tutorial, you learned about contexts and how they help to deliver the remix experience that makes Koji such a powerful platform.
 In this section, you'll
 // tag::description[]
 dive into what you need to do in the code to allow users to remix and publish their own customized versions of your project.

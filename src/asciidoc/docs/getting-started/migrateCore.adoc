@@ -5,16 +5,18 @@
 The <<withkoji-koji-core#, @withkoji/core package>> includes everything you need to access platform services in your Kojis.
 It requires less boilerplate code and provides more flexibility than the <<packages-overview#_deprecated_packages,deprecated packages>> it replaces.
 
+TIP: For a mapping of all deprecated packages to the replacement functionality in @withkoji/core, see <<_package_comparison_reference>>.
+
 == Do I need to migrate?
 
-If you implemented features using one or more deprecated packages or if you forked a template or scaffold that uses them, you must migrate your code to the `@withkoji/core` package.
+You must migrate your code to the `@withkoji/core` package if you implemented features using one or more deprecated packages or if you forked a template or scaffold that uses them.
 
-To determine if your code uses one or more deprecated packages, check the following:
+Your code uses one or more deprecated packages if any of the following is true:
 
-* If the `package.json` file mentions deprecated packages, such as `@withkoji/vcc`.
-* If your project contains a `.koji` directory.
+* The `package.json` file mentions deprecated packages, such as @withkoji/vcc.
+* Your project contains a `.koji` directory.
 
-TIP: For a mapping of all deprecated packages to the replacement functionality in @withkoji/core, see <<_package_comparison_reference>>.
+This guide helps you migrate your code.
 
 == Migrating configuration data
 

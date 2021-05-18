@@ -3,7 +3,7 @@
 :page-description: Installing the @withkoji/core package and using it to capture user input.
 :figure-caption!:
 
-In the <<code-editor#,previous section>> of the quick start tutorial, you walked through exploring the folders and files in your project, making changes to files, and publishing updates.
+In the <<code-editor#,previous section>> of this tutorial, you walked through exploring the folders and files in your project, making changes to files, and publishing updates.
 In this section, you’ll
 // tag::description[]
 continue using the code editor to install and implement the @withkoji/core package.

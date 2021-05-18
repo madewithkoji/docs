@@ -38,29 +38,28 @@ If you made changes to your project files xref:work-locally.adoc[outside the Koj
 
 === Previews in the code editor
 
-If your template includes different contexts or modes, you can select which context is displayed in the preview pane.
+If your app includes different contexts or modes, you can select which context is displayed in the preview pane.
 
-* *Default* - Displays a fully functional preview of your Koji.
-The *Default* context is always enabled.
-
-* *Remix* - Displays what remixers see when customizing your Koji.
-
+* {blank}
+include::{includespath}/contexts-modes.adoc[tag=context-type-default]
+* {blank}
+include::{includespath}/contexts-modes.adoc[tag=context-type-remix]
 * *More* - Displays a menu of additional previews.
 +
 image::more.png[More menu]
 +
-** *About* - Displays an About page, if you enabled the associated entitlement.
-
-** *Admin* - Displays an Admin page, if you enabled the associated entitlement.
-
-** *Receipt (seller)* - Displays a preview of the transaction receipt for the seller, if you implemented in-app purchases and enabled the dynamic receipts entitlement.
-
-** *Receipt (buyer)* - Displays a preview of the transaction receipt for the buyer, if you implemented in-app purchases and enabled the dynamic receipts entitlement.
-
-** *Sticker* - Displays how your Koji will look if it's imbedded in another Koji.
-
-** *Thumbnail* - Displays how your Koji will look if it's shared on social media.
-
+** {blank}
+include::{includespath}/contexts-modes.adoc[tag=context-type-about]
+** {blank}
+include::{includespath}/contexts-modes.adoc[tag=context-type-admin]
+** {blank}
+include::{includespath}/contexts-modes.adoc[tag=context-type-receipt-seller]
+** {blank}
+include::{includespath}/contexts-modes.adoc[tag=context-type-receipt-buyer]
+** {blank}
+include::{includespath}/contexts-modes.adoc[tag=context-type-sticker]
+** {blank}
+include::{includespath}/contexts-modes.adoc[tag=context-type-thumbnail]
 
 === Previews outside the code editor
 
@@ -69,13 +68,27 @@ You can also preview a Koji outside the code editor.
 * The QR code button image:{imagesDir}/QRcode.svg[QR code button] displays a QR code for your Koji.
 Scan this code to preview the Koji on your mobile device.
 
-* The remote staging button image:{imagesDir}/remote-staging.svg[Remote staging button] opens a preview of your Koji in a new browser tab.
+* The remote preview button image:{imagesDir}/remote-preview.svg[Remote preview button] opens a preview of your Koji in a new browser tab.
 
+NOTE: The preview exists only as long as your code editor is active.
 
 === Debugging
 
 To open the debugger in a new browser tab, click *Launch Debugger*.
 For more information, go to <<testing-templates##_using_the_koji_debugger, Using the Koji debugger>>.
+
+== Publishing your Koji
+
+You can publish your Koji from the code editor.
+
+image::code-editor-publish-now.png[Publish Now,50%,link={imagesDir}/code-editor-publish-now.png]
+.. In the leftmost panel under *Project*, click the *Publish Now* link.
+.. Enter a name for the project.
+.. (Optional) Configure other settings.
+.. Click *Publish New Version*.
+.. After your app is deployed to staging, click the link in the success message to view it. +
+You can share this link with collaborators and testers.
+====
 
 == Tips
 

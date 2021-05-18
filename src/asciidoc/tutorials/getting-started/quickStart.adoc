@@ -1,4 +1,4 @@
-= Tutorial: Koji quick start
+= Tutorial: Getting started with Koji
 :page-slug: quick-start
 :page-description: Tutorial for learning fundamental concepts and developing your first project on Koji.
 
@@ -8,9 +8,7 @@ Along the way, you'll learn some general web development topics along with the f
 
 NOTE: This tutorial provides a step-by-step introduction for developers who are new to Koji, with or without web development experience.
 
-////
 If you prefer to jump straight into code, go through <<adv-quick-start#, the Koji advanced quick start guide>>.
-////
 
 == Sections
 
