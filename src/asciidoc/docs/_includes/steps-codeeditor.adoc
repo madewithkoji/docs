@@ -6,6 +6,7 @@
 
     include::{includespath}/steps-codeeditor.adoc[tag=go-to-project-details]
     include::{includespath}/steps-codeeditor.adoc[tag=open-in-code-editor]
+    include::{includespath}/steps-codeeditor.adoc[tag=install-core-package]
 ////
 
 
@@ -20,12 +21,16 @@
 
 // tag::open-in-code-editor[]
 . In the *Project Details* page, click *Open in Code Editor*.
-+
-.Image: Project Details ...
-[%collapsible]
-====
-image::project-details-open-code-editor.png[Project details page: Open in Code Editor button,50%,link={imagesDir}/project-details-open-code-editor.png]
-====
 // end::open-in-code-editor[]
+
+
+// tag::install-core-package[]
+Install the @withkoji/core package.
++
+TIP: To use the command line to install packages or to perform tasks, expand the terminal pane at the bottom.
++
+Learn more: <<withkoji-koji-core#>>
+// end::install-core-package[]
+
 
 // end::all[]

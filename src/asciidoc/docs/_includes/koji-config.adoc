@@ -1,0 +1,25 @@
+= Reusable content about koji.json
+
+////
+  Usage:
+    :includespath: ../_includes
+
+    include::{includespath}/koji-config.adoc[tag=koji-json-contents]
+////
+
+
+// tag::all[]
+
+// tag::koji-json-contents[]
+The `koji.json` file contains the following configurations:
++
+* `develop` – Development instructions from `.koji/project/develop.json`.
+* `deploy` – Deployment instructions from `.koji/project/deploy.json`.
+* `remixData` – Default values for remix data from the scope section of any JSON customization files in the `.koji/customization` directory.
+* `@@initialTransform` – Placeholder values for new remixes from the `@@initialTransform` key of any JSON customization files in the `.koji/customization` directory.
+* `entitlements` – Entitlements from the `.koji/project/entitlements.json` file.
+// end::koji-json-contents[]
+
+
+
+// end::all[]

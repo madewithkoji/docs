@@ -43,11 +43,11 @@ The *Default* context is always enabled.
 // end::context-type-receipt-buyer[]
 
 // tag::context-type-sticker[]
-*Sticker* - Displays how your app looks if embedded in another app.
+*Sticker* - Displays how your app looks if it's embedded in another app.
 // end::context-type-sticker[]
 
 // tag::context-type-thumbnail[]
-*Thumbnail* - Displays your app's preview or teaser ad if shared on social media.
+*Thumbnail* - Displays your app's preview or teaser ad if it's shared on social media.
 // end::context-type-thumbnail[]
 
 // end::all[]

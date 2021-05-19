@@ -82,11 +82,11 @@ For more information, go to <<testing-templates##_using_the_koji_debugger, Using
 You can publish your Koji from the code editor.
 
 image::code-editor-publish-now.png[Publish Now,50%,link={imagesDir}/code-editor-publish-now.png]
-.. In the leftmost panel under *Project*, click the *Publish Now* link.
-.. Enter a name for the project.
-.. (Optional) Configure other settings.
-.. Click *Publish New Version*.
-.. After your app is deployed to staging, click the link in the success message to view it. +
+. In the leftmost panel under *Project*, click the *Publish Now* link.
+. Enter a name for the project.
+. (Optional) Configure other settings.
+. Click *Publish New Version*.
+. After your app is deployed to staging, click the link in the success message to view it.
 You can share this link with collaborators and testers.
 ====
 
