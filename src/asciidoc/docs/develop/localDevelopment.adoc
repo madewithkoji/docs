@@ -2,7 +2,8 @@
 :page-slug: local-development
 :page-description: Guide for developing a Koji project on your local machine
 
-Although Koji provides a feature-rich online project editor, you might prefer to use your own suite of development tools. The goal of this tutorial is to guide you through cloning a project to your local machine and editing and publishing it from there.
+Although Koji provides a feature-rich online project editor, you might prefer to use your own suite of development tools.
+The goal of this tutorial is to guide you through cloning a project to your local machine and editing and publishing it from there.
 
 == Learning modules
 
