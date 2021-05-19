@@ -60,20 +60,30 @@
               "slug": "add-service"
             },
             {
-              "name": "Using Git to manage projects",
-              "slug": "use-git"
-            },
-            {
-              "name": "Working locally",
-              "slug": "work-locally"
-            },
-            {
               "name": "Koji database",
               "slug": "koji-database"
             },
             {
               "name": "Testing templates",
               "slug": "testing-templates"
+            },
+            {
+              "name": "Local development topics",
+              "slug": "local-development",
+              "subItems": [
+                {
+                  "name": "Using Git to manage projects",
+                  "slug": "use-git"
+                },
+                {
+                  "name": "Working locally",
+                  "slug": "work-locally"
+                },
+                {
+                  "name": "Publishing local projects",
+                  "slug": "publish-locally-developed"
+                }
+              ]
             }
           ]
         },
@@ -172,10 +182,6 @@
             {
               "name": "Sharing rich previews and custom metadata",
               "slug": "rich-preview-image"
-            },
-            {
-              "name": "Publishing local projects",
-              "slug": "publish-locally-developed"
             },
             {
               "name": "Managing template versions",

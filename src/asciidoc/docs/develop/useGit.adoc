@@ -3,8 +3,11 @@
 :page-description: How to use Git to clone a Koji project template to your development machine, so that you can work on it locally.
 :figure-caption!:
 
-Although Koji provides a feature-rich online project editor, you might prefer to use your own suite of development tools in some cases.
-This tutorial describes how to use Git to clone a Koji project template to your development machine, so that you can work on it locally.
+Git is the version control system used by Koji. You use it to handle your projects and keep track of the changes to them.
+In the first section of this tutorial, you will
+// tag::description[]
+clone a Koji project to your development machine, so that you can work on it locally.
+// end::description[]
 
 This is the first part in a three-part tutorial.
 

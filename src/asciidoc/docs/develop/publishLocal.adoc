@@ -2,12 +2,14 @@
 :page-slug: publish-locally-developed
 :page-description: How to push local changes to the origin repository and pull them into the Koji editor, so you can publish the project.
 
-Although Koji provides a feature-rich online project editor, you might prefer to use your own suite of development tools in some cases.
 In the previous parts of this tutorial, you learned how to use Git to clone a Koji project to your development machine and how to install and launch a Node.js server to run your project locally.
 If you have followed the first two parts of this tutorial, you will now have a scaffold project running on your local computer, so you can use your favorite text editor to modify it and add new features.
 You will also be able to test that these new features work on your development machine.
 
-In this tutorial, you will learn how to push the changes that you have made locally to your project's origin repository, and how to pull the latest version of your project into the Koji editor, where you can publish it to the world.
+In this section, you will
+// tag::description[]
+learn how to push the changes that you have made locally to your project's origin repository, and how to pull the latest version of your project into the Koji editor, where you can publish it to the world.
+// end::description[]
 
 NOTE: It is recommended that you test the publishing process before you get deep into development locally.
 You can make a minor change, push it back to the Koji servers, and check that the change is visible in the published template on Koji.

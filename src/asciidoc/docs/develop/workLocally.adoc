@@ -2,12 +2,11 @@
 :page-slug: work-locally
 :page-description: How to set up a web server and launch your Koji template on your development machine, so that you can work on it locally.
 
-Although Koji provides a feature-rich online project editor, you might prefer to use your own suite of development tools in some cases.
 In the first part of this tutorial, you learned how to use Git to clone a Koji project template to your development machine, so that you can work on it locally.
-In this tutorial, you learn these key skills:
-
-* How to install a Node.js web server environment on your development machine.
-* How to launch both a frontend and a backend server so that you can work with all aspects of your template within your local area network.
+In this section, you will
+// tag::description[]
+install a Node.js web server environment on your development machine and launch both a frontend and a backend server so that you can work with all aspects of your template within your local area network.
+// end::description[]
 
 This is the second part in a three-part tutorial.
 

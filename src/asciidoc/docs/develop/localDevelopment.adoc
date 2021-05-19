@@ -1,0 +1,24 @@
+= Working from your development machine
+:page-slug: local-development
+:page-description: Guide for developing a Koji project on your local machine
+
+Although Koji provides a feature-rich online project editor, you might prefer to use your own suite of development tools. The goal of this tutorial is to guide you through cloning a project to your local machine and editing and publishing it from there.
+
+== Learning modules
+
+<<use-git#>>  ::
++
+[.init-cap]
+include::useGit.adoc[tag=description]
+<<work-locally#>>  ::
++
+[.init-cap]
+include::workLocally.adoc[tag=description]
+<<publish-locally-developed#>>  ::
++
+[.init-cap]
+include::publishLocal.adoc[tag=description]
++
+
+
+
