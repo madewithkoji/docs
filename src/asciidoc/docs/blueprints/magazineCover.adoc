@@ -236,8 +236,8 @@ For example:
 The corresponding VCC should open.
 * Remix functionality – In the JSON file, switch to *Visual* view, and use VCC editor to customize values.
 The template should update immediately.
-* Template styles in another browser tab or device – To open a preview in a new browser tab, click the remote staging button image:remote-staging.png[Remote staging button] in the preview pane.
-To open a preview on a mobile device, click the QR code button image:QRcode.png[QR code button] in the preview pane to display a QR code, then scan the QR code with your mobile device.
+* Template styles in another browser tab or device – To open a preview in a new browser tab, click the remote staging button image:remote-preview.svg[Remote staging button] in the preview pane.
+To open a preview on a mobile device, click the QR code button image:QRcode.svg[QR code button] in the preview pane to display a QR code, then scan the QR code with your mobile device.
 
 === Publish
 

@@ -288,15 +288,15 @@ include::../_includes/entitlements.json[]
 
 Use the tools in the Koji editor to test template functionality. For example:
 
-* Multi-user experience – Use the remote staging button image:remote-staging.png[Remote staging button] in the preview pane to open the template in multiple tabs and ensure the vote counter remains synchronized.
+* Multi-user experience – Use the remote staging button image:remote-preview.svg[Remote staging button] in the preview pane to open the template in multiple tabs and ensure the vote counter remains synchronized.
 * Template default view – *Refresh* the *Live preview* tab.
 * Conditional styling of editable elements – In the live preview, switch between *Default* and *Remix* mode.
 * VCC targeting – In *Remix* mode, click each editable element.
 The corresponding VCC should open.
 * Remix functionality – In the JSON file, switch to *Visual* view, and use VCC editor to customize values.
 The template should update immediately.
-* Template styles in another browser tab or device – To open a preview in a new browser tab, click the remote staging button image:remote-staging.png[Remote staging button] in the preview pane.
-To open a preview on a mobile device, click the QR code button image:QRcode.png[QR code button] in the preview pane to display a QR code, then scan the QR code with your mobile device.
+* Template styles in another browser tab or device – To open a preview in a new browser tab, click the remote staging button image:remote-preview.svg[Remote staging button] in the preview pane.
+To open a preview on a mobile device, click the QR code button image:QRcode.svg[QR code button] in the preview pane to display a QR code, then scan the QR code with your mobile device.
 
 TIP: If you want to reset the counter in the published template, open it in the Koji debugger, and then delete the test entries from the *votes* database view.
 See <<testing-templates#_using_the_koji_debugger,Using the Koji debugger>>.

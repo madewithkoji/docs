@@ -115,7 +115,7 @@ componentDidMount() {
 
 To save development time, Koji provides an easy way to test a custom VCC before it is published.
 
-. In your custom VCC project, click the remote staging button image:remote-staging.png[Remote staging button] in the preview pane to open your template in a new browser tab.
+. In your custom VCC project, click the remote staging button image:remote-preview.svg[Remote staging button] in the preview pane to open your template in a new browser tab.
 . Copy the URL from the address bar of the tab.
 . Open your consumer project.
 . In your consumer project, open the `Strings` customization file, and click *Code* to view the raw JSON.

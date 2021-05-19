@@ -210,7 +210,7 @@ include::../_includes/vcc-blueprint-styles.css[]
 
 To save development time, Koji provides an easy way to test a custom VCC before it is published.
 
-. In your custom VCC project, click the remote staging button image:remote-staging.png[Remote staging button] in the preview pane to open a preview in a new tab.
+. In your custom VCC project, click the remote staging button image:remote-preview.svg[Remote staging button] in the preview pane to open a preview in a new tab.
 . Open another project to act as the "consumer" for testing the VCC.
 +
 TIP: If you don't have another project, you can create a test project by <<_remix_the_scaffold, remixing the

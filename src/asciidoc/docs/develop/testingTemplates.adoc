@@ -27,7 +27,7 @@ Learn more about xref:editor.adoc#_previewing_your_koji[previewing your Koji].
 You can test JavaScript code by using the `console.log` method, which prints to the console.
 
 Although the `console.log` method can be implemented in the Koji editor, the results must be viewed in the console, which is only available when the template is run remotely.
-You can use the remote staging button image:remote-staging.png[Remote staging button] in the preview pane to open a preview in a new browser tab.
+You can use the remote staging button image:remote-preview.svg[Remote staging button] in the preview pane to open a preview in a new browser tab.
 Then you can access the console through the browser's menu.
 See <<_using_browser_tools_for_testing>>.
 
