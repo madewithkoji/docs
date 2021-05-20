@@ -1,4 +1,4 @@
-= Google Font
+= Google Font (deprecated)
 :page-slug: google-font
 :page-description: Custom VCC for selecting a font family from Google Fonts.
 

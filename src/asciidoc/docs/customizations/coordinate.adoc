@@ -1,4 +1,4 @@
-= Coordinate
+= Coordinate (deprecated)
 :page-slug: coordinate
 :page-description: Standard VCC for specifying a coordinate pair (x,y).
 :figure-caption!:

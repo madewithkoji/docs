@@ -1,4 +1,4 @@
-= Boolean
+= Boolean (deprecated)
 :page-slug: boolean
 :page-description: Standard VCC for toggling a Boolean value on or off (true or false).
 :figure-caption!:

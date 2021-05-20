@@ -1,4 +1,4 @@
-= File
+= File (deprecated)
 :page-slug: file
 :page-description: Standard VCC for uploading a file.
 :figure-caption!:

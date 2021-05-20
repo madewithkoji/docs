@@ -1,4 +1,4 @@
-= Array (composition)
+= Array (composition) (deprecated)
 :page-slug: array
 :page-description: Composition control for creating a list values with a single VCC definition.
 

@@ -197,7 +197,7 @@ For example, `dynamic-receipt=buyer` or `dynamic-receipt=seller`.
 ** The `resolveReceiptById` method retrieves a specific transaction receipt.
 * Reference docs for the <<withkoji-vcc-package#,VCC package>> have been updated.
 * Step-by-step instructions for extending your first template are now available in four “flavors” – React, Vanilla JS, Angular, and Svelte.
-* Several pages were updated based on your feedback, including <<vcc-overview#>> and <<magazine-cover-blueprint#, Magazine cover blueprint>>.
+* Several pages were updated based on your feedback, including <<vcc-overview#>> and Magazine cover blueprint.
 
 == October 5
 
@@ -262,7 +262,7 @@ For updated documentation, see the <<withkoji-vcc-package#.onSetValue>> referenc
 
 == August 17
 
-* Added a Vanilla JS version of the <<magazine-cover-blueprint#,magazine cover blueprint>> on the developer site.
+* Added a Vanilla JS version of the magazine cover blueprint on the developer site.
 * Changed the Koji screenshot feature for rich preview (Open Graph) images.
 For the current guidelines and requirements, see <<rich-preview-image#>>.
 * Removed the `dismissOnCommit` type option for VCCs from the documentation because it is no longer supported on the platform.
@@ -270,7 +270,7 @@ For the current guidelines and requirements, see <<rich-preview-image#>>.
 
 == August 11
 
-Added the <<cat-selector-blueprint#, cat selector blueprint>> as a new resource on the developer site.
+Added the cat selector blueprint as a new resource on the developer site.
 
 * Builds a custom selector VCC.
 * Integrates with a third-party API to retrieve a list of options.
@@ -278,7 +278,7 @@ Added the <<cat-selector-blueprint#, cat selector blueprint>> as a new resource 
 
 == August 5
 
-Added the <<vote-counter-blueprint#, vote counter blueprint>> as a new resource on the developer site.
+Added the vote counter blueprint as a new resource on the developer site.
 
 * Builds a multi-user, interactive template.
 * Demonstrates Koji database and dispatch packages in action.

@@ -1,4 +1,4 @@
-= Media
+= Media (deprecated)
 :page-slug: media
 :page-description: Standard VCC for selecting an image, file, sound, or video.
 :figure-caption!:

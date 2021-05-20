@@ -72,6 +72,7 @@ To clone your Koji repository locally, you need these strings:
 +
 The access token is a 32-character randomly-generated hexadecimal number, which you can use instead of a password when cloning your repositories.
 * The values of the `KOJI_PROJECT_ID` and `KOJI_PROJECT_TOKEN` environment variables, if the project has a backend component.
+* The values of the `KOJI_CREATOR_USERNAME` and `KOJI_CREATOR_PROFILE_PICTURE` environment variables, if you want to use platform-provided metadata about the creator in the project.
 
 === Obtaining an access key
 
@@ -98,6 +99,7 @@ You can, however, revoke your token and generate a new one if you have forgotten
 === Obtaining Koji environment variables
 
 If your project has a backend, you need the values of the `KOJI_PROJECT_ID` and `KOJI_PROJECT_TOKEN` environment variables to access it.
+Additional environment variables are available for accessing platform-provided metadata about the Koji's creator.
 
 . If the Clone dialog is not already open, return to the browser tab for *Project Details*, and click *Clone*.
 +
@@ -105,6 +107,7 @@ The first line of text under *Environment Variables* is the project ID.
 . Click the line to highlight it.
 . Copy the highlighted line and paste it somewhere to save it for later.
 . Do the same with the second line of text, which is the project token.
+. Repeat for the next two lines, which provide metadata about the creator.
 
 === Authorizing Git to clone the repository
 
