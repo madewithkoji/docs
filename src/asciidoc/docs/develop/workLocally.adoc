@@ -8,12 +8,6 @@ In this section, you will
 install a Node.js web server environment on your development machine and launch both a frontend and a backend server so that you can work with all aspects of your template within your local area network.
 // end::description[]
 
-This is the second part in a three-part tutorial.
-
-. <<use-git#>>
-. *Working locally* (this tutorial)
-. <<publish-locally-developed#>>
-
 == Prerequisites
 
 * Use Git to clone your project locally.
@@ -21,6 +15,15 @@ See the first part of the tutorial.
 * https://nodejs.org/en/download/[Install Node.js] and its associated Node Package Manager (NPM).
 In this tutorial, you will set up a Node.js server on your development computer.
 Koji uses Node.js and add-on packages to deliver your web application to your users' browsers.
+
+== Learning objectives
+
+. Install the Node modules that are needed to run a server on your local machine.
+. Get the environment variables used by the server from the Koji editor.
+. Create an `.env` file to apply these environment variables to the backend server, so that it can connect to the database.
+. Tell the frontend which URL to use when connecting to the backend server.
+. Launch the template locally.
+. Check that the game and the leaderboard are working correctly.
 
 == Installing the dependencies
 

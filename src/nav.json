@@ -78,15 +78,15 @@
               "slug": "local-development",
               "subItems": [
                 {
-                  "name": "Using Git to manage projects",
+                  "name": "1. Using Git to manage projects",
                   "slug": "use-git"
                 },
                 {
-                  "name": "Working locally",
+                  "name": "2. Working locally",
                   "slug": "work-locally"
                 },
                 {
-                  "name": "Publishing local projects",
+                  "name": "3. Publishing local projects",
                   "slug": "publish-locally-developed"
                 }
               ]

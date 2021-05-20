@@ -21,6 +21,16 @@ See the first part of the tutorial.
 * Install Node.js and launch your project locally.
 See the second part of the tutorial.
 
+== Learning objectives
+
+* Clone a remixable Koji project onto your development machine (part 1).
+* Install a Node.js server environment and run your project locally (part 2).
+* Make and test changes locally.
+* Push your changes to the origin repository, and then pull them into the Koji editor.
+* Publish your changes to the Koji server.
+* Test that your template works the same live on a Koji server as it does locally.
+* Take advantage of the Visual mode for the JSON customization files, so that non-technical users can easily create their own versions of your template.
+
 == Changing a custom value
 
 For the https://withkoji.com/~Svarog1389/element-match[Element Match] game, a new game title would be a simple change that is obvious to test.

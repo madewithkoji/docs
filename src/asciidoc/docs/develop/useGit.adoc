@@ -40,6 +40,13 @@ You will use a text editor to edit your code, and save it as plain-text files.
 A text editor that is designed for writing code can help you in many ways, such as verifying structure and syntax or finding the correct variables or function names.
 For more information, see this https://kinsta.com/blog/best-text-editors/[list of recommended text editors], which includes several that are excellent and free.
 
+== Learning objectives
+
+* Get the required tools: Git, Node.js, a Terminal application and a text editor.
+* Get the URL of Koji's origin repository for your project.
+* Get the username and password that allows you to interact with Koji's origin repository.
+* Clone the Git repository for your project onto your local machine.
+
 == Choosing a template for your project
 
 This tutorial uses the *Element Match* template as an example because it illustrates a completed game with code that runs both on the backend and on the frontend.
