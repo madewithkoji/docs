@@ -72,7 +72,7 @@ The above code will output the following:
 
 include::../_includes/tabs-example.adoc[tags=*]
 
-You will also notice that on some pages changing tabs will switch the tabs in multiple places (for example, choosing a coding framework in a blueprint article).
+You might also notice that on some pages changing tabs will switch the tabs in multiple places (for example, when choosing a coding framework for an article).
 To sync multiple sets of tabs, use the `scope` attribute. Then, selecting a tab on the page also selects any other tabs with the same scope and a matching tab title.
 
 [source, asciidoc]
