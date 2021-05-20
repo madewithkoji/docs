@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { navigate } from '@reach/router';
@@ -20,7 +20,6 @@ const Container = styled.div`
 
 const Wrapper = styled.div`
   width: 100%;
-  max-width: 1100px;
   margin: 0 auto;
   display: flex;
   align-items: center;
@@ -58,7 +57,7 @@ const NavItemDropdown = styled.select`
   border-radius: 2.5px;
   padding: 4px;
   margin-left: -8px;
-  max-width: 72px;
+  max-width: max(72px, 20vw);
 
   &:hover {
     border: 1px solid #111111;
@@ -175,8 +174,18 @@ const AppSubBar = ({ location, navItems, onSearchClick }) => {
                 (currentNavItem.sections || []).map(({ name, items: sectionItems }) => (
                   <Section key={name} label={name}>
                     {
-                      (sectionItems || []).map(({ name: itemName, path }) => (
-                        <Item key={itemName} value={path}>{itemName}</Item>
+                      (sectionItems || []).map(({ name: itemName, path, subItems }) => (
+                        <Fragment key={itemName}>
+                          <Item value={path}>{itemName}</Item>
+                          {
+                            subItems && subItems.sort((a, b) => a.idx - b.idx).map(({ name: subItemName, path: subItemPath }) => (
+                              <Item key={subItemName} value={subItemPath}>
+                                &nbsp;&nbsp;&nbsp;-&nbsp;
+                                {subItemName}
+                              </Item>
+                            ))
+                          }
+                        </Fragment>
                       ))
                     }
                   </Section>
@@ -229,7 +238,7 @@ AppSubBar.propTypes = {
 AppSubBar.defaultProps = {
   location: {},
   navItems: [],
-  onSearchClick() {},
+  onSearchClick() { },
 };
 
 export default AppSubBar;

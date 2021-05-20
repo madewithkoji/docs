@@ -18,15 +18,15 @@ You can also customize the sharing metadata by configuring an entitlement.
 To customize the sharing image for your template, render a custom view when the URL contains the `koji-screenshot=1` query parameter.
 For optimal rich preview support, design this view with the following considerations in mind.
 
-* Responsiveness.
-* Looks good with a square aspect ratio.
-* Includes customizable elements to generate unique previews of each remix.
+* The image is responsive.
+* The image looks good with a square aspect ratio.
+* The image is optimized for faster loading.
+For example, to reduce the image size to 400x400 pixels and load only the first frame of a gif, you can add query parameters at the end of your image's URL: `\https://images.koji-cdn.com/path/to/myimage.gif?fit=bounds&width=400&height=400&frame=1`
+* The image includes customizable elements to generate unique previews of each remix.
 
 image::Koji-screenshot=1.svg[Render a view for the rich preview image]
 
 For the following example, assume the template supports remixes of the title, font size, and logo.
-
-include::../_includes/starterExamples.adoc[tag=all]
 
 . In your application code, add a conditional statement to display a different image for social shares.
 For example:

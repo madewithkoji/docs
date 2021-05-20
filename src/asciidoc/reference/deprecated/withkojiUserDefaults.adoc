@@ -1,0 +1,124 @@
+= @withkoji/user-defaults (deprecated)
+:page-slug: withkoji-user-defaults-package
+:page-description: Package that provides a secure interface for accessing permissioned user data across all Koji templates.
+
+include::../../docs/_includes/deprecatedPackage.adoc[tag=all]
+
+The @withkoji/user-defaults package provides
+//tag::description[]
+a secure interface for accessing permissioned user data across all Koji templates.
+//end::description[]
+
+A template can request data with a reserved key, for the user's Koji profile data, or with a user key from any template on Koji, for additional preferences.
+This data can then be used to autofill values and personalize experiences.
+For example, automatically enter the user's name in a leaderboard, or display the user’s avatar in a game.
+
+Keys requested from any template are available in a global, unscoped namespace and do not need to be registered.
+When a request does not use a reserved key, Koji checks whether the user has entered a value for the requested key, either on the current template or on a different template.
+If not, the user is prompted to submit a value and allow it to be saved for later reuse.
+This method enables users to own and manage their data in a transparent, portable way, rather than relying on cookies or other measures.
+
+== Install
+
+Install the package in your Koji project.
+
+[source,bash]
+----
+npm install --save @withkoji/user-defaults
+----
+
+== KojiUserDefaults
+
+[.hcode, id="new KojiUserDefaults", reftext="new KojiUserDefaults"]
+=== new KojiUserDefaults()
+
+Instantiates `KojiUserDefaults`.
+
+==== Example
+
+[source,javascript]
+----
+import KojiUserDefaults from '@withkoji/user-defaults';
+const kojiUserDefaults = new KojiUserDefaults();
+----
+
+== KojiUserDefaults methods
+
+[.hcode, id=".onConnect", reftext="onConnect"]
+=== .onConnect(handler)
+
+Listens to the user's login state to enable access to permissioned user data.
+
+==== Parameters
+
+* `handler` – _Function_, handles requests for user data.
+Receives the following property as input:
+** `isConnected` – _Boolean_, indicates whether the user is logged in to Koji.
+
+==== Example
+
+[source,javascript]
+----
+kojiUserDefaults.onConnect((isConnected) => {
+  // If logged in, get user name
+  if (isConnected) {
+    kojiUserDefaults.get('profile.username', (success, key, value) => {
+      console.log(success, key, value);
+    });
+  }
+});
+----
+
+[.hcode, id=".get", reftext="get"]
+=== .get(key, handler)
+
+Gets a specified piece of user data and invokes a callback function to handle the results of the request.
+
+==== Parameters
+
+* `key` – _String_, key of the user data to retrieve.
+See <<#_keys>>.
+* `handler` – _Function_, handles the results of the data request.
+Receives the following properties as input:
+** `success` – _Boolean_, indicates whether the request was successful.
+** `key` – _String_, key of the user data.
+** `value` – _String_, value of the user data, if the request was successful.
+For an unsuccessful request, the value is `undefined`.
+
+==== Example
+
+[source,javascript]
+----
+kojiUserDefaults.get('profile.username', (success, key, value) => {
+  console.log(success, key, value);
+});
+----
+
+[.hcode, id=".promptLogin", reftext="promptLogin"]
+=== .promptLogin()
+
+Prompts the user to log in to Koji.
+
+==== Example
+
+[source,javascript]
+----
+kojiUserDefaults.promptLogin();
+----
+
+== Keys
+
+The following *reserved keys* can be used to access data from the user's Koji profile.
+
+* `profile.username`
+* `profile.profilePicture`
+* `profile.reputation`
+
+Additionally, any template can request user data, and the specified key will be used to represent string values in an unscoped, portable, global storage.
+For example, you could request a key in your template called `user.favoriteColor`, and then reuse that value in any other Koji template.
+
+== Related resources
+
+* https://github.com/madewithkoji/koji-user-defaults-sdk[@withkoji/user-defaults on Github]
+* Core package replacement modules: <<core-frontend-identity#, Identity (frontend)>>
+* <<migrate-koji-core#>>

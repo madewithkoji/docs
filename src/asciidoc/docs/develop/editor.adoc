@@ -1,80 +1,131 @@
-= The Koji editor
+= The Koji code editor
 :page-slug: editor
-:page-description: Guide for the Koji editor, a browser-based IDE for developing and testing Koji templates.
+:page-description: Guide for the Koji code editor, a browser-based IDE for developing and testing your Koji.
+:includespath: ../_includes
 
-The Koji editor is a browser-based integrated development environment (IDE).
-You can use the Koji editor to create application and game templates.
-The editor contains all of your project's code, Visual Customization Controls (VCCs) generated from the project's code, interfaces for publishing and deployment management, and interfaces to other production tools such as the Koji database.
+The Koji code editor is a browser-based integrated development environment (IDE) that you can use to develop and test your Koji.
+The code editor provides easy access to the following:
 
-== Overview
+* All of your project's code.
+* Tools to preview and test your Koji.
+* Tools to publish and deploy your Koji.
 
-The Koji editor is divided into these sections:
+== Opening a project in the Koji code editor
 
-* *Navigation pane* – Lists menu items and source code.
-* *Editing pane* – Displays open files.
-Supports multiple tabs.
-* *Preview pane* – Displays a live preview of the template and provides other testing and debugging tools.
-* *Terminal pane* – Provides command line access to the project's services.
-Supports multiple tabs and can be collapsed.
+include::{includespath}/steps-codeeditor.adoc[tag=go-to-project-details]
+include::{includespath}/steps-codeeditor.adoc[tag=open-in-code-editor]
 
-image::Koji-editor.png[Screenshot of the Koji editor process]
+include::{includespath}/images-annotated.adoc[tag=editorsections]
 
-== Koji editor code hosting and source control
+== Koji source control
 
-Each Koji project is backed by a Git repository.
-When you remix a project, Koji clones that project's Git repository to your account and opens it in the editor.
-When you publish your application from the editor, Koji commits your changes and pushes to master.
-This push triggers a deploy.
-You can think of the state of your Koji editor in the same way as the state of a Git repository on your computer -- that is, it is a working HEAD of your repository.
-This means that if you make changes to your project from outside the Koji editor, you must `git pull` those changes from within the Koji editor to see them.
+Each Koji project is stored in a Git repository in the cloud.
 
-If you would like to use a remote editor, you must generate a Git access token.
-You can use this access token in place of a password when cloning your repositories.
-To find the remote URL of your project's Git repository, go to *Advanced > Repository Info* in the Koji editor.
+When you fork an existing project or scaffold, the Git repository of that project/scaffold is copied to your account.
 
-For in-depth walkthroughs of working outside the Koji editor, see <<use-git#>>.
+When you use the code editor to publish your Koji, the code editor commits your changes and pushes the updated files to the `master` branch.
+This push triggers the deployment process.
 
-== Previews
+[IMPORTANT]
+====
+If you made changes to your project files xref:work-locally.adoc[outside the Koji editor], you must update the project files before editing them in the code editor again.
 
-You can select the type of preview to display in the preview pane.
-To learn more about using previews, see <<testing-templates#_testing_in_the_koji_editor,Testing in the Koji editor>>.
-The following types are available.
+. In the Koji code editor, expand the terminal pane.
+. Run `git pull`.
+====
 
-=== Default
+== Previewing your Koji
 
-Selecting *Default* shows a running preview of your template.
+=== Previews in the code editor
 
-=== Remix
+If your template includes different contexts or modes, you can select which context is displayed in the preview pane.
 
-Selecting *Remix* shows what remixers see when customizing values.
+* *Default* - Displays a fully functional preview of your Koji.
+The *Default* context is always enabled.
 
-=== More
+* *Remix* - Displays what remixers see when customizing your Koji.
 
-Selecting *More* displays a menu of additional previews.
-
+* *More* - Displays a menu of additional previews.
++
 image::more.png[More menu]
++
+** *About* - Displays an About page, if you enabled the associated entitlement.
 
-* *About* - Displays an About page, if you've enabled the associated entitlement.
+** *Admin* - Displays an Admin page, if you enabled the associated entitlement.
 
-* *Admin* - Displays an Admin page, if you've enabled the associated entitlement.
+** *Receipt (seller)* - Displays a preview of the transaction receipt for the seller, if you implemented in-app purchases and enabled the dynamic receipts entitlement.
 
-* *Receipt (seller)* - Displays a preview of the transaction receipt for the seller, if you've implemented in-app purchases and enabled the dynamic receipts entitlement.
+** *Receipt (buyer)* - Displays a preview of the transaction receipt for the buyer, if you implemented in-app purchases and enabled the dynamic receipts entitlement.
 
-* *Receipt (buyer)* - Displays a preview of the transaction receipt for the buyer, if you've implemented in-app purchases and enabled the dynamic receipts entitlement.
+** *Sticker* - Displays how your Koji will look if it's imbedded in another Koji.
 
-* *Sticker* - Displays how your template will look if it's imbedded in another template.
+** *Thumbnail* - Displays how your Koji will look if it's shared on social media.
 
-* *Thumbnail* - Displays how your template will look if it's shared on social media.
 
-=== Remote previews
+=== Previews outside the code editor
 
-The preview pane provides these options for previewing a template outside of the Koji editor.
+You can also preview a Koji outside the code editor.
 
-* The QR code button image:QRcode.png[QR code button] displays a QR code for the template.
-You can scan this code to preview the template on your mobile device.
+* The QR code button image:{imagesDir}/QRcode.svg[QR code button] displays a QR code for your Koji.
+Scan this code to preview the Koji on your mobile device.
 
-* The remote staging button image:remote-staging.png[Remote staging button] opens a preview of your template in a new browser tab.
+* The remote staging button image:{imagesDir}/remote-staging.svg[Remote staging button] opens a preview of your Koji in a new browser tab.
 
-=== Launching the debugger
 
-*Launch Debugger* opens the debugger in a new browser tab.
+=== Debugging
+
+To open the debugger in a new browser tab, click *Launch Debugger*.
+For more information, go to <<testing-templates#_using_the_koji_debugger, Using the Koji debugger>>.
+
+== Tips
+
+* While editing a plain text file, such as .js, .html, or .json, you can open menus with additional editing options.
++
+.Learn how...
+[%collapsible]
+====
+* To open a contextual menu, right-click anywhere in the editing pane.
+* To open the Command Palette, move your cursor focus inside the editing pane and press *F1*.
+====
+
+* You can revert to a previous version of your project.
++
+.Learn how...
+[%collapsible]
+====
+WARNING: You will lose all commmits that were done after the commit you intend to restore.
+
+. Open your project in the code editor.
+. Expand the terminal pane.
+. Run `git log` and copy the hash code of the commit you want to restore.
+. In the terminal pane, enter `git reset --hard <commit-hash>`.
+====
+
+* Publish more frequently for a more detailed commit history.
+
+* If you accidentally closed the frontend terminal, you can reopen it.
++
+.Learn how...
+[%collapsible]
+====
+. In the code editor, expand the terminal pane.
+. Click *New tab*.
+. Run:
++
+[source, console]
+----
+cd frontend
+npm start
+----
+====
+
+* Save frequently. If your network connection is interrupted or switched, the latest changes you made in the code editor might not be saved.
+
+[NOTE]
+====
+include::{includespath}/misc.adoc[tag=nodejsnpmver]
+====
+
+== Related resources
+
+* <<testing-templates#>>

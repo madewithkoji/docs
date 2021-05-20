@@ -1,0 +1,296 @@
+= 2020 updates
+:page-slug: 2020-updates
+:page-description: Brief digest of updates in 2020 to the Koji platform and developer site.
+
+This digest summarizes updates to the Koji platform, packages, and developer site from 2020.
+For the latest updates, see <<developer-updates#>>.
+
+include::../../_includes/tip-discord-server.adoc[tags=*]
+
+// tag::highlights[]
+== December 23
+
+* The Koji debugger is now available to enable live <<testing-templates#,testing and debugging>> in a production environment.
+// end::highlights[]
+To open the debugger, go to *My repositories* and click *Open debugger* next to the project you want to test.
+Features include:
+** Dynamic view of remix events, for a better understanding of how VCC data is changing over time in response to user actions.
+** At-a-glance database explorer, in-app purchase receipts, and auth grants, as well as easy ways to delete records for these services.
+** Debugging views for the different contexts that might be available in the Koji, such as *Admin* or *About*.
+** Thumbnail debugging that uses the same APIs as the live screenshot capture, so you can see exactly how sharing images will look.
+** Ability to point the debugging session at a development environment, so you can develop and debug remixing without deploying a new version.
+* In the <<withkoji-database-package#>> package, the new `transcodeAsset` and `getTranscodeStatus` methods are available for programmatically uploading and transcoding HTTP Live Streaming (HLS) video, enabling more ways to use uploaded videos in your templates.
+* The following features are now available in the <<withkoji-koji-iap-package#>> package.
+** The new `notificationMessage` parameter enables you to send custom messages when updating receipts.
+** The new `resolveReceiptsBySku` method retrieves all the receipts for a product, for an easier way to aggregate sales data.
+* On the developer site, new content is available about <<custom-domains#,custom domains>>.
+Also, *News updates for Koji developers*, formerly the Changelog, has been moved.
+* The <<image#,image>> and <<sound#,sound>> VCC types now enable you to hide all asset packs and VCC extensions in cases where they do not make sense (for example, templates for selling premium assets).
+To use this feature in your templates, enable the `hideExtensions` type option.
+* In the <<withkoji-koji-auth-sdk#>> package, the new `usageDescription` parameter enables you to display custom messages when requesting authorization grants.
+* On the Koji platform, the following usability updates improve the remixing experience for creators.
+** When remixing, the interactive preview mode now handles auth and in-app purchase events by displaying an alert, for better user feedback.
+** About cards now always open in the full frame, instead of modal windows.
+** Feed navigation is no longer used when browsing templates from the *Create* button.
+** Fixed a bug that incorrectly prompted anonymous users to log in when remixing templates with secure content, such as premium images.
+// tag::highlights[]
+
+== December 15
+
+* The following features are now available on the Koji platform.
+** The <<video#,video VCC>> can now support HTTP Live Streaming (HLS) for delivery of longer content, such as courses and short films.
+// end::highlights[]
+To use this feature in your templates, enable the `hls` type option.
+** Creators can now publish subscription-only Kojis and charge a fee for their premium content, without additional template development or configuration.
+To offer premium content, configure a subscription from your https://withkoji.com/creator[creator dashboard].
+Then, when publishing a remix, set the *Subscriber only* option to designate the Koji as part of your subscription offering.
++
+image::publishSubscription-dec2020.png[Publish premium content, 400px]
+// tag::highlights[]
+** The creator dashboard now shows consolidated analytics for all of your Kojis.
+The overview includes standard, built-in metrics that are calculated from access logs as well as transaction and revenue data.
+// end::highlights[]
+** You now have more options for customizing your Koji profile page.
+** Transaction receipts on the Koji platform have been redesigned for enhanced usability.
+* The following features are now available in the <<withkoji-vcc-package#>> package.
+** You can now generate a signed URL for any objects stored on the Koji CDN, enabling Kojis to serve them without exposing a permanent URI.
+This feature provides additional security protection against sharing or rehosting of private or subscription-only content.
+To use a signed URL, use the new `generateSignedUrl` method.
+** You can now hide the default action for advancing from a remix to a preview, enabling the template to handle validation and other processing first.
+To hide the default action, enable the new `InstantRemixingNativeNavigation` entitlement.
+To advance to a preview, use the new `finish` method.
+// tag::highlights[]
+* The developer site includes the following updates.
+** New content is available to help Koji developers get the most value from their templates, including <<template-versions#>>, <<testing-templates#>>, and <<plugins#>>.
+** The site design and navigation have been updated.
+
+== November 24
+
+// end::highlights[]
+* The following features are now available in the <<withkoji-koji-auth-sdk#>> package.
+** Enable users to "sign in" to a Koji and create a custom user ID for it.
+To request authorization for the user's ID, use the new `grants` parameter in the `getToken` and `getTokenWithCallback` methods.
+The new `allowAnonymous` parameter enables users to proceed without logging in, when appropriate.
+** Send push notifications with a user's ID, if the user has granted this authorization to the Koji.
+To validate the user’s authorization grants and get the user's ID, use the new `checkGrant` and `getGrant` methods.
+To send the notification, use the new `pushNotification` method.
+* The following features are now available in the <<withkoji-dispatch-package#>> package.
+** Connect to dispatch from your backend service and use it to broadcast messages to connected clients.
+To instantiate dispatch on the backend, use the new `projectToken` configuration option.
+** Send secure messages to specific clients, rather than broadcasting every message to all clients.
+The new `identify` method allows a client to use a short-lived `authToken` to identify itself to Koji dispatch.
+Then, the server or other dispatch clients can send secure messages to that client by including an array of `recipients` when calling `emitEvent`.
+* The following features are now available in the <<withkoji-vcc-package#>> package.
+** Design an About page as a landing page for remixers of a Koji.
+To provide an About page, enable the new `AboutContext` entitlement, and use the new `createRemix` method to trigger the remix from it.
++
+image::aboutPage-nov2020.png[About page, width=50%]
+
+** Use the new `?context=remix` URL parameter to determine when a Koji is being remixed.
+* In the <<withkoji-database-package#>> package, you can now batch database updates into a single transaction, which can reduce latency when making multiple updates to different collections.
+To batch database updates, set the new `mode` parameter to `transaction` when instantiating the database.
+Then, use the new `beginTransaction` and `commitTransaction` methods to submit one or more update requests.
+* The <<withkoji-koji-iap-package#>> package now includes `transactionIds` in a receipt object.
+This information enables you to link to a transaction from a notification (for example, `\https://withkoji.com/payments/transactions/TXN_ID`).
+// tag::highlights[]
+* On the Koji platform, you can now manage plugins and custom domains directly from a Koji, without opening the code.
+// end::highlights[]
+** To manage the plugins for a Koji you created, use the Koji button in the top right, and then go to *More > Manage this Koji > Plugins*.
+Plugins are available to add common functionality, such as Google Analytics and Facebook Pixel, to the frontend of a Koji.
+** To manage the custom domains for a Koji you created, use the *Koji* button in the top right, and then go to *Settings > Custom domains*.
+* On the Koji platform, your new https://withkoji.com/creator[creator dashboard] replaces your evolution dashboard.
+* On the developer site, new resources are available to help Koji developers solve common problems, including <<frontend-uploading#>> and <<persist-session-data#>>.
+
+== November 13
+
+* The new <<koji-vcc#, koji VCC>> enables remixers to create a new Koji or select an existing Koji, either from their profile or from a URL.
+The VCC stores the URL as the value.
+* In desktop view, the built-in <<vcc-overview#, Visual Customization Controls>> (VCCs) now appear as contextual menus, which open automatically in the position where the user clicks.
+** To use this feature in your existing templates, install version 1.1.42 of the <<withkoji-vcc-package#>> package.
+** To override the automatic positioning, set an absolute position with the `attributes` object when calling `onPresentControl`.
+* The <<color#, color VCC>> now accepts the `allowAlpha` type option, which shows a transparency slider when enabled.
+* The built-in VCCs have an updated look and feel.
++
+image::imageVCC-nov2020.png[Image VCC]
+// tag::highlights[]
+
+== November 5
+
+* It's now easier to withdraw funds from your Koji wallet.
+Simply tap your profile picture, and then tap *Wallet > Withdraw*.
+Follow the on-screen instructions to process the desired withdrawal amount.
+* You can now request a refund within 72 hours of a purchase through a Koji.
+From your Koji wallet, tap the transaction, and then tap *Refund transfer*.
+// end::highlights[]
+* The fee schedule for in-app purchases has been updated to the following allocation: 85% to the creator, 5% to the Koji platform, and 10% to the community (8% to evolution, 2% to genesis).
+* You can now track custom events in your Koji templates with the <<withkoji-koji-analytics-sdk#>> package.
+* The `startPurchase` method in the <<withkoji-koji-iap-package#.startPurchase#, @withkoji/iap>> package has been updated.
+The callback function now receives the receipt ID on successful purchases.
+* The `showmodal` method has been removed from the @withkoji/custom-vcc-sdk package.
+// tag::highlights[]
+
+== October 29
+
+* The Koji platform now allows you to edit a Koji you created and republish it to the same URL.
+// end::highlights[]
+** To provide different template experiences for editing an existing Koji and for creating a new remix, use the new `mode` editor attribute in the `onSetRemixing` method.
+For example, you might want to clear the default values for a new remix but not for an edit.
+For updated documentation, see the <<withkoji-vcc-package#.onSetRemixing, package reference>>.
+** To edit a Koji you created, use the *Koji button* in the top right, and then go to *More > Manage this Koji > Edit this Koji*.
+* The following features are now available in the <<withkoji-vcc-package#>> package.
+** *Navigation methods* – The new `navigate` and `present` methods enable you to manage navigation without triggering browser events, for a smoother experience in embedded contexts.
+** *Sticker context* – The new `?context=sticker` URL parameter enables you to embed another Koji in an iframe as a sticker.
+The `StickerContext` entitlement enables you to define a distinct template experience when the template is embedded in another Koji.
+** *Admin context* – The new `?context=admin` URL parameter and `AdminContext` entitlement enable you to design functionality that is intended for the creator of the Koji.
+The creator can access this functionality by using the *Koji button* in the top right, and then going to *More > Manage this Koji > Admin dashboard*.
+* Starting with version 1.1.40 of @withkoji/vcc package, developers using VccMiddleware must use `res.locals.KOJI_PROJECT_ID` and `res.locals.KOJI_PROJECT_TOKEN`, instead of `process.env.KOJI_PROJECT` and `process.env.KOJI_PROJECT_TOKEN`, when instantiating services such as database, auth, and in-app purchases.
+* The new <<withkoji-koji-auth-sdk#>> package enables you to authenticate users in Koji templates.
+Available features include:
+** Determine whether the current user created the Koji so that you can tailor the experience accordingly.
+** Send notifications to the Koji account of the user who created the Koji.
++
+image::push-notifications-oct2020.png[Push notifications]
+// tag::highlights[]
+* The Koji platform now enables template developers to control the timing of the rich preview screenshot with the `window.kojiScreenshotReady` property.
+// end::highlights[]
+This feature enables you to ensure that all relevant assets have loaded before the image is generated.
+For updated documentation, see <<rich-preview-image#>>.
+* On the developer site, updated content is available to help new Koji developers onboard more quickly, including <<instant-remixing#>> (new), <<templates#>> (updated), and <<introduction#>> (updated).
+// tag::highlights[]
+
+== October 19
+
+// end::highlights[]
+.Koji platform updates
+// tag::highlights[]
+* Templates now support simple content moderation and data collection by enabling a creator to view or download collected data and to quickly remove an offensive entry or a mistake.
+// end::highlights[]
++
+image::database-views-oct2020.png[Manage content]
+** To customize the data presentation for remixers, configure a <<koji-database#, database view>> when developing the template.
+You can specify user-friendly collection and column names, define the data types for rich data display, exclude unnecessary columns, and control the column order and default sort.
+** To access the data for a Koji you created, use the *Koji button* in the top right, and then go to *More > Manage this Koji > View database*.
+* The new *Magic Link* enables you to register a custom `koji.to` link that points any Koji.
+For example, you could point to a Koji "bio", and then share or post the link everywhere.
+If you ever want to update your bio or use a different Koji, you can change the link target in one place.
++
+image::magic-link-oct2020.png[Enable Magic Link]
+** To set up your Magic Link, tap your profile picture, and then tap *Magic Link*.
+Enable your Magic Link and enter your desired link address (for example, `\https://koji.to/myname`).
+By default, the link points to your Koji profile page.
+** To change the link target, open the desired Koji and tap the *Koji button* in the top right.
+Then, go to *More > Manage this Koji > Use as Magic Link*.
+
+.Developer site updates
+* Several pages have been updated with new code samples, including <<add-service#>> and <<port-existing-code#>>.
+* The site design and navigation have been updated.
+
+== October 12
+
+* Dynamic receipts are now available for handling fulfillment of <<withkoji-koji-iap-package#, in-app purchases>>.
+Dynamic receipts enable you to display a route in a Koji from a transaction receipt.
+For example, you can show a video response from a seller to a buyer.
+The following enhancements support implementation of dynamic receipts in Koji templates:
+** The `dynamicReceipt` entitlement enables the receipt for a product to display routes in the Koji.
+** When a buyer or seller views the transaction receipt for an applicable product, the platform appends the `dynamic-receipt` query parameter to the URL.
+For example, `dynamic-receipt=buyer` or `dynamic-receipt=seller`.
+** The `resolveReceiptById` method retrieves a specific transaction receipt.
+* Reference docs for the <<withkoji-vcc-package#,VCC package>> have been updated.
+* Step-by-step instructions for extending your first template are now available in four “flavors” – React, Vanilla JS, Angular, and Svelte.
+* Several pages were updated based on your feedback, including <<vcc-overview#>> and <<magazine-cover-blueprint#, Magazine cover blueprint>>.
+
+== October 5
+
+* Updated reference docs are now available for the <<withkoji-database-package#,Database>>, <<withkoji-dispatch-package#,Dispatch>>, and <<withkoji-custom-vcc-sdk#,Custom VCC>> packages.
+* Step-by-step instructions for developing your first template are now available in *four* “flavors” – React, Vanilla JS, Angular, and Svelte.
+* On the Koji platform, *My projects* has moved to *My repositories* in your *evolution dashboard*.
+To open a list of starter scaffolds, you can click *New repository*.
++
+image::my-repositories-oct2020.png[My repositories]
+* Instructions were added to support <<work-locally#, working locally on Windows>>.
+
+== September 28
+
+* Enhanced in-app purchases with the following new features:
+** Users now receive email and SMS receipts when they send or receive money via in-app purchases.
+** The new `fulfillment` entitlement enables you to capture a buyer's email, phone, or address on the transaction receipt.
+** The new `quantity` entitlement limits the number of times a product can be sold, providing basic inventory management.
+** The new `startPurchase` method enables you to capture a custom memo on the transaction receipt.
+
++
+For updated developer documentation, see the <<withkoji-koji-iap-package#,package reference for Koji in-app purchases>>.
+* Added a footer on the developer site with convenient links to key Koji features and resources.
+* Fixed intermittent layout and link errors on the developer site.
+
+== September 15
+
+* Updated the *Remix* button on the Koji platform.
+To improve the usability and enhance functionality, the button now appears in the top right and allows remixers to access additional controls.
++
+image::remix-button-sept2020.png[Remix button]
+* Published the <<withkoji-koji-iap-package#,package reference for Koji in-app purchases>>.
+* Updated the developer site navigation.
+
+== September 9
+
+* Released a new https://developer.withkoji.com[developer homepage].
+* Published guidelines and instructions for <<contribute-koji-developers#,contributing to the Koji developer site>>.
+* Added this changelog.
+* Updated styling and added support for Font Awesome icons.
+
+== August 31
+
+* Released a major upgrade to code blocks on the developer site.
++
+image::tabbed-code-blocks.png[Code block upgrade]
+New features include:
+. Tabbed code samples by framework.
+. Toggle for light and dark themes.
+. Copy all with a click.
+. Expand and collapse for long samples.
+
+* The `onSetValue` method now enables you to skip the `onValueChanged` callback for an update.
+This option is useful for preventing unnecessary round trip notifications in cases such as text inputs.
+For updated documentation, see the <<withkoji-vcc-package#.onSetValue>> reference.
+* Enhanced metadata on the developer site.
+
+== August 24
+
+* Added the <<withkoji-user-defaults-package#,User Defaults package>> for accessing user data and preferences across Koji templates.
+* Added new videos on the  https://www.youtube.com/channel/UCc5jM6NwVNQc7b5APigEsMw[Koji YouTube channel] to help inspire users to remix and share templates.
+* Updated the code samples for starting the watcher, and fixed bugs for the developer site, based on your feedback.
+
+== August 17
+
+* Added a Vanilla JS version of the <<magazine-cover-blueprint#,magazine cover blueprint>> on the developer site.
+* Changed the Koji screenshot feature for rich preview (Open Graph) images.
+For the current guidelines and requirements, see <<rich-preview-image#>>.
+* Removed the `dismissOnCommit` type option for VCCs from the documentation because it is no longer supported on the platform.
+* Made additional bug fixes and responses to your feedback.
+
+== August 11
+
+Added the <<cat-selector-blueprint#, cat selector blueprint>> as a new resource on the developer site.
+
+* Builds a custom selector VCC.
+* Integrates with a third-party API to retrieve a list of options.
+* Demonstrates how to style elements based on the remixer’s Koji theme.
+
+== August 5
+
+Added the <<vote-counter-blueprint#, vote counter blueprint>> as a new resource on the developer site.
+
+* Builds a multi-user, interactive template.
+* Demonstrates Koji database and dispatch packages in action.
+* Includes code snippets in React and in Vanilla JS - pick your favorite!
+
+== August 4
+
+Launched the new <<introduction#,home for Koji developer resources>>.
+
+image::developer-site-launch.png[New Koji developer site]
+
+. Resources for developers
+. Expanded reference information for packages and VCCs
+. Updated navigation, including an in-page Table of Contents
+. Search

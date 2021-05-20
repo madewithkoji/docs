@@ -290,7 +290,7 @@ For example:
 ----
 // Retrieve a short-lived user token to exchange on the backend
 const getToken = async () => {
-  const token = await Koji.identity.getToken();
+  const { userToken, presumedRole, presumedAttributes } = await Koji.identity.getToken();
 };
 
 // Silently request whether a user has already granted a set of permissions
@@ -298,9 +298,9 @@ const checkGrants = async () => {
   const hasGrants = await Koji.identity.checkGrants(['push_notifications', 'username']);
 };
 
-// Open a dialog to request new permissions from the user (and return a token)
+// Open a dialog to request new permissions from the user (and return a user token)
 const requestGrants = async () => {
-  const token = await Koji.identity.requestGrants(['push_notifications', 'username']);
+  const userToken = await Koji.identity.requestGrants(['push_notifications', 'username']);
 };
 ----
 
@@ -308,7 +308,7 @@ const requestGrants = async () => {
 
 In @withkoji/core, the Identity module on the backend provides two main aspects of functionality – notifications and user data.
 
-Notifications now provides two methods – `pushNotificationToUser` and `pushNotificationToOwner`. Sending notifications to users requires a user ID, rather than a token, because the user must have granted permission to retrieve it.
+Notifications now provides two methods – `pushNotificationToUser` and `pushNotificationToOwner`. Sending notifications to users requires a user ID, rather than a user token, because the user must have granted permission to retrieve it.
 
 Resolving user data has been condensed into one method, `resolveUserFromToken`.
 
@@ -319,10 +319,10 @@ app.get('/get-user-role', async (req, res) => {
   const identity = new KojiBackend.Identity({ res });
 
   // Get the user token (generated using the frontend identity module)
-  const token = req.headers.authorization;
+  const userToken = req.headers.authorization;
 
   // Resolve the user
-  const user = await identity.resolveUserFromToken(token);
+  const user = await identity.resolveUserFromToken(userToken);
 
   const {
     id,           // The userId (specific to the template/remix)
@@ -589,8 +589,8 @@ backend/iap
 See <<_iap_on_the_backend>>.
 
 | getToken
-| frontend/identity
-See <<_identity_on_the_frontend>>.
+| frontend/iap
+See <<_iap_on_the_frontend>>.
 
 | loadProduct
 | backend/iap
@@ -616,7 +616,7 @@ See <<_iap_on_the_frontend>>.
 ==== IAP on the frontend
 
 Implementing in-app purchases in a frontend service works similarly in @withkoji/core to how it worked in the deprecated packages.
-You can begin a purchase flow by referencing the product's sku.
+You can begin a purchase flow by referencing the product's SKU.
 For example:
 
 [source,JavaScript]
@@ -626,6 +626,16 @@ const startPurchase = async () => {
 
   if (purchase.receiptId) {
     // Success
+    fetch(`${Koji.services.backend}/receipts-by-user`, {
+      headers: {
+        'Content-Type': 'application/json',
+        authorization: purchase.iapToken,
+      },
+    })
+    // Handle JSON
+    .then(response => response.json())
+    // Log receipts
+    .then(data => console.log(data));
   } else {
     // User cancelled transaction
   }
@@ -641,6 +651,16 @@ const startDynamicPurchase = async () => {
 
   if (purchase.receiptId) {
     // Success
+    fetch(`${Koji.services.backend}/receipts-by-user`, {
+      headers: {
+        'Content-Type': 'application/json',
+        authorization: purchase.iapToken,
+      },
+    })
+    // Handle JSON
+    .then(response => response.json())
+    // Log receipts
+    .then(data => console.log(data));
   } else {
     // User cancelled transaction
   }
@@ -658,11 +678,11 @@ However, some of the methods have been renamed for clarity.
 app.get('/receipts-by-user', async (req, res) => {
   const iap = new KojiBackend.IAP({ res });
 
-  // Get the user token (generated using the frontend identity module)
-  const token = req.headers.authorization;
+  // Get the IAP token (generated using the frontend IAP module)
+  const iapToken = req.headers.authorization;
 
   // Get receipts by user
-  const receipts = await iap.resolveReceiptsByIAPToken(token);
+  const receipts = await iap.resolveReceiptsByIAPToken(iapToken);
 
   res.status(200).json({
     receipts,
@@ -681,7 +701,7 @@ include::../_includes/deprecationQR.adoc[tag=all]
 | @withkoji/core
 
 | constructor
-| frontend/identity
+| Not needed
 
 | onConnect
 | frontend/identity

@@ -20,34 +20,7 @@ Your template might provide different experiences for different situations, or "
 For example, you might provide a different UI during a remix than when the template is running.
 The preview pane enables you to preview several standard contexts inside the editor.
 
-You can select from the following types of previews.
-
-* *Default* – Displays what a template looks like when running.
-The *Default* context is always enabled.
-
-* *Remix* – Displays what a template looks like in edit mode.
-A creator enters edit mode when they remix a template.
-The *Remix* context is always enabled, even if <<instant-remixing#,instant remixing>> is not.
-
-* *More* - Displays a menu of additional previews.
-The additional previews include the following.
-
-- *Admin*, *About*, and *Sticker* – Display previews of standard contexts, if you've enabled the associated entitlements.
-For more on contexts, see <<withkoji-vcc-package#_context>>.
-
-- *Thumbnail* – Displays what a template looks like when shared on social media.
-The *Thumbnail* context is always enabled.
-
-- *Receipt (seller)* and *Receipt (buyer)* – Displays previews of the transaction receipts for the buyer and seller.
-These contexts are available if you've implemented <<withkoji-koji-iap-package#_iap,in-app purchases>> and enabled the dynamic receipts entitlement.
-
-* *Remote previews* - The preview pane provides options for previewing a template outside of the Koji editor.
-
-- On a mobile device – Open a preview on any device by scanning a QR code.
-Click the QR code button image:QRcode.png[QR code button] in the preview pane to display the QR code.
-
-- In a new tab – Open a preview on a staging server.
-Click the remote staging button image:remote-staging.png[Remote staging button] in the preview pane to open the preview in a new tab.
+Learn more about xref:editor.adoc#_previewing_your_koji[previewing your Koji].
 
 === Writing to the console
 

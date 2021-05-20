@@ -1,0 +1,334 @@
+= @withkoji/dispatch (deprecated)
+:page-slug: withkoji-dispatch-package
+:page-description: Package for implementing real-time functionality in your Koji template.
+
+include::../../docs/_includes/deprecatedPackage.adoc[tag=all]
+
+The @withkoji/dispatch package enables you to
+//tag::description[]
+implement real-time functionality in your Koji template.
+//end::description[]
+For example, chats, multi-player games, and polls.
+
+You can use dispatch on the frontend to enable real-time updates and communication between connected clients.
+You can also use it transactionally on the backend to send secure messages to specific clients that have been identified with a short-lived token.
+
+== Install
+
+Install the package in your Koji project.
+
+NOTE: You must also install the <<withkoji-vcc-package#>> package.
+
+[source,bash]
+npm i --save @withkoji/dispatch
+
+== Dispatch
+
+[.hcode, id="new Dispatch", reftext="new Dispatch"]
+=== new Dispatch(project)
+
+Instantiates `Dispatch`.
+
+==== Parameters
+
+* `project` – _Object_, dispatch configuration for your Koji project.
+Contains the following properties:
+** `projectId` – _String_, unique identifier for your Koji project.
+You can use the <<withkoji-vcc-package#>> package to obtain this value programmatically.
+** `options` – (Optional on frontend) _Object_, configuration options for the dispatch instance.
+Contains the following properties:
+*** `shardName` – (Optional) _String_, name of the specific shard to use.
+If this key is not present, the user will be placed into a shard automatically.
+*** `maxConnectionsPerShard`– (Optional) _Number_, total users to allow on a shard before it is "full."
+When a shard is full, new users are added to a new shard unless a different shard is explicitly set.
+*** `projectToken` – (Backend only) _String_, secret key for the Koji.
+*** `authorization` – (Backend only, Optional) _String_, temporary token that identifies the client, so the server and other connected clients can send it secure messages.
+If the token is not included, you can use <<.identify>> to identify the client after it is connected.
+
+==== Example
+
+[source,javascript]
+----
+import Dispatch from '@withkoji/dispatch';
+
+// Frontend
+const dispatch = new Dispatch({
+  projectId: instantRemixing.get(['metadata', 'projectId']),
+});
+
+// Backend
+const dispatch = new Dispatch({
+  projectId: res.locals.KOJI_PROJECT_ID || process.env.KOJI_PROJECT_ID,
+  options: {
+    projectToken: res.locals.KOJI_PROJECT_TOKEN || process.env.KOJI_PROJECT_TOKEN,
+  },
+});
+----
+
+== Dispatch properties
+
+[.hcode, id=".authToken", reftext="authToken"]
+=== .authToken
+
+_String_, temporary token that identifies the connected client, so the server and other connected clients can send it secure messages.
+To get a token, use `getToken` in the <<withkoji-koji-auth-sdk#.getToken, @withkoji/auth>> package.
+
+[.hcode, id=".clientId", reftext="clientId"]
+=== .clientId
+
+_String_, ID of the currently connected client.
+
+[.hcode, id=".connectedClients", reftext="connectedClients"]
+=== .connectedClients
+
+_Object_, contains IDs of currently connected clients as keys and an object of their user data.
+
+==== Example
+[source,json]
+----
+{
+	"0dc15e36-81b4-442b-be4d-bf590ee73c2a": {
+		username: "test1",
+		lastPing: 1600218622595
+	},
+	"1fe2eb80-57e3-435f-9314-faa74853c34a": {
+		username: "test2",
+		lastPing: 1600218623097
+	}
+}
+----
+
+[.hcode, id=".latency", reftext="latency"]
+=== .latency
+
+_Number_, the latency of the last message in milliseconds.
+
+[.hcode, id=".shardName", reftext="shardName"]
+=== .shardName
+
+_String_, name of the shard the client is currently connected to.
+
+[.hcode, id=".userInfo", reftext="userInfo"]
+=== .userInfo
+
+_Object_, the user information of the currently connected client.
+This can be modified using <<#.setUserInfo, .setUserInfo>>.
+
+== Dispatch methods
+
+[.hcode, id=".connect", reftext="connect"]
+=== .connect()
+
+(Async) Connects the dispatch client to an open shard.
+
+==== Example
+
+[source,javascript]
+dispatch.connect();
+
+[.hcode, id=".disconnect", reftext="disconnect"]
+=== .disconnect()
+
+(Async) Disconnects the dispatch client from the active connection.
+
+==== Example
+
+[source,javascript]
+dispatch.disconnect();
+
+[.hcode, id=".emitEvent", reftext="emitEvent"]
+=== .emitEvent(eventName, payload, recipients)
+
+Emits the named event to the specified recipients or all clients.
+
+==== Parameters
+
+* `eventName` – _String_, name of the event.
+* `payload` – _Any_, data to send with event.
+* `recipients` – (Optional) Array of _Strings_, list of clients to receive the event.
+If this parameter is not included, the event is sent to all clients on the current shard.
+
+==== Example
+
+[source,javascript]
+dispatch.emitEvent('myEvent', myDataPayload);
+
+[.hcode, id=".identify", reftext="identify"]
+=== .identify(authToken)
+
+Identifies a connected client, which enables the server and other connected clients to send it secure messages.
+
+==== Parameters
+
+* `authToken` – _String_, temporary token for the connected client.
+To get a token, use `getToken` in the <<withkoji-koji-auth-sdk#.getToken, @withkoji/auth>> package.
+
+==== Example
+
+[source,javascript]
+----
+token = await auth.getToken(
+  ['username', 'push_notifications'],
+);
+dispatch.identify(token);
+----
+
+[.hcode, id=".info", reftext="info"]
+=== .info()
+
+Gets information about the shard the client is currently connected to.
+
+==== Returns
+
+(Async) _ShardInfo_, Object describing the shard the client is currently connected to with shard name and number of connected clients.
+
+==== Example
+
+[source,javascript]
+----
+dispatch.info.then((info) => {
+    currentInfo = info;
+});
+----
+
+[.hcode, id=".on", reftext="on"]
+=== .on(eventName, handler)
+
+Sets a listener for a specific event, and runs the handler when the event is dispatched over the shard.
+
+* For Koji custom events, see <<_dispatch_event>>.
+* To send your own events, see <<.emitEvent>>.
+
+==== Parameters
+
+* `eventName` – _String_, name of the event to subscribe to.
+* `handler` – _Function_, the handler to run when the event is fired.
+Receives the following property as input:
+** `payload` – _Any_, the data payload sent from the fired event.
+
+==== Example
+
+[source,javascript]
+----
+dispatch.on('myEvent', myHandlerFunction);
+
+// or with a custom payload
+dispatch.on('myOtherEvent', (payload) => {
+	// payload sent from the emitted event available here
+});
+----
+
+[.hcode, id=".removeEventListener", reftext="removeEventListener"]
+=== .removeEventListener(eventName)
+
+Removes listeners from the specified event.
+
+==== Parameters
+
+* `eventName` – _String_, name of the event to unsubscribe from.
+
+==== Example
+
+[source,javascript]
+dispatch.removeEventListener('myEvent');
+
+[.hcode, id=".setUserInfo", reftext="setUserInfo"]
+=== .setUserInfo(userInfo)
+
+Sets the current user's information (see <<#.userInfo, .userInfo>>) and broadcasts the update in the currently connected shard.
+
+==== Parameters
+
+* `userInfo` – _Any_, the data for user information to set.
+
+==== Example
+
+[source,javascript]
+dispatch.setUserInfo({username:"myUsername"});
+
+== Dispatch constants
+
+=== DISPATCH_EVENT
+
+Constant holding special event keys for Koji Dispatch.
+To subscribe to these events see <<#.on>>.
+
+. `DISPATCH_EVENT.CONNECTED` – Fired when the current client has successfully connected to a shard.
+Passes the following properties in its payload object:
+.. `clientID` - _String_, Unique ID of the user on the shard that's been connected to
+.. `shardName` - _String_, Name of the shard that's been connected to
+. `DISPATCH_EVENT.CONNECTED_CLIENTS_CHANGED` - Fired when the list of clients currently connected to the shard changes.
+Passes the following property in its payload object:
+.. `connectedClients` - _Object_, Mapping of connected client's IDs and their respective userInfo.
+
+==== Example
+
+[source,javascript]
+----
+import Dispatch, { DISPATCH_EVENT } from '@withkoji/dispatch';
+
+const dispatch = new Dispatch({
+  projectId: instantRemixing.get(['metadata', 'projectId'])
+});
+
+dispatch.connect();
+
+dispatch.on(DISPATCH_EVENT.CONNECTED, ({ clientId, shardName }) => {
+	// client has connected to shard
+});
+
+dispatch.on(DISPATCH_EVENT.CONNECTED_CLIENTS_CHANGED, ({ connectedClients }) => {
+	// connected clients has changed
+});
+----
+
+== Utils
+
+Koji dispatch includes utility functions to help you build realtime multiplayer games and applications.
+
+[source,javascript]
+import { Utils } from '@withkoji/dispatch';
+
+[.hcode, id=".profanity", reftext="profanity"]
+=== .profanity(string)
+
+Checks whether a string contains profanity.
+This method can be useful for checking usernames or chat content.
+
+==== Parameters
+
+* `string` – _String_, text to check.
+
+==== Returns
+
+_Boolean_, indicates whether the specified string contains profanity.
+
+==== Example
+
+[source,javascript]
+Utils.profanity('check this string');
+
+[.hcode, id=".filterProfanity", reftext="filterProfanity"]
+=== .filterProfanity(string)
+
+Replaces profanity in a string with asterisks.
+
+==== Parameters
+
+* `string` – _String_, text to sanitize.
+
+==== Returns
+
+_String_, text with profanities replaced with asterisks.
+
+==== Example
+
+[source,javascript]
+Utils.filterProfanity('sanitize this string');
+
+== Related resources
+
+* https://github.com/madewithkoji/koji-dispatch[@withkoji/dispatch on Github]
+* Core package replacement modules: <<core-backend-dispatch#, Dispatch (backend)>>, <<core-frontend-dispatch#, Dispatch (frontend)>>
+* <<migrate-koji-core#>>
+* <<vote-counter-blueprint#>>

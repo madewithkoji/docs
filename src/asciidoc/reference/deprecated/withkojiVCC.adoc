@@ -1,0 +1,602 @@
+= @withkoji/vcc (deprecated)
+:page-slug: withkoji-vcc-package
+:page-description: Package for implementing core platform features in your Koji template, including instant remixing, Visual Customization Controls (VCCs), and the Koji feed.
+
+include::../../docs/_includes/deprecatedPackage.adoc[tag=all]
+
+The @withkoji/vcc package enables you to
+//tag::description[]
+implement core platform features in your Koji template, including instant remixing, Visual Customization Controls (VCCs), and the Koji feed.
+//end::description[]
+
+* Dynamically get and set custom values in Koji customization files.
+* Expose VCCs so that a user can change the customizable elements in your template.
+* Monitor changes to custom values with a watcher function.
+* Ensure the template is displayed correctly in the Koji feed.
+* Monitor and handle state transitions between in and out of focus in the Koji feed.
+* Define distinct template experiences for different viewing contexts.
+
+== Install
+
+Install the package in your Koji project.
+
+[source,bash]
+npm install --save @withkoji/vcc
+
+== Start the watcher
+
+Reconfigure the `package.json` file to run the watcher (`koji-vcc watch`) concurrently with your development  server.
+You can use a package like npm-run-all.
+For example:
+
+include::../../docs/_includes/startWatcherPackage.adoc[tags=all;plain;!tabs]
+
+== Support TypeScript
+
+To ensure that VCCs work correctly in your TypeScript project, add the following line to the `scripts` section of the `package.json` file.
+
+[source, JSON]
+"prebuild": "koji-vcc preinstall-ts"
+
+This command builds the VCC configuration files before compiling your TypeScript code when publishing the template, similar to how koji-vcc watches the files during development.
+This step is necessary to prevent errors by TypeScript during compile time.
+
+== InstantRemixing
+
+Instant remixing enables users to customize values directly from the template preview, rather than from the Koji editor, for a quick and easy way to remix without coding.
+
+IMPORTANT: To empower casual users, implementing instant remixes for your templates is strongly recommended.
+
+To enable instant remixing for your Koji template, you must implement the `InstantRemixing` class and enable the `InstantRemixing` entitlement in the `.koji/project/entitlements.json` file.
+
+.Entitlements
+[source,json]
+----
+{
+  "entitlements": {
+    "InstantRemixing": true, <1>
+    "InstantRemixingNativeNavigation": true <2>
+  }
+}
+----
+<1> `InstantRemixing` – Indicates that the template supports instant remixing.
+<2> `InstantRemixingNativeNavigation` – (Optional) Hides the default action for advancing from a remix to a preview, so that the template can control this action.
+When this entitlement is enabled, the template must use <<.finish>> to advance to the preview, or the Koji will not be remixable.
+
+[.hcode, id="new InstantRemixing", reftext="new InstantRemixing"]
+=== new InstantRemixing()
+
+Instantiates `InstantRemixing`.
+
+==== Example
+
+[source,javascript]
+----
+import { InstantRemixing } from '@withkoji/vcc';
+const instantRemixing = new InstantRemixing();
+----
+
+== InstantRemixing methods
+
+[.hcode, id=".finish", reftext="finish"]
+=== .finish()
+
+Advances a Koji from a remix to a preview.
+
+IMPORTANT: If the `InstantRemixingNativeNavigation` entitlement is enabled, this method must be called to advance the remix, as the Koji remix editor will not show the default action.
+You can use this option to handle validation and other processing before advancing to a preview.
+
+==== Example
+
+[source,HTML]
+----
+<button onClick={() => instantRemixing.finish()}>
+  Next
+</button>
+----
+
+[.hcode, id=".get", reftext="get"]
+=== .get(path)
+
+Gets initial values from Koji customization files or one of these predefined environment values:
+
+* `metadata` – project data, contains `projectId`, the unique identifier for the Koji project.
+* `serviceMap` – endpoints for your currently registered services.
+
+==== Parameters
+
+* `path` – Array of _Strings_, keys pointing to the desired VCC value, `metadata` and `projectId`, or `serviceMap` and the service name.
+
+==== Returns
+
+_Any_, value of the <<vcc-overview#_vcc_types,VCC type>> at the specified path.
+For the predefined environment values, the following values are returned:
+
+`["metadata", "projectId"]`:: _String_, the unique identifier for the Koji project.
+`["serviceMap", "backend"]`:: _String_, URL of the service specified in the second part of the path.
+
+==== Example
+
+[source,javascript]
+----
+const myVariable = instantRemixing.get(['scope', 'key']);
+const projectId = instantRemixing.get(['metadata', 'projectId']);
+const backendService = instantRemixing.get(['serviceMap', 'backend']);
+----
+
+[.hcode, id=".onPresentControl", reftext="onPresentControl"]
+=== .onPresentControl(path, attributes)
+
+Opens a VCC to enable editing of a custom value.
+For example, show the title VCC when a user taps an editable title.
+
+==== Parameters
+
+* `path` – Array of _Strings_, keys pointing to the VCC value.
+* `attributes` – (Optional) _Object_, contains the `position` object, which sets an absolute position for the VCC.
+If an absolute position is not set, the VCC opens in the position where the user clicks, in desktop view.
+
+==== Example
+
+[source,javascript]
+----
+instantRemixing.onPresentControl(['scope', 'key']);
+
+// With optional position object
+this.instantRemixing.onPresentControl(['result', 'position'], {
+  position: { x: 100, y: 100 },
+});
+----
+
+[.hcode, id=".onSetActivePath", reftext="onSetActivePath"]
+=== .onSetActivePath(handler)
+
+Listens to the path of the currently active VCC control to enable a different experience when editing values (for example, highlight the active control or pause the interface).
+
+==== Parameters
+
+* `handler` – _Function_, handles changes to the current control.
+Receives the following property as input:
+** `path` – Array of _Strings_, the path of the active VCC control.
+
+==== Example
+
+[source,javascript]
+----
+instantRemixing.onSetActivePath((path) => {
+  // Change control experience
+});
+----
+
+[.hcode, id=".onSetCurrentState", reftext="onSetCurrentState"]
+=== .onSetCurrentState(handler)
+
+*No longer supported*.
+For the most flexibility and control of the remix experience, implement the <<withkoji-koji-core#, @withkoji/core package>>.
+
+[.hcode, id=".onSetRemixing", reftext="onSetRemixing"]
+=== .onSetRemixing(handler)
+
+Listens to changes in remix state to enable different template experiences during remix than during preview or use.
+
+==== Parameters
+
+* `handler` – _Function_, handles changes in remix state.
+Receives the following properties as inputs:
+** `isRemixing` – _Boolean_, indicates whether the template is in remixing mode.
+** `editorAttributes` – _Object_, describes the current editor.
+Contains the following attributes:
+*** `type` – _String_, describes the current editor type, either `full` for the Koji editor or `instant` for an instant remix.
+*** `mode` – _String_, distinguishes between a `new` remix and an `edit` to the user's existing Koji.
+
+==== Example
+
+[source,javascript]
+----
+instantRemixing.onSetRemixing((isRemixing, editorAttributes) => {
+  // Change template experience
+});
+----
+
+[.hcode, id=".onSetValue", reftext="onSetValue"]
+=== .onSetValue(path, newValue, skipUpdate)
+
+Explicitly sets the value for the VCC at the specified path.
+
+==== Parameters
+
+* `path` – Array of _Strings_, keys that points to the desired VCC value.
+* `newValue` – _Any_, New value for the <<vcc-overview#_vcc_types,VCC type>> at the specified path.
+* `skipUpdate` – (Optional) _Boolean_, indicates whether to skip the `onValueChanged` callback for this update (`false`, by default).
+To allow the template to manage the update state, set this parameter to `true`.
++
+TIP: The `skipUpdate` option is useful for preventing unnecessary round trip notifications in some cases.
+For example, during text inputs.
+
+==== Example
+
+[source,javascript]
+----
+instantRemixing.onSetValue(['scope', 'key'], newValue, skipUpdate);
+----
+
+[.hcode, id=".onValueChanged", reftext="onValueChanged"]
+=== .onValueChanged(handler)
+
+Listens to changes in custom values.
+
+==== Parameters
+
+* `handler` – _Function_, handles changes to custom values.
+Receives the following properties as inputs:
+** `path` – Array of _Strings_, the path of the changed VCC value.
+** `newValue` – _Any_, the new value of the changed VCC.
+
+==== Example
+
+[source,javascript]
+----
+instantRemixing.onValueChanged((path, newValue) => {
+  // Use new custom value in template
+});
+----
+
+[.hcode, id=".ready", reftext="ready"]
+=== .ready()
+
+Indicates that the application is ready to start receiving events.
+
+WARNING: All the listeners should be set before calling `ready()`.
+The platform will queue any messages prior to calling `ready()` to wait for the listeners to be ready.
+However, the <<#.get>> function will work before or after `ready()` has been called.
+
+==== Example
+
+[source,javascript]
+instantRemixing.ready();
+
+== VccMiddleware
+
+This package includes an http://expressjs.com/en/guide/using-middleware.html[Express middleware] to manage the environment variables for instant remixes and for access to VCC values from dynamic backends, as a companion to the frontend `InstantRemixing` class.
+
+To implement this middleware, add it to your Express server.
+
+[source,javascript]
+----
+import { VccMiddleware } from '@withkoji/vcc';
+
+const app = express();
+app.use(VccMiddleware.express);
+----
+
+This middleware is required to manage the environment variables to scope them for instant remixes of the original template.
+In particular, when using <<withkoji-koji-iap-package#>>, <<withkoji-database-package#>>, or <<withkoji-koji-auth-sdk#>>, you must call this middleware before instantiating those packages to ensure they use the correct environment.
+
+Additionally, to access application-specific VCC values from an Express endpoint, use `res.locals.koji` and the `scope` and `key` of the VCC value you require.
+
+[source,javascript]
+----
+app.get('/test', (req, res) => {
+  // res.locals.koji.scope.key
+});
+----
+
+== FeedSdk
+
+The Koji feed enables users to browse available templates, moving them from off screen or out of focus, into the main window of the feed.
+
+To ensure a template can be displayed correctly in the Koji feed, you must implement the `FeedSdk` and enable the `FeedEvents` entitlement in the `.koji/project/entitlements.json` file.
+
+NOTE: Kojis must be authorized by the Koji team to be displayed within the feed.
+When you are confident that your template is able to function well within a feed, please contact us for review and authorization.
+
+.Entitlements
+[source,json]
+----
+{
+  "entitlements": {
+    "FeedEvents": true, <1>
+    "AboutContext": true, <2>
+    "AdminContext": true, <3>
+    "StickerContext": true <4>
+  }
+}
+----
+<1> `FeedEvents` – Indicates that the template can be displayed the Koji feed.
+<2> `AboutContext` – (Optional) Displays a distinct experience when the template is remixed (About page).
+See <<_context>>.
+When this entitlement is enabled, the template must use <<.createRemix>> to trigger a remix from the About page, or the Koji will not be remixable.
+<3> `AdminContext` – (Optional) Enables a distinct experience for the creator of a Koji (when viewed with the `context=admin` URL parameter).
+See <<_context>>.
+<4> `StickerContext` – (Optional) Enables a distinct experience when the template is embedded in another Koji as a sticker (viewed with the `context=sticker` URL parameter).
+See <<_context>>.
+
+[.hcode, id="new FeedSdk", reftext="new FeedSdk"]
+=== new FeedSdk()
+
+Instantiates `FeedSdk`.
+
+==== Example
+
+[source,javascript]
+----
+import { FeedSdk } from '@withkoji/vcc';
+const feed = new FeedSdk();
+----
+
+== FeedSdk methods
+
+[.hcode, id=".createRemix", reftext="createRemix"]
+=== .createRemix(options)
+
+Starts a new remix.
+
+==== Parameters
+
+* `options` – (Optional) _Object_, configuration options for the remix.
+Contains the following property:
+** `id` – (Optional) _String_, ID of the Koji project to remix.
+Defaults to the current Koji, if an ID is not specified.
+
+==== Example
+
+[source,HTML]
+----
+<button type="button" onClick={() => feed.createRemix()}>
+  Create my own remix
+</button>
+----
+
+[.hcode, id=".load", reftext="load"]
+=== .load()
+
+Indicates the template is ready to display and registers touch event handlers to bubble up touch events to the feed controller (if your template needs to own a gesture, see <<#.requestCancelTouch>>).
+
+IMPORTANT: You must call this method when the template has loaded.
+Otherwise, the feed will display a loading state, and will eventually time out and move to the next template in the feed.
+
+==== Example
+
+[source,javascript]
+feed.load();
+
+[.hcode, id=".navigate", reftext="navigate"]
+=== .navigate(url)
+
+Replaces the currently loaded Koji with the content at the specified URL, without triggering a browser navigation event.
+This method enables a smoother experience in embedded contexts.
+
+NOTE: If the site at the specified URL can't be rendered in a frame (the `x-frame-options` header prevents it), the user is prompted to navigate at the browser level.
+
+==== Parameters
+
+* `url` – _String_, URL of the content to load.
+
+==== Example
+
+[source,HTML]
+----
+<button type="button" onClick={() => feed.navigate(url)}>
+  My favorite Koji
+</button>
+----
+
+[.hcode, id=".onPlaybackStateChanged", reftext="onPlaybackStateChanged"]
+=== .onPlaybackStateChanged(handler)
+
+Monitors visibility in the Koji feed, enabling the template to play certain features when it is in focus and pause them when it isn't in focus.
+For example, play or pause audio, video, a timer, or a countdown.
+
+TIP: To test autoplaying features, you can open a published template and append `?feedDebug=true` to the URL.
+The template is loaded in the feed 10 times, and you can swipe or scroll through to ensure the features start and stop as expected.
+
+==== Parameters
+
+* `handler` – _Function_, handles changes to template visibility in the feed.
+Receives the following property as input:
+** `isPlaying` – _Boolean_, indicates whether the template is in focus in the feed.
+
+==== Example
+
+[source,javascript]
+----
+feed.onPlaybackStateChanged((isPlaying) => {
+  // Handle autoplay features
+});
+----
+
+[.hcode, id=".present", reftext="present"]
+=== .present(url)
+
+Opens the content at the specified URL in a modal window that animates from the bottom of the screen.
+If the parent Koji is already displayed in a modal window, the content will open in the same window, replacing the current view.
+
+NOTE: If the site at the specified URL can't be rendered in a frame (the `x-frame-options` header prevents it), the user is prompted to navigate at the browser level.
+
+==== Parameters
+
+* `url` – _String_, URL of the content to load.
+
+==== Example
+
+[source,HTML]
+----
+<button type="button" onClick={() => feed.present(url)}>
+  My favorite Koji
+</button>
+----
+
+[.hcode, id=".requestCancelTouch", reftext="requestCancelTouch"]
+=== .requestCancelTouch()
+
+Cancels touch event handlers for the feed so that the template can use the gesture.
+If your template uses gestures, you can use this method at any time during the touch lifecycle to take control of the action.
+
+TIP: Because a feed is composed of iframes, the parent feed control can't capture touch events due to security policies.
+Therefore, the `load` method bubbles up touch events to the Koji feed controller so that users can browse templates in the feed.
+If your template also uses touch controls, you can use the `requestCancelTouch` method to ensure the template actions take precedence over the feed actions for those controls.
+
+==== Example
+
+[source,html]
+----
+<div ontouchmove={(e) => feed.requestCancelTouch()}>
+  no touch control
+</div>
+----
+
+[.hcode, id=".share", reftext="share"]
+=== .share()
+
+Opens the sharing menu.
+
+==== Example
+
+[source,html]
+----
+<button type="button" onClick={() => feed.share()}>
+  Share my Koji
+</button>
+----
+
+== FeedSdk services
+
+[.hcode]
+=== context
+
+Enables distinct template experiences for different viewing contexts.
+
+==== URL pattern
+
+`?context={value}`
+
+==== Parameter values
+
+* `about` – Manages the context for the remix landing page (About page).
+To use this context:
+** *Define an About page experience* – Enable the `AboutContext` <<_feedsdk, entitlement>>, and define a view intended for the About page.
++
+WARNING: When this entitlement is enabled, the template must use <<.createRemix>> to trigger a remix from the About page, or the Koji will not be remixable.
+
+** *Load the About page* – Load the About page when the URL includes the parameter `context=about`.
+* `admin` – Manages functionality designed for the creator of a Koji.
+To use this context:
+** *Define an admin experience* – Enable the `AdminContext` <<_feedsdk, entitlement>>, and define a view intended for the creator of the Koji.
+For example, enable the creator to respond to questions from users.
++
+NOTE: When the `AdminContext` entitlement is enabled, the creator can access the admin view by going to *Koji > Admin Portal*.
+
+** *Load the admin experience* – Load the admin experience only when viewed with the URL parameter `context=admin` and when the current user is the creator of the Koji.
++
+IMPORTANT: To determine whether the current user is the creator, use the <<withkoji-koji-auth-sdk#>> package.
+
+* `remix` – Manages the context for Kojis during a remix.
+To use this context, load the remixing experience when the URL includes the parameter `context=remix`.
+* `sticker` – Manages the context for Kojis embedded in iframes in other Kojis.
+To use this context:
+** *Embed a Koji as a sticker* – Append `?context=sticker` to the `src` URL to display the embedded Koji with a transparent background and handle post messages between the child and parent Kojis.
+For example, the parent Koji can display an updated experience in response to a successful transaction on the embedded child Koji.
+** *Define a sticker experience* – Enable the `StickerContext` <<_feedsdk, entitlement>>, and define a view that loads only when the Koji is viewed as a sticker (with the URL parameter `context=sticker`).
+For example, the sticker view might include a click handler that opens the full Koji in a modal window.
+
+==== Examples
+
+[source, JavaScript]
+----
+// Embed a Koji as a sticker
+<iframe src="${url}?context=sticker" />
+
+// Load the admin experience
+if (searchParams.context === 'admin') {
+  return <Admin />;
+}
+----
+
+== Keystore
+
+The `Keystore` module is used in conjunction with the <<secret#, secret VCC type>>.
+The secret VCC enables you to store sensitive data in a VCC without the value being visible when the project is remixed.
+Keystore is used to access the value in the secret VCC within your application code.
+
+NOTE: For security purposes, `Keystore` is available only in backend services and cannot be used in user-facing services.
+
+[.hcode, id="new Keystore", reftext="new Keystore"]
+=== new Keystore(projectID, projectToken)
+
+Instantiates Keystore.
+
+==== Parameters
+* `projectId` – _String_, unique ID of the Koji project to attach the keystore to.
+* `projectToken` – _String_, token of the Koji project to attach the keystore to.
+
+TIP: These parameters are available as environment variables at runtime.
+For instant remixes, you must implement `VccMiddleware` to manage these variables.
+
+==== Example
+
+[source,javascript]
+----
+import { Keystore } from '@withkoji/vcc';
+const keystore = new Keystore(
+  res.locals.KOJI_PROJECT_ID,
+  res.locals.KOJI_PROJECT_TOKEN,
+);
+----
+
+== Keystore methods
+
+[.hcode, id=".generateSignedUrl", reftext="generateSignedUrl"]
+=== .generateSignedUrl(resource, expirySeconds)
+
+Generates a signed URL for securely serving a file that is stored in your project’s CDN, without exposing the permanent URI.
+This method provides additional security against sharing or rehosting of protected content.
+
+==== Parameters
+
+* `resource` – _String_, full URL of the file on your CDN.
++
+NOTE: If you want to use query parameters, apply them to the signed URL rather than the resource argument.
+For example, when resizing or cropping images.
+
+* `expirySeconds` – (Optional) _Number_, amount of time for which the signed URL remains valid, in seconds.
+If undefined, signed videos expire after 1 hour, and any other resource expire after 5 minutes.
+
+==== Returns
+
+(Async) _String_, signed URL for the requested resource.
+For example, the signed URL for a standard video file will look something like `\https://objects.koji-cdn.com/signed/TOKEN`.
+The signed URL for an HLS video file will follow a slightly different pattern.
+
+==== Example
+
+[source,javascript]
+----
+const signedUrl = await keystore.generateSignedUrl(premium_image);
+optimizedUrl = `${signedUrl}?format=jpg&optimize=medium`;
+----
+
+[.hcode, id=".resolveValue", reftext="resolveValue"]
+=== .resolveValue(keyPath)
+
+Resolves a secret VCC value from its keypath.
+
+==== Parameters
+
+* `keyPath` – _String_, the key for the secret VCC.
+This is acquired from the VCC value of the secret type VCC.
+
+==== Returns
+
+(Async) _String_, value of the secret VCC.
+
+==== Example
+
+[source,javascript]
+const password = await keystore.resolveValue(res.locals.koji.images.premium_image);
+
+
+== Related resources
+
+* https://github.com/madewithkoji/koji-vcc[@withkoji/vcc on Github]
+* Core package replacement modules: <<core-frontend-remix#, Remix (frontend)>>, <<core-frontend-playerstate#, PlayerState (frontend)>>, <<core-frontend-ui-capture#, Capture>>, <<core-frontend-ui-navigate#, Navigate>>, <<core-frontend-ui-present#, Present>>, <<core-backend-secret#, Secret>>, <<core-backend-overview#_middleware, middleware>>
+* <<migrate-koji-core#>>

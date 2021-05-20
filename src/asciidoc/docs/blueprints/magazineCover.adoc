@@ -1,6 +1,7 @@
 = Magazine cover template
 :page-slug: magazine-cover-blueprint
 :page-description: Blueprint for a template to put your own picture and headline on a magazine cover.
+:includespath: ../_includes
 
 Follow this blueprint to build a template for your own picture and headline on a magazine cover.
 You will add customizable images and text, and then publish the template on Koji.
@@ -9,10 +10,7 @@ image::magazine-cover.png[Make a magazine cover template on Koji,role="img-overv
 
 === Prerequisites
 
-* Familiarity with web development.
-React and ES6 basics are a plus.
-* Familiarity with the Koji remix process.
-For an overview, see the <<start-guide-1#, starter guide>>.
+include::{includespath}/prereqs.adoc[tags=webdev;remixproc]
 
 === Level
 

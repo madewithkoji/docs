@@ -92,8 +92,6 @@ That is, it will use the source version of the template instead of the current v
 
 For the following example, assume the `title` field is nested in the `titleOptions` object in the latest version, but it was not nested in the initial version of the template.
 
-include::../_includes/starterExamples.adoc[tag=all]
-
 [source,JavaScript]
 ----
 function upgrade(sourceVersionNumber, vccValues) {

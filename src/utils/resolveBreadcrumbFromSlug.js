@@ -12,6 +12,18 @@ const resolveBreadcrumbFromSlug = (slug) => {
             { path: `${navItem.root}${section.root}/${item.slug}`, name: item.name },
           ];
         }
+
+        if (item.subItems) {
+          item.subItems.forEach((subItem) => {
+            if (subItem.slug && subItem.slug === slug) {
+              breadcrumb = [
+                { path: navItem.root, name: navItem.name },
+                { path: `${navItem.root}${section.root}`, name: section.name },
+                { path: `${navItem.root}${section.root}/${subItem.slug}`, name: item.name },
+              ];
+            }
+          });
+        }
       });
     });
 
