@@ -110,7 +110,7 @@ NOTE: This process alters the `package-lock.json` file, so that it can request t
 
 == Launching your project locally
 
-The https://withkoji.com/~Svarog1389/element-match[Element Match] game features both a frontend – so that you can play the game in your browser – and a backend – to access a database where the leaderboard scores are stored.
+The https://withkoji.com/~Svarog1389/rxkd[Falling Objects] game features both a frontend – so that you can play the game in your browser – and a backend – to access a database where the leaderboard scores are stored.
 
 === Launching projects without a backend
 
@@ -188,34 +188,6 @@ $ export KOJI_SERVICE_URL_backend=http://0.0.0.0:3333 && npm start
 ℹ ｢wds｣: Compiled successfully
 ----
 
-==== Starting the watcher on the frontend (Windows only)
-
-On Windows, launching the frontend requires additional steps to start the file watcher alongside your project.
-You must create a custom workflow to work locally that won't interfere with your project in the Koji editor.
-
-. Install npm-run-all.
-+
-[source,bash]
-npm i --save-dev npm-run-all
-
-. Modify the `package.json` file.
-+
-[source,JSON]
-{
-  "scripts: {
-    ...
-    "watch": "koji-vcc watch",
-    "start-windows": "npm-run-all -p watch start"
-  }
-}
-
-. Remove the `prestart` script in your `scripts` section, if there is one.
-
-. Launch the frontend with the following command.
-+
-[source,bash]
-npm run start-windows
-
 ==== Launching the backend
 
 The backend needs to have the values of the `KOJI_PROJECT_ID` and `KOJI_PROJECT_TOKEN` environment variables to access the leaderboard database.
@@ -228,8 +200,8 @@ Your file will look something like this (with your unique values):
 +
 [source,bash]
 ----
-KOJI_PROJECT_ID=c00484db-827a-45bb-8541-f2c09c2f192e
-KOJI_PROJECT_TOKEN=a6676f53-44fe-4109-819a-69df620ad7ed
+REACT_APP_PROJECT_ID=c00484db-827a-45bb-8541-f2c09c2f192e
+REACT_APP_PROJECT_TOKEN=a6676f53-44fe-4109-819a-69df620ad7ed
 ----
 . Open a new terminal window, and go to the backend directory of your project.
 . Run the following command to launch the backend.
@@ -263,16 +235,16 @@ However, you will not need to make changes to the Koji database system, so you c
 
 [source,bash]
 ----
-export KOJI_PROJECT_ID=c00484db-827a-45bb-8541-f2c09c2f192e
-export KOJI_PROJECT_TOKEN=a6676f53-44fe-4109-819a-69df620ad7ed
+export REACT_APP_PROJECT_ID=c00484db-827a-45bb-8541-f2c09c2f192e
+export REACT_APP_PROJECT_TOKEN=a6676f53-44fe-4109-819a-69df620ad7ed
 ----
 
 .Windows
 
 [source,bash]
 ----
-set KOJI_PROJECT_ID=c00484db-827a-45bb-8541-f2c09c2f192e
-set KOJI_PROJECT_TOKEN=a6676f53-44fe-4109-819a-69df620ad7ed
+set REACT_APP_PROJECT_ID=c00484db-827a-45bb-8541-f2c09c2f192e
+set REACT_APP_PROJECT_TOKEN=a6676f53-44fe-4109-819a-69df620ad7ed
 ----
 
 --
@@ -281,40 +253,13 @@ set KOJI_PROJECT_TOKEN=a6676f53-44fe-4109-819a-69df620ad7ed
 +
 TIP: Another alternative is to use the https://www.npmjs.com/package/dotenv[dotenv] package to read the values from the `.env` file.
 
-==== Starting the watcher on the backend (Windows only)
-
-. Install npm-run-all.
-+
-[source,bash]
-npm i --save-dev npm-run-all
-
-. Modify the `package.json` file.
-+
-[source,JSON]
-{
-  "scripts: {
-    ...
-    "start-dev": "NODE_ENV=development babel-watch -L --watch ../.koji/ src/server.js",
-    "start": "NODE_ENV=production node dist/server.js",
-    "watch": "koji-vcc watch",
-    "start-windows": "run-p watch start-dev"
-  }
-}
-
-. Remove any duplicate scripts.
-
-. Launch the backend with the following command.
-+
-[source,bash]
-npm run start-windows
-
 == Testing your local deployment
 
-. In the terminal windows, check that the frontend reported `Compiled successfully` and the backend reported `backend started`.
+. In the terminal windows, check that the frontend reported `Compiled successfully` and the backend reported `Server is listening on port 3333`.
 . If you see errors, make sure that no other applications are running on ports `8080` and `3333`.
 . In your browser, visit `\http://0.0.0.0:8080`.
 +
-You should see the Element Match game running.
+You should see the Falling Objects game running.
 . Click *Leaderboard* to check that it is working.
 +
 If you haven't played the game yet, there will be no scores to show, but you will see the Top Scores title and a Close link that returns you to the Welcome screen.

@@ -3,7 +3,8 @@
 :page-description: How to use Git to clone a Koji project template to your development machine, so that you can work on it locally.
 :figure-caption!:
 
-Git is the version control system used by Koji. You use it to handle your projects and keep track of the changes to them.
+Git is the version control system used by Koji.
+You use it to handle your projects and keep track of the changes to them.
 In the first section of this tutorial, you will
 // tag::description[]
 clone a Koji project to your development machine, so that you can work on it locally.
@@ -42,19 +43,19 @@ For more information, see this https://kinsta.com/blog/best-text-editors/[list o
 
 == Learning objectives
 
-* Get the required tools: Git, Node.js, a Terminal application and a text editor.
+* Get the required tools: Git, Node.js, a terminal application and a text editor.
 * Get the URL of Koji's origin repository for your project.
 * Get the username and password that allows you to interact with Koji's origin repository.
 * Clone the Git repository for your project onto your local machine.
 
 == Choosing a template for your project
 
-This tutorial uses the *Element Match* template as an example because it illustrates a completed game with code that runs both on the backend and on the frontend.
+This tutorial uses the *Falling Objects* template as an example because it illustrates a completed game with code that runs both on the backend and on the frontend.
 However, the instructions in this tutorial apply to any Koji project.
 You can start a Koji project by remixing any other template on Koji.
-For some great starting points, check out the https://withkoji.com/tag/scaffolds[Scaffolds] page.
+For some great starting points, check out the https://withkoji.com/apps/categories/for-developers[For Developers] page.
 
-. Go to the https://withkoji.com/~Svarog1389/element-match[Element Match] project.
+. Go to the https://withkoji.com/~Svarog1389/rxkd[Falling Objects] project.
 . {blank}
 +
 include::../_includes/remixNav.adoc[tag=all]
@@ -195,7 +196,7 @@ drwxrwxr-x  6 kojicoder dev 4096 nov  5 16:38 .koji
 
 In this part of the tutorial, you learned how to:
 
-* Get the required tools: Git, Node.js, a Terminal application and a text editor.
+* Get the required tools: Git, Node.js, a terminal application and a text editor.
 * Get the URL of Koji's origin repository for your project.
 * Get the username and password that allows you to interact with Koji's origin repository.
 * Clone the Git repository for your project onto your local machine.
