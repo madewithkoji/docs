@@ -220,28 +220,6 @@
           ]
         },
         {
-          "name": "Blueprints",
-          "root": "/blueprints",
-          "items": [
-            {
-              "name": "Overview",
-              "slug": "blueprints-overview"
-            },
-            {
-              "name": "Magazine cover template",
-              "slug": "magazine-cover-blueprint"
-            },
-            {
-              "name": "Vote counter template",
-              "slug": "vote-counter-blueprint"
-            },
-            {
-              "name": "Cat selector VCC",
-              "slug": "cat-selector-blueprint"
-            }
-          ]
-        },
-        {
           "name": "About Koji for developers",
           "root": "/about",
           "items": [

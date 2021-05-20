@@ -16,8 +16,6 @@ Additionally, you can define database views of collections to customize the data
 To use the Koji database, you must install and implement the <<withkoji-database-package#>> package in the backend service of your Koji project.
 Then, implement template logic to collect data on the frontend and manage data on the backend.
 
-TIP: To build a simple template that uses a Koji database, you can follow the <<vote-counter-blueprint#>>.
-
 == Customizing database views
 
 In the `.koji/project/develop.json` file, add the `database` property at the same level as the `develop` property.
@@ -90,5 +88,4 @@ For more information, see <<testing-templates#_debugging_database_views>>.
 == Related resources
 
 * <<withkoji-database-package#>>
-* <<vote-counter-blueprint#>>
 * <<add-service#>>
