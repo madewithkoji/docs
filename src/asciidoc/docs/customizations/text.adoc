@@ -1,4 +1,4 @@
-= Text, textarea
+= Text, textarea (deprecated)
 :page-slug: text
 :page-description: Standard VCCs for entering custom text.
 :figure-caption!:

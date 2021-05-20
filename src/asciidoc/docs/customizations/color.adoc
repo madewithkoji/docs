@@ -1,4 +1,4 @@
-= Color
+= Color (deprecated)
 :page-slug: color
 :page-description: Standard VCCs for selecting a color.
 :figure-caption!:

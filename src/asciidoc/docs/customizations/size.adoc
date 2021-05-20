@@ -1,4 +1,4 @@
-= Size
+= Size (deprecated)
 :page-slug: size
 :page-description: Standard VCC for specifying a (width, height) pair.
 :figure-caption!:

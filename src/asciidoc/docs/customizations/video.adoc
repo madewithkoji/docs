@@ -1,4 +1,5 @@
-= Video
+= Video (deprecated)
+
 :page-slug: video
 :page-description: Standard VCC for uploading video files with automatic transcoding and formatting.
 :figure-caption!:

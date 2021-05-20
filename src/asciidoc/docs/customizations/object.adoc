@@ -1,4 +1,4 @@
-= Object (composition)
+= Object (composition) (deprecated)
 :page-slug: object
 :page-description: Composition control for defining an object that is composed of multiple VCCs.
 

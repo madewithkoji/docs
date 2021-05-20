@@ -1,4 +1,4 @@
-= Image
+= Image (deprecated)
 :page-slug: image
 :page-description: Standard VCC for selecting an image.
 :figure-caption!:
