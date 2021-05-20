@@ -1,4 +1,4 @@
-= Link
+= Link (deprecated)
 :page-slug: link-vcc
 :page-description: Standard VCC for selecting or creating a Koji from another Koji or pasting content from a link.
 :figure-caption!:

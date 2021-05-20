@@ -1,4 +1,4 @@
-= Range
+= Range (deprecated)
 :page-slug: range
 :page-description: Standard VCC for selecting a numeric value within a certain range.
 :figure-caption!:

@@ -88,7 +88,7 @@
           "root": "/customizations",
           "items": [
             {
-              "name": "Visual Customization Controls",
+              "name": "Visual Customization Controls (deprecated)",
               "slug": "vcc-overview",
               "subItems": [
                 {

@@ -1,4 +1,4 @@
-= Sound
+= Sound (deprecated)
 :page-slug: sound
 :page-description: Standard VCC for selecting a sound.
 :figure-caption!:

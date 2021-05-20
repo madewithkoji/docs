@@ -1,7 +1,10 @@
-= Visual Customization Controls
+= Visual Customization Controls (deprecated)
 :page-slug: vcc-overview
 :page-description: How to use Visual Customization Controls for remixable elements in your Koji templates.
 :figure-caption!:
+
+IMPORTANT: Visual Customization Controls (VCCs) are deprecated and are included only for backwards compatibility.
+Use the <<core-frontend-ui-capture#,Frontend UI/Capture>> component of the @withkoji/core package instead.
 
 Visual Customization Controls (VCCs) enable users to quickly edit elements of your template on Koji.
 The control types and default values are defined in JSON files in your project.
