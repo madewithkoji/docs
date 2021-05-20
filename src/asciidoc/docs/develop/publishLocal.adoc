@@ -14,12 +14,6 @@ learn how to push the changes that you have made locally to your project's origi
 NOTE: It is recommended that you test the publishing process before you get deep into development locally.
 You can make a minor change, push it back to the Koji servers, and check that the change is visible in the published template on Koji.
 
-This is the final part in a three-part tutorial.
-
-. <<use-git#>>
-. <<work-locally#>>
-. *Publishing the project you developed locally* (this tutorial)
-
 == Prerequisites
 
 * Use Git to clone your project locally.

@@ -9,12 +9,6 @@ In the first section of this tutorial, you will
 clone a Koji project to your development machine, so that you can work on it locally.
 // end::description[]
 
-This is the first part in a three-part tutorial.
-
-. *Using Git to manage your project* (this tutorial)
-. <<work-locally#>>
-. <<publish-locally-developed#>>
-
 == Prerequisites
 
 To develop your Koji project locally, you need these tools:
@@ -187,7 +181,7 @@ drwxrwxr-x  6 kojicoder dev 4096 nov  5 16:38 .koji
 -rw-rw-r--  1 kojicoder dev  797 nov  5 16:38 README.md
 ----
 
-== Next steps
+== Wrapping up
 
 In this part of the tutorial, you learned how to:
 

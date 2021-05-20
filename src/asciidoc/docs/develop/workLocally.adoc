@@ -320,7 +320,7 @@ If you haven't played the game yet, there will be no scores to show, but you wil
 +
 The Leaderboard should now show your name and your score.
 
-== Next steps
+== Wrapping up
 
 In this part of the tutorial, you learned how to:
 
