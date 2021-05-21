@@ -23,8 +23,6 @@ See the second part of the tutorial.
 
 == Learning objectives
 
-* Clone a remixable Koji project onto your development machine (part 1).
-* Install a Node.js server environment and run your project locally (part 2).
 * Make and test changes locally.
 * Push your changes to the origin repository, and then pull them into the Koji editor.
 * Publish your changes to the Koji server.
@@ -34,12 +32,9 @@ See the second part of the tutorial.
 == Changing a custom value
 
 For the https://withkoji.com/~Svarog1389/rxkd[Falling Objects] game, a new game title would be a simple change that is obvious to test.
-To change the title in the Koji editor, you would click *VCC Explorer > Game Settings* on the left side, which opens the Game Settings editor in Visual mode.
-This mode shows the visual controls that will enable non-technical users to customize your template when you have finished developing it.
 
-Because Visual mode is not available when you are developing your project locally, you must edit the JSON customization file directly.
-
-. Open the `.koji/customization/string.json` in your text editor.
+. Open the `koji.json` file in your text editor.
+The file is located in the root of the project.
 . Change the title and save the file.
 +
 [source,json]
@@ -237,7 +232,7 @@ For now, you might prefer to test the template live yourself or get feedback fro
 Fortunately, Koji gives you a way to publish your project as *unlisted*, which means that only people with the direct URL are able to visit your published template.
 
 . In the upper left of the Koji editor, click *Publish Now* to open the publish settings.
-. To publish your project as unlisted, click *Show advanced options*, and then select the *Unlisted* checkbox.
+. To publish your project as unlisted, select the *Unlisted* checkbox under *Discovery Options* near the bottom of the page.
 +
 NOTE: The next time you publish your template, the *Unlisted* option will be selected by default.
 Remember to clear this setting when your project is ready for the world to see.
@@ -253,11 +248,10 @@ TIP: When you publish your project, the Koji editor automatically creates a new 
 
 When you need to change the customization files for your template, the Koji editor provides several important features that are not available in your local development environment.
 
-* A Visual mode for editing the JSON files stored at `.koji/customization/`.
+* A Visual mode for editing the `koji.json` file.
 * The ability to generate custom URLs for assets.
 
 If you edit the customization files in your local development environment, you could create valid JSON that does not conform to the format required by Koji.
-In particular, the `@@editor` array needs to contain specific property-value pairs and precisely constructed objects, or the VCCs will not work and non-technical users will not be able to customize your template correctly.
 To ensure that your changes are valid and work as expected, it makes sense to work in the Koji editor, and to toggle back and forth between the Visual and Code modes.
 
 Another reason to use the Koji editor is that you can upload images and audio files, or provide a direct URL to where these files can be found online, and the Koji platform will copy them to the Koji CDN servers and insert the appropriate URL into the associated JSON file for you.
@@ -270,7 +264,7 @@ If you had also made local changes since your last local commit, this might resu
 To get the benefits of the Koji editor while avoiding potential conflicts between repositories, the recommended solution is to use a separate Koji project for developing your customizations.
 
 . Create a separate Koji project specifically for editing the JSON customization files, and nothing else.
-. For each of the JSON files stored in the `.koji/customization/` folder of this separate project, edit the `@@editor` array until the Visual mode works as needed.
+. Edit the `remixData` object in `koji.json` until the Visual mode works as needed.
 . Use the Visual mode to set the default values that you want in your main project.
 Upload files or provide links to custom assets.
 . When you have finished customizing the values in the Koji editor, switch to Code mode and copy the JSON content.

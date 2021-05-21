@@ -260,13 +260,13 @@ TIP: Another alternative is to use the https://www.npmjs.com/package/dotenv[dote
 . In your browser, visit `\http://0.0.0.0:8080`.
 +
 You should see the Falling Objects game running.
-. Click *Leaderboard* to check that it is working.
+. Click *Top Players* to check that the leaderboard is working.
 +
-If you haven't played the game yet, there will be no scores to show, but you will see the Top Scores title and a Close link that returns you to the Welcome screen.
-. Click *Start Matching*, and play the game.
+If you haven't played the game yet, there will be no scores to show, but you will see the Top Players title and a Close link that returns you to the Welcome screen.
+. Click the start game icon image:WL_01_start-game.jpg[Start game icon], and play the game.
 . When the game is over, submit your user name.
 +
-The Leaderboard should now show your name and your score.
+The leaderboard should now show your name and your score.
 
 == Wrapping up
 
