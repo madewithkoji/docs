@@ -14,6 +14,12 @@ learn how to push the changes that you have made locally to your project's origi
 NOTE: It is recommended that you test the publishing process before you get deep into development locally.
 You can make a minor change, push it back to the Koji servers, and check that the change is visible in the published template on Koji.
 
+== Learning objectives
+
+* Learn how to make and test changes locally.
+* Learn how to push your changes to the origin repository, and then pull them into the Koji editor.
+* Learn how to publish your changes to the Koji server.
+
 == Prerequisites
 
 * Use Git to clone your project locally.
@@ -21,37 +27,14 @@ See the first part of the tutorial.
 * Install Node.js and launch your project locally.
 See the second part of the tutorial.
 
-== Learning objectives
+== Making a change in the source code
 
-* Make and test changes locally.
-* Push your changes to the origin repository, and then pull them into the Koji editor.
-* Publish your changes to the Koji server.
-* Test that your template works the same live on a Koji server as it does locally.
-* Take advantage of the Visual mode for the JSON customization files, so that non-technical users can easily create their own versions of your template.
+Let's make a small change in the https://withkoji.com/~Svarog1389/rxkd[Falling Objects] game, just for testing purposes.
 
-== Changing a custom value
+. Open `frontend\src\Components\View\LeaderboardMini.js`.
+Change `<Title>{`Top Players`}</Title>` to `<Title>{`Leaderboard`}</Title>` and save the file.
 
-For the https://withkoji.com/~Svarog1389/rxkd[Falling Objects] game, a new game title would be a simple change that is obvious to test. To change the title in the Koji editor, you would click the *Remix* tab, which opens the Game Settings editor. This shows the visual controls that will enable non-technical users to customize your template when you have finished developing it.
-
-Because Visual mode is not available when you are developing your project locally, you must edit the JSON customization file directly.
-
-For the https://withkoji.com/~Svarog1389/rxkd[Falling Objects] game, a new game title would be a simple change that is obvious to test.
-
-. Open the `koji.json` file in your text editor.
-The file is located in the root of the project.
-. Change the title and save the file.
-+
-[source,json]
-----
-  "strings": {
-    "fontFamily": "https://fonts.googleapis.com/css?family=Lilita+One",
-    "title": "CUSTOM TITLE", <1>
-    "instructions1": "Swipe the Elements to move them",
-    ...
-  }
-----
-<1> Change the value for the `title` key.
-. In your browser, go to `\http://0.0.0.0:8080`, and make sure the splash screen shows the new title.
+. In your browser, go to `\http://0.0.0.0:8080`, and make sure the leaderboard shows the new title.
 
 == Moving changes from local to live
 
