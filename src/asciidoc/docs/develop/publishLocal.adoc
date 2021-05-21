@@ -31,6 +31,10 @@ See the second part of the tutorial.
 
 == Changing a custom value
 
+For the https://withkoji.com/~Svarog1389/rxkd[Falling Objects] game, a new game title would be a simple change that is obvious to test. To change the title in the Koji editor, you would click the *Remix* tab, which opens the Game Settings editor. This shows the visual controls that will enable non-technical users to customize your template when you have finished developing it.
+
+Because Visual mode is not available when you are developing your project locally, you must edit the JSON customization file directly.
+
 For the https://withkoji.com/~Svarog1389/rxkd[Falling Objects] game, a new game title would be a simple change that is obvious to test.
 
 . Open the `koji.json` file in your text editor.
@@ -263,7 +267,7 @@ If you had also made local changes since your last local commit, this might resu
 
 To get the benefits of the Koji editor while avoiding potential conflicts between repositories, the recommended solution is to use a separate Koji project for developing your customizations.
 
-. Create a separate Koji project specifically for editing the JSON customization files, and nothing else.
+. Create a separate Koji project specifically for editing the `koji.json` file, and nothing else.
 . Edit the `remixData` object in `koji.json` until the Visual mode works as needed.
 . Use the Visual mode to set the default values that you want in your main project.
 Upload files or provide links to custom assets.
