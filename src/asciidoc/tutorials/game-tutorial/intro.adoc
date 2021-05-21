@@ -6,7 +6,7 @@
 
 In this tutorial, you will create a remixable https://withkoji.com/~Svarog1389/rxkd[Falling Objects] game, starting from a https://withkoji.com/~Svarog1389/game-template-1[p5.js game template].
 
-NOTE: This tutorial assumes you've already gone through the <<quick-start, Koji quick start tutorial>> and are familiar with the basics of Koji.
+NOTE: This tutorial assumes you've already gone through the <<start-tutorial, Koji quick start tutorial>> and are familiar with the basics of Koji.
 
 == Objective
 

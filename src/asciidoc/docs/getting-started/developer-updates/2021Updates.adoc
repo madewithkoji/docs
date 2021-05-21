@@ -57,7 +57,7 @@ include::../../_includes/coreReleaseNotes.adoc[tag=all]
 
 === March 2
 
-* On the developer site, a new set of <<quick-start#,quick start tutorials>> are available to help developers get going quickly on Koji.
+* On the developer site, a new set of <<start-tutorial#,quick start tutorials>> are available to help developers get going quickly on Koji.
 * The https://withkoji.atlassian.net/servicedesk/customer/portal/1[Koji Support] page is now available for logging bugs and requests with the Koji team.
 This short form enables better tracking and quicker resolution of problems.
 // end::highlights[]

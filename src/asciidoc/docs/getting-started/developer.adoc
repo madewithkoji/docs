@@ -28,7 +28,7 @@ For a summary of the latest updates to the Koji platform, packages, and develope
 
 For some great resources to help you start developing templates on Koji, see:
 
-* <<quick-start#>> – Step-by-step tutorial for learning fundamental concepts and developing your first project on Koji.
+* <<start-tutorial#>> – Step-by-step tutorial for learning fundamental concepts and developing your first project on Koji.
 * https://withkoji.com/create/for-developers[Developer scaffolds in the Template Store] – Great starting points for an entirely new web app on Koji.
 
 == Staying in touch

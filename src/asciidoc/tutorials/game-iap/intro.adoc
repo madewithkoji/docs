@@ -8,7 +8,7 @@ In this tutorial, you will add an In-Game Purchase feature to an existing game o
 
 If you're new to Koji, here are some tutorials that you might want to check out before continuing.
 
-* <<quick-start#>>
+* <<start-tutorial#>>
 * <<game-intro#>>
 
 == Objective
