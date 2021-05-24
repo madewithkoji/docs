@@ -119,19 +119,21 @@ Your terminal will look something like this:
 [source,bash]
 ----
 root@ip-172-31-12-226:/usr/src/app# git pull origin master
-remote: Counting objects: 21, done.
-remote: Compressing objects: 100% (21/21), done.
-remote: Total 21 (delta 15), reused 0 (delta 0)
-Unpacking objects: 100% (21/21), done.
-From https://projects.koji-cdn.com/a70f8329-e89e-48b0-8d85-7658c1542b9f
-* branch            master     -> FETCH_HEAD
-  a88036c..ea6bda1  master     -> origin/master
-Updating a88036c..ea6bda1
+remote: Counting objects: 13, done.
+remote: Compressing objects: 100% (13/13), done.
+remote: Total 13 (delta 11), reused 0 (delta 0)
+Unpacking objects: 100% (13/13), done.
+From https://projects.koji-cdn.com/d29a69ff-f413-45bb-a364-a6bee40eea91
+ * branch            master     -> FETCH_HEAD
+   0cafbcd..9633a51  master     -> origin/master
+Updating 0cafbcd..9633a51
 Fast-forward
-backend/package-lock.json        | 41 ++++++++++++++++++++++++++++++-----------
-frontend/package-lock.json       | 82 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++---------------------
-.koji/customization/strings.json |  2 +-
-3 files changed, 92 insertions(+), 33 deletions(-)
+ frontend/src/Components/Remix/index.js          | 569 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++---------------------------------------------------------------------------------------------------------------------
+ frontend/src/Components/View/Leaderboard.js     | 456 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++--------------------------------------------------------------------------------------------
+ frontend/src/Components/View/LeaderboardMini.js | 373 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++---------------------------------------------------------------------------
+ 3 files changed, 673 insertions(+), 725 deletions(-)
+root@ip-172-31-12-226:/usr/src/app# 
+root@ip-172-31-12-226:/usr/src/app# 
 ----
 +
 The code in the Koji editor should now be identical to the code in your local repository.

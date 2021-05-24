@@ -188,7 +188,7 @@ drwxrwxr-x  3 kojicoder dev 4096 nov  5 16:38 backend
 drwxrwxr-x  5 kojicoder dev 4096 nov  5 16:38 frontend
 drwxrwxr-x  8 kojicoder dev 4096 nov  5 16:38 .git
 -rw-rw-r--  1 kojicoder dev  186 nov  5 16:38 .gitignore
-drwxrwxr-x  6 kojicoder dev 4096 nov  5 16:38 .koji
+drwxrwxr-x  6 kojicoder dev 4096 nov  5 16:38 koji.json
 -rw-rw-r--  1 kojicoder dev   27 nov  5 16:38 package-lock.json
 -rw-rw-r--  1 kojicoder dev  797 nov  5 16:38 README.md
 ----
