@@ -1,23 +1,25 @@
 = Working locally
 :page-slug: work-locally
-:page-description: How to set up a web server and launch your Koji template on your development machine, so that you can work on it locally.
+:page-description: How to set up a web server and launch your Koji app on your development machine, so that you can work on it locally.
 
-In the first part of this tutorial, you learned how to use Git to clone a Koji project template to your development machine, so that you can work on it locally.
+In the <<use-git#, first section>> of this tutorial, you learned how to use Git to clone a Koji project app to your development machine, so that you can work on it locally.
 In this section, you will
 // tag::description[]
-install a Node.js web server environment on your development machine and launch both a frontend and a backend server so that you can work with all aspects of your template within your local area network.
+install a Node.js web server environment on your development machine and launch both a frontend and a backend server so that you can work with all aspects of your app within your local area network.
 // end::description[]
 
 == Learning objectives
 
-. Learn how to install the Node modules that are needed to run a server on your local machine.
-. Learn how to set the environment variables used by the server from the Koji editor.
-. Learn how to tell the frontend which URL to use when connecting to the backend server.
-. Learn how to launch the template locally and check that the game and the leaderboard are working correctly.
+By the end of the section, you should feel comfortable:
+
+. Installing the Node modules that are needed to run a server on your local machine.
+. Setting the environment variables used by the server.
+. Specifying the URL the frontend will use when connecting to the backend server.
+. Launching the app locally and checking that the game and the leaderboard are working correctly.
 
 == Prerequisites
 
-* Use Git to clone your project locally.
+* Use Git to clone the https://withkoji.com/~Svarog1389/rxkd[Falling Objects] game locally.
 See the first part of the tutorial.
 * https://nodejs.org/en/download/[Install Node.js] and its associated Node Package Manager (NPM).
 In this tutorial, you will set up a Node.js server on your development computer.
@@ -27,10 +29,10 @@ Koji uses Node.js and add-on packages to deliver your web application to your us
 
 In the previous tutorial, you used Git to clone all the project-specific files to your local drive.
 However, the files that actually run the local server have not yet been installed.
-Fortunately, four of the cloned files contain all the information about the servers and other dependencies that you will need to set up the server environment and launch the template locally.
+Fortunately, four of the cloned files contain all the information about the servers and other dependencies that you will need to set up the server environment and launch the app locally.
 These are the `package.json` and `package-lock.json` files in the `frontend` and `backend` directories.
 
-Before you can test the template on your development machine, you must install two sets of Node modules, one set to run the frontend and another set to run the backend.
+Before you can test the app on your development machine, you must install two sets of Node modules, one set to run the frontend and another set to run the backend.
 
 . Open a terminal window, and go to the `backend` directory.
 . Run the following command.
@@ -112,7 +114,7 @@ The https://withkoji.com/~Svarog1389/rxkd[Falling Objects] game features both a 
 
 === Launching projects without a backend
 
-If you chose to develop a template that does not require a backend, such as a game without a leaderboard, launching your project locally is very simple.
+If you chose to develop an app that does not require a backend, such as a game without a leaderboard, launching your project locally is very simple.
 
 . Go to the `frontend` directory and run the following command.
 +
@@ -140,7 +142,7 @@ Alternatively, `\http://localhost:8080/` and `\http://127.0.0.1:8080/` might als
 
 === Launching projects with a backend
 
-If you want to run a project with a backend, such as a leaderboard, the procedure for launching your template is more complex.
+If you want to run a project with a backend, such as a leaderboard, the procedure for launching your app is more complex.
 You must launch both the frontend and the backend servers on your local machine, using separate terminal windows for each.
 To launch the frontend, you must specify the URL for connecting to the backend.
 To launch the backend, you must provide deployment details for your project.
@@ -223,7 +225,7 @@ $ npm run start-dev
 Before `npm` starts the backend Node.js server, it reads the values in the `.env` file into the environment variables, so the backend server knows how to contact the Koji database.
 +
 NOTE: The Koji database is not running on your local machine, so you will still need an active Internet connection to get the leaderboard to work.
-However, you will not need to make changes to the Koji database system, so you can focus on developing your template.
+However, you will not need to make changes to the Koji database system, so you can focus on developing your app.
 
 . If `npm` fails to read the values from the `.env` file, you can set the environment variables manually in the terminal before starting the server, using the `KOJI_PROJECT_ID` and `KOJI_PROJECT_TOKEN` values you copied earlier.
 +
@@ -261,7 +263,7 @@ You should see the Falling Objects game running.
 . Click *Top Players* to check that the leaderboard is working.
 +
 If you haven't played the game yet, there will be no scores to show, but you will see the Top Players title and a Close link that returns you to the Welcome screen.
-. Click the start game icon image:WL_01_start-game.jpg[Start game icon], and play the game.
+. Click the start game icon and play the game.
 . When the game is over, submit your user name.
 +
 The leaderboard should now show your name and your score.
@@ -274,12 +276,12 @@ In this part of the tutorial, you learned how to:
 . Get the environment variables used by the server from the Koji editor.
 . Create an `.env` file to apply these environment variables to the backend server, so that it can connect to the database.
 . Tell the frontend which URL to use when connecting to the backend server.
-. Launch the template locally.
+. Launch the app locally.
 . Check that the game and the leaderboard are working correctly.
 
-You are now ready to start editing the template on your development machine and turning this project into your own template.
-With what you have learned so far, you will be able to test all aspects of your template locally in your browser.
+You are now ready to start editing the app on your development machine and turning this project into your own app.
+With what you have learned so far, you will be able to test all aspects of your app locally in your browser.
 
-When you're ready to deploy your template for end users, you must publish it so they can access it from the Koji server.
-To publish your template, you must update the repository that the Koji server uses to deliver your template.
+When you're ready to deploy your app for end users, you must publish it so they can access it from the Koji server.
+To publish your app, you must update the repository that the Koji server uses to deliver your app.
 For more information, see <<publish-locally-developed#>>.
