@@ -1,7 +1,7 @@
 = Uploading files from the frontend
 :page-slug: frontend-uploading
 :page-description: How to enable users to upload files to the CDN from a Koji's frontend.
-:includespath: ../_includes
+:includespath: ../../docs/_includes
 
 Some templates provide users with the ability to upload files from a Koji’s frontend.
 For example, a public image board.
@@ -144,4 +144,3 @@ The response object includes the follow properties:
 <8> `data.signedRequest.fields.key` – The Amazon S3 object key.
 <9> `data.url` – The destination URL.
 The file will be accessible via this URL when uploaded.
-

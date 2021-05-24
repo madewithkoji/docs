@@ -53,7 +53,7 @@ For some great starting points, check out the https://withkoji.com/tag/scaffolds
 . Go to the https://withkoji.com/~Svarog1389/element-match[Element Match] project.
 . {blank}
 +
-include::../_includes/remixNav.adoc[tag=all]
+include::../../_includes/remixNav.adoc[tag=all]
 +
 After a short loading time, the *Project Details* page opens.
 

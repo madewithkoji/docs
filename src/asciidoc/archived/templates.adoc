@@ -48,7 +48,7 @@ For each element, a value can point to a resource location or be consumed direct
 video::/videos/DefineCustomEl.mp4[width=50%]
 
 The value type affects the remixing experience for users in addition to how you use the value in your code.
-To provide a UI for customizing values, you can use the built-in <<vcc-overview#, Visual Customization Controls>> (VCCs) for standard elements, such as images, text, and sounds.
+To provide a UI for customizing values, you can use the built-in Visual Customization Controls (VCCs) for standard elements, such as images, text, and sounds.
 To provide more specialized customization types, you can <<build-custom-vcc#, develop custom VCCs>> or other types of controls.
 
 === 3. Dynamically set custom values
@@ -75,7 +75,7 @@ For example, the following code indicates that the template supports instant rem
 
 [source, JSON]
 ----
-include::../_includes/entitlements.json[]
+include::../docs/_includes/entitlements.json[]
 ----
 
 === 5. Publish to the Koji network

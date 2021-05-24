@@ -1,4 +1,4 @@
-= Tutorial: Adding in-app purchases to Koji games
+= Example: Adding in-app purchases to Koji games
 :page-slug: game-iap-intro
 :page-description: Tutorial for adding in-app purchases to an existing Koji game.
 :page-banner: {imagesDir}/game-iap-payment-menu-ui.png
@@ -56,4 +56,4 @@ include::remix.adoc[tag=description]
 
 == Getting help
 
-include::../../docs/_includes/tutorialHelpMarko.adoc[tag=all]
+include::../../_includes/tutorialHelpMarko.adoc[tag=all]

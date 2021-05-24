@@ -1,6 +1,6 @@
-= Managing template versions
-:page-slug: template-versions
-:page-description: How to keep your Koji template up to date.
+= Managing app versions
+:page-slug: app-versions
+:page-description: How to keep your Koji app up to date.
 
 After you publish a template on Koji, you might want to update it to increase its value.
 For example, you might add new features or fix bugs reported by testers or remixers.

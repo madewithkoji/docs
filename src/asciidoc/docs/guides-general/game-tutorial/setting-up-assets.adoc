@@ -33,14 +33,14 @@ Get started by cloning the game template to your own project.
 
 . Open the https://withkoji.com/~Svarog1389/game-template-1[game template].
 . {blank}
-include::../../docs/_includes/remixNav.adoc[tag=all]
+include::../../_includes/remixNav.adoc[tag=all]
 +
 A copy of the project is created in your Koji account, and the *Project Details* page for your new project is displayed.
 . Click *Open in Code Editor*.
 +
 The Koji editor opens with the game code loaded.
 
-include::../../docs/_includes/tutorialEditorNote.adoc[tag=all]
+include::../../_includes/tutorialEditorNote.adoc[tag=all]
 
 == Configuring koji.json
 

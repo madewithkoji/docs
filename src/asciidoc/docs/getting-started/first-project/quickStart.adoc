@@ -1,6 +1,6 @@
-= Tutorial: Learning Koji
+= Tutorial: Building your first Koji app
 :page-slug: start-tutorial
-:page-description: Tutorial for learning fundamental concepts and developing your first project on Koji.
+:page-description: Tutorial for learning fundamental concepts and developing your first app on Koji.
 
 Welcome to Koji!
 The goal of this tutorial is to guide you through developing and publishing your first web app on Koji.
@@ -45,4 +45,4 @@ include::your-first-template.adoc[tag=description]
 
 == Getting help
 
-include::../../docs/_includes/tutorialHelpDiddy.adoc[tag=all]
+include::../../_includes/tutorialHelp.adoc[tag=all]

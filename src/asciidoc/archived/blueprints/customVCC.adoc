@@ -1,7 +1,7 @@
 = Cat selector VCC
 :page-slug: cat-selector-blueprint
 :page-description: Blueprint for a custom Koji VCC that lets remixers choose from a list of cat breeds retrieved from a third-party API.
-:includespath: ../_includes
+:includespath: ../../docs/_includes
 
 Follow this blueprint to build a custom VCC that allows remixers to select from a drop-down list of cat breeds.
 
@@ -28,10 +28,10 @@ Remix an existing web application on Koji that implements basic elements of your
 [.tabs,scope="lang"]
 --
 .React
-include::../_includes/starterScaffolds.adoc[tag=reactVccs]
+include::{includespath}/starterScaffolds.adoc[tag=reactVccs]
 
 .Vanilla JS
-include::../_includes/starterScaffolds.adoc[tag=vanilla]
+include::{includespath}/starterScaffolds.adoc[tag=vanilla]
 --
 
 === Install the packages
@@ -43,7 +43,7 @@ Install @withkoji/vcc to expose Visual Customization Controls (VCCs), dynamicall
 npm install --save @withkoji/vcc
 ----
 
-include::../_includes/note-start-watcher.adoc[tags=*]
+include::{includespath}/note-start-watcher.adoc[tags=*]
 
 Install @withkoji/custom-vcc-sdk to enable custom VCC functionality, such as loading and saving the VCC value from Koji.
 
@@ -58,7 +58,7 @@ Create `.koji/customization/settings.json` to define customizable values for the
 
 [source,json]
 ----
-include::../_includes/vcc-blueprint-settings.json[tags=!configuration]
+include::{includespath}/vcc-blueprint-settings.json[tags=!configuration]
 ----
 <1> You will add custom values here in the next step.
 
@@ -75,7 +75,7 @@ Set the values for the API in the `settings.json` customization file so that you
 
 [source,json]
 ----
-include::../_includes/vcc-blueprint-settings.json[tags=configuration]
+include::{includespath}/vcc-blueprint-settings.json[tags=configuration]
 ----
 
 === Add the template logic
@@ -95,7 +95,7 @@ This listener allows you to style the VCC to match the user’s current theme on
 .React
 [source,javascript]
 ----
-include::../_includes/customVCCReact.js[tags=constructor,indent=0]
+include::{includespath}/customVCCReact.js[tags=constructor,indent=0]
 ----
 
 .Vanilla JS
@@ -106,14 +106,14 @@ include::../_includes/customVCCReact.js[tags=constructor,indent=0]
 ======
 [source,javascript]
 ----
-include::../_includes/customVCCVanilla.js[tags=initTheme,indent=0]
+include::{includespath}/customVCCVanilla.js[tags=initTheme,indent=0]
 ----
 ======
 .default-theme.js
 ======
 [source,javascript]
 ----
-include::../_includes/customVCCVanillaDefaultTheme.js[indent=0]
+include::{includespath}/customVCCVanillaDefaultTheme.js[indent=0]
 ----
 ======
 =====
@@ -127,12 +127,12 @@ Register your custom VCC to connect to Koji and set a listener to update your ap
 .React
 [source,javascript]
 ----
-include::../_includes/customVCCReact.js[tags=mount,indent=0]
+include::{includespath}/customVCCReact.js[tags=mount,indent=0]
 ----
 .Vanilla JS
 [source,javascript]
 ----
-include::../_includes/customVCCVanilla.js[tags=registerVCC,indent=0]
+include::{includespath}/customVCCVanilla.js[tags=registerVCC,indent=0]
 ----
 --
 
@@ -143,13 +143,13 @@ Make a call to the API endpoint to retrieve the required values.
 .React
 [source,javascript]
 ----
-include::../_includes/customVCCReact.js[tags=loadAPI,indent=0]
+include::{includespath}/customVCCReact.js[tags=loadAPI,indent=0]
 ----
 
 .Vanilla JS
 [source,javascript]
 ----
-include::../_includes/customVCCVanilla.js[tags=loadAPI,indent=0]
+include::{includespath}/customVCCVanilla.js[tags=loadAPI,indent=0]
 ----
 --
 
@@ -162,12 +162,12 @@ Use `customVCC.change()` to notify Koji that the VCC value has been updated and 
 .React
 [source,javascript]
 ----
-include::../_includes/customVCCReact.js[tags=selectValue,indent=0]
+include::{includespath}/customVCCReact.js[tags=selectValue,indent=0]
 ----
 .Vanilla JS
 [source,javascript]
 ----
-include::../_includes/customVCCVanilla.js[tags=selectValue,indent=0]
+include::{includespath}/customVCCVanilla.js[tags=selectValue,indent=0]
 ----
 --
 
@@ -178,13 +178,13 @@ Use the Koji theme and the API results to render a drop-down menu that allows us
 .React
 [source,javascript]
 ----
-include::../_includes/customVCCReact.js[tags=render,indent=0]
+include::{includespath}/customVCCReact.js[tags=render,indent=0]
 ----
 
 .Vanilla JS
 [source,javascript]
 ----
-include::../_includes/customVCCVanilla.js[tags=render,indent=0]
+include::{includespath}/customVCCVanilla.js[tags=render,indent=0]
 ----
 --
 
@@ -196,13 +196,13 @@ Define styles for the template, using the theme values to match the user's Koji 
 .React
 [source,javascript]
 ----
-include::../_includes/customVCCReact.js[tags=styles,indent=0]
+include::{includespath}/customVCCReact.js[tags=styles,indent=0]
 ----
 
 .Vanilla JS
 [source,css]
 ----
-include::../_includes/vcc-blueprint-styles.css[]
+include::{includespath}/vcc-blueprint-styles.css[]
 ----
 --
 
@@ -257,11 +257,11 @@ The following code is a completed sample of the template logic described in this
 .React
 [source,javascript]
 ----
-include::../_includes/customVCCReact.js[tags=**]
+include::{includespath}/customVCCReact.js[tags=**]
 ----
 .Vanilla JS
 [source,javascript]
 ----
-include::../_includes/customVCCVanilla.js[tags=**]
+include::{includespath}/customVCCVanilla.js[tags=**]
 ----
 --

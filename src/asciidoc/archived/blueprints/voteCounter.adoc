@@ -1,7 +1,7 @@
 = Vote counter template
 :page-slug: vote-counter-blueprint
 :page-description: Blueprint for a template that counts votes from multiple users in real-time.
-:includespath: ../_includes
+:includespath: ../../docs/_includes
 
 Follow this blueprint to build a template that counts votes from multiple users in real-time.
 You will implement a database to record the users and votes and real-time dispatch to provide users with an immediate, multi-user experience.
@@ -28,10 +28,10 @@ Remix an existing web application on Koji that implements basic elements of your
 [.tabs,scope="lang"]
 --
 .React
-include::../_includes/starterScaffolds.adoc[tag=reactVccs]
+include::{includespath}/starterScaffolds.adoc[tag=reactVccs]
 
 .Vanilla JS
-include::../_includes/starterScaffolds.adoc[tag=vanilla]
+include::{includespath}/starterScaffolds.adoc[tag=vanilla]
 --
 
 === Add the backend service
@@ -45,7 +45,7 @@ This path creates a `backend` directory and a `package.json` file in it.
 
 [source,json]
 ----
-include::../_includes/db-blueprint-package.json[]
+include::{includespath}/db-blueprint-package.json[]
 ----
 
 Install the dependencies.
@@ -60,35 +60,35 @@ Create `backend/.babelrc` to define the Babel runtime configuration and to add e
 
 [source,json]
 ----
-include::../_includes/babelrc.json[]
+include::{includespath}/babelrc.json[]
 ----
 
 Create `backend/src/votes.js` and implement the counting logic by using the asynchronous get and set commands in the @withkoji/database package.
 
 [source,javascript]
 ----
-include::../_includes/db-blueprint-votes.js[]
+include::{includespath}/db-blueprint-votes.js[]
 ----
 
 Add `backend/src/server.js` to create an express server that acts as an entry point to handle backend requests from the frontend.
 
 [source,javascript]
 ----
-include::../_includes/db-blueprint-server.js[]
+include::{includespath}/db-blueprint-server.js[]
 ----
 
 Add the backend service to `.koji/project/develop.json` so Koji can detect the service.
 
 [source,json]
 ----
-include::../_includes/develop.json[tags=backend,indent=0]
+include::{includespath}/develop.json[tags=backend,indent=0]
 ----
 
 Add the backend service to `.koji/project/deploy.json` to ensure the backend is built and deployed when you publish the template.
 
 [source,json]
 ----
-include::../_includes/deploy.json[tags=backend,indent=0]
+include::{includespath}/deploy.json[tags=backend,indent=0]
 ----
 
 Restart your project environment to allow Koji to add the new service to the service map.
@@ -115,7 +115,7 @@ Install @withkoji/vcc to expose Visual Customization Controls (VCCs), dynamicall
 npm install --save @withkoji/vcc
 ----
 
-include::../_includes/note-start-watcher.adoc[tags=*]
+include::{includespath}/note-start-watcher.adoc[tags=*]
 
 === Add the template logic
 
@@ -123,7 +123,7 @@ Create `frontend/utils/DataHandler.js` as a utility file to manage the data hand
 
 [source,javascript]
 ----
-include::../_includes/db-blueprint-DataHandler.js[tags=**;!*]
+include::{includespath}/db-blueprint-DataHandler.js[tags=**;!*]
 ----
 
 Initialize `Dispatch` with the `projectId` metadata to identify your Koji application.
@@ -131,28 +131,28 @@ Add a listener to monitor the `new_tap` event, which fires whenever a user taps 
 
 [source,javascript]
 ----
-include::../_includes/db-blueprint-DataHandler.js[tags=dispatchEvents,indent=0]
+include::{includespath}/db-blueprint-DataHandler.js[tags=dispatchEvents,indent=0]
 ----
 
 Periodically get the data from the backend to ensure you have the most up-to-date counts from the database.
 
 [source,javascript]
 ----
-include::../_includes/db-blueprint-DataHandler.js[tags=fetchVotes,indent=0]
+include::{includespath}/db-blueprint-DataHandler.js[tags=fetchVotes,indent=0]
 ----
 
 Submit vote counts to the backend for long-term storage in the database.
 
 [source,javascript]
 ----
-include::../_includes/db-blueprint-DataHandler.js[tags=submitVotes,indent=0]
+include::{includespath}/db-blueprint-DataHandler.js[tags=submitVotes,indent=0]
 ----
 
 When a user taps the icon, increment the counter and emit the `new_tap` event with dispatch to allow other clients to respond to the event.
 
 [source,javascript]
 ----
-include::../_includes/db-blueprint-DataHandler.js[tags=addVotes,indent=0]
+include::{includespath}/db-blueprint-DataHandler.js[tags=addVotes,indent=0]
 ----
 
 Update the file that contains the main application code.
@@ -173,13 +173,13 @@ Import the required libraries.
 .React
 [source,javascript]
 ----
-include::../_includes/voteCounterReact.js[tags=importPackages]
+include::{includespath}/voteCounterReact.js[tags=importPackages]
 ----
 
 .Vanilla JS
 [source,javascript]
 ----
-include::../_includes/voteCounterVanilla.js[tags=importPackages]
+include::{includespath}/voteCounterVanilla.js[tags=importPackages]
 ----
 --
 
@@ -187,14 +187,14 @@ Use `FeedSdk` to display the template in the Koji feed.
 
 [source,javascript]
 ----
-include::../_includes/voteCounterReact.js[tags=feedSdk]
+include::{includespath}/voteCounterReact.js[tags=feedSdk]
 ----
 
 Initialize `DataHandler`.
 
 [source,javascript]
 ----
-include::../_includes/voteCounterReact.js[tags=initDataHandler]
+include::{includespath}/voteCounterReact.js[tags=initDataHandler]
 ----
 
 Track the remix state and the number of votes.
@@ -204,13 +204,13 @@ Track the remix state and the number of votes.
 .React
 [source,javascript]
 ----
-include::../_includes/voteCounterReact.js[tags=trackState,indent=0]
+include::{includespath}/voteCounterReact.js[tags=trackState,indent=0]
 ----
 
 .Vanilla JS
 [source,javascript]
 ----
-include::../_includes/voteCounterVanilla.js[tags=trackState,indent=0]
+include::{includespath}/voteCounterVanilla.js[tags=trackState,indent=0]
 ----
 --
 
@@ -222,13 +222,13 @@ Set instant remixing to ready to allow remixes and use FeedSdk so your applicati
 .React
 [source,javascript]
 ----
-include::../_includes/voteCounterReact.js[tags=callDataHandler,indent=0]
+include::{includespath}/voteCounterReact.js[tags=callDataHandler,indent=0]
 ----
 
 .Vanilla JS
 [source,javascript]
 ----
-include::../_includes/voteCounterVanilla.js[tags=callDataHandler,indent=0]
+include::{includespath}/voteCounterVanilla.js[tags=callDataHandler,indent=0]
 ----
 --
 
@@ -240,13 +240,13 @@ Use the `instantRemix.onPresentControl` callback to display the VCC controls whe
 .React
 [source,javascript]
 ----
-include::../_includes/voteCounterReact.js[tags=renderTemplate,indent=0]
+include::{includespath}/voteCounterReact.js[tags=renderTemplate,indent=0]
 ----
 
 .Vanilla JS
 [source,javascript]
 ----
-include::../_includes/voteCounterVanilla.js[tags=renderTemplate,indent=0]
+include::{includespath}/voteCounterVanilla.js[tags=renderTemplate,indent=0]
 ----
 --
 
@@ -258,7 +258,7 @@ Apply conditional styling so remixers can easily tell what can be customized.
 ====
 [source,javascript]
 ----
-include::../_includes/voteCounterReact.js[tags=styles;stylesOnly,indent=0]
+include::{includespath}/voteCounterReact.js[tags=styles;stylesOnly,indent=0]
 ----
 NOTE: Remove the `pointer-events: none;` property definition from the `Icon` component.
 ====
@@ -281,7 +281,7 @@ Create `.koji/project/entitlements.json` and enable instant remix support and li
 
 [source,json]
 ----
-include::../_includes/entitlements.json[]
+include::{includespath}/entitlements.json[]
 ----
 
 === Test
@@ -327,18 +327,18 @@ The following code is a completed sample of the template logic described in this
 .React
 [source,javascript]
 ----
-include::../_includes/voteCounterReact.js[tags=**;!stylesOnly]
+include::{includespath}/voteCounterReact.js[tags=**;!stylesOnly]
 ----
 
 .Vanilla JS
 [source,javascript]
 ----
-include::../_includes/voteCounterVanilla.js[tags=**]
+include::{includespath}/voteCounterVanilla.js[tags=**]
 ----
 
 .DataHandler.js
 [source,javascript]
 ----
-include::../_includes/db-blueprint-DataHandler.js[tags=**]
+include::{includespath}/db-blueprint-DataHandler.js[tags=**]
 ----
 --

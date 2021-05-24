@@ -97,7 +97,7 @@
             },
             {
               "name": "Managing app versions",
-              "slug": "template-versions"
+              "slug": "app-versions"
             }
           ]
         },
@@ -107,7 +107,7 @@
           "items": [
             {
               "name": "Thumbnail image and custom metadata",
-              "slug": "rich-preview-image"
+              "slug": "thumbnail-image"
             },
             {
               "name": "Koji databases",

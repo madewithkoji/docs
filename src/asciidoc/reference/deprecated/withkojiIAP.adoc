@@ -57,7 +57,7 @@ To enable in-app purchases for your Koji template, you must implement the `Iap` 
 ----
 <1> `sku` – Identifier for the product to purchase.
 <2> `name` – Description displayed when a user is prompted to purchase the product.
-Can be a string or a path to the <<vcc-overview#,Visual Customization Control (VCC)>> that defines the description.
+Can be a string or a path to the Visual Customization Control (VCC) that defines the description.
 <3> `price` – Path to the VCC that defines the purchase price, if applicable.
 Alternatively, use `"priceIsUnset": true` to define a product without a set price.
 For example, a donation or "pay what you want" price.

@@ -153,4 +153,4 @@ All that's left to do is to publish the game from the *Publish Now* menu and sha
 Of course, the project is now your playground.
 You can go back to modify or add new features, make improvements, or anything else you can imagine.
 
-include::../../docs/_includes/tutorialHelpMarko.adoc[tag=all]
+include::../../_includes/tutorialHelpMarko.adoc[tag=all]

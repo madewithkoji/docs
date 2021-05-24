@@ -1,4 +1,4 @@
-= Koji database
+= Koji databases
 :page-slug: koji-database
 :page-description: How to use the built-in Koji database in your templates on Koji.
 

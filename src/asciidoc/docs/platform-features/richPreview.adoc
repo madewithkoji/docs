@@ -1,6 +1,6 @@
-= Sharing rich previews and custom metadata
-:page-slug: rich-preview-image
-:page-description: How to customize the rich preview (Open Graph) image and sharing metadata for your Koji template.
+= Thumbnail image and custom metadata
+:page-slug: thumbnail-image
+:page-description: How to customize the thumbnail (Open Graph) image and sharing metadata for your Koji app.
 :page-banner: {imagesDir}/Koji-screenshot=1.png
 
 When a user shares a remix of your template on social media, the Koji platform renders a rich preview (Open Graph) image based on a screenshot of the Koji.
@@ -244,5 +244,5 @@ To enable custom metadata when sharing a Koji on social media, configure the `Cu
 }
 ----
 <1> `enabled` – Whether to use custom metadata when a creator shares a remix of this template.
-<2> `metadata.title` – Path to the <<vcc-overview#,Visual Customization Control (VCC)>> that defines the title, if custom metadata is enabled.
+<2> `metadata.title` – Path to the Visual Customization Control (VCC) that defines the title, if custom metadata is enabled.
 <3> `metadata.description` – Path to the VCC that defines the description, if custom metadata is enabled.

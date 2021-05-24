@@ -49,7 +49,7 @@ include::../_includes/koji.json[]
 . If your Koji has remix data and the `InstantRemixing` entitlement is enabled, configure the settings for remixes of older versions.
 +
 To take advantage of the upgrades in the @withkoji/core package, it is recommended that all remixes use the current code, as follows.
-For more information about these settings, see <<template-versions#_managing_instant_remix_versions, Managing remix versions>>.
+For more information about these settings, see <<app-versions#_managing_instant_remix_versions, Managing remix versions>>.
 
 .. In the Koji editor, ensure the remix behavior is set to *Override and use the current version of this project*.
 .. Use the *VCC value upgrade function* to transform the remix values from the old JSON format to the new format.

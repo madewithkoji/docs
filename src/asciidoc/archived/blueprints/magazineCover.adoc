@@ -1,7 +1,7 @@
 = Magazine cover template
 :page-slug: magazine-cover-blueprint
 :page-description: Blueprint for a template to put your own picture and headline on a magazine cover.
-:includespath: ../_includes
+:includespath: ../../docs/_includes
 
 Follow this blueprint to build a template for your own picture and headline on a magazine cover.
 You will add customizable images and text, and then publish the template on Koji.
@@ -27,10 +27,10 @@ Remix an existing web application on Koji that implements basic elements of your
 [.tabs,scope="lang"]
 --
 .React
-include::../_includes/starterScaffolds.adoc[tag=reactVccs]
+include::{includespath}/starterScaffolds.adoc[tag=reactVccs]
 
 .Vanilla JS
-include::../_includes/starterScaffolds.adoc[tag=vanilla]
+include::{includespath}/starterScaffolds.adoc[tag=vanilla]
 --
 
 === Install the packages
@@ -42,7 +42,7 @@ Install @withkoji/vcc to expose Visual Customization Controls (VCCs), dynamicall
 npm install --save @withkoji/vcc
 ----
 
-include::../_includes/note-start-watcher.adoc[tags=*]
+include::{includespath}/note-start-watcher.adoc[tags=*]
 
 === Create the customization files
 
@@ -50,7 +50,7 @@ Create `.koji/customization/settings.json` to define customizable values for the
 
 [source,json]
 ----
-include::../_includes/magazineCoverSettings.json[]
+include::{includespath}/magazineCoverSettings.json[]
 ----
 
 Remove the unused customization files, if applicable.
@@ -69,21 +69,21 @@ Import the packages.
 
 [source,javascript]
 ----
-include::../_includes/magazineCoverReact.js[tags=importPackages]
+include::{includespath}/magazineCoverReact.js[tags=importPackages]
 ----
 
 Use `InstantRemixing` to get and set custom values.
 
 [source,javascript]
 ----
-include::../_includes/magazineCoverReact.js[tags=instantRemixing]
+include::{includespath}/magazineCoverReact.js[tags=instantRemixing]
 ----
 
 Use `FeedSdk` to display the template in the Koji feed.
 
 [source,javascript]
 ----
-include::../_includes/magazineCoverReact.js[tags=feedSdk]
+include::{includespath}/magazineCoverReact.js[tags=feedSdk]
 ----
 
 Monitor the remix state.
@@ -93,12 +93,12 @@ Monitor the remix state.
 .React
 [source,javascript]
 ----
-include::../_includes/magazineCoverReact.js[tags=monitorRemix]
+include::{includespath}/magazineCoverReact.js[tags=monitorRemix]
 ----
 .Vanilla JS
 [source,javascript]
 ----
-include::../_includes/magazineCoverVanilla.js[tags=monitorRemix]
+include::{includespath}/magazineCoverVanilla.js[tags=monitorRemix]
 ----
 --
 
@@ -109,12 +109,12 @@ Dynamically get and set custom values.
 .React
 [source,javascript]
 ----
-include::../_includes/magazineCoverReact.js[tags=updateValues]
+include::{includespath}/magazineCoverReact.js[tags=updateValues]
 ----
 .Vanilla JS
 [source,javascript]
 ----
-include::../_includes/magazineCoverVanilla.js[tags=updateValues]
+include::{includespath}/magazineCoverVanilla.js[tags=updateValues]
 ----
 --
 
@@ -122,14 +122,14 @@ Optimize the user's cover image.
 
 [source,javascript]
 ----
-include::../_includes/magazineCoverReact.js[tags=optimizeImage]
+include::{includespath}/magazineCoverReact.js[tags=optimizeImage]
 ----
 
 Add click handlers for editable elements.
 
 [source,javascript]
 ----
-include::../_includes/magazineCoverReact.js[tags=clickHandlers]
+include::{includespath}/magazineCoverReact.js[tags=clickHandlers]
 ----
 
 Use dynamic sizing to support different browsers and devices.
@@ -139,12 +139,12 @@ Use dynamic sizing to support different browsers and devices.
 .React
 [source,javascript]
 ----
-include::../_includes/magazineCoverReact.js[tags=dynamicSizing]
+include::{includespath}/magazineCoverReact.js[tags=dynamicSizing]
 ----
 .Vanilla JS
 [source,javascript]
 ----
-include::../_includes/magazineCoverVanilla.js[tags=dynamicSizing]
+include::{includespath}/magazineCoverVanilla.js[tags=dynamicSizing]
 ----
 --
 
@@ -155,12 +155,12 @@ Indicate the template is ready for instant remixes and to display in the feed.
 .React
 [source,javascript]
 ----
-include::../_includes/magazineCoverReact.js[tags=templateReady]
+include::{includespath}/magazineCoverReact.js[tags=templateReady]
 ----
 .Vanilla JS
 [source,javascript]
 ----
-include::../_includes/magazineCoverVanilla.js[tags=templateReady]
+include::{includespath}/magazineCoverVanilla.js[tags=templateReady]
 ----
 --
 
@@ -172,12 +172,12 @@ Apply conditional styling to editable elements during remix.
 .React
 [source,javascript]
 ----
-include::../_includes/magazineCoverReact.js[tags=renderTemplate]
+include::{includespath}/magazineCoverReact.js[tags=renderTemplate]
 ----
 .Vanilla JS
 [source,javascript]
 ----
-include::../_includes/magazineCoverVanilla.js[tags=renderTemplate]
+include::{includespath}/magazineCoverVanilla.js[tags=renderTemplate]
 ----
 --
 
@@ -191,12 +191,12 @@ Remove unused styles.
 .React
 [source,javascript]
 ----
-include::../_includes/magazineCoverReact.js[tags=styles]
+include::{includespath}/magazineCoverReact.js[tags=styles]
 ----
 .Vanilla JS
 [source,css]
 ----
-include::../_includes/magazineCoverVanilla.css[tags=styles]
+include::{includespath}/magazineCoverVanilla.css[tags=styles]
 ----
 --
 
@@ -222,7 +222,7 @@ Create `.koji/project/entitlements.json` and enable instant remix support and li
 
 [source,json]
 ----
-include::../_includes/entitlements.json[]
+include::{includespath}/entitlements.json[]
 ----
 
 === Test
@@ -269,7 +269,7 @@ The following code is a completed sample of the template logic described in this
 .React
 [source,javascript]
 ----
-include::../_includes/magazineCoverReact.js[tags=**]
+include::{includespath}/magazineCoverReact.js[tags=**]
 ----
 .Vanilla JS
 ====
@@ -278,12 +278,12 @@ include::../_includes/magazineCoverReact.js[tags=**]
 .index.js
 [source,javascript]
 ----
-include::../_includes/magazineCoverVanilla.js[tags=**]
+include::{includespath}/magazineCoverVanilla.js[tags=**]
 ----
 .styles.css
 [source,css]
 ----
-include::../_includes/magazineCoverVanilla.css[tags=**]
+include::{includespath}/magazineCoverVanilla.css[tags=**]
 ----
 =====
 ====

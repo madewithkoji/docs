@@ -1,4 +1,4 @@
-= Tutorial: Creating remixable games on Koji
+= Example: Creating remixable games on Koji
 :page-slug: game-intro
 :page-description: Tutorial for creating a remixable game on Koji starting from a game template.
 :page-banner: {imagesDir}/game-tutorial-overview.png
@@ -53,4 +53,4 @@ include::finishing-up.adoc[tag=description]
 
 == Getting help
 
-include::../../docs/_includes/tutorialHelpMarko.adoc[tag=all]
+include::../../_includes/tutorialHelpMarko.adoc[tag=all]
