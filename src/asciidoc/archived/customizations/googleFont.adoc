@@ -45,4 +45,4 @@ To integrate simple APIs without touching the code, this VCC provides configurat
 
 NOTE: To use this VCC without modifying the code, the API must support passing the key via URL and must return a valid JSON object.
 
-For a complete list of configuration options, see the https://withkoji.com/code/JamesHole/google-font-vcc[package documentation].
+For a complete list of configuration options, see the package documentation.
