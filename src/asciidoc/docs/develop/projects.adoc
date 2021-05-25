@@ -1,4 +1,4 @@
-= Anatomy of a Koji project
+= Project structure and configuration
 :page-slug: projects
 :page-description: Description of the unique files and elements in a Koji project that power the magic of customization.
 
