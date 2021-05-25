@@ -12,10 +12,10 @@ install a Node.js web server environment on your development machine and launch 
 
 By the end of the section, you should feel comfortable:
 
-. Installing the Node modules that are needed to run a server on your local machine.
-. Setting the environment variables used by the server.
-. Specifying the URL the frontend will use when connecting to the backend server.
-. Launching the app locally and checking that the game and the leaderboard are working correctly.
+* Installing the Node modules that are needed to run a server on your local machine.
+* Setting the environment variables used by the server.
+* Specifying the URL the frontend will use when connecting to the backend server.
+* Launching the app locally and checking that the game and the leaderboard are working correctly.
 
 == Prerequisites
 
@@ -272,12 +272,12 @@ The leaderboard should now show your name and your score.
 
 In this part of the tutorial, you learned how to:
 
-. Install the Node modules that are needed to run a server on your local machine.
-. Get the environment variables used by the server from the Koji editor.
-. Create an `.env` file to apply these environment variables to the backend server, so that it can connect to the database.
-. Tell the frontend which URL to use when connecting to the backend server.
-. Launch the app locally.
-. Check that the game and the leaderboard are working correctly.
+* Install the Node modules that are needed to run a server on your local machine.
+* Get the environment variables used by the server from the Koji editor.
+* Create an `.env` file to apply these environment variables to the backend server, so that it can connect to the database.
+* Tell the frontend which URL to use when connecting to the backend server.
+* Launch the app locally.
+* Check that the game and the leaderboard are working correctly.
 
 You are now ready to start editing the app on your development machine and turning this project into your own app.
 With what you have learned so far, you will be able to test all aspects of your app locally in your browser.

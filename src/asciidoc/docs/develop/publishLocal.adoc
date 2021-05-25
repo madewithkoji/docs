@@ -17,8 +17,8 @@ You can make a minor change, push it back to the Koji servers, and check that th
 By the end of the section, you should feel comfortable:
 
 * Making and testing changes locally.
-* Pushing your changes to the origin repository, and then pulling them into the Koji editor.
 * Publishing your changes to the Koji server.
+* Pushing your changes to the origin repository, and then pulling them into the Koji editor.
 
 == Prerequisites
 
@@ -33,7 +33,7 @@ Change  `<Title>{"Top Players"}</Title>` to `<Title>{"Leaderboard"}</Title>` and
 
 . In your browser, go to `\http://0.0.0.0:8080`, and make sure the leaderboard shows the new title.
 
-== Moving changes from local to live
+== Publishing your changes to the Koji server
 
 To make a local change visible on Koji server, you must complete the following process.
 
@@ -100,7 +100,21 @@ To https://projects.koji-cdn.com/a70f8329-e89e-48b0-8d85-7658c1542b9f.git
 <1> Use Git to upload your new version to the Koji repository
 <2> Paste your 32-character access key.
 
-=== (Optional) Pulling changes into the Koji editor
+[NOTE]
+Pushing your changes to origin automatically publishes a new version of your app.
+
+=== Testing your published app
+
+Now that you've published your app, you will want to make sure that it works the same on the Koji server as it does locally.
+
+1. Go to the https://withkoji.com/[Koji home page] and sign in to your account.
+2. Click your profile button and go to *Apps > Developer Portal*.
+3. Select your app from *All Projects*.
+4. Click *View Published Koji*.
+The published version of your app opens.
+5. Proceed to test all the features of your app.
+
+=== Pulling changes into the Koji editor
 
 The Koji editor uses its own repository, which is different from the `origin` repository to which you pushed your changes.
 So, if you want to go back to using the Koji editor, you will have to `pull` the changes from the `origin` repository.
@@ -138,7 +152,7 @@ The code in the Koji editor should now be identical to the code in your local re
 +
 You should now see the custom title, which corresponds to the local change you made in `.koji/customization/strings.json`.
 
-=== (Optional) Updating the Node modules for the Koji editor
+=== Updating the Node modules for the Koji editor
 
 If you installed new or updated Node modules locally, you must also install these versions on the Koji server.
 For example, if you ran `npm audit fix` to update all the Node modules to their most recent stable release, the dependencies for the `backend` and the `frontend` servers might have changed.
@@ -207,15 +221,17 @@ root@ip-172-31-15-216:/usr/src/app/backend# npm run start-dev
 [koji] backend started
 ----
 
-=== Publishing a new version
+=== Publishing your app as unlisted
 
-To complete the first iteration of the development cycle, you must publish your app so that you can test how it works when served live on the Koji servers.
 Since your app is under development, you might not be ready to broadcast it to the whole web.
 For now, you might prefer to test the app live yourself or get feedback from a small, hand-picked group.
-Fortunately, Koji gives you a way to publish your project as *unlisted*, which means that only people with the direct URL are able to visit your published app.
 
-. In the upper left of the Koji editor, click *Publish Now* to open the publish settings.
-. To publish your project as unlisted, select the *Unlisted* checkbox under *Discovery Options* near the bottom of the page.
+Fortunately, Koji gives you a way to publish your project as *unlisted*, which means that only people with the direct URL are able to visit your published app.
+Currently, this can only be done from the Koji editor, so you'll need to publish your app from there.
+
+1. Follow the directions in <<_pulling_changes_into_the_koji_editor,Pulling changes into the Koji editor>>.
+2. In the upper left of the Koji editor, click *Publish Now* to open the publish settings.
+3. To publish your project as unlisted, select the *Unlisted* checkbox under *Discovery Options* near the bottom of the page.
 +
 NOTE: The next time you publish your app, the *Unlisted* option will be selected by default.
 Remember to clear this setting when your project is ready for the world to see.
@@ -226,23 +242,6 @@ Remember to clear this setting when your project is ready for the world to see.
 A message appears to indicate that the publishing process has started. When publishing is completed, a link appears in the message.
 +
 TIP: When you publish your project, the Koji editor automatically creates a new Git commit with the commit message `Manual deploy`.
-
-== Using the Koji debugger to test your local project
-
-You can use the Koji debugger to test the changes you make locally.
-
-1. Go to *Your Apps > Developer Portal* and select any project from the *All Projects* section.
-*Project Details* opens.
-2. Click *Open in Debugger*.
-3. Click *Open Debugger Settings*.
-4. Select *Localhost*.
-5. Enter your frontend localhost URL. This will usually be `http:\\localhost:8080`.
-6. Click *Update*.
-
-Your local app is loaded into the debugger.
-
-[TIP]
-You can open the *Remix* pane in a separate tab by clicking the expand pane icon: image:WL_01_open-in-tab.jpg[Open in separate tab]. You can do the same for the *View* pane.
 
 == Wrapping up
 
@@ -258,7 +257,6 @@ In particular, you have seen how to:
 * Push your changes to the origin repository, and then pull them into the Koji editor.
 * Publish your changes to the Koji server.
 * Test that your app works the same live on a Koji server as it does locally.
-* Take advantage of the Visual mode for the JSON customization files, so that non-technical users can easily create their own versions of your app.
 
 You're now ready to start developing your Koji app in earnest, in the development environment where you feel most comfortable.
 Let your creativity shine!
