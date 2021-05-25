@@ -39,9 +39,7 @@ To make a local change visible on Koji server, you must complete the following p
 
 . Use Git to `commit` your changes locally.
 . Use Git to `push` the committed changes to the remote Koji repository.
-. Use the instance of Git in the Koji editor to `pull` the committed changes from the Koji repository.
-. Update the Node modules for the frontend and backend servers.
-. Use the Koji editor to publish the updated version of your app.
+Pushing the changes automatically publishes the app.
 
 === Committing changes locally
 
@@ -102,11 +100,10 @@ To https://projects.koji-cdn.com/a70f8329-e89e-48b0-8d85-7658c1542b9f.git
 <1> Use Git to upload your new version to the Koji repository
 <2> Paste your 32-character access key.
 
-=== Pulling changes into the Koji editor
+=== (Optional) Pulling changes into the Koji editor
 
-If you test your app in the Koji editor now, you will not yet see the changes you pushed.
 The Koji editor uses its own repository, which is different from the `origin` repository to which you pushed your changes.
-To update the repository used by the Koji editor, you must `pull` the changes from the `origin` repository.
+So, if you want to go back to using the Koji editor, you will have to `pull` the changes from the `origin` repository.
 
 . Open your project in the Koji editor.
 . Open a new terminal tab and run the following command.
@@ -141,7 +138,7 @@ The code in the Koji editor should now be identical to the code in your local re
 +
 You should now see the custom title, which corresponds to the local change you made in `.koji/customization/strings.json`.
 
-=== Updating the Node modules
+=== (Optional) Updating the Node modules for the Koji editor
 
 If you installed new or updated Node modules locally, you must also install these versions on the Koji server.
 For example, if you ran `npm audit fix` to update all the Node modules to their most recent stable release, the dependencies for the `backend` and the `frontend` servers might have changed.
