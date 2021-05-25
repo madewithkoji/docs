@@ -6,14 +6,6 @@
 A repository on Koji contains everything that defines your development project, including the source code, assets, and configuration data.
 This topic describes a typical repository structure and defines the configuration data that is required to develop and deploy apps on Koji.
 
-////
-As you develop the logic for your app, you must consider what additional features to offer, and then design experiences for different types of users and the different ways they might use it.
-This topic provides an overview of the available platform features for a Koji app and a description of the required files and configuration data that power them.
-
-Koji provides you with an environment for developing and publishing an application in your browser.
-The project environment includes a terminal connected to a running container with all the familiar tools, a code editor, and tools to help you deploy your application.
-////
-
 == Source control on Git
 
 The Koji platform uses Git repositories for source control.
