@@ -9,9 +9,8 @@ This topic describes a typical repository structure and defines the configuratio
 == Source control on Git
 
 The Koji platform uses Git repositories for source control.
-A directory on the Koji CDN stores the underlying files for each development project.
 When you start a new project by forking a scaffold or another app, the Koji platform creates a clone of the underlying repository.
-Your new project directory is associated with the following Git repositories.
+Your new repository is hosted on Koji's CDN and is associated with the following Git repositories.
 
 * `origin` – Git repository for your new project.
 Your app is built and deployed from this repository.
