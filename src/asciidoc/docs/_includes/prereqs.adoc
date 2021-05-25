@@ -38,7 +38,7 @@ React and ES6 basics are a plus.
 
 // tag::remixproc[]
 * Familiarity with the Koji editor and remix process.
-For an overview, go through <<quick-start#, the Koji quick-start tutorial>>.
+For an overview, go through <<start-tutorial#, the Koji starter tutorial>>.
 // end::remixproc[]
 
 // tag::customvcc[]

@@ -14,261 +14,8 @@
               "slug": "introduction"
             },
             {
-              "name": "What is remixing?",
-              "slug": "instant-remixing"
-            },
-            {
-              "name": "What is a template?",
-              "slug": "templates"
-            },
-            {
-              "name": "Migrating to the Koji core package",
-              "slug": "migrate-koji-core"
-            },
-            {
-              "name": "News for Koji developers",
-              "slug": "developer-updates",
-              "subItems": [
-                {
-                  "name": "Recent updates",
-                  "slug": "recent-updates"
-                },
-                {
-                  "name": "Earlier in 2021",
-                  "slug": "2021-updates"
-                },
-                {
-                  "name": "2020",
-                  "slug": "2020-updates"
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "name": "Developing templates",
-          "root": "/develop",
-          "items": [
-            {
-              "name": "Anatomy of a project",
-              "slug": "projects"
-            },
-            {
-              "name": "Koji code editor",
-              "slug": "editor"
-            },
-            {
-              "name": "Porting existing code to Koji",
-              "slug": "port-existing-code"
-            },
-            {
-              "name": "Adding a service",
-              "slug": "add-service"
-            },
-            {
-              "name": "Using Git to manage projects",
-              "slug": "use-git"
-            },
-            {
-              "name": "Working locally",
-              "slug": "work-locally"
-            },
-            {
-              "name": "Koji database",
-              "slug": "koji-database"
-            },
-            {
-              "name": "Testing templates",
-              "slug": "testing-templates"
-            }
-          ]
-        },
-        {
-          "name": "Enabling customizations",
-          "root": "/customizations",
-          "items": [
-            {
-              "name": "Visual Customization Controls",
-              "slug": "vcc-overview",
-              "subItems": [
-                {
-                  "name": "Boolean",
-                  "slug": "boolean"
-                },
-                {
-                  "name": "Color",
-                  "slug": "color"
-                },
-                {
-                  "name": "Coordinate",
-                  "slug": "coordinate"
-                },
-                {
-                  "name": "File",
-                  "slug": "file"
-                },
-                {
-                  "name": "Image",
-                  "slug": "image"
-                },
-                {
-                  "name": "Link",
-                  "slug": "link-vcc"
-                },
-                {
-                  "name": "Media",
-                  "slug": "media"
-                },
-                {
-                  "name": "Obj",
-                  "slug": "3d-object"
-                },
-                {
-                  "name": "Range",
-                  "slug": "range"
-                },
-                {
-                  "name": "Secret",
-                  "slug": "secret"
-                },
-                {
-                  "name": "Select",
-                  "slug": "select"
-                },
-                {
-                  "name": "Size",
-                  "slug": "size"
-                },
-                {
-                  "name": "Sound",
-                  "slug": "sound"
-                },
-                {
-                  "name": "Text, textarea",
-                  "slug": "text"
-                },
-                {
-                  "name": "Video",
-                  "slug": "video"
-                },
-                {
-                  "name": "Google Font",
-                  "slug": "google-font"
-                },
-                {
-                  "name": "Array",
-                  "slug": "array"
-                },
-                {
-                  "name": "Object",
-                  "slug": "object"
-                }
-              ]
-            },
-            {
-              "name": "Building custom VCCs",
-              "slug": "build-custom-vcc"
-            }
-          ]
-        },
-        {
-          "name": "Publishing and maintaining templates",
-          "root": "/publish",
-          "items": [
-            {
-              "name": "Sharing rich previews and custom metadata",
-              "slug": "rich-preview-image"
-            },
-            {
-              "name": "Publishing local projects",
-              "slug": "publish-locally-developed"
-            },
-            {
-              "name": "Managing template versions",
-              "slug": "template-versions"
-            },
-            {
-              "name": "Using Koji plugins",
-              "slug": "plugins"
-            },
-            {
-              "name": "Using custom domains",
-              "slug": "custom-domains"
-            }
-          ]
-        },
-        {
-          "name": "Guidelines and best practices",
-          "root": "/guidelines",
-          "items": [
-            {
-              "name": "Template quality checklist",
-              "slug": "template-checklist"
-            },
-            {
-              "name": "Design guidelines",
-              "slug": "design-guidelines"
-            },
-            {
-              "name": "Uploading files from the frontend",
-              "slug": "frontend-uploading"
-            },
-            {
-              "name": "Persisting data across sessions",
-              "slug": "persist-session-data"
-            }
-          ]
-        },
-        {
-          "name": "Blueprints",
-          "root": "/blueprints",
-          "items": [
-            {
-              "name": "Overview",
-              "slug": "blueprints-overview"
-            },
-            {
-              "name": "Magazine cover template",
-              "slug": "magazine-cover-blueprint"
-            },
-            {
-              "name": "Vote counter template",
-              "slug": "vote-counter-blueprint"
-            },
-            {
-              "name": "Cat selector VCC",
-              "slug": "cat-selector-blueprint"
-            }
-          ]
-        },
-        {
-          "name": "About Koji for developers",
-          "root": "/about",
-          "items": [
-            {
-              "name": "Glossary",
-              "slug": "glossary"
-            },
-            {
-              "name": "Contributing to the developer site",
-              "slug": "contribute-koji-developers"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "name": "Tutorials",
-      "root": "/tutorials",
-      "defaultPath": "/tutorials/getting-started/quick-start",
-      "sections": [
-        {
-          "name": "Learning Koji",
-          "root": "/getting-started",
-          "items": [
-            {
-              "name": "Quick start",
-              "slug": "quick-start",
+              "name": "Building your first Koji app",
+              "slug": "start-tutorial",
               "subItems": [
                 {
                   "name": "1. Your first project",
@@ -295,19 +42,103 @@
                   "slug": "remixable-project"
                 },
                 {
-                  "name": "7. Your first template",
+                  "name": "7. Your first app",
                   "slug": "your-first-template"
+                }
+              ]
+            },
+            {
+              "name": "News for Koji developers",
+              "slug": "developer-updates",
+              "subItems": [
+                {
+                  "name": "Recent updates",
+                  "slug": "recent-updates"
+                },
+                {
+                  "name": "Earlier in 2021",
+                  "slug": "2021-updates"
+                },
+                {
+                  "name": "2020",
+                  "slug": "2020-updates"
                 }
               ]
             }
           ]
         },
         {
-          "name": "Creating games on Koji",
-          "root": "/game-tutorials",
+          "name": "Developing apps on Koji",
+          "root": "/develop",
           "items": [
             {
-              "name": "Creating remixable games",
+              "name": "Project structure and configuration",
+              "slug": "projects"
+            },
+            {
+              "name": "Working in the Koji code editor",
+              "slug": "editor"
+            },
+            {
+              "name": "Local development topics",
+              "slug": "local-development",
+              "subItems": [
+                {
+                  "name": "1. Using Git to manage projects",
+                  "slug": "use-git"
+                },
+                {
+                  "name": "2. Working locally",
+                  "slug": "work-locally"
+                },
+                {
+                  "name": "3. Publishing local projects",
+                  "slug": "publish-locally-developed"
+                }
+              ]
+            },
+            {
+              "name": "Porting existing code to Koji",
+              "slug": "port-existing-code"
+            },
+            {
+              "name": "Adding a service",
+              "slug": "add-service"
+            },
+            {
+              "name": "Testing and debugging apps",
+              "slug": "testing-templates"
+            },
+            {
+              "name": "Managing app versions",
+              "slug": "app-versions"
+            }
+          ]
+        },
+        {
+          "name": "Implementing platform features",
+          "root": "/publish",
+          "items": [
+            {
+              "name": "Thumbnail image and custom metadata",
+              "slug": "thumbnail-image"
+            },
+            {
+              "name": "Koji databases",
+              "slug": "koji-database"
+            }
+          ]
+        },
+        {
+          "name": "More guides",
+          "root": "/dev-guides",
+          "items": [
+            {
+              "name": "Migrating to the Koji core package",
+              "slug": "migrate-koji-core"
+            },
+            {
+              "name": "Example: Creating a game",
               "slug": "game-intro",
               "subItems": [
                 {
@@ -341,7 +172,7 @@
               ]
             },
             {
-              "name": "Adding in-app purchases",
+              "name": "Example: Adding in-app purchases to a game",
               "slug": "game-iap-intro",
               "subItems": [
                 {
@@ -365,6 +196,28 @@
                   "slug": "game-iap-remix"
                 }
               ]
+            },
+            {
+              "name": "Using Koji plugins",
+              "slug": "plugins"
+            },
+            {
+              "name": "Using custom domains",
+              "slug": "custom-domains"
+            },
+            {
+              "name": "Building custom VCCs",
+              "slug": "build-custom-vcc"
+            }
+          ]
+        },
+        {
+          "name": "About Koji for developers",
+          "root": "/about",
+          "items": [
+            {
+              "name": "Contributing to the developer site",
+              "slug": "contribute-koji-developers"
             }
           ]
         }
@@ -373,18 +226,8 @@
     {
       "name": "Reference",
       "root": "/reference",
-      "defaultPath": "/reference/packages/packages-overview",
+      "defaultPath": "/reference/core/withkoji-koji-core",
       "sections": [
-        {
-          "name": "Koji developer packages",
-          "root": "/packages",
-          "items": [
-            {
-              "name": "Overview",
-              "slug": "packages-overview"
-            }
-          ]
-        },
         {
           "name": "@withkoji/core",
           "root": "/core",
@@ -486,36 +329,42 @@
           ]
         },
         {
-          "name": "Deprecated packages",
+          "name": "Deprecated",
           "root": "/deprecated-packages",
           "items": [
             {
-              "name": "@withkoji/analytics",
-              "slug": "withkoji-koji-analytics-sdk"
-            },
-            {
-              "name": "@withkoji/auth",
-              "slug": "withkoji-koji-auth-sdk"
-            },
-            {
-              "name": "@withkoji/database",
-              "slug": "withkoji-database-package"
-            },
-            {
-              "name": "@withkoji/dispatch",
-              "slug": "withkoji-dispatch-package"
-            },
-            {
-              "name": "@withkoji/iap",
-              "slug": "withkoji-koji-iap-package"
-            },
-            {
-              "name": "@withkoji/user-defaults",
-              "slug": "withkoji-user-defaults-package"
-            },
-            {
-              "name": "@withkoji/vcc",
-              "slug": "withkoji-vcc-package"
+              "name": "Deprecated packages",
+              "slug": "deprecated-packages-overview",
+              "subItems": [
+                {
+                  "name": "@withkoji/analytics",
+                  "slug": "withkoji-koji-analytics-sdk"
+                },
+                {
+                  "name": "@withkoji/auth",
+                  "slug": "withkoji-koji-auth-sdk"
+                },
+                {
+                  "name": "@withkoji/database",
+                  "slug": "withkoji-database-package"
+                },
+                {
+                  "name": "@withkoji/dispatch",
+                  "slug": "withkoji-dispatch-package"
+                },
+                {
+                  "name": "@withkoji/iap",
+                  "slug": "withkoji-koji-iap-package"
+                },
+                {
+                  "name": "@withkoji/user-defaults",
+                  "slug": "withkoji-user-defaults-package"
+                },
+                {
+                  "name": "@withkoji/vcc",
+                  "slug": "withkoji-vcc-package"
+                }
+              ]
             }
           ]
         }

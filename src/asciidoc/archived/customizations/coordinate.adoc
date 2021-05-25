@@ -1,0 +1,33 @@
+= Coordinate (deprecated)
+:page-slug: coordinate
+:page-description: Standard VCC for specifying a coordinate pair (x,y).
+:figure-caption!:
+
+* Users can
+//tag::description[]
+specify a coordinate pair (x,y).
+//end::description[]
+For example, position an element on a canvas.
+
+image::coordinateVCC.png[title="Coordinate VCC"]
+
+== Sample coordinate VCC
+
+[source,json]
+----
+{
+  "myCoordinate": {
+    "x": 100,
+    "y": 200
+  }
+}
+...
+{
+  "key": "myCoordinate",
+  "name": "My Coordinate",
+  "type": "coordinate",
+  "typeOptions": {
+    "step": 1
+  }
+}
+----

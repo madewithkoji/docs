@@ -1,0 +1,16 @@
+= Blueprints
+:page-slug: blueprints-overview
+:page-description: List of simple, block-by-block code samples for building something cool on Koji.
+
+Blueprints are a quick way to build something cool on Koji. Each blueprint includes a simple, block-by-block guide and “as-built” code samples for a fun Koji application.
+
+Blueprints are intended for developers who prefer to jump straight to code. For a step-by-step introduction to Koji, go through <<start-tutorial#, the Koji starter tutorial>>.
+
+== Build your template
+
+* <<magazine-cover-blueprint#, Magazine cover>> - Put your own picture and headline on a magazine by implementing customizable images and text.
+* <<vote-counter-blueprint#, Vote counter>> – Create a multi-user, interactive vote counter by implementing a Koji database and real-time dispatch.
+
+== Build your custom VCC
+
+* <<cat-selector-blueprint#, Cat selector VCC>> – Create a custom Koji VCC that lets remixers choose from a list of cat breeds retrieved from a third-party API.

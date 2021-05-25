@@ -1,0 +1,55 @@
+= Object (composition) (deprecated)
+:page-slug: object
+:page-description: Composition control for defining an object that is composed of multiple VCCs.
+
+The object control lets you
+//tag::description[]
+define an object that is composed of multiple VCCs.
+//end::description[]
+For example, imagine you are making a game that let users define multiple enemies.
+Each enemy might need a few pieces of metadata, like a name, image, strength level, and hitpoints.
+You can use the object type to compose a custom VCC that defines an enemy, and then optionally extend it as an array to create a list of enemies.
+
+== Sample object VCC
+
+[source,json]
+----
+{
+  "key": "enemies",
+  "name": "Enemies",
+  "description": "List of enemies in the game",
+  "type": "object<Enemy>[]",
+  "typeOptions": {
+    "Enemy": {
+      "name": {
+        "name": "Enemy name",
+        "description": "The name of the enemy",
+        "type": "text"
+      },
+      "sprite": {
+        "name": "Enemy sprite",
+        "description": "Image to use for the enemy",
+        "type": "image"
+      },
+      "strLevel": {
+        "name": "Strength level",
+        "type": "range",
+        "typeOptions": {
+          "min": 0,
+          "max": 100,
+          "step": 1
+        }
+      },
+      "hitpoints": {
+        "name": "Hitpoints",
+        "type": "range",
+        "typeOptions": {
+          "min": 0,
+          "max": 20,
+          "step": 1
+        }
+      }
+    }
+  }
+}
+----

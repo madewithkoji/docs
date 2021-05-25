@@ -61,17 +61,21 @@ The middleware will transform `res.locals`, and then modules in KojiBackend will
 [source,javascript]
 ----
 const app = express();
-app.use(Koji.middleware(require('koji.json'));
+app.use(Koji.middleware(require('koji.json')));
 
 app.get('/data', (req, res, next) => {
   // Backend constructor
   const database = new KojiBackend.Database({ res });
   ...
-};
+});
 ----
 
 == Interfaces
 
 === KojiConfig
 
-include::../../docs/_includes/interface-KojiConfig.adoc[tag=all]
+include::../../docs/_includes/interface-KojiConfig.adoc[tag=KojiConfig]
+
+=== KojiMetadata
+
+include::../../docs/_includes/interface-KojiConfig.adoc[tag=KojiMetadata]
