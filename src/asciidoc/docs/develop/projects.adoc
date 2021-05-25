@@ -43,7 +43,7 @@ upstream        https://projects.koji-cdn.com/e4d6b4bf-781a-4a49-9f0f-1d9cf3bbb7
 
 A typical Koji project contains the `koji.json` configuration file and a README file at the root of the project directory, along with a directory for each service in the app.
 
-For example, this app has directories for its backend and frontend services.
+In the following example, the app has directories for its backend and frontend services.
 
 [source,console]
 ----
@@ -76,7 +76,7 @@ For each service in your app, specify the following properties:
 * `startCommand` – Script that initiates a development build.
 Define the script in the `package.json` file of the service directory.
 
-For example, this development configuration defines frontend and backend services.
+In the following example, the development configuration defines frontend and backend services.
 
 [source,JSON]
 ----
@@ -93,7 +93,7 @@ For each service in your app, specify the following properties:
 * `type` – One of the following: `static` if the service deploys a static bundle (HTML, CSS, JS) or `dynamic` if the service deploys a server.
 * `commands` – Steps to build your project.
 
-For example, this deployment configuration defines a static frontend and a dynamic backend service.
+In the following example, the deployment configuration defines a static frontend and a dynamic backend service.
 
 [source,JSON]
 ----
@@ -102,15 +102,22 @@ include::{includespath}/koji.json[tag=deploy,indent=0]
 
 === entitlements
 
-The `entitlements` key enables and configures the Koji platform features that are implemented in your app.
+The `entitlements` key configures the Koji platform features that are implemented in your app.
+
+In the following example, the app allows creators to configure it (`InstantRemixing`), hides the default platform navigation for this configuration (`InstantRemixingNativeNavigation`), defines custom sharing data (`CustomMetadata`), and enables a dedicated experience for the creator (`AdminContext`).
+
+[source,JSON]
+----
+include::{includespath}/koji.json[tag=entitlements,indent=0]
+----
 
 === remixData
 
-If you provide configuration options for creators who use your app, the `remixData` key defines the default values for those settings.
+If your app provides configuration options for creators, the `remixData` key defines the default values for those settings.
 To manage remix data in your app, you use the <<core-frontend-remix#, Remix class>> in the @withkoji/core package.
 To provide placeholder values when creators first open the settings, use the `@@initialTransform` key.
 
-For example, this app has a default background color and title that creators can change.
+In the following example, the app has a default background color and title that creators can change.
 
 [source,JSON]
 ----
@@ -119,11 +126,11 @@ include::{includespath}/koji.json[tag=remixData,indent=0]
 
 === @@initialTransform
 
-If you provide configuration options for creators who use your app, the `@@initialTransform` key defines the placeholder values that override the default values when a creator first opens these settings.
+If your app provides configuration options for creators, the `@@initialTransform` key defines the placeholder values that override the default values when a creator first opens these settings.
 To open the settings in your app, you use the `.createRemix` method in the <<core-frontend-ui-navigate#createRemix, UI/Navigate class>>.
 If a placeholder value is not specified, the default values in the `remixData` key are used.
 
-For example, this app resets the title to a placeholder value when creators first configure it.
+In the following example, the app resets the title to a placeholder value when creators first configure it.
 
 [source,JSON]
 ----
