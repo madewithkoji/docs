@@ -36,7 +36,7 @@ You can limit the available choices for application usability.
 
 === Implementation
 
-For examples of how to implement the Google Font VCC and the Web Font Loader library in your application, see the https://withkoji.com/code/JamesHole/google-font-vcc[package documentation].
+For examples of how to implement the Google Font VCC and the Web Font Loader library in your application, see the https://withkoji.com/@JamesHole/google-font-vcc/details/code[package documentation].
 
 == Custom selector VCC from API
 
