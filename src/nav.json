@@ -80,8 +80,22 @@
               "slug": "editor"
             },
             {
-              "name": "Working from your development machine",
-              "slug": "work-locally"
+              "name": "Local development topics",
+              "slug": "local-development",
+              "subItems": [
+                {
+                  "name": "1. Using Git to manage projects",
+                  "slug": "use-git"
+                },
+                {
+                  "name": "2. Working locally",
+                  "slug": "work-locally"
+                },
+                {
+                  "name": "3. Publishing local projects",
+                  "slug": "publish-locally-developed"
+                }
+              ]
             },
             {
               "name": "Porting existing code to Koji",
