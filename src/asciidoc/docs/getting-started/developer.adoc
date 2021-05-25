@@ -2,15 +2,14 @@
 :page-slug: introduction
 :figure-caption!:
 
-Koji is the world's most powerful Link in Bio service.
+Koji is a powerful Link in Bio service.
 It is used by artists, influencers, brands, and content creators everywhere to monetize, engage, and grow their audiences.
 
 == Develop apps that power the creator economy
 
 As a developer on Koji, you can build apps that creators can customize and add to their Link in Bio profiles.
-Koji apps are full-stack, modern JavaScript application that are designed to run in WebViews on all social platforms.
-You can build any type of app – from premium content sales, to games and utilities – and your software can be used and shared by millions of people across the world.
-We can’t wait to see what YOU make!
+Koji apps are full-stack, modern JavaScript applications that are designed to run in webviews on all social platforms.
+You can build any type of app – from premium content sales, to games and utilities – and your software can be used and shared by millions of people worldwide.
 
 == The Koji developer experience
 
@@ -24,8 +23,8 @@ Leverage Koji technology ::
 +
 The @withkoji/core package lets you implement platform features, like push notifications, user management, in-app purchases, and backend databases.
 It also provides straightforward methods for common functions, like capturing user input.
-That means, less boilerplate code and more time coding the unique parts of your app.
-Leave the DevOps to us ::
+That means less boilerplate code and more time coding the unique parts of your app.
+Leave the DevOps to Koji ::
 +
 The Koji platform has built-in infrastructure to handle your app development and deployment.
 You get integrated source control, development and staging environments, preview and debugging tools, a CI pipeline, hosting, and more.
@@ -40,15 +39,15 @@ Or, add in-app purchases and earn 60 percent of the transaction fees on each com
 
 == Get started
 
-For some great resources to help you start developing apps on Koji, see:
+For help starting your app on Koji, check out these resources:
 
 * <<start-tutorial#>> – Step-by-step tutorial for learning fundamental concepts and developing your first project on Koji.
 * <<withkoji-koji-core#>> – Package reference for implementing core platform features in your apps.
-* https://withkoji.com/create/for-developers[Developer scaffolds in the Template Store] – Great starting points for an entirely new web app on Koji.
+* https://withkoji.com/create/for-developers[Developer scaffolds in the Template Store] – Starting points for an entirely new web app on Koji.
 
 == What's new for developers
 
-For a summary of the latest updates to the Koji platform, packages, and developer site, check out the <<developer-updates#>>.
+For the latest updates to the Koji platform, packages, and developer site, check out the <<developer-updates#>>.
 
 == Stay in touch
 
