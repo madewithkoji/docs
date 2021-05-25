@@ -221,28 +221,6 @@ root@ip-172-31-15-216:/usr/src/app/backend# npm run start-dev
 [koji] backend started
 ----
 
-=== Publishing your app as unlisted
-
-Since your app is under development, you might not be ready to broadcast it to the whole web.
-For now, you might prefer to test the app live yourself or get feedback from a small, hand-picked group.
-
-Fortunately, Koji gives you a way to publish your project as *unlisted*, which means that only people with the direct URL are able to visit your published app.
-Currently, this can only be done from the Koji editor, so you'll need to publish your app from there.
-
-1. Follow the directions in <<_pulling_changes_into_the_koji_editor,Pulling changes into the Koji editor>>.
-2. In the upper left of the Koji editor, click *Publish Now* to open the publish settings.
-3. To publish your project as unlisted, select the *Unlisted* checkbox under *Discovery Options* near the bottom of the page.
-+
-NOTE: The next time you publish your app, the *Unlisted* option will be selected by default.
-Remember to clear this setting when your project is ready for the world to see.
-
-. If needed, edit additional information about your app, such as the name and description.
-. Click *Publish New Version*.
-+
-A message appears to indicate that the publishing process has started. When publishing is completed, a link appears in the message.
-+
-TIP: When you publish your project, the Koji editor automatically creates a new Git commit with the commit message `Manual deploy`.
-
 == Wrapping up
 
 This tutorial has taken you on a round trip from the Koji editor to your local development environment and back again.

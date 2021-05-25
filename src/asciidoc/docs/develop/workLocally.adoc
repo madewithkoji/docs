@@ -200,6 +200,19 @@ Your file will look something like this (with your unique values):
 +
 [source,bash]
 ----
+KOJI_PROJECT_ID=c00484db-827a-45bb-8541-f2c09c2f192e
+KOJI_PROJECT_TOKEN=a6676f53-44fe-4109-819a-69df620ad7ed
+----
+[IMPORTANT]
+Falling Objects is written using the Create React App tool.
+Code written with this tool expects environment variables to be prefixed with `REACT_APP_`.
+For this reason, you need to modify the above lines as shown in the next step.
+If you fork an app that was not written using Create React App, you can skip this step.
+
+. Since Falling Objects is a Create React app, you need to modify the two lines that set the environment variables as follows:
++
+[source,bash]
+----
 REACT_APP_PROJECT_ID=c00484db-827a-45bb-8541-f2c09c2f192e
 REACT_APP_PROJECT_TOKEN=a6676f53-44fe-4109-819a-69df620ad7ed
 ----
