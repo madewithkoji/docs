@@ -20,9 +20,9 @@ To add and test a backend service, you'll start by remixing a project that alrea
 
 . Open the following scaffold.
 +
-include::../_includes/starterScaffolds.adoc[tag=reactVccs]
+include::{includespath}/starterScaffolds.adoc[tag=reactVccs]
 . {blank}
-include::../_includes/remixNav.adoc[tag=all]
+include::{includespath}/remixNav.adoc[tag=all]
 . After your editor has loaded, rename the project.
 For example, `Adding a Backend Project`.
 

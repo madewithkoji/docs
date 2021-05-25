@@ -1,0 +1,991 @@
+= Migrating to the Koji core package
+:page-slug: migrate-koji-core
+:page-description: Guide for migrating Koji templates that use deprecated packages to the Koji core package.
+
+The <<withkoji-koji-core#, @withkoji/core package>> includes everything you need to access platform services in your Kojis.
+It requires less boilerplate code and provides more flexibility than the <<packages-overview#_deprecated_packages,deprecated packages>> it replaces.
+
+If your Koji's code uses any of the deprecated packages, follow this guide to migrate it to the @withkoji/core package.
+For example, you might have implemented features with the deprecated packages or forked a template that uses them.
+To determine whether this guide applies to your code base, check the `package.json` file for the deprecated packages, such as `@withkoji/vcc`.
+Also, check whether your project contains a `.koji` directory.
+If you find a deprecated package or a `.koji` directory, your code base likely needs to be updated.
+
+TIP: For a mapping of all deprecated packages to the replacement functionality in @withkoji/core, see <<_package_comparison_reference>>.
+
+== Migrating configuration data
+
+The @withkoji/core package must be initialized with configuration data to create the service map and set up remixing and other platform services in your Koji.
+In Kojis that use the deprecated packages, this configuration data is typically maintained across multiple JSON files in the `.koji` directory of the project.
+The @withkoji/core package requires changes to these data files.
+
+* To simplify implementation of the @withkoji/core package, it is recommended that all configuration data is defined in a single `koji.json` file at the root of the project.
++
+TIP: This pattern reduces code dependencies, such as those used to patch together files, and follows good application development practices, such as https://12factor.net/config[12 Factor App Development].
+
+* The @withkoji/core package no longer relies on Visual Customization Controls (VCCs) defined in specialized JSON files.
+Instead, you define a set of default values in the `koji.json` file, and then control the data capture and storage dynamically in your application code.
+
+To migrate your configuration data for compatibility with @withkoji/core, complete the following steps.
+
+. At the root of the project, create a new file called `koji.json`.
+. Migrate the configuration data from the `.koji` directory to the following keys in the `koji.json` file.
+* `develop` – Development instructions from `.koji/project/develop.json`.
+* `deploy` – Deployment instructions from `.koji/project/deploy.json`.
+* `remixData` – Default values for remix data from the scope section of any JSON customization files in the `.koji/customization` directory.
++
+NOTE: For more information on managing remix data without VCCs, see <<_getting_and_setting_remix_data>>.
+
+* `@@initialTransform` – Placeholder values for new remixes from the `@@initialTransform` key of any JSON customization files in the `.koji/customization` directory.
+* `entitlements` – Entitlements from the `.koji/project/entitlements.json` file.
+
++
+.Example of a `koji.json` file
+[source,JSON]
+----
+include::../_includes/koji.json[tags=**]
+----
+
+. If your Koji has remix data and the `InstantRemixing` entitlement is enabled, configure the settings for remixes of older versions.
++
+To take advantage of the upgrades in the @withkoji/core package, it is recommended that all remixes use the current code, as follows.
+For more information about these settings, see <<app-versions#_managing_instant_remix_versions, Managing remix versions>>.
+
+.. In the Koji editor, ensure the remix behavior is set to *Override and use the current version of this project*.
+.. Use the *VCC value upgrade function* to transform the remix values from the old JSON format to the new format.
+For example, if you had a VCC file named `general`, your upgrade function might look like the following code.
++
+[source,Javascript]
+----
+function upgrade(sourceVersionNumber, vccValues) {
+  if (sourceVersionNumber < 26) {
+    return {remixData: vccValues.general};
+  } else {
+    return vccValues;
+  }
+}
+----
+
+. After you have migrated the data from the JSON files, you can safely remove the `.koji` directory.
+
+== Migrating frontend features
+
+After you finish migrating the configuration data, you can start updating your code to use the @withkoji/core package.
+
+. Install the @withkoji/core package in the frontend.
++
+[source, Bash]
+npm install @withkoji/core
+
+. Import the package in your frontend code.
++
+[source,Javascript]
+import Koji from '@withkoji/core';
+
+. Use the `Koji.config` function to initialize the package with your configuration data.
++
+Ideally, your code will initialize the package one time, before any data in the application is rendered.
+For example:
++
+[source,Javascript]
+----
+// Initialize
+Koji.config(require('././koji.json'));
+
+// render
+render();
+----
+
+. Replace functionality from the deprecated packages with methods in the @withkoji/core package.
++
+The replacement methods vary depending on which packages and functionality are implemented in your code.
+For a comprehensive mapping of deprecated packages to the replacement functionality in @withkoji/core, see the <<_package_comparison_reference>>.
+Key changes include:
+
+* Custom remix data no longer relies on VCC definitions in JSON files.
+Instead, the methods of capturing and storing data are decoupled from one another and can be explicitly controlled in your code.
+See <<_getting_and_setting_remix_data>>.
+* Detecting the current context no longer relies on URL query parameters.
+Instead, the context is available as a frontend property.
+See <<_context>>.
+* Frontend modules no longer require a constructor.
+* For Kojis that use dispatch, the `connect` method is now promised-based.
+See <<_dispatch_on_the_frontend>>.
+* Obtaining user tokens and requesting authorization grants is simplified and consolidated into the Identity module.
+See <<_identity_on_the_frontend>>.
+. Use the `Koji.ready` function to indicate that the application is ready to start receiving events.
++
+You must call this function after initializing the package and subscribing to remix state changes, but before advancing to the preview with `Koji.remix.finish`.
+
+. In the `package.json` file, remove any scripts that reference the deprecated packages.
++
+For many code bases, you need to remove commands that run the VCC watcher (`koji-vcc watch` in `prestart`, `watch`, or other commands).
+You might also need to remove the command for supporting TypeScript (`koji-vcc preinstall-ts` in `prebuild`).
+
+. After you have implemented all frontend functionality with the @withkoji/core package, you can remove the deprecated packages.
+For example:
++
+[source, Bash]
+npm remove @withkoji/auth @withkoji/dispatch @withkoji/iap @withkoji/vcc
+
+== Migrating backend features
+
+If your Koji has a backend service, update your code to use the @withkoji/core package.
+
+. Install the @withkoji/core package in the backend.
++
+[source, Bash]
+npm install @withkoji/core
+
+. Make sure the `koji.json` file will be bundled with the backend service during deployment.
++
+In most frameworks, this file won’t be bundled by default because it is not in the same folder as the backend code.
+If the file is not bundled, the backend service will not be initialized correctly and the deployment will fail.
+To solve this problem, you can use a tool such as https://www.npmjs.com/package/babel-plugin-inline-json-import[babel-plugin-inline-json-import].
+. Import the package in your backend code.
++
+[source,Javascript]
+import { KojiBackend } from '@withkoji/core';
+
+. Use `KojiBackend.middleware` to initialize the package with your configuration data.
++
+The middleware manages the scope for backend functionality, so that your code can support your initial Koji along with all of its remixes.
+It works by parsing the request headers that the Koji platform uses to pass remix-specific data to the backend.
++
+You must apply this middleware before handling any routes.
+The middleware will transform `res.locals`, and then modules in KojiBackend will accept `res` as a configuration parameter.
+For example, here is an implementation with a traditional express application.
++
+[source,Javascript]
+----
+import cors from 'cors';
+import express from 'express';
+import bodyParser from 'body-parser';
+import { KojiBackend } from '@withkoji/core';
+
+// Import our configuration
+import kojiConfig from '../../koji.json';
+
+// Init
+const app = express();
+
+// Enable cors for preflight
+app.options('*', cors());
+
+// Whitelist all routes with cors
+app.use(cors());
+
+// Use express json
+app.use(express.json());
+
+// Parse application/json
+app.use(bodyParser.json());
+
+// Koji Middleware
+app.use(KojiBackend.middleware(kojiConfig));
+
+// Disable caching
+app.use((req, res, next) => {
+  res.header('Cache-Control', 'private, no-cache, no-store, must-revalidate');
+  res.header('Expires', '-1');
+  res.header('Pragma', 'no-cache');
+  next();
+});
+
+// Add our routes here
+
+// Start server
+app.listen(process.env.PORT || 3333, null, async err => {
+  if (err) {
+    console.log(err.message);
+  }
+  console.log('[koji] backend started');
+});
+----
+
+. Replace functionality from the deprecated packages with methods in the @withkoji/core package.
++
+The replacement methods vary depending on which packages and functionality are implemented in your code.
+For a comprehensive mapping of deprecated packages to the replacement functionality in @withkoji/core, see the <<_package_comparison_reference>>.
+Key changes include:
+
+* All of the backend modules (Database, Dispatch, IAP, Identity, and Secret) now follow the same constructor pattern.
+* Validating user authorization is simplified and consolidated into the Identity module.
+See <<_identity_on_the_backend>>.
+* For Kojis that use in-app purchases, some methods have been renamed for clarity.
+See <<_iap_on_the_backend>>.
+. After you have implemented all backend functionality with the @withkoji/core package, you can remove the deprecated packages.
+For example:
++
+[source, Bash]
+npm remove @withkoji/auth @withkoji/dispatch @withkoji/database @withkoji/iap @withkoji/vcc
+
+== Package comparison reference
+
+=== @withkoji/analytics
+
+include::../_includes/deprecationQR.adoc[tag=all]
+
+[cols="2*a", options=header]
+|===
+| Deprecated package
+| @withkoji/core
+
+| track
+| frontend/analytics track
+|===
+
+=== @withkoji/auth
+
+include::../_includes/deprecationQR.adoc[tag=all]
+
+[cols="2*a", options=header]
+|===
+| Deprecated package
+| @withkoji/core
+
+| constructor
+| Not needed on frontend
+
+backend/identity
+See <<_identity_on_the_backend>>.
+
+| checkGrant
+| frontend/identity
+See <<_identity_on_the_frontend>>.
+
+| getGrant
+| backend/identity
+See <<_identity_on_the_backend>>.
+
+| getRole
+| backend/identity
+See <<_identity_on_the_backend>>.
+
+| getToken
+| frontend/identity
+See <<_identity_on_the_frontend>>.
+
+
+| getTokenWithCallback
+| frontend/identity
+See <<_identity_on_the_frontend>>.
+
+| pushNotification
+| backend/identity
+See <<_identity_on_the_backend>>.
+
+| pushNotificationToOwner
+| backend/identity
+See <<_identity_on_the_backend>>.
+|===
+
+==== Identity on the frontend
+
+In @withkoji/core, the Identity module replaces the @withkoji/auth functionality from the deprecated packages.
+It simplifies the flow for identifying users and requesting authorization grants from them.
+For example:
+
+[source,JavaScript]
+----
+// Retrieve a short-lived user token to exchange on the backend
+const getToken = async () => {
+  const { userToken, presumedRole, presumedAttributes } = await Koji.identity.getToken();
+};
+
+// Silently request whether a user has already granted a set of permissions
+const checkGrants = async () => {
+  const hasGrants = await Koji.identity.checkGrants(['push_notifications', 'username']);
+};
+
+// Open a dialog to request new permissions from the user (and return a user token)
+const requestGrants = async () => {
+  const userToken = await Koji.identity.requestGrants(['push_notifications', 'username']);
+};
+----
+
+==== Identity on the backend
+
+In @withkoji/core, the Identity module on the backend provides two main aspects of functionality – notifications and user data.
+
+Notifications now provides two methods – `pushNotificationToUser` and `pushNotificationToOwner`. Sending notifications to users requires a user ID, rather than a user token, because the user must have granted permission to retrieve it.
+
+Resolving user data has been condensed into one method, `resolveUserFromToken`.
+
+[source,JavaScript]
+----
+...
+app.get('/get-user-role', async (req, res) => {
+  const identity = new KojiBackend.Identity({ res });
+
+  // Get the user token (generated using the frontend identity module)
+  const userToken = req.headers.authorization;
+
+  // Resolve the user
+  const user = await identity.resolveUserFromToken(userToken);
+
+  const {
+    id,           // The userId (specific to the template/remix)
+    attributes,   // Attributes about the user (username, etc.)
+    dateCreated,  // When the user first shared information
+    grants,       // Any permissions the user has granted
+    role,         // The user's role
+  } = user;
+
+  res.status(200).json({
+    role,
+  });
+});
+...
+----
+
+=== @withkoji/database
+
+include::../_includes/deprecationQR.adoc[tag=all]
+
+[cols="2*a", options=header]
+|===
+| Deprecated package
+| @withkoji/core
+
+2+|
+==== valueTypes
+
+| increment
+| Not implemented - short-term roadmap
+
+2+|
+==== Database
+
+| constructor
+| backend/database
+See <<_database_on_the_backend>>.
+
+| arrayPush
+| backend/database
+
+| arrayRemove
+| backend/database
+
+| beginTransaction
+| Not implemented - gathering interest
+
+| commitTransaction
+| Not implemented - gathering interest
+
+| delete
+| backend/database
+
+| generateSignedUploadRequest
+| backend/secret
+See <<_secrets>>.
+
+| get
+| backend/database
+
+| getAll
+| backend/database
+
+| getAllWhere
+| backend/database
+
+| getCollections
+| backend/database
+
+| getWhere
+| backend/database
+
+| getTranscodeStatus
+| frontend/ui/capture
+
+| search
+| backend/database
+
+| set
+| backend/database
+See <<_database_on_the_backend>>.
+
+| transcodeAsset
+| frontend/ui/capture
+
+| update
+| backend/database
+
+| uploadFile
+| frontend/ui/capture
+|===
+
+==== Database on the backend
+
+Implementing the Database module works similarly in @withkoji/core to how it worked in the deprecated packages.
+For example:
+
+[source,JavaScript]
+----
+...
+
+app.get('/set-item', async (req, res) => {
+  const database = new KojiBackend.Database({ res });
+
+  // Get some data from the user
+  const { item } = req.body;
+
+  // Write the item to the database with a unique id
+  const update = await database.set('items', 'unique-id', item);
+
+  // Return the item
+  res.status(200).json({
+    item: update,
+  });
+});
+...
+----
+
+=== @withkoji/dispatch
+
+include::../_includes/deprecationQR.adoc[tag=all]
+
+[cols="2*a", options=header]
+|===
+| Deprecated package
+| @withkoji/core
+
+| constructor
+| Not needed on frontend
+
+backend/dispatch
+See <<_dispatch_on_the_backend>>.
+
+| authToken
+| Not implemented - not planned
+
+| clientId
+| frontend/dispatch
+See <<_dispatch_on_the_frontend>>.
+
+| connectedClients
+| frontend/dispatch info
+
+| latency
+| frontend/dispatch on
+
+| shardName
+| frontend/dispatch
+See <<_dispatch_on_the_frontend>>.
+
+| userInfo
+| Not implemented - not planned
+
+| connect
+| frontend/dispatch
+See <<_dispatch_on_the_frontend>>.
+
+backend/dispatch
+See <<_dispatch_on_the_backend>>.
+
+| disconnect
+| frontend/dispatch
+See <<_dispatch_on_the_frontend>>.
+
+backend/dispatch
+
+| emitEvent
+| frontend/dispatch
+
+backend/dispatch
+See <<_dispatch_on_the_backend>>.
+
+| identify
+| frontend/dispatch
+
+backend/dispatch
+
+| info
+| frontend/dispatch
+
+backend/dispatch
+
+| on
+| frontend/dispatch
+See <<_dispatch_on_the_frontend>>.
+
+backend/dispatch
+
+| removeEventListener
+| frontend/dispatch
+
+backend/dispatch
+
+| setUserInfo
+| frontend/dispatch
+
+backend/dispatch
+
+2+|
+==== Utils
+
+| profanity
+| Not implemented - long-term roadmap
+
+| filterProfanity
+| Not implemented - long-term roadmap
+|===
+
+==== Dispatch on the frontend
+
+Implementing real-time dispatch in a frontend service works similarly in @withkoji/core to how it worked in the deprecated packages.
+However, you no longer need to initialize it with a constructor.
+Also, the `connect` method is promise-based, so you can await the result before setting up listeners.
+For example:
+
+[source,JavaScript]
+----
+const connection = await Koji.dispatch.connect();
+
+console.log(connection); // Connection details include client ID and shard name
+
+Koji.dispatch.on('message', (payload) => doSomething(payload));
+
+Koji.dispatch.disconnect();
+----
+
+==== Dispatch on the backend
+
+Implementing real-time dispatch in a backend service works similarly in @withkoji/core to how it worked in the deprecated packages.
+For example:
+
+[source,JavaScript]
+----
+...
+app.get('/dispatch-event', async (req, res) => {
+  const dispatch = new KojiBackend.Dispatch({ res });
+
+  // Wait for a connection (`connection` will have information about the connection)
+  const connection = await dispatch.connect({});
+
+  // Send a message to all connected users (in the scope of the template/remix)
+  dispatch.emitEvent('test', { hello: 'world' });
+
+  res.status(200).json({
+    messageSent: true,
+  });
+});
+...
+----
+
+=== @withkoji/iap
+
+include::../_includes/deprecationQR.adoc[tag=all]
+
+[cols="2*a", options=header]
+|===
+| Deprecated package
+| @withkoji/core
+
+| constructor
+| Not needed on frontend
+
+backend/iap
+See <<_iap_on_the_backend>>.
+
+| getToken
+| frontend/iap
+See <<_iap_on_the_frontend>>.
+
+| loadProduct
+| backend/iap
+
+| resolveReceipts
+| backend/iap
+See <<_iap_on_the_backend>>.
+
+| resolveReceiptsById
+| backend/iap
+
+| resolveReceiptsBySku
+| backend/iap
+
+| startPurchase
+| frontend/iap
+See <<_iap_on_the_frontend>>.
+
+| updateReceipt
+| backend/iap
+|===
+
+==== IAP on the frontend
+
+Implementing in-app purchases in a frontend service works similarly in @withkoji/core to how it worked in the deprecated packages.
+You can begin a purchase flow by referencing the product's SKU.
+For example:
+
+[source,JavaScript]
+----
+const startPurchase = async () => {
+  const purchase = await Koji.iap.startPurchase('productSku');
+
+  if (purchase.receiptId) {
+    // Success
+    fetch(`${Koji.services.backend}/receipts-by-user`, {
+      headers: {
+        'Content-Type': 'application/json',
+        authorization: purchase.iapToken,
+      },
+    })
+    // Handle JSON
+    .then(response => response.json())
+    // Log receipts
+    .then(data => console.log(data));
+  } else {
+    // User cancelled transaction
+  }
+};
+
+const startDynamicPurchase = async () => {
+  const purchase = await Koji.iap.startPurchase('dynamicProductSku',
+    {
+      amount: 17,
+      customMessage: 'This is a custom message'.
+    },
+  );
+
+  if (purchase.receiptId) {
+    // Success
+    fetch(`${Koji.services.backend}/receipts-by-user`, {
+      headers: {
+        'Content-Type': 'application/json',
+        authorization: purchase.iapToken,
+      },
+    })
+    // Handle JSON
+    .then(response => response.json())
+    // Log receipts
+    .then(data => console.log(data));
+  } else {
+    // User cancelled transaction
+  }
+};
+----
+
+==== IAP on the backend
+
+Implementing in-app purchases in a backend service works similarly in @withkoji/core to how it worked in the deprecated packages.
+However, some of the methods have been renamed for clarity.
+
+[source,JavaScript]
+----
+...
+app.get('/receipts-by-user', async (req, res) => {
+  const iap = new KojiBackend.IAP({ res });
+
+  // Get the IAP token (generated using the frontend IAP module)
+  const iapToken = req.headers.authorization;
+
+  // Get receipts by user
+  const receipts = await iap.resolveReceiptsByIAPToken(iapToken);
+
+  res.status(200).json({
+    receipts,
+  });
+});
+...
+----
+
+=== @withkoji/user-defaults
+
+include::../_includes/deprecationQR.adoc[tag=all]
+
+[cols="2*a", options=header]
+|===
+| Deprecated package
+| @withkoji/core
+
+| constructor
+| Not needed
+
+| onConnect
+| frontend/identity
+
+| get
+| frontend/identity
+
+| promptLogin
+| Not implemented - not planned
+|===
+
+=== @withkoji/vcc
+
+include::../_includes/deprecationQR.adoc[tag=all]
+
+[cols="2*a", options=header]
+|===
+| Deprecated package
+| @withkoji/core
+
+2+|
+==== FeedSdk
+
+| constructor
+| Not needed
+
+| context
+| frontend/playerState See <<_context>>.
+
+| createRemix
+| frontend/ui/navigate
+
+| load
+| Not needed
+
+| navigate
+| frontend/ui/navigate to
+
+| onPlaybackStateChanged
+| Not implemented - not planned
+
+| present
+| frontend/ui/navigate presentInModal
+
+| requestCancelTouch
+| Not implemented - gathering interest
+
+| share
+| frontend/ui/navigate openShareDialog
+
+2+|
+==== InstantRemixing
+
+| constructor
+| Not needed
+
+| finish
+| frontend/remix See <<_getting_and_setting_remix_data>>.
+
+| get(['scope', 'key']) // customization values
+| frontend/remix See <<_getting_and_setting_remix_data>>.
+
+| get(['metadata', 'projectId']) // project metadata
+| Not needed
+
+| get(['serviceMap', 'backend']) // service endpoints
+
+| frontend/serviceMap
+See <<_services>>.
+
+| onPresentControl
+| frontend/ui/capture See <<_getting_and_setting_remix_data>>.
+
+| onSetActivePath
+| Not needed
+
+| onSetCurrentState
+| No longer supported
+
+| onSetRemixing
+| frontend/playerState See <<_remix_state>>.
+
+| onSetValue
+| frontend/remix See <<_getting_and_setting_remix_data>>.
+
+| onValueChanged
+| frontend/remix See <<_getting_and_setting_remix_data>>.
+
+| ready
+| frontend/Koji
+
+2+|
+==== Keystore
+
+| constructor
+| Not needed on frontend
+
+backend/secret
+See <<_secrets>>.
+
+| generateSignedUrl
+| backend/secret
+
+| resolveValue
+| frontend/remix, backend/secret
+See <<_secrets>>.
+
+2+|
+==== VccMiddleware
+
+| VccMiddleware
+| backend/middleware
+|===
+
+==== Context
+A Koji can provide different experiences for different situations, or "contexts."
+For example, you might provide a different experience during a remix than when the template is running.
+Or, you might provide an admin experience with tools that are only available for the creator of the Koji.
+
+To detect the current context with the deprecated packages, you would parse the URL for a query parameter.
+In the @withkoji/core package, the context is available from `Koji.playerState`.
+For example:
+
+[source,Javascript]
+----
+const { context, receiptType } = Koji.playerState;
+
+// Possible context values: 'about' | 'admin' | 'remix' | 'sticker' | 'receipt' | 'screenshot' | 'default'
+
+// Possible receiptType values: 'buyer' | 'seller'
+----
+
+==== Remix state
+
+To listen for changes in remix state, use `Koji.playerState`.
+This method works similarly to `.onSetRemixing` in the deprecated package.
+
+[source,Javascript]
+----
+const unsubscribe = Koji.playerState.subscribe((isRemixing, editorAttributes) => {
+  setSomeState(isRemixing);
+  // Change Koji experience
+});
+
+// To remove listeners on unmount etc.
+unsubscribe();
+----
+
+==== Getting and setting remix data
+
+One of the biggest advantages of the @withkoji/core package is that you can manage custom remix date with greater flexibility.
+You no longer need specialized JSON customization files to configure VCCs.
+Instead, you configure only the initial values for remix data.
+Then, your application code can control when and how to capture and store data from users.
+For example, you can maintain the state locally and store the remix data right before advancing to the preview.
+
+To retrieve initial values with the deprecated package, you would specify the scope and key from one of your VCC files.
+For example:
+
+[source,Javascript]
+const backgroundColor = instantRemixing.get(['general', 'backgroundColor']);
+
+In @withkoji/core, all of the initial remix data is available as an object.
+For example:
+
+[source,Javascript]
+----
+import Koji from '@withkoji/core';
+
+const remixData = Koji.remix.get();
+
+const { backgroundColor } = remixData;
+----
+
+To manage remix data with the deprecated package, you would use methods such as `onSetValue`, `onValueChanged`, and `onPresentControl`.
+
+In @withkoji/core, the methods of capturing and storing data are decoupled from one another and can be explicitly controlled in your code.
+The following example uses `capture` to accept an image input from a user, and then `set` to update the value in the `remixData` object.
+
+[source,Javascript]
+----
+const imageURL = await Koji.ui.capture.image();
+
+Koji.remix.set({ backgroundImage: imageURL });
+----
+
+The `set` method works similarly to `setState` in React.
+It will intelligently merge your remixData behind the scenes.
+For example:
+
+[source,Javascript]
+----
+const data = Koji.remix.get(); // { textColor: '#000000' }
+
+Koji.remix.set({ backgroundImage: 'https://myImage.com/hello.jpg' });
+
+const newData = Koji.remix.get(); // { textColor: '#000000',  backgroundImage: 'https://myImage.com/hello.jpg' }
+----
+
+If you need to explicitly set the entire object, you can use `overwrite`.
+For example:
+
+[source,Javascript]
+----
+Koji.remix.overwrite({
+  backgroundImage: 'someValue',
+  textColor: '#000000',
+});
+----
+
+When you are ready to advance to the preview, you can set your updated data, wait for the platform to confirm that the data has been saved, and advance the view.
+For example:
+
+[source,Javascript]
+----
+const onFinish = async () => {
+  await Koji.remix.set({
+    ...this.state, // Just an example where the state reflects remixData
+  });
+
+  Koji.remix.finish();
+};
+----
+
+==== Services
+
+If your Koji uses a backend service, you would use `instantRemixing.get` in the deprecated package to retrieve the endpoint.
+For example:
+
+[source,Javascript]
+const backendURL = instantRemixing.get(['serviceMap', 'backend']);
+
+In @withkoji/core, the service endpoints are available on the `services` property.
+For example:
+
+[source,Javascript]
+const backendURL = Koji.services.backend
+
+==== Secrets
+
+To save sensitive data that isn't visible to users by default and isn't copied when someone forks or remixes a template, you can use the `encryptValue` method.
+If anyone were to examine the remixData from a remix of the following example, only the `encryptedValue` would be visible.
+
+[source,Javascript]
+----
+const storeSecretImage = async () => {
+  // Capture an image (e.g., https://images.koji-cdn.com/my-image.png)
+  const image = await Koji.ui.capture.image();
+
+  // Make sure the user has chosen an image
+  if (!image) return;
+
+  // Get an encrypted value (e.g., $secret_xyz)
+  const encryptedValue = await Koji.remix.encryptValue(image);
+
+  // Store the value
+  await Koji.remix.set({ secretImage: encryptedValue });
+};
+----
+
+To retrieve the value, use the `KojiBackend.Secret` module to securely resolve it.
+For example:
+
+[source,Javascript]
+----
+...
+import kojiConfig from '../../koji.json';
+
+// Create server
+const app = express();
+
+// Koji Middleware
+app.use(KojiBackend.middleware(kojiConfig));
+
+app.post('/resolve-secret', async (req, res, next) => {
+  // Init
+  const secret = new KojiBackend.Secret({ res });
+
+  // Pass the encrypted value in the request body
+  const decryptedValue = await secret.resolveValue(req.body.encryptedValue);
+
+  // Pass back the decrypted value (https://images.koji-cdn.com/my-image.png)
+  res.status(200).json({
+    decryptedValue,
+  });
+});
+----

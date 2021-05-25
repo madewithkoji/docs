@@ -1,0 +1,138 @@
+= Setting up koji.json
+:page-slug: game-iap-setting-up-koji-json
+:page-description: Configuring entitlements and remix data in koji.json to support in-game purchases.
+:figure-caption!:
+
+In the first section of this tutorial, you will
+// tag::description[]
+add the in-app purchase entitlement and define a price value that can be customized when someone remixes your game.
+// end::description[]
+
+By the end of this section, you should feel comfortable:
+
+* Defining entitlements and remix values in `koji.json`.
+
+== Forking the game template
+
+Get started by cloning the Tower Stack game to your own project.
+
+. Open the https://withkoji.com/~Svarog1389/3ej3[Tower Stack] game.
+. {blank}
+include::../../_includes/remixNav.adoc[tag=all]
++
+A copy of the project is created in your Koji account, and the *Project Details* page for your new project is displayed.
+. Click *Open in Code Editor*.
++
+The Koji editor opens with the game code loaded.
+
+include::../../_includes/tutorialEditorNote.adoc[tag=all]
+
+== Defining entitlements
+
+First, you need to enable Koji's in-app purchases feature for your new game template.
+
+Open the file `koji.json`, which is located in the root of the project.
+Find the following section of code.
+
+[source,json]
+----
+...
+
+"entitlements": {
+    "InstantRemixing": true,
+    "InstantRemixingNativeNavigation": true,
+    "FeedEvents": true,
+    "CustomMetadata": {
+        "enabled": true,
+        "metadata": {
+        "title": "{{remixData.title}}",
+        "description": "How high can you stack them?"
+        }
+    }
+},
+
+...
+----
+
+This code defines an `entitlements` object, which contains a number of properties that define how the application works on the Koji platform.
+
+Add a new property called `InAppPurchases`, as follows.
+
+[source,json]
+----
+"entitlements": {
+    "InstantRemixing": true,
+    "InstantRemixingNativeNavigation": true,
+    "FeedEvents": true,
+    "CustomMetadata": {
+        "enabled": true,
+        "metadata": {
+        "title": "{{remixData.title}}",
+        "description": "How high can you stack them?"
+        }
+    },
+    "InAppPurchases": {
+        "enabled": true,
+        "products": [
+            {
+                "sku": "extraLives",
+                "name": "Extra Lives",
+                "price": "{{remixData.price}}",
+                "isConsumable": true
+            }
+        ]
+    }
+},
+----
+
+`InAppPurchases` is defined as an object, and it contains an array of products.
+You're only selling one product -- extra lives -- so you only have one product in the array.
+The product is defined as follows.
+
+[source,json]
+----
+{
+    "sku": "extraLives",
+    "name": "Extra Lives",
+    "price": "{{remixData.price}}",
+    "isConsumable": true
+}
+----
+
+Here's a breakdown of the properties:
+
+* *sku* – Identifier used to look up the product when the user makes a purchase.
+
+* *name* – Product name that appears on the user's receipt.
+
+* *price* – Price of the product in USD.
+This value is set to `{{remixData.price}}`, which means the price will use a custom value.
+You will define the custom value in the next step.
+
+* *isConsumable* – Feature that determines whether the product can be purchased more than once.
+This value is set to `true`, which allows the user to purchase the product multiple times.
+
+== Defining remix data
+
+In `koji.json`, scroll down to the `remixData` object.
+This is where you define the customizable values that users can modify when remixing the template.
+
+Add a `price` property and set it to `0.1` for now.
+
+[source,json]
+----
+"remixData": {
+    ...
+    "price": 0.1
+  },
+----
+
+NOTE: To register the product, the price value must be greater than `0` and you must deploy a build of your game.
+For example, by publishing it from the Koji editor.
+Registering the product will enable you to test purchases in the debugger, which you will do later in the tutorial.
+
+== Wrapping up
+
+In this section, you set up the product and price information for extra lives in your game.
+
+In the <<game-iap-payment-menu#, next section>>, you'll create the menu that enables players to purchase more lives when they run out.

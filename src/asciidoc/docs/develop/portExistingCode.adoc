@@ -31,7 +31,7 @@ Fortunately, there is a scaffold that has already implemented webpack for you.
 +
 https://withkoji.com/~RachelSienko06/simple-webpack-ir-scaffold[Simple Webpack IR Scaffold]
 . {blank}
-include::../_includes/remixNav.adoc[tag=all]
+include::{includespath}/remixNav.adoc[tag=all]
 +
 After a short loading time, the Koji editor opens.
 . Verify that the project is working.

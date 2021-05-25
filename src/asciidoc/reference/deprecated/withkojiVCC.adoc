@@ -109,7 +109,7 @@ Gets initial values from Koji customization files or one of these predefined env
 
 ==== Returns
 
-_Any_, value of the <<vcc-overview#_vcc_types,VCC type>> at the specified path.
+_Any_, value of the VCC type at the specified path.
 For the predefined environment values, the following values are returned:
 
 `["metadata", "projectId"]`:: _String_, the unique identifier for the Koji project.
@@ -206,7 +206,7 @@ Explicitly sets the value for the VCC at the specified path.
 ==== Parameters
 
 * `path` – Array of _Strings_, keys that points to the desired VCC value.
-* `newValue` – _Any_, New value for the <<vcc-overview#_vcc_types,VCC type>> at the specified path.
+* `newValue` – _Any_, New value for the VCC type at the specified path.
 * `skipUpdate` – (Optional) _Boolean_, indicates whether to skip the `onValueChanged` callback for this update (`false`, by default).
 To allow the template to manage the update state, set this parameter to `true`.
 +
@@ -514,7 +514,7 @@ if (searchParams.context === 'admin') {
 
 == Keystore
 
-The `Keystore` module is used in conjunction with the <<secret#, secret VCC type>>.
+The `Keystore` module is used in conjunction with the secret VCC type.
 The secret VCC enables you to store sensitive data in a VCC without the value being visible when the project is remixed.
 Keystore is used to access the value in the secret VCC within your application code.
 
