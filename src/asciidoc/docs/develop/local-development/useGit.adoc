@@ -1,6 +1,6 @@
 = Using Git to manage your project
 :page-slug: use-git
-:page-description: How to use Git to clone a Koji project app to your development machine, so that you can work on it locally.
+:page-description: How to use Git to clone a Koji app to your development machine, so that you can work on it locally.
 :figure-caption!:
 
 Git is the version control system used by Koji.
@@ -56,7 +56,7 @@ However, the instructions in this tutorial apply to any Koji project.
 You can start a Koji project by forking any other app on Koji.
 For some great starting points, check out the https://withkoji.com/apps/categories/for-developers[For Developers] page.
 
-. Go to the https://withkoji.com/~Svarog1389/rxkd[Falling Objects] project.
+. Go to the https://withkoji.com/~Svarog1389/rxkd[Falling Objects] app.
 . {blank}
 +
 include::../../_includes/remixNav.adoc[tag=all]

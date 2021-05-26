@@ -107,12 +107,17 @@ Pushing your changes to origin automatically publishes a new version of your app
 
 Now that you've published your app, you will want to make sure that it works the same on the Koji server as it does locally.
 
-1. Go to the https://withkoji.com/[Koji home page] and sign in to your account.
-2. Click your profile button and go to *Apps > Developer Portal*.
-3. Select your app from *All Projects*.
-4. Click *View Published Koji*.
+. On the https://withkoji.com/[Koji home page], click your profile button and go to *Apps > Developer Portal*.
+. Select your app from *All Projects*.
+. Click *View Published Koji*.
 The published version of your app opens.
-5. Proceed to test all the features of your app.
+. Proceed to test all the features of your app.
+[NOTE]
+Koji provides tools for testing your app. For example, you can override the environment variables in the Koji debugger, so that you can use it for testing locally. See *Overriding settings for a debugging session* in <<testing-templates#,Testing and debugging apps>>.
+
+== Updating the Koji code editor to match your local environment
+
+If you want to use the Koji code editor after you make changes locally, you must pull your changes into it and update the Node modules to match your local environment.
 
 === Pulling changes into the Koji editor
 
@@ -150,7 +155,7 @@ root@ip-172-31-12-226:/usr/src/app#
 The code in the Koji editor should now be identical to the code in your local repository.
 . In the top right of the Preview pane, click *Refresh* to make sure you are seeing the latest version.
 +
-You should now see the custom title, which corresponds to the local change you made in `.koji/customization/strings.json`.
+You should now see the custom title, which corresponds to the local change you made in `frontend\src\Components\View\LeaderboardMini.js`.
 
 === Updating the Node modules for the Koji editor
 

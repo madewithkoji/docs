@@ -2,7 +2,7 @@
 :page-slug: work-locally
 :page-description: How to set up a web server and launch your Koji app on your development machine, so that you can work on it locally.
 
-In the <<use-git#, first section>> of this tutorial, you learned how to use Git to clone a Koji project app to your development machine, so that you can work on it locally.
+In the <<use-git#, first section>> of this tutorial, you learned how to use Git to clone a Koji app to your development machine, so that you can work on it locally.
 In this section, you will
 // tag::description[]
 install a Node.js web server environment on your development machine and launch both a frontend and a backend server so that you can work with all aspects of your app within your local area network.
