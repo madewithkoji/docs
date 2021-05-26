@@ -113,7 +113,7 @@ Now that you've published your app, you will want to make sure that it works the
 The published version of your app opens.
 . Proceed to test all the features of your app.
 [NOTE]
-Koji provides tools for testing your app. For example, you can override the environment variables in the Koji debugger, so that you can use it for testing locally. See *Overriding settings for a debugging session* in <<testing-templates#,Testing and debugging apps>>.
+For tips on testing your app, go to <<testing-templates#,Testing and debugging apps>>. For example, you can override the environment variables in the Koji debugger, so that you can use it for testing locally. See <<testing-templates#_overriding_settings_for_a_debugging_session,Overriding settings for a debugging session>>.
 
 == Updating the Koji code editor to match your local environment
 
