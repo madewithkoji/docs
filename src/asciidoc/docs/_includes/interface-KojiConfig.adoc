@@ -23,9 +23,11 @@ This information is provided by the platform but can be overridden when the Koji
 
 ==== Properties
 
+// tag::KojiMetadataProps[]
 * `projectId` – _String_, Unique identifier for the Koji.
 * `creatorUsername` – _String_, Creator's username.
 * `creatorProfilePicture` – _String_, URL reference to the creator's current profile picture.
+// end::KojiMetadataProps[]
 // end::KojiMetadata[]
 
 // end::all[]
