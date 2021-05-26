@@ -1,0 +1,93 @@
+= What is a Koji template?
+:page-slug: templates
+:page-description: Templates are the underlying web applications that power Kojis and enable everyday users to remix them without coding.
+
+Templates are the underlying web applications that power Kojis.
+As a developer, you can build Koji templates for any type of web application, including interactive profile pages, memes, games, premium content sales, and utilities.
+
+What makes a Koji template so unique is its ability to evolve and change over time through "remixing."
+When you develop a template, you define which values are customizable and leverage Koji platform technology to make it easy for non-technical users to change them.
+
+After you publish a template on Koji, creators can easily find and remix it, adding their own images, text, sounds, and more, to create their own version that they can share anywhere on the web.
+Additionally, other developers can fork your project and add their own code.
+
+== Koji templates under the hood
+
+At their core, Kojis are full-stack, modern JavaScript applications that take advantage of the latest web standards and emerging technologies.
+They are designed to be responsive and run inside of webviews, so that they are instantly available on any browser and every device.
+Kojis can embed multimedia, leverage web AR/VR support, facilitate e-commerce transactions, and more.
+
+Koji projects use Git repositories for source control.
+When you fork a project, Koji clones that project’s Git repository to your account.
+When you publish a template, Koji uses Node.js and modern CI/CD build tools to deploy it as a static web application.
+
+== The template development process
+
+Koji templates make it easy for other users to remix the details and publish their own custom version.
+The following steps describe the general process when developing a remixable template on Koji.
+
+=== 1. Start from a scaffold
+
+Because every template on Koji is a remix, you will want to find a good starting place for your development.
+You can start from a scaffold that implements your favorite frontend framework.
+Or, you can find a Koji that implements some of your desired functionality, such as a backend database.
+
+From this starting point, you'll use the *Koji* button in the top right to fork the underlying template.
+
+image:koji-button.png[Koji button]
+
+Koji clones the project and opens your new project in <<editor#, the Koji editor>>.
+The Koji editor is a browser-based integrated development environment (IDE) with built-in development, administration, and testing tools for Koji templates.
+You can use the editor to develop your template logic, or you can develop your template <<local-development#, in a remote editor>> and use the Koji editor for publishing and administration on the Koji platform.
+
+=== 2. Define the customizable elements
+
+To develop a remixable template, you create JSON files that define the customizable elements and their default values and types.
+For each element, a value can point to a resource location or be consumed directly.
+
+video::/videos/DefineCustomEl.mp4[width=50%]
+
+The value type affects the remixing experience for users in addition to how you use the value in your code.
+To provide a UI for customizing values, you can use the built-in Visual Customization Controls (VCCs) for standard elements, such as images, text, and sounds.
+To provide more specialized customization types, you can <<build-custom-vcc#, develop custom VCCs>> or other types of controls.
+
+=== 3. Dynamically set custom values
+
+When developing a Koji template, you use the <<withkoji-vcc-package#, @withkoji/vcc package>> to access custom values and expose the controls that enable users to dynamically change them.
+
+The package provides a watcher function that enables you to monitor changes to custom values and update the template experience in real time.
+It also provides listeners for the template state so that you can provide a rich remixing experience for creators, such as click handlers and conditional styling to indicate what elements are remixable and what controls are available.
+
+video::/videos/SetCustomVal.mp4[width=50%]
+
+=== 4. Enable platform features and entitlements
+
+The Koji platform provides additional features that can enhance your template's functionality, usability, and value.
+It is recommended that all Koji templates implement support for the Koji feed.
+The Koji feed enables users to browse available templates, moving them from off screen or out of focus, into the main window of the feed.
+To ensure your template can be displayed correctly in the Koji feed, you must implement the `FeedSdk` in the @withkoji/vcc package.
+
+You can also implement in-app purchases, the Koji database, and real-time dispatch in your Koji templates, as needed to support the desired functionality.
+For detailed reference documentation on these and other features, see <<packages-overview#>>.
+
+To configure certain platform features in your template, including instant remixing, Koji feed support, and in-app purchases, you must create an entitlements JSON file.
+For example, the following code indicates that the template supports instant remixes and the Koji feed.
+
+[source, JSON]
+----
+include::../docs/_includes/entitlements.json[]
+----
+
+=== 5. Publish to the Koji network
+
+When you have finished developing and testing your template, you can publish it from the Koji editor.
+If you've been working outside the editor, you must push those changes to your project’s origin repository, and pull the latest version into the Koji editor.
+
+From the editor, you click *Publish Now* to open the publish settings.
+You can update the name, which sets the template URL when you first publish it, set the visibility to `unlisted` (accessible by direct link only), and configure additional settings.
+
+After you publish the template, the Koji profiler checks for errors, generates metadata about the application, and, if the template is error-free, enables the platform features configured in your entitlements file.
+
+image:publishNetwork.png[width=50%]
+
+Your template is now available to be remixed and shared anywhere on the internet.

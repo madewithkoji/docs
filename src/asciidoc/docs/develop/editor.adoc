@@ -1,4 +1,4 @@
-= The Koji code editor
+= Working in the Koji code editor
 :page-slug: editor
 :page-description: Guide for the Koji code editor, a browser-based IDE for developing and testing your Koji.
 :includespath: ../_includes
@@ -69,7 +69,7 @@ You can also preview a Koji outside the code editor.
 * The QR code button image:{imagesDir}/QRcode.svg[QR code button] displays a QR code for your Koji.
 Scan this code to preview the Koji on your mobile device.
 
-* The remote staging button image:{imagesDir}/remote-staging.svg[Remote staging button] opens a preview of your Koji in a new browser tab.
+* The remote staging button image:{imagesDir}/remote-preview.svg[Remote staging button] opens a preview of your Koji in a new browser tab.
 
 
 === Debugging

@@ -77,4 +77,3 @@ For example:
 * https://github.com/madewithkoji/koji-custom-vcc-sdk[@withkoji/custom-vcc-sdk on Github]
 * https://www.npmjs.com/package/@withkoji/custom-vcc-sdk[@withkoji/custom-vcc-sdk on npm]
 * <<build-custom-vcc#>>
-* <<cat-selector-blueprint#, Blueprint: Custom VCC>>

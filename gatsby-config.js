@@ -145,7 +145,7 @@ module.exports = {
     title: 'Koji for Developers',
     titleTemplate: '%s | Koji for Developers',
     // eslint-disable-next-line max-len
-    description: 'Develop the future of social with remixable applications. Kojis are mini web applications that can be shared anywhere across the web.',
+    description: 'Develop apps that power the creator economy. Koji is the world’s most powerful Link in Bio service, used by artists, influencers, brands, and content creators everywhere.',
     url: 'https://developer.withkoji.com',
     image: '/images/og-banner.png',
     twitterUsername: '@madewithkoji',

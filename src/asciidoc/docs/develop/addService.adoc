@@ -20,9 +20,9 @@ To add and test a backend service, you'll start by remixing a project that alrea
 
 . Open the following scaffold.
 +
-include::../_includes/starterScaffolds.adoc[tag=reactVccs]
+include::{includespath}/starterScaffolds.adoc[tag=reactVccs]
 . {blank}
-include::../_includes/remixNav.adoc[tag=all]
+include::{includespath}/remixNav.adoc[tag=all]
 . After your editor has loaded, rename the project.
 For example, `Adding a Backend Project`.
 
@@ -37,7 +37,7 @@ When you can see the `backend` service, you'll know that the service is set up c
 [source,javascript]
 console.log('serviceMap', instantRemixing.get(['serviceMap']));
 
-. In the preview pane on the right, click the remote staging button image:remote-staging.png[Remote staging button] to open your template in a new browser tab.
+. In the preview pane on the right, click the remote staging button image:remote-preview.svg[Remote staging button] to open your template in a new browser tab.
 . In the new tab, open the developer tools and confirm that you can see a console log of your current `serviceMap`.
 +
 It should look like this:

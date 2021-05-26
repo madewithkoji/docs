@@ -1,0 +1,315 @@
+= Template requirements checklist
+:page-slug: template-checklist
+:page-description: Checklist of technical requirements for Koji template quality.
+
+Before submitting your template to Koji, review this checklist to ensure it meets the requirements for a complete and compelling template.
+
+== Functionality
+=== Remix experience and Visual Customization Controls (VCCs)
+
+[cols="8,2a",options=header]
+|===
+| Requirement
+| Status
+
+| Template uses the @withkoji/vcc package to expose the necessary VCC controls.
+|
+include::../../docs/_includes/checklist.adoc[tags=*]
+
+| Users can create a remix in one minute or less.
+|
+include::../../docs/_includes/checklist.adoc[tags=*]
+
+| Template shows live updates when values in VCCs are changed.
+|
+include::../../docs/_includes/checklist.adoc[tags=*]
+
+| VCCs specify human-readable names and clear descriptions for the expected input, including any constraints (for example, character limits on text inputs).
+|
+include::../../docs/_includes/checklist.adoc[tags=*]
+
+| Template displays VCCs only for values that are used in the template experience.
+|
+include::../../docs/_includes/checklist.adoc[tags=*]
+
+| Template provides VCCs for values that users are most likely to customize.
+It does not allow customization of elements that a developer should define (for example, border width for pictures, speed of game actions).
+|
+include::../../docs/_includes/checklist.adoc[tags=*]
+
+| Template uses common VCCs and provides choices that improve remix efficiency, where possible.
+For example, it uses a range VCC to specify font size, because it’s easier to use and can enforce sensible minimum and maximum values.
+It uses a select VCC instead of a text VCC, where appropriate, because it’s easier to choose from a list of predefined options than to type a response.
+|
+include::../../docs/_includes/checklist.adoc[tags=*]
+
+| Template uses nested VCCs (arrays and composed objects) only if necessary to enable effective customization.
+VCCs are not nested excessively and do not create a difficult or confusing remix experience.
+|
+include::../../docs/_includes/checklist.adoc[tags=*]
+
+| During remix, template exposes editable items with standard styles (see <<#_ui_elements, UI Elements>>).
+It uses buttons to trigger VCCs only when an editable element cannot be indicated effectively with the standard styles (for example, to change the entire layout).
+|
+include::../../docs/_includes/checklist.adoc[tags=*]
+
+| For text input, values are not case sensitive and whitespace is trimmed from the beginning and end of the input.
+|
+include::../../docs/_includes/checklist.adoc[tags=*]
+
+| Template uses states to break up the remixing experience into manageable and logical steps, where appropriate.
+|
+include::../../docs/_includes/checklist.adoc[tags=*]
+|===
+
+=== Performance
+
+[cols="8,2a",options=header]
+|===
+| Requirement
+| Status
+
+| Template preloads resources to ensure a smooth experience.
+For example, templates with multiple states load images in the background.
+|
+include::../../docs/_includes/checklist.adoc[tags=*]
+
+| Frontend URL of published template was tested with https://tools.pingdom.com[Pingdom] and has a performance grade of B or better.
+To access the frontend URL, go to the published template, inspect the element, and use the iframe source URL.
+|
+include::../../docs/_includes/checklist.adoc[tags=*]
+
+| Template size (bundle and assets) is less than 2 MB.
+|
+include::../../docs/_includes/checklist.adoc[tags=*]
+|===
+
+=== Image optimization
+
+[cols="8,2a",options=header]
+|===
+| Requirement
+| Status
+
+| Image assets and backgrounds are sized at the correct aspect ratio to avoid distortion.
+The standard portrait aspect ratio is 9:16 (for example, 1080x1920).
+|
+include::../../docs/_includes/checklist.adoc[tags=*]
+
+| Template uses the https://docs.fastly.com/api/imageopto[Fastly API] to automatically size image assets.
+|
+include::../../docs/_includes/checklist.adoc[tags=*]
+
+| Template uses Fastly image optimization to reduce the image size wherever possible.
+|
+include::../../docs/_includes/checklist.adoc[tags=*]
+
+| Template sets a default background color to handle images with transparent backgrounds.
+|
+include::../../docs/_includes/checklist.adoc[tags=*]
+|===
+
+=== Device and browser support
+
+[cols="8,2a",options=header]
+|===
+| Requirement
+| Status
+
+| Template was tested on iPhone 6S / 6S Plus (iOS 9.0.1) or newer.
+Works in mobile Safari and Chrome browsers.
+|
+include::../../docs/_includes/checklist.adoc[tags=*]
+
+| Template was tested on Android Oreo 8.0 or newer.
+Works in Chrome and Firefox browsers.
+|
+include::../../docs/_includes/checklist.adoc[tags=*]
+
+| Template was tested on desktop.
+Works in Chrome, Firefox, and Safari browsers.
+|
+include::../../docs/_includes/checklist.adoc[tags=*]
+
+| Template is responsive; presents same experience on desktop and mobile devices.
+|
+include::../../docs/_includes/checklist.adoc[tags=*]
+
+| Background and image sizes, aspect ratios, and crops are consistent across device sizes.
+|
+include::../../docs/_includes/checklist.adoc[tags=*]
+
+| Template displays content correctly, regardless of device orientation.
+It does not rely on the `deviceorientation` event to enforce a specific orientation, which can fail for embedded content in iframes.
+|
+include::../../docs/_includes/checklist.adoc[tags=*]
+
+| Template uses a library that provides cross-browser support for audio features, if applicable.
+For example, howler.js.
+|
+include::../../docs/_includes/checklist.adoc[tags=*]
+|===
+
+=== Sharing and platform information
+
+[cols="8,2a",options=header]
+|===
+| Requirement
+| Status
+
+| The FeedEvents and InstantRemixing entitlements are enabled.
+|
+include::../../docs/_includes/checklist.adoc[tags=*]
+
+| Template uses FeedSdk from the @withkoji/vcc package and calls the `load` event to ensure it is preloaded correctly in the Koji feed.
+|
+include::../../docs/_includes/checklist.adoc[tags=*]
+
+| If the template has auto-playing content or audio, it plays and pauses in response to feed events.
+To test feed events, append `?feedDebug=true` to the URL, which loads the template in the feed 10 times.
+|
+include::../../docs/_includes/checklist.adoc[tags=*]
+
+| If the default view does not represent the functionality well, template renders a custom preview page with a responsive, square aspect ratio when visited with a query parameter of `koji-screenshot=1`.
+Koji uses a screenshot of this page as the preview image when users share their posts on social media.
+|
+include::../../docs/_includes/checklist.adoc[tags=*]
+
+| If the template uses gestures, the gestures are implemented to work correctly when the template is in focus in the feed.
+That is, the template actions take precedence over the feed actions.
+|
+include::../../docs/_includes/checklist.adoc[tags=*]
+
+| Template is published with an appropriate name and description for better sharing and discoverability on the platform.
+|
+include::../../docs/_includes/checklist.adoc[tags=*]
+|===
+
+== Presentation and usability
+=== UI elements
+
+[cols="8,2a",options=header]
+|===
+| Requirement
+| Status
+
+| During remix, editable elements are indicated with a semi-transparent, white rectangle and a rotating dashed line.
+See example in https://withkoji.com/~jason/billboard[this project].
+|
+include::../../docs/_includes/checklist.adoc[tags=*]
+
+| On-screen instructions use the mobile-first variant (for example, “Tap” instead of “Click”).
+|
+include::../../docs/_includes/checklist.adoc[tags=*]
+
+| UI elements support touch gestures.
+|
+include::../../docs/_includes/checklist.adoc[tags=*]
+
+| Primary content fits on the screen without zooming or horizontal scrolling.
+|
+include::../../docs/_includes/checklist.adoc[tags=*]
+
+| Tappable elements measure at least 44x44 points.
+|
+include::../../docs/_includes/checklist.adoc[tags=*]
+
+| Text is large enough to be legible at default size (at least 11 points).
+|
+include::../../docs/_includes/checklist.adoc[tags=*]
+
+| Font size for user input elements is at least 16 px to prevent unintended page zooming on iOS.
+|
+include::../../docs/_includes/checklist.adoc[tags=*]
+
+| Text and background colors or images have sufficient contrast to make text legible (contrast ratio of 4.5:1 or higher, for default values).
+|
+include::../../docs/_includes/checklist.adoc[tags=*]
+
+| Template meets the <<design-guidelines#>>.
+|
+include::../../docs/_includes/checklist.adoc[tags=*]
+
+| Template was tested with different images (portrait, landscape, small, large).
+|
+include::../../docs/_includes/checklist.adoc[tags=*]
+
+| Template uses standard web fonts (fonts.google.com) with a default font that matches the use case.
+For examples, see the <<design-guidelines#_fonts_are_appropriate_and_convey_information>>.
+|
+include::../../docs/_includes/checklist.adoc[tags=*]
+|===
+
+=== Loading indicator and experience
+
+[cols="8,2a",options=header]
+|===
+| Requirement
+| Status
+
+| Template uses the Koji standard loading indicator.
+See example in this https://github.com/anderjason/skytree-koji-react[package for React] and this https://github.com/anderjason/skytree-koji[package for vanilla JavaScript].
+|
+include::../../docs/_includes/checklist.adoc[tags=*]
+
+| When loading takes more than 2 seconds, loading indicator is displayed until all of the assets have loaded.
+|
+include::../../docs/_includes/checklist.adoc[tags=*]
+
+| All content loads at the same time, providing a coordinated start for all images, sounds, and other content.
+|
+include::../../docs/_includes/checklist.adoc[tags=*]
+
+| Template transitions gracefully from loading indicator to loaded content (for example, fade in from indicator to fully loaded image, rather than showing a black area and having the image flash in after it loads).
+|
+include::../../docs/_includes/checklist.adoc[tags=*]
+|===
+
+== Code
+
+[cols="8,2a",options=header]
+|===
+| Requirement
+| Status
+
+| Code includes adequate error handling.
+|
+include::../../docs/_includes/checklist.adoc[tags=*]
+
+| Code includes comments where appropriate.
+|
+include::../../docs/_includes/checklist.adoc[tags=*]
+
+| Code is easily readable and accessible for other developers.
+|
+include::../../docs/_includes/checklist.adoc[tags=*]
+
+| Project includes a readme file that documents the tech stack and any relevant information to aid someone working with the code.
+|
+include::../../docs/_includes/checklist.adoc[tags=*]
+
+| Project does not contain unnecessary code.
+|
+include::../../docs/_includes/checklist.adoc[tags=*]
+
+| Code is formatted correctly.
+|
+include::../../docs/_includes/checklist.adoc[tags=*]
+
+| Large files are broken down into smaller chunks where appropriate.
+|
+include::../../docs/_includes/checklist.adoc[tags=*]
+
+| If the template uses assets, any required attributions are included in the template.
+|
+include::../../docs/_includes/checklist.adoc[tags=*]
+
+| Template implements appropriate security measures to prevent inappropriate use.
+For example, input validation and output encoding to prevent malicious script execution from text entry fields or links.
+|
+include::../../docs/_includes/checklist.adoc[tags=*]
+
+| Template does not contain any malicious code.
+|
+include::../../docs/_includes/checklist.adoc[tags=*]
+|===

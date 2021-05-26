@@ -67,6 +67,6 @@ include::../../docs/_includes/backend-basic-use.adoc[tag=all]
 
 * https://github.com/madewithkoji/koji-core[@withkoji/core on Github]
 * https://www.npmjs.com/package/@withkoji/core[@withkoji/core on npm]
-* <<quick-start#>>
+* <<start-tutorial#>>
 * <<migrate-koji-core#>>
 * https://github.com/madewithkoji/koji-core/releases[Package release notes]

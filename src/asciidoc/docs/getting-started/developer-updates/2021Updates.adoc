@@ -33,7 +33,7 @@ Existing magic links will continue to work; however, they cannot be updated.
 // tag::highlights[]
 * Paid remixes are a new way for developers to monetize their work through Koji.
 You can set the remix price when you publish a template in the store, and then earn when someone remixes your template.
-* The koji VCC type has been renamed to the <<link-vcc#, link>> VCC type.
+* The koji VCC type has been renamed to the link VCC type.
 The link type now supports an extended result format, which returns the page title, description, and a thumbnail URL that is hosted on the Koji CDN.
 * You can now hide the default action for cancelling a remix, enabling the template to implement its own navigation controls.
 // end::highlights[]
@@ -57,7 +57,7 @@ include::../../_includes/coreReleaseNotes.adoc[tag=all]
 
 === March 2
 
-* On the developer site, a new set of <<quick-start#,quick start tutorials>> are available to help developers get going quickly on Koji.
+* On the developer site, a new set of <<start-tutorial#,quick start tutorials>> are available to help developers get going quickly on Koji.
 * The https://withkoji.atlassian.net/servicedesk/customer/portal/1[Koji Support] page is now available for logging bugs and requests with the Koji team.
 This short form enables better tracking and quicker resolution of problems.
 // end::highlights[]
@@ -140,15 +140,15 @@ This view is currently available for Koji-provided templates, and it will be rol
 === January 15
 
 * For template developers, the following features are now available on the Koji platform.
-** The new <<media#,media VCC>> provides a single control for customizing image, file, sound, and video values.
+** The new media VCC provides a single control for customizing image, file, sound, and video values.
 // end::highlights[]
 You can configure which of the underlying media types to allow as well as the options for each type.
-As part of this change, the <<image#,image VCC>> now supports type options for all Fastly parameters, enabling you to automatically manipulate uploaded images.
+As part of this change, the image VCC now supports type options for all Fastly parameters, enabling you to automatically manipulate uploaded images.
 // tag::highlights[]
 ** The new `@initialTransform` key for JSON customization files enables templates to reset specific VCC values when a new remix is created.
 // end::highlights[]
 For example, in templates for selling items, you might want to reset the product name and description to placeholder text.
-See <<vcc-overview#>>.
+See Visual Customization Controls (VCC).
 // tag::highlights[]
 ** To improve stability and protect against bursts of traffic, requests to Koji backends are now rate limited to 900 requests, per 15 minutes, per IP address.
 // end::highlights[]
@@ -184,13 +184,13 @@ image::project-overview-jan2021.png[Project overivew page]
 To access it, tap the Koji button, and then tap *More > Developer Tools*.
 // tag::highlights[]
 ** The new `CustomMetadata` entitlement enables a custom title and description when sharing a Koji on social media.
-See <<rich-preview-image#>>.
+See <<thumbnail-image#>>.
 // end::highlights[]
 ** In the <<withkoji-vcc-package#>> package, the new `share` method enables templates to open the sharing menu.
 * For all creators, the following new features and navigation updates are available.
 ** A new dashboard view provides access to information and settings for a Koji you create.
 To access it, tap the Koji button, and then tap *Koji Settings*.
-** The built-in <<vcc-overview#,Visual Customization Controls>> (VCCs) were updated with a more streamlined look and feel to improve the remixing experience.
+** The built-in Visual Customization Controls (VCCs) were updated with a more streamlined look and feel to improve the remixing experience.
 ** Sharing your Koji profile page on social media now renders a rich preview.
 * The following bugs have been fixed.
 ** When uploading media in a VCC, it is no longer possible to accidentally dismiss the control and cancel the upload.
