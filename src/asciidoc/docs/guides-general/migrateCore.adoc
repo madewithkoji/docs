@@ -43,7 +43,7 @@ NOTE: For more information on managing remix data without VCCs, see <<_getting_a
 .Example of a `koji.json` file
 [source,JSON]
 ----
-include::../_includes/koji.json[]
+include::../_includes/koji.json[tags=**]
 ----
 
 . If your Koji has remix data and the `InstantRemixing` entitlement is enabled, configure the settings for remixes of older versions.
