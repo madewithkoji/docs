@@ -24,7 +24,7 @@ To develop your Koji project locally, you need these tools:
 
 . The open-source *Git* version control system.
 +
-Koji stores each app and each remixed project as a separate Git repository.
+Koji stores each app and each forked project as a separate Git repository.
 To work on a project locally, you will use Git to download a clone of your project to your local machine.
 You can then make changes and use Git to push the changes back to the origin repository on the Koji servers.
 +
@@ -65,7 +65,7 @@ After a short loading time, the *Project Details* page opens.
 
 == Cloning the Git repository
 
-When you remix a project, Koji creates a new fork of the project's Git repository for you.
+When you fork a project, Koji creates a new fork of the project's Git repository for you.
 This new repository has a unique identifier string.
 If you fork the same project twice, you will get a different identifier string each time.
 The Koji repositories are stored at
