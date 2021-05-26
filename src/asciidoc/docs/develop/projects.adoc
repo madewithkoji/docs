@@ -3,12 +3,12 @@
 :page-description: Description of the directory structure, files, and configuration data in a development project that power the features of a Koji app.
 :includespath: ../_includes
 
-A repository on Koji contains everything that defines your development project, including the source code, assets, and configuration data.
+A Koji repository contains everything that defines your development project, including the source code, assets, and configuration data.
 This topic describes a typical repository structure and defines the configuration data that is required to develop and deploy apps on Koji.
 
 == Source control on Git
 
-The Koji platform uses Git repositories for source control.
+The Koji platform uses Git for source control.
 When you start a new project by forking a scaffold or another app, the Koji platform creates a clone of the underlying repository.
 Your new repository is hosted on Koji's CDN and is associated with the following Git repositories.
 
@@ -34,7 +34,7 @@ upstream        https://projects.koji-cdn.com/e4d6b4bf-781a-4a49-9f0f-1d9cf3bbb7
 
 A typical Koji project contains the `koji.json` configuration file and a README file at the root of the project directory, along with a directory for each service in the app.
 
-In the following example, the app has directories for its backend and frontend services.
+In the following example, the project contains directories for the app's backend and frontend services.
 
 [source,console]
 ----
@@ -54,7 +54,7 @@ README.md
 
 The `koji.json` file defines the instructions for building your code and deploying your app on the Koji platform.
 It also defines the settings that are required for certain platform features.
-To implement these platform features in your app, you initialize the @withkoji/core package with the configuration data in the `koji.json` file.
+To implement these platform features in your app, initialize the @withkoji/core package with the configuration data in the `koji.json` file.
 
 === develop
 
@@ -80,7 +80,7 @@ The `deploy` key defines the configuration instructions for a production deploym
 
 For each service in your app, specify the following properties:
 
-* `output` – Directory where your files will be compiled after the build commands are run.
+* `output` – Directory where the files produced by the build are stored.
 * `type` – One of the following: `static` if the service deploys a static bundle (HTML, CSS, JS) or `dynamic` if the service deploys a server.
 * `commands` – Steps to build your project.
 
@@ -105,7 +105,7 @@ include::{includespath}/koji.json[tag=entitlements,indent=0]
 === remixData
 
 If your app provides configuration options for creators, the `remixData` key defines the default values for those settings.
-To manage remix data in your app, you use the <<core-frontend-remix#, Remix class>> in the @withkoji/core package.
+To manage remix data in your app, use the <<core-frontend-remix#, Remix class>> in the @withkoji/core package.
 To provide placeholder values when creators first open the settings, use the `@@initialTransform` key.
 
 In the following example, the app has a default background color and title that creators can change.
@@ -118,7 +118,7 @@ include::{includespath}/koji.json[tag=remixData,indent=0]
 === @@initialTransform
 
 If your app provides configuration options for creators, the `@@initialTransform` key defines the placeholder values that override the default values when a creator first opens these settings.
-To open the settings in your app, you use the `.createRemix` method in the <<core-frontend-ui-navigate#createRemix, UI/Navigate class>>.
+To open the settings in your app, use the `.createRemix` method in the <<core-frontend-ui-navigate#createRemix, UI/Navigate class>>.
 If a placeholder value is not specified, the default values in the `remixData` key are used.
 
 In the following example, the app resets the title to a placeholder value when creators first configure it.
