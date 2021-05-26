@@ -103,7 +103,7 @@ To https://projects.koji-cdn.com/a70f8329-e89e-48b0-8d85-7658c1542b9f.git
 [NOTE]
 Pushing your changes to origin automatically publishes a new version of your app.
 
-=== Testing your published app
+== Testing your published app
 
 Now that you've published your app, you will want to make sure that it works the same on the Koji server as it does locally.
 
@@ -148,8 +148,8 @@ Fast-forward
  frontend/src/Components/View/Leaderboard.js     | 456 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++--------------------------------------------------------------------------------------------
  frontend/src/Components/View/LeaderboardMini.js | 373 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++---------------------------------------------------------------------------
  3 files changed, 673 insertions(+), 725 deletions(-)
-root@ip-172-31-12-226:/usr/src/app# 
-root@ip-172-31-12-226:/usr/src/app# 
+root@ip-172-31-12-226:/usr/src/app#
+root@ip-172-31-12-226:/usr/src/app#
 ----
 +
 The code in the Koji editor should now be identical to the code in your local repository.
