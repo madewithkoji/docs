@@ -66,9 +66,12 @@ mv *.* ../../src
 cd ../..
 rm -rf temp
 ----
-. Run the start command, to refresh the preview and see the Mortgage Overpayment Calculator.
+. Run the npm install command to update the npm packages, then run the start command, to refresh the preview and see the Mortgage Overpayment Calculator.
 [source,bash]
+----
+npm install
 npm start
+----
 
 == Making a remixable template
 
