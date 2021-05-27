@@ -57,7 +57,7 @@ image::more.png[More menu]
 
 ** *Receipt (buyer)* - Displays a preview of the transaction receipt for the buyer, if you implemented in-app purchases and enabled the dynamic receipts entitlement.
 
-** *Sticker* - Displays how your Koji will look if it's imbedded in another Koji.
+** *Sticker* - Displays how your Koji will look if it's embedded in another Koji.
 
 ** *Thumbnail* - Displays how your Koji will look if it's shared on social media.
 
