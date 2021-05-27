@@ -36,31 +36,37 @@ https://withkoji.com/apps/16fb355a-6471-44df-bf62-d75a4237c13e[Simple React Scaf
 There are many ways to bring existing code into your Koji project.
 If you have private files to import, you could share them using a service and bring them in with something like wget.
 
-For this example, you will import files from a https://github.com/arist0tl3/HTML5-Asteroids[public git repository].
-This sample repository is a fork of a http://www.dougmcinnes.com/2010/05/12/html-5-asteroids[basic Asteroids clone made in vanilla JS].
+For this example, you will import files from a https://github.com/paulhoughton/mortgage.git[public git repository].
+This repository contains the code for Paul Houghton's https://github.com/paulhoughton/mortgage[Mortgage Overpayment Calculator].
 
 . In the Koji editor, open the `frontend` terminal, and cancel the running process (for example, press *Ctrl+C*).
-. Clone the Asteroids repository into a temp folder.
+. Clone the Mortgage Overpayment Calculator repository into a temp folder.
 [source,bash]
-git clone https://github.com/arist0tl3/HTML5-Asteroids temp
-. Go to the temp folder, and move the important files into the parent folder.
+git clone https://github.com/paulhoughton/mortgage.git temp
+. Go to the temp folder, and copy the package.json file to the frontend folder.
+It will replace the package.json file currently in that folder.
 +
 [source,bash]
 ----
 cd temp
-mv game.js index.html ipad.js jquery-1.4.1.min.js vector_battle_regular.typeface.js ../
+cp package.json ../
 ----
-. Go back to the parent folder, and remove the temporary folder.
+. Go to the src folder inside the temp folder, and move all the files from frontend/temp/src into frontend/src.
+They will replace some of the files already in that folder.
 +
 [source,bash]
 ----
-cd ..
+cd src
+mv *.* ../../src
+----
+. In the terminal, go back to the frontend folder, and remove the temporary folder.
++
+[source,bash]
+----
+cd ../..
 rm -rf temp
 ----
-. Replace the existing `index.js` file with the new `game.js` file.
-[source,bash]
-rm index.js && mv game.js index.js
-. Run the start command, to refresh the preview and see the Asteroids game.
+. Run the start command, to refresh the preview and see the Mortgage Overpayment Calculator.
 [source,bash]
 npm start
 
