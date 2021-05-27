@@ -43,22 +43,52 @@ This repository contains the code for Paul Houghton's https://github.com/paulhou
 . Clone the Mortgage Overpayment Calculator repository into a temp folder.
 [source,bash]
 git clone https://github.com/paulhoughton/mortgage.git temp
-. Go to the temp folder, and copy the package.json file to the frontend folder.
-It will replace the package.json file currently in that folder.
-+
-[source,bash]
-----
-cd temp
-cp package.json ../
-----
 . Go to the src folder inside the temp folder, and move all the files from frontend/temp/src into frontend/src.
 They will replace some of the files already in that folder.
 +
 [source,bash]
 ----
-cd src
+cd temp/src
 mv *.* ../../src
 ----
+. In the navigation panel, find the package.json file in the temp folder, and open it in the Koji editor.
+. Copy the following lines to the clipboard.
++
+[source,bash]
+----
+"d3-axis": "^1.0.12",
+"d3-scale": "^2.2.2",
+"d3-selection": "^1.4.0",
+"d3-shape": "^1.3.4",
+"d3-transition": "^1.2.0",
+----
+. Close the file.
+. In the navigation panel, find the package.json file in the frontend/src folder, and open it in the Koji editor.
+. Paste the lines into the `dependencies` section.
+The new contents should look something like this.
++
+[source,bash]
+----
+{
+  "name": "frontend",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "d3-axis": "^1.0.12",
+    "d3-scale": "^2.2.2",
+    "d3-selection": "^1.4.0",
+    "d3-shape": "^1.3.4",
+    "d3-transition": "^1.2.0",
+    "@testing-library/jest-dom": "^5.11.4",
+    "@testing-library/react": "^11.1.0",
+    "@testing-library/user-event": "^12.1.10",
+    "@withkoji/core": "^1.3.0",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1",
+    "react-scripts": "4.0.1",
+    ...
+----
+. Be sure to save the file.
 . In the terminal, go back to the frontend folder, and remove the temporary folder.
 +
 [source,bash]
@@ -66,12 +96,14 @@ mv *.* ../../src
 cd ../..
 rm -rf temp
 ----
-. Run the npm install command to update the npm packages, then run the start command, to refresh the preview and see the Mortgage Overpayment Calculator.
+. Run the npm install command to install the new packages, then run the start command.
++
 [source,bash]
 ----
 npm install
 npm start
 ----
+. Refresh the preview to see the Mortgage Overpayment Calculator.
 
 == Making a remixable template
 
