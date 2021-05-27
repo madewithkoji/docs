@@ -10,35 +10,26 @@ You will make some updates to the game to make it customizable, and then you wil
 
 == Prerequisites
 
-include::{includespath}/prereqs.adoc[tags=gitbasic;remixproc;customvcc]
+include::{includespath}/prereqs.adoc[tags=gitbasic;remixproc]
 
 == Starting from a scaffold
 
-Because every template on Koji is a remix, you will want to find a good place to start from.
+Because every new Koji app is a fork of an existing one, you will want to find a good place to start from.
 There are scaffolds for many existing application frameworks, including Phaser, P5, and React.
 
-In this case, you will be working with a vanilla JS game, so you will use an even simpler starting point.
-
-All games and applications on Koji need to be "built" for production, meaning that they need to be compiled into assets that can be bundled and served statically.
-One solution that is very good at bundling code into a static module is webpack.
-
-Webpack enables you to create a hot-reloading development environment and build your game for production, as well.
-It also allows for transpiling of advanced JavaScript features using Babel.
-The trickiest part about webpack is configuring it correctly.
-Fortunately, there is a scaffold that has already implemented webpack for you.
+In this case, you will be working with a React game, so you will use an even simpler starting point.
 
 . Open the following scaffold.
 +
-https://withkoji.com/~RachelSienko06/simple-webpack-ir-scaffold[Simple Webpack IR Scaffold]
-. {blank}
-include::{includespath}/remixNav.adoc[tag=all]
-+
-After a short loading time, the Koji editor opens.
+https://withkoji.com/apps/16fb355a-6471-44df-bf62-d75a4237c13e[Simple React Scaffold]
+. Click *Fork*. After a short loading time, the app opens in *Project Details*.
+. Click *Open in Code Editor*. After a short loading time, the app opens in the Koji editor.
 . Verify that the project is working.
-.. Open *VCC Explorer > App settings* on the left side of the editor.
-.. Change "Hello world!" to something else.
-+
-If everything is working correctly, you should see the preview on the right update automatically with your new value.
+.. Click the *Remix* tab on the right side of the editor.
+.. Click *Change the background color*.
+.. Select a new background color, and click outside the dialog box. The background color should be changed.
+.. Click *Finish/Show Preview* to save the change.
+.. Click the *Default* tab to verify that the change was saved.
 
 == Bringing in existing code
 
