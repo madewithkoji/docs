@@ -1,0 +1,190 @@
+= Building custom controls
+:page-slug: build-custom-controls
+:page-description: How to build a custom control that captures user input.
+:includespath: ../_includes
+
+The Koji platform provides controls that you can use to capture user input, such as images, text, and sounds.
+In addition, you can create your own custom controls.
+
+Examples of custom controls are tile map editors, sound enhancers, or custom avatar creators, which enhance the app's interactivity.
+
+A custom control is an application in Koji; therefore, you create one the same way you create any other Koji application.
+However, unlike a typical Koji app, a custom control has only one context (Default).
+When triggered, it appears over the parent app like a modal.
+
+Because a custom control does not include other contexts, it cannot be used as a standalone app.
+
+== Creating a custom control
+
+=== Prerequisites
+
+include::{includespath}/prereqs.adoc[tags=webdev;remixproc]
+
+=== Steps
+
+. <<_create_a_new_project,Create a new project and install the @withkoji/core package.>>
+. <<_code_your_custom_control,Code your custom control.>>
+. <<_provide_a_link_to_your_custom_control,Provide a link to your custom control.>>
+. <<_test_your_custom_control,Test your custom control.>>
+
+=== Create a new project
+
+. Fork the https://withkoji.com/@eltesorokoji/a5hv/details/[Custom Control Scaffold].
+
+include::{includespath}/steps-codeeditor.adoc[tag=rename-and-open-in-code-editor]
+
+include::{includespath}/steps-codeeditor.adoc[tag=cli-front-end]
+
+. Press *Ctrl+C* to cancel the running process.
+
+. Install both @withkoji/core and @withkoji/custom-vcc-sdk packages.
++
+[source,bash]
+----
+npm install --save @withkoji/core
+npm install --save @withkoji/custom-vcc-sdk
+----
+
+. Restart the process.
++
+[source,bash]
+----
+npm start
+----
+
+=== Code your custom control
+
+The custom control scaffold already includes most commands required by a custom control.
+However, you can modify the parameters according to your needs.
+
+The `frontend/src/App.js` file contains the following code:
+
+[source,javascript]
+----
+import { useEffect, useState } from 'react';
+import Koji from '@withkoji/core';
+import CustomVcc from '@withkoji/custom-vcc-sdk';  // <1>
+import './App.css';
+
+// Create an instance of CustomVcc.
+const myCustomCtrl = new CustomVcc();  // <2>
+
+function App() {
+
+  // A place to store the value entered.
+  let myStr = '';
+
+  // What to do after the user is done.
+  const finish = async () => {
+    // When a user clicks Save, update the value of the custom control, and save the file.
+    await myCustomCtrl.change(myStr);  // <5>
+    await myCustomCtrl.save();  // <6>
+    // alert( "Finished!" );
+  };
+
+  /*
+  // (Optional) Listen for changes to the consumer/parent app theme and match it in your custom control.
+  const [theme, setTheme] = ...;
+  useEffect(() => {
+    myCustomCtrl.onTheme((theme) => {  // <3>
+      setTheme(theme);
+    });
+  }, []);
+  */
+
+  // Listen for changes to the custom control's current state.
+  useState(() => {
+    myCustomCtrl.onUpdate((myProps) => {  // <3>
+      // alert( "myProps.value is " + myProps.value );  // <7>
+    });
+  });
+
+  // When the custom control has loaded, register it to trigger events from the consumer app.
+  useEffect(() => {
+    myCustomCtrl.register();  // <4>
+  }, []);
+
+  // Call the ready method once (with an empty dependency array)
+  // to let the platform know we have our listeners set up and
+  // to unblock the rendering and lookups for the rest of our application.
+  useEffect(() => {
+    Koji.ready();
+  }, []);
+
+  return (
+    <div className="App">
+      <header className="App-header">
+        <h1>My Custom Control</h1>
+        <p>Enter any text:</p>
+        <input
+          onChange={(e) => {
+            myStr = e.currentTarget.value;
+          }}
+        />
+        <button onClick={finish}>{'Save'}</button>
+      </header>
+    </div>
+  );
+}
+
+export default App;
+
+----
+
+[.callout1]#Imports the `CustomVcc` class from the @withkoji/custom-vcc-sdk package.# +
+[.callout2]#Creates an instance of `CustomVcc`.# +
+[.callout3]#Starts event listeners to listen for updates.# +
+[.callout4]#After the customer control loads, registers it to trigger events from the parent editor.# +
+[.callout5]#When a user changes the value, updates the custom control.# +
+[.callout6]#Saves the file.# +
+[.callout7]#For testing. Displays the value returned by the custom control.#
+
+To customize the forked code for your custom control:
+
+. Modify any of the default settings and parameters.
+. Add code required by your custom control, such as:
++
+* Elements in the `return` section that users can interact with.
+* Commands in the `finish` section to perform additional processing on the captured input.
+. Clean up unneeded code.
+. When done, publish your new custom control app.
+
+Learn more: <<customvcc-reference#>>
+
+=== Provide a link to your custom control
+
+Any app that calls your custom control must provide its `koji-vccs.com` subdomain or its URL.
+
+To get your own subdomain of `koji-vccs.com`,
+include::{includespath}/steps-domains.adoc[tag=get-subdomain]
+. Select the domain `koji-vccs.com`.
+. Enter a custom subdomain name.
+This name will be passed as the `name` parameter to  `Koji.ui.capture.custom`.
+
+You can also <<custom-domains#_using_a_domain_you_own,use a domain you own>>.
+
+=== Test your custom control
+
+. Create a standalone app.
++
+You can use any scaffold for a standalone Koji app, such as the  https://withkoji.com/apps/1065866f-c4b2-4950-9aaa-20faa8e2ac8b[Basic React/Express Scaffold].
+. Add an element, such as a button that triggers the call to the custom control.
+. To call the custom control and capture its value, use `Koji.ui.capture.custom`.
++
+* Using the custom control's `koji-vccs.com` subdomain:
++
+[source,javascript]
+----
+Koji.ui.capture.custom({ name: 'mySubdomain' });
+----
+
+* Using the custom control's URL:
++
+[source,javascript]
+----
+Koji.ui.capture.custom({ url: 'https://example.com/url-to-my-koji-custom-control' });
+----
+
+Example: https://withkoji.com/@eltesorokoji/nb9e[Tester App for Custom Control]
+
+Learn more: <<core-frontend-ui-capture#>>

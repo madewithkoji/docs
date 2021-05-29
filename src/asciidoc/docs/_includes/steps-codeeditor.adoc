@@ -6,6 +6,8 @@
 
     include::{includespath}/steps-codeeditor.adoc[tag=go-to-project-details]
     include::{includespath}/steps-codeeditor.adoc[tag=open-in-code-editor]
+    include::{includespath}/steps-codeeditor.adoc[tag=rename-and-open-in-code-editor]
+    include::{includespath}/steps-codeeditor.adoc[tag=cli-front-end]
 ////
 
 
@@ -21,5 +23,15 @@
 // tag::open-in-code-editor[]
 . In the *Project Details* page, click *Open in Code Editor*.
 // end::open-in-code-editor[]
+
+
+// tag::rename-and-open-in-code-editor[]
+. In the *Project Details* page, rename the project, then click *Open in Code Editor*.
+// end::rename-and-open-in-code-editor[]
+
+
+// tag::cli-front-end[]
+. Click the *frontend* tab of the terminal pane at the bottom.
+// end::cli-front-end[]
 
 // end::all[]
