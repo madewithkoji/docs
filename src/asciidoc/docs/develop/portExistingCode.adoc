@@ -4,9 +4,9 @@
 :includespath: ../_includes
 
 In this tutorial, you will port an existing game to Koji.
-You will make some updates to the game to make it customizable, and then you will build and deploy the game to the Koji platform.
+You will then build and deploy the game to the Koji platform.
 
-*Time*: 30 minutes
+*Time*: 20 minutes
 
 == Prerequisites
 
@@ -17,17 +17,20 @@ include::{includespath}/prereqs.adoc[tags=gitbasic;remixproc]
 Because every new Koji app is a fork of an existing one, you will want to find a good place to start from.
 There are scaffolds for many existing application frameworks, including Phaser, P5, and React.
 
-In this case, you will be working with a React game, so you will use an even simpler starting point.
+In this case, you will be working with a React app.
 
 . Open the following scaffold.
 +
 https://withkoji.com/apps/16fb355a-6471-44df-bf62-d75a4237c13e[Simple React Scaffold]
-. Click *Fork*. After a short loading time, the app opens in *Project Details*.
-. Click *Open in Code Editor*. After a short loading time, the app opens in the Koji editor.
+. Click *Fork*.
+After a short loading time, the app opens in *Project Details*.
+. Click *Open in Code Editor*.
+After a short loading time, the app opens in the Koji editor.
 . Verify that the project is working.
 .. Click the *Remix* tab on the right side of the editor.
 .. Click *Change the background color*.
-.. Select a new background color, and click outside the dialog box. The background color should be changed.
+.. Select a new background color, and click outside the dialog box.
+The background color should change.
 .. Click *Finish/Show Preview* to save the change.
 .. Click the *Default* tab to verify that the change was saved.
 
@@ -62,7 +65,6 @@ mv *.* ../../src
 "d3-shape": "^1.3.4",
 "d3-transition": "^1.2.0",
 ----
-. Close the file.
 . In the navigation panel, find the package.json file in the frontend/src folder and open it in the Koji editor.
 . Paste the lines into the `dependencies` section.
 The new contents should look something like this.
@@ -126,7 +128,6 @@ It should look something like this.
 </html>
 ----
 . Be sure to save the file.
-. Close both index.html files.
 . In the terminal, go back to the frontend folder, and remove the temporary folder.
 +
 [source,bash]
