@@ -37,7 +37,7 @@ There are many ways to bring existing code into your Koji project.
 If you have private files to import, you could share them using a service and bring them in with something like wget.
 
 For this example, you will import files from a https://github.com/paulhoughton/mortgage.git[public git repository].
-This repository contains the code for Paul Houghton's https://github.com/paulhoughton/mortgage[Mortgage Overpayment Calculator].
+This repository contains the code for Paul Houghton's http://paulhoughton.github.io/mortgage/[Mortgage Overpayment Calculator].
 
 . In the Koji editor, open the `frontend` terminal, and cancel the running process (for example, press *Ctrl+C*).
 . Clone the Mortgage Overpayment Calculator repository into a temp folder.
@@ -63,7 +63,7 @@ mv *.* ../../src
 "d3-transition": "^1.2.0",
 ----
 . Close the file.
-. In the navigation panel, find the package.json file in the frontend/src folder, and open it in the Koji editor.
+. In the navigation panel, find the package.json file in the frontend/src folder and open it in the Koji editor.
 . Paste the lines into the `dependencies` section.
 The new contents should look something like this.
 +
@@ -89,6 +89,44 @@ The new contents should look something like this.
     ...
 ----
 . Be sure to save the file.
+. In the navigation panel, find index.html in the temp/public folder and open it in the editor.
+. Copy the following lines to the clipboard.
++
+[source,bash]
+----
+<link
+  rel="stylesheet"
+  href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+/>
+----
+. In the navigation panel, find the index.html in the frontend/public folder and open it in the editor.
+. Paste the lines into the header section of the file.
+It should look something like this.
++
+[source,bash]
+----
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+    />
+    <title>Mortgage Calculator</title>
+  </head>
+  <body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="root"></div>
+  </body>
+</html>
+----
+. Be sure to save the file.
+. Close both index.html files.
 . In the terminal, go back to the frontend folder, and remove the temporary folder.
 +
 [source,bash]
@@ -105,285 +143,16 @@ npm start
 ----
 . Refresh the preview to see the Mortgage Overpayment Calculator.
 
-== Making a remixable template
-
-By design, every template on Koji is remixable.
-In this example, you will add customizable elements to the Asteroids game by leveraging one of the most powerful tools on the platform: Visual Customization Controls (VCCs).
-
-VCCs enable other people who remix your game or application to change things, without looking at one line of code.
-Another way to think about this is "theming" or "reskinning" an application -- the underlying code isn't changing, just the assets.
-
-Let's say you want to make the background color of the game customizable.
-You need to do two things: set up a VCC to handle the user input, and consume the value inside the application.
-
-. To set up the VCC, open *VCC Explorer > App settings* on the left side of the editor, and then click *Code* view at the top of the file.
-. Paste the following code into the file, and then press *Ctrl+S* to save the file.
-+
-[source,json]
-----
-{
-  "settings": {
-    "backgroundColor": "#ffffff"
-  },
-  "@@editor": [
-    {
-      "key": "settings",
-      "name": "App settings",
-      "icon": "⚙️",
-      "source": "settings.json",
-      "fields": [
-        {
-          "key": "backgroundColor",
-          "name": "Background Color",
-          "type": "color"
-        }
-      ]
-    }
-  ]
-}
-----
-+
-This code replaces the existing values because that value won't be used in the template.
-+
-If you switch to the *Visual* view at the top of the file, you'll now see that the editor has rendered a color picker so that the user can choose a new background color.
-+
-If you change the background color, however, you will notice that nothing happens in the template.
-You need to set up the template to consume that value, which you can do with the @withkoji/vcc package.
-+
-[NOTE]
-====
-This package has already been installed in this project.
-If you need to use it in another project, run:
-
-`npm install @withkoji/vcc`
-====
-+
-Because this project is written in vanilla JS, you can use simple dom manipulation to change the background color.
-. Open the `frontend/index.html` file.
-+
-Notice the canvas element, with an `id` of `canvas`.
-You will target this element for the background color.
-. Open the `frontend/index.js` file, and add the following code to the top of the file, below the initial comment.
-+
-[source,javascript]
-----
-const InstantRemixing = require('@withkoji/vcc').InstantRemixing;
-const instantRemixing = new InstantRemixing();
-
-const upgradeBGColor = (bgcolor) => {
-  let canvas = document.getElementById('canvas');
-  if (canvas) {
-    canvas.style.backgroundColor = bgcolor;
-  }
-};
-
-// Set the initial bg color
-upgradeBGColor(instantRemixing.get(['settings', 'backgroundColor']));
-
-// Listen for updates
-instantRemixing.onValueChanged((path, newValue) => {
-  if (path[0] && path[0] === 'settings' && path[1] && path[1] === 'backgroundColor') {
-    upgradeBGColor(newValue);
-  }
-});
-
-let remixing = false;
-
-// Listen for remix mode
-instantRemixing.onSetRemixing((isRemixing) => {
-  remixing = isRemixing;
-});
-
-document.addEventListener('click', (event) => {
-    if (!remixing) return;
-    event.preventDefault();
-    instantRemixing.onPresentControl(['settings', 'backgroundColor']);
-});
-
-instantRemixing.ready();
-----
-+
-This code instantiates InstantRemixing from the @withkoji/vcc package, gets the background color value from the customization file, finds the canvas element, and assigns the custom background color.
-It also monitors changes to the value and updates the background color automatically when a remixer selects a new value.
-Finally, it listens for remix mode and, if a user clicks the template while remixing, displays the backgroundColor VCC.
-. Refresh your preview.
-+
-You should now see the correct background color.
-If you return to the App settings customization, changing the background color should also update your preview automatically.
-
 == Publishing your template
 
-Before publishing your template, you must `require` the local JavaScript files, so that webpack includes them in the bundle.
-You must also add an entitlement to indicate to the Koji platform that the template supports instant remixing.
+You are now ready to test a live build of your project.
 
-. Open the `frontend/index.html` file, and remove the `<script>` tags from the top of the file.
-+
-There should be four of them.
-+
-NOTE: The `script` tag references work in the development environment because the files are available locally.
-To make sure the files are included in the published bundle, you must `require` them, instead.
-
-. Press *Ctrl+S* to save the file.
-. Open the `frontend/index.js` file, and add the following code above the block of code you pasted in the previous section:
-+
-[source,javascript]
-----
-require('jquery-1.4.1.min.js');
-require('vector_battle_regular.typeface.js');
-require('ipad.js');
-----
-. Press *Ctrl+S* to save the file, and make sure the preview is still working.
-. In the `.koji/project` folder, create an `entitlements.json` file with the following code.
-+
-[source,JSON]
-----
-{
-  "entitlements": {
-    "InstantRemixing": true
-  }
-}
-----
-
-. When you are ready to see a live build of your project, click *Publish Now* on the left side of the editor.
+. Click *Publish Now* on the left side of the editor.
 +
 You will be prompted to enter additional information about your template, such as the name and description.
 . Click *Publish New Version*.
 +
 Publishing runs the build commands specified for the project, and then displays a live link to your production template.
-
-== Adding sound effects
-
-After your template has been published, you can enhance it by adding sound effects.
-When you moved files from the original Asteroids repo into your project, the `.wav` files were not included.
-That's because you will allow users to customize those sounds.
-
-. Open the *App settings* customization, and open the *Code* view.
-. Replace the contents with the following code.
-+
-[source,json]
-----
-{
-  "settings": {
-    "gameOptions": {
-      "backgroundColor": "#d3c1c1",
-      "laserSound": "",
-      "explosionSound": ""
-    }
-  },
-  "@@editor": [
-    {
-      "key": "settings",
-      "name": "App settings",
-      "icon": "⚙️",
-      "source": "settings.json",
-      "fields": [
-        {
-          "key": "gameOptions",
-          "name": "Game options",
-          "type": "object<GameOption>",
-          "typeOptions": {
-            "GameOption": {
-              "backgroundColor": {
-                "name": "Background Color",
-                "type": "color"
-              },
-              "laserSound": {
-                "name": "Laser Sound",
-                "type": "sound"
-              },
-              "explosionSound": {
-                "name": "Explosion Sound",
-                "type": "sound"
-              }
-            }
-          }
-        }
-      ]
-    }
-  ]
-}
-----
-. Press *Ctrl+S* to save the file, and then return to the *Visual* view.
-+
-You should now see two additional pickers that allow a user to choose sounds for your game.
-. Open the `frontend/index.js` file, and add the following code below the `upgradeBGColor` function.
-+
-This code sets the initial sounds based on the customization files and adds a function for dynamically loading sounds.
-+
-[source,javascript]
-----
-// Set the initial sounds
-let laserSound = instantRemixing.get(['settings', 'gameOptions', 'laserSound']);
-let explosionSound = instantRemixing.get(['settings', 'gameOptions', 'explosionSound']);
-
-const loadAudio = () => {
-  SFX = {
-    laser: new Audio(laserSound),
-    explosion: new Audio(explosionSound),
-  };
-
-  // preload audio
-  for (var sfx in SFX) {
-    (function () {
-      var audio = SFX[sfx];
-      SFX[sfx] = function () {
-        return audio.play();
-      }
-    })();
-  }
-};
-----
-. Update the `onValueChanged` listener to monitor changes to the sound values.
-+
-[source,javascript]
-----
-// Listen for updates
-instantRemixing.onValueChanged((path, newValue) => {
-  if (path[0] && path[0] === 'settings' && path[1] && path[1] === 'gameOptions') {
-    laserSound = newValue.laserSound;
-    explosionSound = newValue.explosionSound;
-    upgradeBGColor(newValue.backgroundColor);
-    loadAudio();
-  }
-});
-----
-. Press *Ctrl+F* to open the finder tool, and enter `.wav` to search for the WAV files and audio preloading that the game was using.
-+
-It should look like the following example.
-+
-[source,javascript]
-----
-SFX = {
-  laser:     new Audio('39459__THE_bizniss__laser.wav'),
-  explosion: new Audio('51467__smcameron__missile_explosion.wav')
-};
-
-// preload audio
-for (var sfx in SFX) {
-  (function () {
-    var audio = SFX[sfx];
-    SFX[sfx] = function () {
-      return audio.play();
-    }
-  })();
-}
-----
-
-. Replace the code you found with a call to your new `loadAudio` function.
-+
-[source,javascript]
-----
-loadAudio();
-----
-. Press *Ctrl+S* to save the file.
-+
-The template now references the user-selected values for those sounds.
-You can return to the *App settings* configuration, and use the sound pickers to replace these sounds with whatever you want.
-You can even try just recording some sounds yourself.
-For example, you can try "pew" for the laser and "pow!" for the explosion.
-+
-Changes to the sound choices should trigger a refresh of your template, and you should be able to hear the new sounds.
-. Publish your changes to release an updated version of your template.
 
 == Wrapping up
 
