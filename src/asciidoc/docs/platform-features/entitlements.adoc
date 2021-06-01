@@ -7,14 +7,14 @@ Entitlements define the configuration settings for the Koji platform features in
 For example, to allow creators to configure an app, you must enable the `InstantRemixing` entitlement.
 To sell products from an app, you must define the product properties, such as name and price, in the `InAppPurchases` entitlement.
 
-To configure entitlements for your app, you define properties and values in the `entitlements` key of the `koji.json` file.
+To configure entitlements for your app, define properties and values in the `entitlements` key of the `koji.json` file.
 When you initialize the @withkoji/core package with this configuration data, the Koji platform applies the entitlement settings to the running app.
 
 The following platform entitlements are available for Koji apps.
 
 == Contexts
 
-Your app can provide different experiences for different situations, or "contexts."
+Your app can provide different experiences for different modes, called *contexts*.
 To enable certain contexts, you must enable the associated entitlement.
 To determine the current context of a running app, use <<core-frontend-playerstate#context, Koji.playerState.context>>.
 
@@ -71,7 +71,7 @@ Default is `false`.
 
 == In-app purchases
 
-To enable financial transactions in the app (in-app purchases), configure the `InAppPurchases` object.
+To enable financial transactions in the app, configure the `InAppPurchases` object.
 
 [source,json]
 ----
@@ -97,7 +97,7 @@ To enable financial transactions in the app (in-app purchases), configure the `I
   }
 }
 ----
-<1> `InAppPurchases.enabled` – _Boolean_, Enables in-app purchases in the app.
+<1> `InAppPurchases.enabled` – _Boolean_, Enables in-app purchases.
 Default is `false`.
 <2> `InAppPurchases.products` – _Array_, Array of objects defining each product that is available for purchase.
 Products are registered or updated when the app is deployed.
@@ -105,12 +105,12 @@ Products are registered or updated when the app is deployed.
 Used to look up the product when the user makes a purchase and to resolve receipts on the backend of the app.
 <4> `InAppPurchases.products[_index_].name` – _String_, Name displayed when a user is prompted to purchase the product.
 Can be a path to the creator's custom name.
-<5> `InAppPurchases.products[_index_].price` – _Number_, Price of the product in USD, for a product with a set price.
+<5> `InAppPurchases.products[_index_].price` – _Number_, Price of the product in USD, if the product has a set price.
 Can be a path to the creator's custom price.
-This value must be greater than `0`.
+To register a product with a set price, this value must be greater than `0`.
 To define a product without a set price, enable `priceIsUnset` instead.
 <6> `InAppPurchases.products[_index_].priceIsUnset` – _Boolean_, Defines a product without a set price.
-For example, a donation or "pay what you want" price.
+For example, a donation or pay-what-you-want price.
 Default is `false`.
 To define a product with a set price, use `price` instead.
 <7> `InAppPurchases.products[_index_].quantity` – _Number_, Maximum number of times the product can be sold.
@@ -120,7 +120,7 @@ If quantity is not present or is `0`, the product will never sell out.
 Possible values are `email`, `phone`, or `address`.
 This value is stored as a custom attribute on the <<core-backend-iap#IapReceipt, transaction receipt>>.
 <9> `InAppPurchases.products[_index_].isConsumable` – _Boolean_, Enables the product to be purchased more than once.
-<10> `InAppPurchases.products[_index_].dynamicReceipt` – _Boolean_, Enables the transaction receipt to display routes in the app.
+<10> `InAppPurchases.products[_index_].dynamicReceipt` – _Boolean_, Enables the transaction receipt to display the `receipt` context of the app.
 If enabled, use <<core-frontend-playerstate#context, Koji.playerState.context>> to detect the `receipt` context, and use <<core-frontend-playerstate#receiptType, Koji.playerState.receiptType>> to determine whether the buyer or the seller is viewing the receipt.
 <11> `InAppPurchases.products[_index_].captureOnPurchase` – _Boolean_, Indicates whether to capture transactions immediately.
 Default is `true`.
@@ -132,8 +132,8 @@ Default is `0`.
 
 == Navigation
 
-Your can enable or disable some platform navigation features for your app.
-If your app <<_contexts, allows creators to configure it>>, you can control the navigation for the configuration experience.
+You can enable or disable some platform navigation features for your app.
+If your app <<_contexts, is configurable>>, you can control the navigation for the configuration experience.
 
 [source,json]
 ----
@@ -145,12 +145,12 @@ If your app <<_contexts, allows creators to configure it>>, you can control the 
   }
 }
 ----
-<1> `InstantRemixingNativeNavigation` – _Boolean_, Hides the platform action for advancing from configuration to preview, so that the app can control this action.
+<1> `InstantRemixingNativeNavigation` – _Boolean_, Hides the platform action for advancing from configuration to preview, so that the app can provide this action.
 Default is `false`.
 +
 NOTE: If this entitlement is enabled, the app must use <<core-frontend-remix#finish, Koji.remix.finish>> to advance to the preview.
 
-<2> `InstantRemixingNativeCancel` – _Boolean_, Hides the platform action for cancelling a remix, so that the app can control this action.
+<2> `InstantRemixingNativeCancel` – _Boolean_, Hides the platform action for cancelling a remix, so that the app can provide this action.
 Default is `false`.
 +
 NOTE: If this entitlement is enabled, the app must use <<core-frontend-remix#cancel, Koji.remix.cancel>> to implement a custom cancel action.
