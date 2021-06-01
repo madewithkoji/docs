@@ -26,13 +26,6 @@ https://withkoji.com/apps/16fb355a-6471-44df-bf62-d75a4237c13e[Simple React Scaf
 After a short loading time, the app opens in *Project Details*.
 . Click *Open in Code Editor*.
 After a short loading time, the app opens in the Koji editor.
-. Verify that the project is working.
-.. Click the *Remix* tab on the right side of the editor.
-.. Click *Change the background color*.
-.. Select a new background color, and click outside the dialog box.
-The background color should change.
-.. Click *Finish/Show Preview* to save the change.
-.. Click the *Default* tab to verify that the change was saved.
 
 == Bringing in existing code
 
