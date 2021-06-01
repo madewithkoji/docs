@@ -39,7 +39,7 @@ NOTE: If this entitlement is enabled, the app must use <<core-frontend-ui-naviga
 
 <3> `AdminContext` – _Boolean_, Enables a distinct experience for the creator (`admin` context).
 For example, fulfillment for product sales apps or content moderation for social post apps.
-If enabled, the creator can access the admin page by going to *App > More (...) > Admin Page*.
+If enabled, the creator can access the admin page by going to *App > ... > Admin Page*.
 Default is `false`.
 <4> `StickerContext` – _Boolean_, Enables a distinct experience when the app is embedded in another Koji app (`sticker` context).
 Default is `false`.
