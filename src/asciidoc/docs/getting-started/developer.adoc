@@ -43,7 +43,7 @@ For help starting your app on Koji, check out these resources:
 
 * <<start-tutorial#>> – Step-by-step tutorial for learning fundamental concepts and developing your first project on Koji.
 * <<withkoji-koji-core#>> – Package reference for implementing core platform features in your apps.
-* https://withkoji.com/create/for-developers[Developer scaffolds in the Template Store] – Starting points for an entirely new web app on Koji.
+* https://withkoji.com/create/for-developers[Developer scaffolds in the App Store] – Starting points for an entirely new web app on Koji.
 
 == What's new for developers
 

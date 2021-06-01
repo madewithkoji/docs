@@ -1,0 +1,74 @@
+= App development process
+:page-slug: app-dev-process
+:page-description: Overview of how to develop a Koji app, from forking an existing app, to making your app configurable and enabling platform features, to deploying, testing, and distributing it.
+:includespath: ../_includes
+
+The Koji platform is designed for developers like you to build and distribute configurable web apps for content creators.
+On Koji, creators can discover your apps, and then add them to their Link in Bio profiles and share them on social media.
+As more creators use your Koji apps, you can make more revenue, reach more users, and build your business.
+
+The following steps describe the general process for developing a configurable app on Koji and distributing it to content creators.
+
+[.callout1]#Choose a starting point.# +
+[.callout2]#Develop your app.# +
+[.callout3]#Deploy your app.# +
+[.callout4]#Test your app.# +
+[.callout5]#Distribute your app.#
+
+== Choose a starting point
+
+A good starting point will provide a foundation that lets you start coding your app's unique features more quickly.
+For example, you might start from a https://withkoji.com/create/for-developers[developer scaffold] that implements your favorite JavaScript framework, or from an app that already has some functionality, such as a backend database.
+
+. To create a new project, fork an existing app that allows developers to fork it.
+
+.. In the App Store, find your desired starting app and click *View*.
+
+.. In the app's detail page, click the ellipses icon and choose *Fork*.
++
+A copy of the project is created in your Koji account.
+
+. Decide how you want to edit your code – in the Koji code editor or on your local machine.
+* The Koji code editor is a browser-based integrated development environment (IDE) with built-in development, administration, and testing tools for Koji apps.
+Learn more: <<editor#>>
+* The Koji platform supports working locally in your preferred suite of development tools.
+Learn more: <<local-development#>>
+
+== Develop your app
+
+test
+
+=== Define configuration data
+
+. Develop & deploy instructions
+. Configurable remixData default & initial settings
+. Platform entitlements
+
+=== Develop the frontend
+
+. Install or update the @withkoji/core package.
+. Import and initialize in your code
+. Add functionality (make it configurable)
+. Koji.ready
+
+=== Develop the backend
+
+. Install
+. Bundle koji.json
+. Import
+. Middleware
+. Add functionality
+
+== Deploy your app
+
+Publish from the editor or push locally
+
+Decide whether it's open-source
+
+== Test your app
+
+
+
+== Distribute your app
+
+== Next steps
