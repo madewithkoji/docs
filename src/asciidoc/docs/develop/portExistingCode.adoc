@@ -47,7 +47,9 @@ They will replace some of the files already in that folder.
 cd temp/src
 mv *.* ../../src
 ----
-. Mortgage Overpayment Calculator uses some functions from the D3.js JavaScript library to draw graphs. These functions must be listed as dependencies in the `package.json` file. In the navigation panel, find the `package.json` file in the `temp` folder, and open it in the Koji editor.
+. In the navigation panel, find the `package.json` file in the `temp` folder, and open it in the Koji editor.
++
+Mortgage Overpayment Calculator uses some functions from the D3.js JavaScript library to draw graphs. These functions must be listed as dependencies in the `package.json` file. 
 . Copy the following lines to the clipboard.
 +
 [source,bash]
@@ -58,7 +60,7 @@ mv *.* ../../src
 "d3-shape": "^1.3.4",
 "d3-transition": "^1.2.0",
 ----
-. In the navigation panel, find the `package.json` file in the `frontend/src` folder and open it in the Koji editor.
+. In the navigation panel, find the `package.json` file in the `frontend` folder and open it in the Koji editor.
 . Paste the lines into the `dependencies` section.
 The new contents should look something like this.
 +
@@ -151,4 +153,3 @@ Publishing runs the build commands specified for the project, and then displays 
 Hopefully, this tutorial has given you a better understanding of how to bring existing code onto the Koji platform.
 As a next step, you could make your app customizable by allowing creators to change the title or the color scheme, for example.
 And don't forget to add your app to the App Store so that creators can add it to their profiles!
-
