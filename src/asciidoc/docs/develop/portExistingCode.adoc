@@ -148,4 +148,7 @@ Publishing runs the build commands specified for the project, and then displays 
 
 == Wrapping up
 
-Hopefully, this tutorial has given you a better understanding of how to bring existing code onto the Koji platform, and integrate it with the tools that make Koji awesome.
+Hopefully, this tutorial has given you a better understanding of how to bring existing code onto the Koji platform.
+As a next step, you could make your app customizable by allowing creators to change the title or the color scheme, for example.
+And don't forget to add your app to the App Store so that creators can add it to their profiles!
+
