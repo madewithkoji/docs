@@ -60,8 +60,7 @@
         "title": "Default Title",
         "description": "{{remixData.title}}"
       }
-    },
-    "AdminContext": true
+    }
   }
 // end::entitlements[]
 }

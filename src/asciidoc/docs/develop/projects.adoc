@@ -96,7 +96,7 @@ include::{includespath}/koji.json[tag=deploy,indent=0]
 The `entitlements` key configures the Koji platform features that are implemented in your app.
 For a list of available entitlements, go to <<entitlements#>>.
 
-In the following example, the app allows creators to configure it (`InstantRemixing`), hides the default platform navigation for this configuration (`InstantRemixingNativeNavigation`), defines custom sharing data (`CustomMetadata`), and enables a dedicated experience for the creator (`AdminContext`).
+In the following example, the app allows creators to configure it (`InstantRemixing`), hides the default platform navigation for this configuration (`InstantRemixingNativeNavigation`), and defines custom sharing data (`CustomMetadata`).
 
 [source,JSON]
 ----
