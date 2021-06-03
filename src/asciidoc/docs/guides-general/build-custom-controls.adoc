@@ -27,7 +27,7 @@ include::{includespath}/prereqs.adoc[tags=webdev;remixproc]
 . <<_provide_a_link_to_your_custom_control,Provide a link to your custom control.>>
 . <<_test_your_custom_control,Test your custom control.>>
 
-=== Create a new project
+==== Create a new project
 
 . Fork the https://withkoji.com/@eltesorokoji/a5hv/details/[Custom Control Scaffold].
 
@@ -52,7 +52,7 @@ npm install --save @withkoji/custom-vcc-sdk
 npm start
 ----
 
-=== Code your custom control
+==== Code your custom control
 
 The custom control scaffold already includes most commands required by a custom control.
 However, you can modify the parameters according to your needs.
@@ -151,19 +151,41 @@ To customize the forked code for your custom control:
 
 Learn more: <<customvcc-reference#>>
 
-=== Provide a link to your custom control
+==== Provide a link to your custom control
 
-Any app that calls your custom control must provide its `koji-vccs.com` subdomain or its URL.
+Any app that uses your custom control must call `Koji.ui.capture.custom` and provide a `koji-vccs.com` subdomain or URL that points to the custom control.
 
-To get your own subdomain of `koji-vccs.com`,
-include::{includespath}/steps-domains.adoc[tag=get-subdomain]
-. Select the domain `koji-vccs.com`.
-. Enter a custom subdomain name.
+* You can determine the assigned URL of the custom control.
++
+.Learn how ...
+[%collapsible]
+====
+include::{includespath}/steps-codeeditor.adoc[tag=go-to-project-details-base]
+include::{includespath}/steps-codeeditor.adoc[tag=view-published-koji]
+. Note the URL of the displayed page.
+====
+
+* You can get your own subdomain of `koji-vccs.com`.
++
+.Learn how ...
+[%collapsible]
+====
+include::{includespath}/steps-domains.adoc[tag=open-published-custom-control]
++
+include::{includespath}/steps-domains.adoc[tag=open-published-how]
+
+include::{includespath}/steps-domains.adoc[tag=menu-app-custom-domain,click-add-new-domain,select-subdomain]
+
+include::{includespath}/steps-domains.adoc[tag=create-koji-vccs-com-subdomain]
++
 This name will be passed as the `name` parameter to  `Koji.ui.capture.custom`.
 
-You can also <<custom-domains#_using_a_domain_you_own,use a domain you own>>.
+include::{includespath}/steps-domains.adoc[tag=click-register]
+====
 
-=== Test your custom control
+* You can also <<custom-domains#_using_a_domain_you_own,use a domain you own>>.
+
+==== Test your custom control
 
 . Create a standalone app.
 +
@@ -177,8 +199,8 @@ You can use any scaffold for a standalone Koji app, such as the  https://withkoj
 ----
 Koji.ui.capture.custom({ name: 'mySubdomain' });
 ----
-
-* Using the custom control's URL:
++
+* Using any URL that points to the custom control:
 +
 [source,javascript]
 ----
@@ -187,4 +209,7 @@ Koji.ui.capture.custom({ url: 'https://example.com/url-to-my-koji-custom-control
 
 Example: https://withkoji.com/@eltesorokoji/nb9e[Tester App for Custom Control]
 
-Learn more: <<core-frontend-ui-capture#>>
+== Related resources
+
+* <<customvcc-reference#d>>
+* <<core-frontend-ui-capture#>>

@@ -5,18 +5,29 @@
     :includespath: ../_includes
 
     include::{includespath}/steps-codeeditor.adoc[tag=go-to-project-details]
+    include::{includespath}/steps-codeeditor.adoc[tag=go-to-project-details-base]
+    include::{includespath}/steps-codeeditor.adoc[tag=go-to-project-details-more]
     include::{includespath}/steps-codeeditor.adoc[tag=open-in-code-editor]
     include::{includespath}/steps-codeeditor.adoc[tag=rename-and-open-in-code-editor]
+    include::{includespath}/steps-codeeditor.adoc[tag=view-published-koji]
     include::{includespath}/steps-codeeditor.adoc[tag=cli-front-end]
 ////
 
 
 // tag::all[]
 
+
 // tag::go-to-project-details[]
+
+// tag::go-to-project-details-base[]
 . Go to the *Project Details* page.
+// end::go-to-project-details-base[]
+
+// tag::go-to-project-details-more[]
 * If you're creating a new project, you can fork https://withkoji.com/create/for-developers[any scaffold] or any Koji project that allows forking.
 * If you're editing an existing project, go to https://withkoji.com/developer/projects[your Developer Portal page] and click the project to edit.
+// end::go-to-project-details-more[]
+
 // end::go-to-project-details[]
 
 
@@ -28,6 +39,11 @@
 // tag::rename-and-open-in-code-editor[]
 . In the *Project Details* page, rename the project, then click *Open in Code Editor*.
 // end::rename-and-open-in-code-editor[]
+
+
+// tag::view-published-koji[]
+. In the *Project Details* page, click *View Published Koji*.
+// end::view-published-koji[]
 
 
 // tag::cli-front-end[]
