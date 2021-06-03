@@ -30,8 +30,7 @@ image::videoVCC.png[title="Video VCC"]
   "name": "My Video",
   "type": "video",
   "typeOptions": {
-    "hls": true,
-    "estimatePoses": true
+    "hls": true
   }
 }
 ----
