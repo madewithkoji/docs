@@ -271,7 +271,7 @@ app.get('/test', (req, res) => {
 
 The Koji feed enables users to browse available templates, moving them from off screen or out of focus, into the main window of the feed.
 
-To ensure a template can be displayed correctly in the Koji feed, you must implement the `FeedSdk` and enable the `FeedEvents` entitlement.
+To ensure a template can be displayed correctly in the Koji feed, you must implement the `FeedSdk` and enable the entitlement.
 
 
 [.hcode, id="new FeedSdk", reftext="new FeedSdk"]
@@ -436,42 +436,20 @@ Enables distinct template experiences for different viewing contexts.
 ==== Parameter values
 
 * `about` – Manages the context for the remix landing page (About page).
-To use this context:
-** *Define an About page experience* – Enable the `AboutContext` entitlement, and define a view intended for the About page.
-+
-WARNING: When this entitlement is enabled, the template must use <<.createRemix>> to trigger a remix from the About page, or the Koji will not be remixable.
 
-** *Load the About page* – Load the About page when the URL includes the parameter `context=about`.
 * `admin` – Manages functionality designed for the creator of a Koji.
-To use this context:
-** *Define an admin experience* – Enable the `AdminContext` entitlement, and define a view intended for the creator of the Koji.
-For example, enable the creator to respond to questions from users.
-+
-NOTE: When the `AdminContext` entitlement is enabled, the creator can access the admin view by going to *Koji > Admin Portal*.
-
-** *Load the admin experience* – Load the admin experience only when viewed with the URL parameter `context=admin` and when the current user is the creator of the Koji.
-+
-IMPORTANT: To determine whether the current user is the creator, use the <<withkoji-koji-auth-sdk#>> package.
 
 * `remix` – Manages the context for Kojis during a remix.
-To use this context, load the remixing experience when the URL includes the parameter `context=remix`.
-* `sticker` – Manages the context for Kojis embedded in iframes in other Kojis.
-To use this context:
-** *Embed a Koji as a sticker* – Append `?context=sticker` to the `src` URL to display the embedded Koji with a transparent background and handle post messages between the child and parent Kojis.
-For example, the parent Koji can display an updated experience in response to a successful transaction on the embedded child Koji.
-** *Define a sticker experience* – Enable the `StickerContext` entitlement, and define a view that loads only when the Koji is viewed as a sticker (with the URL parameter `context=sticker`).
-For example, the sticker view might include a click handler that opens the full Koji in a modal window.
 
-==== Examples
+* `sticker` – Manages the context for Kojis embedded in iframes in other Kojis.
+
+==== Example
 
 [source, JavaScript]
 ----
-// Embed a Koji as a sticker
-<iframe src="${url}?context=sticker" />
-
-// Load the admin experience
-if (searchParams.context === 'admin') {
-  return <Admin />;
+// Load the remix experience
+if (searchParams.context === 'remix') {
+  return <Remix />;
 }
 ----
 

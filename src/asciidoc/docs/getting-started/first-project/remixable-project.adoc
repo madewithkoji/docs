@@ -72,8 +72,7 @@ Open the `koji.json` file and add a few lines to the end of the file so that it 
   },
   "entitlements": {
     "InstantRemixing": true,
-    "InstantRemixingNativeNavigation": true,
-    "FeedEvents": true
+    "InstantRemixingNativeNavigation": true
   },
   "remixData": {
     "spinningImageSrc": "https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg"

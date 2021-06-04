@@ -15,7 +15,7 @@ The following platform entitlements are available for Koji apps.
 == Configuration and navigation
 
 To allow creators to configure your app, you must enable the associated entitlement.
-Your app can also enable or disable some platform navigation features.
+You can also enable or disable some platform navigation features.
 
 
 [source,json]
@@ -24,8 +24,7 @@ Your app can also enable or disable some platform navigation features.
   "entitlements": {
     "InstantRemixing": true, <1>
     "InstantRemixingNativeNavigation": true, <2>
-    "InstantRemixingNativeCancel": true, <3>
-    "FeedEvents": true <4>
+    "InstantRemixingNativeCancel": true <3>
   }
 }
 ----
@@ -41,8 +40,6 @@ NOTE: If this entitlement is enabled, the app must use <<core-frontend-remix#fin
 Default is `false`.
 +
 NOTE: If this entitlement is enabled, the app must use <<core-frontend-remix#cancel, Koji.remix.cancel>> to implement a custom cancel action.
-
-<4> `FeedEvents` – _Boolean_, Enables the app to be displayed in a platform feed.
 
 == Custom metadata
 

@@ -52,7 +52,6 @@
 // tag::entitlements[]
   "entitlements": {
     "InstantRemixing": true,
-    "FeedEvents": true,
     "InstantRemixingNativeNavigation": true,
     "CustomMetadata": {
       "enabled": true,
