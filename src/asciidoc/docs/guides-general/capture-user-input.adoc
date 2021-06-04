@@ -1,0 +1,61 @@
+= Capturing user input
+:page-slug: capture-user-input
+:page-description: How to capture user input using `Koji.ui.capture` controls.
+:includespath: ../_includes
+
+Koji provides a set of predefined user-input controls that you can use in your app's front end to capture information and content from your users.
+
+These controls are found in `Koji.ui.capture` in the @withkoji/core package.
+
+== Using predefined user-input controls
+
+To use a predefined user-input control in your app,
+
+* Install @withkoji/core in the *frontend* terminal tab.
++
+.Learn how...
+[%collapsible]
+====
+include::{includespath}/steps-codeeditor.adoc[tag=cli-front-end]
+include::{includespath}/steps-codeeditor.adoc[tag=terminal-stop-process]
+include::{includespath}/steps-codeeditor.adoc[tag=terminal-install-withkoji-core-package]
+include::{includespath}/steps-codeeditor.adoc[tag=terminal-restart-process]
+====
+
+* Import @withkoji/core in your front-end code.
++
+[source,javascript]
+----
+import Koji from '@withkoji/core';
+----
+
+* Call the appropriate `Koji.ui.capture` control.
++
+[source,javascript]
+----
+myVariable = await Koji.ui.capture.<control-name>( <control-parameters> )
+----
++
+<<core-frontend-ui-capture#audio,`.audio`>> – Prompts the user to select or upload an audio file. +
+<<core-frontend-ui-capture#color,`.color`>> – Prompts the user to select or specify a color. +
+<<core-frontend-ui-capture#custom,`.custom`>> – Prompts the user to interact with a custom control. +
+<<core-frontend-ui-capture#file,`.file`>> – Prompts the user to upload a file of any type. +
+<<core-frontend-ui-capture#image,`.image`>> – Prompts the user to select or upload an image file. +
+<<core-frontend-ui-capture#link,`.link`>> – Prompts the user to enter an external URL. +
+<<core-frontend-ui-capture#media,`.media`>> – Prompts the user to select, specify, or upload an image, a file, an audio, or a video. +
+<<core-frontend-ui-capture#range,`.range`>> – Prompts the user to select a numeric range. +
+<<core-frontend-ui-capture#select,`.select`>> – Prompts the user to select from a predefined list of options. +
+<<core-frontend-ui-capture#video,`.video`>> – Prompts the user to select or upload a video file.
++
+Example:
++
+[source,javascript]
+----
+const myFile = await Koji.ui.capture.file({}, true);
+----
+
+== Related resources
+
+* <<core-frontend-ui-capture#>>
+* <<core-frontend-ui-present#>>
+* <<build-custom-controls#>>

@@ -206,6 +206,10 @@
               "slug": "custom-domains"
             },
             {
+              "name": "Capturing user input",
+              "slug": "capture-user-input"
+            },
+            {
               "name": "Building custom VCCs",
               "slug": "build-custom-vcc"
             }
