@@ -817,9 +817,9 @@ See <<_secrets>>.
 |===
 
 ==== Context
-A Koji can provide different experiences for different situations, or "contexts."
-For example, you might provide a different experience during a remix than when the template is running.
-Or, you might provide an admin experience with tools that are only available for the creator of the Koji.
+
+A Koji can provide different experiences for different modes, called *contexts*.
+For example, you might provide a different experience during a configuration (remix) than when the template is running.
 
 To detect the current context with the deprecated packages, you would parse the URL for a query parameter.
 In the @withkoji/core package, the context is available from `Koji.playerState`.

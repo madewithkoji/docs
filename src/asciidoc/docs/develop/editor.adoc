@@ -38,7 +38,7 @@ If you made changes to your project files xref:work-locally.adoc[outside the Koj
 
 === Previews in the code editor
 
-If your template includes different contexts or modes, you can select which context is displayed in the preview pane.
+If your template includes different contexts, you can select which context is displayed in the preview pane.
 
 * *Default* - Displays a fully functional preview of your Koji.
 The *Default* context is always enabled.
@@ -48,19 +48,12 @@ The *Default* context is always enabled.
 * *More* - Displays a menu of additional previews.
 +
 image::more.png[More menu]
-+
-** *About* - Displays an About page, if you enabled the associated entitlement.
-
-** *Admin* - Displays an Admin page, if you enabled the associated entitlement.
 
 ** *Receipt (seller)* - Displays a preview of the transaction receipt for the seller, if you implemented in-app purchases and enabled the dynamic receipts entitlement.
 
 ** *Receipt (buyer)* - Displays a preview of the transaction receipt for the buyer, if you implemented in-app purchases and enabled the dynamic receipts entitlement.
 
-** *Sticker* - Displays how your Koji will look if it's imbedded in another Koji.
-
 ** *Thumbnail* - Displays how your Koji will look if it's shared on social media.
-
 
 === Previews outside the code editor
 
@@ -70,7 +63,6 @@ You can also preview a Koji outside the code editor.
 Scan this code to preview the Koji on your mobile device.
 
 * The remote staging button image:{imagesDir}/remote-preview.svg[Remote staging button] opens a preview of your Koji in a new browser tab.
-
 
 === Debugging
 
