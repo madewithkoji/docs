@@ -169,6 +169,7 @@ module.exports = {
         attributes: {
           showtitle: true,
           imagesdir: '/images',
+          experimental: true,
         },
         catalog_assets: true,
         converterFactory: TemplateConverter,
