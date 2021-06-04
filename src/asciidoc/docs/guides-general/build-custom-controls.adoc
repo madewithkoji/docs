@@ -22,7 +22,7 @@ include::{includespath}/prereqs.adoc[tags=webdev;remixproc]
 
 === Steps
 
-. <<_create_a_new_project,Create a new project and install the @withkoji/core package.>>
+. <<_create_a_new_project,Create a new project and install the required packages.>>
 . <<_code_your_custom_control,Code your custom control.>>
 . <<_provide_a_link_to_your_custom_control,Provide a link to your custom control.>>
 . <<_test_your_custom_control,Test your custom control.>>
@@ -35,7 +35,7 @@ include::{includespath}/steps-codeeditor.adoc[tag=rename-and-open-in-code-editor
 
 include::{includespath}/steps-codeeditor.adoc[tag=cli-front-end]
 
-. Press *Ctrl+C* to cancel the running process.
+include::{includespath}/steps-codeeditor.adoc[tag=terminal-stop-process]
 
 . Install both @withkoji/core and @withkoji/custom-vcc-sdk packages.
 +
@@ -45,12 +45,7 @@ npm install --save @withkoji/core
 npm install --save @withkoji/custom-vcc-sdk
 ----
 
-. Restart the process.
-+
-[source,bash]
-----
-npm start
-----
+include::{includespath}/steps-codeeditor.adoc[tag=terminal-restart-process]
 
 ==== Code your custom control
 

@@ -11,6 +11,9 @@
     include::{includespath}/steps-codeeditor.adoc[tag=rename-and-open-in-code-editor]
     include::{includespath}/steps-codeeditor.adoc[tag=view-published-koji]
     include::{includespath}/steps-codeeditor.adoc[tag=cli-front-end]
+    include::{includespath}/steps-codeeditor.adoc[tag=terminal-stop-process]
+    include::{includespath}/steps-codeeditor.adoc[tag=terminal-restart-process]
+    include::{includespath}/steps-codeeditor.adoc[tag=terminal-install-withkoji-core-package]
 ////
 
 
@@ -49,5 +52,31 @@
 // tag::cli-front-end[]
 . Click the *frontend* tab of the terminal pane at the bottom.
 // end::cli-front-end[]
+
+
+// tag::terminal-stop-process[]
+. Press *Ctrl+C* to cancel the running process.
+// end::terminal-stop-process[]
+
+
+// tag::terminal-restart-process[]
+. Restart the process.
++
+[source,bash]
+----
+npm start
+----
+// end::terminal-restart-process[]
+
+
+// tag::terminal-install-withkoji-core-package[]
+. Install @withkoji/core.
++
+[source,bash]
+----
+npm install --save @withkoji/core
+----
+// end::terminal-install-withkoji-core-package[]
+
 
 // end::all[]

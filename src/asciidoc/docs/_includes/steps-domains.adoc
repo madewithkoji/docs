@@ -35,7 +35,7 @@
 
 
 // tag::menu-app-custom-domain[]
-. While viewing your custom control, go to *App* > *...* > *Custom Domain*.
+. While viewing your custom control, go to menu: App[... > Custom Domain].
 // end::menu-app-custom-domain[]
 
 
@@ -45,7 +45,7 @@
 
 
 // tag::select-subdomain[]
-. Select *Subdomain* and click *Next*.
+. Select *Subdomain* and click btn:[Next].
 // end::select-subdomain[]
 
 
@@ -55,7 +55,7 @@
 
 
 // tag::click-register[]
-. Click *Register*.
+. Click btn:[Register].
 // end::click-register[]
 
 
