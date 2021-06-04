@@ -36,11 +36,15 @@ image::appdetails-jun2021.png[App Store listing]
 The Koji wallet appears as a payment option only for a creator who has received funds.
 For other users, the Koji wallet will no longer be visible.
 
+* Fixed a bug where custom controls would show a loading indicator but would never load.
+
 * The `estimatePoses` option is no longer supported for video captures.
 Apps can process camera input directly, if needed.
 
 * The following contexts and associated entitlements have been deprecated: `admin`, `about`, and `sticker`.
 Apps can provide admin interfaces by managing roles with the Identity class in the @withkoji/core package.
+
+* The `FeedEvents` entitlement has been deprecated.
 // tag::highlights[]
 
 === Core package updates
