@@ -28,9 +28,8 @@ You can assign as many domains as you want to a Koji if they are domains you own
 
 == Using a subdomain with a Koji root domain
 
-. Open the Koji and click the *Koji* button.
-. Go to *Manage this Koji > Open Creator Dashboard > Custom Domains*.
-. Click *New*.
+. Open the Koji and go to menu:App[... > Custom Domain].
+. Click btn:[Add New Domain].
 . Select *Subdomain*.
 . Click *Next*.
 . Select a *root domain*.
@@ -54,9 +53,8 @@ Simply register your domain in your project, and then use your domain provider's
 
 === Registering your domain in your project
 
-. Open the Koji and click the Koji button.
-. Go to *Manage this Koji > Open Creator Dashboard > Custom Domains*.
-. Click *New*.
+. Open the Koji and go to menu:App[... > Custom Domain].
+. Click btn:[Add New Domain].
 . Select *A domain you own*.
 . Click *Next*.
 . Enter your complete domain name.
@@ -96,8 +94,7 @@ If you have questions about how to configure your domain's DNS records, please c
 
 == Releasing a domain
 
-. Open the Koji and click the Koji button.
-. Go to *Manage this Koji > Open Creator Dashboard > Custom Domains*.
+. Open the Koji and go to menu:App[... > Custom Domain].
 . Click the domain name you want to release.
 . Click *Release domain*.
 . Click *Yes, release*.

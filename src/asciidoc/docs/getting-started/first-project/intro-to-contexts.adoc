@@ -114,7 +114,7 @@ Clicking the *Default* tab causes `context === 'remix'` to be false, so the cont
 
 == Additional contexts
 
-There are additional contexts for more specific template use cases, including contexts to help with purchase and receipt flows, administrator access, and even a context to help improve the presentation of a rich preview image.
+There are additional contexts for more specific template use cases, including contexts to help with purchase and receipt flows and to improve the presentation of a rich preview image.
 
 As you explore more of the platform and features that Koji offers, you’ll encounter more of these contexts, as well as some best practices about how to make them an integral part of the user experience.
 
