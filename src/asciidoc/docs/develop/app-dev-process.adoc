@@ -40,7 +40,10 @@ test
 
 === Define configuration data
 
-. Develop & deploy instructions
+Most Koji projects define the required configuration data in a `koji.json` file at the root of the project directory.
+In your app, initialize the @withkoji/core package with the configuration data in the `koji.json` file.
+
+. Define the instructions for building your code and deploying your app on the Koji platform.
 . Configurable remixData default & initial settings
 . Platform entitlements
 
