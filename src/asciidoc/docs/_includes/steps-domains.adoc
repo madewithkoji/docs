@@ -11,7 +11,6 @@
     include::{includespath}/steps-domains.adoc[tag=click-add-new-domain]
     include::{includespath}/steps-domains.adoc[tag=select-subdomain]
     include::{includespath}/steps-domains.adoc[tag=create-koji-vccs-com-subdomain]
-    include::{includespath}/steps-domains.adoc[tag=click-register]
 ////
 
 
@@ -25,7 +24,7 @@
 
 // tag::open-published-custom-control[]
 . Open the published custom control.
-// end::open-published-app[]
+// end::open-published-custom-control[]
 
 
 // tag::open-published-how[]
@@ -35,7 +34,7 @@
 
 
 // tag::menu-app-custom-domain[]
-. While viewing your custom control, go to menu: App[... > Custom Domain].
+. While viewing your custom control, go to menu:App[... > Custom Domain].
 // end::menu-app-custom-domain[]
 
 
@@ -50,13 +49,8 @@
 
 
 // tag::create-koji-vccs-com-subdomain[]
-. Select `koji-vccs.com` as the root domain and enter a subdomain.
+. Select `koji-vccs.com` as the root domain, enter a subdomain, and click btn:[Register].
 // end::create-koji-vccs-com-subdomain[]
-
-
-// tag::click-register[]
-. Click btn:[Register].
-// end::click-register[]
 
 
 // end::all[]

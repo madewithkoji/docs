@@ -55,7 +55,7 @@
 
 
 // tag::terminal-stop-process[]
-. Press *Ctrl+C* to cancel the running process.
+. Press kbd:[Ctrl+C] to cancel the running process.
 // end::terminal-stop-process[]
 
 

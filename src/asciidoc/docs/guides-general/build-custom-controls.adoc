@@ -9,27 +9,19 @@ In addition, you can create your own custom controls.
 Examples of custom controls are tile map editors, sound enhancers, or custom avatar creators, which enhance the app's interactivity.
 
 A custom control is an application in Koji; therefore, you create one the same way you create any other Koji application.
-However, unlike a typical Koji app, a custom control has only one context (Default).
+However, it cannot be used as a standalone app.
 When triggered, it appears over the parent app like a modal.
 
-Because a custom control does not include other contexts, it cannot be used as a standalone app.
+This topic outlines the steps to create your own custom control.
 
-== Creating a custom control
 
-=== Prerequisites
+== Prerequisites
 
 include::{includespath}/prereqs.adoc[tags=webdev;remixproc]
 
-=== Steps
+== Create a new project
 
-. <<_create_a_new_project,Create a new project and install the required packages.>>
-. <<_code_your_custom_control,Code your custom control.>>
-. <<_provide_a_link_to_your_custom_control,Provide a link to your custom control.>>
-. <<_test_your_custom_control,Test your custom control.>>
-
-==== Create a new project
-
-. Fork the https://withkoji.com/@eltesorokoji/a5hv/details/[Custom Control Scaffold].
+. Fork the https://withkoji.com/@eltesorokoji/a5hv/[Scaffold | Custom Control FO React] scaffold.
 
 include::{includespath}/steps-codeeditor.adoc[tag=rename-and-open-in-code-editor]
 
@@ -37,17 +29,16 @@ include::{includespath}/steps-codeeditor.adoc[tag=cli-front-end]
 
 include::{includespath}/steps-codeeditor.adoc[tag=terminal-stop-process]
 
-. Install both @withkoji/core and @withkoji/custom-vcc-sdk packages.
+. Install the @withkoji/custom-vcc-sdk package.
 +
 [source,bash]
 ----
-npm install --save @withkoji/core
 npm install --save @withkoji/custom-vcc-sdk
 ----
 
 include::{includespath}/steps-codeeditor.adoc[tag=terminal-restart-process]
 
-==== Code your custom control
+== Code your custom control
 
 The custom control scaffold already includes most commands required by a custom control.
 However, you can modify the parameters according to your needs.
@@ -126,66 +117,56 @@ export default App;
 
 ----
 
-[.callout1]#Imports the `CustomVcc` class from the @withkoji/custom-vcc-sdk package.# +
-[.callout2]#Creates an instance of `CustomVcc`.# +
-[.callout3]#Starts event listeners to listen for updates.# +
-[.callout4]#After the customer control loads, registers it to trigger events from the parent editor.# +
-[.callout5]#When a user changes the value, updates the custom control.# +
-[.callout6]#Saves the file.# +
-[.callout7]#For testing. Displays the value returned by the custom control.#
+<1> Imports the `CustomVcc` class from the @withkoji/custom-vcc-sdk package.
+<2> Creates an instance of `CustomVcc`.
+<3> Starts event listeners to listen for updates.
+<4> After the customer control loads, registers it to trigger events from the parent editor.
+<5> When a user changes the value, updates the custom control.
+<6> Saves the file.
+<7> For testing. Displays the value returned by the custom control.
 
 To customize the forked code for your custom control:
 
-. Modify any of the default settings and parameters.
-. Add code required by your custom control, such as:
+* Modify any of the default settings and parameters.
+* Add code required by your custom control, such as:
 +
-* Elements in the `return` section that users can interact with.
-* Commands in the `finish` section to perform additional processing on the captured input.
-. Clean up unneeded code.
-. When done, publish your new custom control app.
+** Elements in the `return` section that users can interact with.
+** Commands in the `finish` section to perform additional processing on the captured input.
+* Clean up unneeded code.
+* When done, publish your new custom control app.
 
-Learn more: <<customvcc-reference#>>
+Learn more: <<customvcc-reference#, CustomVcc>>
 
-==== Provide a link to your custom control
+== Provide a link to your custom control
 
-Any app that uses your custom control must call `Koji.ui.capture.custom` and provide a `koji-vccs.com` subdomain or URL that points to the custom control.
+Any app that uses your custom control must call `Koji.ui.capture.custom` with a `koji-vccs.com` subdomain.
 
-* You can determine the assigned URL of the custom control.
-+
-.Learn how ...
-[%collapsible]
-====
-include::{includespath}/steps-codeeditor.adoc[tag=go-to-project-details-base]
-include::{includespath}/steps-codeeditor.adoc[tag=view-published-koji]
-. Note the URL of the displayed page.
-====
+To get your own subdomain of `koji-vccs.com`,
 
-* You can get your own subdomain of `koji-vccs.com`.
-+
-.Learn how ...
-[%collapsible]
-====
 include::{includespath}/steps-domains.adoc[tag=open-published-custom-control]
 +
 include::{includespath}/steps-domains.adoc[tag=open-published-how]
 
-include::{includespath}/steps-domains.adoc[tag=menu-app-custom-domain,click-add-new-domain,select-subdomain]
+include::{includespath}/steps-domains.adoc[tag=menu-app-custom-domain]
+
+include::{includespath}/steps-domains.adoc[tag=click-add-new-domain]
+
+include::{includespath}/steps-domains.adoc[tag=select-subdomain]
 
 include::{includespath}/steps-domains.adoc[tag=create-koji-vccs-com-subdomain]
 +
-This name will be passed as the `name` parameter to  `Koji.ui.capture.custom`.
+The subdomain name you enter will be passed as the `name` parameter to `Koji.ui.capture.custom`.
 
-include::{includespath}/steps-domains.adoc[tag=click-register]
-====
+== Test your custom control
 
-* You can also <<custom-domains#_using_a_domain_you_own,use a domain you own>>.
+You can fork the https://withkoji.com/@eltesorokoji/nb9e/[Example | Tester App for Custom Control] and customize it as your standalone Koji app. It includes a button that triggers the custom control.
 
-==== Test your custom control
+If you prefer to use another scaffold,
 
-. Create a standalone app.
-+
-You can use any scaffold for a standalone Koji app, such as the  https://withkoji.com/apps/1065866f-c4b2-4950-9aaa-20faa8e2ac8b[Basic React/Express Scaffold].
+. Fork any scaffold from the https://withkoji.com/create/for-developers[App Store] to create a standalone app.
+
 . Add an element, such as a button that triggers the call to the custom control.
+
 . To call the custom control and capture its value, use `Koji.ui.capture.custom`.
 +
 * Using the custom control's `koji-vccs.com` subdomain:
@@ -202,9 +183,7 @@ Koji.ui.capture.custom({ name: 'mySubdomain' });
 Koji.ui.capture.custom({ url: 'https://example.com/url-to-my-koji-custom-control' });
 ----
 
-Example: https://withkoji.com/@eltesorokoji/nb9e[Tester App for Custom Control]
-
 == Related resources
 
-* <<customvcc-reference#d>>
-* <<core-frontend-ui-capture#>>
+* <<customvcc-reference#, CustomVCC>>
+* <<core-frontend-ui-capture#, Frontend / UI / Capture>>
