@@ -43,7 +43,7 @@ Click any build version to view or download the logs.
 
 image::versions.png[Version history]
 
-TIP: If you are <<use-git#,working locally>> and pushing updates to Koji with git, you can use this view to verify that your latest build was deployed.
+TIP: If you are <<local-development#,working locally>> and pushing updates to Koji with git, you can use this view to verify that your latest build was deployed.
 
 == Managing instant remix versions
 

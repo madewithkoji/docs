@@ -1,156 +1,143 @@
 = Project structure and configuration
 :page-slug: projects
-:page-description: Description of the unique files and elements in a Koji project that power the magic of customization.
+:page-description: Description of the directory structure, files, and configuration data in a development project that power the features of a Koji app.
+:includespath: ../_includes
 
-Koji provides you with an environment for developing and publishing an application in your browser.
-The project environment includes a terminal connected to a running container with all the familiar tools, the same code editor that powers VSCode, and tools to help you deploy and publish your application to https://withkoji.com[withkoji.com].
+A Koji repository contains everything that defines your development project, including the source code, assets, and configuration data.
+This topic describes a typical repository structure and defines the configuration data that is required to develop and deploy apps on Koji.
 
-== Project directory
+== Source control on Git
 
-The project directory at `/usr/src/app` includes a Git repository for your project with two remotes.
+The Koji platform uses Git for source control.
+When you start a new project by forking a scaffold or another app, the Koji platform creates a clone of the underlying repository.
+Your new repository is hosted on Koji's CDN and is associated with the following Git repositories.
 
-. `origin`: The git remote from which projects are built and deployed.
-. `upstream`: The git remote from which projects are forked (a repository on GitHub for example).
+* `origin` – Git repository for your new project.
+Your app is built and deployed from this repository.
+To work locally, you can clone the repository and push changes to it.
+* `upstream` – Git repository from which your project was forked.
+To propose changes to the app you forked, you can create pull requests for this repository.
 
-Run `git remote -v` to see the remotes in your project.
+If you open your project in the Koji code editor, the development environment includes the project directory at `/usr/src/app` and Git remotes for these repositories.
+To see the remotes, you can open a terminal tab and run `git remote -v`.
 
-[source,bash]
+[source,console]
 ----
 root@c8ce449b5538:/usr/src/app# git remote -v
 origin  https://projects.koji-cdn.com/8a129043-4c22-4be7-875f-38b422008695.git (fetch)
 origin  https://projects.koji-cdn.com/8a129043-4c22-4be7-875f-38b422008695.git (push)
 upstream        https://projects.koji-cdn.com/e4d6b4bf-781a-4a49-9f0f-1d9cf3bbb7ff.git (fetch)
 upstream        https://projects.koji-cdn.com/e4d6b4bf-781a-4a49-9f0f-1d9cf3bbb7ff.git (push)
-read instructions for syncing with an upstream repo here
 ----
 
-== README
+== Directory structure and contents
 
-The `README.md` file is required at the top level your project directory.
-This markdown file documents the tech stack and any relevant information to aid someone working with the code.
+A typical Koji project contains the `koji.json` configuration file and a README file at the root of the project directory, along with a directory for each service in the app.
 
-== .koji directory
-
-The `.koji` directory is where your configuration and script files live, including project configuration for development and deploy and customizations for Visual Customization Controls (VCCs).
+In the following example, the project contains directories for the app's backend and frontend services.
 
 [source,console]
 ----
-.
-├── customization
-│   ├── about_customization.md
-│   ├── buttons.json
-│   ├── colors.json
-│   ├── images.json
-│   ├── metadata.json
-│   ├── settings.json
-│   └── sounds.json
-├── project
-│   ├── about_project.md
-│   ├── deploy.json
-│   └── develop.json
+backend
+├── src
+├── package-lock.json
+├── package.json
+frontend
+├── src
+├── package-lock.json
+├── package.json
+koji.json
+README.md
 ----
 
-[IMPORTANT]
-====
-The only required files for Koji to work are:
+== Configuration data in koji.json
 
-* `README.md`: Displays project information in the project overview.
-* `develop.json`: Lets the Koji editor know how your project development works (project path, port, start command, and events).
-* `deploy.json`: Lets deploy know where your project build works (build path, port, build commands).
-====
+The `koji.json` file defines the instructions for building your code and deploying your app on the Koji platform.
+It also defines the settings that are required for certain platform features.
+To implement these platform features in your app, initialize the @withkoji/core package with the configuration data in the `koji.json` file.
 
-=== develop.json
+=== develop
 
-`.koji/project/develop.json` contains development configuration for your project.
+The `develop` key defines the configuration instructions for a development environment, such as the Koji code editor.
+
+For each service in your app, specify the following properties:
+
+* `path` – Source code directory for the service.
+* `port` – Port on which the development server will run.
+* `startCommand` – Script that initiates a development build.
+Define the script in the `package.json` file of the service directory.
+
+In the following example, the development configuration defines frontend and backend services.
 
 [source,JSON]
 ----
-{
-  "develop": {
-    "frontend": {
-      "path": "frontend",
-      "port": 8080,
-      "startCommand": "npm start"
-    }
-  }
-}
+include::{includespath}/koji.json[tag=develop,indent=0]
 ----
 
-In this file the important things to look at are:
+=== deploy
 
-* `path`: Indicates the directory for your frontend and backend.
-* `port`:  Matches the port on which your development server is running.
-* `startCommand` for your application is placed in the start script of your package.json (for npm start to work).
+The `deploy` key defines the configuration instructions for a production deployment of your app.
 
-=== deploy.json
+For each service in your app, specify the following properties:
 
-`.koji/project/deploy.json` contains deploy configuration for your project.
+* `output` – Directory where the files produced by the build are stored.
+* `type` – One of the following: `static` if the service deploys a static bundle (HTML, CSS, JS) or `dynamic` if the service deploys a server.
+* `commands` – Steps to build your project.
+
+In the following example, the deployment configuration defines a static frontend and a dynamic backend service.
 
 [source,JSON]
 ----
-{
-  "deploy":  {
-    "frontend":  {
-      "output":  "frontend/build",
-      "commands":  [
-        "cd frontend",
-        "npm install",
-        "export NODE_ENV=production && npm run compile"
-      ],
-    },
-    "backend":  {
-      "output":  "backend/dist",
-      "type": "dynamic",
-      "commands":  [
-        "cd backend",
-        "npm install",
-        "export NODE_ENV=production && npm run compile"
-      ]
-    }
-  }
-}
+include::{includespath}/koji.json[tag=deploy,indent=0]
 ----
 
-In `deploy.json` make sure to check that:
+=== entitlements
 
-* `output`: Indicates the directory where your files will be compiled after the `"commands"` list is done.
+The `entitlements` key configures the Koji platform features that are implemented in your app.
 
-* `type`: Is either `static` if the service deploys a static bundle (HTML, CSS, JS), or `dynamic` if the service deploys a server.
-* `commands`: Lists the steps to build your project.
-
-The .json files in this directory each have a very specific schema that controls how the Koji editor deals with files.
-develop.json deals with setting up your editor so you will have the best editing experience and deploy.json tells Koji how to turn your code into a live app.
-These files have the following schema:
-
-=== .koji/customization
-
-The JSON files in this directory define the names, types, configuration options, and default values for VCCs used in the template.
-Every file created in this directory is displayed in the VCC Explorer section in the left navigation pane.
-
-The following file would be saved as `example.json` and displayed in the left pane as *Example*:
+In the following example, the app allows creators to configure it (`InstantRemixing`), hides the default platform navigation for this configuration (`InstantRemixingNativeNavigation`), defines custom sharing data (`CustomMetadata`), and enables a dedicated experience for the creator (`AdminContext`).
 
 [source,JSON]
 ----
-{
-  "example":  {
-    "param":  "this is the value of the param"
-  },
-  "@@editor":  [
-    {
-      "key":  "example",
-      "name":  "Example",
-      "icon":  "😄",
-      "source":  "example.json",
-      "fields":  [
-        {
-          "key":  "param",
-          "name":  "An Example Parameter",
-          "type":  "text"
-        }
-      ]
-    }
-  ]
-}
+include::{includespath}/koji.json[tag=entitlements,indent=0]
 ----
 
-If you are using the <<withkoji-vcc-package#>> package, you can access this property with `instantRemixing.get(['example', 'param'])`.
+=== remixData
+
+If your app provides configuration options for creators, the `remixData` key defines the default values for those settings.
+To manage remix data in your app, use the <<core-frontend-remix#, Remix class>> in the @withkoji/core package.
+To provide placeholder values when creators first open the settings, use the `@@initialTransform` key.
+
+In the following example, the app has a default background color and title that creators can change.
+
+[source,JSON]
+----
+include::{includespath}/koji.json[tag=remixData,indent=0]
+----
+
+=== @@initialTransform
+
+If your app provides configuration options for creators, the `@@initialTransform` key defines the placeholder values that override the default values when a creator first opens these settings.
+To open the settings in your app, use the `.createRemix` method in the <<core-frontend-ui-navigate#createRemix, UI/Navigate class>>.
+If a placeholder value is not specified, the default values in the `remixData` key are used.
+
+In the following example, the app resets the title to a placeholder value when creators first configure it.
+
+[source,JSON]
+----
+include::{includespath}/koji.json[tag=initialTransform,indent=0]
+----
+
+=== metadata
+
+Optionally, the `metadata` key can be used to override the following properties.
+
+include::{includespath}/interface-KojiConfig.adoc[tag=KojiMetadataProps]
+
+If this key is not specified, the platform provides this metadata at runtime, which enables your app to use the creator's current username and profile picture without collecting or managing it as remix data.
+
+== README.md
+
+The `README.md` file is required at the top level your project directory.
+This markdown file should document the tech stack and any relevant information to aid someone working with the code.
+This file is particularly important when you are developing a scaffold or another app that other developers can fork to start their projects.
