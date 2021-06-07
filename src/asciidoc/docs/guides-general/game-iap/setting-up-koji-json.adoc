@@ -40,7 +40,6 @@ Find the following section of code.
 "entitlements": {
     "InstantRemixing": true,
     "InstantRemixingNativeNavigation": true,
-    "FeedEvents": true,
     "CustomMetadata": {
         "enabled": true,
         "metadata": {
@@ -62,7 +61,6 @@ Add a new property called `InAppPurchases`, as follows.
 "entitlements": {
     "InstantRemixing": true,
     "InstantRemixingNativeNavigation": true,
-    "FeedEvents": true,
     "CustomMetadata": {
         "enabled": true,
         "metadata": {

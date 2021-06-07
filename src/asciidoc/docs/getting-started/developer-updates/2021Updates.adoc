@@ -8,6 +8,108 @@ For the latest updates, see <<developer-updates#>>.
 include::../../_includes/tip-discord-server.adoc[tags=*]
 
 // tag::highlights[]
+== April
+
+=== New developer game tutorials
+
+On the developer site, a new set of tutorials are available to help developers quickly learn how to build games on Koji.
+
+* <<game-intro#>>
+* <<game-iap-intro#>>
+// end::highlights[]
++
+image::game-preview-image.png[Falling objects game, width=50%]
+// tag::highlights[]
+
+=== Integrated Core reference docs
+
+The reference documentation for the <<withkoji-koji-core#, @withkoji/core package>> is now integrated into the Koji developer site.
+// end::highlights[]
+
+* All of Koji's developer documentation in one place – search everything to find what you need.
+* Deep links from the reference documentation to the related package code on Github.
+* Organized by class for easier navigation with less clicking.
+* Updated code examples for all methods.
+
+=== Core package updates
+
+The following features are now available in the @withkoji/core package.
+
+[NOTE]
+include::../../_includes/coreReleaseNotes.adoc[tag=all]
+
+// tag::highlights[]
+
+==== Freeze Keys for data caching
+
+Freeze Keys enable you to cache and purge content in Koji's CDN, dramatically improving the speed and reliability of backend data requests in your Kojis.
+// end::highlights[]
+
+* Make a request directly to the Koji CDN and receive a cached response, instead of waiting for the backend to warm up and serve the request.
+* Use the `x-koji-freeze-key` header to instruct the CDN to serve a cached response and `KojiBackend.Utilities.unfreeze` to reset the cache.
+* Manage multiple routes and cache endpoints.
+* The platform automatically handles remix scoping, so you can maintain one set of logic in your templates.
+// tag::highlights[]
+
+==== File uploads from Koji frontends
+
+The new `Koji.ui.upload` class enables file uploads from the frontend of your Koji directly to your project's CDN.
+You can use this method to upload media created or captured by the user as part of the template experience.
+For example, recording a video or drawing on a canvas.
+
+==== Additional changes
+
+* Define products that hold transactions in a pending state until you manually capture them.
+* Add watermarks or specify cropping constraints for uploaded videos.
+// end::highlights[]
+* Various fixes and features to improve the usability and functionality of the Core package methods.
+
+=== Koji platform updates
+
+==== Developer experience enhancements for in-app purchases
+// tag::highlights[]
+
+* In-app purchase products are now registered or updated on any deploy, instead of only when you publish the template from the Koji editor.
+* In the debugger, you can now drill into the details of in-app purchase products and receipts.
+// end::highlights[]
+This feature improves debugging for product definition updates, as well as for the use of custom attributes on receipts.
+
+==== Analytics and usability improvements
+
+* Live analytics are now available for your Kojis.
+To see a live count of users (accurate to within 20 seconds), simply tap the *Koji* button on any of your Kojis.
++
+image::live-analytics-apr2021.png[Live analytics]
+
+* The main menu, which appears when you tap your profile picture, now shows lifetime views and revenue for your Kojis, as well as more clearly calls out your pending balance.
+* On the *Your Kojis* page, the *Revenue* chart now provides the same interactive controls as the *Views* chart.
+* The color picker control now saves your three most recently used colors.
+* Tapping *Cancel* or *Back* when editing a Koji now returns to the Koji instead of the home page.
+* The Koji editor has improved performance for a better experience when editing your code.
+
+==== Changes to withdrawals, refunds, and fees
+// tag::highlights[]
+
+* Template developers can now determine the fee percentage for in-app purchases in their templates.
+The developer receives 60% of the fees collected for all of these transactions.
+// end::highlights[]
+* Automatic withdrawals are now available for some countries outside the US.
+If automatic withdrawals are not supported for your country, you can https://withkoji.atlassian.net/servicedesk/customer/portal/1[contact the Koji team] and we can process your withdrawal manually.
+* For refunds of purchases made with a credit or debit card, the balance is now refunded to that debit or credit card, instead of your Koji wallet.
+* Evolution/lineage payments are no longer applied.
+* Paid subscriptions are no longer available.
+
+==== Bug fixes
+
+* Changing your username from account settings now correctly regenerates your profile.
+* Editing a Koji now correctly updates its thumbnail or sharing image.
+Sharing images that were previously cached by other services, such as iMessage or Facebook, still might not update.
+* In the *Project Details* page, builds now show when they are completed without the need to refresh the page.
+Also, build logs now live stream correctly.
+* Links to pages on the `withkoji.com` that are not Kojis no longer open in popover views.
+* Various layout and styling fixes.
+// tag::highlights[]
+
 == March
 
 === March 17
@@ -17,9 +119,10 @@ include::../../_includes/tip-discord-server.adoc[tags=*]
 When an upgrade is available, the creator can tap *Upgrade this Koji* on the Koji's analytics page.
 ** Your Koji profile page has been updated to a new link-in-bio profile that is powered by a Koji template.
 The new profile builder features fully customizable backgrounds, buttons, and fonts and provides the same powerful analytics that are built into your Kojis.
+// end::highlights[]
 +
 image::profileMar2021.png[]
-// end::highlights[]
+
 ** The navigation experience in Kojis has been improved with updates to the modal windows for embedded Kojis, removal of the confirmation prompt when linking to another website, and support for `koji.to` links.
 ** The onboarding flow for new users has been redesigned for a better welcome experience to Koji.
 ** The experiences for publishing a remix, using asset packs and associated editing tools, and selecting a color have been redesigned for better usability.
@@ -33,13 +136,13 @@ Existing magic links will continue to work; however, they cannot be updated.
 // tag::highlights[]
 * Paid remixes are a new way for developers to monetize their work through Koji.
 You can set the remix price when you publish a template in the store, and then earn when someone remixes your template.
+// end::highlights[]
 * The koji VCC type has been renamed to the link VCC type.
 The link type now supports an extended result format, which returns the page title, description, and a thumbnail URL that is hosted on the Koji CDN.
+// tag::highlights[]
 * You can now hide the default action for cancelling a remix, enabling the template to implement its own navigation controls.
-// end::highlights[]
 To hide the default action, enable the new `InstantRemixingNativeCancel` entitlement.
 To implement a custom cancel action, use the new `remix.cancel` method in the @withkoji/core package.
-// tag::highlights[]
 * The following features are now available in the <<withkoji-koji-core#, @withkoji/core package>>.
 ** The new `ui.navigate.edit` method enables a template to programmatically enter an edit experience.
 ** In PlayerState, two new methods (`onFocus` and `onBlur`) and one new property (`hasFocus`) enable templates to respond to the focus state of the Koji.
@@ -58,9 +161,9 @@ include::../../_includes/coreReleaseNotes.adoc[tag=all]
 === March 2
 
 * On the developer site, a new set of <<start-tutorial#,quick start tutorials>> are available to help developers get going quickly on Koji.
+// end::highlights[]
 * The https://withkoji.atlassian.net/servicedesk/customer/portal/1[Koji Support] page is now available for logging bugs and requests with the Koji team.
 This short form enables better tracking and quicker resolution of problems.
-// end::highlights[]
 +
 For the quickest answers to general questions, continue to check out the https://help.withkoji.com/[Help Center] or connect with the https://discord.com/invite/9egkTWf4ec[community on Discord].
 * The following features are now available in the https://withkoji.com/create[Template Store].
@@ -79,11 +182,11 @@ image::templateDetails-mar2021.png[Template Details page]
 == February
 
 === February 22
+// end::highlights[]
 
-* In the https://withkoji.com/create[Template Store], the new *Variants* feature enables better template discovery.
+* In the Template Store, the new *Variants* feature enables better template discovery.
 With this new feature, template developers can curate a list of related templates.
 For example, provide a version that includes email capture alongside a version that does not.
-// end::highlights[]
 * The *Template Details* view is now available for community-developed templates.
 ** To create a new template, go to the https://withkoji.com/developer[developer portal] and click *My Templates*.
 You can define and manage the details for your templates, including the base Koji, descriptive text, videos, screenshots, and variants.
@@ -108,14 +211,16 @@ New styles and menu options improve the experience of navigating around the Koji
 // tag::highlights[]
 
 === February 1
+// end::highlights[]
 
 * The Koji developer community has a new channel.
 You can watch the https://withkoji.com/community[welcome video here].
+// tag::highlights[]
 * The new <<withkoji-koji-core#, @withkoji/core package>> includes everything you need to easily access platform services in your Kojis.
+// end::highlights[]
 ** Implement core platform features in your Koji template, including remixing, in-app purchases, UI controls, messaging, and identity services.
 ** Use straightforward methods that are scoped for frontend or backend services, with less boilerplate code.
 ** Manage remix data with greater flexibility, without the need for specialized JSON customization files.
-// end::highlights[]
 ** As part of this change, many existing packages are now deprecated.
 <<packages-overview#_deprecated_packages, Deprecated packages>> are still available for backwards compatibility; however, developers are encouraged to use the new core package for all new projects and updates going forward.
 * To enhance the developer experience, the following updates are now available on the Koji platform.
@@ -126,32 +231,26 @@ You can watch the https://withkoji.com/community[welcome video here].
 * The new *Template Details* page provides a place for remixers to learn about a template before they create their own version.
 // end::highlights[]
 ** To make a new Koji from the Template Details, tap *Remix*, or tap *Preview* and then *Remix*.
-// tag::highlights[]
 +
 image::templateDetails-feb2021.png[Template Details page]
-// end::highlights[]
 +
 This view is currently available for Koji-provided templates, and it will be rolled out to community-developed templates over the next few releases.
 ** For a catalog of available templates, go to https://withkoji.com/create.
 // tag::highlights[]
 
 == January
+// end::highlights[]
 
 === January 15
 
 * For template developers, the following features are now available on the Koji platform.
 ** The new media VCC provides a single control for customizing image, file, sound, and video values.
-// end::highlights[]
 You can configure which of the underlying media types to allow as well as the options for each type.
 As part of this change, the image VCC now supports type options for all Fastly parameters, enabling you to automatically manipulate uploaded images.
-// tag::highlights[]
 ** The new `@initialTransform` key for JSON customization files enables templates to reset specific VCC values when a new remix is created.
-// end::highlights[]
 For example, in templates for selling items, you might want to reset the product name and description to placeholder text.
 See Visual Customization Controls (VCC).
-// tag::highlights[]
 ** To improve stability and protect against bursts of traffic, requests to Koji backends are now rate limited to 900 requests, per 15 minutes, per IP address.
-// end::highlights[]
 Rate limits are applied per remix, so a user could make up to 900 requests each to multiple Koji backends in 15 minutes.
 Users who send too many requests in quick succession might see error messages with a status code of `429`.
 ** To improve performance, the Koji debugger now debounces value updates.
@@ -165,9 +264,9 @@ Users who send too many requests in quick succession might see error messages wi
 +
 (where `name` is your user name on Koji).
 ** New caching and performance improvements were added to enhance content delivery.
-// tag::highlights[]
 
 === January 8
+// tag::highlights[]
 
 * A new https://help.withkoji.com/[Help Center] is now available for finding answers to general platform questions, such as how withdrawals work.
 * For template developers, the following new features and navigation updates are available.
@@ -176,10 +275,8 @@ Users who send too many requests in quick succession might see error messages wi
 For example, open the debugger, or view the build logs, commit history, and other git info.
 As part of this enhancement, the *My Repositories* page has changed to *My Projects* and has an updated layout.
 To access the project overview for one of your templates, go to https://withkoji.com/developer/projects[My Projects] and click the desired project.
-// tag::highlights[]
 +
 image::project-overview-jan2021.png[Project overivew page]
-// end::highlights[]
 ** The new Developer Tools view shows the advanced details and metadata about any Koji.
 To access it, tap the Koji button, and then tap *More > Developer Tools*.
 // tag::highlights[]

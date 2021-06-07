@@ -31,46 +31,7 @@ This middleware maintains the environment variables for instant remixes, ensurin
 
 == Iap
 
-To enable in-app purchases for your Koji template, you must implement the `Iap` class and define the `InAppPurchases` object in the `.koji/project/entitlements.json` file.
-
-.Entitlements
-[source,json]
-----
-{
-  "entitlements": {
-    "InAppPurchases": {
-      "enabled": true,
-      "products": [
-        0 : {
-          "sku": "productID", <1>
-          "name": "{{scope.nameKey}}", <2>
-          "price": "{{scope.priceKey}}", <3>
-          "quantity": "{{scope.quantity}}",<4>
-          "fulfillment": "email", <5>
-          "isConsumable": true, <6>
-          "dynamicReceipt":true <7>
-        }
-      ]
-    }
-  }
-}
-----
-<1> `sku` – Identifier for the product to purchase.
-<2> `name` – Description displayed when a user is prompted to purchase the product.
-Can be a string or a path to the Visual Customization Control (VCC) that defines the description.
-<3> `price` – Path to the VCC that defines the purchase price, if applicable.
-Alternatively, use `"priceIsUnset": true` to define a product without a set price.
-For example, a donation or "pay what you want" price.
-<4> `quantity` – (Optional) Maximum number of times the product can be sold.
-After the inventory threshold is reached, further purchase attempts will display a “sold out!” message.
-If quantity is not present or is `0`, the product will never sell out.
-<5> `fulfillment` – User information to collect for order fulfillment.
-Possible values are `email`, `phone`, or `address`.
-This value is stored as a custom attribute on the <<_iapreceipt,transaction receipt>>.
-<6> `isConsumable` – (Optional) Whether the product can be purchased more than once.
-<7> `dynamicReceipt` – (Optional) Whether the transaction receipt can display routes in the Koji.
-If enabled, a query parameter is appended to the URL when the buyer or seller views the receipt.
-For example, `dynamic-receipt=buyer` or `dynamic-receipt=seller`.
+To enable in-app purchases for your Koji template, you must implement the `Iap` class and define the `InAppPurchases` entitlements.
 
 [.hcode, id="new Iap", reftext="new Iap"]
 === new Iap(projectID, projectToken)
@@ -208,7 +169,7 @@ Retrieves all receipts for a specified product, which can be used to aggregate s
 ==== Parameters
 
 * `sku` – _String_, identifier for the product.
-Products are defined in the <<#_iap,entitlements file>> and registered or updated when the project is deployed.
+Products are defined in the entitlements and registered or updated when the project is deployed.
 
 ==== Returns
 
@@ -229,7 +190,7 @@ Prompts the user to purchase a product, and invokes a callback function to handl
 ==== Parameters
 
 * `sku` – _String_, identifier for the product to purchase.
-Products are defined in the <<#_iap,entitlements file>> and registered or updated when the project is deployed.
+Products are defined in the entitlements and registered or updated when the project is deployed.
 * `handler` – _Function_, handles the results of the purchase.
 Receives the following properties as input:
 ** `success` – _Boolean_, indicates whether the purchase was successful.
@@ -322,7 +283,7 @@ To link to the transaction receipt in the user's Koji wallet, use the format `\h
 === IapProduct
 
 An `IapProduct` object represents a specific product for purchase.
-Products are defined in the <<#_iap,entitlements file>> and registered or updated when the project is deployed.
+Products are defined in the entitlements and registered or updated when the project is deployed.
 You can use <<.loadProduct>> to retrieve the properties associated with the product's SKU.
 
 The `IapProduct` object includes the following properties.
@@ -351,7 +312,7 @@ The `IapProduct` object includes the following properties.
 <2> `appId` – Name of the Koji from which the product was purchased.
 <3> `ownerUserId` – Koji user name of the creator.
 <4> `price` – Purchase price of the product.
-Defined in the  <<#_iap,entitlements file>> of the template.
+Defined in the entitlements file of the template.
 <5> `priceIsUnset` – Indicator of whether a purchase price is defined for the product.
 Defined in the entitlements file of the template.
 <6> `isConsumable` – Indicator of whether a product can be purchased more than once.

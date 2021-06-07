@@ -117,8 +117,12 @@
         },
         {
           "name": "Implementing platform features",
-          "root": "/publish",
+          "root": "/platform",
           "items": [
+            {
+              "name": "Entitlements",
+              "slug": "entitlements"
+            },
             {
               "name": "Thumbnail image and custom metadata",
               "slug": "thumbnail-image"
