@@ -27,22 +27,12 @@ include::{includespath}/steps-codeeditor.adoc[tag=rename-and-open-in-code-editor
 
 include::{includespath}/steps-codeeditor.adoc[tag=cli-front-end]
 
-include::{includespath}/steps-codeeditor.adoc[tag=terminal-stop-process]
-
-. Install the @withkoji/core and @withkoji/custom-vcc-sdk packages.
-+
-[source,bash]
-----
-npm install --save @withkoji/core
-npm install --save @withkoji/custom-vcc-sdk
-----
-
-include::{includespath}/steps-codeeditor.adoc[tag=terminal-restart-process]
-
 == Code your custom control
 
 The custom control scaffold already includes most commands required by a custom control.
 However, you can modify the parameters according to your needs.
+
+NOTE: The @withkoji/core and @withkoji/custom-vcc-sdk packages are already included in the custom control scaffold and do not need to be reinstalled.
 
 The `frontend/src/App.js` file contains the following code:
 
