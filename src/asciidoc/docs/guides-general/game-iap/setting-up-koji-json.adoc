@@ -16,9 +16,8 @@ By the end of this section, you should feel comfortable:
 
 Get started by cloning the Tower Stack game to your own project.
 
-. Open the https://withkoji.com/~Svarog1389/3ej3[Tower Stack] game.
-. {blank}
-include::../../_includes/remixNav.adoc[tag=all]
+. Open the https://withkoji.com/apps/fe97e8a4-127d-4a65-8695-395ae60944e4[Tower Stack] game listing.
+. Click menu:...[Fork].
 +
 A copy of the project is created in your Koji account, and the *Project Details* page for your new project is displayed.
 . Click *Open in Code Editor*.

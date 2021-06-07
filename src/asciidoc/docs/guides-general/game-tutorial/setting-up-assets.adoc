@@ -15,7 +15,7 @@ By the end of the section, you should feel comfortable:
 
 == About the starting template
 
-The https://withkoji.com/~Svarog1389/game-template-1[Game Template] is a great starting point for this project because it was created specifically for these types of hyper-casual games.
+The https://withkoji.com/apps/78ddd0e8-de2d-498e-bd88-255166d54849[Game Template] is a great starting point for this project because it was created specifically for these types of hyper-casual games.
 It handles a lot of what the game needs to do, which saves quite a bit of development time.
 For example, the template provides:
 
@@ -31,9 +31,8 @@ For more information, check out the https://withkoji.com/~Svarog1389/game-templa
 
 Get started by cloning the game template to your own project.
 
-. Open the https://withkoji.com/~Svarog1389/game-template-1[game template].
-. {blank}
-include::../../_includes/remixNav.adoc[tag=all]
+. Open the https://withkoji.com/apps/78ddd0e8-de2d-498e-bd88-255166d54849[game template] listing.
+. Click menu:...[Fork].
 +
 A copy of the project is created in your Koji account, and the *Project Details* page for your new project is displayed.
 . Click *Open in Code Editor*.
