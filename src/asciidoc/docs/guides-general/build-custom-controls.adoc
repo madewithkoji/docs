@@ -21,7 +21,7 @@ include::{includespath}/prereqs.adoc[tags=webdev;remixproc]
 
 == Create a new project
 
-. Fork the https://withkoji.com/@eltesorokoji/a5hv/[Scaffold | Custom Control FO React] scaffold.
+. Fork the https://withkoji.com/templates/08967b88-649b-4dad-89bf-a0445c4458c7[Scaffold | Custom Control FO React] scaffold.
 
 include::{includespath}/steps-codeeditor.adoc[tag=rename-and-open-in-code-editor]
 
@@ -29,10 +29,11 @@ include::{includespath}/steps-codeeditor.adoc[tag=cli-front-end]
 
 include::{includespath}/steps-codeeditor.adoc[tag=terminal-stop-process]
 
-. Install the @withkoji/custom-vcc-sdk package.
+. Install the @withkoji/core and @withkoji/custom-vcc-sdk packages.
 +
 [source,bash]
 ----
+npm install --save @withkoji/core
 npm install --save @withkoji/custom-vcc-sdk
 ----
 
@@ -159,7 +160,7 @@ The subdomain name you enter will be passed as the `name` parameter to `Koji.ui.
 
 == Test your custom control
 
-You can fork the https://withkoji.com/@eltesorokoji/nb9e/[Example | Tester App for Custom Control] and customize it as your standalone Koji app. It includes a button that triggers the custom control.
+You can fork the https://withkoji.com/templates/65fef9f3-f08e-44c6-9228-5e8e4e8f555b[Example | Tester App for Custom Control] and customize it as your standalone Koji app. It includes a button that triggers the custom control.
 
 If you prefer to use another scaffold,
 
