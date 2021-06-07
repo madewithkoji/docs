@@ -3,49 +3,26 @@
 :page-description: How to add a backend service to a Koji template.
 :includespath: ../_includes
 
-As you develop and extend templates on Koji, you will likely run into issues where your `serviceMap` doesn't look the way you think it should.
-Or, you have remixed a project with a frontend, but you need to add a backend.
+As you develop and extend apps on Koji, you will likely run into issues where your `serviceMap` doesn't look the way you think it should.
+Or, you have forked an app with a frontend, but you need to add a backend.
 
-In this tutorial, you will add a backend service to an existing project, and confirm that it is available in the `serviceMap`.
+In this tutorial, you will add a backend service to an existing app, and confirm that it is available in the `serviceMap`.
 
 *Time*: 30 minutes
 
 == Prerequisites
 
-include::{includespath}/prereqs.adoc[tags=webdev;remixproc;customvcc]
+include::{includespath}/prereqs.adoc[tags=webdev;remixproc]
 
 == Setting up the template
 
-To add and test a backend service, you'll start by remixing a project that already has a frontend.
+To add and test a backend service, you'll start by forking an app that already has a frontend.
 
 . Open the following scaffold.
 +
-include::{includespath}/starterScaffolds.adoc[tag=reactVccs]
-. {blank}
-include::{includespath}/remixNav.adoc[tag=all]
-. After your editor has loaded, rename the project.
-For example, `Adding a Backend Project`.
-
-== Watching for serviceMap changes
-
-You will want to monitor the value of `serviceMap`.
-When you can see the `backend` service, you'll know that the service is set up correctly.
-
-. Open `frontend/common/App.js`, which is the main client file.
-. In the `App` component, add the following line above the `return` call.
-+
-[source,javascript]
-console.log('serviceMap', instantRemixing.get(['serviceMap']));
-
-. In the preview pane on the right, click the remote staging button image:remote-preview.svg[Remote staging button] to open your template in a new browser tab.
-. In the new tab, open the developer tools and confirm that you can see a console log of your current `serviceMap`.
-+
-It should look like this:
-+
-[source,console]
-serviceMap: {frontend: "https://8080-334797ce-40e0-4c76-af94-79fba39fff89.koji-staging.com"}
-+
-Right now, you should see only a `frontend` service. Next, you will add a `backend`.
+include::{includespath}/starterScaffolds.adoc[tag=react]
+. Click *Fork*. The *Project Details* page opens.
+. Click *Open in Code Editor*. The app opens in the Koji editor.
 
 == Adding the backend project
 
@@ -58,40 +35,50 @@ You will use these files to get started:
 
 You will configure these files and install the required packages for the backend service.
 
-. On the left side of the editor, click the plus (*+*) next to any folder in the source code, and then enter the following path:
+. On the left side of the editor, click the plus (*+*) next to any folder in the source code, click *New File*, and then enter the following path:
 +
 [source,text]
 /backend/package.json
 +
 This path creates a `backend` folder and a `package.json` file.
-. Open the `package.json` file, and then paste and save the following code.
+. Paste the following code into `package.json`, and save the file.
 +
 [source,json]
 ----
 {
-  "name": "koji-project-backend",
+  "name": "backend",
   "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
   "scripts": {
-    "compile": "babel . -d dist --copy-files --ignore \"node_modules/**/*.js\"",
-    "start-dev": "NODE_ENV=development babel-watch -L --watch ../.koji/ ./server.js",
-    "start": "NODE_ENV=production node dist/server.js"
+    "compile": "rm -rf dist && ./node_modules/.bin/babel ./src -d dist --ignore \"node_modules/**/*.js\"",
+    "start": "NODE_ENV=production node dist/server.js",
+    "start-dev": "nodemon --exec babel-node ./src/server.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "update-koji-packages": "npm update @withkoji/auth @withkoji/database @withkoji/dispatch @withkoji/vcc"
   },
+  "author": "",
+  "license": "ISC",
   "dependencies": {
-    "babel-polyfill": "^6.26.0",
-    "body-parser": "^1.18.3",
+    "@withkoji/core": "^1.2.0",
+    "body-parser": "^1.19.0",
     "cors": "^2.8.5",
-    "express": "4.16.3",
-    "uuid": "^3.3.2"
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "uuid": "^8.3.0"
   },
   "devDependencies": {
-    "@babel/cli": "7.2.3",
-    "@babel/core": "7.2.2",
-    "@babel/preset-env": "7.3.1",
-    "babel-plugin-dynamic-import-node": "1.2.0",
-    "babel-plugin-transform-object-rest-spread": "6.26.0",
-    "babel-preset-env": "1.7.0",
-    "babel-preset-stage-0": "6.24.1",
-    "babel-watch": "git+https://github.com/kmagiera/babel-watch.git"
+    "@babel/cli": "^7.11.6",
+    "@babel/core": "^7.11.6",
+    "@babel/node": "^7.10.5",
+    "@babel/plugin-proposal-object-rest-spread": "^7.11.0",
+    "@babel/plugin-syntax-dynamic-import": "^7.8.3",
+    "@babel/preset-env": "^7.11.5",
+    "babel-plugin-inline-json-import": "^0.3.2",
+    "eslint": "^7.8.1",
+    "eslint-config-airbnb-base": "^14.2.0",
+    "eslint-plugin-import": "^2.22.0",
+    "nodemon": "^2.0.4"
   }
 }
 ----
@@ -115,7 +102,7 @@ The required packages are now installed.
 exit
 
 . To collapse the terminal pane, click the down arrow in the upper right.
-. On the left side of the editor, click the plus (*+*) next to the `backend` folder in the source code, and then enter the following path.
+. On the left side of the editor, click the plus (*+*) next to the `backend` folder in the source code,click *New File*, and then enter the following path.
 +
 [source, text]
 ----
@@ -123,7 +110,7 @@ exit
 ----
 +
 This path creates a `.babelrc` file in the `backend` folder.
-. Open the `.babelrc` file, and then paste and save the following code.
+. Paste the following code into `.babelrc`, and save the file.
 +
 [source,json]
 ----
@@ -131,7 +118,7 @@ include::../_includes/babelrc.json[]
 ----
 +
 These Babel configurations add syntax that will help your project build and compile correctly.
-. On the left side of the editor, click the plus (*+*) next to the `backend` folder in the source code, and then enter the following path:
+. On the left side of the editor, click the plus (*+*) next to the `backend` folder in the source code, click *New File*, and then enter the following path:
 +
 [source,shell]
 ----
@@ -140,7 +127,7 @@ These Babel configurations add syntax that will help your project build and comp
 +
 This path creates a `server.js` file in the `backend` folder.
 You will use this file to run the backend server.
-. Open the `server.js` file, and then paste and save the following code.
+. Paste the following code into `server.js`, and save the file.
 +
 [source,javascript]
 ----
@@ -196,15 +183,32 @@ This code will start a basic express server, which will respond to a GET with JS
 
 == Letting Koji know about the backend service
 
-You have now added a backend project, but the Koji editor and project builder still don't know it exists.
-You must update the `develop.json` and `deploy.json` files to let Koji know about the new service.
-Both files are located in the `.koji` folder of the project folder.
+You have now added a backend project, but the Koji editor and app builder still don't know it exists.
+You must update the `koji.json` file to let Koji know about the new service.
+`koji.json` is located in the root directory.
 
-. Open the `.koji/project/develop.json` file and update it to look like the following code.
+. Open the `koji.json` file and update it as follows.
 +
 [source,json]
 ----
-include::../_includes/develop.json[tags=**,indent=0]
+...
+"develop": {
+  "frontend": {
+    "path": "frontend",
+    "port": 8080,
+    "startCommand": "npm start"
+  },
+  "backend": {
+    "path": "backend",
+    "port": 3333,
+    "startCommand": "npm run start-dev",
+    "events": {
+      "started": "[koji] backend started",
+      "log": "[koji-log]"
+    }
+  }
+},
+...
 ----
 +
 This file lets the Koji editor know which services to run, so you must add an entry for the `backend` service.
