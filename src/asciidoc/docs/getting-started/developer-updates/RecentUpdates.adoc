@@ -38,6 +38,9 @@ For other users, the Koji wallet will no longer be visible.
 
 * Fixed a bug where custom controls would show a loading indicator but would never load.
 
+* Fixed a bug where product SKUs were not correctly resolved on the backend unless they were all lowercase.
+Product SKUs are no longer case-sensitive.
+
 * The `estimatePoses` option is no longer supported for video captures.
 Apps can process camera input directly, if needed.
 
