@@ -107,7 +107,7 @@ Pushing your changes to origin automatically publishes a new version of your app
 
 Now that you've published your app, you will want to make sure that it works the same on the Koji server as it does locally.
 
-. On the https://withkoji.com/[Koji home page], click your profile button and go to *Apps > Developer Portal*.
+. On the https://withkoji.com/[Koji home page], click your profile button and select btn:[Developer Portal].
 . Select your app from *All Projects*.
 . Click *View Published Koji*.
 The published version of your app opens.
