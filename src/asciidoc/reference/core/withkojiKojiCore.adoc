@@ -31,7 +31,7 @@ Install the package in the frontend and backend services of your Koji project.
 
 [source,shell]
 ----
-npm install --save @withkoji/core
+npm install @withkoji/core
 ----
 
 == Updates

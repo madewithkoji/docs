@@ -74,7 +74,7 @@ npm start
 +
 [source,bash]
 ----
-npm install --save @withkoji/core
+npm install @withkoji/core
 ----
 // end::terminal-install-withkoji-core-package[]
 

@@ -32,7 +32,7 @@ include::{includespath}/steps-codeeditor.adoc[tag=cli-front-end]
 The custom control scaffold already includes most commands required by a custom control.
 However, you can modify the parameters according to your needs.
 
-NOTE: The @withkoji/core and @withkoji/custom-vcc-sdk packages are already included in the custom control scaffold and do not need to be reinstalled.
+NOTE: The <<withkoji-koji-core#,@withkoji/core>> and <<withkoji-custom-vcc-sdk#,@withkoji/custom-vcc-sdk>> packages are already included in the custom control scaffold and do not need to be reinstalled. However, if you fork from a different scaffold or app, you must install both packages in your app's front end.
 
 The `frontend/src/App.js` file contains the following code:
 
