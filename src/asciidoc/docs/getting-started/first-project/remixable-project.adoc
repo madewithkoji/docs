@@ -300,13 +300,6 @@ Navigate back to *Publish Settings* by clicking on *Publish Now*.
 Click *Publish New Version*.
 
 After your project has been published, use the notification link to open it.
-We haven’t put this project into the template store yet, but you can still test the remix feature.
-
-Click the *Koji* button, and click *Remix this Koji*.
-
-image::RP_06_remix-this-koji.png[Remix this Koji]
-
-You should be able to walk through the same steps you just tested in the preview pane, but this time, when you click *Publish*, you create a live remix from your project!
 
 == Wrapping up
 

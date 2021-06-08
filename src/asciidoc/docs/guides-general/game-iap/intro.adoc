@@ -13,7 +13,7 @@ If you're new to Koji, here are some tutorials that you might want to check out 
 
 == Objective
 
-The starting point for this tutorial is the https://withkoji.com/~Svarog1389/3ej3[Tower Stack] game, which was built on top of the https://withkoji.com/~Svarog1389/game-template-1[p5.js game template].
+The starting point for this tutorial is the https://withkoji.com/~Svarog1389/3ej3[Tower Stack] game, which was built on top of the https://withkoji.com/apps/78ddd0e8-de2d-498e-bd88-255166d54849[p5.js game template].
 
 Tower Stack is a hyper-casual game where the goal is to stack blocks as high as you can without missing any.
 Each new block swings from the top of the screen and tapping releases it.
