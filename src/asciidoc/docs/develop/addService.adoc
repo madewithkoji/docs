@@ -41,7 +41,7 @@ You will configure these files and install the required packages for the backend
 /backend/package.json
 +
 This path creates a `backend` folder and a `package.json` file.
-. Paste the following code into `package.json`, and save the file.
+. Paste the following code into `package.json`, and then save the file.
 +
 [source,json]
 ----
@@ -53,14 +53,14 @@ This path creates a `backend` folder and a `package.json` file.
   "scripts": {
     "compile": "rm -rf dist && ./node_modules/.bin/babel ./src -d dist --ignore \"node_modules/**/*.js\"",
     "start": "NODE_ENV=production node dist/server.js",
-    "start-dev": "nodemon --exec babel-node ./src/server.js",
+    "start-dev": "nodemon --exec babel-node server.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "update-koji-packages": "npm update @withkoji/auth @withkoji/database @withkoji/dispatch @withkoji/vcc"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@withkoji/core": "^1.2.0",
+    "@withkoji/core": "^1.7.2",
     "body-parser": "^1.19.0",
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
@@ -110,7 +110,7 @@ exit
 ----
 +
 This path creates a `.babelrc` file in the `backend` folder.
-. Paste the following code into `.babelrc`, and save the file.
+. Paste the following code into `.babelrc`, and then save the file.
 +
 [source,json]
 ----
@@ -127,7 +127,7 @@ These Babel configurations add syntax that will help your project build and comp
 +
 This path creates a `server.js` file in the `backend` folder.
 You will use this file to run the backend server.
-. Paste the following code into `server.js`, and save the file.
+. Paste the following code into `server.js`, and then save the file.
 +
 [source,javascript]
 ----
