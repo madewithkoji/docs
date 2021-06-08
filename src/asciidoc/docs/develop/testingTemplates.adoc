@@ -97,7 +97,9 @@ It allows you to follow the communication happening between the Koji platform an
 [NOTE]
 You must publish your template before you can debug it using the Koji debugger.
 
-To open the debugger, go to *Developer Portal > My projects* and click the project. Then, click *Debugger* on the project overview page. You can also open the debugger from the Koji editor by clicking *Launch Debugger* in the preview pane.
+To open the debugger, go to btn:[Developer Portal] and click the project.
+Then, click btn:[Open in Debugger] on the project overview page.
+You can also open the debugger from the Koji editor by clicking btn:[Launch Debugger] in the preview pane.
 
 === Debugging contexts
 
@@ -187,9 +189,10 @@ Skip update
 
 === Overriding settings for a debugging session
 
-The *Environment info* panel displays your template's *App Id*, *Frame URL*, and *VCC editor source* and enables you to override settings for the debugging session.
+The *Environment info* panel displays your template's *App Id* and *Frame Source*, and *VCC editor source*.
 
-To change the frame URL, click *Modify > Custom URL*.
+To override settings for the debugging session, click btn:[Open Debugger Settings].
+
 You can use this override to debug a template that is running locally or in a staging environment (in the Koji editor).
 
 To change the *VCC editor source*, click *Modify* and select *Override and use different VCC editor data*.
