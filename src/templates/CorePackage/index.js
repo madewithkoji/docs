@@ -199,7 +199,10 @@ const CorePackage = (props) => {
 
     // Because all of the output of concern is wrapped in paragraph tags,
     // we can use that as a way to target match/replace when looking at the innerHTML
-    const paragraphs = document.querySelectorAll('p');
+    const paragraphs = Array.from([
+      ...document.querySelectorAll('p'),
+      ...document.getElementsByClassName('content'),
+    ]);
 
     for (let idx = 0; idx < paragraphs.length; idx += 1) {
       const paragraph = paragraphs[idx];
