@@ -77,11 +77,7 @@ For example, if you set this to 10% and the user paid $10 in the app,
 
 . Click btn:[Save and Publish].
 
-. Contact https://discord.com/channels/796135155378028554/816766991889072171[the *-developer-support channel* in Discord] to add your listing in the App Store.
-Provide the following information:
-+
-** Your Koji username.
-** The URL to your *App Template Details*.
+. https://forms.gle/exqnEVtC45Cizdw56[Fill out and submit the request form] to add your listing to the App Store.
 +
 You will be notified when your listing is approved and posted in the App Store.
 
