@@ -216,6 +216,16 @@
           ]
         },
         {
+          "name": "Distributing apps",
+          "root": "/distribute",
+          "items": [
+            {
+              "name": "Listing in the App Store",
+              "slug": "app-store"
+            }
+          ]
+        },
+        {
           "name": "About Koji for developers",
           "root": "/about",
           "items": [

@@ -1,0 +1,90 @@
+= Listing in the App Store
+:page-slug: app-store
+:page-description: An introduction to the Koji App Store and how to list your Koji app.
+:includespath: ../_includes
+
+After you create, test, and move your app to production, you can share its production URL or list the app in the Koji App Store.
+
+The https://withkoji.com/apps[Koji App Store] is the marketplace for all Koji apps.
+When users edit their Koji profile, they can choose to add an app from the App Store.
+
+By listing in the Koji App Store, you can take advantage of the traffic in the App Store to get exposure for your app.
+Koji also announces noteworthy apps in social media posts.
+
+This topic shows how to create a Koji App Store listing after you move your app to production.
+
+NOTE: You can have multiple listings for the same app.
+
+== Creating an App Store listing
+
+You need the following for your App Store listing:
+
+* A 500x500-pixel icon to be displayed with your listing in the App Store.
+* A 1200x630-pixel thumbnail to be displayed when your listing is shared in other social media sites.
+* Up to 10 videos and screenshots of your app.
+* The production URL of your app.
+To get this URL, go to the app's associated *Project Details*, click *View Published Koji*, and copy the URL from the browser's address bar.
+
+To create your App Store listing,
+
+include::{includespath}/steps-dev-portal.adoc[tag=go2-dev-portal-templates]
+
+. Click *New App Template*.
+
+. Give the app template a name.
++
+This name is not published in the App Store; it is used to identify your listing.
+
+. Fill in the *App Template Details*.
++
+IMPORTANT: All texts and images in your listing must meet https://withkoji.com/resources/terms[Koji's Terms of Use] requirements.
++
+* *Icon* – The 500x500-pixel icon displayed with your listing.
+
+* *Name* – The title of your listing.
+Note that the title could be truncated depending on the width of the browser page; therefore, place distinguishing words near the beginning.
+
+* *Description* – Features and benefits of your app.
+
+* *Share Image* – The 1200x630-pixel thumbnail that is displayed when your app listing is shared in other social media sites.
+
+* *Videos and Screenshots* – Up to 10 videos and screenshots of your app.
+
+* *Bundled App* – The production URL of your app.
+
+* *Price to Remix* – The price (in US dollars) that the creator/influencer pays to publish their customized version of your app.
+Customization is free; creators/influencers are charged only when they publish their customized version in their Koji profile.
+You keep 85% of this amount; Koji gets 15%.
+Leave blank to allow the creator/influencer to publish their customized version for free.
+
+* *Transaction Fee Percent* – The percentage you wish to collect from each transaction if your app allows In-App Purchases.
+You keep 60% of this percentage; Koji gets 40%.
+Leave blank to collect the default percentage (15%).
++
+For example, if you set this to 10% and the user paid $10 in the app,
++
+** The creator/influencer who added your app to their profile receives $9.00.
+** You receive $0.60.
+** Koji receives $0.40.
+
+* *This template is open source.* – If enabled, other developers can view and fork your app's source code.
+
+* *This template is intended primarily for developers to fork.* – If enabled, your app listing will be placed in the *For Developers* category of the App Store.
+
+* *Variants* – (Optional) The listing URLs of other variations of the app.
+
+* *Attachments* – (Optional) Links to other sites that provide more information about your app, such as YouTube tutorials, news articles, and product comparisons or reviews.
+
+. Click btn:[Save and Publish].
+
+. Contact https://discord.com/channels/796135155378028554/816766991889072171[the *-developer-support channel* in Discord] to add your listing in the App Store.
+Provide the following information:
++
+** Your Koji username.
+** The URL to your *App Template Details*.
++
+You will be notified when your listing is approved and posted in the App Store.
+
+NOTE: The version of your published listing is different from the published version of your app in your *Project Details*.
+Each version of your app has a different production URL.
+You can update the listing to point to the latest app version, or you can create a new listing for the new app version to keep the old app version available for creators/influencers who might not want to upgrade.

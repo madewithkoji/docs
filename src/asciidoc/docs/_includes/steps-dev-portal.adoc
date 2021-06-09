@@ -1,0 +1,25 @@
+= Steps for the Developer Portal
+
+////
+  Usage:
+    :includespath: ../_includes
+
+    include::{includespath}/steps-dev-portal.adoc[tag=go2-dev-portal-prefix]
+    include::{includespath}/steps-dev-portal.adoc[tag=go2-dev-portal-templates]
+////
+
+
+// tag::all[]
+
+// tag::go2-dev-portal-prefix[]
+. Go to https://withkoji.com/developer/projects[your Developer Portal page].
+// end::go2-dev-portal-prefix[]
+
+
+// tag::go2-dev-portal-templates[]
+include::./steps-dev-portal.adoc[tag=go2-dev-portal-prefix]
+Click *My App Templates*.
+// end::go2-dev-portal-templates[]
+
+
+// end::all[]
