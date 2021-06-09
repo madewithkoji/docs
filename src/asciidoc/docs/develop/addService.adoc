@@ -191,24 +191,51 @@ You must update the `koji.json` file to let Koji know about the new service.
 +
 [source,json]
 ----
-...
-"develop": {
-  "frontend": {
-    "path": "frontend",
-    "port": 8080,
-    "startCommand": "npm start"
-  },
-  "backend": {
-    "path": "backend",
-    "port": 3333,
-    "startCommand": "npm run start-dev",
-    "events": {
-      "started": "[koji] backend started",
-      "log": "[koji-log]"
+{
+  "deploy": {
+    "frontend": {
+      "output": "frontend/build",
+      "type": "static",
+      "commands": [
+        "cd frontend",
+        "npm install",
+        "export NODE_ENV=production && npm run build"
+      ]
+    },
+    "backend": {
+      "output": "backend",
+      "type": "dynamic",
+      "commands": [
+        "cd backend",
+        "npm install",
+        "export NODE_ENV=production && npm run compile"
+      ]
     }
+  },
+  "develop": {
+    "frontend": {
+      "path": "frontend",
+      "port": 8080,
+      "startCommand": "npm start"
+    },
+    "backend": {
+      "path": "backend",
+      "port": 3333,
+      "startCommand": "npm run start-dev"
+    }
+  },
+  "entitlements": {
+    "InstantRemixing": true,
+    "InstantRemixingNativeNavigation": true,
+    "FeedEvents": true
+  },
+  "remixData": {
+    "backgroundColor": "#282c34"
+  },
+  "@@initialTransform": {
+    "remixData": {}
   }
-},
-...
+}
 ----
 +
 This file lets the Koji editor know which services to run, so you must add an entry for the `backend` service.
@@ -217,29 +244,14 @@ This file lets the Koji editor know which services to run, so you must add an en
 If everything went well, you should be able to reconnect to the editor and see that a `backend` terminal has been added at the bottom.
 +
 If you see `[koji] backend started`, your backend service is now running in your local editor environment.
-. To confirm that the `serviceMap` is now populated, open your preview tab and refresh it. You should now see a console log that looks like this example.
-+
-[source,console]
-----
-serviceMap: {
-  frontend: "https://8080-984c0a6f-3614-4dee-89f0-7d7cc03df6e9.koji-staging.com",
-  backend: "https://3333-984c0a6f-3614-4dee-89f0-7d7cc03df6e9.koji-staging.com"}
-----
-. Open the `.koji/project/deploy.json` file and update it to look like the following code.
-+
-[source,json]
-----
-include::../_includes/deploy.json[tags=**,indent=0]
-----
-+
-This code adds the backend service to the build process.
-As you can see, the `deploy.json` code looks very similar to the `develop.json` file, except that it runs build commands instead of development commands.
 
 == Testing the serviceMap and server
 
+/////////////////////////npm install styled-components
+
 To test that everything is working correctly, update your frontend code to get a value from the server and display it automatically.
 
-. Open the `/frontend/common/App.js` file and replace it with the following code.
+. Open the `/frontend/src/App.js` file and replace it with the following code.
 +
 [source,javascript]
 ----
