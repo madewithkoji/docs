@@ -57,9 +57,7 @@ You can start a Koji project by forking any other app on Koji.
 For some great starting points, check out the https://withkoji.com/apps/categories/for-developers[For Developers] page.
 
 . Go to the https://withkoji.com/~Svarog1389/rxkd[Falling Objects] app.
-. {blank}
-+
-include::../../_includes/remixNav.adoc[tag=all]
+. Click menu:App[Open Advanced Details > Fork].
 +
 After a short loading time, the *Project Details* page opens.
 

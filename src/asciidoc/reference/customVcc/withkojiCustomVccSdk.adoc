@@ -16,7 +16,7 @@ For example, some Koji templates provide tile map editors, sound enhancers, or c
 Install the package in your Koji project.
 
 [source,bash]
-npm install --save @withkoji/custom-vcc-sdk
+npm install @withkoji/custom-vcc-sdk
 
 == Basic use
 

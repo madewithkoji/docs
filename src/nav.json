@@ -117,8 +117,12 @@
         },
         {
           "name": "Implementing platform features",
-          "root": "/publish",
+          "root": "/platform",
           "items": [
+            {
+              "name": "Entitlements",
+              "slug": "entitlements"
+            },
             {
               "name": "Thumbnail image and custom metadata",
               "slug": "thumbnail-image"
@@ -210,8 +214,8 @@
               "slug": "capture-user-input"
             },
             {
-              "name": "Building custom VCCs",
-              "slug": "build-custom-vcc"
+              "name": "Building custom controls",
+              "slug": "build-custom-controls"
             }
           ]
         },

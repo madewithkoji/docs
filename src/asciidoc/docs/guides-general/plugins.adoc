@@ -8,8 +8,7 @@ Plugins can only be added by the creator of a Koji.
 They will not be passed down to remixes.
 
 Generally, a creator customizes a plugin for a particular Koji by specifying values for one or more fields.
-For example, the *Custom Boilerplate* plugin adds a pop-up window requiring a user to acknowledge a licensing agreement before interacting with the Koji.
-The creator specifies the body text and the question text for the pop-up window.
+For example, a creator can specify the tracking ID for the *Google Analytics* plugin.
 
 == Advantages of plugins
 
@@ -37,7 +36,6 @@ There is no way to enable or disable plugins on a per-service basis.
 
 == Enabling a plugin for your Koji
 
-. Open the Koji and click the Koji button.
-. Go to *Manage this Koji > Open Creator Dashboard > Configure Plugins*.
+. Open the Koji and go to menu:App[... > Plugins].
 . Choose a plugin from the list of available plugins.
 . Configure and enable the plugin.
