@@ -102,6 +102,8 @@ You can, however, revoke your token and generate a new one if you have forgotten
 
 === Obtaining Koji environment variables
 
+The Koji platform reads in project details from https://en.wikipedia.org/wiki/Environment_variable[environment variables] to ensure that the deployment data is kept separate from the code and configuration for your app.
+
 If your project has a backend, you need the values of the `KOJI_PROJECT_ID` and `KOJI_PROJECT_TOKEN` environment variables to access it.
 Additional environment variables are available for accessing platform-provided metadata about the Koji's creator.
 
@@ -134,8 +136,8 @@ Your terminal will look something like this:
 +
 [source,bash]
 ----
-~/Repos/Koji$ git clone https://projects.koji-cdn.com/a70f8329-e89e-48b0-8d85-7658c1542b9f.git MyKojiTemplate
-Cloning into 'MyKojiTemplate'...
+~/Repos/Koji$ git clone https://projects.koji-cdn.com/a70f8329-e89e-48b0-8d85-7658c1542b9f.git MyKojiApp
+Cloning into 'MyKojiApp'...
 Username for 'https://projects.koji-cdn.com':
 ----
 . If you are prompted for your username, enter your username on Koji and press kbd:[Enter].
@@ -148,8 +150,8 @@ Your terminal will look something like this:
 +
 [source,bash]
 ----
-~/Repos/Koji$ git clone https://projects.koji-cdn.com/a70f8329-e89e-48b0-8d85-7658c1542b9f.git MyKojiTemplate <1>
-Cloning into 'MyKojiTemplate'...
+~/Repos/Koji$ git clone https://projects.koji-cdn.com/a70f8329-e89e-48b0-8d85-7658c1542b9f.git MyKojiApp <1>
+Cloning into 'MyKojiApp'...
 Username for 'https://projects.koji-cdn.com': KojiCoder <2>
 Password for 'https://KojiCoder@projects.koji-cdn.com': <3>
 remote: Counting objects: 15941, done.
@@ -176,7 +178,7 @@ Your terminal should look something like this:
 +
 [source,bash]
 ----
-~/Repos/Koji$ cd MyKojiTemplate/
+~/Repos/Koji$ cd MyKojiApp/
 ~/Repos/Koji$ ls -al
 total 40
 drwxrwxr-x  6 kojicoder dev 4096 nov  5 16:38 .
