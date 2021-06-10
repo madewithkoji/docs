@@ -3,10 +3,9 @@
 :page-description: How to add a backend service to a Koji template.
 :includespath: ../_includes
 
-As you develop and extend apps on Koji, you will likely run into issues where your `serviceMap` doesn't look the way you think it should.
-Or, you have forked an app with a frontend, but you need to add a backend.
+As you develop and extend apps on Koji, you will likely encounter situations where it would be useful to put some of your code into a service. A common example is when you fork an app with a frontend, but you need to add a backend.
 
-In this tutorial, you will add a backend service to an existing app, and confirm that it is available in the `serviceMap`.
+In this tutorial, you will add a backend service to an existing app, and confirm that it's working.
 
 *Time*: 30 minutes
 
@@ -57,12 +56,11 @@ This path creates a `backend` folder and a `package.json` file.
     "start": "NODE_ENV=production node dist/server.js",
     "start-dev": "nodemon --exec babel-node server.js",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "update-koji-packages": "npm update @withkoji/auth @withkoji/database @withkoji/dispatch @withkoji/vcc"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@withkoji/core": "^1.7.2",
+    "@withkoji/core": "^1.7.3",
     "body-parser": "^1.19.0",
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
@@ -96,7 +94,7 @@ cd backend
 [source,bash]
 npm install
 +
-You should see the installation progress messages
+You should see the installation progress messages.
 After installation is complete, you should be returned to the command line.
 The required packages are now installed.
 . To close the terminal, run the following command.
@@ -105,7 +103,7 @@ The required packages are now installed.
 exit
 
 . To collapse the terminal pane, click the down arrow in the upper right.
-. On the left side of the editor, click the plus (*+*) next to the `backend` folder in the source code,click *New File*, and then enter the following path.
+. On the left side of the editor, click the plus (*+*) next to the `backend` folder in the source code, click *New File*, and then enter the following path.
 +
 [source, text]
 ----
@@ -134,11 +132,12 @@ You will use this file to run the backend server.
 +
 [source,javascript]
 ----
-import 'babel-polyfill';
+import '@babel/core';
 import express from 'express';
 import * as fs from 'fs';
 import bodyParser from 'body-parser';
 import cors from 'cors';
+import { KojiBackend } from '@withkoji/core';
 
 // Create server
 const app = express();
@@ -184,17 +183,37 @@ app.listen(process.env.PORT || 3333, null, async err => {
 +
 This code will start a basic express server, which will respond to a GET with JSON that you can verify on the frontend.
 
-== Updating the environment variables
+== Accessing internal Koji variables
 
-The app will need to know the URL for the backend.
+There are several values your app will need to get from Koji.
 
-* Open the `frontend/.env` file, and update it as follows.
-This also sets environment variables for the frontend URL and the project ID.
+* The URL for the frontend.
+* The URL for the backend.
+* The project ID
+
+Koji stores these values in internal variables. To make them accessible to your app, you need to map them to environment variables, and then add them to the configuration.
+
+. Open the frontend/.env file, update the contents as follows, and then save the file.
++
+[source,text]
+----
+REACT_APP_FRONTEND_URL=$KOJI_SERVICE_URL_frontend
+REACT_APP_BACKEND_URL=$KOJI_SERVICE_URL_backend
+REACT_APP_PROJECT_ID=$KOJI_PROJECT_ID
+----
+. Open the frontend/index.js file, update the config call as follows, and then save the file.
 +
 [source,javascript]
 ----
-REACT_APP_BACKEND_URL=$KOJI_SERVICE_URL_backend
-REACT_APP_PROJECT_ID=$KOJI_PROJECT_ID
+....
+Koji.config(kojiConfig, {
+  projectId: process.env.REACT_APP_PROJECT_ID,
+  services: {
+    backend: process.env.REACT_APP_BACKEND_URL,
+    frontend: process.env.REACT_APP_FRONTEND_URL
+  },
+});
+....
 ----
 
 == Letting Koji know about the backend service
@@ -203,7 +222,7 @@ You have now added a backend project, but the Koji editor and app builder still 
 You must update the `koji.json` file to let Koji know about the new service.
 `koji.json` is located in the root directory.
 
-. Open the `koji.json` file and update it as follows.
+. Open the `koji.json` file, and replace the existing content with the following code.
 +
 [source,json]
 ----
@@ -254,14 +273,14 @@ You must update the `koji.json` file to let Koji know about the new service.
 }
 ----
 +
-This file lets the Koji editor know which services to run, so you must add an entry for the `backend` service.
+This file lets the Koji editor know which services to run, so you must add entries for the `backend` service.
 . On the left side of the editor, go to *Advanced > Remote environment* and click *Force restart project*.
 +
 If everything went well, you should be able to reconnect to the editor and see that a `backend` terminal has been added at the bottom.
 +
 If you see `[koji] backend started`, your backend service is now running in your local editor environment.
 
-== Testing the serviceMap and server
+== Testing the backend service
 
 To test that everything is working correctly, you can modify your frontend code to get a value from the server and display it automatically.
 
@@ -275,6 +294,7 @@ npm install styled-components
 ----
 import React from 'react';
 import styled, { keyframes } from 'styled-components';
+import Koji from '@withkoji/core';
 
 const Container = styled.div`
     background-color: #395B88;
