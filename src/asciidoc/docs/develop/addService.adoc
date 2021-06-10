@@ -21,8 +21,10 @@ To add and test a backend service, you'll start by forking an app that already h
 . Open the following scaffold.
 +
 include::{includespath}/starterScaffolds.adoc[tag=react]
-. Click *Fork*. The *Project Details* page opens.
-. Click *Open in Code Editor*. The app opens in the Koji editor.
+. Click *Fork*
+The *Project Details* page opens.
+. Click *Open in Code Editor*.
+The app opens in the Koji editor.
 
 == Adding the backend project
 
@@ -94,7 +96,8 @@ cd backend
 [source,bash]
 npm install
 +
-You should see the installation progress messages. After installation is complete, you should be returned to the command line.
+You should see the installation progress messages
+After installation is complete, you should be returned to the command line.
 The required packages are now installed.
 . To close the terminal, run the following command.
 +
@@ -181,6 +184,19 @@ app.listen(process.env.PORT || 3333, null, async err => {
 +
 This code will start a basic express server, which will respond to a GET with JSON that you can verify on the frontend.
 
+== Updating the environment variables
+
+The app will need to know the URL for the backend.
+
+* Open the `frontend/.env` file, and update it as follows.
+This also sets environment variables for the frontend URL and the project ID.
++
+[source,javascript]
+----
+REACT_APP_BACKEND_URL=$KOJI_SERVICE_URL_backend
+REACT_APP_PROJECT_ID=$KOJI_PROJECT_ID
+----
+
 == Letting Koji know about the backend service
 
 You have now added a backend project, but the Koji editor and app builder still don't know it exists.
@@ -247,17 +263,18 @@ If you see `[koji] backend started`, your backend service is now running in your
 
 == Testing the serviceMap and server
 
-/////////////////////////npm install styled-components
+To test that everything is working correctly, you can modify your frontend code to get a value from the server and display it automatically.
 
-To test that everything is working correctly, update your frontend code to get a value from the server and display it automatically.
-
+. Go to the `backend` folder, and install the `styled-components` package, which the new code will use.
++
+[source,bash]
+npm install styled-components
 . Open the `/frontend/src/App.js` file and replace it with the following code.
 +
 [source,javascript]
 ----
 import React from 'react';
 import styled, { keyframes } from 'styled-components';
-import { InstantRemixing } from '@withkoji/vcc';
 
 const Container = styled.div`
     background-color: #395B88;
@@ -302,16 +319,14 @@ class App extends React.Component {
     }
 
     componentDidMount() {
-      this.instantRemixing = new InstantRemixing();
-
       window.setTimeout(() => {
-        fetch(this.instantRemixing.get(['serviceMap', 'backend']))
+        fetch(Koji.services.backend)
           .then((response) => response.json())
           .then((jsonResponse) => {
             console.log('jsonResponse', jsonResponse);
             this.setState({ text: jsonResponse.text });
           });
-        }, 5000);
+      }, 5000);
     }
 
   render() {
@@ -339,16 +354,16 @@ If everything worked, you should see the first text state for 5 seconds, and the
 ====
 If you're wondering about how these services work behind the scenes, here is a brief explanation:
 
-. The `develop.json` or `deploy.json` files in `.koji/project` contain service keys, such as `frontend`.
+. The `develop` and `deploy` sections in `koji.json` contain service keys, such as `frontend`.
 . For each of these keys, the container that handles your editor or published deployment will automatically generate a URL.
-. That URL is written as an environment variable, which based on the key.
-So, for `frontend`, you will see an ENV like `KOJI_SERVICE_URL_FRONTEND`.
-. For each of the ENV variables that match that pattern, the @withkoij/vcc package exposes the values in the serviceMap.
+. That URL is saved as a variable inside Koji, which is based on the key
+The variable name is `$KOJI_SERVICE_URL_backend`.
+. In `frontend/.env`, you defined an environment variables that pointed to this internal Koji variable, so that your app is able to retrieve the value.
 ====
 
 == Wrapping up
 
-Hopefully, this tutorial has given you a better understanding of how to add a service, as well as the service map configuration.
+Hopefully, this tutorial has given you a better understanding of how to add a service.
 
 TIP: When adding backend services to your templates, keep in mind that requests to Koji backends are rate limited to protect against bursts of traffic.
 Users who send too many requests in quick succession might see error messages with a status code of `429`.
