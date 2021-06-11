@@ -313,6 +313,7 @@ The specific APIs help to filter the selections offered to the user or to valida
 
 == Related resources
 
+* Koji App Store: https://withkoji.com/apps/67dea854-70b6-4114-98ad-1e28a60d6fb0[Example | Capturing User Input]
 * <<core-frontend-ui-capture#, Frontend / UI / Capture>>
 * <<core-frontend-ui-present#, Frontend / UI / Present>>
 * <<build-custom-controls#>>
