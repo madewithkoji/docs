@@ -6,8 +6,6 @@
 In this tutorial, you will port an existing web app to Koji.
 You will then build and deploy the app to the Koji platform.
 
-*Time*: 20 minutes
-
 == Prerequisites
 
 include::{includespath}/prereqs.adoc[tags=gitbasic;remixproc]

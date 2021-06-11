@@ -1,6 +1,6 @@
-= Adding a service to your project
+= Adding a service to your app
 :page-slug: add-service
-:page-description: How to add a backend service to a Koji template.
+:page-description: How to add a backend service to a Koji app.
 :includespath: ../_includes
 
 As you develop and extend apps on Koji, you will likely encounter situations where it would be useful to put some of your code into a service.
@@ -13,13 +13,11 @@ In this tutorial, you will add a backend service to an existing app and confirm 
 [NOTE]
 In Koji apps, the frontend also runs as a service. This allows your apps to be run inside other applications and even inside other Koji apps.
 
-*Time*: 30 minutes
-
 == Prerequisites
 
 include::{includespath}/prereqs.adoc[tags=webdev;remixproc]
 
-== Setting up the template
+== Setting up the app
 
 To add and test a backend service, you'll start by forking an app that already has a frontend.
 
@@ -38,7 +36,7 @@ You will use these files to get started:
 
 * `package.json` – Defines the packages and commands.
 * `.babelrc` – Helps with the transpiling.
-* `server.js` – Runs a simple express server that the frontend will be able to call.
+* `server.js` – Runs a simple Express server that the frontend will be able to call.
 
 You will configure these files and install the required packages for the backend service.
 
@@ -187,15 +185,15 @@ app.listen(process.env.PORT || 3333, null, async err => {
 });
 ----
 +
-This code will start a basic express server, which will respond to a GET with JSON that you can verify on the frontend.
+This code will start a basic Express server, which will respond to a GET with JSON that you can verify on the frontend.
 
 == Accessing internal Koji variables
 
-There are several values your app will need to get from Koji.
+There are several values your app will need to get from the Koji platform.
 
 * The URL for the frontend.
 * The URL for the backend.
-* The project ID
+* The project ID.
 
 Koji stores these values in internal variables. To make them accessible to your app, you need to map them to environment variables, and then add them to the configuration.
 
@@ -228,55 +226,11 @@ You have now added a backend project, but the Koji editor and app builder still 
 You must update the `koji.json` file to let Koji know about the new service.
 `koji.json` is located in the root directory.
 
-. Open the `koji.json` file, and replace the existing content with the following code.
+. Open the `koji.json` file, and add the deployment and development instructions for the backend service to the `deploy` and `develop` keys.
 +
 [source,json]
 ----
-{
-  "deploy": {
-    "frontend": {
-      "output": "frontend/build",
-      "type": "static",
-      "commands": [
-        "cd frontend",
-        "npm install",
-        "export NODE_ENV=production && npm run build"
-      ]
-    },
-    "backend": {
-      "output": "backend",
-      "type": "dynamic",
-      "commands": [
-        "cd backend",
-        "npm install",
-        "export NODE_ENV=production && npm run compile"
-      ]
-    }
-  },
-  "develop": {
-    "frontend": {
-      "path": "frontend",
-      "port": 8080,
-      "startCommand": "npm start"
-    },
-    "backend": {
-      "path": "backend",
-      "port": 3333,
-      "startCommand": "npm run start-dev"
-    }
-  },
-  "entitlements": {
-    "InstantRemixing": true,
-    "InstantRemixingNativeNavigation": true,
-    "FeedEvents": true
-  },
-  "remixData": {
-    "backgroundColor": "#282c34"
-  },
-  "@@initialTransform": {
-    "remixData": {}
-  }
-}
+include::{includespath}/koji.json[tags=deploy;develop,indent=0]
 ----
 +
 This file lets the Koji editor know which services to run, so you must add entries for the `backend` service.
@@ -290,7 +244,8 @@ If you see `[koji] backend started`, your backend service is now running in your
 
 To test that everything is working correctly, you can modify your frontend code to get a value from the backend service and display it automatically.
 
-. Go to the `frontend` folder, press CTL-C to stop the frontend server, and install the `styled-components` package, which the new code will use.
+. Go to the `frontend` folder, and press kbd:[Ctrl+C] to stop the frontend server.
+. Install the `styled-components` package, which the new code will use.
 +
 [source,bash]
 ----
@@ -300,7 +255,7 @@ npm install styled-components
 +
 [source,bash]
 ----
-npm run start-dev
+npm start
 ----
 . Open the `/frontend/src/App.js` file and replace the contents with the following code.
 +
@@ -382,7 +337,7 @@ After the component mounts, it sets a timeout of 5 seconds, and then tries to fe
 . Open the live preview and refresh it.
 +
 If everything worked, you should see the first text state for 5 seconds, and then it should be replaced with the `Hello, world!` text from the server.
-. Publish your template and confirm that it's working as expected.
+. Publish your app, and confirm that it's working as expected.
 
 [TIP]
 ====
@@ -399,6 +354,6 @@ The variable name is `$KOJI_SERVICE_URL_backend`.
 
 Hopefully, this tutorial has given you a better understanding of how to add a service.
 
-TIP: When adding backend services to your templates, keep in mind that requests to Koji backends are rate limited to protect against bursts of traffic.
+TIP: When adding backend services to your apps, keep in mind that requests to Koji backends are rate limited to protect against bursts of traffic.
 Users who send too many requests in quick succession might see error messages with a status code of `429`.
-To gracefully handle rate limiting in your templates, you can watch for this status code and build in a retry mechanism.
+To gracefully handle rate limiting in your apps, you can watch for this status code and build in a retry mechanism.
