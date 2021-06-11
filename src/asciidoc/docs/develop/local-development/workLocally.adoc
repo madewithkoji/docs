@@ -108,7 +108,30 @@ fixed 344 of 345 vulnerabilities in 12188 scanned packages
 ----
 NOTE: This process alters the `package-lock.json` file, so that it can request the identical file versions if you run `npm install` on a different computer.
 
-include::../../_includes/updateDependencies.adoc[tag=all]
+. Check for outdated dependencies in the forked app, and update them if necessary.
++
+TIP: Keep the <<withkoji-koji-core#>> package updated to ensure your app has access to the latest platform features and bug fixes.
+
+.. Run `npm outdated` to discover dependencies that you might need to update.
++
+Your terminal will look something like this.
++
+[source,shell]
+----
+$ npm outdated
+Package                                Current  Wanted  Latest  Location                                            Depended by
+@withkoji/core                          0.0.17  0.0.17   1.7.3  node_modules/@withkoji/core                         frontend
+... (some output not shown) ...
+----
+
+.. If the @withkoji/core package is outdated, check the https://github.com/madewithkoji/koji-core/releases[package release notes] for breaking changes that could affect your app, and update your code, if needed.
+
+.. When you are ready to upgrade, run the following command.
++
+[source,shell]
+npm install @withkoji/core@latest
+
+.. Repeat the process for other packages, as necessary.
 
 == Launching your project locally
 
