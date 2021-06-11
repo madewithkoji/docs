@@ -108,6 +108,8 @@ fixed 344 of 345 vulnerabilities in 12188 scanned packages
 ----
 NOTE: This process alters the `package-lock.json` file, so that it can request the identical file versions if you run `npm install` on a different computer.
 
+include::../../_includes/updateDependencies.adoc[tag=all]
+
 == Launching your project locally
 
 The https://withkoji.com/~Svarog1389/rxkd[Falling Objects] game features both a frontend – so that you can play the game in your browser – and a backend – to access a database where the leaderboard scores are stored.
