@@ -16,11 +16,11 @@ The Koji editor provides various ways to preview a template’s behavior.
 
 === Using previews
 
-Your template might provide different experiences for different situations, or "contexts."
+Your app might provide different experiences for different modes, called *contexts*.
 For example, you might provide a different UI during a remix than when the template is running.
 The preview pane enables you to preview several standard contexts inside the editor.
 
-Learn more about xref:editor.adoc#_previewing_your_koji[previewing your Koji].
+Learn more about <<editor#_previewing_your_koji, previewing your Koji>>.
 
 === Writing to the console
 
@@ -97,16 +97,18 @@ It allows you to follow the communication happening between the Koji platform an
 [NOTE]
 You must publish your template before you can debug it using the Koji debugger.
 
-To open the debugger, go to *Developer Portal > My projects* and click the project. Then, click *Debugger* on the project overview page. You can also open the debugger from the Koji editor by clicking *Launch Debugger* in the preview pane.
+To open the debugger, go to btn:[Developer Portal] and click the project.
+Then, click btn:[Open in Debugger] on the project overview page.
+You can also open the debugger from the Koji editor by clicking btn:[Launch Debugger] in the preview pane.
 
 === Debugging contexts
 
-Your template might provide different experiences for different situations, or "contexts."
+Your app might provide different experiences for different modes, called *contexts*.
 Select the tab of a context to display relevant tools for debugging it.
 For example, select *Remix* to display tools for debugging the remixing experience.
 
-TIP: If the selected context is not enabled in the template, a message will be displayed saying that it is unavailable.
-For more about contexts, see <<withkoji-vcc-package#_context>>.
+TIP: To enable certain contexts, you must enable the associated <<entitlements#, entitlement>>.
+If the selected context is not enabled, a message will be displayed saying that it is unavailable.
 
 Many contexts display an events pane for debugging communication between the platform and the template.
 For information on how to use this tool, see <<_viewing_events>>.
@@ -121,12 +123,6 @@ You can view real-time events related to your changes.
 * *Thumbnail* – See exactly how your template will look if you share it on social media.
 *Thumbnail* shows sharing images in both square and rectangular format.
 For information about how to customize the image, see <<thumbnail-image#>>.
-* *Admin* – Debug the admin page, if you defined one in your template.
-You can view real-time events related to the admin context.
-* *About* – Debug the page that appears when the user clicks *Remix this Koji*, if you defined one in your template.
-You can view real-time events related to the about context.
-* *Sticker* – Debug how your template behaves when it's embedded inside another template.
-You can view real-time events related to the sticker context.
 * *Dynamic Receipt* – Debug the receipts that are sent to the buyer and seller, when in-app purchases are implemented with dynamic receipts.
 You can view real-time events related to the receipts.
 
@@ -193,9 +189,10 @@ Skip update
 
 === Overriding settings for a debugging session
 
-The *Environment info* panel displays your template's *App Id*, *Frame URL*, and *VCC editor source* and enables you to override settings for the debugging session.
+The *Environment info* panel displays your template's *App Id* and *Frame Source*, and *VCC editor source*.
 
-To change the frame URL, click *Modify > Custom URL*.
+To override settings for the debugging session, click btn:[Open Debugger Settings].
+
 You can use this override to debug a template that is running locally or in a staging environment (in the Koji editor).
 
 To change the *VCC editor source*, click *Modify* and select *Override and use different VCC editor data*.

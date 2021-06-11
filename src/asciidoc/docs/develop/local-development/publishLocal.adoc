@@ -2,61 +2,44 @@
 :page-slug: publish-locally-developed
 :page-description: How to push local changes to the origin repository and pull them into the Koji editor, so you can publish the project.
 
-Although Koji provides a feature-rich online project editor, you might prefer to use your own suite of development tools in some cases.
-In the previous parts of this tutorial, you learned how to use Git to clone a Koji project to your development machine and how to install and launch a Node.js server to run your project locally.
-If you have followed the first two parts of this tutorial, you will now have a scaffold project running on your local computer, so you can use your favorite text editor to modify it and add new features.
-You will also be able to test that these new features work on your development machine.
+In the <<work-locally#, previous section>> of this tutorial, you learned how to use Git to clone a Koji project to your development machine and how to install and launch a Node.js server to run your project locally.
 
-In this tutorial, you will learn how to push the changes that you have made locally to your project's origin repository, and how to pull the latest version of your project into the Koji editor, where you can publish it to the world.
+In this section, you will
+// tag::description[]
+learn how to push the changes that you make locally to your project's origin repository, and how to pull the latest version of your project into the Koji editor, where you can publish it to the world.
+// end::description[]
 
 NOTE: It is recommended that you test the publishing process before you get deep into development locally.
-You can make a minor change, push it back to the Koji servers, and check that the change is visible in the published template on Koji.
+You can make a minor change, push it back to the Koji servers, and check that the change is visible in the published app on Koji.
 
-This is the final part in a three-part tutorial.
+== Learning objectives
 
-. <<use-git#>>
-. <<work-locally#>>
-. *Publishing the project you developed locally* (this tutorial)
+By the end of the section, you should feel comfortable:
+
+* Making and testing changes locally.
+* Publishing your changes to the Koji server.
+* Pushing your changes to the origin repository, and then pulling them into the Koji editor.
 
 == Prerequisites
 
-* Use Git to clone your project locally.
-See the first part of the tutorial.
-* Install Node.js and launch your project locally.
-See the second part of the tutorial.
+* Follow the first two sections to set up the https://withkoji.com/~Svarog1389/rxkd[Falling Objects] game on your development machine.
 
-== Changing a custom value
+== Making a change in the source code
 
-For the https://withkoji.com/~Svarog1389/element-match[Element Match] game, a new game title would be a simple change that is obvious to test.
-To change the title in the Koji editor, you would click *VCC Explorer > Game Settings* on the left side, which opens the Game Settings editor in Visual mode.
-This mode shows the visual controls that will enable non-technical users to customize your template when you have finished developing it.
+Let's make a small change in the https://withkoji.com/~Svarog1389/rxkd[Falling Objects] game, just for testing purposes.
 
-Because Visual mode is not available when you are developing your project locally, you must edit the JSON customization file directly.
+. Open `frontend\src\Components\View\LeaderboardMini.js`.
+Change  `<Title>{"Top Players"}</Title>` to `<Title>{"Leaderboard"}</Title>` and save the file.
 
-. Open the `.koji/customization/string.json` in your text editor.
-. Change the title and save the file.
-+
-[source,json]
-----
-  "strings": {
-    "fontFamily": "https://fonts.googleapis.com/css?family=Lilita+One",
-    "title": "CUSTOM TITLE", <1>
-    "instructions1": "Swipe the Elements to move them",
-    ...
-  }
-----
-<1> Change the value for the `title` key.
-. In your browser, go to `\http://0.0.0.0:8080`, and make sure the splash screen shows the new title.
+. In your browser, go to `\http://0.0.0.0:8080`, and make sure the leaderboard shows the new title.
 
-== Moving changes from local to live
+== Publishing your changes to the Koji server
 
 To make a local change visible on Koji server, you must complete the following process.
 
 . Use Git to `commit` your changes locally.
 . Use Git to `push` the committed changes to the remote Koji repository.
-. Use the instance of Git in the Koji editor to `pull` the committed changes from the Koji repository.
-. Update the Node modules for the frontend and backend servers.
-. Use the Koji editor to publish the updated version of your template.
+Pushing the changes automatically publishes the app.
 
 === Committing changes locally
 
@@ -117,11 +100,29 @@ To https://projects.koji-cdn.com/a70f8329-e89e-48b0-8d85-7658c1542b9f.git
 <1> Use Git to upload your new version to the Koji repository
 <2> Paste your 32-character access key.
 
+[NOTE]
+Pushing your changes to origin automatically publishes a new version of your app.
+
+== Testing your published app
+
+Now that you've published your app, you will want to make sure that it works the same on the Koji server as it does locally.
+
+. On the https://withkoji.com/[Koji home page], click your profile button and select btn:[Developer Portal].
+. Select your app from *All Projects*.
+. Click *View Published Koji*.
+The published version of your app opens.
+. Proceed to test all the features of your app.
+[NOTE]
+For tips on testing your app, go to <<testing-templates#,Testing and debugging apps>>. For example, you can override the environment variables in the Koji debugger, so that you can use it for testing locally. See <<testing-templates#_overriding_settings_for_a_debugging_session,Overriding settings for a debugging session>>.
+
+== Updating the Koji code editor to match your local environment
+
+If you want to use the Koji code editor after you make changes locally, you must pull your changes into it and update the Node modules to match your local environment.
+
 === Pulling changes into the Koji editor
 
-If you test your template in the Koji editor now, you will not yet see the changes you pushed.
 The Koji editor uses its own repository, which is different from the `origin` repository to which you pushed your changes.
-To update the repository used by the Koji editor, you must `pull` the changes from the `origin` repository.
+So, if you want to go back to using the Koji editor, you will have to `pull` the changes from the `origin` repository.
 
 . Open your project in the Koji editor.
 . Open a new terminal tab and run the following command.
@@ -134,27 +135,29 @@ Your terminal will look something like this:
 [source,bash]
 ----
 root@ip-172-31-12-226:/usr/src/app# git pull origin master
-remote: Counting objects: 21, done.
-remote: Compressing objects: 100% (21/21), done.
-remote: Total 21 (delta 15), reused 0 (delta 0)
-Unpacking objects: 100% (21/21), done.
-From https://projects.koji-cdn.com/a70f8329-e89e-48b0-8d85-7658c1542b9f
-* branch            master     -> FETCH_HEAD
-  a88036c..ea6bda1  master     -> origin/master
-Updating a88036c..ea6bda1
+remote: Counting objects: 13, done.
+remote: Compressing objects: 100% (13/13), done.
+remote: Total 13 (delta 11), reused 0 (delta 0)
+Unpacking objects: 100% (13/13), done.
+From https://projects.koji-cdn.com/d29a69ff-f413-45bb-a364-a6bee40eea91
+ * branch            master     -> FETCH_HEAD
+   0cafbcd..9633a51  master     -> origin/master
+Updating 0cafbcd..9633a51
 Fast-forward
-backend/package-lock.json        | 41 ++++++++++++++++++++++++++++++-----------
-frontend/package-lock.json       | 82 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++---------------------
-.koji/customization/strings.json |  2 +-
-3 files changed, 92 insertions(+), 33 deletions(-)
+ frontend/src/Components/Remix/index.js          | 569 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++---------------------------------------------------------------------------------------------------------------------
+ frontend/src/Components/View/Leaderboard.js     | 456 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++--------------------------------------------------------------------------------------------
+ frontend/src/Components/View/LeaderboardMini.js | 373 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++---------------------------------------------------------------------------
+ 3 files changed, 673 insertions(+), 725 deletions(-)
+root@ip-172-31-12-226:/usr/src/app#
+root@ip-172-31-12-226:/usr/src/app#
 ----
 +
 The code in the Koji editor should now be identical to the code in your local repository.
 . In the top right of the Preview pane, click *Refresh* to make sure you are seeing the latest version.
 +
-You should now see the custom title, which corresponds to the local change you made in `.koji/customization/strings.json`.
+You should now see the custom title, which corresponds to the local change you made in `frontend\src\Components\View\LeaderboardMini.js`.
 
-=== Updating the Node modules
+=== Updating the Node modules for the Koji editor
 
 If you installed new or updated Node modules locally, you must also install these versions on the Koji server.
 For example, if you ran `npm audit fix` to update all the Node modules to their most recent stable release, the dependencies for the `backend` and the `frontend` servers might have changed.
@@ -223,60 +226,6 @@ root@ip-172-31-15-216:/usr/src/app/backend# npm run start-dev
 [koji] backend started
 ----
 
-=== Publishing a new version
-
-To complete the first iteration of the development cycle, you must publish your template so that you can test how it works when served live on the Koji servers.
-Since your template is under development, you might not be ready to broadcast it to the whole web.
-For now, you might prefer to test the template live yourself or get feedback from a small, hand-picked group.
-Fortunately, Koji gives you a way to publish your project as *unlisted*, which means that only people with the direct URL are able to visit your published template.
-
-. In the upper left of the Koji editor, click *Publish Now* to open the publish settings.
-. To publish your project as unlisted, click *Show advanced options*, and then select the *Unlisted* checkbox.
-+
-NOTE: The next time you publish your template, the *Unlisted* option will be selected by default.
-Remember to clear this setting when your project is ready for the world to see.
-
-. If needed, edit additional information about your template, such as the name and description.
-. Click *Publish New Version*.
-+
-A message appears to indicate that the publishing process has started. When publishing is completed, a link appears in the message.
-+
-TIP: When you publish your project, the Koji editor automatically creates a new Git commit with the commit message `Manual deploy`.
-
-== Developing customization files for your template
-
-When you need to change the customization files for your template, the Koji editor provides several important features that are not available in your local development environment.
-
-* A Visual mode for editing the JSON files stored at `.koji/customization/`.
-* The ability to generate custom URLs for assets.
-
-If you edit the customization files in your local development environment, you could create valid JSON that does not conform to the format required by Koji.
-In particular, the `@@editor` array needs to contain specific property-value pairs and precisely constructed objects, or the VCCs will not work and non-technical users will not be able to customize your template correctly.
-To ensure that your changes are valid and work as expected, it makes sense to work in the Koji editor, and to toggle back and forth between the Visual and Code modes.
-
-Another reason to use the Koji editor is that you can upload images and audio files, or provide a direct URL to where these files can be found online, and the Koji platform will copy them to the Koji CDN servers and insert the appropriate URL into the associated JSON file for you.
-Working in your local development environment, there is no way for you to transfer files to the Koji servers and to obtain their URLs.
-
-However, editing the customization files in both the Koji editor and in your local development environment can cause problems.
-If you were to edit the JSON file structure or upload assets in the Koji editor, you would need to manually push the changes to Koji's origin repository and then pull them into your local development environment.
-If you had also made local changes since your last local commit, this might result in conflicts between the Koji editor's repository and your local Git repository.
-
-To get the benefits of the Koji editor while avoiding potential conflicts between repositories, the recommended solution is to use a separate Koji project for developing your customizations.
-
-. Create a separate Koji project specifically for editing the JSON customization files, and nothing else.
-. For each of the JSON files stored in the `.koji/customization/` folder of this separate project, edit the `@@editor` array until the Visual mode works as needed.
-. Use the Visual mode to set the default values that you want in your main project.
-Upload files or provide links to custom assets.
-. When you have finished customizing the values in the Koji editor, switch to Code mode and copy the JSON content.
-. In the local development environment for your main project, paste this tried-and-tested VCC code into the appropriate JSON file.
-. Commit your changes locally, push to the Koji origin repository, and pull the changes into the Koji editor of your main project.
-+
-IMPORTANT: By following this process, you can be sure that your modified code always flows only in one direction: from your local development environment to the online Koji environment.
-
-TIP: The separate Koji project that you use for editing and testing the VCC JSON files can be reduced to its bare bones, if you want.
-You can delete all the frontend and backend code, and retain just the `.koji` directory and its contents.
-You can even use the same project to develop the VCC JSON files for multiple projects.
-
 == Wrapping up
 
 This tutorial has taken you on a round trip from the Koji editor to your local development environment and back again.
@@ -290,8 +239,7 @@ In particular, you have seen how to:
 * Make and test changes locally.
 * Push your changes to the origin repository, and then pull them into the Koji editor.
 * Publish your changes to the Koji server.
-* Test that your template works the same live on a Koji server as it does locally.
-* Take advantage of the Visual mode for the JSON customization files, so that non-technical users can easily create their own versions of your template.
+* Test that your app works the same live on a Koji server as it does locally.
 
-You're now ready to start developing your Koji template in earnest, in the development environment where you feel most comfortable.
+You're now ready to start developing your Koji app in earnest, in the development environment where you feel most comfortable.
 Let your creativity shine!

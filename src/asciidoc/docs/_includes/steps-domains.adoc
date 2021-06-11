@@ -1,0 +1,56 @@
+= Steps related to domains and subdomains
+
+////
+  Usage:
+    :includespath: ../_includes
+
+    include::{includespath}/steps-domains.adoc[tag=open-published-app]
+    include::{includespath}/steps-domains.adoc[tag=open-published-custom-control]
+    include::{includespath}/steps-domains.adoc[tag=open-published-how]
+    include::{includespath}/steps-domains.adoc[tag=menu-app-custom-domain]
+    include::{includespath}/steps-domains.adoc[tag=click-add-new-domain]
+    include::{includespath}/steps-domains.adoc[tag=select-subdomain]
+    include::{includespath}/steps-domains.adoc[tag=create-koji-vccs-com-subdomain]
+////
+
+
+// tag::all[]
+
+
+// tag::open-published-app[]
+. Open the published app.
+// end::open-published-app[]
+
+
+// tag::open-published-custom-control[]
+. Open the published custom control.
+// end::open-published-custom-control[]
+
+
+// tag::open-published-how[]
+* You can open the link that is provided in the notification immediately after you publish.
+* You can also go back to the *Project Details* page and click *View Published Koji*.
+// end::open-published-how[]
+
+
+// tag::menu-app-custom-domain[]
+. While viewing your custom control, go to menu:App[... > Custom Domain].
+// end::menu-app-custom-domain[]
+
+
+// tag::click-add-new-domain[]
+. Click *Add New Domain*.
+// end::click-add-new-domain[]
+
+
+// tag::select-subdomain[]
+. Select *Subdomain* and click btn:[Next].
+// end::select-subdomain[]
+
+
+// tag::create-koji-vccs-com-subdomain[]
+. Select `koji-vccs.com` as the root domain, enter a subdomain, and click btn:[Register].
+// end::create-koji-vccs-com-subdomain[]
+
+
+// end::all[]

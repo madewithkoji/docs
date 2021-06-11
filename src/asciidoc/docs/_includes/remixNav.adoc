@@ -1,7 +1,0 @@
-= Remix navigation snippet
-
-// tag::all[]
-Click the *Koji* button in the top right, and then click *Advanced > Fork*.
-+
-image:koji-button.png[Koji button]
-// end::all[]

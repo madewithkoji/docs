@@ -33,12 +33,10 @@ To use this feature in your templates, enable the `hideExtensions` type option.
 ** About cards now always open in the full frame, instead of modal windows.
 ** Feed navigation is no longer used when browsing templates from the *Create* button.
 ** Fixed a bug that incorrectly prompted anonymous users to log in when remixing templates with secure content, such as premium images.
-// tag::highlights[]
 
 == December 15
 
 * The following features are now available on the Koji platform.
-// end::highlights[]
 ** The video VCC can now support HTTP Live Streaming (HLS) for delivery of longer content, such as courses and short films.
 To use this feature in your templates, enable the `hls` type option.
 ** Creators can now publish subscription-only Kojis and charge a fee for their premium content, without additional template development or configuration.
@@ -46,10 +44,8 @@ To offer premium content, configure a subscription from your https://withkoji.co
 Then, when publishing a remix, set the *Subscriber only* option to designate the Koji as part of your subscription offering.
 +
 image::publishSubscription-dec2020.png[Publish premium content, 400px]
-// tag::highlights[]
 ** The creator dashboard now shows consolidated analytics for all of your Kojis.
 The overview includes standard, built-in metrics that are calculated from access logs as well as transaction and revenue data.
-// end::highlights[]
 ** You now have more options for customizing your Koji profile page.
 ** Transaction receipts on the Koji platform have been redesigned for enhanced usability.
 * The following features are now available in the <<withkoji-vcc-package#>> package.
@@ -59,10 +55,10 @@ To use a signed URL, use the new `generateSignedUrl` method.
 ** You can now hide the default action for advancing from a remix to a preview, enabling the template to handle validation and other processing first.
 To hide the default action, enable the new `InstantRemixingNativeNavigation` entitlement.
 To advance to a preview, use the new `finish` method.
-// tag::highlights[]
 * The developer site includes the following updates.
 ** New content is available to help Koji developers get the most value from their templates, including <<app-versions#>>, <<testing-templates#>>, and <<plugins#>>.
 ** The site design and navigation have been updated.
+// tag::highlights[]
 
 == November 24
 
@@ -156,15 +152,11 @@ image::push-notifications-oct2020.png[Push notifications]
 This feature enables you to ensure that all relevant assets have loaded before the image is generated.
 For updated documentation, see <<thumbnail-image#>>.
 * On the developer site, updated content is available to help new Koji developers onboard more quickly, including What is remixing? (new), What is a template? (updated), and <<introduction#>> (updated).
-// tag::highlights[]
 
 == October 19
 
-// end::highlights[]
 .Koji platform updates
-// tag::highlights[]
 * Templates now support simple content moderation and data collection by enabling a creator to view or download collected data and to quickly remove an offensive entry or a mistake.
-// end::highlights[]
 +
 image::database-views-oct2020.png[Manage content]
 ** To customize the data presentation for remixers, configure a <<koji-database#, database view>> when developing the template.
