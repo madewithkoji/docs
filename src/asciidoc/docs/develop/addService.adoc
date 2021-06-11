@@ -3,9 +3,15 @@
 :page-description: How to add a backend service to a Koji template.
 :includespath: ../_includes
 
-As you develop and extend apps on Koji, you will likely encounter situations where it would be useful to put some of your code into a service. A common example is when you fork an app with a frontend, but you need to add a backend.
+As you develop and extend apps on Koji, you will likely encounter situations where it would be useful to put some of your code into a service.
+In general, a service is a software component that provides functionality to clients.
+It's usually set up to be accessible via public or internal ports.
+The client software can then access the functionality provided by the service by using HTTP calls.
 
-In this tutorial, you will add a backend service to an existing app, and confirm that it's working.
+In this tutorial, you will add a backend service to an existing app and confirm that it's working.
+
+[NOTE]
+In Koji apps, the frontend also runs as a service. This allows your apps to be run inside other applications and even inside other Koji apps.
 
 *Time*: 30 minutes
 
@@ -20,7 +26,7 @@ To add and test a backend service, you'll start by forking an app that already h
 . Open the following scaffold.
 +
 include::{includespath}/starterScaffolds.adoc[tag=react]
-. Click *Fork*
+. Click *Fork*.
 The *Project Details* page opens.
 . Click *Open in Code Editor*.
 The app opens in the Koji editor.
@@ -36,7 +42,7 @@ You will use these files to get started:
 
 You will configure these files and install the required packages for the backend service.
 
-. On the left side of the editor, click the plus (*+*) next to any folder in the source code, click *New File*, and then enter the following path:
+. On the left side of the editor, click the plus (*+*) next to the `frontend` folder in the source code, click *New File*, and then enter the following path:
 +
 [source,text]
 /backend/package.json
@@ -55,7 +61,7 @@ This path creates a `backend` folder and a `package.json` file.
     "compile": "rm -rf dist && ./node_modules/.bin/babel ./src -d dist --ignore \"node_modules/**/*.js\"",
     "start": "NODE_ENV=production node dist/server.js",
     "start-dev": "nodemon --exec babel-node server.js",
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
   "license": "ISC",
@@ -103,7 +109,7 @@ The required packages are now installed.
 exit
 
 . To collapse the terminal pane, click the down arrow in the upper right.
-. On the left side of the editor, click the plus (*+*) next to the `backend` folder in the source code, click *New File*, and then enter the following path.
+. On the left side of the editor, click the plus (*+*) next to any folder in the source code, click *New File*, and then enter the following path.
 +
 [source, text]
 ----
@@ -119,7 +125,7 @@ include::../_includes/babelrc.json[]
 ----
 +
 These Babel configurations add syntax that will help your project build and compile correctly.
-. On the left side of the editor, click the plus (*+*) next to the `backend` folder in the source code, click *New File*, and then enter the following path:
+. On the left side of the editor, click the plus (*+*) next to any folder in the source code, click *New File*, and then enter the following path:
 +
 [source,shell]
 ----
@@ -201,7 +207,7 @@ REACT_APP_FRONTEND_URL=$KOJI_SERVICE_URL_frontend
 REACT_APP_BACKEND_URL=$KOJI_SERVICE_URL_backend
 REACT_APP_PROJECT_ID=$KOJI_PROJECT_ID
 ----
-. Open the frontend/index.js file, update the config call as follows, and then save the file.
+. Open the frontend/src/index.js file, update the config call as follows, and then save the file.
 +
 [source,javascript]
 ----
@@ -282,13 +288,21 @@ If you see `[koji] backend started`, your backend service is now running in your
 
 == Testing the backend service
 
-To test that everything is working correctly, you can modify your frontend code to get a value from the server and display it automatically.
+To test that everything is working correctly, you can modify your frontend code to get a value from the backend service and display it automatically.
 
-. Go to the `backend` folder, and install the `styled-components` package, which the new code will use.
+. Go to the `frontend` folder, press CTL-C to stop the frontend server, and install the `styled-components` package, which the new code will use.
 +
 [source,bash]
+----
 npm install styled-components
-. Open the `/frontend/src/App.js` file and replace it with the following code.
+----
+. Restart the frontend server.
++
+[source,bash]
+----
+npm run start-dev
+----
+. Open the `/frontend/src/App.js` file and replace the contents with the following code.
 +
 [source,javascript]
 ----
@@ -368,17 +382,17 @@ After the component mounts, it sets a timeout of 5 seconds, and then tries to fe
 . Open the live preview and refresh it.
 +
 If everything worked, you should see the first text state for 5 seconds, and then it should be replaced with the `Hello, world!` text from the server.
-. Publish your template and confirm that it working as expected.
+. Publish your template and confirm that it's working as expected.
 
 [TIP]
 ====
-If you're wondering about how these services work behind the scenes, here is a brief explanation:
+If you're wondering how these services work behind the scenes, here's a brief explanation:
 
 . The `develop` and `deploy` sections in `koji.json` contain service keys, such as `frontend`.
 . For each of these keys, the container that handles your editor or published deployment will automatically generate a URL.
-. That URL is saved as a variable inside Koji, which is based on the key
+. That URL is saved as a variable inside Koji, which is based on the key.
 The variable name is `$KOJI_SERVICE_URL_backend`.
-. In `frontend/.env`, you defined an environment variables that pointed to this internal Koji variable, so that your app is able to retrieve the value.
+. In `frontend/.env`, you defined an environment variable that points to this internal Koji variable, so that your app is able to retrieve the value.
 ====
 
 == Wrapping up
