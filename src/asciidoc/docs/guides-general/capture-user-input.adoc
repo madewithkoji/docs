@@ -2,12 +2,13 @@
 :page-slug: capture-user-input
 :page-description: How to capture user input using `Koji.ui.capture` controls.
 :includespath: ../_includes
+:imagesdir: path-to-images-directory
 
-Koji provides a set of predefined user-input controls that you can use in your app's front end to capture information and content from your users.
+Koji provides a set of predefined user-input controls that you can use in your app's frontend to capture information and content from your users.
 
 These controls are found in `Koji.ui.capture` in the @withkoji/core package.
 
-== Using predefined user-input controls
+== Using user-input controls
 
 To use a predefined user-input control in your app,
 
@@ -36,26 +37,282 @@ import Koji from '@withkoji/core';
 myVariable = await Koji.ui.capture.<control-name>( <control-parameters> )
 ----
 +
-<<core-frontend-ui-capture#audio,`.audio`>> – Prompts the user to select or upload an audio file. +
-<<core-frontend-ui-capture#color,`.color`>> – Prompts the user to select or specify a color. +
-<<core-frontend-ui-capture#custom,`.custom`>> – Prompts the user to interact with a custom control. +
-<<core-frontend-ui-capture#file,`.file`>> – Prompts the user to upload a file of any type. +
-<<core-frontend-ui-capture#image,`.image`>> – Prompts the user to select or upload an image file. +
-<<core-frontend-ui-capture#link,`.link`>> – Prompts the user to enter an external URL. +
-<<core-frontend-ui-capture#media,`.media`>> – Prompts the user to select, specify, or upload an image, a file, an audio, or a video. +
-<<core-frontend-ui-capture#range,`.range`>> – Prompts the user to select a numeric range. +
-<<core-frontend-ui-capture#select,`.select`>> – Prompts the user to select from a predefined list of options. +
-<<core-frontend-ui-capture#video,`.video`>> – Prompts the user to select or upload a video file.
+** `.audio` – Prompts the user to select or upload an audio file.
+<<core-frontend-ui-capture#audio,API reference>>
 +
-Example:
-+
+.View image and example.
+[%collapsible]
+====
+image::ui-capture-audio.png[UI / Capture .audio control,50%,link="{imagesDir}/ui-capture-audio.png"]
+
+.Example
 [source,javascript]
 ----
-const myFile = await Koji.ui.capture.file({}, true);
+  const captureAudio = async () => {
+    const capturedAudio = await Koji.ui.capture.audio({ hideExtensions : true });
+    if (capturedAudio) alert( 'You uploaded an audio file: ' + capturedAudio );
+  };
+  ...
+  return (
+    <div className="App">
+      <header className="App-header" style={{ backgroundColor }}>
+        <button onClick={captureAudio}>{'.audio test'}</button>
+      </header>
+    </div>
+  );
 ----
+====
+
+** `.color` – Prompts the user to select or specify a color.
+<<core-frontend-ui-capture#color,API reference>>
++
+.View image and example.
+[%collapsible]
+====
+With `Koji.ui.capture.color({ allowAlpha : false, initialValue : '#203040' });` :
+
+image::ui-capture-color-no-alpha.png[UI / Capture .color control,50%,link="{imagesDir}/ui-capture-color-no-alpha.png"]
+
+With `Koji.ui.capture.color({ allowAlpha : true, initialValue : '#203040' });` :
+
+image::ui-capture-color-with-alpha.png[UI / Capture .color control,50%,link="{imagesDir}/ui-capture-color-with-alpha.png"]
+
+.Example
+[source,javascript]
+----
+  const captureColor = async () => {
+    const capturedColor = await Koji.ui.capture.color({ allowAlpha : true, initialValue : '#203040' });
+    if (capturedColor) setBackgroundColor(() => capturedColor);
+  };
+  ...
+  return (
+    <div className="App">
+      <header className="App-header" style={{ backgroundColor }}>
+        <button onClick={captureColor}>{'.color test'}</button>
+      </header>
+    </div>
+  );
+----
+====
+
+** `.custom` – Prompts the user to interact with a custom control.
+<<core-frontend-ui-capture#custom,API reference>> +
+Learn more: <<build-custom-controls#>>
+
+** `.file` – Prompts the user to upload a file of any type.
+<<core-frontend-ui-capture#file,API reference>>
++
+.View image and example.
+[%collapsible]
+====
+image::ui-capture-file.png[UI / Capture .file control,50%,link="{imagesDir}/ui-capture-file.png"]
+
+.Example
+[source,javascript]
+----
+  const captureFile = async () => {
+    const capturedFile = await Koji.ui.capture.file();
+    if (capturedFile) alert( 'You chose/uploaded a file: ' + capturedFile );
+  };
+  ...
+  return (
+    <div className="App">
+      <header className="App-header" style={{ backgroundColor }}>
+        <button onClick={captureFile}>{'.file test'}</button>
+      </header>
+    </div>
+  );
+----
+====
+
+** `.image` – Prompts the user to select or upload an image file.
+<<core-frontend-ui-capture#image,API reference>>
++
+.View image and example.
+[%collapsible]
+====
+image::ui-capture-image.png[UI / Capture .image control,50%,link="{imagesDir}/ui-capture-image.png"]
+
+.Example
+[source,javascript]
+----
+  const captureImage = async () => {
+    const capturedImage = await Koji.ui.capture.image({ bgColor : '#ff5555' });
+    if (capturedImage) setMainIcon(() => capturedImage);
+  };
+  ...
+  return (
+    <div className="App">
+      <header className="App-header" style={{ backgroundColor }}>
+        <button onClick={captureImage}>{'.image test'}</button>
+      </header>
+    </div>
+  );
+----
+====
+
+** `.link` – Prompts the user to enter an external URL.
+<<core-frontend-ui-capture#link,API reference>>
++
+.View image and example.
+[%collapsible]
+====
+image::ui-capture-link.png[UI / Capture .link control,50%,link="{imagesDir}/ui-capture-link.png"]
+
+.Example
+[source,javascript]
+----
+  const captureLink = async () => {
+    const capturedLink = await Koji.ui.capture.link();
+    if (capturedLink) alert( 'You entered the link: ' + capturedLink );
+  };
+  ...
+  return (
+    <div className="App">
+      <header className="App-header" style={{ backgroundColor }}>
+        <button onClick={captureLink}>{'.link test'}</button>
+      </header>
+    </div>
+  );
+----
+====
+
+** `.media` – Prompts the user to select, specify, or upload an image, a file, an audio, or a video.
+<<core-frontend-ui-capture#media,API reference>>
++
+.View image and example.
+[%collapsible]
+====
+image::ui-capture-media.png[UI / Capture .media control,50%,link="{imagesDir}/ui-capture-media.png"]
+
+.Example
+[source,javascript]
+----
+  const captureMedia = async () => {
+    const capturedMedia = await Koji.ui.capture.media({ hideExtensions : false });
+    if (capturedMedia) alert( 'You chose/uploaded a media file: ' + capturedMedia );
+  };
+  ...
+  return (
+    <div className="App">
+      <header className="App-header" style={{ backgroundColor }}>
+        <button onClick={captureMedia}>{'.media test'}</button>
+      </header>
+    </div>
+  );
+----
+====
+
+** `.range` – Prompts the user to select a numeric range.
+<<core-frontend-ui-capture#range,API reference>>
++
+.View image and example.
+[%collapsible]
+====
+With `Koji.ui.capture.range({ initialValue : 50, min : 30, max : 70, step : 10 });` :
+
+image::ui-capture-range.png[UI / Capture .range control,50%,link="{imagesDir}/ui-capture-range.png"]
+
+.Example
+[source,javascript]
+----
+  const captureRange = async () => {
+    const capturedRange = await Koji.ui.capture.range({ initialValue : 50, min : 30, max : 70, step : 10 });
+    if (capturedRange) alert( 'You selected this value from the range: ' + capturedRange );
+  };
+  ...
+  return (
+    <div className="App">
+      <header className="App-header" style={{ backgroundColor }}>
+        <button onClick={captureRange}>{'.range test'}</button>
+      </header>
+    </div>
+  );
+----
+====
+
+** `.select` – Prompts the user to select from a predefined list of options.
+<<core-frontend-ui-capture#select,API reference>>
++
+.View image and example.
+[%collapsible]
+====
+If the list has 1 to 4 options, the options are presented as radio buttons. +
+If the list has 5 or more options, the list is presented as a dropdown.
+
+image::ui-capture-select.png[UI / Capture .select control,50%,link="{imagesDir}/ui-capture-select.png"]
+
+.Example
+[source,javascript]
+----
+  const captureSelection = async () => {
+    const capturedSelection = await Koji.ui.capture.select(
+      {
+        placeholder : "Choose a mystery prize:",
+        options : [
+          { value : "prizeA", label : "Prize A" },
+          { value : "prizeB", label : "Prize B" },
+          { value : "prizeC", label : "Prize C" },
+          { value : "prizeD", label : "Prize D" },
+          { value : "prizeE", label : "Prize E" }
+        ]
+      }
+    );
+    if (capturedSelection) alert( 'You chose ' + capturedSelection );
+  };
+  ...
+  return (
+    <div className="App">
+      <header className="App-header" style={{ backgroundColor }}>
+        <button onClick={captureSelection}>{'.select test'}</button>
+      </header>
+    </div>
+  );
+----
+====
+
+** `.video` – Prompts the user to select or upload a video file.
+<<core-frontend-ui-capture#video,API reference>>
++
+.View image and example.
+[%collapsible]
+====
+image::ui-capture-video.png[UI / Capture .video control,50%,link="{imagesDir}/ui-capture-video.png"]
+
+.Example
+[source,javascript]
+----
+  const captureVideo = async () => {
+    const capturedVideo = await Koji.ui.capture.video({ hideExtensions : false });
+    if (capturedVideo) alert( 'You chose/uploaded a video file: ' + capturedVideo );
+  }
+  ...
+  return (
+    <div className="App">
+      <header className="App-header" style={{ backgroundColor }}>
+        <button onClick={captureVideo}>{'.video test'}</button>
+      </header>
+    </div>
+  );
+----
+====
+
+[TIP]
+====
+The @withkoji/core package provides multiple APIs for uploading files.
+If your app needs a specific type of file (audio, image, or video), use the specific API for that file type if possible.
+
+That is, instead of `.media` or `.file`,
+
+* To accept only audio files, use `.audio`.
+* To accept only images, use `.image`.
+* To accept only videos, use `.video`.
+
+The specific APIs help to filter the selections offered to the user or to validate the uploaded file, if any.
+====
 
 == Related resources
 
-* <<core-frontend-ui-capture#>>
-* <<core-frontend-ui-present#>>
+* <<core-frontend-ui-capture#, Frontend / UI / Capture>>
+* <<core-frontend-ui-present#, Frontend / UI / Present>>
 * <<build-custom-controls#>>

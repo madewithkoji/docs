@@ -120,6 +120,10 @@
           "root": "/platform",
           "items": [
             {
+              "name": "Capturing user input",
+              "slug": "capture-user-input"
+            },
+            {
               "name": "Entitlements",
               "slug": "entitlements"
             },
@@ -208,10 +212,6 @@
             {
               "name": "Using custom domains",
               "slug": "custom-domains"
-            },
-            {
-              "name": "Capturing user input",
-              "slug": "capture-user-input"
             },
             {
               "name": "Building custom controls",
