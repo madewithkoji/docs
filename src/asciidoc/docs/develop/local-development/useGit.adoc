@@ -83,13 +83,13 @@ The access token is a 32-character randomly-generated hexadecimal number, which 
 To clone your Koji repository locally, you must generate an access key and store it securely.
 Access keys are strong, randomly-generated, 32-character hexadecimal strings that you generate to allow programmatic access to your Koji projects.
 
-. From *Project Details*, click *Clone*.
+. From *Project Details*, click btn:[Clone].
 A dialog similar to the following opens.
 +
 image::git-clone.png[]
-. Click *Manage access keys*.
+. Click btn:[Manage access keys].
 The *Access Keys* page opens in a new tab.
-. Click *Generate new token* in the top right.
+. Click btn:[Generate new token] in the top right.
 +
 A window opens to display the new access key.
 . Copy the access key and keep it somewhere safe, where only you can find it.
@@ -102,10 +102,12 @@ You can, however, revoke your token and generate a new one if you have forgotten
 
 === Obtaining Koji environment variables
 
+The Koji platform reads in project details from https://en.wikipedia.org/wiki/Environment_variable[environment variables] to ensure that the deployment data is kept separate from the code and configuration for your app.
+
 If your project has a backend, you need the values of the `KOJI_PROJECT_ID` and `KOJI_PROJECT_TOKEN` environment variables to access it.
 Additional environment variables are available for accessing platform-provided metadata about the Koji's creator.
 
-. If the Clone dialog is not already open, return to the browser tab for *Project Details*, and click *Clone*.
+. If the Clone dialog is not already open, return to the browser tab for *Project Details*, and click btn:[Clone].
 +
 The first line of text under *Environment Variables* is the project ID.
 . Click the line to highlight it.
@@ -115,7 +117,7 @@ The first line of text under *Environment Variables* is the project ID.
 
 === Authorizing Git to clone the repository
 
-. If the Clone dialog is not already open, return to the browser tab for *Project Details*, and click *Clone*.
+. If the Clone dialog is not already open, return to the browser tab for *Project Details*, and click btn:[Clone].
 . Click the line of text under *Repository* in the dialog box to highlight it.
 This line has the form `git clone \https://projects.koji-cdn.com/[[unique identifier]].git`, where [unique identifier] is the identifier for the repository directory on `\https://projects.koji-cdn.com/`.
 . Copy the highlighted line to the clipboard.
@@ -129,27 +131,27 @@ The line should have the following format:
 git clone [repository URL] [directory name]
 ----
 +
-. Press `Enter` to run the command.
+. Press kbd:[Enter] to run the command.
 Your terminal will look something like this:
 +
 [source,bash]
 ----
-~/Repos/Koji$ git clone https://projects.koji-cdn.com/a70f8329-e89e-48b0-8d85-7658c1542b9f.git MyKojiTemplate
-Cloning into 'MyKojiTemplate'...
+~/Repos/Koji$ git clone https://projects.koji-cdn.com/a70f8329-e89e-48b0-8d85-7658c1542b9f.git MyKojiApp
+Cloning into 'MyKojiApp'...
 Username for 'https://projects.koji-cdn.com':
 ----
-. If you are prompted for your username, enter your username on Koji and press *Enter*.
+. If you are prompted for your username, enter your username on Koji and press kbd:[Enter].
 . If you are prompted for a password, enter the access key that you generated in the previous procedure.
 +
 For security, the password will not be shown as you enter it.
-. Press *Enter* to start the cloning process.
+. Press kbd:[Enter] to start the cloning process.
 +
 Your terminal will look something like this:
 +
 [source,bash]
 ----
-~/Repos/Koji$ git clone https://projects.koji-cdn.com/a70f8329-e89e-48b0-8d85-7658c1542b9f.git MyKojiTemplate <1>
-Cloning into 'MyKojiTemplate'...
+~/Repos/Koji$ git clone https://projects.koji-cdn.com/a70f8329-e89e-48b0-8d85-7658c1542b9f.git MyKojiApp <1>
+Cloning into 'MyKojiApp'...
 Username for 'https://projects.koji-cdn.com': KojiCoder <2>
 Password for 'https://KojiCoder@projects.koji-cdn.com': <3>
 remote: Counting objects: 15941, done.
@@ -176,7 +178,7 @@ Your terminal should look something like this:
 +
 [source,bash]
 ----
-~/Repos/Koji$ cd MyKojiTemplate/
+~/Repos/Koji$ cd MyKojiApp/
 ~/Repos/Koji$ ls -al
 total 40
 drwxrwxr-x  6 kojicoder dev 4096 nov  5 16:38 .

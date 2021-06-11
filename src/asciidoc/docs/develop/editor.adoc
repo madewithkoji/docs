@@ -26,13 +26,7 @@ When you fork an existing project or scaffold, the Git repository of that projec
 When you use the code editor to publish your Koji, the code editor commits your changes and pushes the updated files to the `master` branch.
 This push triggers the deployment process.
 
-[IMPORTANT]
-====
-If you made changes to your project files xref:work-locally.adoc[outside the Koji editor], you must update the project files before editing them in the code editor again.
-
-. In the Koji code editor, expand the terminal pane.
-. Run `git pull`.
-====
+IMPORTANT: If you made changes to your project files outside the Koji editor, you must <<publish-locally-developed#_updating_the_koji_code_editor_to_match_your_local_environment, update the project files>> before editing them in the code editor again.
 
 == Previewing your Koji
 
