@@ -37,7 +37,7 @@ React and ES6 basics are a plus.
 // end::3papi[]
 
 // tag::remixproc[]
-* Familiarity with the Koji editor and remix process.
+* Familiarity with the Koji editor and customization process.
 For an overview, go through <<start-tutorial#, the Koji starter tutorial>>.
 // end::remixproc[]
 
