@@ -261,7 +261,7 @@ npm start
 +
 [source,javascript]
 ----
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styled, { keyframes } from 'styled-components';
 import Koji from '@withkoji/core';
 
@@ -297,46 +297,32 @@ const Icon = styled.div`
     margin-bottom: 16px;
 `;
 
-class App extends React.Component {
-    constructor(props) {
-      super(props);
+function App() {
+  const [text, setText] = useState('');
 
-      this.state = {
-        text: 'Updating in 5 seconds...',
-        title: '',
-       };
-    }
+  useEffect(() => {
+    fetch(Koji.services.backend)
+      .then((response) => response.json())
+      .then((jsonResponse) => {
+        setText(jsonResponse.text);
+      });
+  }, []);
 
-    componentDidMount() {
-      window.setTimeout(() => {
-        fetch(Koji.services.backend)
-          .then((response) => response.json())
-          .then((jsonResponse) => {
-            console.log('jsonResponse', jsonResponse);
-            this.setState({ text: jsonResponse.text });
-          });
-      }, 5000);
-    }
-
-  render() {
-    return (
-      <Container>
-        <h1>{this.state.title}</h1>
-        <p>{this.state.text}</p>
-        <Icon />
-      </Container>
-    );
-  }
+  return (
+    <Container>
+      <p>{text}</p>
+      <Icon />
+    </Container>
+  );
 }
 
 export default App;
 ----
 +
-This code sets a default text state of `Updating in 5 seconds`.
-After the component mounts, it sets a timeout of 5 seconds, and then tries to fetch your backend route and set the response as the new text state.
+This code fetches the value for `text` from your backend service.
 . Open the live preview and refresh it.
 +
-If everything worked, you should see the first text state for 5 seconds, and then it should be replaced with the `Hello, world!` text from the server.
+If everything worked, you should see `Hello, world!` displayed above the React logo.
 . Publish your app, and confirm that it's working as expected.
 
 [TIP]
