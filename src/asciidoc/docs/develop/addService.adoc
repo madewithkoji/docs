@@ -197,7 +197,7 @@ There are several values your app will need to get from the Koji platform.
 
 Koji stores these values in internal variables. To make them accessible to your app, you need to map them to environment variables, and then add them to the configuration.
 
-. Open the frontend/.env file, update the contents as follows, and then save the file.
+. Open the `frontend/.env` file, update the contents as follows, and then save the file.
 +
 [source,text]
 ----
@@ -205,7 +205,7 @@ REACT_APP_FRONTEND_URL=$KOJI_SERVICE_URL_frontend
 REACT_APP_BACKEND_URL=$KOJI_SERVICE_URL_backend
 REACT_APP_PROJECT_ID=$KOJI_PROJECT_ID
 ----
-. Open the frontend/src/index.js file, update the config call as follows, and then save the file.
+. Open the `frontend/src/index.js` file, update the config call as follows, and then save the file.
 +
 [source,javascript]
 ----
@@ -234,7 +234,7 @@ include::{includespath}/koji.json[tags=deploy;develop,indent=0]
 ----
 +
 This file lets the Koji editor know which services to run, so you must add entries for the `backend` service.
-. On the left side of the editor, go to *Advanced > Remote environment* and click *Force restart project*.
+. On the left side of the editor, go to menu:Advanced[Remote environment] and click btn:[Force restart project].
 +
 If everything went well, you should be able to reconnect to the editor and see that a `backend` terminal has been added at the bottom.
 +
@@ -244,7 +244,7 @@ If you see `[koji] backend started`, your backend service is now running in your
 
 To test that everything is working correctly, you can modify your frontend code to get a value from the backend service and display it automatically.
 
-. Go to the `frontend` folder, and press kbd:[Ctrl+C] to stop the frontend server.
+. Go to the `frontend` terminal, and press kbd:[Ctrl+C] to stop the frontend server.
 . Install the `styled-components` package, which the new code will use.
 +
 [source,bash]
