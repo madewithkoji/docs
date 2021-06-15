@@ -160,7 +160,7 @@ const onPurchase = async () => {
 [NOTE]
 Make sure to *uncomment* those lines before publishing your game.
 
-After you publish the game, you can use the <<testing-templates#_debugging_in_app_purchases, Koji debugger>> to test the new in-app purchase feature.
+After you publish the game, you can use the <<testing-apps#_debugging_in_app_purchases, Koji debugger>> to test the new in-app purchase feature.
 You'll need to have a balance in your Koji wallet.
 
 NOTE: If you are working locally, you will need to push your changes and pull them into the Koji editor before publishing.

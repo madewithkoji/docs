@@ -17,7 +17,7 @@ The Koji editor provides various ways to preview an app’s behavior.
 === Using previews
 
 Your app might provide different experiences for different modes, called *contexts*.
-For example, you might provide a different UI during a remix than when the app is running.
+For example, you might provide a different UI during customization than when the app is running.
 The preview pane enables you to preview several standard contexts inside the editor.
 
 Learn more about <<editor#_previewing_your_koji, previewing your Koji>>.
@@ -53,7 +53,7 @@ For example, the following code snippet prints *Key pressed* to the console ever
 
 === Testing a social media share
 
-When a user shares a remix of your app on social media, the Koji platform renders a rich preview (Open Graph) image based on a screenshot of the app.
+When a user shares an app on social media, the Koji platform renders a rich preview (Open Graph) image based on a screenshot of the app.
 You can preview this image by selecting *More > Thumbnail*  in the preview pane.
 For information about how to customize the image, see <<thumbnail-image#>>.
 
@@ -105,7 +105,7 @@ You can also open the debugger from the Koji editor by clicking btn:[Launch Debu
 
 Your app might provide different experiences for different modes, called *contexts*.
 Select the tab of a context to display relevant tools for debugging it.
-For example, select *Remix* to display tools for debugging the remixing experience.
+For example, select *Remix* to display tools for debugging editable elements of your app.
 
 TIP: To enable certain contexts, you must enable the associated <<entitlements#, entitlement>>.
 If the selected context is not enabled, a message will be displayed saying that it is unavailable.
@@ -159,7 +159,7 @@ NEW VALUE
 ....
 ====
 
-If you click in an editable field on the remixing page, a *Clicked* event will appear in the event pane.
+If you click in an editable field on the editable elements page, a *Clicked* event will appear in the event pane.
 For example:
 
 ====
@@ -206,7 +206,7 @@ You can override the live data by changing the type, from `image` to `video`, an
 
 === Debugging database views
 
-If your app uses the <<koji-database#,Koji database>>, the *Database* panel lists the views for every collection and enables you to view and delete records.
+If your app uses the <<core-backend-database#,Koji database>>, the *Database* panel lists the views for every collection and enables you to view and delete records.
 
 You can also test database transactions in the debugger.
 
@@ -229,7 +229,7 @@ A list of database views opens in a new tab.
 
 === Debugging in-app purchases
 
-If <<withkoji-koji-iap-package#,in-app purchases>> are implemented in your app, the *In-app purchase receipts* panel allows you to view and delete receipts.
+If <<core-backend-iap#,in-app purchases>> are implemented in your app, the *In-app purchase receipts* panel allows you to view and delete receipts.
 
 You can also use the debugger to test in-app purchase transactions.
 
@@ -250,4 +250,4 @@ Wait a minute or two and try again.
 
 === Debugging auth grants
 
-If <<withkoji-koji-auth-sdk#,auth grants>> are implemented in your app, the *Auth grants* panel allows you to view and delete them.
+If <<core-frontend-identity#,auth grants>> are implemented in your app, the *Auth grants* panel allows you to view and delete them.
