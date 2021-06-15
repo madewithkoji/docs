@@ -127,10 +127,10 @@ These Babel configurations add syntax that will help your project build and comp
 +
 [source,shell]
 ----
-/backend/server.js
+/backend/src/server.js
 ----
 +
-This path creates a `server.js` file in the `backend` folder.
+This path creates a `src` folder with a `server.js` file inside it.
 You will use this file to run the backend server.
 . Paste the following code into `server.js`, and then save the file.
 +
