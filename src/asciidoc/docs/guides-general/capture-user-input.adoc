@@ -6,6 +6,8 @@
 
 Koji provides a set of predefined user-input controls that you can use in your app's frontend to capture information and content from your users.
 
+For example, your app might allow users to submit photos for a contest or to contribute videos for a virtual choir performance.
+
 These controls are found in `Koji.ui.capture` in the @withkoji/core package.
 
 == Using user-input controls
@@ -38,71 +40,40 @@ myVariable = await Koji.ui.capture.<control-name>( <control-parameters> )
 ----
 +
 ** `.audio` – Prompts the user to select or upload an audio file.
-<<core-frontend-ui-capture#audio,API reference>>
+<<core-frontend-ui-capture#audio,method reference>>
 
 ** `.color` – Prompts the user to select or specify a color.
-<<core-frontend-ui-capture#color,API reference>>
+<<core-frontend-ui-capture#color,method reference>>
 +
 If `allowAlpha : true` is included in the options, the *Opacity* slider is visible in the color selector modal.
 
 ** `.custom` – Prompts the user to interact with a custom control.
-<<core-frontend-ui-capture#custom,API reference>> +
+<<core-frontend-ui-capture#custom,method reference>> +
 Learn more: <<build-custom-controls#>>
 
 ** `.file` – Prompts the user to upload a file of any type.
-<<core-frontend-ui-capture#file,API reference>>
+<<core-frontend-ui-capture#file,method reference>>
 
 ** `.image` – Prompts the user to select or upload an image file.
-<<core-frontend-ui-capture#image,API reference>>
+<<core-frontend-ui-capture#image,method reference>>
 
 ** `.link` – Prompts the user to enter an external URL.
-<<core-frontend-ui-capture#link,API reference>>
+<<core-frontend-ui-capture#link,method reference>>
 
 ** `.media` – Prompts the user to select, specify, or upload an image, a file, an audio, or a video.
-<<core-frontend-ui-capture#media,API reference>>
+<<core-frontend-ui-capture#media,method reference>>
 
 ** `.range` – Prompts the user to select a value from a numeric range.
-<<core-frontend-ui-capture#range,API reference>>
+<<core-frontend-ui-capture#range,method reference>>
 
 ** `.select` – Prompts the user to select from a predefined list of options.
-<<core-frontend-ui-capture#select,API reference>>
+<<core-frontend-ui-capture#select,method reference>>
 +
 If the list has 1 to 4 options, the options are presented as radio buttons. +
 If the list has 5 or more options, the list is presented as a dropdown.
 
 ** `.video` – Prompts the user to select or upload a video file.
-<<core-frontend-ui-capture#video,API reference>>
-
-== Controls for various file types
-
-The @withkoji/core package provides multiple APIs for selecting or uploading files.
-If your app needs a specific type of file (audio, image, or video), use the specific API for that file type if possible.
-That is, instead of `.media` or `.file`, use the following:
-
-* To accept only audio files, use `.audio`.
-* To accept only images, use `.image`.
-* To accept only videos, use `.video`.
-
-The specific APIs:
-
-* Filter the selections offered to the user. Examples:
-** The popup menu for `.audio` includes "Capture audio" and "Browse Sound Packs".
-** The popup menu for `.image` includes "Take photo" and "Browse Image Packs".
-* Restrict the file formats that can be uploaded. Examples:
-** The file selector for `.audio` automatically filters for .mp3, .wave, and other standard audio file formats.
-** The file selector for `.image` automatically filters for .png, .jpg, and other standard image file formats.
-* Allow file-type-specific actions, such as automatically editing images and watermarking videos.
-
-Use `.media` to accept any of two or more media types.
-For example, to accept either an image or a video for use in a component that accepts both formats (such as the Koji profile background):
-[source,javascript]
-----
-Koji.ui.capture.media({ acceptOnly : [ 'image', 'video' ], ... });
-----
-
-Use `.file` for files that are intended to be downloaded as is (instead of being rendered), such as PDFs, zip files, or high-resolution images that were paid for to be downloaded.
-
-For additional upload options, see <<core-frontend-ui-upload#uploadFile,UI / Upload / .uploadFile>>.
+<<core-frontend-ui-capture#video,method reference>>
 
 == Example
 
