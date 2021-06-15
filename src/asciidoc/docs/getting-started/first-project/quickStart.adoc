@@ -14,34 +14,42 @@ If you prefer to jump straight into code, go through <<adv-start-tutorial#, the 
 
 == Sections
 
-<<your-first-project#>>  ::
-+
+[.card]
+.1. <<your-first-project#>>
 [.init-cap]
 include::your-first-project.adoc[tag=description]
-<<code-editor#>> ::
-+
+
+[.card]
+.2. <<code-editor#>>
 [.init-cap]
 include::code-editor.adoc[tag=description]
-<<core-package#>> ::
-+
+
+[.card]
+.3. <<core-package#>>
 [.init-cap]
 include::core-package.adoc[tag=description]
-<<your-first-remix#>> ::
-+
+
+[.card]
+.4. <<your-first-remix#>>
 [.init-cap]
 include::your-first-remix.adoc[tag=description]
-<<intro-to-contexts#>> ::
-+
+
+[.card]
+.5. <<intro-to-contexts#>>
 [.init-cap]
 include::intro-to-contexts.adoc[tag=description]
-<<remixable-project#>> ::
-+
+
+[.card]
+.6. <<remixable-project#>>
 [.init-cap]
 include::remixable-project.adoc[tag=description]
-<<your-first-template#>> ::
-+
+
+[.card]
+.7. <<your-first-template#>>
 [.init-cap]
 include::your-first-template.adoc[tag=description]
+
+[.clearfloat]
 
 == Getting help
 
