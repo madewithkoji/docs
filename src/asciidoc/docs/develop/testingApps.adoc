@@ -1,23 +1,23 @@
 = Testing and debugging apps
-:page-slug: testing-templates
+:page-slug: testing-apps
 :page-description: Guide to testing and debugging Koji apps during development and in production.
 
-The Koji platform provides a variety of tools for testing templates.
+The Koji platform provides a variety of tools for testing apps.
 Many tests can be run inside the editor, so you don't have to go back and forth between the editor and a separate tab or window.
-For example, you can remix your template and preview what it will look like on social media without ever leaving the editor.
+For example, you can customize your app and preview what it will look like on social media without ever leaving the editor.
 
 Typically, you begin testing in the Koji editor.
-Later, you'll want to publish the template as *Unlisted*, so you can test it in a production environment before giving access to general users.
-After you publish your Koji for the first time, you will also be able to use the Koji debugger, which provides many additional tools for troubleshooting.
+Later, you'll want to publish the app as *Unlisted*, so you can test it in a production environment before giving access to general users.
+After you publish your Koji app for the first time, you will also be able to use the Koji debugger, which provides many additional tools for troubleshooting.
 
 == Testing in the Koji editor
 
-The Koji editor provides various ways to preview a template’s behavior.
+The Koji editor provides various ways to preview an app’s behavior.
 
 === Using previews
 
 Your app might provide different experiences for different modes, called *contexts*.
-For example, you might provide a different UI during a remix than when the template is running.
+For example, you might provide a different UI during a remix than when the app is running.
 The preview pane enables you to preview several standard contexts inside the editor.
 
 Learn more about <<editor#_previewing_your_koji, previewing your Koji>>.
@@ -26,7 +26,7 @@ Learn more about <<editor#_previewing_your_koji, previewing your Koji>>.
 
 You can test JavaScript code by using the `console.log` method, which prints to the console.
 
-Although the `console.log` method can be implemented in the Koji editor, the results must be viewed in the console, which is only available when the template is run remotely.
+Although the `console.log` method can be implemented in the Koji editor, the results must be viewed in the console, which is only available when the app is run remotely.
 You can use the remote staging button image:remote-preview.svg[Remote staging button] in the preview pane to open a preview in a new browser tab.
 Then you can access the console through the browser's menu.
 See <<_using_browser_tools_for_testing>>.
@@ -53,7 +53,7 @@ For example, the following code snippet prints *Key pressed* to the console ever
 
 === Testing a social media share
 
-When a user shares a remix of your template on social media, the Koji platform renders a rich preview (Open Graph) image based on a screenshot of the template.
+When a user shares a remix of your app on social media, the Koji platform renders a rich preview (Open Graph) image based on a screenshot of the app.
 You can preview this image by selecting *More > Thumbnail*  in the preview pane.
 For information about how to customize the image, see <<thumbnail-image#>>.
 
@@ -64,27 +64,27 @@ For example, in Google Chrome, you can open the debugging tools by clicking *Mor
 
 == Testing in the production environment
 
-You can publish the template as *Unlisted* to limit access while you finish testing and development.
+You can publish the app as *Unlisted* to limit access while you finish testing and development.
 Some features, such as the Koji feed, can only be tested in the production environment.
 
-=== Publishing an unlisted template
+=== Publishing an unlisted app
 
-If you publish your template as *Unlisted*, you can test it under exactly the same conditions as a general user, but no one else will have access unless you send them the direct link.
+If you publish your app as *Unlisted*, you can test it under exactly the same conditions as a general user, but no one else will have access unless you send them the direct link.
 
 . Click *Publish Now*.
 . Review the name and description, and update them if desired.
 . Select *Unlisted*.
 . Click *Publish New Version*.
-. When publishing is completed, click the link to view and test your updated template.
-. When you're ready to give general users access, clear *Unlisted* and republish the template.
+. When publishing is completed, click the link to view and test your updated app.
+. When you're ready to give general users access, clear *Unlisted* and republish the app.
 
 === Testing feed autoplay
 
-If you have video or audio files in your template that play automatically, you might want them to play only when they are visible to the user.
+If you have video or audio files in your app that play automatically, you might want them to play only when they are visible to the user.
 For example, if the user scrolls past a video, it should start playing when it first scrolls into view and stop playing when it scrolls off screen.
 
-To test the autoplay feature, open the published template in production and append `?feedDebug=true` to the URL.
-The template is loaded in the feed 10 times and you can swipe or scroll through to ensure the animation starts and stops as expected.
+To test the autoplay feature, open the published app in production and append `?feedDebug=true` to the URL.
+The app is loaded in the feed 10 times and you can swipe or scroll through to ensure the animation starts and stops as expected.
 
 [NOTE]
 You cannot test autoplay from the Koji editor because the feed feature is not available in the staging environment.
@@ -92,10 +92,10 @@ You cannot test autoplay from the Koji editor because the feed feature is not av
 == Using the Koji debugger
 
 The Koji debugger enables live testing and debugging in a production environment.
-It allows you to follow the communication happening between the Koji platform and the template.
+It allows you to follow the communication happening between the Koji platform and the app.
 
 [NOTE]
-You must publish your template before you can debug it using the Koji debugger.
+You must publish your app before you can debug it using the Koji debugger.
 
 To open the debugger, go to btn:[Developer Portal] and click the project.
 Then, click btn:[Open in Debugger] on the project overview page.
@@ -110,17 +110,17 @@ For example, select *Remix* to display tools for debugging the remixing experien
 TIP: To enable certain contexts, you must enable the associated <<entitlements#, entitlement>>.
 If the selected context is not enabled, a message will be displayed saying that it is unavailable.
 
-Many contexts display an events pane for debugging communication between the platform and the template.
+Many contexts display an events pane for debugging communication between the platform and the app.
 For information on how to use this tool, see <<_viewing_events>>.
 
 The following contexts are available in the Koji debugger:
 
-* *Default* – Debug the running template.
-You can view real-time events from the template and the platform.
+* *Default* – Debug the running app.
+You can view real-time events from the app and the platform.
 You can also filter for events related to specific features, such as in-app purchases and auth grants.
-* *Remix* – Debug the editable elements of your template.
+* *Remix* – Debug the editable elements of your app.
 You can view real-time events related to your changes.
-* *Thumbnail* – See exactly how your template will look if you share it on social media.
+* *Thumbnail* – See exactly how your app will look if you share it on social media.
 *Thumbnail* shows sharing images in both square and rectangular format.
 For information about how to customize the image, see <<thumbnail-image#>>.
 * *Dynamic Receipt* – Debug the receipts that are sent to the buyer and seller, when in-app purchases are implemented with dynamic receipts.
@@ -128,8 +128,8 @@ You can view real-time events related to the receipts.
 
 === Viewing events
 
-The template generates events that are sent to the Koji platform, and the Koji platform generates events that are sent to the template.
-In most cases, selecting one of the contexts in the debugger displays an events pane where you can see these events in real time, as you interact with the template in the selected context.
+The app generates events that are sent to the Koji platform, and the Koji platform generates events that are sent to the app.
+In most cases, selecting one of the contexts in the debugger displays an events pane where you can see these events in real time, as you interact with the app in the selected context.
 
 The information for each event includes:
 
@@ -189,24 +189,24 @@ Skip update
 
 === Overriding settings for a debugging session
 
-The *Environment info* panel displays your template's *App Id* and *Frame Source*, and *VCC editor source*.
+The *Environment info* panel displays your app's *App Id* and *Frame Source*, and *VCC editor source*.
 
 To override settings for the debugging session, click btn:[Open Debugger Settings].
 
-You can use this override to debug a template that is running locally or in a staging environment (in the Koji editor).
+You can use this override to debug an app that is running locally or in a staging environment (in the Koji editor).
 
 To change the *VCC editor source*, click *Modify* and select *Override and use different VCC editor data*.
 The VCC data is displayed in JSON format.
 Then, you can directly edit the JSON code to override the live values.
 
-If you're working on a new version of a template that uses different VCCs from the currently published template, you can override the URL and edit the VCC data to test your changes without republishing the template.
+If you're working on a new version of an app that uses different VCCs from the currently published app, you can override the URL and edit the VCC data to test your changes without republishing the app.
 
-For example, suppose the new version of the template uses a profile video where the previous version used a profile image.
+For example, suppose the new version of the app uses a profile video where the previous version used a profile image.
 You can override the live data by changing the type, from `image` to `video`, and changing the name, from `Profile Image` to `Profile Video`.
 
 === Debugging database views
 
-If your template uses the <<koji-database#,Koji database>>, the *Database* panel lists the views for every collection and enables you to view and delete records.
+If your app uses the <<koji-database#,Koji database>>, the *Database* panel lists the views for every collection and enables you to view and delete records.
 
 You can also test database transactions in the debugger.
 
@@ -229,14 +229,14 @@ A list of database views opens in a new tab.
 
 === Debugging in-app purchases
 
-If <<withkoji-koji-iap-package#,in-app purchases>> are implemented in your template, the *In-app purchase receipts* panel allows you to view and delete receipts.
+If <<withkoji-koji-iap-package#,in-app purchases>> are implemented in your app, the *In-app purchase receipts* panel allows you to view and delete receipts.
 
 You can also use the debugger to test in-app purchase transactions.
 
 . Log into your Koji account and click your profile icon to open the main menu.
 . Click *Wallet*.
 . If your *Wallet* is empty, top it up.
-. In another browser window, open the template in the debugger.
+. In another browser window, open the app in the debugger.
 . Try paying yourself a small amount.
 . Go back to your *Wallet* to check that the transaction was successful.
 +
@@ -250,4 +250,4 @@ Wait a minute or two and try again.
 
 === Debugging auth grants
 
-If <<withkoji-koji-auth-sdk#,auth grants>> are implemented in your template, the *Auth grants* panel allows you to view and delete them.
+If <<withkoji-koji-auth-sdk#,auth grants>> are implemented in your app, the *Auth grants* panel allows you to view and delete them.
