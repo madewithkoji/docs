@@ -411,15 +411,18 @@ const Content = styled.div`
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
     transition: 0.3s;
     background-color: #F8F8F8;
-    padding: 2px 16px;
-    margin: 16px;
-    border-radius: 10px;
+    padding: 20px 20px 0px 20px;
+    margin: 10px;
+    border-radius: 8px;
+    min-width: 300px;
     width: 45%;
-    height: 200px;
+    height: 165px;
     float: left;
+    overflow: auto;
   }
   .clearfloat {
     clear: both;
+    margin: 30px 0;
   }
 
 `;

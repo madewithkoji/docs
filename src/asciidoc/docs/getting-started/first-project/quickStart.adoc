@@ -50,6 +50,7 @@ include::remixable-project.adoc[tag=description]
 include::your-first-template.adoc[tag=description]
 
 [.clearfloat]
+{blank}
 
 == Getting help
 
