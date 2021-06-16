@@ -33,26 +33,38 @@ You can check out the finished game https://withkoji.com/~Svarog1389/2d69[here].
 
 == Sections
 
-<<game-iap-setting-up-koji-json#>>  ::
-+
+[.card]
+[.cardht190]
+.1. <<game-iap-setting-up-koji-json#>>
 [.init-cap]
 include::setting-up-koji-json.adoc[tag=description]
-<<game-iap-payment-menu#>>  ::
-+
+
+[.card]
+[.cardht190]
+.2. <<game-iap-payment-menu#>>
 [.init-cap]
 include::payment-menu.adoc[tag=description]
-<<game-iap-start-purchase#>>  ::
-+
+
+[.card]
+[.cardht190]
+.3. <<game-iap-start-purchase#>>
 [.init-cap]
 include::start-purchase.adoc[tag=description]
-<<game-iap-updating-game#>>  ::
-+
+
+[.card]
+[.cardht190]
+.4. <<game-iap-updating-game#>>
 [.init-cap]
 include::updating-game.adoc[tag=description]
-<<game-iap-remix#>>  ::
-+
+
+[.card]
+[.cardht190]
+.5. <<game-iap-remix#>>
 [.init-cap]
 include::remix.adoc[tag=description]
+
+[.clearfloat]
+{blank}
 
 == Getting help
 

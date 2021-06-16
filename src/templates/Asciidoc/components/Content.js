@@ -420,6 +420,9 @@ const Content = styled.div`
     float: left;
     overflow: auto;
   }
+  .cardht165 { height: 165px; }
+  .cardht190 { height: 190px; }
+  .cardht200 { height: 200px; }
   .clearfloat {
     clear: both;
     margin: 30px 0;
