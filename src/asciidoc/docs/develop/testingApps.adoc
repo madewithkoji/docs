@@ -54,13 +54,13 @@ For example, the following code snippet prints *Key pressed* to the console ever
 === Testing a social media share
 
 When a user shares an app on social media, the Koji platform renders a rich preview (Open Graph) image based on a screenshot of the app.
-You can preview this image by selecting *More > Thumbnail*  in the preview pane.
+You can preview this image by selecting menu:More[Thumbnail] in the preview pane.
 For information about how to customize the image, see <<thumbnail-image#>>.
 
 == Using browser tools for testing
 
 All modern browsers provide tools for debugging websites.
-For example, in Google Chrome, you can open the debugging tools by clicking *More tools > Developer tools* or by pressing the F12 key.
+For example, in Google Chrome, you can open the debugging tools by clicking menu:More tools[Developer tools] or by pressing the kbd:[F12] key.
 
 == Testing in the production environment
 
@@ -71,10 +71,10 @@ Some features, such as the Koji feed, can only be tested in the production envir
 
 If you publish your app as *Unlisted*, you can test it under exactly the same conditions as a general user, but no one else will have access unless you send them the direct link.
 
-. Click *Publish Now*.
+. Click btn:[Publish Now].
 . Review the name and description, and update them if desired.
 . Select *Unlisted*.
-. Click *Publish New Version*.
+. Click btn:[Publish New Version].
 . When publishing is completed, click the link to view and test your updated app.
 . When you're ready to give general users access, clear *Unlisted* and republish the app.
 
@@ -189,20 +189,11 @@ Skip update
 
 === Overriding settings for a debugging session
 
-The *Environment info* panel displays your app's *App Id* and *Frame Source*, and *VCC editor source*.
+The *Environment info* panel displays your app's *App Id* and *Frame Source*.
 
 To override settings for the debugging session, click btn:[Open Debugger Settings].
 
 You can use this override to debug an app that is running locally or in a staging environment (in the Koji editor).
-
-To change the *VCC editor source*, click *Modify* and select *Override and use different VCC editor data*.
-The VCC data is displayed in JSON format.
-Then, you can directly edit the JSON code to override the live values.
-
-If you're working on a new version of an app that uses different VCCs from the currently published app, you can override the URL and edit the VCC data to test your changes without republishing the app.
-
-For example, suppose the new version of the app uses a profile video where the previous version used a profile image.
-You can override the live data by changing the type, from `image` to `video`, and changing the name, from `Profile Image` to `Profile Video`.
 
 === Debugging database views
 
@@ -213,14 +204,14 @@ You can also test database transactions in the debugger.
 In the *Database* panel, click a view to display its contents.
 
 You can now use the *Default* context to test your database setup.
-Perform an action in the preview that should write a record to the selected collection, then click *Refresh* in the *Database* panel.
+Perform an action in the preview that should write a record to the selected collection, then click btn:[Refresh] in the *Database* panel.
 If the record insertion worked, you should see the new record displayed.
 
 [NOTE]
 It may take a few seconds for the database to be updated.
 If the new record does not appear in the collection, try refreshing again.
 
-To delete a record from the collection, click *Delete* at the end of the row.
+To delete a record from the collection, click btn:[Delete] at the end of the row.
 The preview will not be updated automatically.
 You can force it to refresh by clicking the refresh icon on the *Default* tab.
 
@@ -234,8 +225,7 @@ If <<core-backend-iap#,in-app purchases>> are implemented in your app, the *In-a
 You can also use the debugger to test in-app purchase transactions.
 
 . Log into your Koji account and click your profile icon to open the main menu.
-. Click *Wallet*.
-. If your *Wallet* is empty, top it up.
+. Click menu:KojiPay Wallet[].
 . In another browser window, open the app in the debugger.
 . Try paying yourself a small amount.
 . Go back to your *Wallet* to check that the transaction was successful.
