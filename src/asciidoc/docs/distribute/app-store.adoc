@@ -15,9 +15,9 @@ This topic shows how to create a Koji App Store listing after you move your app 
 
 NOTE: You can have multiple listings for the same app.
 
-== Creating an App Store listing
+== Preparing your marketing assets
 
-You need the following for your App Store listing:
+You need the following marketing assets for your App Store listing:
 
 * A 500x500-pixel icon to be displayed with your listing in the App Store.
 * A 1200x630-pixel thumbnail to be displayed when your listing is shared in other social media sites.
@@ -25,13 +25,19 @@ You need the following for your App Store listing:
 * The production URL of your app.
 To get this URL, go to the app's associated *Project Details*, click *View Published Koji*, and copy the URL from the browser's address bar.
 
+TIP: For a smoother process, prepare your marketing assets before you create your listing.
+
+== Creating an App Store listing
+
 To create your App Store listing,
+
+include::{includespath}/steps-dev-portal.adoc[tag=go2-dev-portal]
 
 include::{includespath}/steps-dev-portal.adoc[tag=go2-dev-portal-templates]
 
-. In your list of templates/listings, click *New App Template*.
+. Click *New App Template*.
 
-. Give the app template/listing a name.
+. Give your listing a name.
 +
 This name is not published in the App Store; it is used to identify your listing.
 
@@ -69,17 +75,19 @@ For example, if you set this to 10% and the user paid $10 in the app,
 
 * *This template is open source* – If enabled, other developers can view and fork your app's source code.
 
-* *This template is intended primarily for developers to fork* – If enabled, your app listing will be placed in the *For Developers* category of the App Store.
+* *This template is intended primarily for developers to fork* – If enabled, your app listing will include a btn:[Fork] button (instead of a btn:[Use] button) and the message:
++
+____
+This app is designed for developers to use when creating new apps.
+____
 
-* *Variants* – (Optional) The listing URLs of other variations of the app.
+* *Variants* – (Optional) URLs to the App Store listings of other variations of the app.
 
 * *Attachments* – (Optional) Links to other sites that provide more information about your app, such as documentation about your app, YouTube tutorials, news articles, and product comparisons or reviews.
 
 . Click btn:[Save and Publish].
 +
 NOTE: The version number of your published listing is different from the version number of your published app shown in your *Project Details*.
-// Each version of your app has a different production URL.
-// You can update the listing to point to the latest app version, or you can create a new listing for the new app version to keep the old app version available for creators who might not want to upgrade.
 
 . https://forms.gle/exqnEVtC45Cizdw56[Fill out and submit the request form] to add your listing to the App Store.
 +
