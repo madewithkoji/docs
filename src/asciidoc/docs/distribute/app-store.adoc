@@ -13,8 +13,6 @@ Koji also announces noteworthy apps in social media posts.
 
 This topic shows how to create a Koji App Store listing after you move your app to production.
 
-NOTE: You can have multiple listings for the same app.
-
 == Preparing your marketing assets
 
 You need the following marketing assets for your App Store listing:
@@ -49,6 +47,8 @@ IMPORTANT: All texts and images in your listing must meet https://withkoji.com/r
 
 * *Name* – The title of your listing.
 Note that the title could be truncated depending on the width of the browser page; therefore, place distinguishing words near the beginning.
+
+* *Subtitle* – A short tagline that appears below the app name in category lists.
 
 * *Description* – Features and benefits of your app.
 
