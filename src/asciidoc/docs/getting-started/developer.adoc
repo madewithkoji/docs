@@ -15,39 +15,27 @@ You can build any type of app – from premium content sales, to games and utili
 
 The Koji development platform offers everything you need to develop, deploy, and distribute your apps.
 
-[.card]
-[.cardht200]
-.Get going quickly
+Get going quickly ::
++
 To accelerate your development project, Koji provides developer scaffolds and apps with open-source code as starting points.
 Simply fork one of these apps and start editing the code.
-
-[.card]
-[.cardht200]
-.Leverage Koji technology
+Leverage Koji technology ::
++
 The @withkoji/core package lets you implement platform features, like push notifications, user management, in-app purchases, and backend databases.
 It also provides straightforward methods for common functions, like capturing user input.
 That means less boilerplate code and more time coding the unique parts of your app.
-
-[.card]
-[.cardht200]
-.Leave the DevOps to Koji
+Leave the DevOps to Koji ::
++
 The Koji platform has built-in infrastructure to handle your app development and deployment.
 You get integrated source control, development and staging environments, preview and debugging tools, a CI pipeline, hosting, and more.
-
-[.card]
-[.cardht200]
-.Distribute your apps to a marketplace
+Distribute your apps to a marketplace ::
++
 Reach a vibrant community of content creators by listing your app on the App Store.
 Or, share a direct link to your app with your collaborators and customers.
-
-[.card]
-[.cardht200]
-.Monetize your work
+Monetize your work ::
++
 Make money by setting a price for creators to use your app.
 Or, add in-app purchases and earn 60 percent of the transaction fees on each completed purchase.
-
-[.clearfloat]
-{blank}
 
 == Get started
 

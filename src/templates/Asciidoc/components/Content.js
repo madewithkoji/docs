@@ -422,7 +422,7 @@ const Content = styled.div`
   }
   .cardht165 { height: 165px; }
   .cardht190 { height: 190px; }
-  .cardht200 { height: 200px; }
+  .cardht230 { height: 230px; }
   .clearfloat {
     clear: both;
     margin: 30px 0;
