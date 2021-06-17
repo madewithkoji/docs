@@ -23,7 +23,7 @@ A fun, custom preview image helps make sure that people are drawn to click on it
 
 In the game template, `frontend/src/Components/Screenshot/index.js` is already set up to render a custom view for the preview screenshot.
 
-NOTE: To see what the preview image currently looks like, use the *Thumbnail* tab of the <<testing-templates#_using_the_koji_debugger, Debugger>> or the Live Preview in the Koji editor.
+NOTE: To see what the preview image currently looks like, use the *Thumbnail* tab of the <<testing-apps#_using_the_koji_debugger, Debugger>> or the Live Preview in the Koji editor.
 
 == Editing the Screenshot component
 

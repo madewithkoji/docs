@@ -22,7 +22,7 @@ The game template provides a configurable remix menu to speed up game developmen
 
 If you open `frontend/src/Components/Remix/index.js`, you'll see that some of the workflow you need for your game is already set up.
 
-NOTE: To see what the remix menu currently looks like, use the *Remix* tab of the <<testing-templates#_using_the_koji_debugger, Debugger>> or the Live Preview in the Koji editor.
+NOTE: To see what the remix menu currently looks like, use the *Remix* tab of the <<testing-apps#_using_the_koji_debugger, Debugger>> or the Live Preview in the Koji editor.
 
 The background image and music customizations are already handled by the template, so you can just leave them as they are.
 

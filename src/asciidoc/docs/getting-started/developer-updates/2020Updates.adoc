@@ -10,7 +10,7 @@ include::../../_includes/tip-discord-server.adoc[tags=*]
 // tag::highlights[]
 == December 23
 
-* The Koji debugger is now available to enable live <<testing-templates#,testing and debugging>> in a production environment.
+* The Koji debugger is now available to enable live <<testing-apps#,testing and debugging>> in a production environment.
 // end::highlights[]
 To open the debugger, go to *My repositories* and click *Open debugger* next to the project you want to test.
 Features include:
@@ -56,7 +56,7 @@ To use a signed URL, use the new `generateSignedUrl` method.
 To hide the default action, enable the new `InstantRemixingNativeNavigation` entitlement.
 To advance to a preview, use the new `finish` method.
 * The developer site includes the following updates.
-** New content is available to help Koji developers get the most value from their templates, including <<app-versions#>>, <<testing-templates#>>, and <<plugins#>>.
+** New content is available to help Koji developers get the most value from their templates, including <<app-versions#>>, <<testing-apps#>>, and <<plugins#>>.
 ** The site design and navigation have been updated.
 // tag::highlights[]
 

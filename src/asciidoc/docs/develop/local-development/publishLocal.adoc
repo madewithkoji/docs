@@ -110,7 +110,7 @@ Now that you've published your app, you will want to make sure that it works the
 The published version of your app opens.
 . Proceed to test all the features of your app.
 +
-TIP: For tips on testing your app, visit <<testing-templates#,Testing and debugging apps>>.
+TIP: For tips on testing your app, visit <<testing-apps#,Testing and debugging apps>>.
 
 == Updating the Koji code editor to match your local environment
 

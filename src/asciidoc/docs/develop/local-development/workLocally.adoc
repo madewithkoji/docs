@@ -392,7 +392,7 @@ When working locally, testing in the Koji debugger offers several advantages ove
 * You can test functionality that requires communication with the Koji platform, such as in-app purchases.
 To test purchases, you must register the product by publishing your app once, which you will do in the next section of the tutorial.
 
-For more information, visit <<testing-templates#_using_the_koji_debugger, Using the Koji debugger>>.
+For more information, visit <<testing-apps#_using_the_koji_debugger, Using the Koji debugger>>.
 ====
 
 == Wrapping up
