@@ -9,19 +9,19 @@ The goal of this tutorial is to guide you through cloning a project to your loca
 
 [.card]
 [.cardht230]
-.<<use-git#>>
+.1. <<use-git#>>
 [.init-cap]
 include::useGit.adoc[tag=description]
 
 [.card]
 [.cardht230]
-.<<work-locally#>>
+.2. <<work-locally#>>
 [.init-cap]
 include::workLocally.adoc[tag=description]
 
 [.card]
 [.cardht230]
-.<<publish-locally-developed#>>
+.3. <<publish-locally-developed#>>
 [.init-cap]
 include::publishLocal.adoc[tag=description]
 
