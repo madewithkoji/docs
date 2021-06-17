@@ -200,6 +200,8 @@ You can also use the debugger to test in-app purchase transactions.
 . Click menu:KojiPay Wallet[].
 . In another browser window, open the app in the debugger.
 . Try paying yourself a small amount.
+[NOTE]
+If you don't already have money in your KojiPay Wallet, you'll need to use a credit card to make the payment.
 . Go back to your *Wallet* to check that the transaction was successful.
 +
 If all went well, you'll see the amount you paid deducted from your balance.
