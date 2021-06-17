@@ -7,7 +7,6 @@ Many tests can be run inside the editor, so you don't have to go back and forth 
 For example, you can customize your app and preview what it will look like on social media without ever leaving the editor.
 
 Typically, you begin testing in the Koji editor.
-Later, you'll want to publish the app as *Unlisted*, so you can test it in a production environment before giving access to general users.
 After you publish your Koji app for the first time, you will also be able to use the Koji debugger, which provides many additional tools for troubleshooting.
 
 == Testing in the Koji editor
@@ -61,33 +60,6 @@ For information about how to customize the image, see <<thumbnail-image#>>.
 
 All modern browsers provide tools for debugging websites.
 For example, in Google Chrome, you can open the debugging tools by clicking menu:More tools[Developer tools] or by pressing the kbd:[F12] key.
-
-== Testing in the production environment
-
-You can publish the app as *Unlisted* to limit access while you finish testing and development.
-Some features, such as the Koji feed, can only be tested in the production environment.
-
-=== Publishing an unlisted app
-
-If you publish your app as *Unlisted*, you can test it under exactly the same conditions as a general user, but no one else will have access unless you send them the direct link.
-
-. Click btn:[Publish Now].
-. Review the name and description, and update them if desired.
-. Select *Unlisted*.
-. Click btn:[Publish New Version].
-. When publishing is completed, click the link to view and test your updated app.
-. When you're ready to give general users access, clear *Unlisted* and republish the app.
-
-=== Testing feed autoplay
-
-If you have video or audio files in your app that play automatically, you might want them to play only when they are visible to the user.
-For example, if the user scrolls past a video, it should start playing when it first scrolls into view and stop playing when it scrolls off screen.
-
-To test the autoplay feature, open the published app in production and append `?feedDebug=true` to the URL.
-The app is loaded in the feed 10 times and you can swipe or scroll through to ensure the animation starts and stops as expected.
-
-[NOTE]
-You cannot test autoplay from the Koji editor because the feed feature is not available in the staging environment.
 
 == Using the Koji debugger
 
