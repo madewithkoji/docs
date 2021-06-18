@@ -26,7 +26,7 @@ For optimal thumbnail support, design this view with the following consideration
 For example, to reduce the image size to 400x400 pixels and load only the first frame of a gif, you can add query parameters at the end of your image's URL: `\https://images.koji-cdn.com/path/to/myimage.gif?fit=bounds&width=400&height=400&frame=1`
 * The image includes customizable elements to generate unique previews for each customized version of the app.
 
-image::Koji-screenshot=1.svg[Render a view for the thumbnail image]
+image::Koji-screenshot=1.png[Render a view for the thumbnail image]
 
 For the following example, assume the app supports customizing the image defined by `customImage`.
 
