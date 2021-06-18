@@ -3,30 +3,30 @@
 :page-description: How to customize the thumbnail (Open Graph) image and sharing metadata for your Koji app.
 :page-banner: {imagesDir}/Koji-screenshot=1.png
 
-When a user shares a remix of your template on social media, the Koji platform renders a rich preview (Open Graph) image based on a screenshot of the Koji.
+When you share a Koji app on social media, the Koji platform renders a rich preview (Open Graph) image based on a screenshot of the app.
 By default, the platform takes a screenshot of the initial view.
 
-In some cases, the initial view might not be the best preview image for your template.
-For example, if a game template starts with an instruction screen, a screenshot of the first level might provide a better preview image.
-To improve the sharing experience in these cases, you can render a custom view of your template that is designed specifically to make an impression when sharing a remix.
+In some cases, the initial view might not be the best preview image for your app.
+For example, if a game app starts with an instruction screen, a screenshot of the first level might provide a better preview image.
+To improve the sharing experience in these cases, you can render a custom view of your app that is designed specifically to make an impression when sharing a remix.
 You can also control the timing of the screenshot to ensure that all relevant assets have loaded before the preview image is generated.
 
 You can also customize the sharing metadata by configuring an entitlement.
 
 == Customizing the sharing image
 
-To customize the sharing image for your template, render a custom view when the URL contains the `koji-screenshot=1` query parameter.
+To customize the sharing image for your app, render a custom view when the URL contains the `koji-screenshot=1` query parameter.
 For optimal rich preview support, design this view with the following considerations in mind.
 
 * The image is responsive.
 * The image looks good with a square aspect ratio.
 * The image is optimized for faster loading.
 For example, to reduce the image size to 400x400 pixels and load only the first frame of a gif, you can add query parameters at the end of your image's URL: `\https://images.koji-cdn.com/path/to/myimage.gif?fit=bounds&width=400&height=400&frame=1`
-* The image includes customizable elements to generate unique previews of each remix.
+* The image includes customizable elements to generate unique previews for each customized version of the app.
 
 image::Koji-screenshot=1.svg[Render a view for the rich preview image]
 
-For the following example, assume the template supports remixes of the title, font size, and logo.
+For the following example, assume the app supports customizing the title, font size, and logo.
 
 . In your application code, add a conditional statement to display a different image for social shares.
 For example:
@@ -227,7 +227,7 @@ window.kojiScreenshotReady = true;
 
 == Customizing the sharing metadata
 
-To enable custom metadata when sharing a Koji on social media, configure the `CustomMetadata` object in the `.koji/project/entitlements.json` file.
+To enable custom metadata when sharing a Koji app on social media, configure the `CustomMetadata` object in the `.koji/project/entitlements.json` file.
 
 [source,JSON]
 ----
@@ -243,6 +243,6 @@ To enable custom metadata when sharing a Koji on social media, configure the `Cu
   }
 }
 ----
-<1> `enabled` – Whether to use custom metadata when a creator shares a remix of this template.
+<1> `enabled` – Whether to use custom metadata when a creator shares a customization of the app.
 <2> `metadata.title` – Path to the Visual Customization Control (VCC) that defines the title, if custom metadata is enabled.
 <3> `metadata.description` – Path to the VCC that defines the description, if custom metadata is enabled.
