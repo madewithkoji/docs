@@ -28,26 +28,28 @@ For example, to reduce the image size to 400x400 pixels and load only the first 
 
 image::Koji-screenshot=1.svg[Render a view for the thumbnail image]
 
-For the following example, assume the app supports customizing the title, font size, and logo.
+For the following example, assume the app supports customizing the image defined by `customImage`.
 
-. In your application code, add a conditional statement to display a different image for social shares.
+. In your application code, add a conditional statement to display a custom image for social shares.
 For example:
 +
 [source,JavaScript]
 ----
-render() {
-  if (window.location.search.includes('Koji.playerState.context=screenshot')) {
-    return (
-      <SocialSharePreview>
-          <H1
-          fontSize={this.state.titleOptions.fontSize}
-          >{this.state.titleOptions.title}</H1>
-          <Image src={this.optimizeURL(this.state.logo)} />
-        </SocialSharePreview>
-    );
-  }
-  ...
+...
+if (Koji.playerState.context === 'screenshot') {
+  return (
+    <SocialSharePreview>
+      <h1>This is a custom thumbnail.</h1>
+      <img src={Koji.remix.get().customImage} />
+    </SocialSharePreview>
+  );
 }
+
+// If the context is not equal to 'screenshot', return the HTML for the preview.
+return (
+  // HTML for preview
+);
+...
 ----
 
 . Define appropriate styles for the thumbnail image.
