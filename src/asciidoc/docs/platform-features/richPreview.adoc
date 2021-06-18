@@ -4,16 +4,16 @@
 :page-banner: {imagesDir}/Koji-screenshot=1.png
 
 When you share a Koji app on social media, the Koji platform renders a thumbnail (Open Graph) image based on a screenshot of the app.
-If you were designing a webpage from scratch, you would use meta tags to set properties for the thumbnail, such as `og:image`, `og:title`, and `og:description`.
+If you were designing a web app from scratch, you would use meta tags, such as `og:image`, `og:title`, and `og:description`, to set properties for the thumbnail.
 The Koji platform automatically sets these properties for you, but you can override some of Koji's default settings to provide a customized thumbnail.
 
 By default, the platform takes a screenshot of the initial view.
 In some cases, the initial view might not be the best preview image for your app.
 For example, if a game app starts with an instruction screen, a screenshot of the first level might provide a better preview image.
-To improve the sharing experience in these cases, you can render a custom view of your app that is designed specifically to make an impression when sharing an app.
+To improve the sharing experience in these cases, you can render a custom view of your app that is designed specifically to make an impression when sharing it.
 You can also control the timing of the screenshot to ensure that all relevant assets have loaded before the preview image is generated.
 
-You can also customize the thumbnail metadata by configuring an entitlement.
+You can also give creators the ability to customize the thumbnail by enabling <<entitlements#_custom_metadata,custom metadata>>.
 
 == Customizing the thumbnail
 
@@ -71,18 +71,18 @@ const SocialSharePreview = styled.div`
 `;
 ----
 
-. To test the preview image, open your staging link and append `?Koji.playerState.context=screenshot` to the URL.
+. You can preview this image by selecting menu:More[Thumbnail] in the preview pane.
 
 == Controlling the screenshot timing
 
 The Koji platform uses the `window.kojiScreenshotReady` property to determine the timing of the thumbnail screenshot.
 
-When the platform loads a template, it checks for `window.kojiScreenshotReady = false;`.
+When the platform loads an app, it checks for `window.kojiScreenshotReady = false;`.
 If this value isn't present, the platform takes the screenshot right away.
 If it is, the platform sets an interval to check the value every 100ms.
 When the value changes to `true` or a maximum interval of 2000ms elapses, the platform takes the screenshot.
 
-This feature enables you to ensure that the relevant fonts, images, videos, and other assets have loaded before the sharing image is generated.
+This feature enables you to ensure that the relevant fonts, images, videos, and other assets have loaded before the thumbnail is generated.
 For example:
 
 . In the `index.html` file, add the following script tag.
@@ -96,22 +96,6 @@ window.kojiScreenshotReady = true;
 
 == Customizing the thumbnail metadata
 
-To enable custom metadata when sharing a Koji app on social media, configure the `CustomMetadata` object in the `.koji/project/entitlements.json` file.
+You might want to give creators the ability to customize the thumbnail themselves.
+You can do this by enabling <<entitlements#_custom_metadata,custom metadata>>.
 
-[source,JSON]
-----
-{
-  "entitlements": {
-    "CustomMetadata": {
-      "enabled": true, <1>
-      "metadata": {
-        "title": "{{settings.title}}", <2>
-        "description": "{{settings.description}}" <3>
-      }
-    }
-  }
-}
-----
-<1> `enabled` – Whether to use custom metadata when a creator shares a customization of the app.
-<2> `metadata.title` – Path to the Visual Customization Control (VCC) that defines the title, if custom metadata is enabled.
-<3> `metadata.description` – Path to the VCC that defines the description, if custom metadata is enabled.
