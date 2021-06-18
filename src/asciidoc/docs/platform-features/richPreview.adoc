@@ -1,22 +1,24 @@
 = Thumbnail image and custom metadata
 :page-slug: thumbnail-image
-:page-description: How to customize the thumbnail (Open Graph) image and sharing metadata for your Koji app.
+:page-description: How to customize the thumbnail (Open Graph) image and metadata for your Koji app.
 :page-banner: {imagesDir}/Koji-screenshot=1.png
 
-When you share a Koji app on social media, the Koji platform renders a rich preview (Open Graph) image based on a screenshot of the app.
-By default, the platform takes a screenshot of the initial view.
+When you share a Koji app on social media, the Koji platform renders a thumbnail (Open Graph) image based on a screenshot of the app.
+If you were designing a webpage from scratch, you would use meta tags to set properties for the thumbnail, such as `og:image`, `og:title`, and `og:description`.
+The Koji platform automatically sets these properties for you, but you can override some of Koji's default settings to provide a customized thumbnail.
 
+By default, the platform takes a screenshot of the initial view.
 In some cases, the initial view might not be the best preview image for your app.
 For example, if a game app starts with an instruction screen, a screenshot of the first level might provide a better preview image.
-To improve the sharing experience in these cases, you can render a custom view of your app that is designed specifically to make an impression when sharing a remix.
+To improve the sharing experience in these cases, you can render a custom view of your app that is designed specifically to make an impression when sharing an app.
 You can also control the timing of the screenshot to ensure that all relevant assets have loaded before the preview image is generated.
 
-You can also customize the sharing metadata by configuring an entitlement.
+You can also customize the thumbnail metadata by configuring an entitlement.
 
-== Customizing the sharing image
+== Customizing the thumbnail
 
-To customize the sharing image for your app, render a custom view when the URL contains the `koji-screenshot=1` query parameter.
-For optimal rich preview support, design this view with the following considerations in mind.
+To customize the thumbnail for your app, render a custom view when the URL contains the `Koji.playerState.context=screenshot` query parameter.
+For optimal thumbnail support, design this view with the following considerations in mind.
 
 * The image is responsive.
 * The image looks good with a square aspect ratio.
@@ -24,24 +26,17 @@ For optimal rich preview support, design this view with the following considerat
 For example, to reduce the image size to 400x400 pixels and load only the first frame of a gif, you can add query parameters at the end of your image's URL: `\https://images.koji-cdn.com/path/to/myimage.gif?fit=bounds&width=400&height=400&frame=1`
 * The image includes customizable elements to generate unique previews for each customized version of the app.
 
-image::Koji-screenshot=1.svg[Render a view for the rich preview image]
+image::Koji-screenshot=1.svg[Render a view for the thumbnail image]
 
 For the following example, assume the app supports customizing the title, font size, and logo.
 
 . In your application code, add a conditional statement to display a different image for social shares.
 For example:
 +
-[.tabs,scope="lang"]
---
-.React
-====
-[.intro]
-Add a conditional statement in the `render` function.
-
 [source,JavaScript]
 ----
 render() {
-  if (window.location.search.includes('koji-screenshot=1')) {
+  if (window.location.search.includes('Koji.playerState.context=screenshot')) {
     return (
       <SocialSharePreview>
           <H1
@@ -54,90 +49,11 @@ render() {
   ...
 }
 ----
-====
 
-.Vanilla JS
-====
-[.intro]
-Wrap a conditional statement around the `render` function.
-
-[source,JavaScript]
-----
-// render the social share preview
-const socialShareRender = () => {
-    document.body.innerHTML = `
-        <div id="socialSharePreview">
-            <h1 style="font-size:${titleSize}px" id="title">${title}</h1>
-            <img id="logo" src="${optimizeURL(logo)}"/>
-        </div>`;
-}
-
-// render
-if (window.location.search.includes('koji-screenshot=1')) {
-    socialShareRender();
-} else {
-    render();
-}
-----
-====
-
-.Angular
-====
-[.intro]
-Add a conditional statement in the `ngOnInit` function and use it to apply a dynamic `id`.
-
-[.tabs]
-=====
-.app.component.ts
-[source,JavaScript]
-----
-ngOnInit() {
-  ...
-  this.social = false
-  if (window.location.search.includes('koji-screenshot=1')) {
-    this.social = true
-  }
-  ...
-}
-----
-
-.app.component.html
-[source,JavaScript]
-----
-<div class="container" id="{{social ? socialSharePreview : ''}}">
-        <h1 style="fontSize: {{titleOptions.fontSize}}px;">{{titleOptions.title}}</h1>
-        <img src="{{optimizeURL(logo)}}"
-    />
-    </div>
-----
-=====
-====
-
-.Svelte
-====
-[.intro]
-Add a conditional statement in the `App.svelte` file.
-
-[source,JavaScript]
-----
-{#if (window.location.search.includes('koji-screenshot=1'))}
-    <div class="social-share" style="background-image: url('{optimizeURL(image)}');">
-    <h1 style='font-size: {titleOptions.fontSize}px'>{titleOptions.title}</h1>
-    </div>
-{:else}
-...
-{/if}
-----
-====
-
---
-. Define appropriate styles for the rich preview image.
+. Define appropriate styles for the thumbnail image.
 +
-To ensure that it is displayed correctly, design the rich preview image as a responsive square.
+To ensure that it is displayed correctly, design the thumbnail image as a responsive square.
 +
-[.tabs,scope="lang"]
---
-.React
 [source,JavaScript]
 ----
 const SocialSharePreview = styled.div`
@@ -153,60 +69,11 @@ const SocialSharePreview = styled.div`
 `;
 ----
 
-.Vanilla JS
-[source,CSS]
-----
-#socialSharePreview {
-  background-color: #395b88;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  text-align: center;
-  color: #fcfcfc;
-}
-----
-
-.Angular
-[source,CSS]
-----
-#socialSharePreview {
-  background-color: #395b88;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  text-align: center;
-  color: #fcfcfc;
-}
-----
-
-.Svelte
-[source,CSS]
-----
-.social-share {
-  background-color: #395b88;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  text-align: center;
-  color: #fcfcfc;
-}
-----
-
---
-. To test the preview image, open your staging link and append `?koji-screenshot=1` to the URL.
+. To test the preview image, open your staging link and append `?Koji.playerState.context=screenshot` to the URL.
 
 == Controlling the screenshot timing
 
-The Koji platform uses the `window.kojiScreenshotReady` property to determine the timing of the rich preview screenshot.
+The Koji platform uses the `window.kojiScreenshotReady` property to determine the timing of the thumbnail screenshot.
 
 When the platform loads a template, it checks for `window.kojiScreenshotReady = false;`.
 If this value isn't present, the platform takes the screenshot right away.
@@ -225,7 +92,7 @@ For example:
 [source, JavaScript]
 window.kojiScreenshotReady = true;
 
-== Customizing the sharing metadata
+== Customizing the thumbnail metadata
 
 To enable custom metadata when sharing a Koji app on social media, configure the `CustomMetadata` object in the `.koji/project/entitlements.json` file.
 
