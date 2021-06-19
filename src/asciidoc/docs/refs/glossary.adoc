@@ -1,33 +1,59 @@
 = Glossary
 :page-slug: glossary
 :page-description: Definitions of Koji-related terms.
-// Settings:
-:experimental:
-// Refs:
-:includespath: ../_includes
+
+context::
+A state or mode of a Koji app.
+The default mode is the first screen displayed when the user starts the app.
+Learn more: <<intro-to-contexts#>>
+
+creator::
+Someone who creates media and other assets on social media and posts Koji apps to their Koji profile.
+Also see *developer* and *user*.
+
+developer::
+Someone who writes code to create Koji apps.
+Also see *creator* and *user*.
 
 entitlement::
-Configuration settings that allow the template or Koji to use certain platform features, such as enabling remixing or defining product information for in-app purchases.
+Permissions that allow the Koji app to use certain platform features, such as enabling customization or defining product information for in-app purchases.
 
 in-app purchase (IAP)::
-A financial transaction made within a Koji.
+A financial transaction made within a Koji app.
 
-Koji::
-A mini web application that can be shared on all social platforms, embedded in any website, and sent via messengers and email.
-Internally, a Koji is comprised of the associated template and the custom remix settings.
+Koji app::
+A mini web application that can be embedded in a Koji profile, shared on social media platforms, embedded in any website, or sent via chat messengers or email.
 Learn more: <<introduction#>>
+
+Koji App Store::
+The Koji marketplace for apps. After you publish your app, you can create a listing for it in the Koji App Store to increase its exposure to Koji users.
+Learn more: <<app-store#>>
+
+Koji profile::
+A social media creator's link-in-bio which consolidates the creator's online presence.
+A creator's Koji profile can include Koji apps that allow their fans to interact with the creator and that allow the creator to monetize their followers.
 
 player chrome::
 The round Koji button in the Koji player, typically displaying the user's profile picture. When clicked, the button opens the user menu.
 
-remix::
-The process of customizing a Koji or template.
-Or the custom Koji resulting from a remix process.
-Learn more: <<instant-remixing#>>
+production URL::
+The permalink of your app.
+This URL remains the same even after you republish your app with additional changes.
+When you create a listing for your app in the App Store, use this URL.
+Also see *staging URL*.
 
-template::
-The underlying web application that powers a Koji and its remixes.
-Learn more: <<templates#>>
+project::
+A collection of code and associated assets (such as images and sounds) that are compiled, processed, and packaged into a Koji app.
 
+repository::
+A version-controlled storage for your project files. Koji repositories are based on Git and hosted in the cloud.
 
-// DC-599
+staging URL::
+The URL of the temporary location of your compiled app.
+You can share this URL with people who collaborate with you in the development of the app.
+This URL becomes invalid after you close the Koji code editor.
+Also see *production URL*.
+
+user::
+Someone who interacts with a Koji app on a creator's Koji profile.
+Also see *creator* and *developer*.

@@ -216,6 +216,10 @@
           "root": "/about",
           "items": [
             {
+              "name": "Glossary",
+              "slug": "glossary"
+            },
+            {
               "name": "Contributing to the developer site",
               "slug": "contribute-koji-developers"
             }
