@@ -74,7 +74,11 @@ const SocialSharePreview = styled.div`
 ----
 
 . You can preview this image in the Koji editor by selecting menu:More[Thumbnail] in the preview pane.
-You can preview it in the Koji debugger by selecting menu:Thumbnail[].
+
+. You can also preview the image in the Koji debugger.
+  a. Open the app in the debugger, then click *Open Debugger Settings*.
+  b. Select *Web IDE*, then click *Update*.
+  c. Select menu:Thumbnail[].
 
 == Controlling the screenshot timing
 
