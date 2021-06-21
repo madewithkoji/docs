@@ -1,11 +1,13 @@
-= Thumbnail image and custom metadata
+= Customizing the thumbnail image
 :page-slug: thumbnail-image
 :page-description: How to customize the thumbnail (Open Graph) image and metadata for your Koji app.
 :page-banner: {imagesDir}/Koji-screenshot=1.png
 
 When you share a Koji app on social media, the Koji platform renders a thumbnail (Open Graph) image based on a screenshot of the app.
-If you were designing a web app from scratch, you would use meta tags, such as `og:image`, `og:title`, and `og:description`, to set properties for the thumbnail.
-The Koji platform automatically sets these properties for you, but you can override some of Koji's default settings to provide a customized thumbnail.
+If you were designing a web app from scratch, you would customize the Open Graph metadata to specify what gets displayed when the app is shared.
+The Open Graph metadata consists of meta tags, such as `og:image`, `og:title`, and `og:description`.
+The thumbnail corresponds to the `og:image`.
+The Koji platform automatically sets all the meta tags for you, but you can override some of Koji's default settings to provide a customized sharing experience.
 
 By default, the platform takes a screenshot of the initial view.
 In some cases, the initial view might not be the best preview image for your app.
@@ -13,11 +15,13 @@ For example, if a game app starts with an instruction screen, a screenshot of th
 To improve the sharing experience in these cases, you can render a custom view of your app that is designed specifically to make an impression when sharing it.
 You can also control the timing of the screenshot to ensure that all relevant assets have loaded before the preview image is generated.
 
-You can also give creators the ability to customize the thumbnail by enabling <<entitlements#_custom_metadata,custom metadata>>.
+[TIP]
+You can give creators the ability to customize the other Open Graph metadata by enabling 
+<<entitlements#_custom_metadata,custom metadata>>.
 
-== Customizing the thumbnail
+== Rendering a custom view for the screenshot
 
-To customize the thumbnail for your app, render a custom view when the URL contains the `Koji.playerState.context=screenshot` query parameter.
+To customize the thumbnail for your app, render a custom view when the <<core-frontend-playerstate#PlayerStateContext,PlayerStateContext>> is set to `screenshot`.
 For optimal thumbnail support, design this view with the following considerations in mind.
 
 * The image is responsive.
@@ -36,19 +40,17 @@ For example:
 [source,JavaScript]
 ----
 ...
+const remixValues = Koji.remix.get();
+...
 if (Koji.playerState.context === 'screenshot') {
   return (
     <SocialSharePreview>
-      <h1>This is a custom thumbnail.</h1>
-      <img src={Koji.remix.get().customImage} />
+      <h1>{remixValues.title}</h1>
+      <img src={optimizeScreenshot(remixValues.customImage)} />
     </SocialSharePreview>
   );
 }
-
-// If the context is not equal to 'screenshot', return the HTML for the preview.
-return (
-  // HTML for preview
-);
+// If the context is not equal to 'screenshot', return the HTML for the relevant context.
 ...
 ----
 
@@ -71,7 +73,8 @@ const SocialSharePreview = styled.div`
 `;
 ----
 
-. You can preview this image by selecting menu:More[Thumbnail] in the preview pane.
+. You can preview this image in the Koji editor by selecting menu:More[Thumbnail] in the preview pane.
+You can preview it in the Koji debugger by selecting menu:Thumbnail[].
 
 == Controlling the screenshot timing
 
@@ -94,8 +97,4 @@ For example:
 [source, JavaScript]
 window.kojiScreenshotReady = true;
 
-== Customizing the thumbnail metadata
-
-You might want to give creators the ability to customize the thumbnail themselves.
-You can do this by enabling <<entitlements#_custom_metadata,custom metadata>>.
 
