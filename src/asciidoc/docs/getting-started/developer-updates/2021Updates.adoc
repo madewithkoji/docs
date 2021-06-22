@@ -94,7 +94,7 @@ image::live-analytics-apr2021.png[Live analytics]
 The developer receives 60% of the fees collected for all of these transactions.
 // end::highlights[]
 * Automatic withdrawals are now available for some countries outside the US.
-If automatic withdrawals are not supported for your country, you can https://withkoji.atlassian.net/servicedesk/customer/portal/1[contact the Koji team] and we can process your withdrawal manually.
+If automatic withdrawals are not supported for your country, you can mailto:support@withkoji.com[contact the Koji team] and we can process your withdrawal manually.
 * For refunds of purchases made with a credit or debit card, the balance is now refunded to that debit or credit card, instead of your Koji wallet.
 * Evolution/lineage payments are no longer applied.
 * Paid subscriptions are no longer available.
@@ -162,7 +162,7 @@ include::../../_includes/coreReleaseNotes.adoc[tag=all]
 
 * On the developer site, a new set of <<start-tutorial#,quick start tutorials>> are available to help developers get going quickly on Koji.
 // end::highlights[]
-* The https://withkoji.atlassian.net/servicedesk/customer/portal/1[Koji Support] page is now available for logging bugs and requests with the Koji team.
+* The Koji Support page is now available for logging bugs and requests with the Koji team.
 This short form enables better tracking and quicker resolution of problems.
 +
 For the quickest answers to general questions, continue to check out the https://help.withkoji.com/[Help Center] or connect with the https://discord.com/invite/9egkTWf4ec[community on Discord].
