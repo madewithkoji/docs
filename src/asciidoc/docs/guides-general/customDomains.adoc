@@ -22,14 +22,14 @@ For example: `+++thenextgreatvideogame.com+++`.
 
 [NOTE]
 You can assign only one Koji subdomain to a Koji app.
-If you've already assigned a subdomain and you want to change it, follow the steps for <<_releasing_a_domain, releasing a domain>>.
+If you've already assigned a subdomain and you want to change it, follow the steps for <<_deleting_a_domain, deleting a domain>>.
 Then you can assign the new one.
 You can assign as many domains as you want to a Koji app if they are domains you own.
 
 == Using a subdomain with a Koji root domain
 
 . Open the Koji app and go to menu:App[... > Custom Domain].
-. Click btn:[Add New Domain].
+. Click *Add New Domain*.
 . Select *Subdomain*.
 . Click btn:[Next].
 . Select a *root domain*.
@@ -92,9 +92,9 @@ The Koji platform's *IPv6 block* is:
 Different domain providers have different tools for managing DNS records, and some of those tools are more complex than others.
 If you have questions about how to configure your domain's DNS records, please connect with us on *Discord* and someone will be happy to help.
 
-== Releasing a domain
+== Deleting a domain
 
 . Open the Koji app and go to menu:App[... > Custom Domain].
 . Click the domain name you want to release.
-. Click btn:[Release domain].
-. Click btn:[Yes, release].
+. Click btn:[Delete Domain].
+. Click btn:[Yes, delete].

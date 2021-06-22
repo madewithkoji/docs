@@ -60,7 +60,7 @@ Scan this code to preview the app on your mobile device.
 
 === Debugging
 
-To open the debugger in a new browser tab, click btn:[Launch Debugger].
+To open the debugger in a new browser tab, click *Launch Debugger*.
 For more information, go to <<testing-apps#_using_the_koji_debugger, Using the Koji debugger>>.
 
 == Tips
