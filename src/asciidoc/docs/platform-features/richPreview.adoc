@@ -20,7 +20,7 @@ image::customMetadata.png[Customizable metadata for a Koji app]
 The Koji platform automatically sets all the meta tags for you, but you can override some of Koji's default settings to provide a customized sharing experience.
 
 [TIP]
-You can give creators the ability to customize the other Open Graph metadata by enabling the <<entitlements#_custom_metadata,custom metadata entitlement>>.
+In addition to the thumbnail image, you can give creators the ability to customize the `og:title` and `og:description` by enabling the <<entitlements#_custom_metadata,custom metadata entitlement>>.
 
 == Rendering a custom view for the screenshot
 
