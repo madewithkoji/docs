@@ -43,7 +43,7 @@ For help starting your app on Koji, check out these resources:
 
 * <<start-tutorial#>> – Step-by-step tutorial for learning fundamental concepts and developing your first project on Koji.
 * <<withkoji-koji-core#>> – Package reference for implementing core platform features in your apps.
-* https://withkoji.com/create/for-developers[Developer scaffolds in the Template Store] – Starting points for an entirely new web app on Koji.
+* https://withkoji.com/create/for-developers[Developer scaffolds in the App Store] – Starting points for an entirely new web app on Koji.
 
 == What's new for developers
 
@@ -53,6 +53,8 @@ For the latest updates to the Koji platform, packages, and developer site, check
 
 * Join the https://discord.com/invite/9egkTWf4ec[Koji community] on Discord to connect with other developers, creators, and the Koji team.
 The community is the best place to share tips and tricks, provide peer feedback, and get support.
-* Check out the https://help.withkoji.com/[Koji Help Center] for answers to general questions about Koji or visit the https://withkoji.atlassian.net/servicedesk/customer/portal/1[Koji Support] page to log an issue or request.
+* Check out the https://help.withkoji.com/[Koji Help Center] for answers to general questions about Koji.
+* Use the *chat icon* to log an issue or request directly with the Koji team.
+It's available in the bottom-right corner of the https://withkoji.com[Koji home page], the https://withkoji.com/apps[Koji App Store], and the https://blog.withkoji.com/[Koji Blog].
 * <<contribute-koji-developers#,Contribute to the developer site>> by coding, writing new articles, or suggesting edits to existing documentation.
 * Subscribe to the http://eepurl.com/g5odab[developer email list] to keep up with the latest announcements, featured content, events, and developer programs.
