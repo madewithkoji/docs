@@ -11,7 +11,7 @@
 // tag::all[]
 
 // tag::nodejsnpmver[]
-Kojis run on Node.js 14.15.5 and npm 6.14.11.
+Koji apps run on Node.js 14.15.5 and npm 6.14.11.
 // end::nodejsnpmver[]
 
 // end::all[]

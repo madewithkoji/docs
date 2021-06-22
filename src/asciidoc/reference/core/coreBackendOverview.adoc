@@ -2,11 +2,11 @@
 :page-slug: core-backend-overview
 :page-description: Overview of the @withkoji/core backend module.
 
-Exposes the KojiBackend variable, which provides server-side methods for use on the backend of your Koji.
+Exposes the KojiBackend variable, which provides server-side methods for use on the backend of your Koji app.
 
 [NOTE]
 ====
-* All methods in the backend module are scoped for use only in backend services of Kojis.
+* All methods in the backend module are scoped for use only in backend services of Koji apps.
 If a method is invoked in a frontend environment, it returns an error message.
 * All backend modules follow the same constructor pattern.
 ====
@@ -21,40 +21,40 @@ include::../../docs/_includes/backend-basic-use.adoc[tag=all]
 
 === Database
 
-_<<core-backend-database#, Database>>_, Class that implements a Koji database on the backend of your Koji template.
+_<<core-backend-database#, Database>>_, Class that implements a Koji database on the backend of your Koji app.
 
 === Dispatch
 
-_<<core-backend-dispatch#, Dispatch>>_, Class that implements a dispatch system for real-time communication on the backend of your Koji template.
+_<<core-backend-dispatch#, Dispatch>>_, Class that implements a dispatch system for real-time communication on the backend of your Koji app.
 
 === IAP
-_<<core-backend-iap#, IAP>>_, Class that manages in-app purchases on the backend of your Koji template.
+_<<core-backend-iap#, IAP>>_, Class that manages in-app purchases on the backend of your Koji app.
 
 === Identity
 
-_<<core-backend-identity#, Identity>>_, Class that manages authentication and authorization on the backend of your Koji template.
+_<<core-backend-identity#, Identity>>_, Class that manages authentication and authorization on the backend of your Koji app.
 
 === Secret
 
-_<<core-backend-secret#, Secret>>_, Class that handles sensitive data used in your Koji template.
+_<<core-backend-secret#, Secret>>_, Class that handles sensitive data used in your Koji app.
 
 === Utilities
 
-_<<core-backend-utilities#, Utilities>>_, Class that provides utility methods for improving the performance and functionality of your Koji template.
+_<<core-backend-utilities#, Utilities>>_, Class that provides utility methods for improving the performance and functionality of your Koji app.
 
 === middleware
 
 Executes an http://expressjs.com/en/guide/using-middleware.html[Express middleware], making Koji-specific data available on the `res.locals` property.
 
-The middleware manages the scope for backend functionality, so that your code can support your initial Koji along with all of its remixes.
-It works by parsing the request headers that the Koji platform uses to pass remix-specific data to the backend.
+The middleware manages the scope for backend functionality, so that your code can support your initial Koji app along with all of its customized versions.
+It works by parsing the request headers that the Koji platform uses to pass version-specific data to the backend.
 
 You must apply this middleware before handling any routes.
 The middleware will transform `res.locals`, and then modules in KojiBackend will accept `res` as a configuration parameter.
 
 ==== Parameters
 
-* `kojiConfig` – _<<KojiConfig>>_, (Optional) Configuration data for the Koji.
+* `kojiConfig` – _<<KojiConfig>>_, (Optional) Configuration data for the Koji app.
 
 ==== Example
 

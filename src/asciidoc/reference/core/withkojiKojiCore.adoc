@@ -1,29 +1,29 @@
 = @withkoji/core
 :page-slug: withkoji-koji-core
-:page-description: Package for implementing core features in your Kojis, including remixing, in-app purchases, UI controls, messaging, and identity services.
+:page-description: Package for implementing core features in your Koji apps, including customization, in-app purchases, UI controls, messaging, and identity services.
 
 The @withkoji/core package enables you to
 //tag::description[]
-implement core platform features in your Koji template, including remixing, in-app purchases, UI controls, messaging, and identity services.
+implement core platform features in your Koji app, including customization, in-app purchases, UI controls, messaging, and identity services.
 //end::description[]
 
 NOTE: The @withkoji/core package replaces several <<packages-overview#_deprecated_packages,deprecated packages>>.
-If your Koji's code uses any of the deprecated packages, see <<migrate-koji-core#>>.
+If your Koji app's code uses any of the deprecated packages, see <<migrate-koji-core#>>.
 
 == Available features
 
-This package provides client-side methods for use on the frontend of your Koji and server-side methods for use in backend services of your Koji.
+This package provides client-side methods for use on the frontend of your Koji app and server-side methods for use in the backend services of your app.
 For example:
 
-* Dynamically get and set custom remix values.
+* Dynamically get and set customized values.
 * Capture user input and present dialog boxes.
-* Define distinct experiences for different users and views of your Koji.
-* Manage authentication and authorization for users of your Koji.
+* Define distinct experiences for different users and views of your Koji app.
+* Manage authentication and authorization for users of your Koji app.
 * Send push notifications to authorized users.
-* Implement in-app purchase transactions in your Koji.
-* Implement a Koji database for the backend of your Koji.
-* Track custom analytics events in your Koji.
-* Implement real-time communication between connected clients in your Koji.
+* Implement in-app purchase transactions in your Koji app.
+* Implement a Koji database for the backend of your Koji app.
+* Track custom analytics events in your Koji app.
+* Implement real-time communication between connected clients in your Koji app.
 
 == Installation
 

@@ -16,7 +16,7 @@ instantRemixing.onSetRemixing(isNowRemixing => {
 var magazineOptions = instantRemixing.get(['settings', 'magazineOptions']);
 var textOptions = instantRemixing.get(['settings', 'textOptions']);
 
-// Set values on remix
+// Set values on customization
 instantRemixing.onValueChanged(([scope = "", key = ""], value) => {
     if (scope === 'settings' && key === 'magazineOptions') magazineOptions = value;
     if (scope === "settings" && key === "textOptions") textOptions = value;

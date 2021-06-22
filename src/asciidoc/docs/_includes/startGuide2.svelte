@@ -54,11 +54,11 @@
       });
 
       instantRemixing.onSetRemixing((isRemixingTrue) => {
-      // Checks if the Remix View
+      // Checks if in the customization state.
       isRemixing = isRemixingTrue;
       });
 
-      // Alert Koji we are ready to use instantRemixing
+      // Alert the Koji app that we are ready to use instantRemixing
       instantRemixing.ready();
 
       feed = new FeedSdk();
