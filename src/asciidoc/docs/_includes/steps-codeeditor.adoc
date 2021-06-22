@@ -27,8 +27,8 @@
 // end::go-to-project-details-base[]
 
 // tag::go-to-project-details-more[]
-* If you're creating a new project, you can fork https://withkoji.com/create/for-developers[any scaffold] or any Koji project that allows forking.
-* If you're editing an existing project, go to https://withkoji.com/developer/projects[your Developer Portal page] and click the project to edit.
+* If you're creating a new app, you can fork https://withkoji.com/create/for-developers[any scaffold] or any Koji app that allows forking.
+* If you're editing an existing app, go to https://withkoji.com/developer/projects[your Developer Portal page] and click the app to edit.
 // end::go-to-project-details-more[]
 
 // end::go-to-project-details[]
@@ -40,7 +40,7 @@
 
 
 // tag::rename-and-open-in-code-editor[]
-. In the *Project Details* page, rename the project, then click *Open in Code Editor*.
+. In the *Project Details* page, rename the app, then click *Open in Code Editor*.
 // end::rename-and-open-in-code-editor[]
 
 
