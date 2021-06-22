@@ -8,7 +8,9 @@ For example, to allow creators to configure an app, you must enable the `Instant
 To sell products from an app, you must define the product properties, such as name and price, in the `InAppPurchases` entitlement.
 
 To configure entitlements for your app, define properties and values in the `entitlements` key of the `koji.json` file.
-When you initialize the @withkoji/core package with this configuration data, the Koji platform applies the entitlement settings to the running app.
+In your application code, initialize the @withkoji/core package with this configuration data.
+Publish the app to update the entitlements.
+The Koji platform applies the entitlement settings to the running app.
 
 The following platform entitlements are available for Koji apps.
 
