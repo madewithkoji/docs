@@ -71,8 +71,9 @@ It allows you to follow the communication happening between the Koji platform an
 . Click btn:[Open Debugger Settings]. A list of the available debugging environments will be displayed. This will include one or more of the following.
 +
 * *Published Koji* - Available after the app is published.
-* *Web IDE* - Available if you have your app running in your own editor.
+* *Web IDE* - Available if you have your app running in the Koji code editor.
 * *Localhost* - Always available. If you select this option, you will be prompted to enter the URL of your localhost.
+See <<local-development#,Working from your development machine>>.
 
 [TIP]
 You can also open the debugger from the Koji editor by clicking btn:[Launch Debugger] in the preview pane.
