@@ -63,14 +63,19 @@ For example, in Google Chrome, you can open the debugging tools by clicking menu
 
 == Using the Koji debugger
 
-The Koji debugger enables live testing and debugging in a production environment.
+The Koji debugger enables live testing and debugging.
 It allows you to follow the communication happening between the Koji platform and the app.
 
-[NOTE]
-You must publish your app before you can debug it using the Koji debugger.
+. To use the debugger, go to btn:[Developer Portal] and click the Koji app.
+. Click btn:[Open in Debugger] on the project overview page.
+. Click btn:[Open Debugger Settings]. A list of the available debugging environments will be displayed. This will include one or more of the following.
++
+* *Published Koji* - Available after the app is published.
+* *Web IDE* - Available if you have your app running in the Koji code editor.
+* *Localhost* - Always available. If you select this option, you will be prompted to enter the URL of your localhost.
+See <<local-development#,Working from your development machine>>.
 
-To open the debugger, go to btn:[Developer Portal] and click the project.
-Then, click btn:[Open in Debugger] on the project overview page.
+[TIP]
 You can also open the debugger from the Koji editor by clicking btn:[Launch Debugger] in the preview pane.
 
 === Debugging contexts

@@ -17,8 +17,8 @@ image::code-editor-sections-expanded.png[Layout of the Code Editor,100%,link={im
 
 [.callout1]#*Navigation pane* – Lists menu items and source code.# +
 [.callout2]#*Editing pane* – Displays open files. Supports multiple tabs.# +
-[.callout3]#*Preview pane* – Displays a live preview of the template and provides other testing and debugging tools.# +
-[.callout4]#*Terminal pane* – Provides command-line access to the project's services. Supports multiple tabs and is initially collapsed.#
+[.callout3]#*Preview pane* – Displays a live preview of the Koji app and provides other testing and debugging tools.# +
+[.callout4]#*Terminal pane* – Provides command-line access to the Koji app's services. Supports multiple tabs and is initially collapsed.#
 // end::editorsections[]
 
 

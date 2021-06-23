@@ -1,13 +1,13 @@
 = Using custom domains
 :page-slug: custom-domains
-:page-description: How to configure your Koji to use a custom domain.
+:page-description: How to configure your Koji app to use a custom domain.
 
-When you publish a Koji, it's automatically assigned a permalink, based on your user name, that lives on the `+++withkoji.com+++` domain.
+When you publish a Koji app, it's automatically assigned a permalink, based on your user name, that lives on the `+++withkoji.com+++` domain.
 For example: `+++withkoji.com/~johnsmith789/my-video-game+++`.
-You have the option of additionally serving your Koji at a custom domain.
+You have the option of additionally serving your app at a custom domain.
 This option can be helpful if you already own a domain that ties into your marketing strategy, or if you want to create a URL that is easier to identify or verbalize.
 
-Koji has several root domains that you can use at no cost, including:
+The Koji platform has several root domains that you can use at no cost, including:
 
 * withkoji.com
 * koji.sh
@@ -21,56 +21,56 @@ Then you can make your domain name almost anything you want it to be.
 For example: `+++thenextgreatvideogame.com+++`.
 
 [NOTE]
-You can assign only one Koji subdomain to a Koji.
-If you've already assigned a subdomain and you want to change it, follow the steps for <<_releasing_a_domain, releasing a domain>>.
+You can assign only one Koji subdomain to a Koji app.
+If you've already assigned a subdomain and you want to change it, follow the steps for <<_deleting_a_domain, deleting a domain>>.
 Then you can assign the new one.
-You can assign as many domains as you want to a Koji if they are domains you own.
+You can assign as many domains as you want to a Koji app if they are domains you own.
 
 == Using a subdomain with a Koji root domain
 
-. Open the Koji and go to menu:App[... > Custom Domain].
-. Click btn:[Add New Domain].
+. Open the Koji app and go to menu:App[... > Custom Domain].
+. Click *Add New Domain*.
 . Select *Subdomain*.
-. Click *Next*.
+. Click btn:[Next].
 . Select a *root domain*.
 . Enter the subdomain.
-. Click *Save*.
+. Click btn:[Save].
 If the domain name you chose is already taken, "That domain is not available" will be displayed.
 If the domain name is available, the complete domain name will be displayed.
 . Click the domain name.
-You should see a message verifying that your custom domain has been successfully assigned to the Koji.
-. Click *Open* to go to the new URL.
-Your Koji should be displayed.
+You should see a message verifying that your custom domain has been successfully assigned to the Koji app.
+. Click btn:[Open] to go to the new URL.
+Your app should be displayed.
 
 [NOTE]
 Custom domains that use a Koji root domain automatically manage HTTPS termination.
-This means that your Koji's traffic is secured with HTTPS, but your application itself does not require any special configuration, like listening on both ports 80 and 443, serving certificates and managing certificate lifecycle and renewal, and dealing with mixed-security content.
+This means that your app's traffic is secured with HTTPS, but does not require any special configuration, like listening on both ports 80 and 443, serving certificates and managing certificate lifecycle and renewal, or dealing with mixed-security content.
 
 == Using a domain you own
 
-If you buy your own domain name from somewhere like *Google Domains* or *Namecheap*, you can easily configure that domain to serve your Koji.
-Simply register your domain in your project, and then use your domain provider's management tools to configure the appropriate DNS records.
+If you buy your own domain name from somewhere like *Google Domains* or *Namecheap*, you can easily configure that domain to serve your Koji app.
+Simply register your domain in your app, and then use your domain provider's management tools to configure the appropriate DNS records.
 
-=== Registering your domain in your project
+=== Registering your domain in your Koji app
 
-. Open the Koji and go to menu:App[... > Custom Domain].
+. Open the Koji app and go to menu:App[... > Custom Domain].
 . Click btn:[Add New Domain].
 . Select *A domain you own*.
-. Click *Next*.
+. Click btn:[Next].
 . Enter your complete domain name.
-. Click *Save*.
+. Click btn:[Save].
 The domain name should be displayed.
 . Click the domain name.
-You should see a message verifying that your custom domain has been successfully assigned to the Koji.
+You should see a message verifying that your custom domain has been successfully assigned to the Koji app.
 . Follow the steps for <<_configuring_dns_records, configuring DNS records>>.
-. Click *Open* to go to the new URL.
-Your Koji should be displayed.
+. Click btn:[Open] to go to the new URL.
+Your app should be displayed.
 
 === Configuring DNS records
 
-If you want to host your Koji on a subdomain of your custom domain name (for example, `+++www.mycustomdomain.com+++` or `+++game.mycustomdomain.com+++`), you will need to use your domain provider's tools to add a CNAME record for that subdomain (www or game) that points to `+++cnames.withkoji.com+++`.
+If you want to host your Koji app on a subdomain of your custom domain name (for example, `+++www.mycustomdomain.com+++` or `+++game.mycustomdomain.com+++`), you will need to use your domain provider's tools to add a CNAME record for that subdomain (www or game) that points to `+++cnames.withkoji.com+++`.
 
-If you want your Koji to be served from the root domain name (`+++mycustomdomain.com+++`), you need to add an *A record* for the domain's root that maps it to Koji's *IP block*:
+If you want your app to be served from the root domain name (`+++mycustomdomain.com+++`), you need to add an *A record* for the domain's root that maps it to the Koji platform's *IP block*:
 
 151.101.1.78 +
 151.101.65.78 +
@@ -78,7 +78,7 @@ If you want your Koji to be served from the root domain name (`+++mycustomdomain
 151.101.193.78 +
 
 If you are configuring a root domain via *A records*, it is also recommended to configure *AAAA records* to support *IPv6*.
-Koji's *IPv6 block* is:
+The Koji platform's *IPv6 block* is:
 
 2a04:4e42::334 +
 2a04:4e42:200::334 +
@@ -92,9 +92,9 @@ Koji's *IPv6 block* is:
 Different domain providers have different tools for managing DNS records, and some of those tools are more complex than others.
 If you have questions about how to configure your domain's DNS records, please connect with us on *Discord* and someone will be happy to help.
 
-== Releasing a domain
+== Deleting a domain
 
-. Open the Koji and go to menu:App[... > Custom Domain].
-. Click the domain name you want to release.
-. Click *Release domain*.
-. Click *Yes, release*.
+. Open the Koji app and go to menu:App[... > Custom Domain].
+. Click the domain name you want to delete.
+. Click btn:[Delete Domain].
+. Click btn:[Yes, delete].

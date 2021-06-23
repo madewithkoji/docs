@@ -2,17 +2,17 @@
 :page-slug: plugins
 :page-description: The advantages and limitations of Koji plugins and how to use them.
 
-A plugin is software that can be added to a Koji after publication to provide additional functionality.
+A plugin is software that can be added to a Koji app after publication to provide additional functionality.
 Basically, it allows for the injection of dynamic code.
-Plugins can only be added by the creator of a Koji.
-They will not be passed down to remixes.
+Plugins can only be added by the creator of an app.
+So, if you create a customized version of an app that uses a plugin, you will have to add the plugin to the new version. It will not be passed down to the customized app automatically.
 
-Generally, a creator customizes a plugin for a particular Koji by specifying values for one or more fields.
+Generally, a creator customizes a plugin for a particular app by specifying values for one or more fields.
 For example, a creator can specify the tracking ID for the *Google Analytics* plugin.
 
 == Advantages of plugins
 
-In addition to allowing the creator to easily add functionality to a Koji, plugins offer a few other advantages.
+In addition to allowing the creator to easily add functionality to a Koji app, plugins offer a few other advantages.
 
 * Search engines and social crawlers often do not render JavaScript when indexing pages.
 For instance, if you're using React, a bot may only see the root div and an "enable JavaScript" message.
@@ -25,17 +25,17 @@ The plugin provides configurable values, and the injection wraps them with the r
 
 == Limitations
 
-* Koji plugins are not designed to modify template functionality or to inject code that interfaces with a template's native code.
+* Koji plugins are not designed to modify app functionality or to inject code that interfaces with an app's native code.
 This is an intentional decision to avoid code fragmentation.
-Meaningful changes to functionality should be done within the code of the template, and repeated core behaviors should leverage JavaScript packages and the larger JavaScript community.
+Meaningful changes to functionality should be done within the code of the app, and repeated core behaviors should leverage JavaScript packages and the larger JavaScript community.
 
 * Plugins are only injected into static services.
 
-* If your template contains multiple static services, plugins will be injected into all of them.
+* If your app contains multiple static services, plugins will be injected into all of them.
 There is no way to enable or disable plugins on a per-service basis.
 
-== Enabling a plugin for your Koji
+== Enabling a plugin for your Koji app
 
-. Open the Koji and go to menu:App[... > Plugins].
+. Open the app and go to menu:App[... > Plugins].
 . Choose a plugin from the list of available plugins.
 . Configure and enable the plugin.
