@@ -146,7 +146,7 @@ It is returned to the handler listening to <<onUpdate>>.
 * `variableName` – _String_, Resolved variable name of this VCC (`scope.key`).
 * `options` – _Object_, Any options passed in `typeOptions`.
 * `collaborationDecoration` – _Object_, Any collaborators currently focused on this control.
-* `_config` – _Object_, The full VCC configuration file.
+* `config` – _Object_, The full VCC configuration file.
 Most controls are isolated to a single value.
 However, this object can be useful when creating more complex custom controls, like map builders.
 

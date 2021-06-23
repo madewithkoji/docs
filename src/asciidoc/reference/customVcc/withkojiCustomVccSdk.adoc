@@ -58,7 +58,7 @@ customVcc.save();
 
 === Using custom controls
 
-To make a custom control accessible to Koji app, you must serve it at a custom domain.
+To make a custom control accessible to other Koji apps, you must make it available through a custom domain.
 After you publish the project, add a subdomain under the `koji-vccs.com` root domain.
 
 Then, you can use the control in a Koji app in one of these ways.
