@@ -56,7 +56,7 @@ const feed = new FeedSdk();
 // end::feedSdk[]
 
 const App = () => {
-  // Handle remixing state
+  // Handle the customization state
   // tag::monitorRemix[]
   const [isRemixing, setIsRemixing] = useState(instantRemixing.isRemixing);
   useEffect(() => {
@@ -79,9 +79,9 @@ const App = () => {
   }, []);
   // end::updateValues[]
 
-  // Click handlers for remixing
+  // Click handlers for customization
   // tag::clickHandlers[]
-  // Click handlers for remixing
+  // Click handlers for customization
   const handleClick = (e) => {
     if (isRemixing) {
       if (e.target.closest('.editable')) {
