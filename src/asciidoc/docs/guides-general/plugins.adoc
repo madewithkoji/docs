@@ -5,7 +5,7 @@
 A plugin is software that can be added to a Koji app after publication to provide additional functionality.
 Basically, it allows for the injection of dynamic code.
 Plugins can only be added by the creator of an app.
-They will not be passed down to customized apps.
+So, if you create a customized version of an app that uses a plugin, you will have to add the plugin to the new version. It will not be passed down to the customized app automatically.
 
 Generally, a creator customizes a plugin for a particular app by specifying values for one or more fields.
 For example, a creator can specify the tracking ID for the *Google Analytics* plugin.

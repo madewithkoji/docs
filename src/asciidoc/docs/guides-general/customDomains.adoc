@@ -95,6 +95,6 @@ If you have questions about how to configure your domain's DNS records, please c
 == Deleting a domain
 
 . Open the Koji app and go to menu:App[... > Custom Domain].
-. Click the domain name you want to release.
+. Click the domain name you want to delete.
 . Click btn:[Delete Domain].
 . Click btn:[Yes, delete].
