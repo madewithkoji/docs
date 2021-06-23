@@ -1,15 +1,15 @@
 = @withkoji/custom-vcc-sdk
 :page-slug: withkoji-custom-vcc-sdk
-:page-description: Package for implementing custom controls that capture user input on the frontend of your Koji template.
+:page-description: Package for implementing custom controls that capture user input on the frontend of your Koji app.
 
 The @withkoji/custom-vcc-sdk package enables you to
 //tag::description[]
-implement custom controls for capturing user input on the frontend of your Koji template.
+implement custom controls for capturing user input on the frontend of your Koji app.
 //end::description[]
 
 The Koji platform includes controls for standard elements, such as images, text, and sounds.
-With this package, you can build custom controls that match closely with the application you are developing.
-For example, some Koji templates provide tile map editors, sound enhancers, or custom avatar creators to enhance the interactivity for remixers.
+With this package, you can build custom controls that are better suited for the application you are developing.
+For example, some Koji apps provide tile map editors, sound enhancers, or custom avatar creators to enhance the interactivity for customization.
 
 == Installation
 
@@ -58,10 +58,10 @@ customVcc.save();
 
 === Using custom controls
 
-To make a custom control accessible to Koji templates, you must serve it at a custom domain.
+To make a custom control accessible to other Koji apps, you must make it available through a custom domain.
 After you publish the project, add a subdomain under the `koji-vccs.com` root domain.
 
-Then, you can use the control in a Koji template in one of these ways.
+Then, you can use the control in a Koji app in one of these ways.
 
 * (Recommended) With the @withkoji/core package, call the `Koji.ui.capture.custom` method with the subdomain name.
 For example:
@@ -76,4 +76,4 @@ For example:
 
 * https://github.com/madewithkoji/koji-custom-vcc-sdk[@withkoji/custom-vcc-sdk on Github]
 * https://www.npmjs.com/package/@withkoji/custom-vcc-sdk[@withkoji/custom-vcc-sdk on npm]
-* <<build-custom-vcc#>>
+* <<build-custom-controls#>>
