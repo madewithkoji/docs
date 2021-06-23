@@ -1,16 +1,16 @@
-= Example: Creating remixable games on Koji
+= Example: Creating customizable games on Koji
 :page-slug: game-intro
-:page-description: Tutorial for creating a remixable game on Koji starting from a game template.
+:page-description: Tutorial for creating a customizable game on Koji starting from a game scaffold.
 :page-banner: {imagesDir}/game-tutorial-overview.png
 :figure-caption!:
 
-In this tutorial, you will create a remixable https://withkoji.com/~Svarog1389/rxkd[Falling Objects] game, starting from a https://withkoji.com/~Svarog1389/game-template-1[p5.js game template].
+In this tutorial, you will create a customizable https://withkoji.com/~Svarog1389/rxkd[falling objects] game, starting from a https://withkoji.com/~Svarog1389/game-template-1[p5.js game scaffold].
 
-NOTE: This tutorial assumes you've already gone through the <<start-tutorial, Koji quick start tutorial>> and are familiar with the basics of Koji.
+NOTE: This tutorial assumes you've already gone through the <<start-tutorial, Koji quick start tutorial>> and are familiar with the basics of Koji apps.
 
 == Objective
 
-Falling Objects is a simple game where the player tries to collect as many falling objects as they can before they fall off the screen.
+The falling objects game is a simple game where the player tries to collect as many falling objects as they can before they fall off the screen.
 The player moves their character left or right by clicking anywhere on the screen.
 The player loses a life when an object falls off the screen, and the game is over when the player runs out of lives.
 

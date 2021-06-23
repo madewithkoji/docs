@@ -1,5 +1,5 @@
 = Tutorial editor note
 
 // tag::all[]
-NOTE: The Koji editor is recommended for this tutorial, but you're free to <<use-git#, clone the newly created project to your local environment>> if you prefer.
+NOTE: The Koji editor is recommended for this tutorial, but you're free to <<use-git#, clone the newly created app to your local environment>> if you prefer.
 // end::all[]

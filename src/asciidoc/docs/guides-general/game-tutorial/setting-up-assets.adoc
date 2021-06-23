@@ -5,37 +5,37 @@
 
 In the first section of this tutorial, you will
 // tag::description[]
-fork the game template and modify it to load the images and sounds used in the falling objects game.
+fork the game scaffold and modify it to load the images and sounds used in the falling objects game.
 // end::description[]
 
 By the end of the section, you should feel comfortable:
 
 * Configuring asset data in the `koji.json` file.
-* Using the game template to load assets and define settings.
+* Using the game scaffold to load assets and define settings.
 
-== About the starting template
+== About the starting scaffold
 
-The https://withkoji.com/apps/78ddd0e8-de2d-498e-bd88-255166d54849[Game Template] is a great starting point for this project because it was created specifically for these types of hyper-casual games.
+The https://withkoji.com/apps/78ddd0e8-de2d-498e-bd88-255166d54849[Game Dev Scaffold] is a great starting point for this app because it was created specifically for these types of hyper-casual games.
 It handles a lot of what the game needs to do, which saves quite a bit of development time.
 For example, the template provides:
 
 * Automatic sound loading.
 * Improved image loading with optimization.
 * Integrated live leaderboard without the need to modify any of the backend files.
-* Easily configurable remix menu.
+* Easily configurable customization menu.
 * One-line calls for spawning special effects, like particles and animated text.
 
-For more information, check out the https://withkoji.com/~Svarog1389/game-template-1/details/code#README.md[template README].
+For more information, check out the https://withkoji.com/~Svarog1389/game-template-1/details/code#README.md[scaffold README].
 
-== Forking the game template
+== Forking the game scaffold
 
-Get started by cloning the game template to your own project.
+Get started by cloning the game scaffold to your own project.
 
-. Open the https://withkoji.com/apps/78ddd0e8-de2d-498e-bd88-255166d54849[game template] listing.
-. Click menu:...[Fork].
+. Open the https://withkoji.com/apps/78ddd0e8-de2d-498e-bd88-255166d54849[game scaffold] listing.
+. Click btn:[Fork].
 +
-A copy of the project is created in your Koji account, and the *Project Details* page for your new project is displayed.
-. Click *Open in Code Editor*.
+A copy of the app is created in your Koji account, and the *Project Details* page for your new app is displayed.
+. Click btn:[Open in Code Editor].
 +
 The Koji editor opens with the game code loaded.
 
@@ -70,7 +70,7 @@ Update it to add the URL paths for the images and sounds as follows.
 },
 ----
 
-TIP: The game template contains code that automatically loads any sound file whose name begins with `snd`.
+TIP: The game scaffold contains code that automatically loads any sound file whose name begins with `snd`.
 You can save yourself some work by following that naming convention.
 
 To give the game a more distinctive look, modify the `title` and `backgroundImage` entries as follows.
@@ -112,26 +112,26 @@ The `remixData` object should now look something like this example.
 
 NOTE: Don't forget to save your changes.
 
-If you have a Live Preview running, notice that the background image has already changed, as well as the player image in the main menu!
+If you have a *Live Preview* running, click the refresh icon to update it. You should see a new background image, as well as a new player image in the main menu.
 
 == Loading assets
 
 Now that you've added assets to `remixData`, you need to load them in the game.
-The game template loads all of these assets in the `frontend/src/Components/Game/preload.js` file.
+The game scaffold loads all of these assets in the `frontend/src/Components/Game/preload.js` file.
 
 You don't have to do anything to load the sounds.
-Because you used the `snd` naming convention, the template will load them automatically.
+Because you used the `snd` naming convention, the scaffold will load them automatically.
 
-To load images, you use the `addImage()` function from the template.
-Update `preload` as follows.
+To load images, you use the `addImage()` function from the scaffold.
+Update the `preload` method as follows.
+It already contains a line for loading the player image.
+You just need to add a line for loading the collectible.
 
 [source,javascript]
 ----
 const preload = () => {
   ...
-  const remixValues = Koji.remix.get();
-  ...
-  addImage('player', remixValues.imgPlayer, game.playerSize);
+  addImage('player', remixValues.imgPlayer, game.playerSize, 5);
   addImage('collectible', remixValues.imgCollectible, 100);
   ...
 }
@@ -140,15 +140,15 @@ const preload = () => {
 Next, you need to define the value for the `game.playerSize` variable, which represents the size of the player image.
 You can define this variable, and other game settings, in the `initializeValues()` function.
 
-Because there's a considerable difference between mobile and desktop display sizes, use the `isMobile()` function to set the `playerSize` according to the device, as follows.
-
+Because there's a considerable difference between mobile and desktop display sizes, you can add a line to the `isMobile()` function to set the `playerSize` according to the device, as follows.
+(Actually, this line should already be present in the scaffold, so just double-check that it's there.)
 [source,javascript]
 ----
 import isMobile from '../../Utils/isMobile'
 ...
 const initializeValues = () => {
     ...
-    game.playerSize = isMobile() ? 90 : 110;
+    game.playerSize = isMobile() ? 64 : 96;
 }
 ----
 
@@ -159,7 +159,7 @@ For example:
 
 == Wrapping up
 
-In this section, you made your own copy of the game template.
+In this section, you made your own copy of the game scaffold.
 Then, you configured the starting values for game settings and loaded the image and sound assets into the game.
 
 In the <<game-creating-game-objects#,next section>>, you'll add the `Player` and `Collectible` classes and use them to represent the character and falling objects in the game.
