@@ -98,7 +98,7 @@ Exposes the following classes:
 === .config(kojiConfig, kojiConfigOptions)
 
 Initializes this package for use with configuration data from the `koji.json` file.
-This method sets up the services, configuration values, development environment, and deployment instructions for your Koji app.
+This method sets up the services, customization values, development environment, and deployment instructions for your Koji app.
 It also performs some basic structural checks.
 
 NOTE: The app must initialize the package before any data is rendered. Initialization must be done exactly once.

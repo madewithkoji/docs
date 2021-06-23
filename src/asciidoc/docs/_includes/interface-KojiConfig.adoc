@@ -12,7 +12,7 @@ Configuration data for the Koji.
 * `deploy` – _Any_, (Optional) Instructions for deploying the services to production.
 * `develop` – _Any_, (Optional) Instructions for setting up the services in a development/editor environment.
 * `metadata` – _<<KojiMetadata>>_, (Optional) Metadata about the project and creator.
-* `remixData` – _Any_, (Optional) Default values for the customizable data.
+* `remixData` – _Any_, (Optional) Default values for the configuration data.
 // end::KojiConfig[]
 
 === KojiMetadata
