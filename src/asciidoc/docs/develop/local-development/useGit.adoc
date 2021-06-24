@@ -1,16 +1,22 @@
 = Using Git to manage your project
 :page-slug: use-git
-:page-description: How to use Git to clone a Koji project template to your development machine, so that you can work on it locally.
+:page-description: How to use Git to clone a Koji app to your development machine, so that you can work on it locally.
 :figure-caption!:
 
-Although Koji provides a feature-rich online project editor, you might prefer to use your own suite of development tools in some cases.
-This tutorial describes how to use Git to clone a Koji project template to your development machine, so that you can work on it locally.
+Git is the version control system used by Koji.
+You use it to handle your projects and keep track of the changes to them.
+In the first section of this tutorial, you will
+// tag::description[]
+clone a Koji project to your development machine, so that you can work on it locally.
+// end::description[]
 
-This is the first part in a three-part tutorial.
+== Learning objectives
 
-. *Using Git to manage your project* (this tutorial)
-. <<work-locally#>>
-. <<publish-locally-developed#>>
+By the end of the section, you should feel comfortable:
+
+* Installing the tools required for working locally.
+* Locating the URL, username, and password that you'll need to clone your project.
+* Cloning the Git repository for your project onto your local machine.
 
 == Prerequisites
 
@@ -18,7 +24,7 @@ To develop your Koji project locally, you need these tools:
 
 . The open-source *Git* version control system.
 +
-Koji stores each template and each remixed project as a separate Git repository.
+Koji stores each app and each forked project as a separate Git repository.
 To work on a project locally, you will use Git to download a clone of your project to your local machine.
 You can then make changes and use Git to push the changes back to the origin repository on the Koji servers.
 +
@@ -43,23 +49,21 @@ You will use a text editor to edit your code, and save it as plain-text files.
 A text editor that is designed for writing code can help you in many ways, such as verifying structure and syntax or finding the correct variables or function names.
 For more information, see this https://kinsta.com/blog/best-text-editors/[list of recommended text editors], which includes several that are excellent and free.
 
-== Choosing a template for your project
+== Choosing an app for your project
 
-This tutorial uses the *Element Match* template as an example because it illustrates a completed game with code that runs both on the backend and on the frontend.
+This tutorial uses the *Falling Objects* app as an example because it illustrates a completed game with code that runs both on the backend and on the frontend.
 However, the instructions in this tutorial apply to any Koji project.
-You can start a Koji project by remixing any other template on Koji.
-For some great starting points, check out the https://withkoji.com/tag/scaffolds[Scaffolds] page.
+You can start a Koji project by forking any other app on Koji.
+For some great starting points, check out the https://withkoji.com/apps/categories/for-developers[For Developers] page.
 
-. Go to the https://withkoji.com/~Svarog1389/element-match[Element Match] project.
-. {blank}
-+
-include::../../_includes/remixNav.adoc[tag=all]
+. Go to the https://withkoji.com/~Svarog1389/rxkd[Falling Objects] app.
+. Click menu:App[Open Advanced Details > Fork].
 +
 After a short loading time, the *Project Details* page opens.
 
 == Cloning the Git repository
 
-When you remix a project, Koji creates a new fork of the project's Git repository for you.
+When you fork a project, Koji creates a new fork of the project's Git repository for you.
 This new repository has a unique identifier string.
 If you fork the same project twice, you will get a different identifier string each time.
 The Koji repositories are stored at
@@ -79,13 +83,13 @@ The access token is a 32-character randomly-generated hexadecimal number, which 
 To clone your Koji repository locally, you must generate an access key and store it securely.
 Access keys are strong, randomly-generated, 32-character hexadecimal strings that you generate to allow programmatic access to your Koji projects.
 
-. From *Project Details*, click *Clone*.
+. From *Project Details*, click btn:[Clone].
 A dialog similar to the following opens.
 +
 image::git-clone.png[]
-. Click *Manage access keys*.
+. Click btn:[Manage access keys].
 The *Access Keys* page opens in a new tab.
-. Click *Generate new token* in the top right.
+. Click btn:[Generate new token] in the top right.
 +
 A window opens to display the new access key.
 . Copy the access key and keep it somewhere safe, where only you can find it.
@@ -98,10 +102,12 @@ You can, however, revoke your token and generate a new one if you have forgotten
 
 === Obtaining Koji environment variables
 
+The Koji platform reads in project details from https://en.wikipedia.org/wiki/Environment_variable[environment variables] to ensure that the deployment data is kept separate from the code and configuration for your app.
+
 If your project has a backend, you need the values of the `KOJI_PROJECT_ID` and `KOJI_PROJECT_TOKEN` environment variables to access it.
 Additional environment variables are available for accessing platform-provided metadata about the Koji's creator.
 
-. If the Clone dialog is not already open, return to the browser tab for *Project Details*, and click *Clone*.
+. If the Clone dialog is not already open, return to the browser tab for *Project Details*, and click btn:[Clone].
 +
 The first line of text under *Environment Variables* is the project ID.
 . Click the line to highlight it.
@@ -111,7 +117,7 @@ The first line of text under *Environment Variables* is the project ID.
 
 === Authorizing Git to clone the repository
 
-. If the Clone dialog is not already open, return to the browser tab for *Project Details*, and click *Clone*.
+. If the Clone dialog is not already open, return to the browser tab for *Project Details*, and click btn:[Clone].
 . Click the line of text under *Repository* in the dialog box to highlight it.
 This line has the form `git clone \https://projects.koji-cdn.com/[[unique identifier]].git`, where [unique identifier] is the identifier for the repository directory on `\https://projects.koji-cdn.com/`.
 . Copy the highlighted line to the clipboard.
@@ -125,27 +131,27 @@ The line should have the following format:
 git clone [repository URL] [directory name]
 ----
 +
-. Press `Enter` to run the command.
+. Press kbd:[Enter] to run the command.
 Your terminal will look something like this:
 +
 [source,bash]
 ----
-~/Repos/Koji$ git clone https://projects.koji-cdn.com/a70f8329-e89e-48b0-8d85-7658c1542b9f.git MyKojiTemplate
-Cloning into 'MyKojiTemplate'...
+~/Repos/Koji$ git clone https://projects.koji-cdn.com/a70f8329-e89e-48b0-8d85-7658c1542b9f.git MyKojiApp
+Cloning into 'MyKojiApp'...
 Username for 'https://projects.koji-cdn.com':
 ----
-. If you are prompted for your username, enter your username on Koji and press *Enter*.
+. If you are prompted for your username, enter your username on Koji and press kbd:[Enter].
 . If you are prompted for a password, enter the access key that you generated in the previous procedure.
 +
 For security, the password will not be shown as you enter it.
-. Press *Enter* to start the cloning process.
+. Press kbd:[Enter] to start the cloning process.
 +
 Your terminal will look something like this:
 +
 [source,bash]
 ----
-~/Repos/Koji$ git clone https://projects.koji-cdn.com/a70f8329-e89e-48b0-8d85-7658c1542b9f.git MyKojiTemplate <1>
-Cloning into 'MyKojiTemplate'...
+~/Repos/Koji$ git clone https://projects.koji-cdn.com/a70f8329-e89e-48b0-8d85-7658c1542b9f.git MyKojiApp <1>
+Cloning into 'MyKojiApp'...
 Username for 'https://projects.koji-cdn.com': KojiCoder <2>
 Password for 'https://KojiCoder@projects.koji-cdn.com': <3>
 remote: Counting objects: 15941, done.
@@ -172,7 +178,7 @@ Your terminal should look something like this:
 +
 [source,bash]
 ----
-~/Repos/Koji$ cd MyKojiTemplate/
+~/Repos/Koji$ cd MyKojiApp/
 ~/Repos/Koji$ ls -al
 total 40
 drwxrwxr-x  6 kojicoder dev 4096 nov  5 16:38 .
@@ -182,16 +188,16 @@ drwxrwxr-x  3 kojicoder dev 4096 nov  5 16:38 backend
 drwxrwxr-x  5 kojicoder dev 4096 nov  5 16:38 frontend
 drwxrwxr-x  8 kojicoder dev 4096 nov  5 16:38 .git
 -rw-rw-r--  1 kojicoder dev  186 nov  5 16:38 .gitignore
-drwxrwxr-x  6 kojicoder dev 4096 nov  5 16:38 .koji
+drwxrwxr-x  6 kojicoder dev 4096 nov  5 16:38 koji.json
 -rw-rw-r--  1 kojicoder dev   27 nov  5 16:38 package-lock.json
 -rw-rw-r--  1 kojicoder dev  797 nov  5 16:38 README.md
 ----
 
-== Next steps
+== Wrapping up
 
 In this part of the tutorial, you learned how to:
 
-* Get the required tools: Git, Node.js, a Terminal application and a text editor.
+* Get the required tools: Git, Node.js, a terminal application and a text editor.
 * Get the URL of Koji's origin repository for your project.
 * Get the username and password that allows you to interact with Koji's origin repository.
 * Clone the Git repository for your project onto your local machine.

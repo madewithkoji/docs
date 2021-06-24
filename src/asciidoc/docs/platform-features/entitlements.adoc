@@ -1,0 +1,128 @@
+= Entitlements
+:page-slug: entitlements
+:page-description: List of available entitlements for configuring Koji platform features in your app.
+:includespath: ../_includes
+
+Entitlements define the configuration settings for the Koji platform features in your app.
+For example, to allow creators to configure an app, you must enable the `InstantRemixing` entitlement.
+To sell products from an app, you must define the product properties, such as name and price, in the `InAppPurchases` entitlement.
+
+To configure entitlements for your app, define properties and values in the `entitlements` key of the `koji.json` file.
+In your application code, initialize the @withkoji/core package with this configuration data.
+Publish the app to update the entitlements.
+The Koji platform applies the entitlement settings to the running app.
+
+The following platform entitlements are available for Koji apps.
+
+== Configuration and navigation
+
+To allow creators to configure your app, you must enable the associated entitlement.
+You can also enable or disable some platform navigation features.
+
+
+[source,json]
+----
+{
+  "entitlements": {
+    "InstantRemixing": true, <1>
+    "InstantRemixingNativeNavigation": true, <2>
+    "InstantRemixingNativeCancel": true <3>
+  }
+}
+----
+<1> `InstantRemixing` – _Boolean_, Allows creators to configure the app (`remix` context).
+Default is `false`.
+To determine the current context of a running app, use <<core-frontend-playerstate#context, Koji.playerState.context>>.
+<2> `InstantRemixingNativeNavigation` – _Boolean_, Hides the platform action for advancing from a configuration to a preview, so that the app can provide this action.
+Default is `false`.
++
+NOTE: If this entitlement is enabled, the app must use <<core-frontend-remix#finish, Koji.remix.finish>> to advance to the preview.
+
+<3> `InstantRemixingNativeCancel` – _Boolean_, Hides the platform action for cancelling a configuration, so that the app can provide this action.
+Default is `false`.
++
+NOTE: If this entitlement is enabled, the app must use <<core-frontend-remix#cancel, Koji.remix.cancel>> to implement a custom cancel action.
+
+== Custom metadata
+
+To enable custom metadata when sharing the app, configure the `CustomMetadata` object.
+
+[source,JSON]
+----
+{
+  "entitlements": {
+    "CustomMetadata": {
+      "enabled": true, <1>
+      "metadata": {
+        "title": "{{remixData.title}}", <2>
+        "description": "{{remixData.description}}" <3>
+      }
+    }
+  }
+}
+----
+<1> `CustomMetadata.enabled` – _Boolean_, Enables the app to use custom metadata when the creator shares it.
+Default is `false`.
+<2> `CustomMetadata.metadata.title` – _String_, Title or path to the creator's custom title (`og:title`).
+<3> `CustomMetadata.metadata.description` – _String_, Description or path to the creator's custom description (`og:description`).
+
+== In-app purchases
+
+To enable financial transactions in the app, configure the `InAppPurchases` object.
+
+[source,json]
+----
+{
+  "entitlements": {
+    "InAppPurchases": {
+      "enabled": true, <1>
+      "products": [ <2>
+        0 : {
+          "sku": "productID", <3>
+          "name": "{{scope.nameKey}}", <4>
+          "price": "{{scope.priceKey}}", <5>
+          "priceIsUnset": false, <6>
+          "quantity": "{{scope.quantity}}",<7>
+          "fulfillment": "email", <8>
+          "isConsumable": true, <9>
+          "dynamicReceipt": true, <10>
+          "captureOnPurchase": false, <11>
+          "captureExpiryPeriod": 1 <12>
+        }
+      ]
+    }
+  }
+}
+----
+<1> `InAppPurchases.enabled` – _Boolean_, Enables in-app purchases.
+Default is `false`.
+<2> `InAppPurchases.products` – _Array_, Array of objects defining each product that is available for purchase.
+Products are registered or updated when the app is deployed.
+<3> `InAppPurchases.products[_index_].sku` – _String_, Unique identifier for the product.
+Used to look up the product when the user makes a purchase and to resolve receipts on the backend of the app.
+<4> `InAppPurchases.products[_index_].name` – _String_, Name displayed when a user is prompted to purchase the product.
+Can be a path to the creator's custom name.
+<5> `InAppPurchases.products[_index_].price` – _Number_, Price of the product in USD, if the product has a set price.
+Can be a path to the creator's custom price.
+To register a product with a set price, this value must be greater than `0`.
+To define a product without a set price, enable `priceIsUnset` instead.
+<6> `InAppPurchases.products[_index_].priceIsUnset` – _Boolean_, Defines a product without a set price.
+For example, a donation or pay-what-you-want price.
+Default is `false`.
+To define a product with a set price, use `price` instead.
+<7> `InAppPurchases.products[_index_].quantity` – _Number_, Maximum number of times the product can be sold.
+After the inventory threshold is reached, further purchase attempts will display a “sold out!” message.
+If quantity is not present or is `0`, the product will never sell out.
+<8> `InAppPurchases.products[_index_].fulfillment` – _String_, User information to collect for order fulfillment.
+Possible values are `email`, `phone`, or `address`.
+This value is stored as a custom attribute on the <<core-backend-iap#IapReceipt, transaction receipt>>.
+<9> `InAppPurchases.products[_index_].isConsumable` – _Boolean_, Enables the product to be purchased more than once.
+<10> `InAppPurchases.products[_index_].dynamicReceipt` – _Boolean_, Enables the transaction receipt to display the `receipt` context of the app.
+If enabled, use <<core-frontend-playerstate#context, Koji.playerState.context>> to detect the `receipt` context, and use <<core-frontend-playerstate#receiptType, Koji.playerState.receiptType>> to determine whether the buyer or the seller is viewing the receipt.
+<11> `InAppPurchases.products[_index_].captureOnPurchase` – _Boolean_, Indicates whether to capture transactions immediately.
+Default is `true`.
+If set to `false`, transactions are held in a pending state until they are manually captured with <<core-backend-iap#captureTransaction, Iap.captureTransaction>> on the backend of the app.
+Funds are not available in the seller’s account until the transaction is captured.
+If you do not capture the transaction within the `captureExpiryPeriod`, the transaction is automatically reversed and the buyer is refunded.
+<12> `InAppPurchases.products[_index_].captureExpiryPeriod` – _Number_, Period within which a pending transaction must be captured before it is reversed, from 0 to 7 days.
+Default is `0`.

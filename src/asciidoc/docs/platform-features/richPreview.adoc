@@ -1,143 +1,67 @@
-= Thumbnail image and custom metadata
+= Customizing the thumbnail image
 :page-slug: thumbnail-image
-:page-description: How to customize the thumbnail (Open Graph) image and sharing metadata for your Koji app.
+:page-description: How to customize the thumbnail (Open Graph) image and metadata for your Koji app.
 :page-banner: {imagesDir}/Koji-screenshot=1.png
 
-When a user shares a remix of your template on social media, the Koji platform renders a rich preview (Open Graph) image based on a screenshot of the Koji.
+The Koji platform renders a thumbnail (Open Graph) image based on a screenshot of the app.
 By default, the platform takes a screenshot of the initial view.
 
-In some cases, the initial view might not be the best preview image for your template.
-For example, if a game template starts with an instruction screen, a screenshot of the first level might provide a better preview image.
-To improve the sharing experience in these cases, you can render a custom view of your template that is designed specifically to make an impression when sharing a remix.
-You can also control the timing of the screenshot to ensure that all relevant assets have loaded before the preview image is generated.
+To improve the sharing experience, you can render a custom view of your app that is designed specifically to make an impression when sharing it.
+You can also control the timing of the screenshot to ensure that all relevant assets have loaded before the image is generated.
 
-You can also customize the sharing metadata by configuring an entitlement.
+== About custom metadata
 
-== Customizing the sharing image
+If you were designing a web app from scratch, you would customize the Open Graph metadata to specify what gets displayed when the app is shared.
+The Open Graph metadata consists of meta tags, such as `og:image`, `og:title`, and `og:description`.
+The thumbnail corresponds to the `og:image`.
 
-To customize the sharing image for your template, render a custom view when the URL contains the `koji-screenshot=1` query parameter.
-For optimal rich preview support, design this view with the following considerations in mind.
+image::customMetadata.png[Customizable metadata for a Koji app]
+
+The Koji platform automatically sets all the meta tags for you, but you can override some of Koji's default settings to provide a customized sharing experience.
+
+[TIP]
+In addition to the thumbnail image, you can give creators the ability to customize the `og:title` and `og:description` by enabling the <<entitlements#_custom_metadata,custom metadata entitlement>>.
+
+== Rendering a custom view for the screenshot
+
+In some cases, the initial view might not be the best thumbnail image for your app.
+For example, if a game starts with an instruction screen, a screenshot of the first level might provide a better preview.
+
+To customize the thumbnail for your app, use <<core-frontend-playerstate#PlayerStateContext,Koji.playerState.context>> in the @withkoji/core package to render a custom view for the `screenshot` context.
+For optimal thumbnail support, design this view with the following considerations in mind.
 
 * The image is responsive.
 * The image looks good with a square aspect ratio.
 * The image is optimized for faster loading.
 For example, to reduce the image size to 400x400 pixels and load only the first frame of a gif, you can add query parameters at the end of your image's URL: `\https://images.koji-cdn.com/path/to/myimage.gif?fit=bounds&width=400&height=400&frame=1`
-* The image includes customizable elements to generate unique previews of each remix.
+* The image includes customizable elements to generate unique previews for each customized version of the app.
 
-image::Koji-screenshot=1.svg[Render a view for the rich preview image]
+For the following example, assume the app supports customizing the `title` and `logo` values.
 
-For the following example, assume the template supports remixes of the title, font size, and logo.
-
-. In your application code, add a conditional statement to display a different image for social shares.
+. In your application code, add a conditional statement to display a custom view for the `screenshot` context.
 For example:
 +
-[.tabs,scope="lang"]
---
-.React
-====
-[.intro]
-Add a conditional statement in the `render` function.
-
 [source,JavaScript]
 ----
-render() {
-  if (window.location.search.includes('koji-screenshot=1')) {
-    return (
-      <SocialSharePreview>
-          <H1
-          fontSize={this.state.titleOptions.fontSize}
-          >{this.state.titleOptions.title}</H1>
-          <Image src={this.optimizeURL(this.state.logo)} />
-        </SocialSharePreview>
-    );
-  }
-  ...
-}
-----
-====
-
-.Vanilla JS
-====
-[.intro]
-Wrap a conditional statement around the `render` function.
-
-[source,JavaScript]
-----
-// render the social share preview
-const socialShareRender = () => {
-    document.body.innerHTML = `
-        <div id="socialSharePreview">
-            <h1 style="font-size:${titleSize}px" id="title">${title}</h1>
-            <img id="logo" src="${optimizeURL(logo)}"/>
-        </div>`;
-}
-
-// render
-if (window.location.search.includes('koji-screenshot=1')) {
-    socialShareRender();
-} else {
-    render();
-}
-----
-====
-
-.Angular
-====
-[.intro]
-Add a conditional statement in the `ngOnInit` function and use it to apply a dynamic `id`.
-
-[.tabs]
-=====
-.app.component.ts
-[source,JavaScript]
-----
-ngOnInit() {
-  ...
-  this.social = false
-  if (window.location.search.includes('koji-screenshot=1')) {
-    this.social = true
-  }
-  ...
-}
-----
-
-.app.component.html
-[source,JavaScript]
-----
-<div class="container" id="{{social ? socialSharePreview : ''}}">
-        <h1 style="fontSize: {{titleOptions.fontSize}}px;">{{titleOptions.title}}</h1>
-        <img src="{{optimizeURL(logo)}}"
-    />
-    </div>
-----
-=====
-====
-
-.Svelte
-====
-[.intro]
-Add a conditional statement in the `App.svelte` file.
-
-[source,JavaScript]
-----
-{#if (window.location.search.includes('koji-screenshot=1'))}
-    <div class="social-share" style="background-image: url('{optimizeURL(image)}');">
-    <h1 style='font-size: {titleOptions.fontSize}px'>{titleOptions.title}</h1>
-    </div>
-{:else}
 ...
-{/if}
+const remixValues = Koji.remix.get();
+...
+if (Koji.playerState.context === 'screenshot') {
+  return (
+    <SocialSharePreview>
+      <h1>{remixValues.title}</h1>
+      <img src={optimizeScreenshot(remixValues.logo)} />
+    </SocialSharePreview>
+  );
+}
+// If the context is not equal to 'screenshot', return the HTML for the relevant context.
+...
 ----
-====
 
---
-. Define appropriate styles for the rich preview image.
+. Define appropriate styles for the thumbnail image.
 +
-To ensure that it is displayed correctly, design the rich preview image as a responsive square.
+To ensure that it is displayed correctly, design the thumbnail image as a responsive square.
 +
-[.tabs,scope="lang"]
---
-.React
 [source,JavaScript]
 ----
 const SocialSharePreview = styled.div`
@@ -153,67 +77,22 @@ const SocialSharePreview = styled.div`
 `;
 ----
 
-.Vanilla JS
-[source,CSS]
-----
-#socialSharePreview {
-  background-color: #395b88;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  text-align: center;
-  color: #fcfcfc;
-}
-----
+. Test the custom thumbnail image and make adjustments, as necessary.
 
-.Angular
-[source,CSS]
-----
-#socialSharePreview {
-  background-color: #395b88;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  text-align: center;
-  color: #fcfcfc;
-}
-----
+** In the <<editor#, Koji code editor>>, select menu:More[Thumbnail] in the preview pane.
 
-.Svelte
-[source,CSS]
-----
-.social-share {
-  background-color: #395b88;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  text-align: center;
-  color: #fcfcfc;
-}
-----
-
---
-. To test the preview image, open your staging link and append `?koji-screenshot=1` to the URL.
+** In the <<testing-apps#_using_the_koji_debugger, Koji debugger>>, update the session settings to point to your development environment, and select menu:Thumbnail[].
 
 == Controlling the screenshot timing
 
-The Koji platform uses the `window.kojiScreenshotReady` property to determine the timing of the rich preview screenshot.
+The Koji platform uses the `window.kojiScreenshotReady` property to determine the timing of the thumbnail screenshot.
 
-When the platform loads a template, it checks for `window.kojiScreenshotReady = false;`.
+When the platform loads an app, it checks for `window.kojiScreenshotReady = false;`.
 If this value isn't present, the platform takes the screenshot right away.
 If it is, the platform sets an interval to check the value every 100ms.
 When the value changes to `true` or a maximum interval of 2000ms elapses, the platform takes the screenshot.
 
-This feature enables you to ensure that the relevant fonts, images, videos, and other assets have loaded before the sharing image is generated.
+This feature enables you to ensure that the relevant fonts, images, videos, and other assets have loaded before the thumbnail is generated.
 For example:
 
 . In the `index.html` file, add the following script tag.
@@ -224,25 +103,3 @@ For example:
 . In your application code, add the following code after confirming that the relevant assets have loaded.
 [source, JavaScript]
 window.kojiScreenshotReady = true;
-
-== Customizing the sharing metadata
-
-To enable custom metadata when sharing a Koji on social media, configure the `CustomMetadata` object in the `.koji/project/entitlements.json` file.
-
-[source,JSON]
-----
-{
-  "entitlements": {
-    "CustomMetadata": {
-      "enabled": true, <1>
-      "metadata": {
-        "title": "{{settings.title}}", <2>
-        "description": "{{settings.description}}" <3>
-      }
-    }
-  }
-}
-----
-<1> `enabled` – Whether to use custom metadata when a creator shares a remix of this template.
-<2> `metadata.title` – Path to the Visual Customization Control (VCC) that defines the title, if custom metadata is enabled.
-<3> `metadata.description` – Path to the VCC that defines the description, if custom metadata is enabled.

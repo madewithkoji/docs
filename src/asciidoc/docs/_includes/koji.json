@@ -1,4 +1,6 @@
+// tag::all[]
 {
+// tag::develop[]
   "develop": {
     "frontend": {
       "path": "frontend",
@@ -11,6 +13,8 @@
         "startCommand": "npm run start-dev"
     }
   },
+// end::develop[]
+// tag::deploy[]
   "deploy": {
     "frontend": {
       "output": "frontend/build",
@@ -31,18 +35,23 @@
       ]
     }
   },
+  // end::deploy[]
+  // tag::remixData[]
   "remixData": {
     "backgroundColor": "#ffffff",
-    "title": "My Template"
+    "title": "My App"
   },
+// end::remixData[]
+// tag::initialTransform[]
   "@@initialTransform": {
     "remixData": {
-      "title": "Name your Koji"
+      "title": "Name your App"
     }
   },
+// end::initialTransform[]
+// tag::entitlements[]
   "entitlements": {
     "InstantRemixing": true,
-    "FeedEvents": true,
     "InstantRemixingNativeNavigation": true,
     "CustomMetadata": {
       "enabled": true,
@@ -50,7 +59,8 @@
         "title": "Default Title",
         "description": "{{remixData.title}}"
       }
-    },
-    "AdminContext": true
+    }
   }
+// end::entitlements[]
 }
+// end::all[]

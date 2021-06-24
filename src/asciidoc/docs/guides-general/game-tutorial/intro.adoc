@@ -22,34 +22,50 @@ Here's an example of the game that you will build in this tutorial.
 
 == Sections
 
-<<game-assets#>>  ::
-+
+[.card]
+[.cardht165]
+.1. <<game-assets#>>
 [.init-cap]
 include::setting-up-assets.adoc[tag=description]
-<<game-creating-game-objects#>>  ::
-+
+
+[.card]
+[.cardht165]
+.2. <<game-creating-game-objects#>>
 [.init-cap]
 include::creating-game-objects.adoc[tag=description]
-<<game-scoring-and-losing#>>  ::
-+
+
+[.card]
+[.cardht165]
+.3. <<game-scoring-and-losing#>>
 [.init-cap]
 include::scoring-and-losing.adoc[tag=description]
-<<game-managing-difficulty#>>  ::
-+
+
+[.card]
+[.cardht165]
+.4. <<game-managing-difficulty#>>
 [.init-cap]
 include::managing-difficulty.adoc[tag=description]
-<<game-remix#>>  ::
-+
+
+[.card]
+[.cardht165]
+.5. <<game-remix#>>
 [.init-cap]
 include::remix.adoc[tag=description]
-<<game-thumbnail-preview#>>  ::
-+
+
+[.card]
+[.cardht165]
+.6. <<game-thumbnail-preview#>>
 [.init-cap]
 include::thumbnail-preview.adoc[tag=description]
-<<game-finishing-up#>>  ::
-+
+
+[.card]
+[.cardht165]
+.7. <<game-finishing-up#>>
 [.init-cap]
 include::finishing-up.adoc[tag=description]
+
+[.clearfloat]
+{blank}
 
 == Getting help
 

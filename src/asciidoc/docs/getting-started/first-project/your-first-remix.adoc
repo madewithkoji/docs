@@ -69,7 +69,7 @@ You can click *Preview* to try out the game.
 Spend a little time playing around with it to understand the mechanics of the game and get a sense of the user experience.
 You can close the preview clicking the *X* button in the upper left.
 
-When you’re ready, click *Remix*.
+When you’re ready, click btn:[Use].
 
 The first thing you’ll notice is that the experience has changed dramatically.
 You're now in a remix view.

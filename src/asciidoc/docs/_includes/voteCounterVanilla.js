@@ -12,7 +12,7 @@ const optimizeURL = url => `${url}?fit=bounds&width=${window.innerWidth/2}&heigh
 
 var instantRemixing = new InstantRemixing();
 
-// Alert Koji we are ready to use instantRemixing
+// Alert the Koji app that we are ready to use instantRemixing
 // tag::callDataHandler[]
 instantRemixing.ready();
 // end::callDataHandler[]
@@ -69,7 +69,7 @@ feed.load();
 const dataHandler = new DataHandler(instantRemixing);
 dataHandler.initialize();
 
-// Add a listener to the on change event of instant remixing to update the title
+// Add a listener to the on change event of the customization state to update the title
 instantRemixing.onValueChanged((path, newValue) => {
     if (path[0] && path[0] === 'settings' && path[1] && path[1] === 'titleOptions') {
         let titleElement = document.getElementById('title');
@@ -83,7 +83,7 @@ instantRemixing.onValueChanged((path, newValue) => {
 });
 // tag::trackState[]
 
-// Add a listener to handle state changes between remixing and not
+// Add a listener to handle state changes between the customization state and another state
 instantRemixing.onSetRemixing((isRemixing) => {
     remixing = isRemixing;
     if (isRemixing) {
@@ -105,7 +105,7 @@ const setVotes = (voteCount) => {
 dataHandler.setVotesCallback(setVotes);
 // end::callDataHandler[]
 
-// Modify elements to display state for remixing
+// Modify elements to switch to the customization state
 const startRemix = () => {
     if (remixState === 'text') {
       let titleElement = document.getElementById('title');
@@ -117,7 +117,7 @@ const startRemix = () => {
 
 };
 
-// Modify elements to display state for previewing
+// Modify elements to switch to the previewing state
 const stopRemix = () => {
     let titleElement = document.getElementById('title');
     let logoImage = document.getElementById('logo');
@@ -147,7 +147,7 @@ document.addEventListener('click', function (event) {
 });
 // end::renderTemplate[]
 
-// Set current remixing state
+// Set current customization state
 instantRemixing.onSetCurrentState((templateState) => {
   remixState = templateState;
   if (remixing) {

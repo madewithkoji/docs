@@ -21,7 +21,7 @@ app.use(express.json());
 // Parse application/json
 app.use(bodyParser.json());
 
-// Use Koji's middleware to handle scoping across your template's remixes
+// Use Koji's middleware to handle scoping across your app's customized versions
 app.use(KojiBackend.middleware(kojiConfig));
 
 // Disable caching

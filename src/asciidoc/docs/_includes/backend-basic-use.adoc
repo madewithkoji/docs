@@ -6,7 +6,7 @@ Import the package in your backend code.
 [source,javascript]
 import { KojiBackend } from '@withkoji/core';
 
-Initialize the package with your configuration data, and use `KojiBackend.middleware` to scope operations per remix.
+Initialize the package with your configuration data, and use `KojiBackend.middleware` to scope operations for each customized version of the app.
 Add routes for backend operations (for example, use a Koji database).
 
 [source,javascript]

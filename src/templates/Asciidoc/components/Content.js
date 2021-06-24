@@ -406,6 +406,28 @@ const Content = styled.div`
   .callout8:before { content: "\\2467\\00a0"; font-size: 150%; }
   .callout9:before { content: "\\2468\\00a0"; font-size: 150%; }
 
+
+  .card {
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    background-color: #F8F8F8;
+    padding: 20px 20px 0px 20px;
+    margin: 10px;
+    border-radius: 8px;
+    min-width: 300px;
+    width: 45%;
+    height: 165px;
+    float: left;
+    overflow: auto;
+  }
+  .cardht165 { height: 165px; }
+  .cardht190 { height: 190px; }
+  .cardht230 { height: 230px; }
+  .clearfloat {
+    clear: both;
+    margin: 30px 0;
+  }
+
 `;
 
 export default Content;

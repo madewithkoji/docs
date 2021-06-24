@@ -5,21 +5,78 @@
     :includespath: ../_includes
 
     include::{includespath}/steps-codeeditor.adoc[tag=go-to-project-details]
+    include::{includespath}/steps-codeeditor.adoc[tag=go-to-project-details-base]
+    include::{includespath}/steps-codeeditor.adoc[tag=go-to-project-details-more]
     include::{includespath}/steps-codeeditor.adoc[tag=open-in-code-editor]
+    include::{includespath}/steps-codeeditor.adoc[tag=rename-and-open-in-code-editor]
+    include::{includespath}/steps-codeeditor.adoc[tag=view-published-koji]
+    include::{includespath}/steps-codeeditor.adoc[tag=cli-front-end]
+    include::{includespath}/steps-codeeditor.adoc[tag=terminal-stop-process]
+    include::{includespath}/steps-codeeditor.adoc[tag=terminal-restart-process]
+    include::{includespath}/steps-codeeditor.adoc[tag=terminal-install-withkoji-core-package]
 ////
 
 
 // tag::all[]
 
+
 // tag::go-to-project-details[]
+
+// tag::go-to-project-details-base[]
 . Go to the *Project Details* page.
-* If you're creating a new project, you can fork https://withkoji.com/create/for-developers[any scaffold] or any Koji project that allows forking.
-* If you're editing an existing project, go to https://withkoji.com/developer/projects[your Developer Portal page] and click the project to edit.
+// end::go-to-project-details-base[]
+
+// tag::go-to-project-details-more[]
+* If you're creating a new app, you can fork https://withkoji.com/create/for-developers[any scaffold] or any Koji app that allows forking.
+* If you're editing an existing app, go to https://withkoji.com/developer/projects[your Developer Portal page] and click the app to edit.
+// end::go-to-project-details-more[]
+
 // end::go-to-project-details[]
 
 
 // tag::open-in-code-editor[]
 . In the *Project Details* page, click *Open in Code Editor*.
 // end::open-in-code-editor[]
+
+
+// tag::rename-and-open-in-code-editor[]
+. In the *Project Details* page, rename the app, then click *Open in Code Editor*.
+// end::rename-and-open-in-code-editor[]
+
+
+// tag::view-published-koji[]
+. In the *Project Details* page, click *View Published Koji*.
+// end::view-published-koji[]
+
+
+// tag::cli-front-end[]
+. Click the *frontend* tab of the terminal pane at the bottom.
+// end::cli-front-end[]
+
+
+// tag::terminal-stop-process[]
+. Press kbd:[Ctrl+C] to cancel the running process.
+// end::terminal-stop-process[]
+
+
+// tag::terminal-restart-process[]
+. Restart the process.
++
+[source,bash]
+----
+npm start
+----
+// end::terminal-restart-process[]
+
+
+// tag::terminal-install-withkoji-core-package[]
+. Install @withkoji/core.
++
+[source,bash]
+----
+npm install @withkoji/core
+----
+// end::terminal-install-withkoji-core-package[]
+
 
 // end::all[]

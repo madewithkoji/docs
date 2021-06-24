@@ -44,7 +44,7 @@ export class AppComponent implements OnInit {
             this.isRemixing = isRemixing;
         });
 
-        // Alert Koji we are ready to use instantRemixing
+        // Alert the Koji app that we are ready to use instantRemixing
         this.instantRemixing.ready();
 
         this.feed = new FeedSdk();

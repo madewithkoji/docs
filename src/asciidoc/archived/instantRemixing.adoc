@@ -24,8 +24,6 @@ Creators can discover and remix a Koji anywhere it is published or shared, wheth
 
 When viewing a Koji on any mobile or desktop device, the creator taps the *Koji* button in the top right, and then taps *Remix this Koji*.
 
-image:koji-button.png[Koji button]
-
 The template opens in remix view and exposes any controls or indicators that the developer has provided for remixers.
 For example, when developing the remix view for a template, you might highlight the remixable text and image elements and provide buttons to change sounds or background elements.
 

@@ -189,7 +189,7 @@ Otherwise, it goes straight to score submission and the leaderboard.
 
 *Congratulations, that was the hardest part!*
 
-In this section, you created a payment flow, which you can test in the <<testing-templates#_using_the_koji_debugger, debugger>>.
+In this section, you created a payment flow, which you can test in the <<testing-apps#_using_the_koji_debugger, debugger>>.
 Nothing happens in the game itself just yet, though.
 
 In the <<game-iap-updating-game#, next section>>, you'll dig into the game code and make it respond to purchases.

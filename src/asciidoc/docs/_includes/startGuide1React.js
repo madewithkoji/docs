@@ -48,7 +48,7 @@ class App extends React.Component {
             this.setState({ isRemixing });
         });
 
-        // Alert Koji we are ready to use instantRemixing
+        // Alert the Koji app that we are ready to use instantRemixing
         this.instantRemixing.ready();
 
         this.feed = new FeedSdk();
@@ -56,7 +56,7 @@ class App extends React.Component {
     }
 
     handleClick = () => {
-        // Conditionally handle the click, only if the template is being remixed
+        // Conditionally handle the click, only if the app is being customized
         if (this.state.isRemixing) {
             this.instantRemixing.onPresentControl(['settings', 'title']);
         }

@@ -1,8 +1,8 @@
 = CustomVcc
 :page-slug: customvcc-reference
-:page-description: Class for implementing a custom control to use in Koji templates.
+:page-description: Class for implementing a custom control to use in Koji apps.
 
-Implements a custom control for capturing user input in Koji templates.
+Implements a custom control for capturing user input in Koji apps.
 
 == Constructor
 
@@ -146,13 +146,13 @@ It is returned to the handler listening to <<onUpdate>>.
 * `variableName` – _String_, Resolved variable name of this VCC (`scope.key`).
 * `options` – _Object_, Any options passed in `typeOptions`.
 * `collaborationDecoration` – _Object_, Any collaborators currently focused on this control.
-* `_config` – _Object_, The full VCC configuration file.
+* `+_config+` – _Object_, The full VCC configuration file.
 Most controls are isolated to a single value.
 However, this object can be useful when creating more complex custom controls, like map builders.
 
 === Theme
 
-Allows you to use styles that match the colors and styles of the remixer's active theme.
+Allows you to use styles that match the colors and styles of the calling app's active theme.
 It is returned to the handler listening to <<onTheme>>.
 
 ==== Properties

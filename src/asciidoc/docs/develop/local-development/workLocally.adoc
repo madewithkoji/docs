@@ -1,23 +1,26 @@
 = Working locally
 :page-slug: work-locally
-:page-description: How to set up a web server and launch your Koji template on your development machine, so that you can work on it locally.
+:page-description: How to set up a web server and launch your Koji app on your development machine, so that you can work on it locally.
 
-Although Koji provides a feature-rich online project editor, you might prefer to use your own suite of development tools in some cases.
-In the first part of this tutorial, you learned how to use Git to clone a Koji project template to your development machine, so that you can work on it locally.
-In this tutorial, you learn these key skills:
+In the <<use-git#, first section>> of this tutorial, you learned how to use Git to clone a Koji app to your development machine, so that you can work on it locally.
+In this section, you will
+// tag::description[]
+install a Node.js web server environment on your development machine and launch both a frontend and a backend server so that you can work with all aspects of your app within your local area network.
+// end::description[]
 
-* How to install a Node.js web server environment on your development machine.
-* How to launch both a frontend and a backend server so that you can work with all aspects of your template within your local area network.
+== Learning objectives
 
-This is the second part in a three-part tutorial.
+By the end of the section, you should feel comfortable:
 
-. <<use-git#>>
-. *Working locally* (this tutorial)
-. <<publish-locally-developed#>>
+* Installing the Node modules that are needed to run a server on your local machine.
+* Setting the environment variables used by the server.
+* Specifying the URL the frontend will use when connecting to the backend server.
+* Launching the app locally and checking that the game and the leaderboard are working correctly.
+* Overriding the Koji debugger settings so you can test additional functionality in your locally running app.
 
 == Prerequisites
 
-* Use Git to clone your project locally.
+* Use Git to clone the https://withkoji.com/~Svarog1389/rxkd[Falling Objects] game locally.
 See the first part of the tutorial.
 * https://nodejs.org/en/download/[Install Node.js] and its associated Node Package Manager (NPM).
 In this tutorial, you will set up a Node.js server on your development computer.
@@ -27,10 +30,10 @@ Koji uses Node.js and add-on packages to deliver your web application to your us
 
 In the previous tutorial, you used Git to clone all the project-specific files to your local drive.
 However, the files that actually run the local server have not yet been installed.
-Fortunately, four of the cloned files contain all the information about the servers and other dependencies that you will need to set up the server environment and launch the template locally.
+Fortunately, four of the cloned files contain all the information about the servers and other dependencies that you will need to set up the server environment and launch the app locally.
 These are the `package.json` and `package-lock.json` files in the `frontend` and `backend` directories.
 
-Before you can test the template on your development machine, you must install two sets of Node modules, one set to run the frontend and another set to run the backend.
+Before you can test the app on your development machine, you must install two sets of Node modules, one set to run the frontend and another set to run the backend.
 
 . Open a terminal window, and go to the `backend` directory.
 . Run the following command.
@@ -43,10 +46,10 @@ You'll have to wait for a few minutes while the terminal window shows you what's
 +
 [source,bash]
 ----
-~/Repos/Koji/MyKojiTemplate$ cd backend
-~/Repos/Koji/MyKojiTemplate/backend$ npm install
+~/Repos/Koji/MyKojiApp$ cd backend
+~/Repos/Koji/MyKojiApp/backend$ npm install
 
-> core-js@2.6.9 postinstall /home/kojicoder/Repos/Koji/MyKojiTemplate/backend/node_modules/core-js
+> core-js@2.6.9 postinstall /home/kojicoder/Repos/Koji/MyKojiApp/backend/node_modules/core-js
 > node scripts/postinstall || echo "ignore"
 
 npm WARN koji-project-backend@1.0.0 No description
@@ -65,17 +68,17 @@ NPM installs the files listed in the `package-lock.json` file for the `frontend`
 +
 [source,bash]
 ----
-~/Repos/Koji/MyKojiTemplate$ cd ../frontend/
-~/Repos/Koji/MyKojiTemplate/frontend$ npm install
+~/Repos/Koji/MyKojiApp$ cd ../frontend/
+~/Repos/Koji/MyKojiApp/frontend$ npm install
 
-> koji-tools@0.5.3 postinstall /home/kojicoder/Repos/Koji/MyKojiTemplate/frontend/node_modules/koji-tools
+> koji-tools@0.5.3 postinstall /home/kojicoder/Repos/Koji/MyKojiApp/frontend/node_modules/koji-tools
 > node ./cmd.js postinstall
 
 new config
 
-> preact@8.5.1 postinstall /home/kojicoder/Repos/Koji/MyKojiTemplate/frontend/node_modules/preact
+> preact@8.5.1 postinstall /home/kojicoder/Repos/Koji/MyKojiApp/frontend/node_modules/preact
 
-> webpack-cli@3.3.1 postinstall /home/blackslate/Repos/Koji/MyKojiTemplate/frontend/node_modules/webpack-cli
+> webpack-cli@3.3.1 postinstall /home/blackslate/Repos/Koji/MyKojiApp/frontend/node_modules/webpack-cli
 > node ./bin/opencollective.js
 
 npm WARN  meta-project@1.0.0 No repository field.
@@ -95,24 +98,48 @@ Your terminal will look something like this:
 +
 [source,bash]
 ----
-~/Repos/Koji/MyKojiTemplate/frontend$ npm audit fix
+~/Repos/Koji/MyKojiApp/frontend$ npm audit fix
 npm WARN meta-project@1.0.0 No repository field.
 npm WARN meta-project@1.0.0 No license field.
 ... (more warnings and comments not shown) ...
 
 removed 2 packages and updated 4 packages in 7.468s
 fixed 344 of 345 vulnerabilities in 12188 scanned packages
-  1 vulnerability required manual review and could not be updated
 ----
 NOTE: This process alters the `package-lock.json` file, so that it can request the identical file versions if you run `npm install` on a different computer.
 
+. Check for outdated dependencies in the forked app, and update them if necessary.
++
+TIP: Keep the <<withkoji-koji-core#>> package updated to ensure your app has access to the latest platform features and bug fixes.
+
+.. Run `npm outdated` to discover dependencies that you might need to update.
++
+Your terminal will look something like this.
++
+[source,shell]
+----
+$ npm outdated
+Package                                Current  Wanted  Latest  Location                                            Depended by
+@withkoji/core                          0.0.17  0.0.17   1.7.3  node_modules/@withkoji/core                         frontend
+... (some output not shown) ...
+----
+
+.. If the @withkoji/core package is outdated, check the https://github.com/madewithkoji/koji-core/releases[package release notes] for breaking changes that could affect your app, and update your code, if needed.
+
+.. When you are ready to upgrade, run the following command.
++
+[source,shell]
+npm install @withkoji/core@latest
+
+.. Repeat the process for other packages, as necessary.
+
 == Launching your project locally
 
-The https://withkoji.com/~Svarog1389/element-match[Element Match] game features both a frontend – so that you can play the game in your browser – and a backend – to access a database where the leaderboard scores are stored.
+The https://withkoji.com/~Svarog1389/rxkd[Falling Objects] game features both a frontend – so that you can play the game in your browser – and a backend – to access a database where the leaderboard scores are stored.
 
 === Launching projects without a backend
 
-If you chose to develop a template that does not require a backend, such as a game without a leaderboard, launching your project locally is very simple.
+If you chose to develop an app that does not require a backend, such as a game without a leaderboard, launching your project locally is very simple.
 
 . Go to the `frontend` directory and run the following command.
 +
@@ -140,16 +167,14 @@ Alternatively, `\http://localhost:8080/` and `\http://127.0.0.1:8080/` might als
 
 === Launching projects with a backend
 
-If you want to run a project with a backend, such as a leaderboard, the procedure for launching your template is more complex.
-You must launch both the frontend and the backend servers on your local machine, using separate terminal windows for each.
-To launch the frontend, you must specify the URL for connecting to the backend.
-To launch the backend, you must provide deployment details for your project.
-The Koji platform reads in these details from https://en.wikipedia.org/wiki/Environment_variable[environment variables] to ensure that the deployment data is kept separate from the code and configuration for your application.
+If you want to run a project with a backend, such as a leaderboard, the procedure for launching your app is more complex.
+You must launch both the frontend and the backend servers on your local machine.
+You can manually launch the servers, using a separate terminal window for each, or you can set up a launch configuration file, if you're working in VS Code.
 
-==== Launching the frontend
+==== Launching the frontend from the terminal
 
 By default, the frontend is configured to run at `\http://0.0.0.0:8080` and the backend is configured to run on port `3333`.
-When you launch the frontend, you must specify the URL to use for accessing the backend.
+When you launch the frontend, you must specify the URL for connecting to the backend.
 On Mac OS and other Unix-based operating systems, you can use the `export` command to specify this URL.
 
 . Open a terminal window, and go to the `frontend` directory.
@@ -186,41 +211,13 @@ $ export KOJI_SERVICE_URL_backend=http://0.0.0.0:3333 && npm start
 ℹ ｢wds｣: Compiled successfully
 ----
 
-==== Starting the watcher on the frontend (Windows only)
+==== Launching the backend from the terminal
 
-On Windows, launching the frontend requires additional steps to start the file watcher alongside your project.
-You must create a custom workflow to work locally that won't interfere with your project in the Koji editor.
-
-. Install npm-run-all.
-+
-[source,bash]
-npm i --save-dev npm-run-all
-
-. Modify the `package.json` file.
-+
-[source,JSON]
-{
-  "scripts: {
-    ...
-    "watch": "koji-vcc watch",
-    "start-windows": "npm-run-all -p watch start"
-  }
-}
-
-. Remove the `prestart` script in your `scripts` section, if there is one.
-
-. Launch the frontend with the following command.
-+
-[source,bash]
-npm run start-windows
-
-==== Launching the backend
-
-The backend needs to have the values of the `KOJI_PROJECT_ID` and `KOJI_PROJECT_TOKEN` environment variables to access the leaderboard database.
+The backend needs the values of the `KOJI_PROJECT_ID` and `KOJI_PROJECT_TOKEN` environment variables to access the leaderboard database.
 You saved the environment variables that Koji uses to deploy your project before you cloned it.
-If you need to find the environment variables again, follow the instructions in <<use-git#_obtaining_koji_environment_variables,Obtaining Koji environment variables>>.
+If you need to find the environment variables again, follow the instructions in <<use-git#_obtaining_koji_environment_variables, Obtaining Koji environment variables>>.
 
-. On your local machine, create a file named `.env` at the root of your project, and paste the two lines for the environment variables.
+. On your local machine, create a file named `.env` in the `frontend` of your project, and paste the two lines for the environment variables.
 +
 Your file will look something like this (with your unique values):
 +
@@ -228,6 +225,19 @@ Your file will look something like this (with your unique values):
 ----
 KOJI_PROJECT_ID=c00484db-827a-45bb-8541-f2c09c2f192e
 KOJI_PROJECT_TOKEN=a6676f53-44fe-4109-819a-69df620ad7ed
+----
+[IMPORTANT]
+Falling Objects is written using the Create React App tool.
+Code written with this tool expects environment variables to be prefixed with `REACT_APP_`.
+For this reason, you need to modify the above lines as shown in the next step.
+If you fork an app that was not written using Create React App, you can skip this step.
+
+. Since Falling Objects is a Create React app, you need to modify the two lines that set the environment variables as follows:
++
+[source,bash]
+----
+REACT_APP_PROJECT_ID=c00484db-827a-45bb-8541-f2c09c2f192e
+REACT_APP_PROJECT_TOKEN=a6676f53-44fe-4109-819a-69df620ad7ed
 ----
 . Open a new terminal window, and go to the backend directory of your project.
 . Run the following command to launch the backend.
@@ -242,7 +252,7 @@ Your terminal will look something like this:
 $ cd ../backend/
 $ npm run start-dev
 
-> koji-project-backend@1.0.0 start-dev /home/kojicoder/Repos/Koji/MyKojiTemplate/backend
+> koji-project-backend@1.0.0 start-dev /home/kojicoder/Repos/Koji/MyKojiApp/backend
 > NODE_ENV=development babel-watch -L --watch ../.koji/ src/server.js
 
 [koji] backend started
@@ -251,7 +261,7 @@ $ npm run start-dev
 Before `npm` starts the backend Node.js server, it reads the values in the `.env` file into the environment variables, so the backend server knows how to contact the Koji database.
 +
 NOTE: The Koji database is not running on your local machine, so you will still need an active Internet connection to get the leaderboard to work.
-However, you will not need to make changes to the Koji database system, so you can focus on developing your template.
+However, you will not need to make changes to the Koji database system, so you can focus on developing your app.
 
 . If `npm` fails to read the values from the `.env` file, you can set the environment variables manually in the terminal before starting the server, using the `KOJI_PROJECT_ID` and `KOJI_PROJECT_TOKEN` values you copied earlier.
 +
@@ -261,16 +271,16 @@ However, you will not need to make changes to the Koji database system, so you c
 
 [source,bash]
 ----
-export KOJI_PROJECT_ID=c00484db-827a-45bb-8541-f2c09c2f192e
-export KOJI_PROJECT_TOKEN=a6676f53-44fe-4109-819a-69df620ad7ed
+export REACT_APP_PROJECT_ID=c00484db-827a-45bb-8541-f2c09c2f192e
+export REACT_APP_PROJECT_TOKEN=a6676f53-44fe-4109-819a-69df620ad7ed
 ----
 
 .Windows
 
 [source,bash]
 ----
-set KOJI_PROJECT_ID=c00484db-827a-45bb-8541-f2c09c2f192e
-set KOJI_PROJECT_TOKEN=a6676f53-44fe-4109-819a-69df620ad7ed
+set REACT_APP_PROJECT_ID=c00484db-827a-45bb-8541-f2c09c2f192e
+set REACT_APP_PROJECT_TOKEN=a6676f53-44fe-4109-819a-69df620ad7ed
 ----
 
 --
@@ -279,62 +289,119 @@ set KOJI_PROJECT_TOKEN=a6676f53-44fe-4109-819a-69df620ad7ed
 +
 TIP: Another alternative is to use the https://www.npmjs.com/package/dotenv[dotenv] package to read the values from the `.env` file.
 
-==== Starting the watcher on the backend (Windows only)
+==== Setting up a launch configuration for VS Code
 
-. Install npm-run-all.
-+
-[source,bash]
-npm i --save-dev npm-run-all
+If you're working in VS Code, you can set up a configuration file to save the environment variables, the URL for connecting to the backend, and the deployment details needed to launch your project.
+Then, you can launch both servers from VS Code, rather than manually launching the frontend and backend from the terminal.
 
-. Modify the `package.json` file.
+TIP: For more information on launch configurations, visit the https://go.microsoft.com/fwlink/?linkid=830387[Visual Studio Code documentation].
+
+. In a `.vscode` folder in your workspace, create a `launch.json` file.
+. Paste the following configuration information in the file.
 +
-[source,JSON]
+[source,json]
+----
 {
-  "scripts: {
-    ...
-    "start-dev": "NODE_ENV=development babel-watch -L --watch ../.koji/ src/server.js",
-    "start": "NODE_ENV=production node dist/server.js",
-    "watch": "koji-vcc watch",
-    "start-windows": "run-p watch start-dev"
-  }
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "command": "npm start",
+      "name": "Client",
+      "request": "launch",
+      "type": "node-terminal",
+      "cwd": "${workspaceFolder}/frontend",
+      "env": {
+        "KOJI_PROJECT_ID": "REPLACE", <1>
+        "KOJI_SERVICE_URL_backend": "http://localhost:3333",
+        "KOJI_SERVICE_URL_frontend": "http://localhost:8080"
+      },
+    },
+    {
+      "command": "npm run start-dev",
+      "name": "Server",
+      "request": "launch",
+      "type": "node-terminal",
+      "cwd": "${workspaceFolder}/backend",
+      "env": {
+        "KOJI_PROJECT_ID": "REPLACE", <1>
+        "KOJI_PROJECT_TOKEN": "REPLACE" <2>
+      },
+    }
+  ],
+  "compounds": [
+    {
+      "name": "Client/Server",
+      "configurations": [
+        "Client",
+        "Server"
+      ]
+    }
+  ]
 }
+----
+<1> `KOJI_PROJECT_ID` environment variable.
+<2> `KOJI_PROJECT_TOKEN` environment variable.
 
-. Remove any duplicate scripts.
+. Replace the `KOJI_PROJECT_ID` and `KOJI_PROJECT_TOKEN` values with the environment variable values you obtained for your project.
+Save the file.
 
-. Launch the backend with the following command.
-+
-[source,bash]
-npm run start-windows
+. To launch the app from VS Code, select btn:[Run and Debug] on the Debug start view.
 
 == Testing your local deployment
 
-. In the terminal windows, check that the frontend reported `Compiled successfully` and the backend reported `backend started`.
+After your project is running locally, you can use your browser to verify the basic functionality.
+Then, you can point the Koji debugger to your localhost so that you can test all app functionality.
+
+. In the terminal windows, check that the frontend reported `Compiled successfully` and the backend reported `Server is listening on port 3333`.
+
 . If you see errors, make sure that no other applications are running on ports `8080` and `3333`.
-. In your browser, visit `\http://0.0.0.0:8080`.
+
+. Test the app in your browser.
+
+.. Visit `\http://0.0.0.0:8080`.
 +
-You should see the Element Match game running.
-. Click *Leaderboard* to check that it is working.
+You should see the Falling Objects game running.
+.. Click btn:[Top Players] to check that the leaderboard is working.
 +
-If you haven't played the game yet, there will be no scores to show, but you will see the Top Scores title and a Close link that returns you to the Welcome screen.
-. Click *Start Matching*, and play the game.
-. When the game is over, submit your user name.
+If you haven't played the game yet, there will be no scores to show, but you will see the Top Players title and a Close link that returns you to the Welcome screen.
+
+.. Click the start game icon and play the game.
+
+.. When the game is over, submit your user name.
 +
-The Leaderboard should now show your name and your score.
+The leaderboard should now show your name and your score.
 
-== Next steps
+. Test the app in the Koji debugger.
 
-In this part of the tutorial, you learned how to:
+.. Return to the browser tab for *Project Details*, and click btn:[Open in Debugger].
 
-. Install the Node modules that are needed to run a server on your local machine.
-. Get the environment variables used by the server from the Koji editor.
-. Create an `.env` file to apply these environment variables to the backend server, so that it can connect to the database.
-. Tell the frontend which URL to use when connecting to the backend server.
-. Launch the template locally.
-. Check that the game and the leaderboard are working correctly.
+.. In the Koji debugger, click btn:[Open Debugger Settings].
 
-You are now ready to start editing the template on your development machine and turning this project into your own template.
-With what you have learned so far, you will be able to test all aspects of your template locally in your browser.
+.. Enter the full URL of your locally running app (`\http://0.0.0.0:8080`), and click btn:[Update].
 
-When you're ready to deploy your template for end users, you must publish it so they can access it from the Koji server.
-To publish your template, you must update the repository that the Koji server uses to deliver your template.
+.. On the *Remix* tab, change some of the custom settings and monitor the events.
+
+.. Click btn:[Preview] to preview your custom settings in the app, and click btn:[Refresh] to reset it to the default settings.
+
+[TIP]
+====
+When working locally, testing in the Koji debugger offers several advantages over testing in your browser.
+
+* You can test your app in different contexts, such as remix.
+* The window size is constrained like it will be on the platform.
+* You can test functionality that requires communication with the Koji platform, such as in-app purchases.
+To test purchases, you must register the product by publishing your app once, which you will do in the next section of the tutorial.
+
+For more information, visit <<testing-apps#_using_the_koji_debugger, Using the Koji debugger>>.
+====
+
+== Wrapping up
+
+In this part of the tutorial, you learned how to install a Node.js web server environment, launch a frontend and a backend server, and override Koji debugger settings, so that you can test and debug your app while working locally.
+
+You are now ready to start editing the app on your development machine and turning this project into your own app.
+With what you have learned so far, you will be able to test all aspects of your app locally.
+
+When you're ready to deploy your app for end users, you must publish it so they can access it from the Koji server.
+To publish your app, you must update the repository that the Koji server uses to deliver your app.
 For more information, see <<publish-locally-developed#>>.

@@ -1,0 +1,110 @@
+= Capturing user input
+:page-slug: capture-user-input
+:page-description: How to capture user input using `Koji.ui.capture` controls.
+:includespath: ../_includes
+:imagesdir: path-to-images-directory
+
+Koji provides a set of predefined user-input controls that you can use in your app's frontend to capture information and content from your users.
+
+For example, your app might allow users to submit photos for a contest or to contribute videos for a virtual choir performance.
+
+These controls are found in `Koji.ui.capture` in the @withkoji/core package.
+
+== Using user-input controls
+
+To use a predefined user-input control in your app,
+
+* Install @withkoji/core in the *frontend* terminal tab.
++
+.Learn how...
+[%collapsible]
+====
+include::{includespath}/steps-codeeditor.adoc[tag=cli-front-end]
+include::{includespath}/steps-codeeditor.adoc[tag=terminal-stop-process]
+include::{includespath}/steps-codeeditor.adoc[tag=terminal-install-withkoji-core-package]
+include::{includespath}/steps-codeeditor.adoc[tag=terminal-restart-process]
+====
+
+* Import @withkoji/core in your front-end code.
++
+[source,javascript]
+----
+import Koji from '@withkoji/core';
+----
+
+* Call the appropriate `Koji.ui.capture` control.
++
+[source,javascript]
+----
+myVariable = await Koji.ui.capture.<control-name>( <control-parameters> )
+----
++
+** `.audio` – Prompts the user to select or upload an audio file.
+<<core-frontend-ui-capture#audio,method reference>>
+
+** `.color` – Prompts the user to select or specify a color.
+<<core-frontend-ui-capture#color,method reference>>
++
+If `allowAlpha : true` is included in the options, the *Opacity* slider is visible in the color selector modal.
+
+** `.custom` – Prompts the user to interact with a custom control.
+<<core-frontend-ui-capture#custom,method reference>> +
+Learn more: <<build-custom-controls#>>
+
+** `.file` – Prompts the user to upload a file of any type.
+<<core-frontend-ui-capture#file,method reference>>
+
+** `.image` – Prompts the user to select or upload an image file.
+<<core-frontend-ui-capture#image,method reference>>
+
+** `.link` – Prompts the user to enter an external URL.
+<<core-frontend-ui-capture#link,method reference>>
+
+** `.media` – Prompts the user to select, specify, or upload an image, a file, an audio, or a video.
+<<core-frontend-ui-capture#media,method reference>>
+
+** `.range` – Prompts the user to select a value from a numeric range.
+<<core-frontend-ui-capture#range,method reference>>
+
+** `.select` – Prompts the user to select from a predefined list of options.
+<<core-frontend-ui-capture#select,method reference>>
++
+If the list has 1 to 4 options, the options are presented as radio buttons. +
+If the list has 5 or more options, the list is presented as a dropdown.
+
+** `.video` – Prompts the user to select or upload a video file.
+<<core-frontend-ui-capture#video,method reference>>
+
+== Example
+
+The https://withkoji.com/apps/67dea854-70b6-4114-98ad-1e28a60d6fb0[Example | Capturing User Input] app illustrates how to capture user input with the UI / Capture controls. Click each button to preview the popup presented to the user by each control.
+
++++
+<iframe src="https://withkoji.com/@eltesorokoji/iwmb" width="400" height="600"> </iframe>
++++
+
+In this example,
+
+* Each control is triggered by a clicking a button.
++
+[source,javascript]
+----
+<button onClick={captureImage}>{'.image test'}</button>
+----
+
+* The button's onClick handler calls the control and uses the returned value, if any.
++
+[source,javascript]
+----
+const captureImage = async () => {
+  const capturedImage = await Koji.ui.capture.image({ bgColor : '#ff5555' });
+  if (capturedImage) setMainIcon(() => capturedImage);
+};
+----
+
+To view the complete code of the example app, https://withkoji.com/apps/67dea854-70b6-4114-98ad-1e28a60d6fb0[fork the project from the Koji App Store].
+
+== Related resources
+
+* <<core-frontend-ui-capture#, Frontend / UI / Capture>>
+* <<build-custom-controls#>>

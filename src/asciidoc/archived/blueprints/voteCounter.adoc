@@ -299,7 +299,7 @@ The template should update immediately.
 To open a preview on a mobile device, click the QR code button image:QRcode.svg[QR code button] in the preview pane to display a QR code, then scan the QR code with your mobile device.
 
 TIP: If you want to reset the counter in the published template, open it in the Koji debugger, and then delete the test entries from the *votes* database view.
-See <<testing-templates#_using_the_koji_debugger,Using the Koji debugger>>.
+See <<testing-apps#_using_the_koji_debugger,Using the Koji debugger>>.
 
 === Publish
 

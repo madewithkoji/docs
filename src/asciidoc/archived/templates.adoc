@@ -34,11 +34,9 @@ Or, you can find a Koji that implements some of your desired functionality, such
 
 From this starting point, you'll use the *Koji* button in the top right to fork the underlying template.
 
-image:koji-button.png[Koji button]
-
 Koji clones the project and opens your new project in <<editor#, the Koji editor>>.
 The Koji editor is a browser-based integrated development environment (IDE) with built-in development, administration, and testing tools for Koji templates.
-You can use the editor to develop your template logic, or you can develop your template <<use-git#, in a remote editor>> and use the Koji editor for publishing and administration on the Koji platform.
+You can use the editor to develop your template logic, or you can develop your template <<local-development#, in a remote editor>> and use the Koji editor for publishing and administration on the Koji platform.
 
 === 2. Define the customizable elements
 
