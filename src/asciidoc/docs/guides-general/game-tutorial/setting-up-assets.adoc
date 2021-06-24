@@ -112,7 +112,8 @@ The `remixData` object should now look something like this example.
 
 NOTE: Don't forget to save your changes.
 
-If you have a *Live Preview* running, click the refresh icon to update it. You should see a new background image, as well as a new player image in the main menu.
+If you have a *Live Preview* running, click the refresh icon to update it.
+You should see a new background image, as well as a new player image in the main menu.
 
 == Loading assets
 

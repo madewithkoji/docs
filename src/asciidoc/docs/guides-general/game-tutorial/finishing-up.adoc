@@ -4,7 +4,7 @@
 :figure-caption!:
 
 In the <<game-thumbnail-preview#, previous section>> of the customizable game tutorial, you customized the preview image for sharing on social media.
-That's it, you've just created a *fun and customizable Koji game*!
+That's it! You've just created a *fun and customizable Koji game*!
 
 In this section, you’ll
 // tag::description[]

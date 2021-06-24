@@ -3,7 +3,7 @@
 :page-description: Modifying the remix menu for a falling objects game so that anyone can customize it.
 :figure-caption!:
 
-In the <<game-managing-difficulty#, previous section>> of the remixable game tutorial, you finished adding the main functionality for a falling objects game.
+In the <<game-managing-difficulty#, previous section>> of the customizable game tutorial, you finished adding the main functionality for a falling objects game.
 But, there's more to do to get the most from Koji.
 
 In this section, you’ll
@@ -28,7 +28,7 @@ The background image and music customizations are already handled by the scaffol
 
 Because you added the player functionality to the existing `Player` class, which already uses `imgPlayer` for its image, the player is also set up to be customizable.
 
-image::game-remix-menu.png[Remix menu]
+image::game-remix-menu.png[Customization menu]
 
 To test it out, try changing the player image.
 If necessary, refresh the preview.
@@ -107,7 +107,7 @@ Then, the code does the following:
 
 * Updates the `imgCollectible` state hook with the resulting image.
 * Resets the `isCollectibleInvalid` state hook.
-* Updates the `imgCollectible` remix value with the resulting image.
+* Updates the `imgCollectible` customization value with the resulting image.
 * Updates the game.
 
 This code updates the game because the user has a running game preview behind the customization menu.

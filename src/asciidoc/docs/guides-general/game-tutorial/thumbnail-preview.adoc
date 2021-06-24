@@ -3,12 +3,12 @@
 :page-description: Modifying the preview image when the falling objects game is shared on social media.
 :figure-caption!:
 
-In the <<game-remix#, previous section>> of the customizable game tutorial, you added an option for users to customize the collectible image.
+In the <<game-customization#, previous section>> of the customizable game tutorial, you added an option for users to customize the collectible image.
 There's one more thing to take care of before releasing your new game into the wild.
 
 In this section, you’ll
 // tag::description[]
-customize the preview image that is displayed when users share their remixes on social media.
+customize the preview image that is displayed when users share their customized version of the game on social media.
 // end::description[]
 
 By the end of this section, you should feel comfortable:

@@ -48,9 +48,9 @@ include::managing-difficulty.adoc[tag=description]
 
 [.card]
 [.cardht165]
-.5. <<game-remix#>>
+.5. <<game-customization#>>
 [.init-cap]
-include::remix.adoc[tag=description]
+include::game-customization.adoc[tag=description]
 
 [.card]
 [.cardht165]
