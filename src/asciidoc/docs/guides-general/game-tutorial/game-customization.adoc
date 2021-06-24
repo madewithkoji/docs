@@ -1,6 +1,6 @@
 = Adding customization options
 :page-slug: game-customization
-:page-description: Modifying the remix menu for a falling objects game so that anyone can customize it.
+:page-description: Modifying the customization menu for a falling objects game so that anyone can make their own version.
 :figure-caption!:
 
 In the <<game-managing-difficulty#, previous section>> of the customizable game tutorial, you finished adding the main functionality for a falling objects game.

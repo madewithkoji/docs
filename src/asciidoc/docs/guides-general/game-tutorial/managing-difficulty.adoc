@@ -86,4 +86,4 @@ Every time the difficulty increases, this function will:
 Of course, you can go back and modify things or add new features.
 Everything's a bonus from now on!
 
-In the <<game-customization#,next section>>, you'll take a look at the remix menu in the game scaffold and make the game assets customizable.
+In the <<game-customization#,next section>>, you'll learn how to make the game assets customizable.

@@ -138,11 +138,9 @@ const preload = () => {
 }
 ----
 
-Next, you need to define the value for the `game.playerSize` variable, which represents the size of the player image.
-You can define this variable, and other game settings, in the `initializeValues()` function.
+The values for game settings are defined in the `initializeValues()` function.
+The `game.playerSize` variable, which represents the size of the player image, is defined as follows.
 
-Because there's a considerable difference between mobile and desktop display sizes, you can add a line to the `isMobile()` function to set the `playerSize` according to the device, as follows.
-(Actually, this line should already be present in the scaffold, so just double-check that it's there.)
 [source,javascript]
 ----
 import isMobile from '../../Utils/isMobile'
@@ -152,6 +150,8 @@ const initializeValues = () => {
     game.playerSize = isMobile() ? 64 : 96;
 }
 ----
+
+Because there's a considerable difference between mobile and desktop display sizes, the code uses the `isMobile()` function to set `game.playerSize` to different values, according to the device.
 
 You can also change the game instructions by modifying the `game.instructions` property.
 For example:
