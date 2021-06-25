@@ -170,7 +170,7 @@ As you can see from the above code, you'll be passing two functions into the `Pa
 These functions are called when the user clicks the corresponding buttons on the form.
 You'll add them to the game in the next section.
 
-Notice that the code retrieves the price from the remix values in `koji.json` and displays it on the top button.
+Notice that the code retrieves the price from the customization values in `koji.json` and displays it on the top button.
 
 == Rendering the component
 

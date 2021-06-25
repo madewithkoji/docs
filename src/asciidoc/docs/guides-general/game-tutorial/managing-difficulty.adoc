@@ -3,7 +3,7 @@
 :page-description: Making a falling objects game get progressively more difficult over time.
 :figure-caption!:
 
-In the <<game-scoring-and-losing#, previous section>> of the remixable game tutorial, you made the game playable by adding ways to score and to lose.
+In the <<game-scoring-and-losing#, previous section>> of the customizable game tutorial, you made the game playable by adding ways to score and to lose.
 But, it still might be a little too repetitive and easy.
 
 In this section, you’ll
@@ -86,4 +86,4 @@ Every time the difficulty increases, this function will:
 Of course, you can go back and modify things or add new features.
 Everything's a bonus from now on!
 
-In the <<game-remix#,next section>>, you'll take a look at the remix menu in the game template and make the game assets customizable.
+In the <<game-customization#,next section>>, you'll learn how to make the game assets customizable.
