@@ -1,17 +1,17 @@
-= Adding remix options
-:page-slug: game-iap-remix
-:page-description: Making the price customizable during remix for a game with in-app purchases.
+= Adding customization options
+:page-slug: game-iap-customization
+:page-description: Making the price customizable for a game with in-app purchases.
 :figure-caption!:
 
 In the <<game-iap-updating-game#, previous section>> of the in-game purchases tutorial, you modified the game's original behavior to reflect the new payment flow.
 In this section, you’ll
 // tag::description[]
-make the price of extra lives customizable for people who remix the game.
+give creators the ability to set the price of extra lives when they customize the game.
 // end::description[]
 
 By the end of this section, you should feel comfortable:
 
-* Modifying the Remix component.
+* Modifying the `Remix` component.
 
 * Setting up the price input field.
 
@@ -22,15 +22,15 @@ By the end of this section, you should feel comfortable:
 For the price input field, this tutorial uses a pre-made component in the @anderjason/koji-react-frontend-tools package along with functions in the @anderjason/money package.
 Together, they handle the proper formatting and validation for price inputs, so you don't have to worry about the user entering invalid characters, incorrect price formats, or other invalid data.
 
-The @anderjason/koji-react-frontend-tools package is already installed in the base game template.
+The @anderjason/koji-react-frontend-tools package is already installed in the base game scaffold.
 You will need to install the @anderjason/money package in the frontend of your game.
 
 At the bottom of the Koji editor, open the *frontend* terminal.
 
 image::game-iap-terminal.png[Terminal]
 
-In the terminal, press *Ctrl+C* to stop the server.
-Type `npm install @anderjason/money`, and press *Enter*.
+In the terminal, press kbd:[Ctrl+C] to stop the server.
+Type `npm install @anderjason/money`, and press kbd:[Enter].
 
 When the installation has finished, type `npm start` to restart the frontend server.
 
@@ -104,7 +104,7 @@ Otherwise, it's set to `Set price to 0 to disable In-Game Purchases.`
 
 == Updating the price value
 
-Finally, you need to update the changed `price` in the remix data.
+Finally, you need to update the changed `price` in the customization data.
 Find the `onFinish()` function and add the following property in `await Koji.remix.set({...})`.
 
 `price: price ? price.rawValue / 100 : 0`
@@ -139,7 +139,7 @@ const onFinish = async () => {
 }
 ----
 
-Your remix menu should now look like this example.
+Your customization menu should now look like this.
 
 image::game-iap-remix-menu.png[Remix menu]
 
@@ -150,7 +150,7 @@ Go ahead and give it a spin!
 In this section, you've made the price customizable and, with that, concluded this tutorial.
 All that's left to do is to publish the game from the *Publish Now* menu and share it everywhere online!
 
-Of course, the project is now your playground.
+Of course, the game is now your playground.
 You can go back to modify or add new features, make improvements, or anything else you can imagine.
 
 include::../../_includes/tutorialHelpMarko.adoc[tag=all]

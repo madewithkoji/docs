@@ -111,7 +111,7 @@
             },
             {
               "name": "Testing and debugging apps",
-              "slug": "testing-templates"
+              "slug": "testing-apps"
             },
             {
               "name": "Managing app versions",
@@ -121,10 +121,18 @@
         },
         {
           "name": "Implementing platform features",
-          "root": "/publish",
+          "root": "/platform",
           "items": [
             {
-              "name": "Thumbnail image and custom metadata",
+              "name": "Capturing user input",
+              "slug": "capture-user-input"
+            },
+            {
+              "name": "Entitlements",
+              "slug": "entitlements"
+            },
+            {
+              "name": "Customizing the thumbnail image",
               "slug": "thumbnail-image"
             },
             {
@@ -162,8 +170,8 @@
                   "slug": "game-managing-difficulty"
                 },
                 {
-                  "name": "5. Adding remix options",
-                  "slug": "game-remix"
+                  "name": "5. Adding customization options",
+                  "slug": "game-customization"
                 },
                 {
                   "name": "6. Customizing the preview",
@@ -196,8 +204,8 @@
                   "slug": "game-iap-updating-game"
                 },
                 {
-                  "name": "5. Adding remix options",
-                  "slug": "game-iap-remix"
+                  "name": "5. Adding customization options",
+                  "slug": "game-iap-customization"
                 }
               ]
             },
@@ -210,8 +218,18 @@
               "slug": "custom-domains"
             },
             {
-              "name": "Building custom VCCs",
-              "slug": "build-custom-vcc"
+              "name": "Building custom controls",
+              "slug": "build-custom-controls"
+            }
+          ]
+        },
+        {
+          "name": "Distributing apps",
+          "root": "/distribute",
+          "items": [
+            {
+              "name": "Listing in the App Store",
+              "slug": "app-store"
             }
           ]
         },
@@ -219,6 +237,10 @@
           "name": "About Koji for developers",
           "root": "/about",
           "items": [
+            {
+              "name": "Glossary",
+              "slug": "glossary"
+            },
             {
               "name": "Contributing to the developer site",
               "slug": "contribute-koji-developers"

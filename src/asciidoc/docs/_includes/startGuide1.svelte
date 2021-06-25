@@ -25,7 +25,7 @@
             isRemixing = isRemixingTrue;
         });
 
-        // Alert Koji we are ready to use instantRemixing
+        // Alert the Koji app that we are ready to use instantRemixing
         instantRemixing.ready();
 
         let feed = new FeedSdk();
@@ -33,7 +33,7 @@
     });
 
     function editText() {
-        // Conditionally handle the click, only if the template is being remixed
+        // Conditionally handle the click, only if the app is being customized
         if (isRemixing) {
             instantRemixing.onPresentControl(['settings', 'title']);
         }

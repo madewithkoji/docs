@@ -1,27 +1,26 @@
 = Setting up koji.json
 :page-slug: game-iap-setting-up-koji-json
-:page-description: Configuring entitlements and remix data in koji.json to support in-game purchases.
+:page-description: Configuring entitlements and customization data in koji.json to support in-game purchases.
 :figure-caption!:
 
 In the first section of this tutorial, you will
 // tag::description[]
-add the in-app purchase entitlement and define a price value that can be customized when someone remixes your game.
+add the in-app purchase entitlement and define a price value that can be modified when someone customizes your game.
 // end::description[]
 
 By the end of this section, you should feel comfortable:
 
-* Defining entitlements and remix values in `koji.json`.
+* Defining entitlements and customization values in `koji.json`.
 
-== Forking the game template
+== Forking the game scaffold
 
-Get started by cloning the Tower Stack game to your own project.
+Get started by cloning the Tower Stack game to your own app.
 
-. Open the https://withkoji.com/~Svarog1389/3ej3[Tower Stack] game.
-. {blank}
-include::../../_includes/remixNav.adoc[tag=all]
+. Open the https://withkoji.com/apps/fe97e8a4-127d-4a65-8695-395ae60944e4[Tower Stack] game listing.
+. Click menu:...[Fork].
 +
-A copy of the project is created in your Koji account, and the *Project Details* page for your new project is displayed.
-. Click *Open in Code Editor*.
+A copy of the app is created in your Koji account, and the *Project Details* page for your new app is displayed.
+. Click btn:[Open in Code Editor].
 +
 The Koji editor opens with the game code loaded.
 
@@ -29,9 +28,9 @@ include::../../_includes/tutorialEditorNote.adoc[tag=all]
 
 == Defining entitlements
 
-First, you need to enable Koji's in-app purchases feature for your new game template.
+First, you need to enable Koji's in-app purchases feature for your new game scaffold.
 
-Open the file `koji.json`, which is located in the root of the project.
+Open the file `koji.json`, which is located in the root of the app.
 Find the following section of code.
 
 [source,json]
@@ -41,7 +40,6 @@ Find the following section of code.
 "entitlements": {
     "InstantRemixing": true,
     "InstantRemixingNativeNavigation": true,
-    "FeedEvents": true,
     "CustomMetadata": {
         "enabled": true,
         "metadata": {
@@ -63,7 +61,6 @@ Add a new property called `InAppPurchases`, as follows.
 "entitlements": {
     "InstantRemixing": true,
     "InstantRemixingNativeNavigation": true,
-    "FeedEvents": true,
     "CustomMetadata": {
         "enabled": true,
         "metadata": {
@@ -112,10 +109,10 @@ You will define the custom value in the next step.
 * *isConsumable* – Feature that determines whether the product can be purchased more than once.
 This value is set to `true`, which allows the user to purchase the product multiple times.
 
-== Defining remix data
+== Defining customization data
 
 In `koji.json`, scroll down to the `remixData` object.
-This is where you define the customizable values that users can modify when remixing the template.
+This is where you define the values that users can modify when customizing the scaffold.
 
 Add a `price` property and set it to `0.1` for now.
 

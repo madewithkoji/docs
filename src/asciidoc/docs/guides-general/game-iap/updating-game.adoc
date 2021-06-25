@@ -19,7 +19,7 @@ By the end of this section, you should feel comfortable:
 
 == Adding a listener for resetLives
 
-The base template for the game uses CustomEvents to communicate between the game instance and the main component.
+The base scaffold for the game uses CustomEvents to communicate between the game instance and the main component.
 So, it's a good idea to follow this pattern in the new workflow.
 
 You've already added the `emitEvent(resetLives)` call in the `onPurchase()` function.
@@ -58,7 +58,7 @@ const resetLives = () => {
 This code resets the lives to the starting value and resets the `game.gameOver` property to `false`.
 It also spawns some floating text in the middle of the screen to celebrate this happy event.
 
-If you've gone through the <<game-intro#, remixable game tutorial>> or are already familiar with the base game template, you could get even more creative and spawn some exploding particles.
+If you've gone through the <<game-intro#, customizable game tutorial>> or are already familiar with the base game scaffold, you could get even more creative and spawn some exploding particles.
 The player just spent some cash on the game -- they should be rewarded!
 
 == Modifying Block.js
@@ -108,10 +108,10 @@ handleMiss() {
 }
 ----
 
-In the original game, the `Game Over` text was displayed in label that would slide down from the top.
-Since the text is now displayed in your new payment menu, you don't need the original label.
+In the original game, the `Game Over` text was displayed in a label that would slide down from the top.
+Since the text is now displayed in your new payment menu, you don't need the old label.
 
-Disable it by opening `frontend/src/Components/Game/setup.js`.
+To disable it, open `frontend/src/Components/Game/setup.js`.
 In the `game.loseGame()` function, remove these two lines.
 
 [source,javascript]
@@ -160,10 +160,10 @@ const onPurchase = async () => {
 [NOTE]
 Make sure to *uncomment* those lines before publishing your game.
 
-After you publish the game, you can use the <<testing-templates#_debugging_in_app_purchases, Koji debugger>> to test the new in-app purchase feature.
+After you publish the game, you can use the <<testing-apps#_debugging_in_app_purchases, Koji debugger>> to test the new in-app purchase feature.
 You'll need to have a balance in your Koji wallet.
 
-NOTE: If you are working locally, you will need to push your changes and pull them into the Koji editor before publishing.
+NOTE: If you're working locally, you'll need to push your changes and pull them into the Koji editor before publishing.
 For more information, see <<publish-locally-developed#>>.
 
 == Wrapping up
@@ -171,4 +171,4 @@ For more information, see <<publish-locally-developed#>>.
 In this section, you modified the game's original behavior to reflect the new payment flow.
 You've now built the main part of the in-game purchase experience.
 
-In the <<game-iap-remix#, last section>>, you'll make the price customizable during remix.
+In the <<game-iap-customization#, last section>>, you'll make the price customizable.

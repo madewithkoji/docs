@@ -20,7 +20,7 @@ Here's a quick example:
 ----
 = Koji for Developers
 
-Create your own templates for https://withkoji.com[Koji].
+Create your own https://withkoji.com[Koji apps].
 
 == Use any framework
 

@@ -3,12 +3,12 @@
 :page-description: Modifying the preview image when the falling objects game is shared on social media.
 :figure-caption!:
 
-In the <<game-remix#, previous section>> of the remixable game tutorial, you added an option for users to customize the collectible image.
+In the <<game-customization#, previous section>> of the customizable game tutorial, you added an option for users to customize the collectible image.
 There's one more thing to take care of before releasing your new game into the wild.
 
 In this section, you’ll
 // tag::description[]
-customize the preview image that is displayed when users share their remixes on social media.
+customize the preview image that is displayed when users share their customized version of the game on social media.
 // end::description[]
 
 By the end of this section, you should feel comfortable:
@@ -18,12 +18,12 @@ By the end of this section, you should feel comfortable:
 
 == How it works
 
-When users share their remixes on social media, the preview (Open Graph) image is based on a screenshot of the Koji.
+When users share their Koji apps on social media, the preview (Open Graph) image is based on a screenshot of the app.
 A fun, custom preview image helps make sure that people are drawn to click on it.
 
-In the game template, `frontend/src/Components/Screenshot/index.js` is already set up to render a custom view for the preview screenshot.
+In the game scaffold, `frontend/src/Components/Screenshot/index.js` is already set up to render a custom view for the preview screenshot.
 
-NOTE: To see what the preview image currently looks like, use the *Thumbnail* tab of the <<testing-templates#_using_the_koji_debugger, Debugger>> or the Live Preview in the Koji editor.
+NOTE: To see what the preview image currently looks like, use the *Thumbnail* tab of the <<testing-apps#_using_the_koji_debugger, Debugger>> or the Live Preview in the Koji editor.
 
 == Editing the Screenshot component
 

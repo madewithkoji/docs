@@ -34,7 +34,7 @@ export class AppComponent implements OnInit {
             this.isRemixing = isRemixing;
         });
 
-        // Alert Koji we are ready to use instantRemixing
+        // Alert the Koji app that we are ready to use instantRemixing
         this.instantRemixing.ready();
 
         this.feed = new FeedSdk();
@@ -42,7 +42,7 @@ export class AppComponent implements OnInit {
     }
 
     handleClick = () => {
-        // Conditionally handle the click, only if the template is being remixed
+        // Conditionally handle the click, only if the app is being customized
         if (this.isRemixing) {
             this.instantRemixing.onPresentControl(['settings', 'title']);
         }

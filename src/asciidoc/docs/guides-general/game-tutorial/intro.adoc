@@ -1,16 +1,16 @@
-= Example: Creating remixable games on Koji
+= Example: Creating customizable games on Koji
 :page-slug: game-intro
-:page-description: Tutorial for creating a remixable game on Koji starting from a game template.
+:page-description: Tutorial for creating a customizable game on Koji starting from a game scaffold.
 :page-banner: {imagesDir}/game-tutorial-overview.png
 :figure-caption!:
 
-In this tutorial, you will create a remixable https://withkoji.com/~Svarog1389/rxkd[Falling Objects] game, starting from a https://withkoji.com/~Svarog1389/game-template-1[p5.js game template].
+In this tutorial, you will create a customizable https://withkoji.com/~Svarog1389/rxkd[falling objects] game, starting from a https://withkoji.com/~Svarog1389/game-template-1[p5.js game scaffold].
 
-NOTE: This tutorial assumes you've already gone through the <<start-tutorial, Koji quick start tutorial>> and are familiar with the basics of Koji.
+NOTE: This tutorial assumes you've already gone through the <<start-tutorial, Koji quick start tutorial>> and are familiar with the basics of Koji apps.
 
 == Objective
 
-Falling Objects is a simple game where the player tries to collect as many falling objects as they can before they fall off the screen.
+The falling objects game is a simple game where the player tries to collect as many falling objects as they can before they fall off the screen.
 The player moves their character left or right by clicking anywhere on the screen.
 The player loses a life when an object falls off the screen, and the game is over when the player runs out of lives.
 
@@ -22,34 +22,50 @@ Here's an example of the game that you will build in this tutorial.
 
 == Sections
 
-<<game-assets#>>  ::
-+
+[.card]
+[.cardht165]
+.1. <<game-assets#>>
 [.init-cap]
 include::setting-up-assets.adoc[tag=description]
-<<game-creating-game-objects#>>  ::
-+
+
+[.card]
+[.cardht165]
+.2. <<game-creating-game-objects#>>
 [.init-cap]
 include::creating-game-objects.adoc[tag=description]
-<<game-scoring-and-losing#>>  ::
-+
+
+[.card]
+[.cardht165]
+.3. <<game-scoring-and-losing#>>
 [.init-cap]
 include::scoring-and-losing.adoc[tag=description]
-<<game-managing-difficulty#>>  ::
-+
+
+[.card]
+[.cardht165]
+.4. <<game-managing-difficulty#>>
 [.init-cap]
 include::managing-difficulty.adoc[tag=description]
-<<game-remix#>>  ::
-+
+
+[.card]
+[.cardht165]
+.5. <<game-customization#>>
 [.init-cap]
-include::remix.adoc[tag=description]
-<<game-thumbnail-preview#>>  ::
-+
+include::game-customization.adoc[tag=description]
+
+[.card]
+[.cardht165]
+.6. <<game-thumbnail-preview#>>
 [.init-cap]
 include::thumbnail-preview.adoc[tag=description]
-<<game-finishing-up#>>  ::
-+
+
+[.card]
+[.cardht165]
+.7. <<game-finishing-up#>>
 [.init-cap]
 include::finishing-up.adoc[tag=description]
+
+[.clearfloat]
+{blank}
 
 == Getting help
 

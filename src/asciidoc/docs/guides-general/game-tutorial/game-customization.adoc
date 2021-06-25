@@ -1,40 +1,40 @@
-= Adding remix options
-:page-slug: game-remix
-:page-description: Modifying the remix menu for a falling objects game so that anyone can customize it.
+= Adding customization options
+:page-slug: game-customization
+:page-description: Modifying the customization menu for a falling objects game so that anyone can make their own version.
 :figure-caption!:
 
-In the <<game-managing-difficulty#, previous section>> of the remixable game tutorial, you finished adding the main functionality for a falling objects game.
+In the <<game-managing-difficulty#, previous section>> of the customizable game tutorial, you finished adding the main functionality for a falling objects game.
 But, there's more to do to get the most from Koji.
 
 In this section, you’ll
 // tag::description[]
-make the game easily remixable by other people so it can be shared everywhere online.
+make the game easily customizable by other people so it can be shared everywhere online.
 // end::description[]
 
 By the end of this section, you should feel comfortable:
 
-* Editing the remix menu in the game template.
+* Editing the customization menu in the game scaffold.
 * Adding a customizable image to the menu.
 
-== Exploring the remix menu
+== Exploring the customization menu
 
-The game template provides a configurable remix menu to speed up game development on Koji.
+The game scaffold provides a configurable customization menu to speed up game development on Koji.
 
 If you open `frontend/src/Components/Remix/index.js`, you'll see that some of the workflow you need for your game is already set up.
 
-NOTE: To see what the remix menu currently looks like, use the *Remix* tab of the <<testing-templates#_using_the_koji_debugger, Debugger>> or the Live Preview in the Koji editor.
+NOTE: To see what the customization menu currently looks like, use the *Remix* tab of the <<testing-apps#_using_the_koji_debugger, Debugger>> or the Live Preview in the Koji editor.
 
-The background image and music customizations are already handled by the template, so you can just leave them as they are.
+The background image and music customizations are already handled by the scaffold, so you can just leave them as they are.
 
 Because you added the player functionality to the existing `Player` class, which already uses `imgPlayer` for its image, the player is also set up to be customizable.
 
-image::game-remix-menu.png[Remix menu]
+image::game-remix-menu.png[Customization menu]
 
 To test it out, try changing the player image.
 If necessary, refresh the preview.
 The player is different now!
 
-== Adding collectibles to the remix menu
+== Adding collectibles to the customization menu
 
 You can make the collectible image customizable, as well.
 
@@ -107,17 +107,17 @@ Then, the code does the following:
 
 * Updates the `imgCollectible` state hook with the resulting image.
 * Resets the `isCollectibleInvalid` state hook.
-* Updates the `imgCollectible` remix value with the resulting image.
+* Updates the `imgCollectible` customization value with the resulting image.
 * Updates the game.
 
-This code updates the game because the user has a running game preview behind the remix menu.
-If you change a remix value that isn't instantly previewable in the game, this step can be skipped.
+This code updates the game because the user has a running game preview behind the customization menu.
+If you change a customization value that isn't instantly previewable in the game, this step can be skipped.
 
 In `deleteCollectible()`, the code works similarly, except it sets `imgCollectible` to an empty string instead of capturing an image.
 
 === Rendering the image component
 
-Next, you need to render the component that represents a collectible image in the remix menu to enable users customize the image.
+Next, you need to render the component that represents a collectible image in the customization menu to enable users to customize the image.
 You can once again use the existing structure from `Player`.
 
 Find the component that looks like the following.
@@ -196,6 +196,6 @@ image::game-remix-collectible.png[Remix menu with collectible image]
 == Wrapping up
 
 You've just added the ability for users to change the collectible image.
-The remix menu is complete!
+The customization menu is complete!
 
 In the <<game-thumbnail-preview#, next section>>, you will customize the preview image that is displayed when sharing the game.

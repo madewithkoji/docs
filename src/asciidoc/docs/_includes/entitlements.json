@@ -1,6 +1,5 @@
 {
   "entitlements": {
-    "InstantRemixing": true,
-    "FeedEvents": true
+    "InstantRemixing": true
   }
 }

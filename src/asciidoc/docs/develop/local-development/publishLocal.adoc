@@ -35,10 +35,7 @@ Change  `<Title>{"Top Players"}</Title>` to `<Title>{"Leaderboard"}</Title>` and
 
 == Publishing your changes to the Koji server
 
-To make a local change visible on Koji server, you must complete the following process.
-
-. Use Git to `commit` your changes locally.
-. Use Git to `push` the committed changes to the remote Koji repository.
+To make a local change visible on Koji server, you must use Git to `commit` your changes locally and then `push` the committed changes to the remote Koji repository.
 Pushing the changes automatically publishes the app.
 
 === Committing changes locally
@@ -52,7 +49,7 @@ In particular, this file tells Git to ignore any changes to files in the `node_m
 
 When you are ready to test your changes on the Koji server, use Git to `commit` your changes locally.
 
-. Open a terminal window and go to the root directory of your project (for example, `MyKojiTemplate`).
+. Open a terminal window and go to the root directory of your project (for example, `MyKojiApp`).
 . Run the following Git commands.
 +
 [source,bash]
@@ -79,8 +76,8 @@ After the commit process is successfully completed, you use Git to upload the co
 +
 [source,bash]
 git push origin master
-. At the username prompt, enter your username on Koji and press *Enter*.
-. At the password prompt, enter the access key that you <<use-git#_obtaining_an_access_key, generated in a previous tutorial>> and press *Enter*.
+. At the username prompt, enter your username on Koji and press kbd:[Enter].
+. At the password prompt, enter the access key that you <<use-git#_obtaining_an_access_key, generated in a previous tutorial>> and press kbd:[Enter].
 +
 Your terminal will look something like this:
 +
@@ -107,13 +104,13 @@ Pushing your changes to origin automatically publishes a new version of your app
 
 Now that you've published your app, you will want to make sure that it works the same on the Koji server as it does locally.
 
-. On the https://withkoji.com/[Koji home page], click your profile button and go to *Apps > Developer Portal*.
+. On the https://withkoji.com/[Koji home page], click your profile button and select btn:[Developer Portal].
 . Select your app from *All Projects*.
-. Click *View Published Koji*.
+. Click btn:[View Published Koji].
 The published version of your app opens.
 . Proceed to test all the features of your app.
-[NOTE]
-For tips on testing your app, go to <<testing-templates#,Testing and debugging apps>>. For example, you can override the environment variables in the Koji debugger, so that you can use it for testing locally. See <<testing-templates#_overriding_settings_for_a_debugging_session,Overriding settings for a debugging session>>.
++
+TIP: For tips on testing your app, visit <<testing-apps#,Testing and debugging apps>>.
 
 == Updating the Koji code editor to match your local environment
 
@@ -153,7 +150,7 @@ root@ip-172-31-12-226:/usr/src/app#
 ----
 +
 The code in the Koji editor should now be identical to the code in your local repository.
-. In the top right of the Preview pane, click *Refresh* to make sure you are seeing the latest version.
+. In the top right of the Preview pane, click btn:[Refresh] to make sure you are seeing the latest version.
 +
 You should now see the custom title, which corresponds to the local change you made in `frontend\src\Components\View\LeaderboardMini.js`.
 
@@ -164,7 +161,7 @@ For example, if you ran `npm audit fix` to update all the Node modules to their 
 The `package.json` and `package-lock.json` files in the `backend` and the `frontend` directories should contain the information needed to update your Node modules to the correct versions.
 
 . In the Terminal pane, click the `frontend` tab.
-. Press *Ctrl+C* to cancel the running process.
+. Press kbd:[Ctrl+C] to cancel the running process.
 . Run the following command.
 +
 [source,bash]
@@ -195,7 +192,7 @@ root@ip-172-31-15-216:/usr/src/app/frontend# npm start
 ℹ ｢wds｣: Compiled successfully
 ----
 . In the Terminal pane, click the `backend` tab.
-. Press *Ctrl+C* to cancel the running process.
+. Press kbd:[Ctrl+C] to cancel the running process.
 . Run the following command.
 +
 [source,bash]

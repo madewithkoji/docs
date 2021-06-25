@@ -1,16 +1,16 @@
 = Working in the Koji code editor
 :page-slug: editor
-:page-description: Guide for the Koji code editor, a browser-based IDE for developing and testing your Koji.
+:page-description: Guide for the Koji code editor, a browser-based IDE for developing and testing your Koji app.
 :includespath: ../_includes
 
-The Koji code editor is a browser-based integrated development environment (IDE) that you can use to develop and test your Koji.
+The Koji code editor is a browser-based integrated development environment (IDE) that you can use to develop and test your Koji app.
 The code editor provides easy access to the following:
 
-* All of your project's code.
-* Tools to preview and test your Koji.
-* Tools to publish and deploy your Koji.
+* All of your app's code.
+* Tools to preview and test your app.
+* Tools to publish and deploy your app.
 
-== Opening a project in the Koji code editor
+== Opening an app in the Koji code editor
 
 include::{includespath}/steps-codeeditor.adoc[tag=go-to-project-details]
 include::{includespath}/steps-codeeditor.adoc[tag=open-in-code-editor]
@@ -19,63 +19,49 @@ include::{includespath}/images-annotated.adoc[tag=editorsections]
 
 == Koji source control
 
-Each Koji project is stored in a Git repository in the cloud.
+Each Koji app is stored in a Git repository in the cloud.
 
-When you fork an existing project or scaffold, the Git repository of that project/scaffold is copied to your account.
+When you fork an existing app or scaffold, the Git repository of that app/scaffold is copied to your account.
 
-When you use the code editor to publish your Koji, the code editor commits your changes and pushes the updated files to the `master` branch.
+When you use the code editor to publish your Koji app, the code editor commits your changes and pushes the updated files to the `master` branch.
 This push triggers the deployment process.
 
-[IMPORTANT]
-====
-If you made changes to your project files xref:work-locally.adoc[outside the Koji editor], you must update the project files before editing them in the code editor again.
+IMPORTANT: If you made changes to your application files outside the Koji editor, you must <<publish-locally-developed#_updating_the_koji_code_editor_to_match_your_local_environment, update the application files>> before editing them in the code editor again.
 
-. In the Koji code editor, expand the terminal pane.
-. Run `git pull`.
-====
-
-== Previewing your Koji
+== Previewing your Koji app
 
 === Previews in the code editor
 
-If your template includes different contexts or modes, you can select which context is displayed in the preview pane.
+If your app includes different contexts, you can select which context is displayed in the preview pane.
 
-* *Default* - Displays a fully functional preview of your Koji.
+* *Default* - Displays a fully functional preview of your Koji app.
 The *Default* context is always enabled.
 
-* *Remix* - Displays what remixers see when customizing your Koji.
+* *Remix* - Displays what a creator sees when customizing your Koji app.
 
 * *More* - Displays a menu of additional previews.
 +
 image::more.png[More menu]
-+
-** *About* - Displays an About page, if you enabled the associated entitlement.
-
-** *Admin* - Displays an Admin page, if you enabled the associated entitlement.
 
 ** *Receipt (seller)* - Displays a preview of the transaction receipt for the seller, if you implemented in-app purchases and enabled the dynamic receipts entitlement.
 
 ** *Receipt (buyer)* - Displays a preview of the transaction receipt for the buyer, if you implemented in-app purchases and enabled the dynamic receipts entitlement.
 
-** *Sticker* - Displays how your Koji will look if it's imbedded in another Koji.
-
-** *Thumbnail* - Displays how your Koji will look if it's shared on social media.
-
+** *Thumbnail* - Displays how your Koji app will look if it's shared on social media.
 
 === Previews outside the code editor
 
-You can also preview a Koji outside the code editor.
+You can also preview a Koji app outside the code editor.
 
-* The QR code button image:{imagesDir}/QRcode.svg[QR code button] displays a QR code for your Koji.
-Scan this code to preview the Koji on your mobile device.
+* The QR code button image:{imagesDir}/QRcode.svg[QR code button] displays a QR code for your app.
+Scan this code to preview the app on your mobile device.
 
-* The remote staging button image:{imagesDir}/remote-preview.svg[Remote staging button] opens a preview of your Koji in a new browser tab.
-
+* The remote staging button image:{imagesDir}/remote-preview.svg[Remote staging button] opens a preview of your app in a new browser tab.
 
 === Debugging
 
 To open the debugger in a new browser tab, click *Launch Debugger*.
-For more information, go to <<testing-templates#_using_the_koji_debugger, Using the Koji debugger>>.
+For more information, go to <<testing-apps#_using_the_koji_debugger, Using the Koji debugger>>.
 
 == Tips
 
@@ -85,17 +71,17 @@ For more information, go to <<testing-templates#_using_the_koji_debugger, Using 
 [%collapsible]
 ====
 * To open a contextual menu, right-click anywhere in the editing pane.
-* To open the Command Palette, move your cursor focus inside the editing pane and press *F1*.
+* To open the Command Palette, move your cursor focus inside the editing pane and press kbd:[F1].
 ====
 
-* You can revert to a previous version of your project.
+* You can revert to a previous version of your app.
 +
 .Learn how...
 [%collapsible]
 ====
-WARNING: You will lose all commmits that were done after the commit you intend to restore.
+WARNING: You will lose all commits that were done after the commit you intend to restore.
 
-. Open your project in the code editor.
+. Open your app in the code editor.
 . Expand the terminal pane.
 . Run `git log` and copy the hash code of the commit you want to restore.
 . In the terminal pane, enter `git reset --hard <commit-hash>`.
@@ -128,4 +114,4 @@ include::{includespath}/misc.adoc[tag=nodejsnpmver]
 
 == Related resources
 
-* <<testing-templates#>>
+* <<testing-apps#>>
