@@ -2,7 +2,6 @@
 :page-slug: capture-user-input
 :page-description: How to capture user input using `Koji.ui.capture` controls.
 :includespath: ../_includes
-:imagesdir: path-to-images-directory
 
 Koji provides a set of predefined user-input controls that you can use in your app's frontend to capture information and content from your users.
 

@@ -1,0 +1,146 @@
+= Enabling file uploads
+:page-slug: enable-file-uploads
+:page-description: How to enable file uploads to the CDN through your Koji app's frontend.
+:includespath: ../_includes
+
+If users need to upload files through your app, you can use several built-in controls, depending on the expected type of the uploaded file.
+
+The @withkoji/core package provides two Frontend classes for file uploads: <<core-frontend-ui-capture#,UI / Capture>> and <<core-frontend-ui-upload#,UI / Upload>>.
+
+This topic helps you choose the right controls for specific file types and scenarios.
+
+* <<_only_one_media_type,If your app accepts only one media type (audio, image, or video).>>
+** <<_only_audio_files,Only audio files.>>
+** <<_only_images,Only images.>>
+** <<_only_videos,Only videos.>>
+* <<_two_or_more_media_types,If your app accepts two or more media types (audio, image, or video).>>
+* <<_any_file_as_is,If your app accepts any file as is, typically for downloading (not rendered).>>
+* <<_generated_content,If your app generates new content (audio, image, or video) that needs to be saved.>>
+
+
+== Only one media type
+=== Only audio files
+
+If your app accepts only audio files, use `Koji.ui.capture.audio`.
+
+With this method,
+
+* The popup menu includes the audio-specific selections: *Capture audio* and *Browse Sound Packs*.
+* The file selector automatically filters for .mp3, .wav, and other standard audio file formats.
+
+.Example
+The following code hides the menu option to select from asset packs.
+The user will only be able to upload a file or copy from a URL.
+[source,javascript]
+----
+const capturedAudio = await Koji.ui.capture.audio({ hideExtensions : true });
+----
+
+Learn more: <<core-frontend-ui-capture#audio,.audio>>, <<core-frontend-ui-capture#CaptureAudioOptions,CaptureAudioOptions>>
+
+
+=== Only images
+
+If your app accepts only images, use `Koji.ui.capture.image`.
+
+With this method,
+
+* The popup menu includes the image-specific selections: *Take photo* and *Browse Image Packs*.
+* The file selector automatically filters for .png, .jpg, and other standard image file formats.
+* You can apply image-specific processing (such as blurring, contrast, and cropping) to the image.
+
+NOTE: Processing can be applied only to uploaded images or images from a URL, not to images from asset packs.
+
+.Example
+The following code sets the brightness of the captured image to -20 and blurs it by 5%.
+[source,javascript]
+----
+const capturedImage = await Koji.ui.capture.image({ brightness : '-20', blur : '5p' });
+----
+
+Learn more: <<core-frontend-ui-capture#image,.image>>, <<core-frontend-ui-capture#CaptureImageOptions,CaptureImageOptions>>
+
+
+=== Only videos
+
+If your app accepts only videos, use `Koji.ui.capture.video`.
+
+With this method,
+
+* The popup menu includes the video-specific selections: *Record a video*.
+* The file selector automatically filters for .mp4, .wmv, and other standard video file formats.
+* You can apply video-specific processing (such as watermarking) to the video.
+* You can specify whether the video is available for streaming using the the HTTP Live Streaming (HLS) protocol.
+
+NOTE: Processing can be applied only to uploaded videos or videos from a URL, not to videos from asset packs.
+
+.Example
+The following code sets `hls` to `true` to encode the video for streaming.
+[source,javascript]
+----
+const capturedVideo = await Koji.ui.capture.video({ hls : true });
+----
+
+Learn more: <<core-frontend-ui-capture#video,.video>>, <<core-frontend-ui-capture#CaptureVideoOptions,CaptureVideoOptions>>
+
+
+== Two or more media types
+
+If your app accepts two or more types of media files (audio, image, video), use `Koji.ui.capture.media`.
+
+.Example
+The following code accepts either an image or a video for use in a component that accepts both formats (such as the Koji profile background).
+If the file is an image, the contrast is set to 50.
+If the file is a video, it is encoded for streaming.
+[source,javascript]
+----
+const capturedMedia = await Koji.ui.capture.media({
+  acceptOnly : [ 'image', 'video' ],
+  imageOptions : { contrast : '50' },
+  videoOptions : { hsl : true }
+});
+----
+
+Learn more: <<core-frontend-ui-capture#media,.media>>, <<core-frontend-ui-capture#CaptureImageOptions,CaptureImageOptions>>, <<core-frontend-ui-capture#CaptureVideoOptions,CaptureVideoOptions>>
+
+
+== Any file as is
+
+If your app accepts any file that is intended to be downloaded as is (not rendered), use `Koji.ui.capture.file`.
+
+These files can be PDFs, zip files, or high-resolution images that were paid for.
+
+.Example
+The following code accepts any file.
+[source,javascript]
+----
+const capturedFile = await Koji.ui.capture.file();
+----
+
+Learn more: <<core-frontend-ui-capture#file,.file>>
+
+
+== Generated content
+
+If your app generates new content (audio, image, or video) that needs to be saved, use `Koji.ui.upload.uploadFile`.
+
+Examples of generated content are videos recorded by the app or images drawn on the app's canvas.
+
+.Example
+The following code creates a new File object for an audio file that was recorded within the app.
+[source,javascript]
+----
+const generatedVideo = Koji.ui.upload.uploadFile({
+  file: new File([blob], 'audio.mp3'),
+  type: 'audio'
+});
+----
+
+Learn more: <<core-frontend-ui-upload#uploadFile,.uploadFile>>, <<core-frontend-ui-upload#UploadOptions,.UploadOptions>>
+
+
+== Related resources
+
+* <<core-frontend-ui-capture#,UI / Capture>>
+* <<core-frontend-ui-upload#,UI / Upload>>
+* <<capture-user-input#>>
