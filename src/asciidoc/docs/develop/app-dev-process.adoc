@@ -27,8 +27,10 @@ A copy of the project is created in your Koji account.
 
 . Decide how you want to edit your code.
 * *Online* – The Koji code editor is a browser-based integrated development environment (IDE) with built-in development, administration, and testing tools for Koji apps.
++
 Learn more: <<editor#>>
 * *Locally* – The Koji platform supports working locally in your preferred suite of development tools.
++
 Learn more: <<local-development#>>
 
 == [.callout2]#Develop your app#
@@ -44,39 +46,116 @@ In your application code, you must initialize the @withkoji/core package with th
 To define this data, most Koji projects include a `koji.json` file at the root of the project directory.
 
 . Define the instructions for building your code and deploying your app on the Koji platform.
++
 Learn more: <<projects#develop, develop key>>, <<projects#deploy, deploy key>>
 
-. If the app has customizable options for creators, define the default values for those options and any placeholder values for new, customized versions.
+. If the app has customization options for creators, define the default values for those options and any placeholder values for new, customized versions.
++
 Learn more: <<projects#remixData, remixData key>>, <<projects#@@initialTransform, @@initialTransform key>>
 
 . Configure the entitlements for the Koji platform features in your app.
++
 Learn more: <<entitlements#>>
 
-=== Develop the frontend
+=== Add @withkoji/core to the frontend
 
-. Install or update the @withkoji/core package.
-. Import and initialize in your code
-. Add functionality (make it configurable)
-. Koji.ready
+Follow these steps to use the @withkoji/core package in the frontend of your app.
 
-=== Develop the backend
+[TIP]
+====
+Before you start developing your code, check for outdated dependencies in the forked app.
 
-. Install
-. Bundle koji.json
-. Import
-. Middleware
-. Add functionality
+* If the forked app uses deprecated Koji packages, migrate your project to use the @withkoji/core package.
++
+ Learn more: <<migrate-koji-core#, Do I need to migrate?>>
+
+* Check for other outdated dependencies in the forked app, and update them if necessary.
++
+ Learn more: <<work-locally#_installing_the_dependencies, Installing dependencies>>
+====
+
+. In your frontend directory, install or update the @withkoji/core package.
++
+[source, Bash]
+npm install @withkoji/core
+
+. In your frontend code, import the package.
++
+[source,Javascript]
+import Koji from '@withkoji/core';
+
+. Use the `Koji.config` function to initialize the package with your app's configuration data.
++
+Ideally, your code will initialize the package one time, before any data in the application is rendered.
+For example:
++
+[source,Javascript]
+----
+// Initialize
+Koji.config(require('././koji.json'));
+
+// render
+render();
+----
+
+. Use the `Koji.ready` function to indicate that the application is ready to start receiving events.
+
+. Implement the desired core functionality.
+For example, you can provide customization options so creators can add their own content and branding to the app before adding it to their profile.
++
+Learn more: <<core-frontend-overview#>>, <<capture-user-input#>>, <<thumbnail-image#>>
+
+=== Add @withkoji/core to the backend
+
+If your app has a backend service, follow these steps to use the @withkoji/core package in it.
+
+. In your backend directory, install or update the @withkoji/core package.
++
+[source, Bash]
+npm install @withkoji/core
+
+. Make sure the `koji.json` file will be bundled with the backend service during deployment.
++
+TIP: In most frameworks, this file won’t be bundled by default because it is not in the same folder as the backend code.
+If the file is not bundled, the backend service will not be initialized correctly and the deployment will fail.
+To solve this problem, you can use a tool such as https://www.npmjs.com/package/babel-plugin-inline-json-import[babel-plugin-inline-json-import].
+
+. In your backend code, import the package.
++
+[source,Javascript]
+import { KojiBackend } from '@withkoji/core';
+
+. Use `KojiBackend.middleware` to initialize the package with your app's configuration data.
++
+The middleware manages the scope for backend functionality, so that your code can support your initial app along with all of the custom versions.
+It works by parsing the request headers that the Koji platform uses to pass version-specific data to the backend.
++
+You must apply this middleware before handling any routes.
+The middleware will transform `res.locals`, and then modules in KojiBackend will accept `res` as a configuration parameter.
+For example, here is an implementation with a traditional Express application.
++
+[source,Javascript]
+----
+include::{includespath}/backend-core.js[]
+----
+
+. Implement the desired core functionality.
+For example, you can implement a Koji database to collect information in the app.
++
+Learn more: <<core-backend-overview#>>, <<add-service#>>, <<koji-database#>>
 
 == [.callout3]#Deploy your app#
 
-Publish from the editor or push locally
+Publish from the editor <<editor#>> or push locally <<publish-locally-developed#>>
 
 Decide whether it's open-source
 
+Learn more: 
+
 == [.callout4]#Test your app#
 
-
+Learn more: <<testing-apps#>>
 
 == [.callout5]#Distribute your app#
 
-== Next steps
+Learn more: <<app-store#>>
