@@ -9,19 +9,19 @@ The @withkoji/core package provides two Frontend classes for file uploads: <<cor
 
 This topic helps you choose the right controls for specific file types and scenarios.
 
-* <<_only_one_media_type,If your app accepts only one media type (audio, image, or video).>>
-** <<_only_audio_files,Only audio files.>>
-** <<_only_images,Only images.>>
-** <<_only_videos,Only videos.>>
-* <<_two_or_more_media_types,If your app accepts two or more media types (audio, image, or video).>>
-* <<_any_file_as_is,If your app accepts any file as is, typically for downloading (not rendered).>>
-* <<_generated_content,If your app generates new content (audio, image, or video) that needs to be saved.>>
+* If your upload control accepts <<_only_one_media_type,only one media type>>:
+<<_only_audio_files,audio files>>,
+<<_only_images,images>>, or
+<<_only_videos,videos>>.
+* If your upload control accepts <<_two_or_more_media_types,two or more media types>>.
+* If your upload control accepts <<_any_file_as_is,any file as is>>, typically for downloading.
+* If your app <<_generated_content,generates new content>> that needs to be saved.
 
 
 == Only one media type
 === Only audio files
 
-If your app accepts only audio files, use `Koji.ui.capture.audio`.
+If your upload control accepts only audio files, use `Koji.ui.capture.audio`.
 
 With this method,
 
@@ -41,7 +41,7 @@ Learn more: <<core-frontend-ui-capture#audio,.audio>>, <<core-frontend-ui-captur
 
 === Only images
 
-If your app accepts only images, use `Koji.ui.capture.image`.
+If your upload control accepts only images, use `Koji.ui.capture.image`.
 
 With this method,
 
@@ -63,7 +63,7 @@ Learn more: <<core-frontend-ui-capture#image,.image>>, <<core-frontend-ui-captur
 
 === Only videos
 
-If your app accepts only videos, use `Koji.ui.capture.video`.
+If your upload control accepts only videos, use `Koji.ui.capture.video`.
 
 With this method,
 
@@ -86,7 +86,7 @@ Learn more: <<core-frontend-ui-capture#video,.video>>, <<core-frontend-ui-captur
 
 == Two or more media types
 
-If your app accepts two or more types of media files (audio, image, video), use `Koji.ui.capture.media`.
+If your upload control accepts two or more types of media files (audio, image, video), use `Koji.ui.capture.media`.
 
 .Example
 The following code accepts either an image or a video for use in a component that accepts both formats (such as the Koji profile background).
@@ -97,7 +97,7 @@ If the file is a video, it is encoded for streaming.
 const capturedMedia = await Koji.ui.capture.media({
   acceptOnly : [ 'image', 'video' ],
   imageOptions : { contrast : '50' },
-  videoOptions : { hsl : true }
+  videoOptions : { hls : true }
 });
 ----
 
@@ -106,7 +106,7 @@ Learn more: <<core-frontend-ui-capture#media,.media>>, <<core-frontend-ui-captur
 
 == Any file as is
 
-If your app accepts any file that is intended to be downloaded as is (not rendered), use `Koji.ui.capture.file`.
+If your upload control accepts any file that is intended to be downloaded as is (not rendered), use `Koji.ui.capture.file`.
 
 These files can be PDFs, zip files, or high-resolution images that were paid for.
 
@@ -136,7 +136,7 @@ const generatedVideo = Koji.ui.upload.uploadFile({
 });
 ----
 
-Learn more: <<core-frontend-ui-upload#uploadFile,.uploadFile>>, <<core-frontend-ui-upload#UploadOptions,.UploadOptions>>
+Learn more: <<core-frontend-ui-upload#uploadFile,.uploadFile>>, <<core-frontend-ui-upload#uploadOptions,UploadOptions>>
 
 
 == Related resources
