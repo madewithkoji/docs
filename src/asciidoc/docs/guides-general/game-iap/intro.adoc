@@ -13,16 +13,16 @@ If you're new to Koji, here are some tutorials that you might want to check out 
 
 == Objective
 
-The starting point for this tutorial is the https://withkoji.com/~Svarog1389/3ej3[Tower Stack] game, which was built on top of the https://withkoji.com/apps/78ddd0e8-de2d-498e-bd88-255166d54849[p5.js game template].
+The starting point for this tutorial is the https://withkoji.com/~Svarog1389/3ej3[Tower Stack] game, which was built on top of the https://withkoji.com/apps/78ddd0e8-de2d-498e-bd88-255166d54849[Game Dev Scaffold].
 
 Tower Stack is a hyper-casual game where the goal is to stack blocks as high as you can without missing any.
 Each new block swings from the top of the screen and tapping releases it.
 If you successfully land it on top of a previous block, you get a point.
 If you miss it, you lose a life.
 
-In the original game, the game ends when the player runs out of lives.
+In the original version, the game ends when the player runs out of lives.
 In this tutorial, you will add a feature that lets players buy more lives, if they choose to.
-The *best part* is that whoever remixes the game gets to choose how much the new lives will cost!
+The *best part* is that whoever customizes the game gets to choose how much the new lives will cost!
 
 Here's an example of the game that you will build in this tutorial.
 You can check out the finished game https://withkoji.com/~Svarog1389/2d69[here].
@@ -59,9 +59,9 @@ include::updating-game.adoc[tag=description]
 
 [.card]
 [.cardht190]
-.5. <<game-iap-remix#>>
+.5. <<game-iap-customization#>>
 [.init-cap]
-include::remix.adoc[tag=description]
+include::game-iap-customization.adoc[tag=description]
 
 [.clearfloat]
 {blank}

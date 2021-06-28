@@ -170,8 +170,8 @@
                   "slug": "game-managing-difficulty"
                 },
                 {
-                  "name": "5. Adding remix options",
-                  "slug": "game-remix"
+                  "name": "5. Adding customization options",
+                  "slug": "game-customization"
                 },
                 {
                   "name": "6. Customizing the preview",
@@ -204,8 +204,8 @@
                   "slug": "game-iap-updating-game"
                 },
                 {
-                  "name": "5. Adding remix options",
-                  "slug": "game-iap-remix"
+                  "name": "5. Adding customization options",
+                  "slug": "game-iap-customization"
                 }
               ]
             },
@@ -237,6 +237,10 @@
           "name": "About Koji for developers",
           "root": "/about",
           "items": [
+            {
+              "name": "Glossary",
+              "slug": "glossary"
+            },
             {
               "name": "Contributing to the developer site",
               "slug": "contribute-koji-developers"

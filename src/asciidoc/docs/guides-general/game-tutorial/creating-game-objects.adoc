@@ -3,7 +3,7 @@
 :page-description: Creating classes for the player and collectibles in a falling objects game.
 :figure-caption!:
 
-In the <<game-assets#,previous section>> of the remixable game tutorial, you configured the settings, images, and sounds for the falling objects game.
+In the <<game-assets#,previous section>> of the customizable game tutorial, you configured the settings, images, and sounds for the falling objects game.
 In this section, you’ll
 // tag::description[]
 define the `Player` and `Collectible` classes and spawn them in the game.
@@ -18,9 +18,9 @@ By the end of this section, you should feel comfortable:
 
 == Player
 
-The game template uses an https://en.wikipedia.org/wiki/Entity_component_system[Entity system], which enables you to extend the base `Entity` class to define the game objects.
+The game scaffold uses an https://en.wikipedia.org/wiki/Entity_component_system[Entity system], which enables you to extend the base `Entity` class to define the game objects.
 
-The template already has an example `Player` class defined, so there's no need to create a new file.
+The scaffold already has an example `Player` class defined, so there's no need to create a new file.
 You can start with that!
 
 In the `frontend/src/Components/Game/Entities` folder, open `Player.js`.
@@ -99,15 +99,20 @@ Then, call the function from `update()`, which runs every frame.
 import { game } from '..';
 import Entity from './Entity'
 import { Smooth } from '../Utils/EasingFunctions'
-...
-update(){
-    this.handleControls();
-}
 
-handleControls(){
-    if(!game.isTouching) return; // Do nothing if we're not touching or clicking
+export default class Player extends Entity {
 
-    this.pos.x = Smooth(this.pos.x, game.mouseX, 13);
+    ...
+
+    update(){
+        this.handleControls();
+    }
+
+    handleControls(){
+        if(!game.isTouching) return; // Do nothing if we're not touching or clicking
+
+        this.pos.x = Smooth(this.pos.x, game.mouseX, 13);
+    }
 }
 ----
 
@@ -129,42 +134,42 @@ You can add these features to the `Player` class as follows.
 import { game } from '..';
 import Entity from './Entity'
 import { Smooth } from '../Utils/EasingFunctions'
-...
+
 export default class Player extends Entity {
     constructor(x, y, options) {
         ...
         this.goalRotation = 0;
     }
-}
 
-update(){
-    this.handleControls();
+    update(){
+        this.handleControls();
 
-    this.rotation = Smooth(this.rotation, this.goalRotation, 8);
-}
+        this.rotation = Smooth(this.rotation, this.goalRotation, 8);
+    }
 
-handleControls(){
-    if(game.isTouching){
-        this.pos.x = Smooth(this.pos.x, game.mouseX, 13);
-        this.keepInsideScreen();
+    handleControls(){
+        if(game.isTouching){
+            this.pos.x = Smooth(this.pos.x, game.mouseX, 13);
+            this.keepInsideScreen();
 
-        const isTouchingFarEnough = Math.abs(this.pos.x - game.mouseX) > this.size / 2;
+            const isTouchingFarEnough = Math.abs(this.pos.x - game.mouseX) > this.size / 2;
 
-        if (isTouchingFarEnough) {
-            const movingDirection = Math.sign(game.mouseX - this.pos.x);
-            this.goalRotation = movingDirection * game.radians(15);
+            if (isTouchingFarEnough) {
+                const movingDirection = Math.sign(game.mouseX - this.pos.x);
+                this.goalRotation = movingDirection * game.radians(15);
+            }else{
+                this.goalRotation = 0;
+            }
         }else{
             this.goalRotation = 0;
         }
-    }else{
-        this.goalRotation = 0;
     }
-}
 
-keepInsideScreen() {
-    const limitLeft = this.size / 2;
-    const limitRight = game.width - this.size / 2;
-    this.pos.x = game.constrain(this.pos.x, limitLeft, limitRight);
+    keepInsideScreen() {
+        const limitLeft = this.size / 2;
+        const limitRight = game.width - this.size / 2;
+        this.pos.x = game.constrain(this.pos.x, limitLeft, limitRight);
+    }
 }
 ----
 
@@ -248,6 +253,7 @@ Add a `spawnCollectible()` function to add new collectibles to the game.
 [source,javascript]
 ----
 ...
+// Don't forget to import Collectible!
 import Collectible from './Entities/Collectible'
 
 const draw = () => {

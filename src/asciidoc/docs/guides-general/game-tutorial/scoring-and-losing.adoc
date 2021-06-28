@@ -3,7 +3,7 @@
 :page-description: Adding collision checks for scoring and conditions for losing a falling objects game.
 :figure-caption!:
 
-In the <<game-creating-game-objects#,previous section>> of the remixable game tutorial, you added the player and the collectibles to the falling objects game.
+In the <<game-creating-game-objects#,previous section>> of the customizable game tutorial, you added the player and the collectibles to the falling objects game.
 In this section, you’ll
 // tag::description[]
 enable the player to catch a falling collectible and add the logic for scoring and losing the game.
@@ -79,7 +79,7 @@ export default class Collectible extends Entity {
 When a collectible object is caught, you could simply remove it from the game.
 But, let's spice things up a bit!
 
-The game template has lots of effects that can make this game even more fun.
+The game scaffold has lots of effects that can make this game even more fun.
 Instead of the collectible simply disappearing upon contact, you can have the player attract it like a magnet and make it explode into particles.
 
 To add these animations, override the `update()` function in `Collectible.js`, but keep the original behavior, which is defined in the parent Entity class.
@@ -186,7 +186,7 @@ The `getCollected()` function does the following:
 
 * Sets the `shouldBeRemoved` flag to `true`.
 +
-This game template already has code that handles removal of entities when the `shouldBeRemoved` flag is set, so that's all you need to do.
+This game scaffold already has code that handles removal of entities when the `shouldBeRemoved` flag is set, so that's all you need to do.
 
 * Spawns `10` particles at the player's position and uses the same image as the `Collectible`.
 
@@ -300,7 +300,7 @@ The `onMiss()` funtion does the following:
 
 * Triggers a `game.loseLife` function.
 +
-The template automatically ends the game when there are no lives left.
+The scaffold automatically ends the game when there are no lives left.
 
 * Plays a `loselife` sound.
 
