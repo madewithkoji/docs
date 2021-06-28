@@ -136,7 +136,7 @@ const generatedVideo = Koji.ui.upload.uploadFile({
 });
 ----
 
-Learn more: <<core-frontend-ui-upload#uploadFile,.uploadFile>>, <<core-frontend-ui-upload#uploadOptions,UploadOptions>>
+Learn more: <<core-frontend-ui-upload#uploadFile,.uploadFile>>, <<core-frontend-ui-upload#UploadOptions,UploadOptions>>
 
 
 == Related resources
