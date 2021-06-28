@@ -124,6 +124,10 @@
               "slug": "capture-user-input"
             },
             {
+              "name": "Enabling file uploads",
+              "slug": "enable-file-uploads"
+            },
+            {
               "name": "Entitlements",
               "slug": "entitlements"
             },
