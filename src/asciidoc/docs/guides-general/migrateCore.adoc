@@ -1,22 +1,27 @@
 = Migrating to the Koji core package
 :page-slug: migrate-koji-core
-:page-description: Guide for migrating Koji templates that use deprecated packages to the Koji core package.
+:page-description: Guide for migrating Koji apps that use deprecated packages to the Koji core package.
 
-The <<withkoji-koji-core#, @withkoji/core package>> includes everything you need to access platform services in your Kojis.
+The <<withkoji-koji-core#, @withkoji/core package>> includes everything you need to access platform services in your Koji apps.
 It requires less boilerplate code and provides more flexibility than the <<packages-overview#_deprecated_packages,deprecated packages>> it replaces.
 
-If your Koji's code uses any of the deprecated packages, follow this guide to migrate it to the @withkoji/core package.
-For example, you might have implemented features with the deprecated packages or forked a template that uses them.
-To determine whether this guide applies to your code base, check the `package.json` file for the deprecated packages, such as `@withkoji/vcc`.
-Also, check whether your project contains a `.koji` directory.
-If you find a deprecated package or a `.koji` directory, your code base likely needs to be updated.
+If your app uses any of the deprecated packages, follow this guide to migrate it to the @withkoji/core package.
 
 TIP: For a mapping of all deprecated packages to the replacement functionality in @withkoji/core, see <<_package_comparison_reference>>.
 
+== Do I need to migrate?
+
+You must migrate your code to the @withkoji/core package if you implemented features with the deprecated packages or if you forked an app that uses them.
+
+To determine whether your code uses any of the deprecated packages, check the following:
+
+* The `package.json` file mentions deprecated packages, such as @withkoji/vcc.
+* Your project contains a `.koji` directory.
+
 == Migrating configuration data
 
-The @withkoji/core package must be initialized with configuration data to create the service map and set up remixing and other platform services in your Koji.
-In Kojis that use the deprecated packages, this configuration data is typically maintained across multiple JSON files in the `.koji` directory of the project.
+The @withkoji/core package must be initialized with configuration data to create the service map and set up customization and other platform services in your app.
+In apps that use the deprecated packages, this configuration data is typically maintained across multiple JSON files in the `.koji` directory of the project.
 The @withkoji/core package requires changes to these data files.
 
 * To simplify implementation of the @withkoji/core package, it is recommended that all configuration data is defined in a single `koji.json` file at the root of the project.
@@ -32,11 +37,11 @@ To migrate your configuration data for compatibility with @withkoji/core, comple
 . Migrate the configuration data from the `.koji` directory to the following keys in the `koji.json` file.
 * `develop` – Development instructions from `.koji/project/develop.json`.
 * `deploy` – Deployment instructions from `.koji/project/deploy.json`.
-* `remixData` – Default values for remix data from the scope section of any JSON customization files in the `.koji/customization` directory.
+* `remixData` – Default values for customization data from the scope section of any JSON customization files in the `.koji/customization` directory.
 +
-NOTE: For more information on managing remix data without VCCs, see <<_getting_and_setting_remix_data>>.
+NOTE: For more information on managing customization data without VCCs, see <<_getting_and_setting_customization_data>>.
 
-* `@@initialTransform` – Placeholder values for new remixes from the `@@initialTransform` key of any JSON customization files in the `.koji/customization` directory.
+* `@@initialTransform` – Placeholder values for new custom versions from the `@@initialTransform` key of any JSON customization files in the `.koji/customization` directory.
 * `entitlements` – Entitlements from the `.koji/project/entitlements.json` file.
 
 +
@@ -46,13 +51,13 @@ NOTE: For more information on managing remix data without VCCs, see <<_getting_a
 include::../_includes/koji.json[tags=**]
 ----
 
-. If your Koji has remix data and the `InstantRemixing` entitlement is enabled, configure the settings for remixes of older versions.
+. If your app has customization data and the `InstantRemixing` entitlement is enabled, configure the settings for older custom versions.
 +
-To take advantage of the upgrades in the @withkoji/core package, it is recommended that all remixes use the current code, as follows.
-For more information about these settings, see <<app-versions#_managing_instant_remix_versions, Managing remix versions>>.
+To take advantage of the upgrades in the @withkoji/core package, it is recommended that all custom versions use the current code, as follows.
+For more information about these settings, see <<app-versions#_managing_customization_versions, Managing customization versions>>.
 
-.. In the Koji editor, ensure the remix behavior is set to *Override and use the current version of this project*.
-.. Use the *VCC value upgrade function* to transform the remix values from the old JSON format to the new format.
+.. In the Koji code editor, ensure the behavior is set to *Override and use the current version of this project*.
+.. Use the *VCC value upgrade function* to transform the customization values from the old JSON format to the new format.
 For example, if you had a VCC file named `general`, your upgrade function might look like the following code.
 +
 [source,Javascript]
@@ -102,20 +107,20 @@ The replacement methods vary depending on which packages and functionality are i
 For a comprehensive mapping of deprecated packages to the replacement functionality in @withkoji/core, see the <<_package_comparison_reference>>.
 Key changes include:
 
-* Custom remix data no longer relies on VCC definitions in JSON files.
+* Customization data no longer relies on VCC definitions in JSON files.
 Instead, the methods of capturing and storing data are decoupled from one another and can be explicitly controlled in your code.
-See <<_getting_and_setting_remix_data>>.
+See <<_getting_and_setting_customization_data>>.
 * Detecting the current context no longer relies on URL query parameters.
 Instead, the context is available as a frontend property.
 See <<_context>>.
 * Frontend modules no longer require a constructor.
-* For Kojis that use dispatch, the `connect` method is now promised-based.
+* For apps that use dispatch, the `connect` method is now promised-based.
 See <<_dispatch_on_the_frontend>>.
 * Obtaining user tokens and requesting authorization grants is simplified and consolidated into the Identity module.
 See <<_identity_on_the_frontend>>.
 . Use the `Koji.ready` function to indicate that the application is ready to start receiving events.
 +
-You must call this function after initializing the package and subscribing to remix state changes, but before advancing to the preview with `Koji.remix.finish`.
+You must call this function after initializing the package and subscribing to customization state changes, but before advancing to the preview with `Koji.remix.finish`.
 
 . In the `package.json` file, remove any scripts that reference the deprecated packages.
 +
@@ -130,7 +135,7 @@ npm remove @withkoji/auth @withkoji/dispatch @withkoji/iap @withkoji/vcc
 
 == Migrating backend features
 
-If your Koji has a backend service, update your code to use the @withkoji/core package.
+If your app has a backend service, update your code to use the @withkoji/core package.
 
 . Install the @withkoji/core package in the backend.
 +
@@ -149,8 +154,8 @@ import { KojiBackend } from '@withkoji/core';
 
 . Use `KojiBackend.middleware` to initialize the package with your configuration data.
 +
-The middleware manages the scope for backend functionality, so that your code can support your initial Koji along with all of its remixes.
-It works by parsing the request headers that the Koji platform uses to pass remix-specific data to the backend.
+The middleware manages the scope for backend functionality, so that your code can support your initial app along with all of its custom versions.
+It works by parsing the request headers that the Koji platform uses to pass version-specific data to the backend.
 +
 You must apply this middleware before handling any routes.
 The middleware will transform `res.locals`, and then modules in KojiBackend will accept `res` as a configuration parameter.
@@ -212,7 +217,7 @@ Key changes include:
 * All of the backend modules (Database, Dispatch, IAP, Identity, and Secret) now follow the same constructor pattern.
 * Validating user authorization is simplified and consolidated into the Identity module.
 See <<_identity_on_the_backend>>.
-* For Kojis that use in-app purchases, some methods have been renamed for clarity.
+* For apps that use in-app purchases, some methods have been renamed for clarity.
 See <<_iap_on_the_backend>>.
 . After you have implemented all backend functionality with the @withkoji/core package, you can remove the deprecated packages.
 For example:
@@ -325,7 +330,7 @@ app.get('/get-user-role', async (req, res) => {
   const user = await identity.resolveUserFromToken(userToken);
 
   const {
-    id,           // The userId (specific to the template/remix)
+    id,           // The userId (specific to the app/custom version)
     attributes,   // Attributes about the user (username, etc.)
     dateCreated,  // When the user first shared information
     grants,       // Any permissions the user has granted
@@ -563,7 +568,7 @@ app.get('/dispatch-event', async (req, res) => {
   // Wait for a connection (`connection` will have information about the connection)
   const connection = await dispatch.connect({});
 
-  // Send a message to all connected users (in the scope of the template/remix)
+  // Send a message to all connected users (in the scope of the app/custom version)
   dispatch.emitEvent('test', { hello: 'world' });
 
   res.status(200).json({
@@ -759,10 +764,10 @@ include::../_includes/deprecationQR.adoc[tag=all]
 | Not needed
 
 | finish
-| frontend/remix See <<_getting_and_setting_remix_data>>.
+| frontend/remix See <<_getting_and_setting_customization_data>>.
 
 | get(['scope', 'key']) // customization values
-| frontend/remix See <<_getting_and_setting_remix_data>>.
+| frontend/remix See <<_getting_and_setting_customization_data>>.
 
 | get(['metadata', 'projectId']) // project metadata
 | Not needed
@@ -773,7 +778,7 @@ include::../_includes/deprecationQR.adoc[tag=all]
 See <<_services>>.
 
 | onPresentControl
-| frontend/ui/capture See <<_getting_and_setting_remix_data>>.
+| frontend/ui/capture See <<_getting_and_setting_customization_data>>.
 
 | onSetActivePath
 | Not needed
@@ -782,13 +787,13 @@ See <<_services>>.
 | No longer supported
 
 | onSetRemixing
-| frontend/playerState See <<_remix_state>>.
+| frontend/playerState See <<_customization_state>>.
 
 | onSetValue
-| frontend/remix See <<_getting_and_setting_remix_data>>.
+| frontend/remix See <<_getting_and_setting_customization_data>>.
 
 | onValueChanged
-| frontend/remix See <<_getting_and_setting_remix_data>>.
+| frontend/remix See <<_getting_and_setting_customization_data>>.
 
 | ready
 | frontend/Koji
@@ -818,8 +823,8 @@ See <<_secrets>>.
 
 ==== Context
 
-A Koji can provide different experiences for different modes, called *contexts*.
-For example, you might provide a different experience during a configuration (remix) than when the template is running.
+An app can provide different experiences for different modes, called *contexts*.
+For example, you might provide a different experience during customization than when the app is running.
 
 To detect the current context with the deprecated packages, you would parse the URL for a query parameter.
 In the @withkoji/core package, the context is available from `Koji.playerState`.
@@ -829,34 +834,34 @@ For example:
 ----
 const { context, receiptType } = Koji.playerState;
 
-// Possible context values: 'about' | 'admin' | 'remix' | 'sticker' | 'receipt' | 'screenshot' | 'default'
+// Possible context values: 'remix' | 'receipt' | 'screenshot' | 'default'
 
 // Possible receiptType values: 'buyer' | 'seller'
 ----
 
-==== Remix state
+==== Customization state
 
-To listen for changes in remix state, use `Koji.playerState`.
+To listen for changes in customization state, use `Koji.playerState`.
 This method works similarly to `.onSetRemixing` in the deprecated package.
 
 [source,Javascript]
 ----
 const unsubscribe = Koji.playerState.subscribe((isRemixing, editorAttributes) => {
   setSomeState(isRemixing);
-  // Change Koji experience
+  // Change app experience
 });
 
 // To remove listeners on unmount etc.
 unsubscribe();
 ----
 
-==== Getting and setting remix data
+==== Getting and setting customization data
 
-One of the biggest advantages of the @withkoji/core package is that you can manage custom remix date with greater flexibility.
+One of the biggest advantages of the @withkoji/core package is that you can manage customization data with greater flexibility.
 You no longer need specialized JSON customization files to configure VCCs.
-Instead, you configure only the initial values for remix data.
+Instead, you configure only the initial values for customization data.
 Then, your application code can control when and how to capture and store data from users.
-For example, you can maintain the state locally and store the remix data right before advancing to the preview.
+For example, you can maintain the state locally and store the customization data right before advancing to the preview.
 
 To retrieve initial values with the deprecated package, you would specify the scope and key from one of your VCC files.
 For example:
@@ -864,7 +869,7 @@ For example:
 [source,Javascript]
 const backgroundColor = instantRemixing.get(['general', 'backgroundColor']);
 
-In @withkoji/core, all of the initial remix data is available as an object.
+In @withkoji/core, all of the initial customization data is available as an object.
 For example:
 
 [source,Javascript]
@@ -876,7 +881,7 @@ const remixData = Koji.remix.get();
 const { backgroundColor } = remixData;
 ----
 
-To manage remix data with the deprecated package, you would use methods such as `onSetValue`, `onValueChanged`, and `onPresentControl`.
+To manage customization data with the deprecated package, you would use methods such as `onSetValue`, `onValueChanged`, and `onPresentControl`.
 
 In @withkoji/core, the methods of capturing and storing data are decoupled from one another and can be explicitly controlled in your code.
 The following example uses `capture` to accept an image input from a user, and then `set` to update the value in the `remixData` object.
@@ -928,7 +933,7 @@ const onFinish = async () => {
 
 ==== Services
 
-If your Koji uses a backend service, you would use `instantRemixing.get` in the deprecated package to retrieve the endpoint.
+If your app uses a backend service, you would use `instantRemixing.get` in the deprecated package to retrieve the endpoint.
 For example:
 
 [source,Javascript]
@@ -942,8 +947,8 @@ const backendURL = Koji.services.backend
 
 ==== Secrets
 
-To save sensitive data that isn't visible to users by default and isn't copied when someone forks or remixes a template, you can use the `encryptValue` method.
-If anyone were to examine the remixData from a remix of the following example, only the `encryptedValue` would be visible.
+To save sensitive data that isn't visible to users by default and isn't copied when someone forks or customizes an app, you can use the `encryptValue` method.
+If anyone were to examine the remixData from a custom version of the following example, only the `encryptedValue` would be visible.
 
 [source,Javascript]
 ----

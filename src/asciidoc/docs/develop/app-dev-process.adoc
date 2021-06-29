@@ -148,7 +148,7 @@ Learn more: <<core-backend-overview#>>, <<add-service#>>, <<koji-database#>>
 
 == [.callout3]#Deploy your app#
 
-Publish from the editor <<editor#>> or push locally <<publish-locally-developed#>>
+Publish from the editor <<editor#_publishing_your_koji_app>> or push locally <<publish-locally-developed#>>
 
 Decide whether it's open-source
 
