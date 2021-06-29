@@ -38,7 +38,7 @@ Learn more: <<local-development#>>
 == [.callout2]#Develop your app#
 
 At their core, Koji apps are full-stack, modern JavaScript applications.
-They are designed to run in webviews, so that they are instantly available on all social platforms and every device.
+They are designed for in-app browsers, so that they are instantly available on all social platforms and every device.
 
 The <<withkoji-koji-core#,@withkoji/core package>> enables apps to use core features of the Koji platform, so you can build any type of web application and enable creators to customize it.
 
@@ -171,8 +171,6 @@ Then, click btn:[View Version History].
 Learn more: <<app-versions#_viewing_version_history, Viewing version history>>
 
 TIP: If you update your app and deploy it again, the new version of the app replaces the existing version at the production URL.
-However, your app listing in the App Store is not automatically updated.
-This feature lets you release test versions of updates without affecting a currently listed version in the App Store.
 
 == [.callout4]#Test your app#
 

@@ -8,7 +8,7 @@ It is used by artists, influencers, brands, and content creators everywhere to m
 == Develop apps that power the creator economy
 
 As a developer on Koji, you can build apps that creators can customize and add to their Link in Bio profiles.
-Koji apps are full-stack, modern JavaScript applications that are designed to run in webviews on all social platforms.
+Koji apps are full-stack, modern JavaScript applications that are designed for in-app browsers and run on all social platforms.
 You can build any type of app – from premium content sales, to games and utilities – and your software can be used and shared by millions of people worldwide.
 
 == The Koji developer experience
