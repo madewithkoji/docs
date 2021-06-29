@@ -149,15 +149,41 @@ Learn more: <<core-backend-overview#>>, <<add-service#>>, <<koji-database#>>
 
 == [.callout3]#Deploy your app#
 
-Publish from the editor <<editor#_publishing_your_koji_app>> or push locally <<publish-locally-developed#>>
+When you're finished developing your app, you can deploy it to the Koji platform.
+Deployed apps are accessible at a permanent production URL.
 
-Share its production URL.
+. Deploy your app from your development environment.
 
-Learn more: 
+* If you're working in the Koji code editor, you can publish your app from there.
++
+Learn more: <<editor#_publishing_your_koji_app, Publishing your Koji app>>
+
+* If you're working outside the editor, you must push your changes to your project’s origin repository.
++
+Learn more: <<publish-locally-developed#>>
+
++
+After you publish the app, the Koji profiler checks for errors, generates metadata about it, and, if it is error-free, enables the platform entitlements.
+
+. To verify that your latest build was deployed, go to your https://withkoji.com/developer/projects[developer portal] and select the app.
+Then, click btn:[View Version History].
++
+Learn more: <<app-versions#_viewing_version_history, Viewing version history>>
+
+TIP: If you update your app and deploy it again, the new version of the app replaces the existing version at the production URL.
+However, your app listing in the App Store is not automatically updated.
+This feature lets you release test versions of updates without affecting a currently listed version in the App Store.
 
 == [.callout4]#Test your app#
 
-Learn more: <<testing-apps#>>
+The Koji platform provides a variety of tools for testing and debugging apps.
+
+* If you're working in the Koji code editor, you can preview your app in different modes and on different devices.
+
+* If you're working outside the editor, you can use your browser to verify the basic functionality.
+Then, you can point the Koji debugger to your localhost so that you can test all app functionality.
+
+Learn more: <<testing-apps#>>, <<editor#_previewing_your_koji_app, Previewing your Koji app>>, <<work-locally#_testing_your_local_deployment, Testing your local deployment>>
 
 == [.callout5]#Distribute your app#
 
