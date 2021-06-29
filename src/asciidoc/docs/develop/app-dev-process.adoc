@@ -11,15 +11,16 @@ The following steps describe the general process for developing a customizable a
 
 == [.callout1]#Choose a starting point#
 
-A good starting point will provide a foundation that lets you start coding your app's unique features more quickly.
+With the Koji platform, you don't have to start from nothing.
+Instead, you can build on an existing project that already implements most of what you need for your own app.
 For example, you might start from a https://withkoji.com/create/for-developers[developer scaffold] that implements your favorite JavaScript framework, or from an app that already uses some desired functionality, such as a backend database.
 
-. To create a new project, fork an existing app that allows developers to fork it.
+. To create a new project, fork an existing app.
 
 .. In the App Store, find your desired starting app and click btn:[View].
 +
 TIP: To explore the source code for an app before forking it, click menu:...[Advanced Details > Source Code].
-If this option is not available, the app does not allow developers to fork it.
+If this option is not available, the app is not forkable.
 
 .. In the app's detail page, click menu:...[Fork].
 +
@@ -47,11 +48,11 @@ To define this data, most Koji projects include a `koji.json` file at the root o
 
 . Define the instructions for building your code and deploying your app on the Koji platform.
 +
-Learn more: <<projects#develop, develop key>>, <<projects#deploy, deploy key>>
+Learn more: <<projects#_develop, develop key>>, <<projects#_deploy, deploy key>>
 
 . If the app has customization options for creators, define the default values for those options and any placeholder values for new, customized versions.
 +
-Learn more: <<projects#remixData, remixData key>>, <<projects#@@initialTransform, @@initialTransform key>>
+Learn more: <<projects#_remixData, remixData key>>, <<projects#_@@initialTransform, @@initialTransform key>>
 
 . Configure the entitlements for the Koji platform features in your app.
 +
@@ -84,9 +85,7 @@ npm install @withkoji/core
 [source,Javascript]
 import Koji from '@withkoji/core';
 
-. Use the `Koji.config` function to initialize the package with your app's configuration data.
-+
-Ideally, your code will initialize the package one time, before any data in the application is rendered.
+. Use the `Koji.config` function to initialize the package with your app's configuration data before any data in the application is rendered.
 For example:
 +
 [source,Javascript]
@@ -114,16 +113,19 @@ If your app has a backend service, follow these steps to use the @withkoji/core 
 [source, Bash]
 npm install @withkoji/core
 
-. Make sure the `koji.json` file will be bundled with the backend service during deployment.
-+
-TIP: In most frameworks, this file won’t be bundled by default because it is not in the same folder as the backend code.
-If the file is not bundled, the backend service will not be initialized correctly and the deployment will fail.
-To solve this problem, you can use a tool such as https://www.npmjs.com/package/babel-plugin-inline-json-import[babel-plugin-inline-json-import].
-
-. In your backend code, import the package.
+. In your backend code, import the package and your app's configuration data.
 +
 [source,Javascript]
+----
 import { KojiBackend } from '@withkoji/core';
+
+import kojiConfig from '../../koji.json';
+----
+
++
+TIP: To initialize the core package in your backend, the `koji.json` file must be bundled with the backend service during deployment of your app.
+Many frameworks won't bundle this file by default because it is not in the same folder as the backend code.
+To solve this problem, you can use a tool such as https://www.npmjs.com/package/babel-plugin-inline-json-import[babel-plugin-inline-json-import].
 
 . Use `KojiBackend.middleware` to initialize the package with your app's configuration data.
 +
