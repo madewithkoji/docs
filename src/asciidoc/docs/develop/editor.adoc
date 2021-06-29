@@ -76,7 +76,7 @@ You can publish your app from the code editor.
 . After your app is published, click the link in the success message to view it.
 +
 You can share this permalink URL with collaborators and testers.
-If update your app and republish it, the link remains the same.
+If you update and republish your app, the link remains the same.
 
 == Tips
 
