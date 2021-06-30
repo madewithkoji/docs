@@ -72,6 +72,10 @@
           "root": "/develop",
           "items": [
             {
+              "name": "App development process",
+              "slug": "app-dev-process"
+            },
+            {
               "name": "Project structure and configuration",
               "slug": "projects"
             },

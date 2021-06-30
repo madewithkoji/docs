@@ -58,10 +58,25 @@ Scan this code to preview the app on your mobile device.
 
 * The remote staging button image:{imagesDir}/remote-preview.svg[Remote staging button] opens a preview of your app in a new browser tab.
 
+NOTE: The staging location is available only while the Koji code editor is active.
+
 === Debugging
 
 To open the debugger in a new browser tab, click *Launch Debugger*.
 For more information, go to <<testing-apps#_using_the_koji_debugger, Using the Koji debugger>>.
+
+== Publishing your Koji app
+
+You can publish your app from the code editor.
+
+. Under *Project*, click btn:[Publish Now].
+. Enter a name for the project.
+. (Optional) Configure other settings.
+. Click btn:[Publish New Version].
+. After your app is published, click the link in the success message to view it.
++
+You can share this permalink URL with collaborators and testers.
+If you update and republish your app, the link remains the same.
 
 == Tips
 
