@@ -125,8 +125,8 @@ import kojiConfig from '../../koji.json';
 
 +
 TIP: To initialize the core package in your backend, the `koji.json` file must be bundled with the backend service during deployment of your app.
-Many frameworks won't bundle this file by default because it is not in the same folder as the backend code.
-To solve this problem, you can use a tool such as https://www.npmjs.com/package/babel-plugin-inline-json-import[babel-plugin-inline-json-import].
+Many development frameworks won't bundle this file by default because it is not in the same folder as the backend code.
+To solve this problem, you can use a tool such as https://www.npmjs.com/package/babel-plugin-inline-json-import[babel-plugin-inline-json-import] to ensure the configuration data is available to your backend service.
 
 . Use `KojiBackend.middleware` to initialize the package with your app's configuration data.
 +
@@ -134,7 +134,7 @@ The middleware manages the scope for backend functionality, so that your code ca
 It works by parsing the request headers that the Koji platform uses to pass version-specific data to the backend.
 +
 You must apply this middleware before handling any routes.
-The middleware will transform `res.locals`, and then modules in KojiBackend will accept `res` as a configuration parameter.
+The middleware will transform `res.locals`, and then modules in `KojiBackend` will accept `res` as a configuration parameter.
 For example, here is an implementation with a traditional Express application.
 +
 [source,Javascript]
