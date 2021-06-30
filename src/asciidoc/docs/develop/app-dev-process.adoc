@@ -38,7 +38,7 @@ Learn more: <<local-development#>>
 == [.callout2]#Develop your app#
 
 At their core, Koji apps are full-stack, modern JavaScript applications.
-They are designed for in-app browsers, so that they are instantly available on all social platforms and every device.
+They are designed for in-app browsers, so that they are instantly available on all social platforms and on every device.
 
 The <<withkoji-koji-core#,@withkoji/core package>> enables apps to use core features of the Koji platform, so you can build any type of web application and enable creators to customize it.
 
