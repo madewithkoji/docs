@@ -4,7 +4,7 @@
 :includespath: ../_includes
 
 The Koji platform is designed for developers like you to build and distribute customizable web apps for content creators.
-On Koji, creators can discover your apps, and then add them to their Link in Bio profiles and share them on social media.
+On Koji, creators can discover your apps, add them to their Link in Bio profiles, and share them on social media.
 As more creators use your Koji apps, you can make more revenue, reach more users, and build your business.
 
 The following steps describe the general process for developing a customizable app on Koji and distributing it to content creators.
