@@ -51,7 +51,7 @@ To define this data, most Koji projects include a `koji.json` file at the root o
 +
 Learn more: <<projects#_develop, develop key>>, <<projects#_deploy, deploy key>>
 
-. If the app has customization options for creators, define the default values for those options and any placeholder values for new, customized versions.
+. If the app has customization options for creators, define the default values for those options and any placeholder values for new customized versions.
 +
 Learn more: <<projects#_remixData, remixData key>>, <<projects#_@@initialTransform, @@initialTransform key>>
 
@@ -188,7 +188,7 @@ Learn more: <<testing-apps#>>, <<editor#_previewing_your_koji_app, Previewing y
 After you develop, deploy, and test your app, you can share it in any of these ways:
 
 * *Share a direct link with specific people.*
-This option lets your collaborators and customers use your app, without allowing the general public to discover it on the Koji platform.
+This option lets your collaborators and customers use your app without allowing the general public to discover it on the Koji platform.
 It is useful for limited releases or testing.
 +
 To get the production URL of your app, go to your https://withkoji.com/developer/projects[developer portal] and select the app.
@@ -197,7 +197,7 @@ Then, click btn:[View Published Koji], and copy the URL.
 * *List it in the https://withkoji.com/apps[Koji App Store].*
 This option reaches Koji's global audience of content creators and lets them customize and add your app to their profiles.
 You can add marketing assets and documentation to attract more users to your app.
-You can also make money by setting a price for creators to use your app or by setting a transaction fee for in-app purchases.
+You can also monetize it by setting a price for creators to use your app or by setting a transaction fee for in-app purchases.
 +
 Learn more: <<app-store#>>
 +
