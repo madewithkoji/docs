@@ -1,122 +1,211 @@
-= Your first Koji project
-:page-slug: your-first-project
-:page-description: Creating a new template by forking from an existing one and publishing it.
+= Your first Koji app
+:page-slug: tut-first-project-basics
+:page-description: Creating a new project by forking an existing one, making minor edits, and then publishing the app.
 :figure-caption!:
+:includespath: ../../_includes
 
-Projects are the building blocks you use to create amazing web apps and experiences with Koji.
-In the first section of the quick start tutorial, you will
+As in most development projects, a Koji project is the collection of source code and assets that are compiled and packaged to create a Koji app.
+In the first section of this tutorial, you will
 // tag::description[]
-walk through creating and publishing your first project.
+walk through creating your first project by forking an existing one, making minor edits, and then publishing the app.
 // end::description[]
 
-By the end of the section, you should feel comfortable:
+In this section, you will learn how to:
 
-* Creating a new project by forking an existing one.
-* Opening the code editor to view a project’s code.
-* Publishing a project from the code editor.
+* Fork an existing project.
+* Open the code editor to view the code in your project and make minor edits.
+* Compile and publish the app from the code editor.
+* Reopen the project for additional editing.
 
 == Forking an existing project
 
-In software, it’s often the case that someone else has already built a scaffold or foundation that can help you get started more quickly.
-This principle applies to much of what we do as a platform, and Koji is built on the idea that you will always have a pre-existing starting point for any project.
+[quote, Sir Isaac Newton]
+If I have seen further, it is by standing on the shoulders of giants.
 
-Koji developers start from an existing project through a process called *forking*.
-If you’ve used a version control program such as Git, you might already be familiar with this term.
-Koji is doing something very similar to version control when you fork a project.
+Koji is designed with the idea that any new technology is built on other existing technologies.
 
-When you fork a project, you create a copy of the project that you now own.
-In your new project, you can make changes to the code, reorganize things, and even remove things that you don’t like.
+Koji developers start by forking an existing project or scaffold.
+In version control solutions, such as Git, [.term]#forking# means copying the contents of an entire repository to a new repository, which becomes the starting point for a different goal.
+You can fork other developers' projects or your own.
 
-This is a powerful concept, because it means that, if you see something on Koji you like, you can fork it, and use it as a starting point for a new project.
-You can fork other developers' projects, or even your own.
+When you fork a Koji project, you create a copy that you own.
+In your copy, you can change the code, reorganize components, and even remove parts that you don’t like.
 
-For now, we’ll start by forking a scaffold.
-Scaffolds are bare-bones projects that include things like a basic JavaScript framework, as well as the instructions that Koji needs to run the project.
+In this tutorial, you will fork a scaffold.
+Scaffolds are bare-bones projects that include a basic JavaScript framework, as well as the instructions that Koji needs to run the project.
 
-Start by visiting the https://withkoji.com/templates/9a1dbf27-e1f7-40c6-943e-374e57aa7582[Getting Started Scaffold template page].
-This page shows you some information about the template for the project, including a preview of the published template.
-Take a minute to familiarize yourself with it.
-When you're ready, fork the template by clicking the three dots on the right side of the header and clicking *Fork*.
+=== Exercise 1.1: Fork the scaffold
 
-image::QS_01_getting-started.png[Getting Started Scaffold]
+. Go to the https://withkoji.com/apps/tutorial-template-koji-quick-start-2873c226[Tutorial Template: Koji Quick Start] details page.
 
-== Viewing project details
-
-After you successfully fork the template, the *Project Details* screen opens.
-*Project Details* shows you information about your project and provides some advanced tools and configuration options.
-
-For now, we want to focus on publishing the project.
-Publishing makes the project publicly accessible, so that you can share it with other people.
-You publish your project using Koji's code editor.
-
-Click *Open in Code Editor*.
-
-image::QS_02_open-in-editor.png[Open in Code Editor]
-
-== Taking a quick look at the code editor
-
-If you’ve used code editing tools such as VSCode or Atom, Koji’s code editor should look familiar.
-On the left side is a file explorer.
-When you click on a file in the explorer, it opens in the center panel where you can edit it.
-On the right side is a preview of your project.
-
-image::QS_03_code-editor.png[Code Editor]
-
-In later sections of the quick start tutorial, you'll have plenty of time to explore the code editor.
-For now, let’s move on to publishing your project.
-
-== Publishing your project
-
-When you fork a template, you create a new copy of an existing project.
-When you open that project in the code editor, you can view and edit the underlying code, and you can see a preview of the project.
-
-The preview runs in a development or staging environment.
-If you haven’t worked in a staging environment before, you can think of it as a draft mode.
-The staging environment allows you to preview your project and test changes to it before you send it out to the world.
-
-Although you haven’t made any changes to your project yet, you can still publish it.
-This means that the published version of your project will look exactly the same as the project that you forked.
-
-. To open *Publish Settings*, click *Publish Now*.
+. Fork the project by going to menu:...[Fork].
 +
-image::QS_04_publish-now.png[Publish Now]
-+
-*Publish Settings* allows you to customize some of your project's metadata.
-You can also adjust things like visibility settings.
+[.img50]
+image::tut-1stproj-fork.png[Forking the project]
 
-. In the *Name* field, type a new name for your project.
-Choose something memorable like `My First Published Project`.
+The *Project Details* page opens.
+
+== Viewing and updating the project details
+
+The *Project Details* page shows you information about your project and provides some advanced tools and configuration options.
+
+Notice that the name of your project is the same as the name of the original scaffold.
+Customize your project by renaming it.
+
+=== Exercise 1.2: Rename the new project
+
+. To rename your project, click the btn:[Rename].
 +
-image::QS_04_publish-now-name.png[Give the published project a name]
+[.img50]
+image::tut-1stproj-projdetails-rename.png[In the Project Details page, click the *Rename* button.]
+
+. In the modal, fill in the *Project Name* field.
++
+[.img50]
+image::tut-1stproj-projdetails-rename.gif[In the modal, enter a new name.]
+
+. Click btn:[Save].
+
+The project name changes to the new name you entered.
+
+=== Exercise 1.3: Open the code editor
+
+. From the *Project Details*, click *Open in Code Editor*.
++
+[.img50]
+image::tut-1stproj-projdetails-postrename-codeeditor.png[Open in Code Editor]
+
+== Exploring the code editor
+
+include::{includespath}/images-annotated.adoc[tag=editorsections]
+
+=== Exercise 1.4: Edit [.filepath]#README.md#
+
+By default, the README.md tab is initially open in the code editor.
+If not, click the *Readme* link in the left navigation pane under *Project*.
+
+[.img50]
+image::tut-1stproj-codeeditor-readme.gif[Replace the title of the readme]
+
+. On the tab for [.filepath]#README.md#, toggle to btn:[Code] to edit the file.
+. Update the title of the readme to be the same as the new name of your project.
+include::{includespath}/steps-codeeditor.adoc[tag=click-save-or-ctrl-s]
+
+The btn:[Save] button appears whenever the file has unsaved changes.
+
+=== Exercise 1.5: Edit [.filepath]#App.js#
+
+[.img50]
+image::tut-1stproj-codeeditor-app-js.png[Edit app.js]
+
+. In the navigation pane, expand menu:frontend[src] and click [.filepath]#App.js#.
++
+In the editing pane, a new tab is created for [.filepath]#App.js#.
+
+. Replace the text that the app displays.
++
+.. Search for the following line:
++
+[source,javascript]
+----
+<p>Getting Started with Koji</p>
+----
++
+.. Replace it with:
++
+[source,javascript]
+----
+<p>Having Fun with Koji</p>
+----
+
+include::{includespath}/steps-codeeditor.adoc[tag=click-save-or-ctrl-s]
+
+Notice that the preview pane is automatically updated with the new text.
+
+TIP: To close a source file that is open in the editing pane, simply click the *X* icon on that file's tab.
+
+== Publishing your app
+
+The preview displays only a temporary (debug) build of your app, which is hosted in a staging server.
+You can share the staging URL with your collaborators for testing and for getting feedback.
+However, this build and its associated URL become inaccessible after you close the code editor.
+
+TIP: You can find the staging URL by clicking the remote preview icon (image:remote-preview.svg[]) near the top of the preview pane.
+Then copy the URL from the browser's address field.
+
+To release your completed app and obtain a permanent URL, you must publish it.
+When you do so, an optimized (release) build of your app is generated and then hosted in a production server.
+
+[NOTE]
+====
+Publishing your app does not automatically add it to the Koji App Store until you create a listing for it.
+Learn more: <<app-store#>>
+
+You can also share the permanent production URL of your app in email or other social media.
+====
+
+=== Exercise 1.6: Publish your app
+
+. From the navigation pane, click *Publish Now*.
++
+[.img50]
+image::code-editor-publish-now.png[Publish Now]
++
+The *Changes* section shows the files that were modified.
++
+IMPORTANT: Before publishing, check that all changes have been saved in all files that you edited.
+Unsaved changes will not be published and are lost when you close the code editor.
+
+. (Optional) Replace the default name and add a description.
+
+. (Optional) Select *Allow Remixing* to allow other developers to fork this project.
 
 . Click *Publish New Version*.
-+
-image::QS_04_publish-new-version.png[Publish New Version]
-+
-After a few moments, Koji notifies you that your project has been successfully published.
-It's now live for the world to see!
 
-. To view the live version of your project, visit the link in the success notification.
+During the build, a progress bar is displayed at the bottom right.
+
+After the build, the progress bar is replaced by a success notification, which includes a link to the permanent URL of your app.
+Future versions of your app will have the same URL.
+
+== Your Developer Portal
+
+All the projects you create are listed in your own Developer Portal, where you can open them again for editing.
+
+The Developer Portal also includes additional links:
+
+* *Community* – Many ways to connect with the Koji developer community.
+* *Documentation* – This documentation set.
+* *My App Templates* – The listings for apps that you added to the Koji App Store. Learn more: <<app-store#>>
+* *Access Keys* – Security keys required to access your Koji project locally. Learn more: <<local-development#>>
+
+=== Exercise 1.7: Reopen your project
+
+1. Open a new browser window.
+
+2. Go to your https://withkoji.com/developer/projects[Developer Portal].
 +
-image::QS_04_app-published.png[App published]
-+
+[.img50]
+image::developer-portal.png[Developer Portal]
+
+3. Under *All Projects*, click the project that you created earlier.
+
+The *Project Details* page opens.
+This is the same page where you renamed your project and opened the code editor.
+
 [NOTE]
-The link that's created when you first publish your project is a permanent link to your deployed project.
-This means that when you publish updates or changes to your project, the link to the live, published version will always be the same.
+====
+Koji handles almost everything you need to deploy and host your app:
 
-One great thing about Koji is that it handles almost all of the requirements to deploy and host your project.
-With Koji, you get:
-
-* A permalink where you can view your published project.
-* Free hosting of your project.
-* Automatic scaling (as more users visit your published project).
+[.singlespaced]
+* A permalink to access your published app.
+* Free hosting of your app.
+* Automatic scaling as more users use your app.
 * SSL.
-
-There are even more great things about building and deploying projects on Koji that we’ll get into as we explore the rest of this tutorial.
+====
 
 == Wrapping up
 
-Congratulations! You've successfully forked and published your own project!
-You’ve also seen some of the basic parts of the *Project Details* page, as well as the code editor.
+Congratulations! You've successfully created and published your own Koji app!
+You’ve also seen some of the basic parts of the *Project Details* page, the code editor, and the Developer Portal.
 
-In the <<code-editor#, next section>>, we look at making some changes to your project’s code and what re-publishing a project looks like.
+In the <<core-package#, next section>>, you'll learn how to incorporate the @withkoji/core package into your project and how to use it to easily add various features to your app.

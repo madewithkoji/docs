@@ -8,6 +8,7 @@
     include::{includespath}/steps-codeeditor.adoc[tag=go-to-project-details-base]
     include::{includespath}/steps-codeeditor.adoc[tag=go-to-project-details-more]
     include::{includespath}/steps-codeeditor.adoc[tag=open-in-code-editor]
+    include::{includespath}/steps-codeeditor.adoc[tag=click-save-or-ctrl-s]
     include::{includespath}/steps-codeeditor.adoc[tag=rename-and-open-in-code-editor]
     include::{includespath}/steps-codeeditor.adoc[tag=view-published-koji]
     include::{includespath}/steps-codeeditor.adoc[tag=cli-front-end]
@@ -42,6 +43,11 @@
 // tag::rename-and-open-in-code-editor[]
 . In the *Project Details* page, rename the app, then click *Open in Code Editor*.
 // end::rename-and-open-in-code-editor[]
+
+
+// tag::click-save-or-ctrl-s[]
+. Click btn:[Save] or press kbd:[Ctrl+S] or kbd:[Cmd+S].
+// end::click-save-or-ctrl-s[]
 
 
 // tag::view-published-koji[]

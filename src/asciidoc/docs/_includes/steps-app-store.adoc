@@ -1,0 +1,18 @@
+= Steps for the App Store
+
+////
+  Usage:
+    :includespath: ../_includes
+
+    include::{includespath}/steps-app-store.adoc[tag=go2-app-store-developers]
+////
+
+
+// tag::all[]
+
+// tag::go2-app-store-developers[]
+. Go to the https://withkoji.com/create/for-developers[*For Developers* section] of the App Store.
+// end::go2-app-store-developers[]
+
+
+// end::all[]

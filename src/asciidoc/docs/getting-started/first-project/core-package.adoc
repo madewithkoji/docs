@@ -3,104 +3,96 @@
 :page-description: Installing the @withkoji/core package and using it to capture user input.
 :figure-caption!:
 
-In the <<code-editor#,previous section>> of the quick start tutorial, you walked through exploring the folders and files in your project, making changes to files, and publishing updates.
+In the <<tut-first-project-basics#,previous section>> of this tutorial, you created a new project by forking an existing one, made minor edits, and then published the app.
 In this section, you’ll
 // tag::description[]
-continue using the code editor to install and implement the @withkoji/core package.
+continue using the code editor to install and use the @withkoji/core package.
 // end::description[]
 
-By the end of this section, you should feel comfortable:
+In this section, you will learn how to:
 
-* Using the terminal feature inside the code editor to run commands.
-* Installing and importing the @withkoji/core package into a project.
-* Using the @withkoji/core package to capture input from a user.
+* Use the terminal feature inside the code editor to run commands.
+* Install and import the @withkoji/core package into your project.
+* Use the @withkoji/core package to capture input from a user.
 
 == The JavaScript ecosystem
 
-If you spend some time looking at the history of the web, you’ll find that the user’s experience has improved dramatically over the past few decades.
-For a long time, user interactions were limited to link-style navigation and using forms to capture data.
+JavaScript was introduced as a way to build more complex user experiences, and it has become the primary language in which most web applications are written today. Therefore, Koji features and tools for developers are built with and for JavaScript and its surrounding ecosystem.
 
-JavaScript was introduced as a way to build more complex user experiences, and it's become the primary language in which most web applications are written today.
+This support means that you can easily use popular JavaScript frameworks, such as React, Vue, and Svelte in your development.
+It also means that you have access to NPM, the world's largest software registry, which has over 1.5 million packages ready to install and use in your project.
 
-It seems likely that JavaScript will continue to dominate web development for a long time to come, so Koji has chosen to embrace JavaScript as the way to go.
-We aim to support JavaScript and its surrounding ecosystem in the features and tools that we provide to developers.
+In this section, you will learn about the primary Koji package @withkoji/core, which exposes many of Koji’s powerful platform features in an easy-to-use set of modules and methods.
 
-This support means that it will be easy for you to use popular frameworks such as React, Vue, and Svelte in your development.
-It also means that you have will access to NPM, the world's largest software registry, which has over 1.5 million packages ready to install and use in your project.
+== Installing a package
 
-In this section, we’ll look at one specific package, @withkoji/core, which exposes many of Koji’s powerful platform features in an easy to use set of modules and methods.
+Koji’s code editor has a built-in terminal or command-line interface (CLI), which you use to send text-based commands to the Koji platform.
+By default, the terminal pane is minimized at the bottom of the code editor.
 
-Let’s start by going back to your project in the code editor.
-If you’ve closed the code editor since the last section, you can go to the https://withkoji.com/developer/projects[Developer Portal] to see a list of your projects.
+* To expand the terminal pane, you can click any of the existing terminal tabs or the chevron (image:chevron.svg[chevron icon]) at the rightmost end of the pane.
+* To minimize the terminal pane, you can click the active tab or the chevron.
 
-Click the project that you published in the last section, and click *Open in Code Editor*.
+You will use this terminal to install the @withkoji/core package and to stop and start the service that supports your app preview.
 
-== Using the terminal
+=== Exercise 2.1: Install @withkoji/core
 
-If you’ve done software development in the past, you’ve probably used a terminal or command line interface.
-You use the terminal to send text-based commands to your computer.
+. <<tut-first-project-basics#_exercise_1_7_reopen_your_project,Open the *Project Details* page for your project>> and then click *Open in Code Editor*.
 
-Koji’s code editor has a built-in terminal that you can open by clicking the up caret on the right side of the Terminal pane, or by clicking one of the existing terminal tabs.
+. At the bottom of the code editor, click the *frontend* tab of the terminal pane.
++
+By default, the messages would indicate that the project compiled successfully and is available at [.filepath]#\https://localhost:8080#.
 
-image::CP_02_opening-the-terminal.png[Opening the terminal]
+. Stop the running service.
+.. Click inside the terminal.
+.. Press kbd:[Ctrl+C] or kbd:[Cmd+C].
 
-After you’ve expanded the terminal pane, you should see something like the following.
+. Install the @withkoji/core package.
++
+[source,bash]
+----
+npm install @withkoji/core
+----
++
+NPM displays the status as it requests the latest package details and installs the package in the project.
 
-image::CP_02_the-terminal.png[The terminal]
+. When installation is complete, restart the service.
++
+[source,bash]
+----
+npm start
+----
++
+This triggers React to recompile your project and then start the service.
+The terminal will display the same messages as it did before you stopped the process.
 
-If you’ve worked with React in the past, this output should look familiar.
-It’s letting us know that the project has been compiled successfully and is being served at `\https://localhost:8080`.
+. Minimize the terminal pane.
 
-== Installing @withkoji/core
+NOTE: If you add a backend to your app, you must also install the package in the *backend* tab.
+This tutorial does not include a backend component.
 
-We’ll have an opportunity to explore the terminal more in later sections.
-For now, let's use it to install the @withkoji/core package from NPM.
+== Importing the package
 
-Stop the running process by pressing `Cmd+C` or `Ctrl+C`, depending on your operating system.
+After installation, you must import the package in your project.
 
-image::CP_03_stop-the-running-process.png[Stopping the running process]
+The scaffold that you forked was designed for React.
+With React, you only need one line of code to import the package.
 
-Install the @withkoji/core package by running the following command:
+=== Exercise 2.2: Import the package and read the app's initial settings
 
-`npm install @withkoji/core`
+. From the navigation pane, open the file [.filepath]#/frontend/src/index.js#.
 
-You'll see some output in the terminal as you connect to NPM, request the latest package details, and install it in the project.
-If the installation is successful, you should see a final output similar to the following.
-
-image::CP_03_koji-core-installed.png[Koji core installed]
-
-Now that you’ve installed the @withkoji/core package, you need to restart the development server by running the following command:
-
-`npm start`
-
-After React compiles your project, you should see the same output you did when you first opened the terminal.
-
-image::CP_03_the-terminal.png[The terminal]
-
-== Importing the @withkoji/core package into a project
-
-You’ve successfully installed the @withkoji/core package, and now you're almost ready to use it in your project.
-Because you’re using React, you get module importing out of the box, and you need to add just one line of code to begin using the package.
-Let’s start by minimizing the terminal panel.
-
-Click the current tab.
-Alternatively, you can click the down caret.
-
-image::CP_04_minimize-terminal.png[Minimizing the terminal]
-
-Next, open the `/frontend/src/index.js` file, and make the following changes.
-
+. Modify the code to look as follows:
++
 [source, javascript]
 ----
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Koji from '@withkoji/core';
-
-import kojiConfig from '../../koji.json';
+import Koji from '@withkoji/core';  // <1>
+import kojiConfig from '../../koji.json';  // <2>
 import './index.css';
 import App from './App';
 
-Koji.config(kojiConfig, {
+Koji.config(kojiConfig, {  // <3>
   projectId: process.env.REACT_APP_PROJECT_ID,
   services: {
     frontend: process.env.REACT_APP_FRONTEND_URL,
@@ -114,43 +106,41 @@ ReactDOM.render(
   document.getElementById('root')
 );
 ----
+<1> Imports `Koji`, which is the default object exported by the `@withkoji/core` package.
+<2> Imports the `koji.json` file as `kojiConfig`. This file contains the initial settings of your app.
+<3> Calls `Koji.config` with the `kojiConfig` object and other parameters to provide your app's initial settings to the package.
 
-There are a few things going on here:
+NOTE: By calling `Koji.config` outside of React’s render loop, it is called exactly once, when the application initially loads.
+Calling `Koji.config` multiple times throws an error.
 
-* At the top of the file, you import `Koji`, the default export from the `@withkoji/core` package.
+Now, you are ready to use the modules and methods from the @withkoji/core package.
 
-* You also import the `koji.json` file as `kojiConfig`.
+== About the React state
 
-* Finally, you call `Koji.config` and pass in the `kojiConfig` object, as well as some additional parameters to help the package understand your project's configuration.
+In React, [.term]#state# is the set of information that your app needs while running.
 
-The big takeaway is that you’ve imported Koji's core package and called `Koji.config` outside of React’s render loop, which will ensure that it’s only called one time, when the application first loads.
+Most web applications use state in various ways, such as whether the user selected light or dark mode, whether a section of content is expanded or collapsed, or whether the user is logged in or not.
 
-Now, you can start using the modules and methods from the @withkoji/core package.
+In this tutorial, you will use state to store the URL of the rotating image.
 
-== A quick detour: React state
+=== Exercise 2.3: Store the image URL in state
 
-There are many tools available to help manage the *state* of your application.
-You can think of state as information that your project needs to keep track of as it's running.
+. From the navigation pane, open the file [.filepath]#/frontend/src/App.js#.
 
-Most web applications use state in some way.
-A few examples include tracking whether a user has selected light or dark mode, whether a particular section of content is expanded or collapsed, and whether a user is logged in or not.
-
-The web application that you’re building is quite simple, but you can still use state to store the URL of the rotating image, instead of using a static image.
-
-Make the following changes to the `frontend/src/App.js` file.
-
+. Modify the code to look as follows:
++
 [source, javascript]
 ----
-import { useState } from 'react';
+import { useState } from 'react';  // <1> <2>
 import './App.css';
 
 function App() {
-  const [logoSrc, setLogoSrc] = useState('https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg');
+  const [logoSrc, setLogoSrc] = useState('https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg');  // <3>
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logoSrc} className="App-logo" alt="logo" />
-        <p>Some New Text</p>
+        <img src={logoSrc} className="App-logo" alt="logo" />  // <4>
+        <p>Getting Started with Koji</p>
       </header>
     </div>
   );
@@ -158,25 +148,25 @@ function App() {
 
 export default App;
 ----
+<1> Removed the statement that imported the local `logo.svg` file.
+<2> Imports `useState` from `react`, which is a React hook that allows you to manage the state inside the component.
+<3> Calls the `useState` hook to initialize `logoSrc` with https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg[the publicly available React logo from Wikimedia Commons].
+<4> Uses the new const `logoSrc` as the source of the image, instead of the previously imported `logo`.
 
-Let's go over the changes.
-You removed the import statement that brought in the local `logo.svg` file.
-You also imported `useState` from `react`, which is a React hook that will allow you to do some state management inside the component.
+The syntax for the `useState` hook is as follows:
 
-The syntax for the `useState` hook is very simple:
+[source,javascript]
+----
+const [myValue, functionToSetMyValue] = useState(initialValue);
+----
 
-`const [myValue, functionToSetMyValue] = useState(initialValue);`
+where the reactive variable `myValue` is initialized with `initialValue` and can be updated using `functionToSetMyValue`.
 
-You have a reactive value (`myValue`) that you can update by using `functionToSetMyValue`.
-The value is initialized to `initialValue`.
 
-In your project, you use the publicly available React logo from Wikimedia Commons as the default value:
+This allows you to easily replace the image by calling `setLogoSrc` to change the value of `logoSrc`.
 
-`const [logoSrc, setLogoSrc] = useState('https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg');`
 
-You changed the `src` of the rotating image to `src={logoSrc}`, so the image being displayed will reference the `logoSrc`, even when you make changes to it using `setLogoSrc`.
 
-Let’s test it out using a feature from the @withkoji/core package!
 
 == Capturing user input with @withkoji/core
 
@@ -267,7 +257,7 @@ The image is actually being transformed and served back at a URL on a custom, Ko
 == Republishing
 
 We’re just starting to scratch the surface of the ways in which Koji can give a traditional web application super powers.
-Before we move on, let’s make sure you save your progress by publishing a new version of the project.
+Make sure you save your progress by publishing a new version of the project.
 
 Navigate back to *Publish Settings* by clicking *Publish Now*.
 
