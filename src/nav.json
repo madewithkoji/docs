@@ -68,6 +68,10 @@
           "root": "/develop",
           "items": [
             {
+              "name": "App development process",
+              "slug": "app-dev-process"
+            },
+            {
               "name": "Project structure and configuration",
               "slug": "projects"
             },
@@ -115,6 +119,10 @@
           "name": "Implementing platform features",
           "root": "/platform",
           "items": [
+            {
+              "name": "Contexts",
+              "slug": "contexts"
+            },
             {
               "name": "Capturing user input",
               "slug": "capture-user-input"

@@ -1,0 +1,207 @@
+= Contexts
+:page-slug: contexts
+:page-description: Contexts and how to use them
+
+Many software applications provide different views or modes, depending on what the user wants to do.
+
+An application typically has a *Settings* or *Preferences* option in its menu, which displays a view with various settings that can be modified to customize the application.
+For example, an app might allow a user to change the color scheme.
+
+The same application can have other views that display different information.
+For example, a banking application might provide an accounts overview, an account detail view, a transaction detail view, and a section for other features like transfers.
+
+Depending on the active view, the application looks and behaves differently.
+
+Likewise, a Koji app can also provide a variety of views or modes for different purposes.
+These views or modes are called *contexts*.
+
+== Contexts of a Koji app
+
+The following contexts are available in Koji:
+
+* *Default* – The default experience for a Koji app.
+Every Koji app has a default context, which is the first view that the user sees when the app runs.
+Only the *Default* context is required; all other contexts are optional.
+
+* *Remix* – The mode in which a creator can customize an existing app.
+A creator can select an existing app, customize it without writing code, and publish that customized version as a derivative app.
+As the developer of the original app, you can allow customization of your app by implementing a *Remix* context in your app.
+
+* *Receipt* – The transaction receipts for the seller or for the buyer.
+Available if you implemented in-app purchases and enabled the <<entitlements#,dynamic receipts entitlement>>.
+
+* *Thumbnail* – How your Koji app will look if shared on social media.
+
+== Determining the current context
+
+You can determine the context that the user is viewing and display the appropriate elements for that view.
+
+You can do so by checking the value of the property `Koji.playerState.context`:
+
+[.singlespaced]
+* 'default'
+* 'remix'
+* 'receipt'
+* 'screenshot'
+
+[source,javascript]
+----
+// Remix context
+if (Koji.playerState.context === 'remix') {
+  return (
+    <div className="App">
+      <header className="App-header">
+        // Add the elements to display in the Remix context.
+      </header>
+    </div>
+  )
+}
+
+// Receipt context for the buyer
+if ((Koji.playerState.context === 'receipt') && (Koji.playerState.receiptType === 'buyer')) {
+  return (
+    <div className="App">
+      <header className="App-header">
+        // Add the elements to display in the Receipt(buyer) context.
+      </header>
+    </div>
+  )
+}
+
+// Receipt context for the seller
+if ((Koji.playerState.context === 'receipt') && (Koji.playerState.receiptType === 'seller')) {
+  return (
+    <div className="App">
+      <header className="App-header">
+        // Add the elements to display in the Receipt(seller) context.
+      </header>
+    </div>
+  )
+}
+
+// Thumbnail context
+if (Koji.playerState.context === 'screenshot') {
+  return (
+    <div className="App">
+      <header className="App-header">
+        // Add the elements to display in the Thumbnail context.
+      </header>
+    </div>
+  )
+}
+
+// Default context
+return (
+  <div className="App">
+    <header className="App-header">
+      // Add the elements to display in the Default context.
+    </header>
+  </div>
+);
+----
+
+== Implementing the Remix context
+
+The *Remix* context is a special case, because changes made in the *Remix* context must be saved and rendered.
+
+In the following example code, the user clicks the btn:[Change the background color] button to select a new color then the btn:[Save] button to save the changes.
+
+[source,javascript]
+----
+const initialBackgroundColor = Koji.remix.get().backgroundColor;  // <1>
+const [backgroundColor, setBackgroundColor] = useState(initialBackgroundColor);  // <2>
+
+...
+
+const captureColor = async () => {  // <4>
+  // Show Koji's color picker and wait for the user to choose a new color.
+  const capturedColor = await Koji.ui.capture.color();
+
+  // If the user chose a new color, update the local state.
+  if (capturedColor) setBackgroundColor(() => capturedColor);
+};
+
+...
+
+const finish = async () => {  // <5>
+  // Save the updated settings.
+  await Koji.remix.set({ backgroundColor });
+
+  // After the save is complete, switch to the default context.
+  await Koji.remix.finish();
+};
+
+...
+
+if (Koji.playerState.context === 'remix') {  // <3>
+  return (
+    <div className="App">
+      <header className="App-header" style={{ backgroundColor }}>
+        <button onClick={captureColor}>{'Change the background color'}</button>  // <4>
+        <button onClick={finish}>{'Save'}</button>  // <5>
+      </header>
+    </div>
+  )
+}
+
+return (  // <6>
+  <div className="App">
+    <header className="App-header" style={{ backgroundColor }}>
+      // Add the elements to display in the Default context.
+    </header>
+  </div>
+);
+
+----
+<1> The initial background color is retrieved from the [.filepath]#koji.json# file.
+<2> The const `backgroundColor` temporarily holds the current color.
+When the context switches, the value is retrieved from the original or customized version settings again.
+<3> Defines what is displayed in the *Remix* context.
+<4> The btn:[Change the background color] button calls the color-picker control.
+<5> The btn:[Save] button saves the new color as part of the original or customized version settings, which is available to all contexts of the app.
+<6> Defines what is displayed in the *Default* context.
+
+
+=== Alternative implementation for React using .subscribe
+
+With React, you can also use `Koji.playerState.subscribe` to determine when the user switches between the *Remix* context and the *Default* context.
+
+[source,javascript]
+----
+const [isRemixing, setIsRemixing] = useState(false);  // <1>
+
+useEffect(() => {
+  // Set up a subscription that will let us know when the user switches between Remix and Default.
+  const unsubscribe = Koji.playerState.subscribe((inRemixMode) => {  // <2>
+    setIsRemixing(() => inRemixMode);
+  });
+  ...
+}, []);
+
+if (isRemixing) {  // <3>
+  return (
+    <div className="App">
+      <header className="App-header" style={{ backgroundColor }}>
+        // Add the elements to display in the Remix context.
+      </header>
+    </div>
+  )
+}
+
+return (  // <4>
+  <div className="App">
+    <header className="App-header" style={{ backgroundColor }}>
+      // Add the elements to display in the Default context.
+    </header>
+  </div>
+);
+----
+<1> Defines the const `isRemixing` to specify if the user is in the *Remix* context.
+<2> Subscribes to *PlayerState* and uses `setIsRemixing` to save the Boolean value returned by the `inRemixMode` callback.
+<3> Defines what is displayed in the *Remix* context.
+<4> Defines what is displayed in the *Default* context.
+
+== Related resources
+
+* <<core-frontend-playerstate#context,Koji.playerState.context>>
+* <<core-frontend-playerstate#subscribe,Koji.playerState.subscribe>>

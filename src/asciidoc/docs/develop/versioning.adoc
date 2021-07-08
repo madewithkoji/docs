@@ -45,7 +45,7 @@ image::versions.png[Version history]
 
 TIP: If you are <<local-development#,working locally>> and pushing updates to Koji with git, you can use this view to verify that your latest build was deployed.
 
-== Managing instant remix versions
+== Managing customization versions
 
 If your template supports instant remixing, you can manage which version of the base template an instant remix will use.
 By default, an instant remix uses the same template version as the Koji that is remixed, even if the Koji was created with an older version.
