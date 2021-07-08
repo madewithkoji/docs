@@ -161,10 +161,10 @@ When the context switches, the value is retrieved from the original or customize
 <5> The btn:[Save] button saves the new color as part of the original or customized version settings, which is available to all contexts of the app.
 <6> Defines what is displayed in the *Default* context.
 
-////
-=== Alternative implementation using subscribe
 
-To determine when the user switches to and from the *Remix* context, you can use `Koji.playerState.subscribe`.
+=== Alternative implementation for React using .subscribe
+
+With React, you can also use `Koji.playerState.subscribe` to determine when the user switches between the *Remix* context and the *Default* context.
 
 [source,javascript]
 ----
@@ -182,7 +182,7 @@ if (isRemixing) {  // <3>
   return (
     <div className="App">
       <header className="App-header" style={{ backgroundColor }}>
-        <button onClick={captureColor}>{'Change the background color'}</button>  // <3>
+        // Add the elements to display in the Remix context.
       </header>
     </div>
   )
@@ -200,9 +200,8 @@ return (  // <4>
 <2> Subscribes to *PlayerState* and uses `setIsRemixing` to save the Boolean value returned by the `inRemixMode` callback.
 <3> Defines what is displayed in the *Remix* context.
 <4> Defines what is displayed in the *Default* context.
-////
 
 == Related resources
 
 * <<core-frontend-playerstate#context,Koji.playerState.context>>
-// * <<core-frontend-playerstate#subscribe,Koji.playerState.subscribe>>
+* <<core-frontend-playerstate#subscribe,Koji.playerState.subscribe>>
