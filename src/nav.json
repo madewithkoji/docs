@@ -124,6 +124,10 @@
           "root": "/platform",
           "items": [
             {
+              "name": "Contexts",
+              "slug": "contexts"
+            },
+            {
               "name": "Capturing user input",
               "slug": "capture-user-input"
             },

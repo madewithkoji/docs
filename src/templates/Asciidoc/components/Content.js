@@ -428,6 +428,10 @@ const Content = styled.div`
     margin: 30px 0;
   }
 
+  .singlespaced li p {
+    margin: 0;
+  }
+
 `;
 
 export default Content;
