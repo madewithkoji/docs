@@ -279,6 +279,7 @@ const Content = styled.div`
   .img50 {
     width: 50%;
     min-width: 200px;
+    margin-left: 20px;
     transition: transform .5s;
     :hover {
       transform: scale(2.0);
@@ -425,7 +426,6 @@ const Content = styled.div`
   .callout8:before { content: "\\2467\\00a0"; font-size: 150%; display: inline-block; vertical-align: middle; }
   .callout9:before { content: "\\2468\\00a0"; font-size: 150%; display: inline-block; vertical-align: middle; }
 
-
   .card {
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
     transition: 0.3s;
@@ -439,6 +439,7 @@ const Content = styled.div`
     float: left;
     overflow: auto;
   }
+  .stripcard { width: 90%; height: 120px; margin-left: 25px; }
   .cardht165 { height: 165px; }
   .cardht190 { height: 190px; }
   .cardht230 { height: 230px; }
@@ -449,6 +450,10 @@ const Content = styled.div`
 
   .filepath {
     font-family: Menlo, Monaco, "Liberation Mono", Consolas, monospace;
+  }
+
+  .term {
+    font-style: italic;
   }
 
   .singlespaced li p {

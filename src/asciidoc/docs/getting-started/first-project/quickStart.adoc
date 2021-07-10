@@ -6,47 +6,30 @@ Welcome to Koji!
 This tutorial guides you through developing and publishing your first Koji app.
 Along the way, you'll learn some general web development topics along with the fundamental concepts of Koji.
 
-This tutorial provides a step-by-step introduction for developers who are new to Koji, with or without web development experience.
+This tutorial provides a step-by-step introduction for developers who are new to Koji.
 
-IMPORTANT: The exercises build on the previous ones; therefore, for best results, do them in the order they appear.
+IMPORTANT: The exercises build on the previous ones.
+For best results, do them in the order they appear.
 
 == Sections
 
 [.card]
-[.cardht165]
-.1. <<tut-first-project-basics#>>
+[.stripcard]
+.1. <<tutorial-first-app-basics#>>
 [.init-cap]
 include::your-first-project.adoc[tag=description]
 
 [.card]
-[.cardht165]
-.2. <<core-package#>>
+[.stripcard]
+.2. <<tutorial-first-app-core-package#>>
 [.init-cap]
 include::core-package.adoc[tag=description]
 
 [.card]
-[.cardht165]
-.3. <<your-first-remix#>>
+[.stripcard]
+.3. <<tutorial-first-app-contexts-customization#>>
 [.init-cap]
-include::your-first-remix.adoc[tag=description]
-
-[.card]
-[.cardht165]
-.4. <<intro-to-contexts#>>
-[.init-cap]
-include::intro-to-contexts.adoc[tag=description]
-
-[.card]
-[.cardht165]
-.5. <<remixable-project#>>
-[.init-cap]
-include::remixable-project.adoc[tag=description]
-
-[.card]
-[.cardht165]
-.6. <<your-first-template#>>
-[.init-cap]
-include::your-first-template.adoc[tag=description]
+include::contexts-customization.adoc[tag=description]
 
 [.clearfloat]
 {blank}

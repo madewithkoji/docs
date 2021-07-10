@@ -19,27 +19,15 @@
               "subItems": [
                 {
                   "name": "1. Your first Koji app",
-                  "slug": "tut-first-project-basics"
+                  "slug": "tutorial-first-app-basics"
                 },
                 {
                   "name": "2. The @withkoji/core package",
-                  "slug": "core-package"
+                  "slug": "tutorial-first-app-core-package"
                 },
                 {
-                  "name": "3. Your first remix",
-                  "slug": "your-first-remix"
-                },
-                {
-                  "name": "4. Introduction to contexts",
-                  "slug": "intro-to-contexts"
-                },
-                {
-                  "name": "5. Creating a remixable project",
-                  "slug": "remixable-project"
-                },
-                {
-                  "name": "6. Your first app",
-                  "slug": "your-first-template"
+                  "name": "3. Contexts and customizations",
+                  "slug": "tutorial-first-app-contexts-customization"
                 }
               ]
             },

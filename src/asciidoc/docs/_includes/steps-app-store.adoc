@@ -5,14 +5,33 @@
     :includespath: ../_includes
 
     include::{includespath}/steps-app-store.adoc[tag=go2-app-store-developers]
+    include::{includespath}/steps-app-store.adoc[tag=go2-app-store-games]
+    include::{includespath}/steps-app-store.adoc[tag=go2-app-store-developer-quick-start]
+    include::{includespath}/steps-app-store.adoc[tag=go2-app-store-bouncy-blast]
+    include::{includespath}/steps-app-store.adoc[tag=fork-the-project]
 ////
 
 
 // tag::all[]
 
 // tag::go2-app-store-developers[]
-. Go to the https://withkoji.com/create/for-developers[*For Developers* section] of the App Store.
+. Go to the https://withkoji.com/create/for-developers[*For Developers* section of the Koji App Store].
 // end::go2-app-store-developers[]
 
+// tag::go2-app-store-games[]
+. Go to the https://withkoji.com/apps/categories/instant-games[*Instant Games* section of the Koji App Store].
+// end::go2-app-store-games[]
+
+// tag::go2-app-store-developer-quick-start[]
+. Go to the Koji App Store listing for https://withkoji.com/apps/tutorial-template-koji-quick-start-2873c226[the *Developer Quick Start* scaffold].
+// end::go2-app-store-developer-quick-start[]
+
+// tag::go2-app-store-bouncy-blast[]
+. Go to the Koji App Store listing for https://withkoji.com/apps/aa57a335-3346-436a-bb98-87fb677a657f[the *Bouncy Blast* game].
+// end::go2-app-store-bouncy-blast[]
+
+// tag::fork-the-project[]
+. Fork the project by expanding the ellipses menu (*...*) and selecting *Fork*.
+// end::fork-the-project[]
 
 // end::all[]

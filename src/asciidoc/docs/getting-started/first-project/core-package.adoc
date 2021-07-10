@@ -1,66 +1,57 @@
 = The @withkoji/core package
-:page-slug: core-package
+:page-slug: tutorial-first-app-core-package
 :page-description: Installing the @withkoji/core package and using it to capture user input.
-:figure-caption!:
+:includespath: ../../_includes
 
-In the <<tut-first-project-basics#,previous section>> of this tutorial, you created a new project by forking an existing one, made minor edits, and then published the app.
-In this section, you’ll
+In the <<tutorial-first-app-basics#,previous topic>> of this tutorial, you created a new project by forking an existing one, made minor edits, and then published your new app.
+In this topic, you will
 // tag::description[]
 continue using the code editor to install and use the @withkoji/core package.
 // end::description[]
 
-In this section, you will learn how to:
+You will learn how to:
 
+[.singlespaced]
 * Use the terminal feature inside the code editor to run commands.
 * Install and import the @withkoji/core package into your project.
 * Use the @withkoji/core package to capture input from a user.
 
 == The JavaScript ecosystem
 
-JavaScript was introduced as a way to build more complex user experiences, and it has become the primary language in which most web applications are written today. Therefore, Koji features and tools for developers are built with and for JavaScript and its surrounding ecosystem.
+JavaScript has become the most popular language used in developing web applications.
+Therefore, Koji features and tools for developers are built with and for JavaScript and its surrounding ecosystem.
 
-This support means that you can easily use popular JavaScript frameworks, such as React, Vue, and Svelte in your development.
-It also means that you have access to NPM, the world's largest software registry, which has over 1.5 million packages ready to install and use in your project.
+This support means that you can develop Koji apps using popular JavaScript frameworks, such as React, Vue, and Svelte.
+It also means that you have access to NPM, the world's largest software registry with over 1.5 million packages that you can install and use in your project.
 
-In this section, you will learn about the primary Koji package @withkoji/core, which exposes many of Koji’s powerful platform features in an easy-to-use set of modules and methods.
+This tutorial focuses on the primary Koji package @withkoji/core, which exposes many of Koji’s powerful platform features through easy-to-use modules and methods.
 
 == Installing a package
 
-Koji’s code editor has a built-in terminal or command-line interface (CLI), which you use to send text-based commands to the Koji platform.
+You can send text-based commands to the Koji platform using the code editor's built-in terminal or command-line interface (CLI).
+
 By default, the terminal pane is minimized at the bottom of the code editor.
 
-* To expand the terminal pane, you can click any of the existing terminal tabs or the chevron (image:chevron.svg[chevron icon]) at the rightmost end of the pane.
-* To minimize the terminal pane, you can click the active tab or the chevron.
+* To expand the terminal pane, click any of the existing terminal tabs or the chevron (image:chevron.svg[chevron icon]) at the rightmost end of the pane.
+* To minimize the terminal pane, click the active tab or the chevron.
 
-You will use this terminal to install the @withkoji/core package and to stop and start the service that supports your app preview.
+You use this terminal to install the @withkoji/core package and to stop and start the service that allows you to preview your app.
 
 === Exercise 2.1: Install @withkoji/core
 
-. <<tut-first-project-basics#_exercise_1_7_reopen_your_project,Open the *Project Details* page for your project>> and then click *Open in Code Editor*.
+include::{includespath}/steps-codeeditor.adoc[tag=dev-portal-to-proj-details-to-code-editor]
 
-. At the bottom of the code editor, click the *frontend* tab of the terminal pane.
+include::{includespath}/steps-codeeditor.adoc[tag=terminal-frontend]
 +
-By default, the messages would indicate that the project compiled successfully and is available at [.filepath]#\https://localhost:8080#.
+By default, the messages would indicate that the project compiled successfully.
 
-. Stop the running service.
-.. Click inside the terminal.
-.. Press kbd:[Ctrl+C] or kbd:[Cmd+C].
+include::{includespath}/steps-codeeditor.adoc[tag=terminal-stop-process-extended]
 
-. Install the @withkoji/core package.
-+
-[source,bash]
-----
-npm install @withkoji/core
-----
+include::{includespath}/steps-codeeditor.adoc[tag=terminal-install-withkoji-core-package]
 +
 NPM displays the status as it requests the latest package details and installs the package in the project.
 
-. When installation is complete, restart the service.
-+
-[source,bash]
-----
-npm start
-----
+include::{includespath}/steps-codeeditor.adoc[tag=terminal-restart-process]
 +
 This triggers React to recompile your project and then start the service.
 The terminal will display the same messages as it did before you stopped the process.
@@ -74,14 +65,14 @@ This tutorial does not include a backend component.
 
 After installation, you must import the package in your project.
 
-The scaffold that you forked was designed for React.
-With React, you only need one line of code to import the package.
+The scaffold that you forked for this tutorial was designed for React.
+With React, you need only one line of code to import the package.
 
 === Exercise 2.2: Import the package and read the app's initial settings
 
-. From the navigation pane, open the file [.filepath]#/frontend/src/index.js#.
+include::{includespath}/steps-codeeditor.adoc[tag=open-file-index-js]
 
-. Modify the code to look as follows:
+include::{includespath}/steps-codeeditor.adoc[tag=modify-file-to-look-as-follows]
 +
 [source, javascript]
 ----
@@ -109,25 +100,27 @@ ReactDOM.render(
 <1> Imports `Koji`, which is the default object exported by the `@withkoji/core` package.
 <2> Imports the `koji.json` file as `kojiConfig`. This file contains the initial settings of your app.
 <3> Calls `Koji.config` with the `kojiConfig` object and other parameters to provide your app's initial settings to the package.
-
++
 NOTE: By calling `Koji.config` outside of React’s render loop, it is called exactly once, when the application initially loads.
 Calling `Koji.config` multiple times throws an error.
+
+include::{includespath}/steps-codeeditor.adoc[tag=click-save-or-ctrl-s]
 
 Now, you are ready to use the modules and methods from the @withkoji/core package.
 
 == About the React state
 
-In React, [.term]#state# is the set of information that your app needs while running.
+In React, [.term]#state# holds the set of information that your app needs while running.
 
-Most web applications use state in various ways, such as whether the user selected light or dark mode, whether a section of content is expanded or collapsed, or whether the user is logged in or not.
+Most web applications use state to hold metadata, such as whether the user selected light or dark mode, whether a section of content is expanded or collapsed, or whether the user is logged in or not.
 
 In this tutorial, you will use state to store the URL of the rotating image.
 
 === Exercise 2.3: Store the image URL in state
 
-. From the navigation pane, open the file [.filepath]#/frontend/src/App.js#.
+include::{includespath}/steps-codeeditor.adoc[tag=open-file-app-js]
 
-. Modify the code to look as follows:
+include::{includespath}/steps-codeeditor.adoc[tag=modify-file-to-look-as-follows]
 +
 [source, javascript]
 ----
@@ -140,7 +133,7 @@ function App() {
     <div className="App">
       <header className="App-header">
         <img src={logoSrc} className="App-logo" alt="logo" />  // <4>
-        <p>Getting Started with Koji</p>
+        <p>Having Fun with Koji</p>
       </header>
     </div>
   );
@@ -150,8 +143,10 @@ export default App;
 ----
 <1> Removed the statement that imported the local `logo.svg` file.
 <2> Imports `useState` from `react`, which is a React hook that allows you to manage the state inside the component.
-<3> Calls the `useState` hook to initialize `logoSrc` with https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg[the publicly available React logo from Wikimedia Commons].
+<3> Calls the `useState` hook to initialize `logoSrc` with https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg[the React logo from Wikimedia Commons].
 <4> Uses the new const `logoSrc` as the source of the image, instead of the previously imported `logo`.
+
+include::{includespath}/steps-codeeditor.adoc[tag=click-save-or-ctrl-s]
 
 The syntax for the `useState` hook is as follows:
 
@@ -162,47 +157,39 @@ const [myValue, functionToSetMyValue] = useState(initialValue);
 
 where the reactive variable `myValue` is initialized with `initialValue` and can be updated using `functionToSetMyValue`.
 
-
 This allows you to easily replace the image by calling `setLogoSrc` to change the value of `logoSrc`.
-
-
-
 
 == Capturing user input with @withkoji/core
 
-Capturing user input is a fundamental part of the user experience on the internet.
-Filling out forms, uploading files, and toggling buttons are all ways in which a user can interact with a web application.
+The Koji platform exposes a number of methods to capture different types of dynamic user inputs.
+One of these methods is `Koji.ui.capture.image`, which allows a user to select or upload an image.
 
-One of Koji’s goals is to make capturing a user’s input easy for developers and intuitive for users.
-To accomplish this goal, the Koji platform has exposed a number of methods for capturing different types of dynamic user inputs.
+=== Exercise 2.4: Enable image selection or upload
 
-Let’s take a look at one of those methods in action: `Koji.ui.capture.image`.
+include::{includespath}/steps-codeeditor.adoc[tag=open-file-app-js]
 
-As you can probably guess, this method allows you to capture an image input from a user.
-You might be wondering how this method is different from the traditional `<input type="file" />`, which allows a user to select an image file from their computer.
-Let’s find out.
-
-Update the code in `frontend/src/App.js` as follows.
-
+include::{includespath}/steps-codeeditor.adoc[tag=modify-file-to-look-as-follows]
++
 [source, javascript]
 ----
-import Koji from '@withkoji/core';
+import Koji from '@withkoji/core';  // <1>
 import { useState } from 'react';
 import './App.css';
 
 function App() {
   const [logoSrc, setLogoSrc] = useState('https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg');
-  const captureImage = async () => {
-    const src = await Koji.ui.capture.image();
 
-    if (src) setLogoSrc(() => src);
+  const captureImage = async () => {  // <3>
+    const src = await Koji.ui.capture.image();
+    if (src) setLogoSrc(() => src);  // <4>
   };
+
   return (
     <div className="App">
       <header className="App-header">
-        <button onClick={captureImage}>Capture Image</button>
+        <button onClick={captureImage}>Capture Image</button>  // <2>
         <img src={logoSrc} className="App-logo" alt="logo" />
-        <p>Some New Text</p>
+        <p>Having Fun with Koji</p>
       </header>
     </div>
   );
@@ -210,64 +197,92 @@ function App() {
 
 export default App;
 ----
+<1> Imports `Koji`, which is the default object exported by the `@withkoji/core` package.
+<2> Adds a button which calls the `captureImage` function when clicked.
+<3> The `captureImage` function uses the `Koji.ui.capture.image` method to request user input.
+<4> If a value is returned, `setLogoSrc` is called, and the state is updated.
 
-You’ll notice a few small changes.
-First, you’re importing `Koji` again at the top of the file.
-Second, you added a button that will call the `captureImage` function when it’s clicked.
+include::{includespath}/steps-codeeditor.adoc[tag=click-save-or-ctrl-s]
 
-The `captureImage` function requests user input by using the `Koji.ui.capture.image` method.
-If a value is returned, `setLogoSrc` is called and the state is updated with a new value.
+include::{includespath}/steps-codeeditor.adoc[tag=click-refresh-icon]
 
-Let’s give it a try.
-To make sure you are seeing the most updated version of your application, click the *Refresh* icon in the preview.
+. Click btn:[Capture Image].
++
+Clicking the button triggers the `captureImage` function which calls the `Koji.ui.capture.image` method which displays a user-input control.
++
+The user-input control displays a menu for the user to select an image in any of the following ways:
++
+[singlespaced]
+** By uploading an image file.
+** By specifying a URL where an image file can be imported from.
+** By browsing and selecting from Koji's extensive asset packs.
 
-image::CP_06_refresh-button.png[The refresh button]
+. Select or upload an image.
++
+The uploaded or selected image is stored in Koji's content delivery network (CDN).
++
+The preview pane is automatically updated to display the new image.
 
-Click *Capture Image*.
+The `Koji.ui.capture.image` method returns the image's Koji URL; however, the URL is not saved permanently.
+When you switch to a different tab or refresh the app, the default image is displayed again.
 
-You’ll see a few things.
-In addition to supporting a traditional file upload, a user can paste an image from a URL or browse one of Koji’s many image asset packs to find an image.
-There are also options to search the web for an image or to use one of the pre-configured bundles of images.
+== Additional processing for images and videos
 
-Feel free to spend some time testing this feature out, and notice that when you upload or choose an image, it's automatically updated in the preview window.
+You can perform additional processing to images and videos after the user uploads them either directly from their own local directories or from a URL.
 
-== Under the hood
+For example, your app can automatically blur any uploaded image.
 
-One thing that’s not so obvious is what happens under the hood when a user chooses an image.
-The image is automatically uploaded, hosted, and optimized by Koji’s CDN.
-The whole process is blazing fast and the image is intelligently cached.
-In addition, you gain access to a ton of interesting configuration options.
+=== Exercise 2.5: Blur an uploaded image
 
-Let’s test out one option by changing a line in `frontend/src/App.js`.
-(Don’t forget to save!)
-
-Change
-
+. In the file [.filepath]#/frontend/src/App.js#, add a parameter to `Koji.ui.capture.image` to blur the uploaded image.
++
+.. Search for the following line:
++
 `const src = await Koji.ui.capture.image();`
-
-to
-
++
+.. Replace it with:
++
 `const src = await Koji.ui.capture.image({ blur: 10 });`
 
-Now, try choosing a new image.
-You’ll see that the new image has a blur effect applied to it.
-The blur isn’t just a style or CSS property.
-The image is actually being transformed and served back at a URL on a custom, Koji-backed CDN!
+include::{includespath}/steps-codeeditor.adoc[tag=click-save-or-ctrl-s]
+
+. Click btn:[Capture Image] in the preview again.
+
+. Upload a new image file or enter a URL where an image can be imported from.
++
+IMPORTANT: Post-processing has no effect on images selected from image packs.
+
+The preview pane displays a blurred image.
+
+NOTE: The image itself is transformed before it is stored; the effect is not produced by CSS or any other styling.
+The original unblurred image is not saved.
+
+Learn more: <<capture-user-input#>>
 
 == Republishing
 
-We’re just starting to scratch the surface of the ways in which Koji can give a traditional web application super powers.
-Make sure you save your progress by publishing a new version of the project.
+Republish your app to make your changes available in your app's permanent URL.
 
-Navigate back to *Publish Settings* by clicking *Publish Now*.
+=== Exercise 2.6: Republish
 
-Click *Publish New Version* to publish your latest changes.
+. Verify that all changes have been saved in all open tabs in the editing pane.
 
-After your project has been published, feel free to check out the link to the latest live version and experience your image capture in the wild.
+include::{includespath}/steps-codeeditor.adoc[tag=click-publish-now]
 
-== Wrapping up
+. Verify that [.filepath]#/frontend/src/index.js# and [.filepath]#/frontend/src/App.js# are listed in the *Changes* section.
 
-You should now be familiar with using the terminal to make command line changes to your project, as well as installing and importing the @withkoji/core package.
-You also learned how to capture an image value from a user and how to do a some state management in React.
+include::{includespath}/steps-codeeditor.adoc[tag=click-publish-new-version]
 
-In the <<your-first-remix#,next section>>, we’ll take a step back from the code and start to explore the real power of Koji.
+. After your app is published successfully, click *Back to Overview* to return to the *Project Details* page.
++
+Notice the new version in the *Deployment Status* card and the additional line in the *Development Status* card.
+
+. Click the *View Published Koji* card and test your updated app.
+
+== What's next
+
+You should now be familiar with using the terminal to make command-line changes to your project, as well as installing and importing the @withkoji/core package.
+You also learned how to capture an image from a user and how to manage state in React.
+
+In the <<tutorial-first-app-contexts-customization#, next topic>>, you will enable customization by implementing the *Remix* context.
+Customization allows users to create and publish customized versions of your app without coding.

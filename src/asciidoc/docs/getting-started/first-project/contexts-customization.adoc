@@ -1,0 +1,402 @@
+= Contexts and customizations
+:page-slug: tutorial-first-app-contexts-customization
+:page-description: Making a project customizable and managing the customization experience
+:includespath: ../../_includes
+
+In the <<tutorial-first-app-core-package#,previous topic>> of this tutorial, you learned about using the terminal, and installing and using the @withkoji/core package.
+In this topic, you will
+// tag::description[]
+learn about contexts and how to implement the *Remix* context to enable customization of your app.
+// end::description[]
+
+You will learn how to:
+
+[.singlespaced]
+* Set your default customization data in the `koji.json` file.
+* Manage the customization data using the `get`, `set`, and `finish` methods.
+* Determine the user's current context using the `context` property.
+
+== Derivative apps
+
+A Koji app's most compelling feature is its customizability.
+A creator can take an existing app, customize it without coding, and publish the customized version.
+Another creator can take the customized version and create another customized version the same way.
+
+As the developer of the original app, you can choose to enable this feature.
+
+To experience how a creator might customize your Koji app, try customizing the Bouncy Blast game.
+
+=== Exercise 3.1: (Optional) Create your own customized Bouncy Blast
+
+include::{includespath}/steps-app-store.adoc[tag=go2-app-store-bouncy-blast]
+
+. (Optional) Click btn:[Preview] to play with the original version.
+
+. Click btn:[Use] to customize the app.
+(If you played with the original version, click btn:[Use App] at the bottom of the preview.)
+
+. Click on any of the customizable components to replace the component.
++
+[.img50]
+image::tut-1stproj-bouncy-blast-custom.png[Bouncy Blast customization mode]
++
+The preview is immediately updated with your selection.
+
+. Click btn:[Preview].
+
+. In the *Publish App* page, click on the screenshot to play your customized version of the game.
++
+[.img50]
+image::tut-1stproj-bouncy-blast-publish.png[Bouncy Blast - Publish App]
+
+. (Optional) Tip the original developer.
+
+. To publish your customized version, click btn:[Publish].
+
+Your customized version is displayed.
+
+The URL in the browser address field is the permanent link for your customized version.
+You can add this link to your Koji profile or share it in any social media.
+
+[TIP]
+====
+To view all your published apps (original and customized versions),
+
+. Click your profile image to expand the player menu.
+. Select *Your Apps*.
+====
+
+== Quick introduction to contexts
+
+A web app can have multiple views or modes for different purposes.
+In Koji, these views or modes are called [.term]#contexts#.
+
+This tutorial uses the two most commonly used contexts:
+
+[.singlespaced]
+* *Default* – The default experience for a Koji app. Each app always has a default context.
+* *Remix* – The mode in which a creator can customize an existing app.
+
+The context changes depending on actions taken by the user.
+Your app can determine what the current context is and then display the view for that context.
+
+Learn more: <<contexts#>>
+
+== Implementing the *Remix* context
+
+For efficiency, most web applications, such as Facebook, Gmail, and Reddit, load the same basic JavaScript code and run it in a browser.
+They rely on user-specific data to deliver a slightly different experience to each user.
+The user-specific data is typically stored in a database, which is separate from the code.
+
+Similarly, every customized version of a Koji app loads and runs the same code that the original developer wrote.
+What differentiates a customized version from the original and from each other is the set of customization settings, which is stored in a database and is separate from the code.
+
+To create a customizable Koji app, you must:
+
+[.singlespaced]
+* Decide which components would be customizable.
+* Implement the *Remix* context, where you can collect the custom values from the user.
+* Store the custom values in Koji's database.
+
+When published, the app with customized settings becomes a new customized version, and it gets its own production URL, which is different from the parent app's URL.
+
+=== Exercise 3.2: Display the capture button in the *Remix* context
+
+In a previous exercise, you added a btn:[Capture Image] button that replaces the rotating image.
+However, the value is not saved after the app stops running.
+
+To make the rotating image a customizable component, its value must be updated in the *Remix* context and saved in the customization data.
+
+In this exercise, you will move the btn:[Capture Image] button from the *Default* context to the *Remix* context.
+
+include::{includespath}/steps-codeeditor.adoc[tag=dev-portal-to-proj-details-to-code-editor]
+
+include::{includespath}/steps-codeeditor.adoc[tag=open-file-app-js]
+
+include::{includespath}/steps-codeeditor.adoc[tag=modify-file-to-look-as-follows]
++
+[source, javascript]
+----
+import Koji from '@withkoji/core';
+import { useState } from 'react';
+import './App.css';
+
+function App() {
+  const [logoSrc, setLogoSrc] = useState('https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg');
+
+  const captureImage = async () => {
+    const src = await Koji.ui.capture.image();
+    if (src) setLogoSrc(() => src);
+  };
+
+  if (Koji.playerState.context === 'remix') {  // <1>
+    return (
+      <div className="App">
+        <header className="App-header">
+          <img src={logoSrc} className="App-logo" alt="logo" />  // <4>
+          <button onClick={captureImage}>Capture Image</button>  // <3>
+        </header>
+      </div>
+    );
+  }
+
+  return (  // <2>
+    <div className="App">
+      <header className="App-header">  // <3>
+        <img src={logoSrc} className="App-logo" alt="logo" />  // <4>
+        <p>Having Fun with Koji</p>
+      </header>
+    </div>
+  );
+}
+
+export default App;
+----
+<1> Defines what is displayed in the *Remix* context.
+<2> Defines what is displayed in the *Default* context.
+<3> Moved the btn:[Capture Image] button from the *Default* context to the *Remix* context.
+<4> Displays the image in both *Default* and *Remix* contexts.
+By displaying the image in the *Remix* context, the user gets a visual confirmation of the image they selected.
+
+<2> If in the *Remix* context, displays the btn:[Capture Image] button.
+<3> Removed the btn:[Capture Image] button from the *Default* context.
+
+include::{includespath}/steps-codeeditor.adoc[tag=click-save-or-ctrl-s]
+
+include::{includespath}/steps-codeeditor.adoc[tag=click-refresh-icon]
+
+. Test the contexts by clicking the similarly named tabs at the top of the preview pane.
++
+The *Capture Image* button appears in the *Remix* tab but not in the *Default* tab.
+
+. (Optional) Test the *Capture Image* button.
++
+You will add code in a later exercise to save the URL of the new image.
+
+// Learn more: <<contexts#>>, <<capture-user-input#>>
+
+== Default values for customizable components
+
+The original version of any app includes default values for all customizable components.
+This ensures that the app performs as intended even before it is customized.
+You can specify these default values in the [.filepath]#koji.json# file of your project.
+
+In the customized version of the app, the parent version's values are overridden by the new customized values.
+If a component is not customized, its value is copied from the parent version.
+
+Settings for the customized version of the app are stored in and loaded from the Koji database.
+
+=== Exercise 3.3: Specify default values for customizable components
+
+To specify the default values for your app's customizable components, add a `remixData` key to the [.filepath]#koji.json# file.
+
+include::{includespath}/steps-codeeditor.adoc[tag=open-file-koji-json]
+
+include::{includespath}/steps-codeeditor.adoc[tag=modify-file-to-look-as-follows]
++
+[source,json]
+----
+{
+  "deploy": {
+    "frontend": {
+      "output": "frontend/build",
+      "type": "static",
+      "commands": [
+        "cd frontend",
+        "npm install",
+        "export NODE_ENV=production && npm run build"
+      ]
+    }
+  },
+  "develop": {
+    "frontend": {
+      "path": "frontend",
+      "port": 8080,
+      "startCommand": "npm start"
+    }
+  },
+  "entitlements": {
+    "InstantRemixing": true,
+    "InstantRemixingNativeNavigation": true,
+    "FeedEvents": true
+  },
+  "remixData": {
+    "spinningImageSrc": "https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg"
+  }
+}
+----
++
+The `remixData` object in this example contains only one key-value pair which will be used as the initial value for `logoSrc`:
++
+[source,json]
+----
+"spinningImageSrc": “https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg"
+----
+
+include::{includespath}/steps-codeeditor.adoc[tag=click-save-or-ctrl-s]
+
+You already added a line in [.filepath]#index.js# to import [.filepath]#koji.json# to retrieve other settings.
+That import will also make the `remixData` values available to your app.
+
+== Retrieving customization data
+
+Currently, in [.filepath]#App.js#, `logoSrc` is directly assigned a literal URL as its initial value.
+Therefore, the image reverts to the same initial image when the app refreshes or displays a new page.
+
+Now that the customization data is set up in [.filepath]#koji.json#, your app can retrieve the value of `spinningImageSrc` using `Koji.remix.get`.
+Then you can set `logoSrc` to that value instead of the literal URL.
+
+[NOTE]
+====
+If the running app is the original version, the customization data contains the original values that you specified in [.filepath]#koji.json#.
+
+If the running app is a customized version, the customization data contains the values that were selected during customization.
+====
+
+=== Exercise 3.4: Retrieve from remixData.spinningImageSrc
+
+include::{includespath}/steps-codeeditor.adoc[tag=open-file-app-js]
+
+. Replace the `logoSrc` assigment to use the value of `remixData.spinningImageSrc`.
++
+.. Search for the following line:
++
+[source,javascript]
+----
+const [logoSrc, setLogoSrc] = useState('https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg');
+----
++
+.. Replace it with:
++
+[source,javascript]
+----
+const [logoSrc, setLogoSrc] = useState(Koji.remix.get().spinningImageSrc);
+----
+
+include::{includespath}/steps-codeeditor.adoc[tag=click-save-or-ctrl-s]
+
+include::{includespath}/steps-codeeditor.adoc[tag=click-refresh-icon]
+
+The same spinning image is displayed.
+However, instead of hard-coding the default value, you’re using `Koji.remix.get()` to retrieve the value from the `koji.json` file.
+
+== Saving customization data
+
+Previously, you added a user-input control to allow the user to upload or select an image.
+However, the image URL returned by that control is not saved permanently.
+
+To save changes to the customization data, use `Koji.remix.set`.
+
+=== Exercise 3.5: Save to remixData.spinningImageSrc
+
+include::{includespath}/steps-codeeditor.adoc[tag=open-file-app-js]
+
+. Replace the `captureImage` function to look as follows:
++
+[source, javascript]
+----
+const captureImage = async () => {
+  const src = await Koji.ui.capture.image();
+  if (src) {
+    setLogoSrc(() => src);  // <1>
+    await Koji.remix.set({ spinningImageSrc: src });  // <2>
+  }
+};
+----
+<1> `logoSrc` is still updated to give the user a visual confirmation of the image they selected.
+<2> Saves the Koji URL of the selected image as the value for the key `spinningImageSrc` in the customization data.
+
+include::{includespath}/steps-codeeditor.adoc[tag=click-save-or-ctrl-s]
+
+Because you saved the new URL to the customization data as soon as the image was selected, the change is effective in your entire app immediately.
+The user remains in the *Remix* context.
+
+== Returning to the *Default* context
+
+To give the user a way to return to the *Default* context, you can create a btn:[Done] button that calls a function with `Koji.remix.finish`.
+
+=== Exercise 3.6: Returning to the *Default* context
+
+include::{includespath}/steps-codeeditor.adoc[tag=open-file-app-js]
+
+include::{includespath}/steps-codeeditor.adoc[tag=modify-file-to-look-as-follows]
++
+[source, javascript]
+----
+import Koji from '@withkoji/core';
+import { useState } from 'react';
+import './App.css';
+
+function App() {
+  const [logoSrc, setLogoSrc] = useState(Koji.remix.get().spinningImageSrc);
+
+  const captureImage = async () => {
+    const src = await Koji.ui.capture.image();
+
+    if (src) {
+      setLogoSrc(() => src);
+      await Koji.remix.set({ spinningImageSrc: src });
+    }
+  };
+
+  const finish = async () => {  // <1>
+    await Koji.remix.finish();
+  };
+
+  if (Koji.playerState.context === 'remix') {
+    return (
+      <div className="App">
+        <header className="App-header">
+          <img src={logoSrc} className="App-logo" alt="logo" />
+          <button onClick={captureImage}>Capture Image</button>
+          <button onClick={finish}>Done</button>  // <2>
+        </header>
+      </div>
+    );
+  }
+
+  return (
+    <div className="App">
+      <header className="App-header">
+        <img src={logoSrc} className="App-logo" alt="logo" />
+        <p>Having Fun with Koji</p>
+      </header>
+    </div>
+  );
+}
+
+export default App;
+----
+<1> Handles clicks to the btn:[Done] button.
+<2> btn:[Done] button that the user clicks to return to the *Default* context.
+
+include::{includespath}/steps-codeeditor.adoc[tag=click-save-or-ctrl-s]
+
+== Testing the customization
+
+include::{includespath}/steps-codeeditor.adoc[tag=click-refresh-icon]
+
+. Click the *Remix* tab.
++
+This action mimics the user clicking btn:[Use] from the Koji App Store listing.
+
+. Click btn:[Capture Image] and select any image.
+
+. Click btn:[Done].
+
+. Click the *Default* tab.
++
+The image you selected is now displayed.
+
+. Republish your project.
++
+For a refresher on how to republish, go back to <<tutorial-first-app-core-package#_exercise_2_6_republish,Exercise 2.6>>.
+
+== What's next
+
+Well done, Koji Developer!
+You now have the basic tools and knowledge to start building your own apps.
+
+To learn more, explore <<withkoji-koji-core#,the reference docs for the @withkoji@core package>> for more functionality that you can add to your app.
+
+When you're ready to release your awesome app to the world, <<app-store#,create a listing>> to share it on the Koji App Store.

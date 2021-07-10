@@ -53,6 +53,8 @@ You’ll see that they are sorted into categories, depending on what they do.
 There are templates focused on social media engagement, memes, and games.
 New templates are being added all the time by developers like you.
 
+
+
 Scroll down until you see *Engage Your Audiences*, click *See All*, then scroll down until you find the Bouncy Blast template.
 
 image::YFR_02_bouncy-blast.png[Bouncy Blast]

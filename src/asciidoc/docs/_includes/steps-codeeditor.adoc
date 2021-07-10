@@ -7,12 +7,22 @@
     include::{includespath}/steps-codeeditor.adoc[tag=go-to-project-details]
     include::{includespath}/steps-codeeditor.adoc[tag=go-to-project-details-base]
     include::{includespath}/steps-codeeditor.adoc[tag=go-to-project-details-more]
+    include::{includespath}/steps-codeeditor.adoc[tag=dev-portal-to-proj-details-to-code-editor]
     include::{includespath}/steps-codeeditor.adoc[tag=open-in-code-editor]
-    include::{includespath}/steps-codeeditor.adoc[tag=click-save-or-ctrl-s]
     include::{includespath}/steps-codeeditor.adoc[tag=rename-and-open-in-code-editor]
+    include::{includespath}/steps-codeeditor.adoc[tag=expand-and-click-app-js]
+    include::{includespath}/steps-codeeditor.adoc[tag=open-file-app-js]
+    include::{includespath}/steps-codeeditor.adoc[tag=open-file-index-js]
+    include::{includespath}/steps-codeeditor.adoc[tag=open-file-koji-json]
+    include::{includespath}/steps-codeeditor.adoc[tag=modify-file-to-look-as-follows]
+    include::{includespath}/steps-codeeditor.adoc[tag=click-save-or-ctrl-s]
+    include::{includespath}/steps-codeeditor.adoc[tag=click-refresh-icon]
+    include::{includespath}/steps-codeeditor.adoc[tag=click-publish-now]
+    include::{includespath}/steps-codeeditor.adoc[tag=click-publish-new-version]
     include::{includespath}/steps-codeeditor.adoc[tag=view-published-koji]
-    include::{includespath}/steps-codeeditor.adoc[tag=cli-front-end]
+    include::{includespath}/steps-codeeditor.adoc[tag=terminal-frontend]
     include::{includespath}/steps-codeeditor.adoc[tag=terminal-stop-process]
+    include::{includespath}/steps-codeeditor.adoc[tag=terminal-stop-process-extended]
     include::{includespath}/steps-codeeditor.adoc[tag=terminal-restart-process]
     include::{includespath}/steps-codeeditor.adoc[tag=terminal-install-withkoji-core-package]
 ////
@@ -35,14 +45,41 @@
 // end::go-to-project-details[]
 
 
+// tag::dev-portal-to-proj-details-to-code-editor[]
+. Open your project in the code editor.
+.. Go to https://withkoji.com/developer/projects[your Developer Portal page] and click your project.
+.. In the *Project Details* page, click *Open in Code Editor*.
+// end::dev-portal-to-proj-details-to-code-editor[]
+
 // tag::open-in-code-editor[]
 . In the *Project Details* page, click *Open in Code Editor*.
 // end::open-in-code-editor[]
 
-
 // tag::rename-and-open-in-code-editor[]
 . In the *Project Details* page, rename the app, then click *Open in Code Editor*.
 // end::rename-and-open-in-code-editor[]
+
+
+// tag::expand-and-click-app-js[]
+. In the navigation pane, under *Source Code*, expand menu:frontend[src] and click [.filepath]#App.js#.
+// end::expand-and-click-app-js[]
+
+// tag::open-file-app-js[]
+. From the navigation pane, open the file [.filepath]#/frontend/src/app.js#.
+// end::open-file-app-js[]
+
+// tag::open-file-index-js[]
+. From the navigation pane, open the file [.filepath]#/frontend/src/index.js#.
+// end::open-file-index-js[]
+
+// tag::open-file-koji-json[]
+. From the navigation pane, open the file [.filepath]#koji.json#.
+// end::open-file-koji-json[]
+
+
+// tag::modify-file-to-look-as-follows[]
+. Modify the file to look as follows:
+// end::modify-file-to-look-as-follows[]
 
 
 // tag::click-save-or-ctrl-s[]
@@ -50,23 +87,42 @@
 // end::click-save-or-ctrl-s[]
 
 
+// tag::click-refresh-icon[]
+. In the preview pane, click the refresh icon (image:refresh.svg[refresh icon]).
+// end::click-refresh-icon[]
+
+
+// tag::click-publish-now[]
+. From the navigation pane, click *Publish Now*.
+// end::click-publish-now[]
+
+// tag::click-publish-new-version[]
+. Click btn:[Publish New Version].
+// end::click-publish-new-version[]
+
+
 // tag::view-published-koji[]
 . In the *Project Details* page, click *View Published Koji*.
 // end::view-published-koji[]
 
 
-// tag::cli-front-end[]
-. Click the *frontend* tab of the terminal pane at the bottom.
-// end::cli-front-end[]
+// tag::terminal-frontend[]
+. At the bottom of the code editor, click the *frontend* tab of the terminal pane.
+// end::terminal-frontend[]
 
 
 // tag::terminal-stop-process[]
-. Press kbd:[Ctrl+C] to cancel the running process.
+. Press kbd:[Ctrl+C] or kbd:[Cmd+C] to cancel the running service.
 // end::terminal-stop-process[]
 
+// tag::terminal-stop-process-extended[]
+. Stop the running service.
+.. Click inside the terminal.
+.. Press kbd:[Ctrl+C] or kbd:[Cmd+C].
+// end::terminal-stop-process-extended[]
 
 // tag::terminal-restart-process[]
-. Restart the process.
+. Restart the service.
 +
 [source,bash]
 ----
