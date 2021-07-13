@@ -15,6 +15,8 @@
     include::{includespath}/steps-codeeditor.adoc[tag=open-file-index-js]
     include::{includespath}/steps-codeeditor.adoc[tag=open-file-koji-json]
     include::{includespath}/steps-codeeditor.adoc[tag=modify-file-to-look-as-follows]
+    include::{includespath}/steps-codeeditor.adoc[tag=modify-app-js-to-look-as-follows]
+    include::{includespath}/steps-codeeditor.adoc[tag=go-to-app-js-tab]
     include::{includespath}/steps-codeeditor.adoc[tag=click-save-or-ctrl-s]
     include::{includespath}/steps-codeeditor.adoc[tag=click-refresh-icon]
     include::{includespath}/steps-codeeditor.adoc[tag=click-publish-now]
@@ -65,7 +67,7 @@
 // end::expand-and-click-app-js[]
 
 // tag::open-file-app-js[]
-. From the navigation pane, open the file [.filepath]#/frontend/src/app.js#.
+. From the navigation pane, open the file [.filepath]#/frontend/src/App.js#.
 // end::open-file-app-js[]
 
 // tag::open-file-index-js[]
@@ -80,6 +82,14 @@
 // tag::modify-file-to-look-as-follows[]
 . Modify the file to look as follows:
 // end::modify-file-to-look-as-follows[]
+
+// tag::modify-app-js-to-look-as-follows[]
+. Modify [.filepath]#App.js# to look as follows:
+// end::modify-app-js-to-look-as-follows[]
+
+// tag::go-to-app-js-tab[]
+. Click the *App.js* tab.
+// end::go-to-app-js-tab[]
 
 
 // tag::click-save-or-ctrl-s[]

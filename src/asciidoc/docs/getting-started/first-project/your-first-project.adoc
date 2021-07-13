@@ -79,7 +79,7 @@ image::tut-1stproj-projdetails-postrename-codeeditor.png[Open in Code Editor]
 
 include::{includespath}/images-annotated.adoc[tag=editorsections]
 
-=== Exercise 1.4: Edit [.filepath]#README.md#
+=== Exercise 1.4: Edit [.fp]#README.md#
 
 By default, the README.md tab is initially open in the code editor.
 If not, click the *Readme* link in the left navigation pane under *Project*.
@@ -87,21 +87,21 @@ If not, click the *Readme* link in the left navigation pane under *Project*.
 [.img50]
 image::tut-1stproj-codeeditor-readme.gif[Replace the title of the readme]
 
-. On the tab for [.filepath]#README.md#, toggle to btn:[Code] to edit the Markdown file.
+. On the tab for [.fp]#README.md#, toggle to btn:[Code] to edit the Markdown file.
 . Update the title of the readme to be the same as the new name of your project.
 include::{includespath}/steps-codeeditor.adoc[tag=click-save-or-ctrl-s]
 . On the tab, toggle back to btn:[Visual] to view how the readme would look with formatting.
 
 The btn:[Save] button appears whenever the file has unsaved changes.
 
-=== Exercise 1.5: Edit [.filepath]#App.js#
+=== Exercise 1.5: Edit [.fp]#App.js#
 
 [.img50]
 image::tut-1stproj-codeeditor-app-js.png[Edit app.js]
 
 include::{includespath}/steps-codeeditor.adoc[tag=expand-and-click-app-js]
 +
-In the editing pane, a new tab is created for [.filepath]#App.js#.
+In the editing pane, a new tab is created for [.fp]#App.js#.
 
 . Replace the text that the app displays.
 +
@@ -183,7 +183,7 @@ Your Developer Portal also includes additional links:
 * *Documentation* – This documentation set.
 * *My App Templates* – The listings for apps that you added to the Koji App Store. +
 Learn more: <<app-store#>>
-* *Access Keys* – Security keys required to access your Koji project locally. +
+* *Access Keys* – Security keys required to access your Koji project to work on it locally. +
 Learn more: <<local-development#>>
 
 === Exercise 1.7: Reopen your project
@@ -200,7 +200,7 @@ image::developer-portal.png[Developer Portal]
 The *Project Details* page opens.
 This is the same page where you renamed your project and opened the code editor.
 
-Notice that the *Deployment Status* card now says "Version 1" and the Development Status lists one version.
+Notice that the *Deployment Status* card now says "Version 1" and the *Development Status* card lists one version.
 
 [.img50]
 image::tut-1stproj-projdetails-version1.png[Project Details - Version 1]

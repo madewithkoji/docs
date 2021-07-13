@@ -448,6 +448,7 @@ const Content = styled.div`
     margin: 30px 0;
   }
 
+  .fp,
   .filepath {
     font-family: Menlo, Monaco, "Liberation Mono", Consolas, monospace;
   }

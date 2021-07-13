@@ -124,7 +124,8 @@ include::{includespath}/steps-codeeditor.adoc[tag=modify-file-to-look-as-follows
 +
 [source, javascript]
 ----
-import { useState } from 'react';  // <1> <2>
+// <1>
+import { useState } from 'react';  // <2>
 import './App.css';
 
 function App() {
@@ -166,9 +167,7 @@ One of these methods is `Koji.ui.capture.image`, which allows a user to select o
 
 === Exercise 2.4: Enable image selection or upload
 
-include::{includespath}/steps-codeeditor.adoc[tag=open-file-app-js]
-
-include::{includespath}/steps-codeeditor.adoc[tag=modify-file-to-look-as-follows]
+include::{includespath}/steps-codeeditor.adoc[tag=modify-app-js-to-look-as-follows]
 +
 [source, javascript]
 ----
@@ -181,15 +180,19 @@ function App() {
 
   const captureImage = async () => {  // <3>
     const src = await Koji.ui.capture.image();
-    if (src) setLogoSrc(() => src);  // <4>
+    if (src) {  // <4>
+      setLogoSrc(() => src);
+    }
   };
+
+  Koji.ready();  // <5>
 
   return (
     <div className="App">
       <header className="App-header">
-        <button onClick={captureImage}>Capture Image</button>  // <2>
         <img src={logoSrc} className="App-logo" alt="logo" />
         <p>Having Fun with Koji</p>
+        <button onClick={captureImage}>Capture Image</button>  // <2>
       </header>
     </div>
   );
@@ -201,6 +204,7 @@ export default App;
 <2> Adds a button which calls the `captureImage` function when clicked.
 <3> The `captureImage` function uses the `Koji.ui.capture.image` method to request user input.
 <4> If a value is returned, `setLogoSrc` is called, and the state is updated.
+<5> Indicates that the app is ready to receive events.
 
 include::{includespath}/steps-codeeditor.adoc[tag=click-save-or-ctrl-s]
 
@@ -234,7 +238,7 @@ For example, your app can automatically blur any uploaded image.
 
 === Exercise 2.5: Blur an uploaded image
 
-. In the file [.filepath]#/frontend/src/App.js#, add a parameter to `Koji.ui.capture.image` to blur the uploaded image.
+. In the file [.fp]#/frontend/src/App.js#, add a parameter to `Koji.ui.capture.image` to blur the uploaded image.
 +
 .. Search for the following line:
 +
@@ -251,8 +255,10 @@ include::{includespath}/steps-codeeditor.adoc[tag=click-save-or-ctrl-s]
 . Upload a new image file or enter a URL where an image can be imported from.
 +
 IMPORTANT: Post-processing has no effect on images selected from image packs.
-
++
 The preview pane displays a blurred image.
+
+. (Optional) Set blur to `50`, save, and upload the image again.
 
 NOTE: The image itself is transformed before it is stored; the effect is not produced by CSS or any other styling.
 The original unblurred image is not saved.
@@ -269,7 +275,9 @@ Republish your app to make your changes available in your app's permanent URL.
 
 include::{includespath}/steps-codeeditor.adoc[tag=click-publish-now]
 
-. Verify that [.filepath]#/frontend/src/index.js# and [.filepath]#/frontend/src/App.js# are listed in the *Changes* section.
+. Verify that [.fp]#/frontend/src/index.js# and [.fp]#/frontend/src/App.js# are listed in the *Changes* section.
++
+NOTE: Because you installed @withkoji/core, [.fp]#package.json# and [.fp]#package-lock.json# were automatically updated with the installed @withkoji/core version.
 
 include::{includespath}/steps-codeeditor.adoc[tag=click-publish-new-version]
 
