@@ -416,15 +416,34 @@ const Content = styled.div`
     font-size: 100% !important;
   }
 
-  .callout1:before { content: "\\2460\\00a0"; font-size: 150%; display: inline-block; vertical-align: middle; }
-  .callout2:before { content: "\\2461\\00a0"; font-size: 150%; display: inline-block; vertical-align: middle; }
-  .callout3:before { content: "\\2462\\00a0"; font-size: 150%; display: inline-block; vertical-align: middle; }
-  .callout4:before { content: "\\2463\\00a0"; font-size: 150%; display: inline-block; vertical-align: middle; }
-  .callout5:before { content: "\\2464\\00a0"; font-size: 150%; display: inline-block; vertical-align: middle; }
-  .callout6:before { content: "\\2465\\00a0"; font-size: 150%; display: inline-block; vertical-align: middle; }
-  .callout7:before { content: "\\2466\\00a0"; font-size: 150%; display: inline-block; vertical-align: middle; }
-  .callout8:before { content: "\\2467\\00a0"; font-size: 150%; display: inline-block; vertical-align: middle; }
-  .callout9:before { content: "\\2468\\00a0"; font-size: 150%; display: inline-block; vertical-align: middle; }
+  .colist {
+    ol {
+      list-style: none;
+      counter-reset: coctr;
+    }
+    ol li {
+      counter-increment: coctr;
+    }
+    ol li::before {
+      content: counter(coctr);
+      display: inline-block;
+      float: left;
+      width: 15px !important;
+      height: 15px !important;
+      line-height: 15px !important;
+      padding: 5px;
+      margin-right: 5px;
+      color: white !important;
+      background-color: #404040 !important;
+      border-radius: 50%;
+      text-align: center;
+      font-weight: bold;
+      font-family: Arial, sans-serif;
+      font-style: normal;
+      position: relative;
+      user-select: none;
+    }
+  }
 
   .card {
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
