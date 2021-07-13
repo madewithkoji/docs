@@ -18,32 +18,16 @@
               "slug": "start-tutorial",
               "subItems": [
                 {
-                  "name": "1. Your first project",
-                  "slug": "your-first-project"
+                  "name": "1. Your first Koji app",
+                  "slug": "tutorial-first-app-basics"
                 },
                 {
-                  "name": "2. Using the code editor",
-                  "slug": "code-editor"
+                  "name": "2. The @withkoji/core package",
+                  "slug": "tutorial-first-app-core-package"
                 },
                 {
-                  "name": "3. The @withkoji/core package",
-                  "slug": "core-package"
-                },
-                {
-                  "name": "4. Your first remix",
-                  "slug": "your-first-remix"
-                },
-                {
-                  "name": "5. Introduction to contexts",
-                  "slug": "intro-to-contexts"
-                },
-                {
-                  "name": "6. Creating a remixable project",
-                  "slug": "remixable-project"
-                },
-                {
-                  "name": "7. Your first app",
-                  "slug": "your-first-template"
+                  "name": "3. Contexts and customizations",
+                  "slug": "tutorial-first-app-contexts-customization"
                 }
               ]
             },

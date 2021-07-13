@@ -18,7 +18,7 @@ To use a predefined user-input control in your app,
 .Learn how...
 [%collapsible]
 ====
-include::{includespath}/steps-codeeditor.adoc[tag=cli-front-end]
+include::{includespath}/steps-codeeditor.adoc[tag=terminal-frontend]
 include::{includespath}/steps-codeeditor.adoc[tag=terminal-stop-process]
 include::{includespath}/steps-codeeditor.adoc[tag=terminal-install-withkoji-core-package]
 include::{includespath}/steps-codeeditor.adoc[tag=terminal-restart-process]
