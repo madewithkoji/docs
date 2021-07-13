@@ -9,7 +9,7 @@ As more creators use your Koji apps, you can make more revenue, reach more users
 
 The following steps describe the general process for developing a customizable app on Koji and distributing it to content creators.
 
-== [.callout1]#Choose a starting point#
+== 1. Choose a starting point
 
 With the Koji platform, you don't have to start from nothing.
 Instead, you can build on an existing project that already implements most of what you need, so that you can focus on what makes your app unique.
@@ -35,7 +35,7 @@ Learn more: <<editor#>>
 +
 Learn more: <<local-development#>>
 
-== [.callout2]#Develop your app#
+== 2. Develop your app
 
 At their core, Koji apps are full-stack, modern JavaScript applications.
 They are designed for in-app browsers, so that they are instantly available on all social platforms and on every device.
@@ -147,7 +147,7 @@ For example, you can implement a Koji database to collect information in the app
 +
 Learn more: <<core-backend-overview#>>, <<add-service#>>, <<koji-database#>>
 
-== [.callout3]#Deploy your app#
+== 3. Deploy your app
 
 When you're finished developing your app, you can deploy it to the Koji platform.
 Deployed apps are accessible at a permanent production URL.
@@ -172,7 +172,7 @@ Learn more: <<app-versions#_viewing_version_history, Viewing version history>>
 
 TIP: If you update your app and deploy it again, the new version of the app replaces the existing version at the production URL.
 
-== [.callout4]#Test your app#
+== 4. Test your app
 
 The Koji platform provides a variety of tools for testing and debugging apps.
 
@@ -183,7 +183,7 @@ Then, you can point the Koji debugger to your localhost so that you can test all
 
 Learn more: <<testing-apps#>>, <<editor#_previewing_your_koji_app, Previewing your Koji app>>, <<work-locally#_testing_your_local_deployment, Testing your local deployment>>
 
-== [.callout5]#Distribute your app#
+== 5. Distribute your app
 
 After you develop, deploy, and test your app, you can share it in any of these ways:
 
