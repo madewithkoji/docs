@@ -9,6 +9,8 @@
     include::{includespath}/steps-app-store.adoc[tag=go2-app-store-developer-quick-start]
     include::{includespath}/steps-app-store.adoc[tag=go2-app-store-bouncy-blast]
     include::{includespath}/steps-app-store.adoc[tag=fork-the-project]
+    include::{includespath}/steps-app-store.adoc[tag=click-save-publish]
+    include::{includespath}/steps-app-store.adoc[tag=fill-out-form-for-listing-approval]
 ////
 
 
@@ -33,5 +35,13 @@
 // tag::fork-the-project[]
 . Fork the project by expanding the ellipses menu (*...*) and selecting *Fork*.
 // end::fork-the-project[]
+
+// tag::click-save-publish[]
+. Click btn:[Save and Publish].
+// end::click-save-publish[]
+
+// tag::fill-out-form-for-listing-approval[]
+. https://forms.gle/exqnEVtC45Cizdw56[Fill out and submit the request form] to add your listing to the App Store.
+// end::fill-out-form-for-listing-approval[]
 
 // end::all[]
