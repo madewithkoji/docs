@@ -480,6 +480,17 @@ const Content = styled.div`
     margin: 0;
   }
 
+  .apiref {
+    font-size: 80%;
+    font-style: italic;
+    :before {
+      content: "(";
+    }
+    :after {
+      content: ")";
+    }
+  }
+
 `;
 
 export default Content;
