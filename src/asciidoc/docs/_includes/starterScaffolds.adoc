@@ -1,24 +1,17 @@
 = Starter scaffolds
 
 // tag::react[]
-https://withkoji.com/apps/16fb355a-6471-44df-bf62-d75a4237c13e[React scaffold]
+https://withkoji.com/apps/frontendonly-react-starter-2634d3ef[Frontend-Only React Starter]
 // end::react[]
 
-// tag::reactVccs[]
-https://withkoji.com/~seane/simple-react-scaffold[React scaffold]
-// end::reactVccs[]
+// tag::react-full[]
+https://withkoji.com/apps/fullstack-react-starter-07129b24[Full-Stack React Starter]
+// end::react-full[]
 
-// tag::vanilla[]
-https://withkoji.com/~JamesHole/vanilla-js-scaffold[Vanilla JS scaffold]
-// end::vanilla[]
+// tag::vuejs[]
+https://withkoji.com/apps/vuejs-scaffold-a15cd188[VueJS Scaffold]
+// end::vuejs[]
 
 // tag::svelte[]
-https://withkoji.com/~RadEgg/svelte-instant-remix-template-no-vccs[Svelte scaffold]
+https://withkoji.com/apps/svelte-scaffold-23dc29bc[Svelte Scaffold]
 // end::svelte[]
-
-// tag::angular[]
-https://withkoji.com/~waterfallstreamair/angular-project-no-vccs[Angular scaffold]
-// end::angular[]
-
-// tag::vue[]
-// end::vue[]
