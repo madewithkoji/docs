@@ -1,4 +1,4 @@
-= Managing difficulty
+= Manage game difficulty
 :page-slug: game-managing-difficulty
 :page-description: Making a falling objects game get progressively more difficult over time.
 :figure-caption!:

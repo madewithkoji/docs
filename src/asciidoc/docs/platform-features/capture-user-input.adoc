@@ -1,4 +1,4 @@
-= Capturing user input
+= Capture user input
 :page-slug: capture-user-input
 :page-description: How to capture user input using `Koji.ui.capture` controls.
 :includespath: ../_includes

@@ -1,4 +1,4 @@
-= Listing in the App Store
+= List your app in the App Store
 :page-slug: app-store
 :page-description: An introduction to the Koji App Store and how to list your Koji app.
 :includespath: ../_includes

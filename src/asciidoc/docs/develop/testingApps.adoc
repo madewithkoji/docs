@@ -1,4 +1,4 @@
-= Testing and debugging apps
+= Test and debug apps
 :page-slug: testing-apps
 :page-description: Guide to testing and debugging Koji apps during development and in production.
 

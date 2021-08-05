@@ -1,4 +1,4 @@
-= Building custom controls
+= Build custom controls
 :page-slug: build-custom-controls
 :page-description: How to build a custom control that captures user input.
 :includespath: ../_includes

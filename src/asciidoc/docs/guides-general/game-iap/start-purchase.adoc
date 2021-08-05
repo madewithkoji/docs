@@ -1,4 +1,4 @@
-= Adding the payment logic
+= Add the payment logic
 :page-slug: game-iap-start-purchase
 :page-description: Adding functions to handle the payment logic for purchases in a Koji game.
 :figure-caption!:

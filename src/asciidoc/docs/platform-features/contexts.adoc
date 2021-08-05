@@ -1,4 +1,4 @@
-= Contexts
+= Create contexts
 :page-slug: contexts
 :page-description: Contexts and how to use them
 

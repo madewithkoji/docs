@@ -1,4 +1,4 @@
-= Porting existing code to Koji
+= Port existing code to Koji
 :page-slug: port-existing-code
 :page-description: How to import code from an existing repository and make it remixable on Koji.
 :includespath: ../_includes

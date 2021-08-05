@@ -1,4 +1,4 @@
-= Creating a payment menu
+= Create a payment menu
 :page-slug: game-iap-payment-menu
 :page-description: Creating the Payment Menu UI component to handle purchases in a Koji game.
 :figure-caption!:
