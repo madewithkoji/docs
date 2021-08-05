@@ -1,4 +1,4 @@
-= Example: Adding in-app purchases to Koji games
+= Example: Add in-app purchases to a game
 :page-slug: game-iap-intro
 :page-description: Tutorial for adding in-app purchases to an existing Koji game.
 :page-banner: {imagesDir}/game-iap-payment-menu-ui.png

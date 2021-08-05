@@ -1,4 +1,4 @@
-= Enabling file uploads
+= Enable file uploads
 :page-slug: enable-file-uploads
 :page-description: How to enable file uploads to the CDN through your Koji app's frontend.
 :includespath: ../_includes

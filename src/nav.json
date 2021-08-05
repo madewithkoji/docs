@@ -1,12 +1,12 @@
 {
   "navItems": [
     {
-      "name": "Docs",
+      "name": "Developer Docs",
       "root": "/docs",
       "defaultPath": "/docs/getting-started/introduction",
       "sections": [
         {
-          "name": "Getting started",
+          "name": "Get started",
           "root": "/getting-started",
           "items": [
             {
@@ -14,7 +14,7 @@
               "slug": "introduction"
             },
             {
-              "name": "Building your first Koji app",
+              "name": "Build your first Koji app",
               "slug": "start-tutorial",
               "subItems": [
                 {
@@ -52,7 +52,7 @@
           ]
         },
         {
-          "name": "Developing apps on Koji",
+          "name": "Develop apps on Koji",
           "root": "/develop",
           "items": [
             {
@@ -60,167 +60,167 @@
               "slug": "app-dev-process"
             },
             {
-              "name": "Project structure and configuration",
-              "slug": "projects"
-            },
-            {
-              "name": "Working in the Koji code editor",
+              "name": "Work online in the Koji code editor",
               "slug": "editor"
             },
             {
-              "name": "Working from your development machine",
+              "name": "Work locally in your dev machine",
               "slug": "local-development",
               "subItems": [
                 {
-                  "name": "1. Using Git to manage projects",
+                  "name": "1. Use Git to manage projects",
                   "slug": "use-git"
                 },
                 {
-                  "name": "2. Working locally",
+                  "name": "2. Set up your local environment",
                   "slug": "work-locally"
                 },
                 {
-                  "name": "3. Publishing local projects",
+                  "name": "3. Publish your local projects",
                   "slug": "publish-locally-developed"
                 }
               ]
             },
             {
-              "name": "Porting existing code to Koji",
+              "name": "Port existing code to Koji",
               "slug": "port-existing-code"
             },
             {
-              "name": "Adding a service",
+              "name": "Add a backend service",
               "slug": "add-service"
             },
             {
-              "name": "Testing and debugging apps",
+              "name": "Test and debug apps",
               "slug": "testing-apps"
             },
             {
-              "name": "Managing app versions",
+              "name": "Manage app versions",
               "slug": "app-versions"
+            },
+            {
+              "name": "Project structure and configuration",
+              "slug": "projects"
             }
           ]
         },
         {
-          "name": "Implementing platform features",
+          "name": "Implement app features",
           "root": "/platform",
           "items": [
             {
-              "name": "Contexts",
+              "name": "Create contexts",
               "slug": "contexts"
             },
             {
-              "name": "Capturing user input",
+              "name": "Capture user input",
               "slug": "capture-user-input"
             },
             {
-              "name": "Enabling file uploads",
+              "name": "Enable file uploads",
               "slug": "enable-file-uploads"
             },
             {
-              "name": "Entitlements",
+              "name": "Configure entitlements",
               "slug": "entitlements"
             },
             {
-              "name": "Customizing the thumbnail image",
+              "name": "Customize the thumbnail image",
               "slug": "thumbnail-image"
             },
             {
-              "name": "Koji databases",
+              "name": "Use a Koji database",
               "slug": "koji-database"
             }
           ]
         },
         {
-          "name": "More guides",
+          "name": "Add advanced features",
           "root": "/dev-guides",
           "items": [
             {
-              "name": "Migrating to the Koji core package",
+              "name": "Migrate to the Koji core package",
               "slug": "migrate-koji-core"
             },
             {
-              "name": "Example: Creating a game",
+              "name": "Example: Create a game",
               "slug": "game-intro",
               "subItems": [
                 {
-                  "name": "1. Defining assets",
+                  "name": "1. Define game assets",
                   "slug": "game-assets"
                 },
                 {
-                  "name": "2. Creating game objects",
+                  "name": "2. Create game objects",
                   "slug": "game-creating-game-objects"
                 },
                 {
-                  "name": "3. Scoring and losing",
+                  "name": "3. Set up scoring and losing",
                   "slug": "game-scoring-and-losing"
                 },
                 {
-                  "name": "4. Managing difficulty",
+                  "name": "4. Manage game difficulty",
                   "slug": "game-managing-difficulty"
                 },
                 {
-                  "name": "5. Adding customization options",
+                  "name": "5. Add customization options",
                   "slug": "game-customization"
                 },
                 {
-                  "name": "6. Customizing the preview",
+                  "name": "6. Customize the game preview",
                   "slug": "game-thumbnail-preview"
                 },
                 {
-                  "name": "7. Finishing up",
+                  "name": "7. Finish up",
                   "slug": "game-finishing-up"
                 }
               ]
             },
             {
-              "name": "Example: Adding in-app purchases to a game",
+              "name": "Example: Add in-app purchases to a game",
               "slug": "game-iap-intro",
               "subItems": [
                 {
-                  "name": "1. Setting up koji.json",
+                  "name": "1. Set up koji.json",
                   "slug": "game-iap-setting-up-koji-json"
                 },
                 {
-                  "name": "2. Creating a payment menu",
+                  "name": "2. Create a payment menu",
                   "slug": "game-iap-payment-menu"
                 },
                 {
-                  "name": "3. Adding the payment logic",
+                  "name": "3. Add the payment logic",
                   "slug": "game-iap-start-purchase"
                 },
                 {
-                  "name": "4. Updating game behavior",
+                  "name": "4. Update game behavior",
                   "slug": "game-iap-updating-game"
                 },
                 {
-                  "name": "5. Adding customization options",
+                  "name": "5. Add customization options",
                   "slug": "game-iap-customization"
                 }
               ]
             },
             {
-              "name": "Using Koji plugins",
+              "name": "Use Koji plugins",
               "slug": "plugins"
             },
             {
-              "name": "Using custom domains",
+              "name": "Use custom domains",
               "slug": "custom-domains"
             },
             {
-              "name": "Building custom controls",
+              "name": "Build custom controls",
               "slug": "build-custom-controls"
             }
           ]
         },
         {
-          "name": "Distributing apps",
+          "name": "Distribute apps",
           "root": "/distribute",
           "items": [
             {
-              "name": "Listing in the App Store",
+              "name": "List your app in the App Store",
               "slug": "app-store"
             }
           ]
@@ -234,7 +234,7 @@
               "slug": "glossary"
             },
             {
-              "name": "Contributing to the developer site",
+              "name": "Contribute to the developer site",
               "slug": "contribute-koji-developers"
             }
           ]
@@ -242,7 +242,7 @@
       ]
     },
     {
-      "name": "Reference",
+      "name": "API Reference",
       "root": "/reference",
       "defaultPath": "/reference/core/withkoji-koji-core",
       "sections": [

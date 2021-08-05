@@ -1,4 +1,4 @@
-= Using Git to manage your project
+= Use Git to manage projects
 :page-slug: use-git
 :page-description: How to use Git to clone a Koji app to your development machine, so that you can work on it locally.
 :figure-caption!:

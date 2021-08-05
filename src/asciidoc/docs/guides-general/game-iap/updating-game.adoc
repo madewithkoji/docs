@@ -1,4 +1,4 @@
-= Updating game behavior
+= Update game behavior
 :page-slug: game-iap-updating-game
 :page-description: Updating your Koji game to respond to in-game purchases.
 :figure-caption!:

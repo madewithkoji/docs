@@ -1,4 +1,4 @@
-= Publishing a project you developed locally
+= Publish your local projects
 :page-slug: publish-locally-developed
 :page-description: How to push local changes to the origin repository and pull them into the Koji editor, so you can publish the project.
 

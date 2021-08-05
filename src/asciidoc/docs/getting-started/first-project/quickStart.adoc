@@ -1,4 +1,4 @@
-= Tutorial: Building your first Koji app
+= Tutorial: Build your first Koji app
 :page-slug: start-tutorial
 :page-description: Tutorial for learning fundamental concepts and developing your first app on Koji.
 
@@ -13,26 +13,17 @@ For best results, do them in the order they appear.
 
 == Sections
 
-[.card]
-[.stripcard]
 .1. <<tutorial-first-app-basics#>>
 [.init-cap]
 include::your-first-project.adoc[tag=description]
 
-[.card]
-[.stripcard]
 .2. <<tutorial-first-app-core-package#>>
 [.init-cap]
 include::core-package.adoc[tag=description]
 
-[.card]
-[.stripcard]
 .3. <<tutorial-first-app-contexts-customization#>>
 [.init-cap]
 include::contexts-customization.adoc[tag=description]
-
-[.clearfloat]
-{blank}
 
 == Getting help
 

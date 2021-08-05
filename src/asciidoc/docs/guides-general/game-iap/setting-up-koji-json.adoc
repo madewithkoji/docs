@@ -1,4 +1,4 @@
-= Setting up koji.json
+= Set up koji.json
 :page-slug: game-iap-setting-up-koji-json
 :page-description: Configuring entitlements and customization data in koji.json to support in-game purchases.
 :figure-caption!:

@@ -1,4 +1,4 @@
-= Defining game assets
+= Define game assets
 :page-slug: game-assets
 :page-description: Configuring the settings and loading assets for a falling objects game.
 :figure-caption!:

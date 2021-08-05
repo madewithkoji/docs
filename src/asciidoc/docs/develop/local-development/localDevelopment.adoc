@@ -1,4 +1,4 @@
-= Working from your development machine
+= Work locally in your dev machine
 :page-slug: local-development
 :page-description: Guide for developing a Koji project on your local machine
 
@@ -7,23 +7,14 @@ The goal of this tutorial is to guide you through cloning a project to your loca
 
 == Sections
 
-[.card]
-[.cardht230]
 .1. <<use-git#>>
 [.init-cap]
 include::useGit.adoc[tag=description]
 
-[.card]
-[.cardht230]
 .2. <<work-locally#>>
 [.init-cap]
 include::workLocally.adoc[tag=description]
 
-[.card]
-[.cardht230]
 .3. <<publish-locally-developed#>>
 [.init-cap]
 include::publishLocal.adoc[tag=description]
-
-[.clearfloat]
-{blank}

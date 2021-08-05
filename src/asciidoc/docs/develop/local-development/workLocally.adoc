@@ -1,4 +1,4 @@
-= Working locally
+= Set up your local environment
 :page-slug: work-locally
 :page-description: How to set up a web server and launch your Koji app on your development machine, so that you can work on it locally.
 
