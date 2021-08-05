@@ -21,10 +21,10 @@ To use a predefined user-input control in your app,
 include::{includespath}/steps-codeeditor.adoc[tag=terminal-frontend]
 include::{includespath}/steps-codeeditor.adoc[tag=terminal-stop-process]
 include::{includespath}/steps-codeeditor.adoc[tag=terminal-install-withkoji-core-package]
-include::{includespath}/steps-codeeditor.adoc[tag=terminal-restart-process]
+include::{includespath}/steps-codeeditor.adoc[tag=terminal-restart-process-frontend]
 ====
 
-* Import @withkoji/core in your front-end code.
+* Import @withkoji/core in your frontend code.
 +
 [source,javascript]
 ----

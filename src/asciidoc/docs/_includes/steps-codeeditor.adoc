@@ -23,9 +23,11 @@
     include::{includespath}/steps-codeeditor.adoc[tag=click-publish-new-version]
     include::{includespath}/steps-codeeditor.adoc[tag=view-published-koji]
     include::{includespath}/steps-codeeditor.adoc[tag=terminal-frontend]
+    include::{includespath}/steps-codeeditor.adoc[tag=terminal-backend]
     include::{includespath}/steps-codeeditor.adoc[tag=terminal-stop-process]
     include::{includespath}/steps-codeeditor.adoc[tag=terminal-stop-process-extended]
-    include::{includespath}/steps-codeeditor.adoc[tag=terminal-restart-process]
+    include::{includespath}/steps-codeeditor.adoc[tag=terminal-restart-process-frontend]
+    include::{includespath}/steps-codeeditor.adoc[tag=terminal-restart-process-backend]
     include::{includespath}/steps-codeeditor.adoc[tag=terminal-install-withkoji-core-package]
 ////
 
@@ -120,6 +122,10 @@
 . At the bottom of the code editor, click the *frontend* tab of the terminal pane.
 // end::terminal-frontend[]
 
+// tag::terminal-backend[]
+. At the bottom of the code editor, click the *backend* tab of the terminal pane.
+// end::terminal-backend[]
+
 
 // tag::terminal-stop-process[]
 . Press kbd:[Ctrl+C] or kbd:[Cmd+C] to cancel the running service.
@@ -131,14 +137,19 @@
 .. Press kbd:[Ctrl+C] or kbd:[Cmd+C].
 // end::terminal-stop-process-extended[]
 
-// tag::terminal-restart-process[]
+// tag::terminal-restart-process-frontend[]
 . Restart the service.
 +
 [source,bash]
 ----
 npm start
 ----
-// end::terminal-restart-process[]
+// end::terminal-restart-process-frontend[]
+
+// tag::terminal-restart-process-backend[]
+npm run start-dev
+// end::terminal-restart-process-backend[]
+
 
 
 // tag::terminal-install-withkoji-core-package[]

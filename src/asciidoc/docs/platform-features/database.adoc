@@ -4,35 +4,65 @@
 
 Each Koji project includes a key-value storage structure that you can use as a backend database for simple use cases, such as collecting information from users, aggregating survey or poll results, and creating leaderboards for games.
 
-* A Koji database is comprised of one or more [.term]#collections#.
-* A collection is comprised of related database records.
+[singlespaced]
+* A Koji database is comprised of one or more collections.
+* A [.term]#collection# is comprised of related database records.
 * A database record must have a unique name (used as the primary key) and is comprised of a set of key-value pairs.
 * A value can be of any type, including strings, numbers, and arrays.
 
 For example:
 
 [singlespaced]
-* A leaderboard database for a game app could have a collection called "top10".
-* The collection could have up to 10 database records.
-* For each record, the username could be the unique key and could include key-value pairs with the following keys:
+* A leaderboard database for a game app could have a collection for the historically highest top scores and another collection for scores in games played in the past 24 hours.
+* The "top10" collection could have up to 10 database records and the "24hrs" collection could have any number of records.
+* For each "top10" record, the username could be the unique key, and the record could include key-value pairs with the following keys:
 +
 ** highest-score
 ** date-of-highest-score
+* For each "24hrs" record, the date and time when the game ended could be the unique key, and the record could include key-value pairs with the following keys:
++
+** username
+** score
 
-An app can view, download to CSV, or delete data from any collection in its own database.
-Additionally, you can create custom database views to simplify content moderation and data collection for the app owner.
+// In addition to the standard CRUD (create, read, update, delete) operations,
+An app can also export the data from its own database to a CSV.
+
+To simplify content moderation and data collection for the app owner, you can define database views that customize how the data is presented to the app owner.
 These views are also used in the *Database* section of the debugger.
 
 == Using a Koji database
 
 To use a Koji database in your project,
 
-. Install and import the @withkoji/core package in the backend of your Koji project. <<app-dev-process#_add_withkojicore_to_the_backend,Learn how.>>
+* Install @withkoji/core in the *backend* terminal tab.
++
+.Learn how...
+[%collapsible]
+====
+include::{includespath}/steps-codeeditor.adoc[tag=terminal-backend]
+include::{includespath}/steps-codeeditor.adoc[tag=terminal-stop-process]
+include::{includespath}/steps-codeeditor.adoc[tag=terminal-install-withkoji-core-package]
+include::{includespath}/steps-codeeditor.adoc[tag=terminal-restart-process-backend]
+====
+
+* Import @withkoji/core in your backend code.
++
+[source,javascript]
+----
+import Koji from '@withkoji/core';
+----
 
 . Collect data in the frontend. <<capture-user-input#,Learn how.>>
 
 . Use the <<core-backend-database#Constructor#,KojiBackend.Database>> class to manage the data in the Koji database.
 +
+** `.set` – Adds a record to the Koji database.
+[.apiref]#<<core-backend-database#set,API reference>>#
+
+** `.update` – Modifies the specified record if one exists with the specified name.
+Otherwise, creates a new record.
+[.apiref]#<<core-backend-database#update,API reference>>#
+
 ** `.get` – Retrieves a collection or an record.
 [.apiref]#<<core-backend-database#get,API reference>>#
 
@@ -51,12 +81,26 @@ To use a Koji database in your project,
 ** `.search` – Retrieves all records where the value of the specified key is equal to the specified search value.
 [.apiref]#<<core-backend-database#search,API reference>>#
 
-** `.set` – Adds an record to the Koji database.
-[.apiref]#<<core-backend-database#set,API reference>>#
+////
+=== Example
 
-** `.update` – Modifies the specified record if one exists with the specified name.
-Otherwise, creates a new record.
-[.apiref]#<<core-backend-database#update,API reference>>#
+The following example allows the user to enter usernames and associated scores. then the app displays the three highest scores.
+
+[source,javascript]
+----
+----
+////
+
+== Viewing and managing the data
+
+When developing an app, you can use the Koji debugger to test the data collection logic and the database view configuration.
+When you publish your own app or customize someone else's app, you can access the data from the app.
+
+* To test your database implementation, open the Koji debugger.
+In the *Database* panel, select the collection you want to view.
+For more information, see <<testing-apps#_debugging_database_views>>.
+
+* To access the raw data for a Koji you created, go to menu:App[... > Database].
 
 == Customizing database views
 
@@ -120,16 +164,6 @@ If a database view is not defined in the project, all data is displayed as strin
 <8> `sort.key` – The key used as the sort index.
 <9> `sort.direction` – The order in which to sort the data, `asc` (ascending) or `desc` (descending).
 
-== Viewing and managing the data
-
-When developing an app, you can use the Koji debugger to test the data collection logic and the database view configuration.
-When you publish your own app or customize someone else's app, you can access the data from the app.
-
-* To test your database implementation, open the Koji debugger.
-In the *Database* panel, select the collection you want to view.
-For more information, see <<testing-apps#_debugging_database_views>>.
-
-* To access the raw data for a Koji you created, go to menu:App[... > Database].
 
 == Related resources
 

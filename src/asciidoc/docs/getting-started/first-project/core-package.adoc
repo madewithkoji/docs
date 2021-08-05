@@ -51,7 +51,7 @@ include::{includespath}/steps-codeeditor.adoc[tag=terminal-install-withkoji-core
 +
 NPM displays the status as it requests the latest package details and installs the package in the project.
 
-include::{includespath}/steps-codeeditor.adoc[tag=terminal-restart-process]
+include::{includespath}/steps-codeeditor.adoc[tag=terminal-restart-process-frontend]
 +
 This triggers React to recompile your project and then start the service.
 The terminal will display the same messages as it did before you stopped the process.
