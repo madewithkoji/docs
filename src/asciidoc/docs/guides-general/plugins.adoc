@@ -1,4 +1,4 @@
-= Using Koji plugins
+= Use Koji plugins
 :page-slug: plugins
 :page-description: The advantages and limitations of Koji plugins and how to use them.
 

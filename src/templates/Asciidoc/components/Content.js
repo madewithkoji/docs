@@ -36,8 +36,8 @@ const Content = styled.div`
   }
 
   p, body {
-    font-size: 15px !important;
-    line-height: 22px;
+    font-size: 14px !important;
+    line-height: 26px;
   }
 
   code {
@@ -438,7 +438,6 @@ const Content = styled.div`
       border-radius: 50%;
       text-align: center;
       font-weight: bold;
-      font-family: Arial, sans-serif;
       font-style: normal;
       position: relative;
       user-select: none;
@@ -458,7 +457,6 @@ const Content = styled.div`
     float: left;
     overflow: auto;
   }
-  .stripcard { width: 90%; height: 120px; margin-left: 25px; }
   .cardht165 { height: 165px; }
   .cardht190 { height: 190px; }
   .cardht230 { height: 230px; }
@@ -489,6 +487,15 @@ const Content = styled.div`
     :after {
       content: ")";
     }
+
+  .uicontrol {
+    font-weight: bold !important;
+  }
+
+  .msgnum,
+  .msgph,
+  .msgblock {
+    font-family: Menlo, Monaco, "Liberation Mono", Consolas, monospace;
   }
 
 `;

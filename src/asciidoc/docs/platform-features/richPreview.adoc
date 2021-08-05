@@ -1,4 +1,4 @@
-= Customizing the thumbnail image
+= Customize the thumbnail image
 :page-slug: thumbnail-image
 :page-description: How to customize the thumbnail (Open Graph) image and metadata for your Koji app.
 :page-banner: {imagesDir}/Koji-screenshot=1.png

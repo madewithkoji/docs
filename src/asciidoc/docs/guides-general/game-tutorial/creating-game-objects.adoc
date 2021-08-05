@@ -1,4 +1,4 @@
-= Creating game objects
+= Create game objects
 :page-slug: game-creating-game-objects
 :page-description: Creating classes for the player and collectibles in a falling objects game.
 :figure-caption!:

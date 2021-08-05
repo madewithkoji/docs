@@ -1,4 +1,4 @@
-= Scoring and losing
+= Set up scoring and losing
 :page-slug: game-scoring-and-losing
 :page-description: Adding collision checks for scoring and conditions for losing a falling objects game.
 :figure-caption!:

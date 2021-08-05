@@ -1,4 +1,4 @@
-= Migrating to the Koji core package
+= Migrate to the Koji core package
 :page-slug: migrate-koji-core
 :page-description: Guide for migrating Koji apps that use deprecated packages to the Koji core package.
 

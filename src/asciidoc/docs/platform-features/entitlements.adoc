@@ -1,4 +1,4 @@
-= Entitlements
+= Configure entitlements
 :page-slug: entitlements
 :page-description: List of available entitlements for configuring Koji platform features in your app.
 :includespath: ../_includes

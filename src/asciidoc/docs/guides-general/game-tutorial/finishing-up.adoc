@@ -1,4 +1,4 @@
-= Finishing up
+= Finish up
 :page-slug: game-finishing-up
 :page-description: Publishing, sharing, and adding more features to a falling objects game.
 :figure-caption!:

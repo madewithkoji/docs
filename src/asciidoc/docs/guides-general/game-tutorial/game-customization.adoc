@@ -1,4 +1,4 @@
-= Adding customization options
+= Add customization options
 :page-slug: game-customization
 :page-description: Modifying the customization menu for a falling objects game so that anyone can make their own version.
 :figure-caption!:

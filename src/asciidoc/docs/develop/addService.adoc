@@ -1,6 +1,6 @@
-= Adding a service to your app
+= Add a backend service
 :page-slug: add-service
-:page-description: How to add a backend service to a Koji app.
+:page-description: How to add a backend service to your Koji app.
 :includespath: ../_includes
 
 As you develop and extend apps on Koji, you will likely encounter situations where it would be useful to put some of your code into a service.

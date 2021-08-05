@@ -1,4 +1,4 @@
-= Listing in the App Store
+= List your app in the App Store
 :page-slug: app-store
 :page-description: An introduction to the Koji App Store and how to list your Koji app.
 :includespath: ../_includes
@@ -85,10 +85,39 @@ ____
 
 * *Attachments* – (Optional) Links to other sites that provide more information about your app, such as documentation about your app, YouTube tutorials, news articles, and product comparisons or reviews.
 
-. Click btn:[Save and Publish].
+include::{includespath}/steps-app-store.adoc[tag=click-save-publish]
 +
 NOTE: The version number of your published listing is different from the version number of your published app shown in your *Project Details*.
 
-. https://forms.gle/exqnEVtC45Cizdw56[Fill out and submit the request form] to add your listing to the App Store.
+include::{includespath}/steps-app-store.adoc[tag=fill-out-form-for-listing-approval]
 +
 You will be notified when your listing is approved and posted in the App Store.
+
+== Updating an App Store listing
+
+When you publish a new version of your app, you don't need to update your App Store listing because the permanent link to your app remains the same.
+
+However, if you need to change the description or screenshots in your listing, you must create a new listing.
+The old listing is not modifiable.
+
+include::{includespath}/steps-dev-portal.adoc[tag=go2-dev-portal]
+
+include::{includespath}/steps-dev-portal.adoc[tag=go2-dev-portal-templates]
+
+. Search for the listing you want to update.
+
+. Click the btn:[Manage] button for the listing.
+
+. In the *App Template Details* page, click the *Create New Version* link.
++
+Most of the settings from the old listing will be copied to the new one.
+
+include::{includespath}/steps-app-store.adoc[tag=click-save-publish]
++
+If you're not ready to publish your new listing, you can also do the following:
++
+[singlespaced]
+* To save your changes without publishing, click the btn:[Save Changes] button.
+* To discard the draft, click the *Delete Version* link.
+
+include::{includespath}/steps-app-store.adoc[tag=fill-out-form-for-listing-approval]

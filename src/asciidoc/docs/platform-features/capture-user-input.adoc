@@ -1,4 +1,4 @@
-= Capturing user input
+= Capture user input
 :page-slug: capture-user-input
 :page-description: How to capture user input using `Koji.ui.capture` controls.
 :includespath: ../_includes
@@ -76,7 +76,8 @@ If the list has 5 or more options, the list is presented as a dropdown.
 
 == Example
 
-The https://withkoji.com/apps/67dea854-70b6-4114-98ad-1e28a60d6fb0[Example | Capturing User Input] app illustrates how to capture user input with the UI / Capture controls. Click each button to preview the popup presented to the user by each control.
+The https://withkoji.com/apps/capturing-user-input-c850b780[Capturing User Input] app illustrates how to capture user input with the UI / Capture controls.
+Click each button to preview the popup presented to the user by each control.
 
 +++
 <iframe src="https://withkoji.com/@eltesorokoji/iwmb" width="400" height="600"> </iframe>
@@ -101,7 +102,7 @@ const captureImage = async () => {
 };
 ----
 
-To view the complete code of the example app, https://withkoji.com/apps/67dea854-70b6-4114-98ad-1e28a60d6fb0[fork the project from the Koji App Store].
+To view the complete code of the example app, fork the https://withkoji.com/apps/capturing-user-input-c850b780[Capturing User Input] project from the Koji App Store.
 
 == Related resources
 

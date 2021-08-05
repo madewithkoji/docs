@@ -1,4 +1,4 @@
-= Using Git to manage your project
+= Use Git to manage projects
 :page-slug: use-git
 :page-description: How to use Git to clone a Koji app to your development machine, so that you can work on it locally.
 :figure-caption!:
@@ -54,7 +54,7 @@ For more information, see this https://kinsta.com/blog/best-text-editors/[list o
 This tutorial uses the *Falling Objects* app as an example because it illustrates a completed game with code that runs both on the backend and on the frontend.
 However, the instructions in this tutorial apply to any Koji project.
 You can start a Koji project by forking any other app on Koji.
-For some great starting points, check out the https://withkoji.com/apps/categories/for-developers[For Developers] page.
+For some great starting points, check out the https://withkoji.com/apps/categories/for-developers[For Developers] section of the Koji App Store.
 
 . Go to the https://withkoji.com/~Svarog1389/rxkd[Falling Objects] app.
 . Click menu:App[Open Advanced Details > Fork].

@@ -1,4 +1,4 @@
-= Customizing the preview image
+= Customize the game preview
 :page-slug: game-thumbnail-preview
 :page-description: Modifying the preview image when the falling objects game is shared on social media.
 :figure-caption!:

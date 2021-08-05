@@ -1,4 +1,4 @@
-= Using custom domains
+= Use custom domains
 :page-slug: custom-domains
 :page-description: How to configure your Koji app to use a custom domain.
 

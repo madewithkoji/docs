@@ -1,4 +1,4 @@
-= Example: Adding in-app purchases to Koji games
+= Example: Add in-app purchases to a game
 :page-slug: game-iap-intro
 :page-description: Tutorial for adding in-app purchases to an existing Koji game.
 :page-banner: {imagesDir}/game-iap-payment-menu-ui.png
@@ -13,7 +13,7 @@ If you're new to Koji, here are some tutorials that you might want to check out 
 
 == Objective
 
-The starting point for this tutorial is the https://withkoji.com/~Svarog1389/3ej3[Tower Stack] game, which was built on top of the https://withkoji.com/apps/78ddd0e8-de2d-498e-bd88-255166d54849[Game Dev Scaffold].
+The starting point for this tutorial is the https://withkoji.com/apps/fe97e8a4-127d-4a65-8695-395ae60944e4[Tower Stack] game, which was built on top of the https://withkoji.com/apps/game-dev-scaffold-1a7af5ea[Game Dev Scaffold].
 
 Tower Stack is a hyper-casual game where the goal is to stack blocks as high as you can without missing any.
 Each new block swings from the top of the screen and tapping releases it.

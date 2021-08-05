@@ -1,4 +1,4 @@
-= Working in the Koji code editor
+= Work online in the Koji code editor
 :page-slug: editor
 :page-description: Guide for the Koji code editor, a browser-based IDE for developing and testing your Koji app.
 :includespath: ../_includes

@@ -1,4 +1,4 @@
-= Adding customization options
+= Add customization options
 :page-slug: game-iap-customization
 :page-description: Making the price customizable for a game with in-app purchases.
 :figure-caption!:

@@ -1,4 +1,4 @@
-= Contributing to the Koji developer site
+= Contribute to the developer site
 :page-slug: contribute-koji-developers
 :page-description: Guide for contributing to the Koji for Developers site.
 

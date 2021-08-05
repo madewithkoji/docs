@@ -1,4 +1,4 @@
-= Porting existing code to Koji
+= Port existing code to Koji
 :page-slug: port-existing-code
 :page-description: How to import code from an existing repository and make it remixable on Koji.
 :includespath: ../_includes
@@ -17,9 +17,7 @@ There are scaffolds for many existing application frameworks, including Phaser, 
 
 In this case, you will be working with a React app.
 
-. Open the following scaffold.
-+
-https://withkoji.com/apps/16fb355a-6471-44df-bf62-d75a4237c13e[Simple React Scaffold]
+. Open the https://withkoji.com/apps/frontendonly-react-starter-2634d3ef[Frontend-Only React Starter] scaffold.
 . Click *Fork*.
 After a short loading time, the app opens in *Project Details*.
 . Click *Open in Code Editor*.
@@ -47,7 +45,7 @@ mv *.* ../../src
 ----
 . In the navigation panel, find the `package.json` file in the `temp` folder, and open it in the Koji editor.
 +
-Mortgage Overpayment Calculator uses some functions from the D3.js JavaScript library to draw graphs. These functions must be listed as dependencies in the `package.json` file. 
+Mortgage Overpayment Calculator uses some functions from the D3.js JavaScript library to draw graphs. These functions must be listed as dependencies in the `package.json` file.
 . Copy the following lines to the clipboard.
 +
 [source,bash]
