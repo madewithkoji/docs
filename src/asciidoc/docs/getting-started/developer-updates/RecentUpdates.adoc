@@ -5,62 +5,59 @@
 This digest summarizes the recent updates to the Koji platform, packages, and developer site.
 For highlights from earlier updates, see <<developer-updates#>>.
 
-include::../../_includes/tip-discord-server.adoc[tags=*]
-
-// tag::highlights[]
-=== Developer site updates
-
-* To accelerate Koji app development, several articles have been updated, including the following:
-** Updated – <<introduction#>>, <<projects#>>, <<editor#>>, <<local-development#>>, <<port-existing-code#>>
-** New – <<entitlements#>>
-
-* To make it easier to find the content you need, the site navigation has been streamlined and some deprecated content has been removed.
-
-=== Koji platform updates
-
-* The platform navigation has been updated to support the Koji Profile as a central home for a creator's Koji apps.
-Related changes include:
-
-** The Koji button has been replaced with a new floating menu on profiles and a top navigation bar on app.
-This new navigation is less invasive and brings the experience of managing a profile or app much close to the app itself.
-
-** Creators can no longer remix apps directly.
-Instead, when viewing someone else's app, creators can tap the app name to view the App Store listing and preview or use the app from there.
-+
-image::appdetails-jun2021.png[App Store listing]
-
-* You can now make withdrawals from your Koji account without any fees, so you can retain more revenue from your apps.
-// end::highlights[]
-
-* For security reasons, your Koji wallet no longer allows topping up.
-The Koji wallet appears as a payment option only for a creator who has received funds.
-For other users, the Koji wallet will no longer be visible.
-
-* Fixed a bug where custom controls would show a loading indicator but would never load.
-
-* Fixed a bug where product SKUs were not correctly resolved on the backend unless they were all lowercase.
-Product SKUs are no longer case-sensitive.
-
-* The `estimatePoses` option is no longer supported for video captures.
-Apps can process camera input directly, if needed.
-
-* The following contexts and associated entitlements have been deprecated: `admin`, `about`, and `sticker`.
-Apps can provide admin interfaces by managing roles with the Identity class in the @withkoji/core package.
-
-* The `FeedEvents` entitlement has been deprecated.
 // tag::highlights[]
 
 === Core package updates
 
-* In the <<withkoji-koji-core#>> package, the new `metadata` object provides a reference to the creator's current username and profile picture.
-Apps no longer need to collect this data from the user as a configuration option, and users can update their information at the platform level and have it automatically applied in all apps.
-+
-At runtime, these values are managed by two new environment variables: `KOJI_CREATOR_USERNAME` and `KOJI_CREATOR_PROFILE_PICTURE`.
+* The following contexts are deprecated: `admin`, `about`, and `sticker`. Apps can provide admin interfaces by managing roles with Identity.
 
-* Apps can use the new `iap.refundTransaction` method to refund unsettled transactions.
+* The `estimatePoses` option is no longer supported for video captures (Koji.ui.capture.video). Apps can process camera input directly, if needed.
+
+* Bug fixes
+
+Learn more: https://github.com/madewithkoji/koji-core/releases[Koji Core release notes]
+
+=== Koji platform updates
+
+* During app customization, `remix.encryptValue` and `remix.decryptValue` can now read and write values from the app's keystore.
++
+This allows apps that use secret values, such as locked photos, to be customizable.
+
+* Anonymous users can no longer customize apps.
+
+* Bug fixes
+
 // end::highlights[]
 
-* Apps can use the new `ui.present.systemAlert` method to communicate state changes to users.
+=== Documentation updates
+
+* New topics:
+[.singlespaced]
+** <<app-store#>>
+** <<app-dev-process#>>
+** <<capture-user-input#>>
+** <<glossary#>>
+** <<build-custom-controls#>> with the new https://withkoji.com/apps/custom-control-scaffold-5e7a1008[Custom Control Scaffold] and https://withkoji.com/apps/custom-control-tester-853a1cc3[associated tester app]
+
+* Updated topics:
+[.singlespaced]
+** <<add-service#>>
+** <<local-development#>>
+** <<thumbnail-image#>>
+** <<start-tutorial#>>
+
+* Styling updates
+
+// tag::highlights[]
+
+=== Other
+
+* New ways to contact us:
+[.singlespaced]
+** You can reach the Koji team through a chat icon at the bottom right of https://withkoji.com/[the main Koji website] and other Koji websites.
+** The https://help.withkoji.com/[Help Center] is updated.
+** The support page is deprecated.
 
 [NOTE]
 include::../../_includes/coreReleaseNotes.adoc[tag=all]
+// end::highlights[]
