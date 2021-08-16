@@ -19,7 +19,7 @@ Learn more: https://github.com/madewithkoji/koji-core/releases[Koji Core release
 
 === Koji platform updates
 
-* During app customization, `remix.encryptValue` and `remix.decryptValue` can now read and write values from the app's keystore.
+* When you edit an app that has already been published, `remix.encryptValue` and `remix.decryptValue` can now read and write values from the app's keystore.
 +
 This allows apps that use secret values, such as locked photos, to be customizable.
 
