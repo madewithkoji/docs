@@ -289,63 +289,13 @@ set REACT_APP_PROJECT_TOKEN=a6676f53-44fe-4109-819a-69df620ad7ed
 +
 TIP: Another alternative is to use the https://www.npmjs.com/package/dotenv[dotenv] package to read the values from the `.env` file.
 
-==== Setting up a launch configuration for VS Code
+==== Launching servers from Visual Studio Code
 
-If you're working in VS Code, you can set up a configuration file to save the environment variables, the URL for connecting to the backend, and the deployment details needed to launch your project.
-Then, you can launch both servers from VS Code, rather than manually launching the frontend and backend from the terminal.
+Koji automatically generates the [.filepath]#launch.json# configuration file used by Visual Studio Code.
+This file contains the environment variable settings, the URL for connecting to the backend, and the deployment details needed to launch your project.
+With this configuration file, you can launch both the frontend and the backend servers from Visual Studio Code, instead of from the terminal.
 
-TIP: For more information on launch configurations, visit the https://go.microsoft.com/fwlink/?linkid=830387[Visual Studio Code documentation].
-
-. In a `.vscode` folder in your workspace, create a `launch.json` file.
-. Paste the following configuration information in the file.
-+
-[source,json]
-----
-{
-  "version": "0.2.0",
-  "configurations": [
-    {
-      "command": "npm start",
-      "name": "Client",
-      "request": "launch",
-      "type": "node-terminal",
-      "cwd": "${workspaceFolder}/frontend",
-      "env": {
-        "KOJI_PROJECT_ID": "REPLACE", <1>
-        "KOJI_SERVICE_URL_backend": "http://localhost:3333",
-        "KOJI_SERVICE_URL_frontend": "http://localhost:8080"
-      },
-    },
-    {
-      "command": "npm run start-dev",
-      "name": "Server",
-      "request": "launch",
-      "type": "node-terminal",
-      "cwd": "${workspaceFolder}/backend",
-      "env": {
-        "KOJI_PROJECT_ID": "REPLACE", <1>
-        "KOJI_PROJECT_TOKEN": "REPLACE" <2>
-      },
-    }
-  ],
-  "compounds": [
-    {
-      "name": "Client/Server",
-      "configurations": [
-        "Client",
-        "Server"
-      ]
-    }
-  ]
-}
-----
-<1> `KOJI_PROJECT_ID` environment variable.
-<2> `KOJI_PROJECT_TOKEN` environment variable.
-
-. Replace the `KOJI_PROJECT_ID` and `KOJI_PROJECT_TOKEN` values with the environment variable values you obtained for your project.
-Save the file.
-
-. To launch the app from VS Code, select btn:[Run and Debug] on the Debug start view.
+Learn more: https://go.microsoft.com/fwlink/?linkid=830387[Launch Configurations] in the Visual Studio Code documentation
 
 == Testing your local deployment
 
