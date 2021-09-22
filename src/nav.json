@@ -327,29 +327,29 @@
                 {
                   "name": "UI / Upload",
                   "slug": "core-frontend-ui-upload"
+                },
+                {
+                  "name": "Web3 / Ethereum",
+                  "slug": "core-frontend-web3-providers-ethereum"
                 }
               ]
             }
           ]
         },
         {
-          "name": "@withkoji/custom-vcc-sdk",
-          "root": "/customvcc",
+          "name": "Other Packages",
+          "root": "/other-packages",
           "items": [
             {
-              "name": "Overview",
-              "slug": "withkoji-custom-vcc-sdk"
+               "name": "@withkoji/custom-vcc-sdk",
+               "slug": "withkoji-custom-vcc-sdk",
+               "subItems": [
+                {
+                  "name": "CustomVcc",
+                  "slug": "customvcc-reference"
+                }
+              ]
             },
-            {
-              "name": "CustomVcc",
-              "slug": "customvcc-reference"
-            }
-          ]
-        },
-        {
-          "name": "Deprecated",
-          "root": "/deprecated-packages",
-          "items": [
             {
               "name": "Deprecated packages",
               "slug": "deprecated-packages-overview",
