@@ -29,6 +29,7 @@ exports.sourceNodes = ({ actions, createNodeId, createContentDigest }) => {
         'frontend/ui/navigate',
         'frontend/ui/present',
         'frontend/ui/upload',
+        'frontend/web3/providers/ethereum',
       ];
 
       const modules = [];
@@ -61,6 +62,8 @@ exports.sourceNodes = ({ actions, createNodeId, createContentDigest }) => {
 
         newModule.referenceIds = referenceIds;
 
+        console.log('NAME', child.name);
+
         if (moduleNames.includes(child.name)) {
           modules.push(newModule);
         } else {
@@ -72,8 +75,9 @@ exports.sourceNodes = ({ actions, createNodeId, createContentDigest }) => {
       const AllTypeAliases = [...modules, ...excludedModules].map((m) => m['Type aliases'] || []).reduce((acc, cur) => [...acc, ...cur], []);
 
       modules.forEach((m) => {
-        const { html, name = '', shortDescription } = generateModuleHTML(m, AllInterfaces, AllTypeAliases);
+        const { html, name = '', shortDescription = '' } = generateModuleHTML(m, AllInterfaces, AllTypeAliases);
         const slug = `core-${m.name.replace(/\//g, '-').toLowerCase()}`;
+        console.log(slug);
 
         const node = {
           id: createNodeId(`Koji-Core-Package-Item-${m.name}`),
