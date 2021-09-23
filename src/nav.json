@@ -281,6 +281,10 @@
                 {
                   "name": "Utilities",
                   "slug": "core-backend-utilities"
+                },
+                {
+                  "name": "Web3 / Ethereum",
+                  "slug": "core-backend-web3-providers-ethereum"
                 }
               ]
             },
