@@ -19,6 +19,7 @@ exports.sourceNodes = ({ actions, createNodeId, createContentDigest }) => {
         'backend/identity',
         'backend/secret',
         'backend/utilities',
+        'backend/web3/providers/ethereum',
         'frontend/analytics',
         'frontend/dispatch',
         'frontend/iap',
