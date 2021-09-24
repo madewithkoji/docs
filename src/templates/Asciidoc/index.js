@@ -24,11 +24,19 @@ if (typeof Element !== 'undefined') {
   Tabs = require('future-tabs');
 }
 
-const Container = styled.div`
-
+export const Container = styled.div`
+  width: 100%;
+  display: flex;
 `;
 
-const SectionLink = styled.a`
+export const ContentWrapper = styled.div`
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
+export const SectionLink = styled.a`
   color: ${DARK_GRAY} !important;
   position: relative;
   font-size: 13px;
@@ -40,13 +48,14 @@ const SectionLink = styled.a`
   }
 
   &::before {
-    content: '';
-    width: 8px;
-    height: 8px;
+    width: 6px;
+    height: 6px;
     background: #666666;
     position: absolute;
-    top: 0;
-    left: 0;
+    top: -1px;
+    left: 5px;
+
+    content: '';
     z-index: 10000;
     transform: translate(-16px, 6px);
     border-radius: 50%;
@@ -55,7 +64,7 @@ const SectionLink = styled.a`
   }
 `;
 
-const SubSectionLink = styled.a`
+export const SubSectionLink = styled.a`
   color: ${DARK_GRAY} !important;
   margin-left: 16px;
   position: relative;
@@ -68,13 +77,14 @@ const SubSectionLink = styled.a`
   }
 
   &::before {
-    content: '';
-    width: 8px;
-    height: 8px;
+    width: 6px;
+    height: 6px;
     background: #666666;
     position: absolute;
-    top: 0;
-    left: 0;
+    top: -1px;
+    left: 5px;
+
+    content: '';
     z-index: 10000;
     transform: translate(-16px, 6px);
     border-radius: 50%;
@@ -83,29 +93,32 @@ const SubSectionLink = styled.a`
   }
 `;
 
-const StyledContainer = styled(Container)`
+export const StyledContainer = styled(Container)`
   display: flex;
   opacity: ${({ style: { isReady } }) => isReady ? 1 : 0};
 `;
 
-const TOC = styled.div`
+export const TOC = styled.div`
   text-transform: uppercase;
   font-size: 12px;
-  font-weight: bold;
-  color: #999999;
+  font-weight: normal;
+  color: #666666;
+  letter-spacing: 0px;
 
   a, a:hover {
     text-decoration: none;
   }
 `;
 
-const Nav = styled.div`
+export const Nav = styled.div`
   position: sticky;
-  top: 8px;
-  margin-top: 4px;
-  min-width: 200px;
-  width: 200px;
-  padding: 16px;
+  top: 0;
+  margin: 0;
+  min-width: 240px;
+  width: 240px;
+  max-width: 240px;
+
+  padding: 64px 16px;
   display: flex;
   flex-direction: column;
   height: calc(100vh - 48px);
@@ -117,35 +130,6 @@ const Nav = styled.div`
 
   @media screen and (max-width: 1023px) {
     display: none;
-  }
-
-  &:hover {
-    ::-webkit-scrollbar-thumb {
-      background-color: #babac0;
-    }
-  }
-
-  /* total width */
-  ::-webkit-scrollbar {
-      background-color: #fff;
-      width: 16px;
-  }
-
-  /* background of the scrollbar except button or resizer */
-  ::-webkit-scrollbar-track {
-      background-color: #fff;
-  }
-
-  /* scrollbar itself */
-  ::-webkit-scrollbar-thumb {
-      background-color: transparent;
-      border-radius: 16px;
-      border: 4px solid #fff;
-  }
-
-  /* set button(top and bottom of the scrollbar) */
-  ::-webkit-scrollbar-button {
-      display:none;
   }
 `;
 
@@ -275,9 +259,11 @@ const Asciidoc = (props) => {
   return (
     <StyledContainer maxWidth="lg" style={{ isReady }}>
       <SEO title={pageTitle} description={pageDesc} image={pageBanner} article />
-      <Content
-        dangerouslySetInnerHTML={{ __html: props.data.asciidoc.html }}
-      />
+      <ContentWrapper>
+        <Content
+          dangerouslySetInnerHTML={{ __html: props.data.asciidoc.html }}
+        />
+      </ContentWrapper>
       {
         sections.length > 0 &&
         <Nav>

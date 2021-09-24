@@ -39,15 +39,14 @@ const Main = styled.div`
   margin-top: 0;
 
   @media screen and (max-width: 768px) {
-    margin-top: 114px;
+    margin-top: 64px;
   }
 `;
 
 const MainWrapper = styled.div`
   display: flex;
-  width: calc(100% - 60px);
-  margin: 16px auto 0 auto;
-  min-height: calc(100% - 114px);
+  width: 100%;
+  min-height: calc(100% - 64px);
 `;
 
 const Overlay = styled.div`
@@ -171,6 +170,12 @@ const Layout = (props) => {
     return null;
   }
 
+  const sectionKey = (props.location.pathname.startsWith('/reference')) ? (
+    'API Reference'
+  ) : (
+    'Developer Docs'
+  );
+
   return (
     <>
       <SEO />
@@ -195,11 +200,14 @@ const Layout = (props) => {
           <Search isSearching={isSearching} />
         </SearchWrapper>
         <Header>
-          <AppBar navItems={data.allNavItem.nodes || []} />
+          <AppBar
+            navItems={data.allNavItem.nodes || []}
+            onStartSearch={() => setIsSearching(() => true)}
+            currentArea={sectionKey}
+          />
           <AppSubBar
             location={props.location}
             navItems={data.allNavItem.nodes || []}
-            onSearchClick={() => setIsSearching(() => true)}
           />
         </Header>
         <Main>

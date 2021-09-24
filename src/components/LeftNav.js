@@ -7,47 +7,22 @@ import KeyboardArrowRightIcon from '@material-ui/icons/KeyboardArrowRight';
 import { BLACK, BLUE, LIGHT_GRAY } from '../constants/colors';
 
 const Container = styled.nav`
-  width: 246px;
+  width: 280px;
+  min-width: 280px;
+  max-width: 280px;
+  border-right: 1px solid #f4f4f4;
+
   height: 100%;
   max-height: 100vh;
   overflow: auto;
-  padding: 0 0 32px 10px;
+  padding: 0px;
+  padding-bottom: 32px;
   position: sticky;
   top: 0;
-  margin-left: -10px;
   display: block;
 
   @media screen and (max-width: 768px) {
     display: none;
-  }
-
-  &:hover {
-    ::-webkit-scrollbar-thumb {
-      background-color: #babac0;
-    }
-  }
-
-  /* total width */
-  ::-webkit-scrollbar {
-      background-color: #fff;
-      width: 16px;
-  }
-
-  /* background of the scrollbar except button or resizer */
-  ::-webkit-scrollbar-track {
-      background-color: #fff;
-  }
-
-  /* scrollbar itself */
-  ::-webkit-scrollbar-thumb {
-      background-color: transparent;
-      border-radius: 16px;
-      border: 4px solid #fff;
-  }
-
-  /* set button(top and bottom of the scrollbar) */
-  ::-webkit-scrollbar-button {
-      display:none;
   }
 `;
 
@@ -56,45 +31,58 @@ const Section = styled.div`
 `;
 
 const SectionHeader = styled.h3`
-  margin: 25px auto 8px;
-  font-size: 13px;
+  margin: 0;
+  margin-top: 25px;
+  padding: 25px 0 8px 24px;
   text-transform: uppercase;
-  font-weight: bold;
-  color: #111111;
+  color: #666666;
+
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 18px;
+  letter-spacing: 0px;
+
+  border-top: 1px solid #f4f4f4;
+
+  ${({ isFirst }) => isFirst && `
+    margin-top: 0;
+    border-top: none;
+  `}
 `;
 
 const SectionItems = styled.ul`
   list-style: none;
   margin: 0;
-  padding: 0;
+  padding: 0 12px;
 `;
 
 const ExpandableSectionItems = styled(SectionItems)`
   height: ${({ style: { isOpen } }) => isOpen ? 'auto' : 0};
   overflow: hidden;
+  padding: 0;
   padding-left: 4px;
-  border-left: 3px solid ${BLUE};
-  border-radius: ${({ style: { topOpen, bottomOpen } }) => {
-    if (topOpen) return '2.5px 0 0 0';
-    if (bottomOpen) return '0 0 0 2.5px';
-    return '0';
-  }};
   margin: ${({ style: { isOpen } }) => isOpen ? '4px 0 4px 4px' : 0};
 `;
 
 const SectionItem = styled.li`
-  font-size: 13px;
-  padding: 5px 10px;
-  margin: 0 0 0 -10px;
-  background: ${({ style: { isActive } }) => isActive ? BLUE : 'transparent'};
+  padding: 6px 12px;
+  margin: 0;
+  margin-top: 1px;
   cursor: pointer;
-  border-radius: 2.5px;
-  color: ${({ style: { isActive } }) => isActive ? '#ffffff' : '#111111'};
+  border-radius: 4px;
+
+  background: ${({ style: { isActive } }) => isActive ? 'rgba(0,0,0,0.08)' : 'transparent'};
+  cursor: pointer;
+  color: #111111;
+
+  font-weight: ${({ style: { isActive } }) => isActive ? '500' : 'normal'};
+  font-size: 15px;
+  line-height: 21px;
+  letter-spacing: -0.32px;
 
   &:hover {
     ${({ style: { isActive } }) => !isActive && `
       background: ${LIGHT_GRAY};
-      color: ${BLUE};
     `}
   }
 `;
@@ -104,8 +92,7 @@ const ExpandableSectionItem = styled(SectionItem)`
   align-items: center;
   justify-content: space-between;
   background: ${({ style: { anyOpen, isActive } }) => {
-    if (isActive) return BLUE;
-    if (anyOpen) return LIGHT_GRAY;
+    if (isActive || anyOpen) return 'rgba(0,0,0,0.08)';
     return 'transparent';
   }};
 
@@ -113,6 +100,7 @@ const ExpandableSectionItem = styled(SectionItem)`
     font-size: 16px;
     transform: ${({ style: { isOpen } }) => isOpen ? 'translate(0, 1px) rotate(90deg)' : 'translate(0, 1px) rotate(0)'};
     transition: all 0.3s;
+    margin-right: -4px;
   }
 `;
 
@@ -169,9 +157,9 @@ const LeftNav = ({ location, navItems }) => {
   return (
     <Container>
       {
-        sections.sort((a, b) => a.idx - b.idx).map(({ items, name }) => (
+        sections.sort((a, b) => a.idx - b.idx).map(({ items, name }, i) => (
           <Section key={name}>
-            <SectionHeader>{name}</SectionHeader>
+            <SectionHeader isFirst={i === 0}>{name}</SectionHeader>
             <SectionItems>
               {
                 items.sort((a, b) => a.idx - b.idx).map(({ name: itemName, path, subItems }) => !subItems ?
