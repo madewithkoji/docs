@@ -11,11 +11,11 @@ const Content = styled.div`
     width: 100%;
   }
 
-  margin: 18px 8px 64px 0;
-  padding: 0 24px 0 16px;
+  margin: 64px 0;;
+  padding: 0;
 
   @media screen and (max-width: 768px) {
-    padding: 0;
+    padding: 0 24px;
   }
 
   a {
@@ -36,8 +36,9 @@ const Content = styled.div`
   }
 
   p, body {
-    font-size: 14px !important;
-    line-height: 26px;
+    font-size: 17px!important;
+    line-height: 22px!important;
+    color: #111111!important;
   }
 
   code {
@@ -239,50 +240,63 @@ const Content = styled.div`
   td.hdlist1 { padding-right: .8em; font-weight: bold; font-size: 16px;}
 
   h1 {
-    margin-top: 0;
-    line-height: 1;
-    font-size: 2.3rem;
-    font-weight: bold;
+    font-size: 48px;
+    line-height: 52px;
+    font-weight: 700;
+
+    padding: 0;
+    margin: 0;
+    margin-bottom: 1rem;
   }
 
   h2 {
-    font-size: 1.6875em;
-    margin-top: 1.9em;
+    font-size: 32px;
+    line-height: 41px;
+    letter-spacing: 0.4px;
     font-weight: bold;
+
+    margin: 45px 0 16px;
   }
 
   h3 {
-    font-size: 1.375em;
-    margin-top: 1.2em;
+    font-size: 22px;
+    line-height: 28px;
+    letter-spacing: 0.35px;
+    color: #4f4f4f;
+    margin: 48px 0 14px;
+  }
+
+  h4, h5, h6 {
     font-weight: bold;
-  }
+    font-size: 18px;
+    line-height: 23px;
+    letter-spacing: 0.2px;
 
-  h4 {
-    font-size: 1.125em;
-  }
-
-  h5 {
-    font-size: 1.125em;
-  }
-
-  h6 {
-    font-size: 1em;
-  }
-  .hcode > h3 {
-    font-family: Menlo, Monaco, "Liberation Mono", Consolas, monospace;
+    padding: 0;
+    margin: 18px 0 10px;
   }
 
   img {
     max-width: 100%;
   }
 
+  ul {
+    margin: 0;
+  }
+
+  li {
+    p {
+      margin: 0;
+      margin-bottom: 10px;
+    }
+  }
+
   .img50 {
-    width: 50%;
+    width: 60%;
     min-width: 200px;
-    margin-left: 20px;
-    transition: transform .5s;
-    :hover {
-      transform: scale(2.0);
+
+    img {
+      border-radius: 8px;
     }
   }
 

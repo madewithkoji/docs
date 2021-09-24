@@ -3,23 +3,26 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { Link } from 'gatsby';
 
-import { BLACK, DARK_GRAY, LIGHT_GRAY } from '../constants/colors';
+import SearchIcon from '@material-ui/icons/Search';
+
+import { BLACK } from '../constants/colors';
 
 import Logo from './Logo';
 import DiscordLogo from './DiscordLogo';
 import GithubLogo from './GithubLogo';
 
 const Container = styled.div`
-  height: 76px;
-  width: calc(100% - 60px);
-  margin: 0 30px;
+  height: 64px;
+  width: 100%;
+  margin: 0;
   border-bottom: 1px solid #f4f4f4;
-  padding: 5px 0px 10px 0px;
+  padding: 0 24px;
   display: flex;
   align-items: center;
 
   @media screen and (max-width: 768px) {
     height: 60px;
+    border-bottom: none;
   }
 `;
 
@@ -28,19 +31,6 @@ const Wrapper = styled.div`
   margin: 0 auto;
   display: flex;
   align-items: center;
-
-  a {
-    font-size: 16px;
-    color: ${DARK_GRAY};
-    padding: 4px 8px;
-    border-radius: 8px;
-    text-decoration: none;
-  }
-
-  a:hover {
-    background: ${LIGHT_GRAY};
-    text-decoration: none;
-  }
 `;
 
 const LogoWrapper = styled.div`
@@ -56,10 +46,42 @@ const LogoWrapper = styled.div`
 `;
 
 const StyledLink = styled(Link)`
-  text-decoration: none;
+  color: #111;
+  padding: 8px 12px;
+  border-radius: 4px;
 
+  text-decoration: none;
+  margin-right: 1px;
   &:hover {
     text-decoration: none;
+    background: rgba(0,0,0,0.06);
+  }
+
+  ${({ isActive }) => isActive && `
+    background: rgba(0,0,0,0.06);
+    font-weight: 500;
+  `}
+`;
+
+const BackToKojiLink = styled(StyledLink)`
+  background: #007aff;
+  color: white;
+  font-weight: 500;
+  margin-right: 0;
+  margin-left: 12px;
+
+  font-size: 11px;
+  padding: 10px 12px;
+  text-transform: uppercase;
+
+  &:hover {
+    background: #007aff;
+    color: white;
+    opacity: 0.8;
+  }
+
+  @media screen and (max-width: 768px) {
+    display: none;
   }
 `;
 
@@ -86,18 +108,13 @@ const Spacer = styled.div`
   flex: 1 1 auto;
 `;
 
-const BackLink = styled.a`
-  display: flex;
-
-  @media screen and (max-width: 768px) {
-    display: none;
-  }
-`;
-
 const ExternalLink = styled.a`
   display: flex;
-  padding: 0 !important;
-  margin-right: 10px!important;
+  justify-content: center;
+  align-items: center;
+
+  padding: 0;
+  margin: 0;
 
   @media screen and (max-width: 768px) {
     display: none;
@@ -108,20 +125,44 @@ const ExternalLink = styled.a`
   }
 
   svg {
-    width: 20px;
-    height: 20px;
     fill: #a5a5a5;
   }
 `;
 
-const DiscordLink = styled(ExternalLink)`
-  margin-right: 4px!important;
+const GithubLink = styled(ExternalLink)`
+  margin-right: 10px;
+
   svg {
-    margin-top: 4px;
+    width: 20px;
+    height: 20px;
   }
 `;
 
-const AppBar = ({ navItems }) => (
+const DiscordLink = styled(ExternalLink)`
+  margin-right: 0;
+  svg {
+    width: 22px;
+    height: 22px;
+    margin-top: 2px;
+  }
+`;
+
+const SearchButton = styled.div`
+  cursor: pointer;
+  margin-right: 8px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  svg {
+    width: 23px;
+    height: 23px;
+    fill: #a5a5a5;
+  }
+`;
+
+const AppBar = ({ navItems, onStartSearch, currentArea }) => (
   <Container>
     <Wrapper>
       <LogoLink to={'/'}>
@@ -130,20 +171,31 @@ const AppBar = ({ navItems }) => (
         </LogoWrapper>
       </LogoLink>
       <SectionLinks>
-        {
-          navItems.sort((a, b) => a.idx - b.idx).map(({ id, name, defaultPath }) => (
-            <StyledLink key={id} to={defaultPath}>{name}</StyledLink>
-          ))
-        }
+        {navItems.sort((a, b) => a.idx - b.idx).map(({ id, name, defaultPath }) => (
+          <StyledLink
+            key={id}
+            to={defaultPath}
+            isActive={name === currentArea}
+          >
+            {name}
+          </StyledLink>
+        ))}
       </SectionLinks>
+
       <Spacer />
-      <ExternalLink
+
+      <SearchButton onClick={() => onStartSearch()}>
+        <SearchIcon />
+      </SearchButton>
+
+      <GithubLink
         href={'https://github.com/madewithkoji'}
         target={'_blank'}
         title={'Check out our Github'}
       >
         <GithubLogo />
-      </ExternalLink>
+      </GithubLink>
+
       <DiscordLink
         href={'https://discord.com/invite/9egkTWf4ec'}
         target={'_blank'}
@@ -152,9 +204,10 @@ const AppBar = ({ navItems }) => (
       >
         <DiscordLogo />
       </DiscordLink>
-      <BackLink href={'https://withkoji.com'} style={{ marginRight: 0 }}>
+
+      <BackToKojiLink href={'https://withkoji.com'} style={{ marginRight: 0 }}>
         {'Back to withkoji.com'}
-      </BackLink>
+      </BackToKojiLink>
     </Wrapper>
   </Container>
 );
@@ -165,10 +218,14 @@ AppBar.propTypes = {
     id: PropTypes.string,
     name: PropTypes.string,
   })),
+  currentArea: PropTypes.string,
+  onStartSearch: PropTypes.func,
 };
 
 AppBar.defaultProps = {
   navItems: [],
+  currentArea: 'Developer Docs',
+  onStartSearch: () => {},
 };
 
 export default AppBar;

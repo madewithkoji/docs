@@ -3,12 +3,12 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 const Container = styled.div`
-  width: calc(100% - 246px);
+  width: calc(100% - 280px);
   height: 100%;
 
   @media screen and (max-width: 768px) {
     width: 100%;
-    
+
   }
 `;
 
