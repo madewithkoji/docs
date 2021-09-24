@@ -12,8 +12,10 @@ const Container = styled.nav`
   max-width: 280px;
   border-right: 1px solid #f4f4f4;
 
-  height: 100%;
+  height: 100vh;
+  min-height: 100vh;
   max-height: 100vh;
+
   overflow: auto;
   padding: 0px;
   padding-bottom: 32px;
@@ -99,7 +101,6 @@ const ExpandableSectionItem = styled(SectionItem)`
   svg {
     font-size: 16px;
     transform: ${({ style: { isOpen } }) => isOpen ? 'translate(0, 1px) rotate(90deg)' : 'translate(0, 1px) rotate(0)'};
-    transition: all 0.3s;
     margin-right: -4px;
   }
 `;
