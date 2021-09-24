@@ -60,7 +60,6 @@ export const SectionLink = styled.a`
     transform: translate(-16px, 6px);
     border-radius: 50%;
     opacity: ${({ style: { isActive } }) => isActive ? 1 : 0};
-    transition: all 0.2s ease-in-out;
   }
 `;
 
@@ -89,7 +88,6 @@ export const SubSectionLink = styled.a`
     transform: translate(-16px, 6px);
     border-radius: 50%;
     opacity: ${({ style: { isActive } }) => isActive ? 1 : 0};
-    transition: all 0.2s ease-in-out;
   }
 `;
 
