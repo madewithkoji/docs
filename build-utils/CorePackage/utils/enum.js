@@ -11,7 +11,7 @@ function renderEnum(e) {
   const description = getEnumDescription(e);
 
   return `
-    <div>
+    <div class="api-ref-section">
       ${conditionallyRender(e.name, `<h3 id="${e.name}">${e.name}</h3>`)}
       ${conditionallyRender(description, `<p>${description}</p>`)}
       ${conditionallyRender(e.children.length > 0, `
@@ -19,7 +19,7 @@ function renderEnum(e) {
           <h4>Possible values</h4>
           <div class="ulist">
             <ul>
-              ${e.children.map((child) => `<li>${child.name}: = '${child.defaultValue.includes('"') ? child.defaultValue.slice(0, -1).slice(1) : child.defaultValue}'</li>`).join('')}
+              ${e.children.map((child) => `<li>${child.name} = '${child.defaultValue.includes('"') ? child.defaultValue.slice(0, -1).slice(1) : child.defaultValue}'</li>`).join('')}
             </ul>
           </div>
         </div>

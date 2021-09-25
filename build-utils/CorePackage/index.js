@@ -47,7 +47,7 @@ function getClassName(moduleName, className) {
   }
 
   // Support ui-prefixed names
-  return `${pieces[1].toUpperCase()} / ${pieces[2]}`;
+  return `${pieces[1].toUpperCase()}.${pieces[2]}`;
 }
 
 function generateModuleHTML(m, AllInterfaces, AllTypeAliases) {

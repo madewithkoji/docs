@@ -150,8 +150,6 @@ img { -ms-interpolation-mode: bicubic; }
 
 .hide { display: none; }
 
-.antialiased, body { -webkit-font-smoothing: antialiased; }
-
 img { display: inline-block; vertical-align: middle; }
 
 textarea { height: auto; min-height: 50px; }

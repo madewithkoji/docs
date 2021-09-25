@@ -8,10 +8,6 @@ import { graphql } from 'gatsby';
 import { decodeHTML } from '../../utils/decodeHTML';
 import '../../styles/dark-code.css';
 
-import { lineNumbers } from '../utils/line-numbers';
-import { addCopyCodeButton } from '../utils/copy-code';
-import { addLanguageIndicator } from '../utils/lang-indicator';
-
 import { BLACK, DARK_GRAY } from '../../constants/colors';
 import Content from './components/Content';
 import SEO from '../../components/Seo';
@@ -96,18 +92,6 @@ export const StyledContainer = styled(Container)`
   opacity: ${({ style: { isReady } }) => isReady ? 1 : 0};
 `;
 
-export const TOC = styled.div`
-  text-transform: uppercase;
-  font-size: 12px;
-  font-weight: normal;
-  color: #666666;
-  letter-spacing: 0px;
-
-  a, a:hover {
-    text-decoration: none;
-  }
-`;
-
 export const Nav = styled.div`
   position: sticky;
   top: 0;
@@ -188,9 +172,6 @@ const Asciidoc = (props) => {
     for (let idx = 0; idx < codeBlocks.length; idx += 1) {
       const block = codeBlocks[idx];
       hljs.highlightBlock(block);
-      lineNumbers(block);
-      addCopyCodeButton(block);
-      addLanguageIndicator(block);
     }
 
     const dataSlugLinks = document.querySelectorAll('a[data-slug]');
@@ -265,7 +246,6 @@ const Asciidoc = (props) => {
       {
         sections.length > 0 &&
         <Nav>
-          <TOC>{'Table of Contents'}</TOC>
           {
             sections.map(({ href, text, type }) => {
               if (type === 'h2') {

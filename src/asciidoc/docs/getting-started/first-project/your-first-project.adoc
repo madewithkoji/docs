@@ -19,9 +19,6 @@ In this section, you will learn how to:
 
 == Forking an existing project
 
-[quote, Sir Isaac Newton]
-If I have seen further, it is by standing on the shoulders of giants.
-
 Koji is designed with the idea that any new technology is built on other existing technologies.
 
 Koji developers start by forking an existing project or scaffold.

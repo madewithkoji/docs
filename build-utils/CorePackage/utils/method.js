@@ -85,7 +85,7 @@ function renderMethod(method, interfaces) {
   const methodReturnDescription = getMethodReturnDescription(method);
 
   return `
-    <div class="sect2 hcode">
+    <div class="sect2 hcode api-ref-section">
       ${conditionallyRender(methodTitle, `<h3 id="${method.name}">.${methodTitle}</h3>`)}
       ${conditionallyRender(methodDescription, convertToAsciiDoc(methodDescription))}
       ${conditionallyRender(methodExtendedDescription, convertToAsciiDoc(methodExtendedDescription))}
@@ -121,7 +121,7 @@ function renderMethod(method, interfaces) {
         </div>
       ` : ''}
       ${methodSource ? `
-        <p>Source: <a href="https://github.com/madewithkoji/koji-core/tree/main/src/${methodSource}" rel="noreferrer noopener" target="_blank">${methodSource}</a></p>
+        <p class="api-ref-source">Source: <a href="https://github.com/madewithkoji/koji-core/tree/main/src/${methodSource}" rel="noreferrer noopener" target="_blank">${methodSource}</a></p>
       ` : ''}
     </div>
   `;

@@ -7,10 +7,6 @@ import { graphql } from 'gatsby';
 
 import '../../styles/dark-code.css';
 
-import { lineNumbers } from '../utils/line-numbers';
-import { addCopyCodeButton } from '../utils/copy-code';
-import { addLanguageIndicator } from '../utils/lang-indicator';
-
 import Content from '../Asciidoc/components/Content';
 import SEO from '../../components/Seo';
 
@@ -19,7 +15,6 @@ import {
   SectionLink,
   SubSectionLink,
   StyledContainer,
-  TOC,
   Nav,
 } from '../Asciidoc';
 
@@ -74,9 +69,6 @@ const CorePackage = (props) => {
     for (let idx = 0; idx < codeBlocks.length; idx += 1) {
       const block = codeBlocks[idx];
       hljs.highlightBlock(block);
-      lineNumbers(block);
-      addCopyCodeButton(block);
-      addLanguageIndicator(block);
     }
 
     // Because all of the output of concern is wrapped in paragraph tags,
@@ -221,7 +213,6 @@ const CorePackage = (props) => {
       {
         sections.length > 0 &&
         <Nav>
-          <TOC>{'Table of Contents'}</TOC>
           {
             sections.map(({ altText, href, text, type }) => {
               if (type === 'h2') {

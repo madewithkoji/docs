@@ -283,7 +283,7 @@
                   "slug": "core-backend-utilities"
                 },
                 {
-                  "name": "Web3 / Ethereum",
+                  "name": "Web3.Ethereum",
                   "slug": "core-backend-web3-providers-ethereum"
                 }
               ]
@@ -317,23 +317,23 @@
                   "slug": "core-frontend-remix"
                 },
                 {
-                  "name": "UI / Capture",
+                  "name": "UI.Capture",
                   "slug": "core-frontend-ui-capture"
                 },
                 {
-                  "name": "UI / Navigate",
+                  "name": "UI.Navigate",
                   "slug": "core-frontend-ui-navigate"
                 },
                 {
-                  "name": "UI / Present",
+                  "name": "UI.Present",
                   "slug": "core-frontend-ui-present"
                 },
                 {
-                  "name": "UI / Upload",
+                  "name": "UI.Upload",
                   "slug": "core-frontend-ui-upload"
                 },
                 {
-                  "name": "Web3 / Ethereum",
+                  "name": "Web3.Ethereum",
                   "slug": "core-frontend-web3-providers-ethereum"
                 }
               ]
