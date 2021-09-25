@@ -17,7 +17,7 @@ function renderInterface(i) {
   const interfaceProperties = getInterfaceProperties(i);
 
   return `
-    <div>
+    <div class="api-ref-section">
       ${conditionallyRender(i.name, `<h3 id="${i.name}">${i.name}</h3>`)}
       ${conditionallyRender(interfaceDescription, `<p>${interfaceDescription}</p>`)}
       ${(interfaceProperties && interfaceProperties.length > 0) ? `

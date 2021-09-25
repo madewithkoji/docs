@@ -26,18 +26,10 @@ const Content = styled.div`
     color: ${BLUE};
   }
 
-  a[target="_blank"] {
-    &:after {
-      content: url('data:image/svg+xml; utf8, <svg xmlns="http://www.w3.org/2000/svg" height="16" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0z" fill="none"/><path d="M19 19H5V5h7V3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"/></svg>');
-      position: relative;
-      top: 3px;
-      opacity: 0.7;
-    }
-  }
-
   p, body {
-    font-size: 17px!important;
-    line-height: 22px!important;
+    font-size: 15px;
+    line-height: 21px;
+    letter-spacing: -0.32px;
     color: #111111!important;
   }
 
@@ -193,7 +185,7 @@ const Content = styled.div`
   }
 
   pre > code {
-    padding-top: 30px;
+    padding: 6px;
   }
 
   .lang-indicator {
@@ -262,15 +254,16 @@ const Content = styled.div`
     font-size: 22px;
     line-height: 28px;
     letter-spacing: 0.35px;
-    color: #4f4f4f;
     margin: 48px 0 14px;
   }
 
   h4, h5, h6 {
-    font-weight: bold;
-    font-size: 18px;
-    line-height: 23px;
-    letter-spacing: 0.2px;
+    font-weight: 600;
+  font-size: 16px;
+  line-height: 20px;
+  letter-spacing: -0.24px;
+
+    color: #4f4f4f;
 
     padding: 0;
     margin: 18px 0 10px;
@@ -431,27 +424,32 @@ const Content = styled.div`
   }
 
   .colist {
+    padding: 12px 0;
+
     ol {
       list-style: none;
       counter-reset: coctr;
     }
+
     ol li {
       counter-increment: coctr;
     }
+
     ol li::before {
       content: counter(coctr);
       display: inline-block;
       float: left;
-      width: 15px !important;
-      height: 15px !important;
-      line-height: 15px !important;
+      width: 12px !important;
+      height: 12px !important;
+      line-height: 12px !important;
       padding: 5px;
       margin-right: 5px;
       color: white !important;
       background-color: #404040 !important;
       border-radius: 50%;
       text-align: center;
-      font-weight: bold;
+      font-weight: 500;
+      font-size: 12px;
       font-style: normal;
       position: relative;
       user-select: none;
@@ -502,6 +500,29 @@ const Content = styled.div`
     font-family: Menlo, Monaco, "Liberation Mono", Consolas, monospace;
   }
 
+  .api-ref-section {
+    padding: 64px 0;
+    border-bottom: 2px solid #f4f4f4;
+
+    &:first-of-type {
+      padding-top: 20px;
+    }
+
+    h3 {
+      margin-top: 0;
+    }
+  }
+
+  .api-ref-source {
+    font-weight: normal;
+    font-size: 12px;
+    line-height: 18px;
+    letter-spacing: 0px;
+
+    svg {
+
+    }
+  }
 `;
 
 export default Content;

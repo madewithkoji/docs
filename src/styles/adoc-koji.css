@@ -35,8 +35,23 @@
 .listingblock + .admonitionblock, .admonitionblock + .listingblock, .admonitionblock + .admonitionblock { margin-top: 20px; }
 
 /* Code Call outs */
-.conum { display: inline-block; color: white !important; background-color: #404040; -webkit-border-radius: 100px; border-radius: 100px; text-align: center; width: 20px; height: 20px; font-size: 12px; font-weight: bold; line-height: 20px; font-family: Arial, sans-serif; font-style: normal; position: relative; top: -2px; user-select: none; }
-.conum * { color: white !important; }
+.conum {
+  display: inline-block;
+  -webkit-border-radius: 100px;
+  border-radius: 100px;
+  text-align: center;
+  width: 20px;
+  height: 20px;
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 20px;
+  font-style: normal;
+  position: relative;
+  left: -4px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  user-select: none;
+}
+
 .conum + b { display: none; }
 .conum:after { content: attr(data-value); }
 .conum:not([data-value]):empty { display: none; }

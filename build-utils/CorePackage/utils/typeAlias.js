@@ -64,7 +64,7 @@ function renderTypeAlias(typeAlias, interfaces) {
   if (typeAliasReturn) typeAliasName += `&nbsp;=>&nbsp;<em>${typeAliasReturn}</em>`;
 
   return `
-    <div>
+    <div class="api-ref-section">
       ${conditionallyRender((name && typeAliasType === 'function'), `
         <h3 id="${typeAlias.name}">${typeAliasName}</h3>
       `)}
@@ -101,7 +101,7 @@ function renderTypeAlias(typeAlias, interfaces) {
           </div>
         </div>
       ` : ''}
-      
+
       ${conditionallyRender(typeAliasType === 'function', renderTypeAliasFunction(typeAlias))}
       ${conditionallyRender(typeAliasType === 'union', renderTypeAliasUnion(typeAlias))}
     </div>

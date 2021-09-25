@@ -157,84 +157,78 @@ const LeftNav = ({ location, navItems }) => {
 
   return (
     <Container>
-      {
-        sections.sort((a, b) => a.idx - b.idx).map(({ items, name }, i) => (
-          <Section key={name}>
-            <SectionHeader isFirst={i === 0}>{name}</SectionHeader>
-            <SectionItems>
-              {
-                items.sort((a, b) => a.idx - b.idx).map(({ name: itemName, path, subItems }) => !subItems ?
-                  (
-                    <StyledLink
-                      key={path}
-                      style={{ isActive: comparePaths(location.pathname, path) }}
-                      to={path}
+      {sections.sort((a, b) => a.idx - b.idx).map(({ items, name }, i) => (
+        <Section key={name}>
+          <SectionHeader isFirst={i === 0}>{name}</SectionHeader>
+          <SectionItems>
+            {items.sort((a, b) => a.idx - b.idx).map(({ name: itemName, path, subItems }) => !subItems ?
+              (
+                <StyledLink
+                  key={path}
+                  style={{ isActive: comparePaths(location.pathname, path) }}
+                  to={path}
+                >
+                  <SectionItem
+                    onClick={() => {
+                      setOpenItemPath(false);
+                      setOpenSubItemPath(false);
+                    }}
+                    style={{ isActive: comparePaths(location.pathname, path) }}
+                  >
+                    {itemName}
+                  </SectionItem>
+                </StyledLink>
+              ) :
+              (
+                <Fragment key={path}>
+                  <StyledLink
+                    style={{ isActive: comparePaths(location.pathname, path) }}
+                    to={path}
+                  >
+                    <ExpandableSectionItem
+                      style={{
+                        isActive: comparePaths(location.pathname, path),
+                        anyOpen: openItemPath === path,
+                        isOpen: openItemPath === path,
+                      }}
+                      onClick={() => setOpenItemPath(path)}
                     >
-                      <SectionItem
-                        onClick={() => {
-                          setOpenItemPath(false);
-                          setOpenSubItemPath(false);
-                        }}
-                        style={{ isActive: comparePaths(location.pathname, path) }}
-                      >
-                        {itemName}
-                      </SectionItem>
-                    </StyledLink>
-                  ) :
-                  (
-                    <Fragment key={path}>
-                      <StyledLink
-                        style={{ isActive: comparePaths(location.pathname, path) }}
-                        to={path}
-                      >
-                        <ExpandableSectionItem
-                          style={{
-                            isActive: comparePaths(location.pathname, path),
-                            anyOpen: openItemPath === path,
-                            isOpen: openItemPath === path,
-                          }}
-                          onClick={() => setOpenItemPath(path)}
-                        >
-                          <span>{itemName}</span>
-                          <KeyboardArrowRightIcon />
-                        </ExpandableSectionItem>
-                      </StyledLink>
+                      <span>{itemName}</span>
+                      <KeyboardArrowRightIcon />
+                    </ExpandableSectionItem>
+                  </StyledLink>
 
-                      <ExpandableSectionItems
+                  <ExpandableSectionItems
+                    style={{
+                      bottomOpen: openSubItemPath === subItems[subItems.length - 1].path,
+                      isOpen: openItemPath === path,
+                      topOpen: openSubItemPath === subItems[0].path,
+                    }}
+                  >
+                    {subItems.sort((a, b) => a.idx - b.idx).map(({ name: subItemName, path: subItemPath }) => (
+                      <StyledLink
+                        key={subItemName}
                         style={{
-                          bottomOpen: openSubItemPath === subItems[subItems.length - 1].path,
-                          isOpen: openItemPath === path,
-                          topOpen: openSubItemPath === subItems[0].path,
+                          isActive: comparePaths(location.pathname, subItemPath),
                         }}
+                        to={subItemPath}
                       >
-                        {
-                          subItems.sort((a, b) => a.idx - b.idx).map(({ name: subItemName, path: subItemPath }) => (
-                            <StyledLink
-                              key={subItemName}
-                              style={{
-                                isActive: comparePaths(location.pathname, subItemPath),
-                              }}
-                              to={subItemPath}
-                            >
-                              <SectionItem
-                                onClick={() => setOpenSubItemPath(subItemPath)}
-                                style={{
-                                  isActive: comparePaths(location.pathname, subItemPath),
-                                }}
-                              >
-                                {subItemName}
-                              </SectionItem>
-                            </StyledLink>
-                          ))
-                        }
-                      </ExpandableSectionItems>
-                    </Fragment>
-                  ))
-              }
-            </SectionItems>
-          </Section>
-        ))
-      }
+                        <SectionItem
+                          onClick={() => setOpenSubItemPath(subItemPath)}
+                          style={{
+                            isActive: comparePaths(location.pathname, subItemPath),
+                          }}
+                        >
+                          {subItemName}
+                        </SectionItem>
+                      </StyledLink>
+                    ))}
+                  </ExpandableSectionItems>
+                </Fragment>
+              ))}
+          </SectionItems>
+        </Section>
+      ))}
     </Container>
   );
 };

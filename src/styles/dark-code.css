@@ -50,7 +50,7 @@ body.darkCode .hljs-formula {
 body.darkCode .hljs-comment,
 body.darkCode .hljs-quote {
   color: #6f705e;
-  font-style: italic;
+  font-style: normal;
 }
 
 body.darkCode .hljs-doctag {
