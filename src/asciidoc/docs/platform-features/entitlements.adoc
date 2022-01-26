@@ -86,8 +86,9 @@ To enable financial transactions in the app, configure the `InAppPurchases` obje
           "fulfillment": "email", <8>
           "isConsumable": true, <9>
           "dynamicReceipt": true, <10>
-          "captureOnPurchase": false, <11>
-          "captureExpiryPeriod": 1 <12>
+          "dynamicReceiptCta": "View Items", <11>
+          "captureOnPurchase": false, <12>
+          "captureExpiryPeriod": 1 <13>
         }
       ]
     }
@@ -119,10 +120,11 @@ This value is stored as a custom attribute on the <<core-backend-iap#IapReceipt,
 <9> `InAppPurchases.products[_index_].isConsumable` – _Boolean_, Enables the product to be purchased more than once.
 <10> `InAppPurchases.products[_index_].dynamicReceipt` – _Boolean_, Enables the transaction receipt to display the `receipt` context of the app.
 If enabled, use <<core-frontend-playerstate#context, Koji.playerState.context>> to detect the `receipt` context, and use <<core-frontend-playerstate#receiptType, Koji.playerState.receiptType>> to determine whether the buyer or the seller is viewing the receipt.
-<11> `InAppPurchases.products[_index_].captureOnPurchase` – _Boolean_, Indicates whether to capture transactions immediately.
+<11> `InAppPurchases.products[_index_].dynamicReceiptCta` - _String_, A call to action to display on the receipt. If not set, "View Order Details" will be used as the call to action.
+<12> `InAppPurchases.products[_index_].captureOnPurchase` – _Boolean_, Indicates whether to capture transactions immediately.
 Default is `true`.
 If set to `false`, transactions are held in a pending state until they are manually captured with <<core-backend-iap#captureTransaction, Iap.captureTransaction>> on the backend of the app.
 Funds are not available in the seller’s account until the transaction is captured.
 If you do not capture the transaction within the `captureExpiryPeriod`, the transaction is automatically reversed and the buyer is refunded.
-<12> `InAppPurchases.products[_index_].captureExpiryPeriod` – _Number_, Period within which a pending transaction must be captured before it is reversed, from 0 to 7 days.
+<13> `InAppPurchases.products[_index_].captureExpiryPeriod` – _Number_, Period within which a pending transaction must be captured before it is reversed, from 0 to 7 days.
 Default is `0`.
