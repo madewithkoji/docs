@@ -128,3 +128,28 @@ Funds are not available in the seller’s account until the transaction is captu
 If you do not capture the transaction within the `captureExpiryPeriod`, the transaction is automatically reversed and the buyer is refunded.
 <13> `InAppPurchases.products[_index_].captureExpiryPeriod` – _Number_, Period within which a pending transaction must be captured before it is reversed, from 0 to 7 days.
 Default is `0`.
+
+== Smart contract source maps
+
+To enable automatic contract verification and source mapping for Web3 apps, enable this entitlement.
+
+[source,JSON]
+----
+{
+  "entitlements": {
+    "SmartContractSourceMap": {
+      "enabled": true, <1>
+      "compilerInputSource": "frontend/artifacts/build-info/65fb...7f6.json", <2>
+      "contractName": "KojiToken", <3>
+      "entryPath": "contracts/Token.sol", <4>
+      "version": "0.8.2+commit.661d1103" <5>
+    }
+  }
+}
+----
+<1> `SmartContractSourceMap.enabled` – _Boolean_, Enables the app to verify and map contract sources when deployed.
+Default is `false`.
+<2> `SmartContractSourceMap.compilerInputSource` – _String_, The path in your project where Solidity compiler inputs can be found. This is usually generated automatically by tools like Hardhat. See https://docs.soliditylang.org/en/v0.8.11/using-the-compiler.html#compiler-api[Solidity Documentation] for more details.
+<3> `SmartContractSourceMap.contractName` - _String_, The name of the contract bundled in your project.
+<4> `SmartContractSourceMap.entryPath` - _String_, The entry path for the contract, as it appears in your input source.
+<5> `SmartContractSourceMap.version` - _String_, The full name of the Solidity version used to compile your contract. This is used when Koji's verifier compiles your contract. If this does not match the version used when you compiled your contract, your contract will not verify.

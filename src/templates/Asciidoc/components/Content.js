@@ -429,6 +429,7 @@ const Content = styled.div`
     ol {
       list-style: none;
       counter-reset: coctr;
+      padding-left: 0;
     }
 
     ol li {
@@ -439,20 +440,22 @@ const Content = styled.div`
       content: counter(coctr);
       display: inline-block;
       float: left;
-      width: 12px !important;
-      height: 12px !important;
-      line-height: 12px !important;
-      padding: 5px;
-      margin-right: 5px;
-      color: white !important;
-      background-color: #404040 !important;
+      width: 10px !important;
+      height: 10px !important;
+      line-height: 10px !important;
+      font-size: 10px;
+      color: black !important;
+      background-color: rgba(0,0,0,0.08)!important;
       border-radius: 50%;
       text-align: center;
       font-weight: 500;
-      font-size: 12px;
       font-style: normal;
       position: relative;
       user-select: none;
+
+      padding: 3px;
+      margin-right: 4px;
+      margin-top: 4px;
     }
   }
 
