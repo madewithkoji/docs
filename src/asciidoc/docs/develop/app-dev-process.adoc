@@ -53,7 +53,7 @@ Learn more: <<projects#_develop, develop key>>, <<projects#_deploy, deploy key>>
 
 . If the app has customization options for creators, define the default values for those options and any placeholder values for new customized versions.
 +
-Learn more: <<projects#_remixData, remixData key>>, <<projects#_@@initialTransform, @@initialTransform key>>
+Learn more: <<projects#_remixdata, remixData key>>, <<projects#_initialtransform, @@initialTransform key>>
 
 . Configure the entitlements for the Koji platform features in your app.
 +
