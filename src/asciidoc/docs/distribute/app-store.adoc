@@ -29,17 +29,15 @@ TIP: For a smoother process, prepare your marketing assets before you create you
 
 To create your App Store listing,
 
-include::{includespath}/steps-dev-portal.adoc[tag=go2-dev-portal]
+include::{includespath}/steps-app-store.adoc[tag=go2-app-store-console]
 
-include::{includespath}/steps-dev-portal.adoc[tag=go2-dev-portal-templates]
-
-. Click *New App Template*.
+. Click *New App Listing*.
 
 . Give your listing a name.
 +
 This name is not published in the App Store; it is used to identify your listing.
 
-. Fill in the *App Template Details*.
+. Fill in the *App Listing Details*.
 +
 IMPORTANT: All texts and images in your listing must meet https://withkoji.com/resources/terms[Koji's Terms of Use] requirements.
 +
@@ -54,7 +52,7 @@ Note that the title could be truncated depending on the width of the browser pag
 
 * *Share Image* – The 1200x630-pixel thumbnail that is displayed when your app listing is shared in other social media sites.
 
-* *Videos and Screenshots* – Up to 10 videos and screenshots of your app.
+* *Videos and Screenshots* – Up to 10 videos or screenshots of your app.
 
 * *Bundled App* – The production URL of your app.
 
@@ -100,15 +98,13 @@ When you publish a new version of your app, you don't need to update your App St
 However, if you need to change the description or screenshots in your listing, you must create a new listing.
 The old listing is not modifiable.
 
-include::{includespath}/steps-dev-portal.adoc[tag=go2-dev-portal]
-
-include::{includespath}/steps-dev-portal.adoc[tag=go2-dev-portal-templates]
+include::{includespath}/steps-app-store.adoc[tag=go2-app-store-console]
 
 . Search for the listing you want to update.
 
 . Click the btn:[Manage] button for the listing.
 
-. In the *App Template Details* page, click the *Create New Version* link.
+. In the *Manage App Listing* page, click the *Create New Version* link.
 +
 Most of the settings from the old listing will be copied to the new one.
 

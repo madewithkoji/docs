@@ -5,6 +5,7 @@
     :includespath: ../_includes
 
     include::{includespath}/steps-app-store.adoc[tag=go2-app-store-developers]
+    include::{includespath}/steps-app-store.adoc[tag=go2-app-store-console]
     include::{includespath}/steps-app-store.adoc[tag=go2-app-store-games]
     include::{includespath}/steps-app-store.adoc[tag=go2-app-store-developer-quick-start]
     include::{includespath}/steps-app-store.adoc[tag=go2-app-store-bouncy-blast]
@@ -19,6 +20,10 @@
 // tag::go2-app-store-developers[]
 . Go to the https://withkoji.com/apps/categories/for-developers[For Developers] section of the Koji App Store.
 // end::go2-app-store-developers[]
+
+// tag::go2-app-store-console[]
+. Go to the https://withkoji.com/developer/app-store-console[App store console].
+// end::go2-app-store-console[]
 
 // tag::go2-app-store-games[]
 . Go to the https://withkoji.com/apps/categories/instant-games[Instant Games] section of the Koji App Store.
