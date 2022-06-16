@@ -5,16 +5,20 @@
 context::
 A state or mode that provides specific functionality in a Koji app.
 The default mode is the first screen displayed when the user starts the app.
-To determine the current context of a running app, use the <<core-frontend-playerstate#context,Koji.playerState.context property in the @withkoji/core package>>.
-Learn more: <<intro-to-contexts#>>
+To determine the current context of a running app, use the Koji.playerState.context property in the @withkoji/core package.
+Learn more: <<contexts#_contexts_of_a_koji_app, intro to context>>
 
 creator::
 Someone who creates media and other assets on social media and posts Koji apps to their Koji Profile.
-Also see *developer* and *user*.
 
 developer::
 Someone who writes code to create Koji apps.
-Also see *creator* and *user*.
+
+user::
+Someone who interacts with a Koji app on a creator's Koji Profile.
+
+owner::
+Someone who owns a specific version of the app. The developer owns the original version of the app; the creator who customized the app owns that specific customized version.
 
 entitlement::
 Permissions that allow the Koji app to use certain platform features, such as enabling customization or defining product information for in-app purchases.
@@ -38,18 +42,9 @@ Koji Profile::
 A social media creator's "link in bio" which consolidates the creator's online presence.
 A creator's Koji Profile can include Koji apps that allow their fans to interact with the creator and that allow the creator to monetize their followers.
 
-owner::
-Someone who owns a specific version of the app. The developer owns the original version of the app; the creator who customized the app owns that specific customized version.
-
 player chrome::
 The set of Koji platform menus and navigation that are displayed with the Koji app.
 This includes the user's profile picture, which displays the user menu when clicked.
-
-production URL::
-The permalink of your app.
-This URL remains the same even after you republish your app with additional changes.
-When you create a listing for your app in the App Store, use this URL.
-Also see *staging URL*.
 
 project::
 A collection of code and associated assets (such as images and sounds) that are compiled, processed, and packaged into a Koji app.
@@ -62,8 +57,8 @@ staging URL::
 The URL of the temporary location of your compiled app.
 This location is available only while the Koji code editor is open.
 You can share this URL with people who collaborate with you in the development of the app.
-Also see *production URL*.
 
-user::
-Someone who interacts with a Koji app on a creator's Koji Profile.
-Also see *creator* and *developer*.
+production URL::
+The permalink of your app.
+This URL remains the same even after you republish your app with additional changes.
+When you create a listing for your app in the App Store, use this URL.
