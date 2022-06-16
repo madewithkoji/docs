@@ -6,7 +6,7 @@
 
 In this tutorial, you will create a customizable https://withkoji.com/~Svarog1389/rxkd[falling objects] game, starting from a https://withkoji.com/~Svarog1389/game-template-1[p5.js game scaffold].
 
-NOTE: This tutorial assumes you've already gone through the <<start-tutorial, Koji quick start tutorial>> and are familiar with the basics of Koji apps.
+NOTE: This tutorial assumes you've already gone through the <<start-tutorial#, Koji quick start tutorial>> and are familiar with the basics of Koji apps.
 
 == Objective
 
