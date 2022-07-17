@@ -5,6 +5,7 @@
   --bg-green-40:  rgba(217, 245, 233, 0.4); /* #D9F5E9; */
   --bg-red-40:    rgba(253, 217, 215, 0.4); /* #FDD9D7; */
   --bg-yellow-40: rgba(255, 249, 201, 0.4); /* #FFF9C9; */
+  --text: #111;
 }
 
 /* Admonitions */
@@ -178,7 +179,7 @@ dl dd { margin-left: 2em; }
 dl dd:last-child, dl dd:last-child > :last-child { margin-bottom: 0; }
 
 /* Definition Lists */
-dl dt { margin-bottom: 0.3em; font-weight: bold; font-size: 16px; }
+dl dt { margin-bottom: 0.3em; font-weight: bold; font-size: 16px; color: var(--text)}
 dl dd { margin-bottom: 0.75em; }
 
 ol > li p, ul > li p, ul dd, ol dd, .olist .olist, .ulist .ulist, .ulist .olist, .olist .ulist { margin-bottom: 0.6875em; }

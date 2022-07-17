@@ -1,11 +1,24 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+:root {
+  --text: #111;
+  --link: #0074de;
+  --link-hover: #68b5fb;
+}
+
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+    Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
+    'Segoe UI Symbol';
   width: 100vw;
   height: 100vh;
   overflow: auto;
   overflow-x: hidden;
-  color: #111111;
+  color: var(--text);
+  font-feature-settings: 'kern';
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
 }
 
 html {
@@ -17,7 +30,24 @@ html {
 }
 
 pre {
-  font-family: Menlo, Monaco, "Courier New", monospace;
+  font-family: Menlo, Monaco, 'Courier New', monospace;
   border-radius: 4px;
   font-size: 12px;
+}
+
+p {
+  margin: 1.25rem 0;
+  color: var(--text);
+}
+
+a {
+  color: var(--link);
+  text-decoration: none !important;
+}
+a:hover {
+  color: var(--link-hover) !important;
+}
+
+.tip {
+  margin-bottom: 20px;
 }

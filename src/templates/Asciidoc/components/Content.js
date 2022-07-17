@@ -27,10 +27,9 @@ const Content = styled.div`
   }
 
   p, body {
-    font-size: 15px;
-    line-height: 21px;
+    font-size: 16px;
+    line-height: 1.65;
     letter-spacing: -0.32px;
-    color: #111111!important;
   }
 
   code {
